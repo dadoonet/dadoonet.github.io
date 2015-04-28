@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[-Xmx128gb -Xms128gb]]></title>
-  <link href="http://dadoonet.github.io/atom.xml" rel="self"/>
+  <title><![CDATA[Category: Hibernate | -Xmx128gb -Xms128gb]]></title>
+  <link href="http://dadoonet.github.io/blog/categories/hibernate/atom.xml" rel="self"/>
   <link href="http://dadoonet.github.io/"/>
   <updated>2015-04-28T13:30:29+02:00</updated>
   <id>http://dadoonet.github.io/</id>
@@ -24,18 +24,12 @@
 
 <p>The workaround is simply to add a more recent jboss-logging dependency than the one shipped by default with Hibernate 4.3.8.Final.</p>
 
-<figure class='code'><figcaption><span>pom.xml file</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;dependency&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;groupId&gt;</span>org.jboss.logging<span class="nt">&lt;/groupId&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;artifactId&gt;</span>jboss-logging<span class="nt">&lt;/artifactId&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;version&gt;</span>3.2.1.Final<span class="nt">&lt;/version&gt;</span>
-</span><span class='line'><span class="nt">&lt;/dependency&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<pre><code class="xml pom.xml file">&lt;dependency&gt;
+    &lt;groupId&gt;org.jboss.logging&lt;/groupId&gt;
+    &lt;artifactId&gt;jboss-logging&lt;/artifactId&gt;
+    &lt;version&gt;3.2.1.Final&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
 ]]></content>
   </entry>
   

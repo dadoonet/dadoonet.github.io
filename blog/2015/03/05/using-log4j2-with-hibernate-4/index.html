@@ -5,12 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Blog Archive - -Xmx128gb -Xms128gb</title>
+  <title>Using Log4J2 With Hibernate 4 - -Xmx128gb -Xms128gb</title>
   <meta name="author" content="David Pilato">
 
   
-  <meta name="description" content="Blog Archive 2015 Using Log4J2 With Hibernate 4
-Mar 05 2015 posted in hibernate, maven Recent Posts Using Log4J2 With Hibernate 4 GitHub Repos &hellip;">
+  <meta name="description" content="I was trying to use Hibernate 4.3.8.Final with Log4J2 and I spent some hours to find why Hibernate was not using Log4J2 though it was declared in my &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +18,7 @@ Mar 05 2015 posted in hibernate, maven Recent Posts Using Log4J2 With Hibernate 
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://dadoonet.github.io/blog/archives/">
+  <link rel="canonical" href="http://dadoonet.github.io/blog/2015/03/05/using-log4j2-with-hibernate-4/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="-Xmx128gb -Xms128gb" type="application/atom+xml">
@@ -65,35 +64,87 @@ Mar 05 2015 posted in hibernate, maven Recent Posts Using Log4J2 With Hibernate 
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Blog Archive</h1>
+    
+      <h1 class="entry-title">Using Log4J2 With Hibernate 4</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-03-05T21:00:00+01:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>5</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>9:00 pm</span></time>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives">
 
 
+<div class="entry-content"><p>I was trying to use Hibernate 4.3.8.Final with Log4J2 and I spent some hours to find why Hibernate was not using Log4J2 though it was declared in my pom.xml file.</p>
 
-  
-  <h2>2015</h2>
+<p>Actually, I hit issue <a href="https://issues.jboss.org/browse/JBLOGGING-107">JBLOGGING-107</a>.</p>
 
-<article>
-  
-<h1><a href="/blog/2015/03/05/using-log4j2-with-hibernate-4/">Using Log4J2 With Hibernate 4</a></h1>
-<time datetime="2015-03-05T21:00:00+01:00" pubdate><span class='month'>Mar</span> <span class='day'>05</span> <span class='year'>2015</span></time>
+<p>The workaround is simply to add a more recent jboss-logging dependency than the one shipped by default with Hibernate 4.3.8.Final.</p>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/hibernate/'>hibernate</a>, <a class='category' href='/blog/categories/maven/'>maven</a></span>
-</footer>
-
-
-</article>
+<figure class='code'><figcaption><span>pom.xml file</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;dependency&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;groupId&gt;</span>org.jboss.logging<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;artifactId&gt;</span>jboss-logging<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;version&gt;</span>3.2.1.Final<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'><span class="nt">&lt;/dependency&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
 
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">David Pilato</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2015-03-05T21:00:00+01:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>5</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>9:00 pm</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/hibernate/'>hibernate</a>, <a class='category' href='/blog/categories/maven/'>maven</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://dadoonet.github.io/blog/2015/03/05/using-log4j2-with-hibernate-4/" data-via="dadoonet" data-counturl="http://dadoonet.github.io/blog/2015/03/05/using-log4j2-with-hibernate-4/" >Tweet</a>
+  
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+      
+    </p>
+  </footer>
 </article>
 
 </div>
