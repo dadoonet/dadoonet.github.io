@@ -11,6 +11,13 @@ article {
       margin: 0;
       a { text-decoration: none;
         &:hover { text-decoration: underline; } }
+      img {
+        max-width: 50px;
+        max-height: 50px;
+        box-shadow: none;
+        box-sizing: none;
+        border: none
+      }
     }
     p {
       font-size: .9em;
