@@ -1,0 +1,642 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Logstash | -Xmx128gb -Xms128gb]]></title>
+  <link href="http://dadoonet.github.io/blog/categories/logstash/atom.xml" rel="self"/>
+  <link href="http://dadoonet.github.io/"/>
+  <updated>2015-04-28T13:37:19+02:00</updated>
+  <id>http://dadoonet.github.io/</id>
+  <author>
+    <name><![CDATA[David Pilato]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Exploring Capitaine Train Dataset]]></title>
+    <link href="http://dadoonet.github.io/blog/2015/04/28/exploring-capitaine-train-dataset/"/>
+    <updated>2015-04-28T13:31:34+02:00</updated>
+    <id>http://dadoonet.github.io/blog/2015/04/28/exploring-capitaine-train-dataset</id>
+    <content type="html"><![CDATA[<p>Recently I saw this <a href="https://twitter.com/capitainetrain/status/591184013034938368">tweet</a> where <a href="https://www.capitainetrain.com/">Capitaine Train</a> team started to open data they have collected and enriched or corrected.</p>
+
+<!-- more -->
+
+
+<h1>Prerequisites</h1>
+
+<p>You will need:</p>
+
+<ul>
+<li><a href="https://www.elastic.co/downloads/logstash">Logstash</a>: I&rsquo;m using <a href="https://download.elastic.co/logstash/logstash/logstash-1.5.0-rc3.tar.gz">1.5.0-rc3</a>.</li>
+<li><a href="https://www.elastic.co/downloads/elasticsearch">Elasticsearch</a>: I&rsquo;m using  <a href="https://download.elastic.co/elasticsearch/elasticsearch/elasticsearch-1.5.2.tar.gz">1.5.2</a></li>
+<li><a href="https://www.elastic.co/downloads/kibana">Kibana</a>: I&rsquo;m using <a href="https://download.elastic.co/kibana/kibana/kibana-4.0.2-darwin-x64.tar.gz">4.0.2 Mac version</a></li>
+</ul>
+
+
+<h1>Download the dataset</h1>
+
+<pre><code class="sh">wget https://raw.githubusercontent.com/capitainetrain/stations/master/stations.csv
+</code></pre>
+
+<p>What does it look like?</p>
+
+<pre><code class="sh">head -3 stations.csv
+</code></pre>
+
+<pre><code>id;name;slug;uic;uic8_sncf;longitude;latitude;parent_station_id;is_city;country;is_main_station;time_zone;is_suggestable;sncf_id;sncf_is_enabled;idtgv_id;idtgv_is_enabled;db_id;db_is_enabled;idbus_id;idbus_is_enabled;ouigo_id;ouigo_is_enabled;trenitalia_id;trenitalia_is_enabled;ntv_id;ntv_is_enabled;info:fr;info:en;info:de;info:it;same_as
+1;Château-Arnoux—St-Auban;chateau-arnoux-st-auban;;;6.0016250000;44.0817900000;;t;FR;f;Europe/Paris;f;FRAAA;t;;f;;f;;f;;f;;f;;f;;;;;
+2;Château-Arnoux—St-Auban;chateau-arnoux-st-auban;8775123;87751230;5.997342;44.061499;1;f;FR;t;Europe/Paris;t;FRCAA;t;;f;8700156;f;;f;;f;;f;;f;;;;;
+</code></pre>
+
+<p>So it&rsquo;s a CSV file containing some information that might worth to explore:</p>
+
+<ul>
+<li><code>name</code>: obviously the name of the train station</li>
+<li><code>longitude</code> and <code>latitude</code>: location</li>
+<li><code>country</code>: the country ISO code (2 letters)</li>
+<li><code>xxx_is_enabled</code>: true if <code>xxx</code> offer exists in the current train station (1 letter boolean value)</li>
+</ul>
+
+
+<h1>Processing with logstash</h1>
+
+<p>Let&rsquo;s start with a blank logstash configuration file <code>station.conf</code> which will process our <a href="http://www.elastic.co/guide/en/logstash/current/plugins-inputs-stdin.html">standard input</a> and print it on <a href="http://www.elastic.co/guide/en/logstash/current/plugins-outputs-stdout.html">standard output</a> using <a href="http://www.elastic.co/guide/en/logstash/current/plugins-codecs-rubydebug.html">ruby debug codec</a>:</p>
+
+<pre><code class="rb">input {
+    stdin {}
+}
+
+filter {
+}
+
+output {
+    stdout { codec =&gt; rubydebug }
+}
+</code></pre>
+
+<p>Launch this a first time and make sure logstash is working fine:</p>
+
+<pre><code class="sh">head -2 station.csv | bin/logstash -f station.conf
+</code></pre>
+
+<p>You should see something like:</p>
+
+<pre><code class="rb">Logstash startup completed
+{
+       "message" =&gt; "id;name;slug;uic;uic8_sncf;longitude;latitude;parent_station_id;is_city;country;is_main_station;time_zone;is_suggestable;sncf_id;sncf_is_enabled;idtgv_id;idtgv_is_enabled;db_id;db_is_enabled;idbus_id;idbus_is_enabled;ouigo_id;ouigo_is_enabled;trenitalia_id;trenitalia_is_enabled;ntv_id;ntv_is_enabled;info:fr;info:en;info:de;info:it;same_as",
+      "@version" =&gt; "1",
+    "@timestamp" =&gt; "2015-04-27T11:31:14.329Z",
+          "host" =&gt; "MacBook-Air-de-David-2.local"
+}
+{
+       "message" =&gt; "1;Château-Arnoux—St-Auban;chateau-arnoux-st-auban;;;6.0016250000;44.0817900000;;t;FR;f;Europe/Paris;f;FRAAA;t;;f;;f;;f;;f;;f;;f;;;;;",
+      "@version" =&gt; "1",
+    "@timestamp" =&gt; "2015-04-27T11:31:14.330Z",
+          "host" =&gt; "MacBook-Air-de-David-2.local"
+}
+Logstash shutdown completed
+</code></pre>
+
+<h2>CSV parsing</h2>
+
+<p>We have a CSV file so we should use here the <a href="http://www.elastic.co/guide/en/logstash/current/plugins-filters-csv.html">CSV filter plugin</a> and define <a href="http://www.elastic.co/guide/en/logstash/current/plugins-filters-csv.html#plugins-filters-csv-separator"><code>separator</code></a> as <code>;</code> instead of default <code>,</code> and also define the name of fields we want to generate instead of default <code>column_1</code>, <code>column_2</code>&hellip; using <a href="http://www.elastic.co/guide/en/logstash/current/plugins-filters-csv.html#plugins-filters-csv-columns"><code>columns</code> parameter</a>:</p>
+
+<pre><code class="rb">csv {
+    separator =&gt; ";"
+    columns =&gt; [
+      "id","name","slug","uic","uic8_sncf","longitude","latitude","parent_station_id","is_city","country",
+      "is_main_station","time_zone","is_suggestable","sncf_id","sncf_is_enabled","idtgv_id","idtgv_is_enabled",
+      "db_id","db_is_enabled","idbus_id","idbus_is_enabled","ouigo_id","ouigo_is_enabled",
+      "trenitalia_id","trenitalia_is_enabled","ntv_id","ntv_is_enabled","info_fr",
+      "info_en","info_de","info_it","same_as"
+    ]
+}
+</code></pre>
+
+<p>When running it again, it now generates a more strutured data:</p>
+
+<pre><code class="rb">Logstash startup completed
+{
+              "message" =&gt; [
+    [0] "id;name;slug;uic;uic8_sncf;longitude;latitude;parent_station_id;is_city;country;is_main_station;time_zone;is_suggestable;sncf_id;sncf_is_enabled;idtgv_id;idtgv_is_enabled;db_id;db_is_enabled;idbus_id;idbus_is_enabled;ouigo_id;ouigo_is_enabled;trenitalia_id;trenitalia_is_enabled;ntv_id;ntv_is_enabled;info:fr;info:en;info:de;info:it;same_as"
+],
+             "@version" =&gt; "1",
+           "@timestamp" =&gt; "2015-04-27T11:40:57.936Z",
+                 "host" =&gt; "MacBook-Air-de-David-2.local",
+                   "id" =&gt; "id",
+                 "name" =&gt; "name",
+                 "slug" =&gt; "slug",
+                  "uic" =&gt; "uic",
+            "uic8_sncf" =&gt; "uic8_sncf",
+            "longitude" =&gt; "longitude",
+             "latitude" =&gt; "latitude",
+    "parent_station_id" =&gt; "parent_station_id",
+              "is_city" =&gt; "is_city",
+              "country" =&gt; "country",
+      "is_main_station" =&gt; "is_main_station",
+            "time_zone" =&gt; "time_zone",
+       "is_suggestable" =&gt; "is_suggestable",
+              "sncf_id" =&gt; "sncf_id",
+      "sncf_is_enabled" =&gt; "sncf_is_enabled",
+             "idtgv_id" =&gt; "idtgv_id",
+     "idtgv_is_enabled" =&gt; "idtgv_is_enabled",
+                "db_id" =&gt; "db_id",
+        "db_is_enabled" =&gt; "db_is_enabled",
+             "idbus_id" =&gt; "idbus_id",
+     "idbus_is_enabled" =&gt; "idbus_is_enabled",
+             "ouigo_id" =&gt; "ouigo_id",
+     "ouigo_is_enabled" =&gt; "ouigo_is_enabled",
+        "trenitalia_id" =&gt; "trenitalia_id",
+"trenitalia_is_enabled" =&gt; "trenitalia_is_enabled",
+               "ntv_id" =&gt; "ntv_id",
+       "ntv_is_enabled" =&gt; "ntv_is_enabled",
+              "info_fr" =&gt; "info:fr",
+              "info_en" =&gt; "info:en",
+              "info_de" =&gt; "info:de",
+              "info_it" =&gt; "info:it",
+              "same_as" =&gt; "same_as"
+}
+{
+              "message" =&gt; [
+    [0] "1;Château-Arnoux—St-Auban;chateau-arnoux-st-auban;;;6.0016250000;44.0817900000;;t;FR;f;Europe/Paris;f;FRAAA;t;;f;;f;;f;;f;;f;;f;;;;;"
+],
+             "@version" =&gt; "1",
+           "@timestamp" =&gt; "2015-04-27T11:40:57.938Z",
+                 "host" =&gt; "MacBook-Air-de-David-2.local",
+                   "id" =&gt; "1",
+                 "name" =&gt; "Château-Arnoux—St-Auban",
+                 "slug" =&gt; "chateau-arnoux-st-auban",
+                  "uic" =&gt; nil,
+            "uic8_sncf" =&gt; nil,
+            "longitude" =&gt; "6.0016250000",
+             "latitude" =&gt; "44.0817900000",
+    "parent_station_id" =&gt; nil,
+              "is_city" =&gt; "t",
+              "country" =&gt; "FR",
+      "is_main_station" =&gt; "f",
+            "time_zone" =&gt; "Europe/Paris",
+       "is_suggestable" =&gt; "f",
+              "sncf_id" =&gt; "FRAAA",
+      "sncf_is_enabled" =&gt; "t",
+             "idtgv_id" =&gt; nil,
+     "idtgv_is_enabled" =&gt; "f",                "db_id" =&gt; nil,
+        "db_is_enabled" =&gt; "f",
+             "idbus_id" =&gt; nil,
+     "idbus_is_enabled" =&gt; "f",
+             "ouigo_id" =&gt; nil,
+     "ouigo_is_enabled" =&gt; "f",
+        "trenitalia_id" =&gt; nil,
+"trenitalia_is_enabled" =&gt; "f",
+               "ntv_id" =&gt; nil,
+       "ntv_is_enabled" =&gt; "f",
+              "info_fr" =&gt; nil,
+              "info_en" =&gt; nil,
+              "info_de" =&gt; nil,
+              "info_it" =&gt; nil,
+              "same_as" =&gt; nil
+}
+</code></pre>
+
+<h2>Skip header</h2>
+
+<p>We can see that we are still parsing the header so it will be sent to elasticsearch which is obviously something we dont want. We can use <a href="http://www.elastic.co/guide/en/logstash/current/configuration.html#conditionals">Logstash conditionals</a> for that and <a href="http://www.elastic.co/guide/en/logstash/current/plugins-filters-drop.html">Drop filter plugin</a>:</p>
+
+<pre><code class="rb">if [id] == "id" {
+    drop { }
+} else {
+    # continue processing data
+}
+</code></pre>
+
+<h2>Remove duplicated fields</h2>
+
+<p>We can see that we have some duplicated contents and some fields are not really needed for our use case:</p>
+
+<pre><code class="rb">      "message" =&gt; [
+    [0] "id;name;slug;uic;uic8_sncf;longitude;latitude;parent_station_id;is_city;country;is_main_station;time_zone;is_suggestable;sncf_id;sncf_is_enabled;idtgv_id;idtgv_is_enabled;db_id;db_is_enabled;idbus_id;idbus_is_enabled;ouigo_id;ouigo_is_enabled;trenitalia_id;trenitalia_is_enabled;ntv_id;ntv_is_enabled;info:fr;info:en;info:de;info:it;same_as"
+],
+     "@version" =&gt; "1",
+   "@timestamp" =&gt; "2015-04-27T11:40:57.936Z",
+         "host" =&gt; "MacBook-Air-de-David-2.local"
+</code></pre>
+
+<p> So we can remove <code>message</code>, <code>@version</code> and <code>@timestamp</code> using <a href="http://www.elastic.co/guide/en/logstash/current/plugins-filters-mutate.html">Mutate filter plugin</a> and its <a href="http://www.elastic.co/guide/en/logstash/current/plugins-filters-mutate.html#plugins-filters-mutate-remove_field">remove_field</a>. You can put that in the <code>else</code> part:</p>
+
+<pre><code class="rb">mutate {
+    remove_field =&gt; [ "message", "host", "@timestamp", "@version" ]
+}
+</code></pre>
+
+<h2>Convert numbers to numbers!</h2>
+
+<p>We have seen that the CSV plugin has generated <code>latitude</code> and <code>longitude</code> fields as strings:</p>
+
+<pre><code class="rb">"longitude" =&gt; "6.0016250000",
+ "latitude" =&gt; "44.0817900000",
+</code></pre>
+
+<p>Using the mutate filter, we can <a href="http://www.elastic.co/guide/en/logstash/current/plugins-filters-mutate.html#plugins-filters-mutate-convert">convert</a> our fields to <code>float</code>:</p>
+
+<pre><code class="rb">mutate {
+    convert =&gt; { "longitude" =&gt; "float" }
+    convert =&gt; { "latitude" =&gt; "float" }
+}
+</code></pre>
+
+<p>This will now output:</p>
+
+<pre><code class="rb">"longitude" =&gt; 6.001625,
+ "latitude" =&gt; 44.08179,
+</code></pre>
+
+<h2>Build a location data structure</h2>
+
+<p>Elasticsearch uses a specific data structure called <a href="http://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-geo-point-type.html">geo_point</a> to deal with geographic location coordinates.</p>
+
+<p>So a point should look like:</p>
+
+<pre><code class="js">"location": {
+    "lat": x.xxx,
+    "lon": y.yyy
+}
+</code></pre>
+
+<p>It means that we need to change our <code>latitude</code> and <code>longitude</code> fields to inner fields inside a new <code>location</code> field. We can use <code>mutate</code> <a href="http://www.elastic.co/guide/en/logstash/current/plugins-filters-mutate.html#plugins-filters-mutate-rename"><code>rename</code> parameter</a> for this:</p>
+
+<pre><code class="rb">mutate {
+    rename =&gt; {
+        "longitude" =&gt; "[location][lon]" 
+        "latitude" =&gt; "[location][lat]" 
+    }
+}
+</code></pre>
+
+<p>This now produces:</p>
+
+<pre><code class="rb">             "location" =&gt; {
+    "lon" =&gt; 6.001625,
+    "lat" =&gt; 44.08179
+}
+</code></pre>
+
+<h2>Convert booleans to booleans<sup>H</sup><sup>H</sup><sup>H</sup><sup>H</sup><sup>H</sup><sup>H</sup><sup>H</sup><sup>H</sup> strings</h2>
+
+<p>We have a lot of fields which looks as boolean fields like:</p>
+
+<pre><code class="rb">          "is_city" =&gt; "t",
+  "is_main_station" =&gt; "f",
+   "is_suggestable" =&gt; "f",
+  "sncf_is_enabled" =&gt; "t",
+ "idtgv_is_enabled" =&gt; "f",
+</code></pre>
+
+<p>Sadly, the mutate convert parameter does not support yet <code>boolean</code> option. It will be merged really soon with <a href="https://github.com/logstash-plugins/logstash-filter-mutate/pull/22">#22</a>.</p>
+
+<p>For now, we are going to use <a href="http://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-core-types.html#boolean">elasticsearch boolean parsing</a> which can detect a <code>false</code> value if provided as <code>"false"</code>, <code>"off"</code> and <code>"no"</code>.</p>
+
+<p>To do that, we can use <a href="http://www.elastic.co/guide/en/logstash/current/plugins-filters-mutate.html#plugins-filters-mutate-gsub"><code>gsub</code> mutate parameter</a>:</p>
+
+<pre><code class="rb">mutate {
+    gsub =&gt; [
+        "is_city", "t", "true",
+        "is_city", "f", "false",
+        "is_main_station", "t", "true",
+        "is_main_station", "f", "false",
+        "is_suggestable", "t", "true",
+        "is_suggestable", "f", "false",
+        "sncf_is_enabled", "t", "true",
+        "sncf_is_enabled", "f", "false",
+        "idtgv_is_enabled", "t", "true",
+        "idtgv_is_enabled", "f", "false",
+        "db_is_enabled", "t", "true",
+        "db_is_enabled", "f", "false",
+        "idbus_is_enabled", "t", "true",
+        "idbus_is_enabled", "f", "false",
+        "ouigo_is_enabled", "t", "true",
+        "ouigo_is_enabled", "f", "false",
+        "trenitalia_is_enabled", "t", "true",
+        "trenitalia_is_enabled", "f", "false",
+        "ntv_is_enabled", "t", "true",
+        "ntv_is_enabled", "f", "false"
+    ]
+}
+</code></pre>
+
+<p>It will now transform our booleans to:</p>
+
+<pre><code class="rb">          "is_city" =&gt; "true",
+  "is_main_station" =&gt; "false",
+   "is_suggestable" =&gt; "false",
+  "sncf_is_enabled" =&gt; "true",
+ "idtgv_is_enabled" =&gt; "false",
+</code></pre>
+
+<h1>Indexing into elasticsearch</h1>
+
+<p>Now we have our data generated:</p>
+
+<pre><code class="rb">{
+                       "id" =&gt; "1",
+                     "name" =&gt; "Château-Arnoux—St-Auban",
+                     "slug" =&gt; "chateau-arnoux-st-auban",
+                      "uic" =&gt; nil,
+                "uic8_sncf" =&gt; nil,
+        "parent_station_id" =&gt; nil,
+                  "is_city" =&gt; "true",
+                  "country" =&gt; "FR",
+          "is_main_station" =&gt; "false",
+                "time_zone" =&gt; "Europe/Paris",
+           "is_suggestable" =&gt; "false",
+                  "sncf_id" =&gt; "FRAAA",
+          "sncf_is_enabled" =&gt; "true",
+                 "idtgv_id" =&gt; nil,
+         "idtgv_is_enabled" =&gt; "false",
+                    "db_id" =&gt; nil,
+            "db_is_enabled" =&gt; "false",
+                 "idbus_id" =&gt; nil,
+         "idbus_is_enabled" =&gt; "false",
+                 "ouigo_id" =&gt; nil,
+         "ouigo_is_enabled" =&gt; "false",
+            "trenitalia_id" =&gt; nil,
+    "trenitalia_is_enabled" =&gt; "false",
+                   "ntv_id" =&gt; nil,
+           "ntv_is_enabled" =&gt; "false",
+                  "info_fr" =&gt; nil,
+                  "info_en" =&gt; nil,
+                  "info_de" =&gt; nil,
+                  "info_it" =&gt; nil,
+                  "same_as" =&gt; nil,
+                 "location" =&gt; {
+        "lon" =&gt; 6.001625,
+        "lat" =&gt; 44.08179
+    }
+}
+</code></pre>
+
+<p>Let&rsquo;s say that you have already elasticsearch up and running:</p>
+
+<pre><code class="sh">bin/elasticsearch
+</code></pre>
+
+<h2>Defining our mapping</h2>
+
+<p>We need to create the right mapping to define our fields. As we have a lot of fields named with <code>*_is_enabled</code> or <code>is_*</code> we can use an <a href="http://www.elastic.co/guide/en/elasticsearch/reference/current/indices-templates.html">index template</a> to define those automatically as booleans when field name is <code>*is_*</code>.
+Also, it&rsquo;s definitely better to use <code>not_analyzed</code> strings to do aggregations so we can define a sub field <code>raw</code> which is not analyzed at index time for each string field.</p>
+
+<p>This would lead us to the following index template <code>stations_template.json</code>:</p>
+
+<pre><code class="js">{
+  "template": "stations",
+  "order":    1, 
+  "settings": {
+    "number_of_shards": 1 
+  },
+  "mappings": {
+    "station": { 
+      "dynamic_templates": [
+         {
+            "string_fields": {
+               "mapping": {
+                  "index": "analyzed",
+                  "omit_norms": true,
+                  "type": "string",
+                  "fields": {
+                     "raw": {
+                        "index": "not_analyzed",
+                        "ignore_above": 256,
+                        "type": "string"
+                     }
+                  }
+               },
+               "match_mapping_type": "string",
+               "match": "*"
+            }
+         }, {
+            "boolean_fields": {
+               "mapping": {
+                  "type": "boolean"
+               },
+               "match": "*is_*"
+            }
+         }
+      ],
+      "_all": {
+        "enabled": false
+      },
+      "properties": {
+        "location": {
+          "type": "geo_point"
+        }
+      }
+    }
+  }
+}
+</code></pre>
+
+<h2>Connect logstash and elasticsearch</h2>
+
+<p>We are going to obviously use <a href="http://www.elastic.co/guide/en/logstash/current/plugins-outputs-elasticsearch.html">elasticsearch output plugin</a> to send our data to elasticsearch cluster. We will:</p>
+
+<ul>
+<li>use <code>http</code> protocol</li>
+<li>index our data in <code>stations</code> index and use <code>station</code> type</li>
+<li>extract elasticsearch <code>_id</code> field from <code>id</code> event field</li>
+<li>use our <code>stations</code> template defined in <code>stations_template.json</code> local file</li>
+</ul>
+
+
+<p>Let&rsquo;s add this as an <code>output</code> in our logstash configuration file:</p>
+
+<pre><code class="rb">elasticsearch {
+    protocol =&gt; "http"
+    host =&gt; "localhost"
+    index =&gt; "stations"
+    index_type =&gt; "station"
+    document_id =&gt; "%{id}"
+    template =&gt; "stations_template.json"
+    template_name =&gt; "stations"
+}
+</code></pre>
+
+<p>Test again as usual and you should be able to see your document in elasticsearch:</p>
+
+<pre><code class="sh">curl "http://localhost:9200/stations/station/_search?pretty"
+</code></pre>
+
+<pre><code class="json">{
+   "took": 1,
+   "timed_out": false,
+   "_shards": {
+      "total": 1,
+      "successful": 1,
+      "failed": 0
+   },
+   "hits": {
+      "total": 1,
+      "max_score": 1,
+      "hits": [
+         {
+            "_index": "sncf",
+            "_type": "gare",
+            "_id": "1",
+            "_score": 1,
+            "_source": {
+               "id": "1",
+               "name": "Château-Arnoux—St-Auban",
+               "slug": "chateau-arnoux-st-auban",
+               "uic": null,
+               "uic8_sncf": null,
+               "parent_station_id": null,
+               "is_city": "true",
+               "country": "FR",
+               "is_main_station": "false",
+               "time_zone": "Europe/Paris",
+               "is_suggestable": "false",
+               "sncf_id": "FRAAA",
+               "sncf_is_enabled": "true",
+               "idtgv_id": null,
+               "idtgv_is_enabled": "false",
+               "db_id": null,
+               "db_is_enabled": "false",
+               "idbus_id": null,
+               "idbus_is_enabled": "false",
+               "ouigo_id": null,
+               "ouigo_is_enabled": "false",
+               "trenitalia_id": null,
+               "trenitalia_is_enabled": "false",
+               "ntv_id": null,
+               "ntv_is_enabled": "false",
+               "info_fr": null,
+               "info_en": null,
+               "info_de": null,
+               "info_it": null,
+               "same_as": null,
+               "location": {
+                  "lon": 6.001625,
+                  "lat": 44.08179
+               }
+            }
+         }
+      ]
+   }
+}
+</code></pre>
+
+<h2>Inject them all!</h2>
+
+<p>It&rsquo;s now time to inject all data we have.
+Instead of debugging each line, we can change the <code>stdout</code> codec to <a href="http://www.elastic.co/guide/en/logstash/current/plugins-codecs-dots.html"><code>dots</code></a> instead of <code>rubydebug</code>.</p>
+
+<p>At the end, here is our logstash configuration file:</p>
+
+<pre><code class="rb">input {
+    stdin {}
+}
+
+filter {
+    csv {
+        separator =&gt; ";"
+        columns =&gt; [
+          "id","name","slug","uic","uic8_sncf","longitude","latitude","parent_station_id","is_city","country",
+          "is_main_station","time_zone","is_suggestable","sncf_id","sncf_is_enabled","idtgv_id","idtgv_is_enabled",
+          "db_id","db_is_enabled","idbus_id","idbus_is_enabled","ouigo_id","ouigo_is_enabled",
+          "trenitalia_id","trenitalia_is_enabled","ntv_id","ntv_is_enabled","info_fr",
+          "info_en","info_de","info_it","same_as"
+        ]
+    }
+
+    if [id] == "id" {
+        drop { }
+    } else {
+        mutate {
+            remove_field =&gt; [ "message", "host", "@timestamp", "@version" ]
+        }
+
+        mutate {
+            convert =&gt; { "longitude" =&gt; "float" }
+            convert =&gt; { "latitude" =&gt; "float" }
+        }
+
+        mutate {
+            rename =&gt; {
+                "longitude" =&gt; "[location][lon]" 
+                "latitude" =&gt; "[location][lat]" 
+            }
+        }
+
+        mutate {
+            gsub =&gt; [
+                "is_city", "t", "true",
+                "is_city", "f", "false",
+                "is_main_station", "t", "true",
+                "is_main_station", "f", "false",
+                "is_suggestable", "t", "true",
+                "is_suggestable", "f", "false",
+                "sncf_is_enabled", "t", "true",
+                "sncf_is_enabled", "f", "false",
+                "idtgv_is_enabled", "t", "true",
+                "idtgv_is_enabled", "f", "false",
+                "db_is_enabled", "t", "true",
+                "db_is_enabled", "f", "false",
+                "idbus_is_enabled", "t", "true",
+                "idbus_is_enabled", "f", "false",
+                "ouigo_is_enabled", "t", "true",
+                "ouigo_is_enabled", "f", "false",
+                "trenitalia_is_enabled", "t", "true",
+                "trenitalia_is_enabled", "f", "false",
+                "ntv_is_enabled", "t", "true",
+                "ntv_is_enabled", "f", "false"
+            ]
+        }
+
+    }
+}
+
+output {
+    stdout { codec =&gt; dots }
+    elasticsearch {
+        protocol =&gt; "http"
+        host =&gt; "localhost"
+        index =&gt; "stations"
+        index_type =&gt; "station"
+        document_id =&gt; "%{id}"
+        template =&gt; "stations_template.json"
+        template_name =&gt; "stations"
+    }
+}
+</code></pre>
+
+<p>Let&rsquo;s use it:</p>
+
+<pre><code class="sh">cat station.csv | bin/logstash -f station.conf
+</code></pre>
+
+<p>At the end, check that everything has been correctly indexed:</p>
+
+<pre><code class="sh">curl "http://localhost:9200/sncf/gare/_search?pretty&amp;size=0"
+</code></pre>
+
+<pre><code class="json">{
+   "took": 1,
+   "timed_out": false,
+   "_shards": {
+      "total": 1,
+      "successful": 1,
+      "failed": 0
+   },
+   "hits": {
+      "total": 21461,
+      "max_score": 0,
+      "hits": []
+   }
+}
+</code></pre>
+
+<h1>Kibana FTW!</h1>
+
+<p>Start your kibana instance and point it to the <code>stations</code></p>
+]]></content>
+  </entry>
+  
+</feed>
