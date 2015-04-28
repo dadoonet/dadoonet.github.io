@@ -9,7 +9,7 @@
   <meta name="author" content="David Pilato">
 
   
-  <meta name="description" content="Recently I saw this tweet where Capitaine Train team started to open data they have collected and enriched or corrected. Prerequisites You will need &hellip;">
+  <meta name="description" content="Exploring Capitaine Train Dataset Apr 28th, 2015 1:31 pm | Comments Recently I saw a tweet where Capitaine Train team started to open data they have &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -79,12 +79,20 @@
 
 <time class='entry-date' datetime='2015-04-28T13:31:34+02:00'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>28</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>1:31 pm</span></time>
         
+           | <a href="#disqus_thread"
+             data-disqus-identifier="http://dadoonet.github.io">Comments</a>
+        
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>Recently I saw this <a href="https://twitter.com/capitainetrain/status/591184013034938368">tweet</a> where <a href="https://www.capitainetrain.com/">Capitaine Train</a> team started to open data they have collected and enriched or corrected.</p>
+<div class="entry-content"><p>Recently I saw a tweet where <a href="https://www.capitainetrain.com/">Capitaine Train</a> team started to open data they have collected and enriched or corrected.</p>
+
+<center><blockquote class="twitter-tweet"><p>Ouvrez, ouvrez, les données structurées. Capitaine Train libère les gares : <a href="https://t.co/y6DjWsbALF">https://t.co/y6DjWsbALF</a> <a href="https://twitter.com/hashtag/opendata?src=hash">#opendata</a></p>&mdash; Capitaine Train (@capitainetrain) <a href="https://twitter.com/capitainetrain/status/591184013034938368">2015/04/23</a></blockquote></center>
+
+
+<p>I decided to play a bit with <a href="https://www.elastic.co/products">ELK stack</a> and create a simple recipe which can be used with any other <code>CSV</code> like data.</p>
 
 <!-- more -->
 
@@ -1168,9 +1176,79 @@ Instead of debugging each line, we can change the <code>stdout</code> codec to <
 
 <h1>Kibana FTW!</h1>
 
-<p>Start your kibana instance and point it to the <code>stations</code></p>
+<p>Start your kibana instance, <a href="http://0.0.0.0:5601">open kibana</a>.</p>
+
+<h2>Settings</h2>
+
+<p>Configure your <code>stations</code> index:</p>
+
+<p><img src="/blog/images/elk-stations/settings-set-index.png" title="Set index name" ></p>
+
+<h2>Discover your data</h2>
+
+<p>If not already set, define in <code>discover</code> your <code>stations</code> index:</p>
+
+<p><img src="/blog/images/elk-stations/discover-set-index.png" title="Set index name" ></p>
+
+<p>Then choose fields you want to display:</p>
+
+<p><img src="/blog/images/elk-stations/discover-set-fields.png" title="Set fields" ></p>
+
+<p>And save your search:</p>
+
+<p><img src="/blog/images/elk-stations/discover-save-search.png" title="Save your search" ></p>
+
+<h2>Visualize your data</h2>
+
+<p>Create a new visualization and choose <code>Pie chart</code>:</p>
+
+<p><img src="/blog/images/elk-stations/visualize-pie-chart.png" title="Create visualisation" ></p>
+
+<p>Select your saved search:</p>
+
+<p><img src="/blog/images/elk-stations/visualize-pie-choose-search.png" title="Select saved search" ></p>
+
+<p>Split the slices using <code>country.raw</code> field so you will display number of train stations broken per country code.</p>
+
+<p><img src="/blog/images/elk-stations/visualize-pie-final.png" title="Final Pie" ></p>
+
+<p>Save your visualization and create a new <code>Pie chart</code> on <code>idtgv_is_enabled</code> field:</p>
+
+<p><img src="/blog/images/elk-stations/visualize-pie-idtgv.png" title="IDTGV stations" ></p>
+
+<p>Save your visualization and create a new <code>Tile map</code>:</p>
+
+<p><img src="/blog/images/elk-stations/visualize-tile.png" title="Create visualization" ></p>
+
+<p>Select a <code>Geohash</code> aggregation on <code>location</code> field and increase <code>Precision</code> to <code>4</code>:</p>
+
+<p><img src="/blog/images/elk-stations/visualize-tile-final.png" title="Tile map" ></p>
+
+<p>Don&rsquo;t forget to save it!</p>
+
+<p>You can build as many visualization you need.</p>
+
+<h2>Put them all on the same page</h2>
+
+<p>Open <code>Dashboard</code> and add all your visualizations:</p>
+
+<p><img src="/blog/images/elk-stations/dashboard-add-vis.png" title="Select visualizations" ></p>
+
+<p>And your saved search:</p>
+
+<p><img src="/blog/images/elk-stations/dashboard-add-search.png" title="Add a saved search" ></p>
+
+<p>Arrange your dashboard and play with it!</p>
+
+<p><img src="/blog/images/elk-stations/dashboard-final-1.png" title="The final dashboard" ></p>
+
+<p>For example, if you click on <code>FR</code> in the country pie and then select <code>T</code> on IDTGV pie, you will be able to display all IDTGV stations located in France.</p>
+
+<p><img src="/blog/images/elk-stations/dashboard-idtgv.png" title="IDTGV stations in France" ></p>
 </div>
 
+
+  <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
   <footer>
     <p class="meta">
@@ -1201,6 +1279,8 @@ Instead of debugging each line, we can change the <code>stdout</code> codec to <
   <a href="//twitter.com/share" class="twitter-share-button" data-url="http://dadoonet.github.io/blog/2015/04/28/exploring-capitaine-train-dataset/" data-via="dadoonet" data-counturl="http://dadoonet.github.io/blog/2015/04/28/exploring-capitaine-train-dataset/" >Tweet</a>
   
   
+  <div class="g-plusone" data-size="medium"></div>
+  
   
     <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
   
@@ -1215,6 +1295,12 @@ Instead of debugging each line, we can change the <code>stdout</code> codec to <
     </p>
   </footer>
 </article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 </div>
 
@@ -1235,13 +1321,28 @@ Instead of debugging each line, we can change the <code>stdout</code> codec to <
   </ul>
 </section>
 
+
+
+
+<section class="twitterOct">
+  <h1 style="margin-bottom: 0.4em"> Tweets </h1>
+  <a class="twitter-timeline"
+	 data-dnt="true" href="https://twitter.com/dadoonet" 
+     data-widget-id="593022343921979392">
+     
+     Tweets by @dadoonet
+  </a>
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</section>
+
+
 <section>
-  <h1>GitHub Repos</h1>
+
+  <h1>GitHub Repos &gt; 10 *</h1>
+
   <ul id="gh_repos">
     <li class="loading">Status updating&#8230;</li>
   </ul>
-  
-  <a href="https://github.com/dadoonet">@dadoonet</a> on GitHub
   
   <script type="text/javascript">
     $(document).ready(function(){
@@ -1255,7 +1356,7 @@ Instead of debugging each line, we can change the <code>stdout</code> codec to <
 
         github.showRepos({
             user: 'dadoonet',
-            count: 0,
+            count: 10,
             skip_forks: true,
             target: '#gh_repos'
         });
@@ -1263,9 +1364,6 @@ Instead of debugging each line, we can change the <code>stdout</code> codec to <
   </script>
   <script src="/javascripts/github.js" type="text/javascript"> </script>
 </section>
-
-
-
 
 
   
@@ -1282,6 +1380,22 @@ Instead of debugging each line, we can change the <code>stdout</code> codec to <
 </footer>
   
 
+<script type="text/javascript">
+      var disqus_shortname = 'dadoonet';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://dadoonet.github.io/blog/2015/04/28/exploring-capitaine-train-dataset/';
+        var disqus_url = 'http://dadoonet.github.io/blog/2015/04/28/exploring-capitaine-train-dataset/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
 
 
 <div id="fb-root"></div>
@@ -1294,6 +1408,14 @@ Instead of debugging each line, we can change the <code>stdout</code> codec to <
 }(document, 'script', 'facebook-jssdk'));</script>
 
 
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
 
 
 

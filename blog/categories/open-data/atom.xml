@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Open Data | -Xmx128gb -Xms128gb]]></title>
   <link href="http://dadoonet.github.io/blog/categories/open-data/atom.xml" rel="self"/>
   <link href="http://dadoonet.github.io/"/>
-  <updated>2015-04-28T13:39:05+02:00</updated>
+  <updated>2015-04-28T19:43:12+02:00</updated>
   <id>http://dadoonet.github.io/</id>
   <author>
     <name><![CDATA[David Pilato]]></name>
@@ -18,7 +18,12 @@
     <link href="http://dadoonet.github.io/blog/2015/04/28/exploring-capitaine-train-dataset/"/>
     <updated>2015-04-28T13:31:34+02:00</updated>
     <id>http://dadoonet.github.io/blog/2015/04/28/exploring-capitaine-train-dataset</id>
-    <content type="html"><![CDATA[<p>Recently I saw this <a href="https://twitter.com/capitainetrain/status/591184013034938368">tweet</a> where <a href="https://www.capitainetrain.com/">Capitaine Train</a> team started to open data they have collected and enriched or corrected.</p>
+    <content type="html"><![CDATA[<p>Recently I saw a tweet where <a href="https://www.capitainetrain.com/">Capitaine Train</a> team started to open data they have collected and enriched or corrected.</p>
+
+<center><blockquote class="twitter-tweet"><p>Ouvrez, ouvrez, les données structurées. Capitaine Train libère les gares : <a href="https://t.co/y6DjWsbALF">https://t.co/y6DjWsbALF</a> <a href="https://twitter.com/hashtag/opendata?src=hash">#opendata</a></p>&mdash; Capitaine Train (@capitainetrain) <a href="https://twitter.com/capitainetrain/status/591184013034938368">2015/04/23</a></blockquote></center>
+
+
+<p>I decided to play a bit with <a href="https://www.elastic.co/products">ELK stack</a> and create a simple recipe which can be used with any other <code>CSV</code> like data.</p>
 
 <!-- more -->
 
@@ -635,7 +640,75 @@ output {
 
 <h1>Kibana FTW!</h1>
 
-<p>Start your kibana instance and point it to the <code>stations</code></p>
+<p>Start your kibana instance, <a href="http://0.0.0.0:5601">open kibana</a>.</p>
+
+<h2>Settings</h2>
+
+<p>Configure your <code>stations</code> index:</p>
+
+<p><img src="/blog/images/elk-stations/settings-set-index.png" title="Set index name" ></p>
+
+<h2>Discover your data</h2>
+
+<p>If not already set, define in <code>discover</code> your <code>stations</code> index:</p>
+
+<p><img src="/blog/images/elk-stations/discover-set-index.png" title="Set index name" ></p>
+
+<p>Then choose fields you want to display:</p>
+
+<p><img src="/blog/images/elk-stations/discover-set-fields.png" title="Set fields" ></p>
+
+<p>And save your search:</p>
+
+<p><img src="/blog/images/elk-stations/discover-save-search.png" title="Save your search" ></p>
+
+<h2>Visualize your data</h2>
+
+<p>Create a new visualization and choose <code>Pie chart</code>:</p>
+
+<p><img src="/blog/images/elk-stations/visualize-pie-chart.png" title="Create visualisation" ></p>
+
+<p>Select your saved search:</p>
+
+<p><img src="/blog/images/elk-stations/visualize-pie-choose-search.png" title="Select saved search" ></p>
+
+<p>Split the slices using <code>country.raw</code> field so you will display number of train stations broken per country code.</p>
+
+<p><img src="/blog/images/elk-stations/visualize-pie-final.png" title="Final Pie" ></p>
+
+<p>Save your visualization and create a new <code>Pie chart</code> on <code>idtgv_is_enabled</code> field:</p>
+
+<p><img src="/blog/images/elk-stations/visualize-pie-idtgv.png" title="IDTGV stations" ></p>
+
+<p>Save your visualization and create a new <code>Tile map</code>:</p>
+
+<p><img src="/blog/images/elk-stations/visualize-tile.png" title="Create visualization" ></p>
+
+<p>Select a <code>Geohash</code> aggregation on <code>location</code> field and increase <code>Precision</code> to <code>4</code>:</p>
+
+<p><img src="/blog/images/elk-stations/visualize-tile-final.png" title="Tile map" ></p>
+
+<p>Don&rsquo;t forget to save it!</p>
+
+<p>You can build as many visualization you need.</p>
+
+<h2>Put them all on the same page</h2>
+
+<p>Open <code>Dashboard</code> and add all your visualizations:</p>
+
+<p><img src="/blog/images/elk-stations/dashboard-add-vis.png" title="Select visualizations" ></p>
+
+<p>And your saved search:</p>
+
+<p><img src="/blog/images/elk-stations/dashboard-add-search.png" title="Add a saved search" ></p>
+
+<p>Arrange your dashboard and play with it!</p>
+
+<p><img src="/blog/images/elk-stations/dashboard-final-1.png" title="The final dashboard" ></p>
+
+<p>For example, if you click on <code>FR</code> in the country pie and then select <code>T</code> on IDTGV pie, you will be able to display all IDTGV stations located in France.</p>
+
+<p><img src="/blog/images/elk-stations/dashboard-idtgv.png" title="IDTGV stations in France" ></p>
 ]]></content>
   </entry>
   

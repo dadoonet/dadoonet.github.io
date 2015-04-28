@@ -9,7 +9,7 @@
   <meta name="author" content="David Pilato">
 
   
-  <meta name="description" content="I was trying to use Hibernate 4.3.8.Final with Log4J2 and I spent some hours to find why Hibernate was not using Log4J2 though it was declared in my &hellip;">
+  <meta name="description" content="Using Log4J2 With Hibernate 4 Mar 5th, 2015 9:00 pm | Comments I was trying to use Hibernate 4.3.8.Final with Log4J2 and I spent some hours to find &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -79,6 +79,9 @@
 
 <time class='entry-date' datetime='2015-03-05T21:00:00+01:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>5</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>9:00 pm</span></time>
         
+           | <a href="#disqus_thread"
+             data-disqus-identifier="http://dadoonet.github.io">Comments</a>
+        
       </p>
     
   </header>
@@ -104,6 +107,8 @@
 
 </div>
 
+
+  <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
   <footer>
     <p class="meta">
@@ -134,6 +139,8 @@
   <a href="//twitter.com/share" class="twitter-share-button" data-url="http://dadoonet.github.io/blog/2015/03/05/using-log4j2-with-hibernate-4/" data-via="dadoonet" data-counturl="http://dadoonet.github.io/blog/2015/03/05/using-log4j2-with-hibernate-4/" >Tweet</a>
   
   
+  <div class="g-plusone" data-size="medium"></div>
+  
   
     <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
   
@@ -148,6 +155,12 @@
     </p>
   </footer>
 </article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 </div>
 
@@ -168,13 +181,28 @@
   </ul>
 </section>
 
+
+
+
+<section class="twitterOct">
+  <h1 style="margin-bottom: 0.4em"> Tweets </h1>
+  <a class="twitter-timeline"
+	 data-dnt="true" href="https://twitter.com/dadoonet" 
+     data-widget-id="593022343921979392">
+     
+     Tweets by @dadoonet
+  </a>
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</section>
+
+
 <section>
-  <h1>GitHub Repos</h1>
+
+  <h1>GitHub Repos &gt; 10 *</h1>
+
   <ul id="gh_repos">
     <li class="loading">Status updating&#8230;</li>
   </ul>
-  
-  <a href="https://github.com/dadoonet">@dadoonet</a> on GitHub
   
   <script type="text/javascript">
     $(document).ready(function(){
@@ -188,7 +216,7 @@
 
         github.showRepos({
             user: 'dadoonet',
-            count: 0,
+            count: 10,
             skip_forks: true,
             target: '#gh_repos'
         });
@@ -196,9 +224,6 @@
   </script>
   <script src="/javascripts/github.js" type="text/javascript"> </script>
 </section>
-
-
-
 
 
   
@@ -215,6 +240,22 @@
 </footer>
   
 
+<script type="text/javascript">
+      var disqus_shortname = 'dadoonet';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://dadoonet.github.io/blog/2015/03/05/using-log4j2-with-hibernate-4/';
+        var disqus_url = 'http://dadoonet.github.io/blog/2015/03/05/using-log4j2-with-hibernate-4/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
 
 
 <div id="fb-root"></div>
@@ -227,6 +268,14 @@
 }(document, 'script', 'facebook-jssdk'));</script>
 
 
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
 
 
 
