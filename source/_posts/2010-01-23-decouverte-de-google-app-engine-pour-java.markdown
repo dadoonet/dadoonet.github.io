@@ -1,25 +1,21 @@
 ---
-author: admin
 comments: true
 date: 2010-01-23 13:34:32+00:00
-excerpt: Je viens de découvrir Google App Engine pour Java. Je vais essayer de compléter
-  cet article au fur et à mesure que je vais avancer dans son utilisation... Stay
-  tuned...
 layout: post
-slug: decouverte-de-google-app-engine-pour-java
 title: Découverte de Google App Engine pour Java
-wordpress_id: 16
 categories:
-- Développement
-- Java
-tags:
-- Google App Engine
-- Java
+- java
 ---
+
+Je viens de découvrir Google App Engine pour Java. Je vais essayer de compléter cet article au fur et à mesure que je vais avancer dans son utilisation... 
+
+Stay tuned...
+
+<!-- more -->
 
 En lisant le magazine de développez.com ([Décembre 2009 - Janvier 2010](ftp://ftp-developpez.com/magazine/DevMag200912.pdf)), j'ai découvert l'ouverture du service Google App Engine au monde Java.
 
-De quoi s'agit-il ?
+## De quoi s'agit-il ?
 
 Ni plus, ni moins que ce que tout développeur Java cherche : **un hébergement gratuit d'applications Java**. Bon, il ne s'agit pas d'un serveur J2EE du type JBoss, Glassfish ou autre mais il permet de faire tourner des applications Web (des Webapps Java)  et de pouvoir y intégrer les outils Google.
 
