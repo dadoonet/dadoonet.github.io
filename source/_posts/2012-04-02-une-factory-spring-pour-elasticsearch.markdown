@@ -3,6 +3,7 @@ comments: true
 date: 2012-04-02 20:02:09+00:00
 layout: post
 title: Une factory Spring pour Elasticsearch
+image: /images/covers/elastic_logo_only.png
 categories:
 - elasticsearch
 - Spring
@@ -13,6 +14,8 @@ categories:
 Il existe dans Hibernate une fonctionnalité que j'aime beaucoup : la mise à jour automatique du schéma de la base en fonction des entités manipulées.
 
 Mon besoin est de faire quasiment la même chose avec Elasticsearch. C'est à dire que je souhaite pouvoir appliquer un mapping pour un type donné à chaque fois que je démarre mon projet (en l’occurrence une webapp).
+
+<!-- more -->
 
 En me basant sur le projet développé par [Erez Mazor](http://techo-ecco.com/blog/elasticsearch-with-spring/), j'ai donc développé une[ factory Spring](https://github.com/dadoonet/spring-elasticsearch) visant à démarrer des clients (voire des noeuds) Elasticsearch.
 

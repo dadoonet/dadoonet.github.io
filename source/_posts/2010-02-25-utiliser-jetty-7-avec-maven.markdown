@@ -13,6 +13,8 @@ Jetty peut être très utile aux projets Maven, notamment dans la phase de tests
 
 Il faut souvent déployer l'application sur un serveur type JBoss puis lancer les tests. Avec Jetty, on dispose alors d'un conteneur léger qui permet de disposer des fonctionnalités essentielles d'un conteneur (webapp, datasource, ...).
 
+<!-- more -->
+
 Problème : avec la version 7 de Jetty, il faut gérer l'authentification. Sinon, on obtient une erreur du type :
 
 ```

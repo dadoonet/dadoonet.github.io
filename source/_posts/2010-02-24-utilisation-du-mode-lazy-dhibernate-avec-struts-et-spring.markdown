@@ -11,6 +11,8 @@ categories:
 
 Lorsqu'on utilise Hibernate pour déléguer la gestion de la persistence, se pose alors le classique problème de l'exception [LazyInitialisationException](https://www.hibernate.org/hib_docs/v3/api/org/hibernate/LazyInitializationException.html).
 
+<!-- more -->
+
 En effet, dans une modélisation assez classique, imaginons le cas suivant :
 
 ## Couche Modèle (ou DAO)

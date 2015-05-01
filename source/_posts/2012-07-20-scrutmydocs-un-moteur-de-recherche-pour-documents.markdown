@@ -14,6 +14,8 @@ categories:
 
 Avec Malloum, nous venons de publier notre premier projet open-source commun: Scrut My Docs !
 
+<!-- more -->
+
 ## Nos objectifs
 
 * Fournir une application web clé en main permettant d’indexer des documents de vos disques locaux.

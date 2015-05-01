@@ -5,11 +5,12 @@ layout: post
 title: CouchDB
 categories:
 - CouchDB
-- elasticsearch
 - NoSQL
 ---
 
 Après avoir testé [Elasticsearch]({% post_url 2011-03-09-la-recherche-elastique %}), me voici parti pour regarder ce monde étrange qu'on appelle le [NoSQL](http://fr.wikipedia.org/wiki/Nosql)...
+
+<!-- more -->
 
 A dire vrai, j'ai entendu ce mot il y a quelques années, sans jamais vraiment m'y interesser... Après tout, une base de données non SQL, ça n'est tout simplement pas possible !!!
 

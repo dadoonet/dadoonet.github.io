@@ -14,6 +14,8 @@ Finalement, le temps d'obtenir une machine sous Redhat 5 a laissé le temps à l
 
 Nous voilà donc lancés dans cette installation que je me propose de décrire ici.
 
+<!-- more -->
+
 A noter que pour le moment la forge n'est pas totalement opérationnelle. Des évolutions dans la configuration devront être menées et j'espère pouvoir tenir à jour cet article pour les décrire.
 
 

@@ -3,6 +3,7 @@ comments: true
 date: 2012-05-25 16:45:36+00:00
 layout: post
 title: La factory Spring pour Elasticsearch est sortie !
+image: /images/covers/elastic_logo_only.png
 categories:
 - elasticsearch
 - java
@@ -11,6 +12,8 @@ categories:
 ---
 
 Et voilà, la première release de la [factory spring]({% post_url 2012-04-02-une-factory-spring-pour-elasticsearch %}) vient d'être faite.
+
+<!-- more -->
 
 Vous pouvez donc maintenant l'utiliser dans vos projets Maven :
 

@@ -11,6 +11,8 @@ I joined Elasticsearch Inc [one year ago]({% post_url 2013-01-15-once-upon-a-tim
 
 But now...
 
+<!-- more -->
+
 It's more than that! Really! You could think that after one year, my motivation would start to decrease. I have the total opposite feeling. Still excited by my job, by the company and by the project, but most of all by the amazing team I'm lucky to work with! Everyone is different and each of us adds different value to Elasticsearch. Personally, I learn a lot from my co-workers.
 
 ## So? What was 2013 like for me at Elasticsearch?

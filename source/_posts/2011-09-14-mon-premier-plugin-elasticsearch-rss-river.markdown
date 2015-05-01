@@ -3,6 +3,7 @@ comments: true
 date: 2011-09-14 21:30:07+00:00
 layout: post
 title: "Mon premier plugin elasticsearch : RSS River"
+image: /images/covers/elastic_logo_only.png
 categories:
 - elasticsearch
 - java

@@ -3,6 +3,7 @@ comments: true
 date: 2012-03-14 14:54:42+00:00
 layout: post
 title: Mon talk sur Elasticsearch sélectionné pour Devoxx France
+image: /images/covers/elastic_logo_only.png
 categories:
 - conference
 - elasticsearch

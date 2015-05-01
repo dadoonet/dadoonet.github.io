@@ -3,6 +3,7 @@ comments: true
 date: 2013-01-15 19:00:13+00:00
 layout: post
 title: 'Il était une fois : un conte de fées élastique !'
+image: /images/covers/elastic_logo_only.png
 categories:
 - elasticsearch
 ---
@@ -14,6 +15,8 @@ En fait, il y a 2 ans, je cherchais un moyen pour distribuer Hibernate search su
 Après avoir cherché du code source, je suis finalement tombé sur la [classe JdbcDirectory](http://www.compass-project.org/docs/2.0.1/api/org/apache/lucene/store/jdbc/JdbcDirectory.html) du projet Compass. Et sur la page d'accueil du projet, j'aperçois quelque chose qui parle du future de Compass et d'Elasticsearch.
 
 {% img /blog/images/once-upon1/es1.png The future of compass and Elasticsearch %}
+
+<!-- more -->
 
 Deux clics plus tard, je découvre Elasticsearch. Je le télécharge, le démarre et me dis : "Bordel ! Mais comment est-ce possible ?". Ce projet venait non seulement de résoudre tous mes problèmes en ajoutant des fonctionnalités dont je n'avais même pas conscience, le tout en moins de 30 secondes ! Je n'ai pas dormi pendant une semaine entière, vraiment ! C'était trop magique pour être vrai ! Après quelques heures de travail, Elasticsearch était intégré dans mon projet et fournissait déjà les premières recherches full text. J'ai dit à mes collègues que ce projet est si magnifique que je veux en faire parti si un jour une société est créée.
 

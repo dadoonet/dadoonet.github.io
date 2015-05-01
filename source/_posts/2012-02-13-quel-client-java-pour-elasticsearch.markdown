@@ -3,6 +3,7 @@ comments: true
 layout: post
 date: 2012-02-13 21:37:12+00:00
 title: Quel client Java pour elasticsearch ?
+image: /images/covers/elastic_logo_only.png
 categories:
 - elasticsearch
 - java
