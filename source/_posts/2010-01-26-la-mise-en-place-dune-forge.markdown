@@ -54,6 +54,6 @@ sudo service apache2 start
 
 Finalement, Adullact a annoncé vouloir passer sous [FusionForge](http://fusionforge.org/) qui est un fork de GForge afin de conserver la forge dans le monde open-source. La team FusionForge travaille en ce moment sur la version 5.0 mais elle n'est pas encore stabilisée. Nous allons donc installer la [version 4.8.3](http://fusionforge.org/frs/?group_id=6).
 
-La mise en place de FusionForge est abordée dans [cet article](http://dev.david.pilato.fr/?p=105).
+La mise en place de FusionForge est abordée dans [cet article]({% post_url 2010-05-11-installation-fusionforge-5-0-sur-redhat-5 %}).
 
 David ;-)

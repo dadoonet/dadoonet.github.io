@@ -7,9 +7,9 @@ image: /images/covers/elastic_logo_only.png
 categories: elasticsearch
 ---
 
-Oh wait! Already [2 years spent working for Elasticsearch](http://dev.david.pilato.fr/?p=317)? Time flies!
+Oh wait! Already [2 years spent working for Elasticsearch]({% post_url 2013-01-15-once-upon-a-time-dot-dot-dot %})? Time flies!
 
-After the first year, I wrote that I did **58 talks** in **4 countries**, **37 towns** for about **18 000 kilometers** traveled. I was pretty sure that things would continue to grow.
+After the first year, [I wrote]({% post_url 2014-01-10-once-upon-a-time-a-year-later-dot-dot-dot %}) that I did **58 talks** in **4 countries**, **37 towns** for about **18 000 kilometers** traveled. I was pretty sure that things would continue to grow.
 
 This year, I spoke **78 times**! Around 2 talks per week! I did around **48 000 kilometers**. **8 000 km** more than the [earth's circumference](http://en.wikipedia.org/wiki/Earth)! I still can't believe it... 12 countries. And no need to say that I love giving talks and sharing my enthusiasm about Elasticsearch!
 

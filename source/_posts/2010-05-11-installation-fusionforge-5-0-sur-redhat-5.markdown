@@ -8,7 +8,7 @@ categories:
 - FusionForge
 ---
 
-Voici la suite de l'article sur l'[installation d'une forge](/?p=23).
+Voici la suite de l'article sur l'[installation d'une forge]({% post_url 2010-01-26-la-mise-en-place-dune-forge %}).
 
 Finalement, le temps d'obtenir une machine sous Redhat 5 a laissé le temps à la team FusionForge de sortir une release finale de la version 5.0.
 
@@ -86,8 +86,7 @@ De ce fait, un démarrage manuel de la base postgres a dû être effectué à l'
 
 Une fois ces opérations menées, il doit être possible d'ouvrir un navigateur web à l'adresse : http://maforge.mondomaine/
 
-[caption id="attachment_111" align="aligncenter" width="300" caption="Page d'accueil de la forge"][![](http://dev.david.pilato.fr/wp-content/uploads/2010/05/maforge-300x144.png)](http://dev.david.pilato.fr/wp-content/uploads/2010/05/maforge.png)[/caption]
-
+{% img /blog/images/fusionforge/maforge.png Page d'accueil de la forge %}
 
 ## Processus post-installation
 
@@ -103,70 +102,15 @@ Pour faire ces déplacements, il est nécessaire de stopper la base de données 
 
 Le tableau ci-dessous donne les répertoires par défaut d'installation de la forge et les répertoires cibles vers lesquels on souhaite se déplacer.
 
-<table >
-<tbody >
-<tr >
-Répertoire origine
-Répertoire destination
-Commentaire
-</tr>
-<tr >
+|Répertoire origine |Répertoire destination      |Commentaire                             |
+|-------------------|----------------------------|----------------------------------------|
+|`/opt/gforge`      |`/maforge/fforge50`         |Contient les sources, les scripts php, bref, tout le "programme" forge |
+|`/var/lib/gforge`  |`/maforge/files`            |Contient les répertoires de travail (`svn`, `uploads`, ...) |
+|`/var/lib/pgsql`   |`/maforge/pgsql`            |Contient la base de données             |
+|`/etc/gforge`      |`/maforge/conf`             |Contient la configuration (forge, apache, plugins) |
+|`/opt/groups`      |`/maforge/groups`           |???                                     |
 
-<td width="26%" >/opt/gforge
-</td>
 
-<td width="28%" >/maforge/fforge50
-</td>
-
-<td width="47%" >Contient les sources, les scripts php, bref, toute le « programme » forge
-</td>
-</tr>
-<tr >
-
-<td width="26%" >/var/lib/gforge
-</td>
-
-<td width="28%" >/maforge/files
-</td>
-
-<td width="47%" >Contient les répertoires de travail (svn, uploads, ...)
-</td>
-</tr>
-<tr >
-
-<td width="26%" >/var/lib/pgsql
-</td>
-
-<td width="28%" >/maforge/pgsql
-</td>
-
-<td width="47%" >Contient la base de données
-</td>
-</tr>
-<tr >
-
-<td width="26%" >/etc/gforge
-</td>
-
-<td width="28%" >/maforge/conf
-</td>
-
-<td width="47%" >Contient la configuration (forge, apache, plugins)
-</td>
-</tr>
-<tr >
-
-<td width="26%" >/opt/groups
-</td>
-
-<td width="28%" >/maforge/groups
-</td>
-
-<td width="47%" >???
-</td>
-</tr>
-</tbody>
-</table>
 
 Pour déplacer les fichiers, faire :
 

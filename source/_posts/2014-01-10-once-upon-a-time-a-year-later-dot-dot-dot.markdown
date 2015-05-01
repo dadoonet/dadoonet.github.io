@@ -7,7 +7,7 @@ image: /images/covers/elastic_logo_only.png
 categories: elasticsearch
 ---
 
-I joined Elasticsearch Inc [one year ago](http://dev.david.pilato.fr/?p=287). Those were pretty exciting days!
+I joined Elasticsearch Inc [one year ago]({% post_url 2013-01-15-once-upon-a-time-dot-dot-dot %}). Those were pretty exciting days!
 
 But now...
 
