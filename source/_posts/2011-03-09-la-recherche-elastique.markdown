@@ -1,24 +1,19 @@
 ---
-author: dadoonet
 comments: true
 date: 2011-03-09 21:30:32+00:00
-excerpt: Elastic Search, un projet mature en quelques mois... A suivre de très près
-  !
 layout: post
-slug: la-recherche-elastique
 title: La recherche élastique...
-wordpress_id: 126
 categories:
-- Elasticsearch
-- Hibernate
-- Java
-tags:
 - elasticsearch
-- Hibernate
-- Java
+- hibernate
+- java
 ---
 
-En cherchant un bout de code pour rendre la couche [Hibernate Search](http://http://docs.jboss.org/hibernate/stable/search/reference/en-US/html/search-configuration.html#jms-backend) facilement distribuable sur un cluster de machines JBoss, je suis tombé sur le projet [ElasticSearch](http://elasticsearch.org).
+Elasticsearch, un projet mature en quelques mois... A suivre de très près !
+
+<!-- more -->
+
+En cherchant un bout de code pour rendre la couche [Hibernate Search](http://docs.jboss.org/hibernate/stable/search/reference/en-US/html/search-configuration.html#jms-backend) facilement distribuable sur un cluster de machines JBoss, je suis tombé sur le projet [Elasticsearch](http://elasticsearch.org).
 
 Au début, un peu interloqué... Puis, je me lance...
 
