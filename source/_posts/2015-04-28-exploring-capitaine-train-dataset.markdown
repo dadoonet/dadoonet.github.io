@@ -3,7 +3,7 @@ layout: post
 title: "Exploring Capitaine Train dataset"
 date: 2015-04-28 13:31:34 +0200
 comments: true
-image: /images/covers/elastic_logo_only.png
+image: /images/covers/logstash.png
 categories: 
 - elasticsearch
 - logstash
