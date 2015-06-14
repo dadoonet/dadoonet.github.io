@@ -201,6 +201,11 @@ bin/shield/esusers useradd dadoonet -r kibana4
 
 Set your password. And now you should be able to connect to Kibana4 using your username and password.
 
+## After dotScale update
+
+I finally got this result after one day at dotScale.
+
+{% img center /blog/images/twitter01/kibana-twitter-final.png Twitter dataset %}
 
 
 
