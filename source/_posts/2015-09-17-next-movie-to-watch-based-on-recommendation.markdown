@@ -520,4 +520,11 @@ I'm getting back:
 
 I now know what I should look next! :)
 
+## Step 6+: recommend titles, not ids!
+
+For now we recommend movies by looking first at other movies based on their ids.
+My goal is to create an interface on top of elasticsearch, actually I'll use Kibana and directly enter a movie name, a category or whatever and find the TOP10 recommended movies.
+
+Stay tuned!
+
 
