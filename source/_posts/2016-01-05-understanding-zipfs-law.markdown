@@ -264,6 +264,18 @@ I also looked at terms starting with `ch`. It gives:
 
 `chez`, `chaque` and `chose` are really common terms. I don't know what `chabler`, `chaboisseaux` and `chabots` actually mean! :D
 
+## Zipf Law
 
+Let's build a final visualization and see if we can have a curve like the one exposed in the video.
 
+{% img /blog/images/zipf/zipf.png Zipf's Law %}
 
+I changed the graph options and used a log Y Axis scale and also increased the number of terms to 1000.
+
+{% img /blog/images/zipf/zipf-log.png Zipf's Law Log Axis %}
+
+Well. It looks close.
+
+I think I should now try to index an actual french book to see how it compares with this data source...
+
+Stay tuned :)
