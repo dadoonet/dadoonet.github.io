@@ -31,7 +31,7 @@ It is so helpful when you can focus on solving your issues. I'm really thankful 
 
 ## The evangelist work
 
-I traveled. A lot. I gave less talks but I did 2 000 kilometers than last year. Yeah. **50 000 kilometers** for 2015... Still a lot if you think that most of my traveling were in France or in Europe...
+I traveled. A lot. I gave less talks but I did 2 000 kilometers more than last year. Yeah. **50 000 kilometers** for 2015... Still a lot if you think that most of my traveling were in France or in Europe...
 
 * 2 elastic events: [elastic{ON}'15](https://www.elastic.co/elasticon/2015/sf/highlights-reel) and [elastic{ON} Tour Paris'15](https://www.elastic.co/elasticon/tour/2015/paris).
 
