@@ -96,7 +96,7 @@ twitter:
   indices:
     '*':
       - indices:data/write/bulk
-    'twitter-*':
+    'twitter':
       - indices:admin/create
       - indices:data/write/index
 ```
