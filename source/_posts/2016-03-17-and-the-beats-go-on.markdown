@@ -479,7 +479,7 @@ But we are lucky! The beat-generator provides everything out of the box!
 
 Just edit `etc/fields.yml` and change the `soundbeat` part to:
 
-```
+```yaml
 soundbeat:
   type: group
   fields:
@@ -502,7 +502,7 @@ soundbeat:
 
 Then, run:
 
-```
+```sh
 make update
 ```
 
@@ -511,7 +511,7 @@ It will generate the `etc/soundbeat.template.json` file. And cherry on the cake,
 
 Start elasticsearch:
 
-```
+```sh
 bin/elasticsearch
 [2016-03-18 14:53:33,487][INFO ][node                     ] [Katu] version[2.2.1], pid[82105], build[d045fc2/2016-03-09T09:38:54Z]
 [2016-03-18 14:53:33,489][INFO ][node                     ] [Katu] initializing ...
@@ -530,19 +530,19 @@ bin/elasticsearch
 
 And apply the template:
 
-```
+```sh
 curl -XPUT 'http://localhost:9200/_template/soundbeat' -d@etc/soundbeat.template.json
 ```
 
 And launch `soundbeat` again with the standard mode:
 
-```
+```sh
 ./soundbeat
 ```
 
 In elasticsearch logs, you should see:
 
-```
+```sh
 [2016-03-18 14:54:31,599][INFO ][cluster.metadata         ] [Katu] [soundbeat-2016.03.18] creating index, cause [auto(bulk api)], templates [soundbeat], shards [5]/[1], mappings [_default_, soundbeat]
 [2016-03-18 14:54:31,725][INFO ][cluster.metadata         ] [Katu] [soundbeat-2016.03.18] update_mapping [soundbeat]
 [2016-03-18 14:54:31,744][INFO ][cluster.routing.allocation] [Katu] Cluster health status changed from [RED] to [YELLOW] (reason: [shards started [[soundbeat-2016.03.18][4], [soundbeat-2016.03.18][4]] ...]).
@@ -552,7 +552,7 @@ In elasticsearch logs, you should see:
 
 Just launch Kibana:
 
-```
+```sh
 bin/kibana
 ```
 
