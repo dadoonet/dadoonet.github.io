@@ -337,7 +337,7 @@ event := common.MapStr{
 b.Events.PublishEvent(event)
 ```
 
-This is how looks the full `Run` method:
+This is how the full `Run` method looks like:
 
 ```go
 func (bt *Soundbeat) Run(b *beat.Beat) error {
@@ -474,7 +474,42 @@ It will produce something like:
 
 ## Connecting to elasticsearch
 
-Well. It's super easy. You just have to start elasticsearch!
+We need to define a template for elasticsearch if we want to force elasticsearch using our mapping.
+But we are lucky! The beat-generator provides everything out of the box!
+
+Just edit `etc/fields.yml` and change the `soundbeat` part to:
+
+```
+soundbeat:
+  type: group
+  fields:
+    - name: name
+      type: string
+      required: true
+      description: >
+        Sound file name
+    - name: left
+      type: double
+      required: true
+      description: >
+        Left sound level
+    - name: right
+      type: double
+      required: true
+      description: >
+        Right sound level
+```
+
+Then, run:
+
+```
+make update
+```
+
+It will generate the `etc/soundbeat.template.json` file. And cherry on the cake, it will also update the documentation in `docs` dir.
+
+
+Start elasticsearch:
 
 ```
 bin/elasticsearch
@@ -491,6 +526,12 @@ bin/elasticsearch
 [2016-03-18 14:53:39,618][INFO ][cluster.service          ] [Katu] new_master {Katu}{b_T6HUb-TXyUTN8Af6YdEQ}{127.0.0.1}{127.0.0.1:9300}, reason: zen-disco-join(elected_as_master, [0] joins received)
 [2016-03-18 14:53:39,638][INFO ][http                     ] [Katu] publish_address {127.0.0.1:9200}, bound_addresses {[fe80::1]:9200}, {[::1]:9200}, {127.0.0.1:9200}
 [2016-03-18 14:53:39,638][INFO ][node                     ] [Katu] started
+```
+
+And apply the template:
+
+```
+curl -XPUT 'http://localhost:9200/_template/soundbeat' -d@etc/soundbeat.template.json
 ```
 
 And launch `soundbeat` again with the standard mode:
