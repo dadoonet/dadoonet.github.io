@@ -43,6 +43,13 @@ So very flexible...
 
 I came with this idea... I like music. I like beats. Let's try to create another beat: `soundbeat`!
 
+## Prerequisites
+
+You need to have:
+
+* `go`: `brew install go`
+* `glide`: `brew install glide`
+
 ## Soundbeat
 
 The goal is more to learn how to write a beat than the feature itself.
