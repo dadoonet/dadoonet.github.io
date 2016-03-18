@@ -565,7 +565,7 @@ We now have something which looks like the waveform we are looking for!
 * [Beats Platform Reference](https://www.elastic.co/guide/en/beats/libbeat/current/index.html)
 * [Beat Generator](https://github.com/elastic/beat-generator)
 * [Beat developer guide](https://www.elastic.co/guide/en/beats/libbeat/current/new-beat.html)
-
+* [soundbeat source code](https://github.com/dadoonet/soundbeat)
 
 
 
