@@ -26,17 +26,17 @@ while injecting it into elasticsearch. Read more in [elastic blog post](https://
 If you know me and my work before I joined elastic, I have always been in love with data crawling and transformation as
 I wrote myself some plugins called [rivers](https://www.elastic.co/blog/deprecating-rivers).
 
-This blog post is a part of a serie of 3 which will teach you:
+This blog post is part of a series which will teach you:
 
 * How to write a plugin for elasticsearch 5.0 using Maven
-* How to write an ingest plugin for elasticsearch 5.0
+* [How to write an ingest plugin for elasticsearch 5.0]({% post_url 2016-07-28-creating-an-ingest-plugin-for-elasticsearch %})
 * How I wrote the `ingest-bano` plugin which will be hopefully released soonish.
 
 <!-- more -->
 
 Let's get started!
 
-**Note**: this article applies to elasticsearch 5.0.0 alpha 4. It might
+**Note**: this article applies to elasticsearch 5.0.0 alpha 5. It might
 be not applicable for newer versions as APIs could change.
 
 ## Create a skeleton
@@ -54,7 +54,7 @@ Create in your new project directory, let say `ingest-bano`, a `pom.xml` file:
 
     <groupId>fr.pilato.elasticsearch.ingest</groupId>
     <artifactId>ingest-bano</artifactId>
-    <version>5.0.0-alpha4-SNAPSHOT</version>
+    <version>5.0.0-alpha5-SNAPSHOT</version>
     <name>Plugin: Ingest: BANO</name>
     <description>BANO Ingest Plugin for elasticsearch</description>
 
@@ -63,11 +63,11 @@ Create in your new project directory, let say `ingest-bano`, a `pom.xml` file:
 
 ## Add elasticsearch core dependency
 
-Just add `org.elasticsearch:elasticsearch:5.0.0-alpha4` as a `provided` dependency:
+Just add `org.elasticsearch:elasticsearch:5.0.0-alpha5` as a `provided` dependency:
 
 ```xml
 <properties>
-    <elasticsearch.version>5.0.0-alpha4</elasticsearch.version>
+    <elasticsearch.version>5.0.0-alpha5</elasticsearch.version>
 </properties>
 
 <dependencies>
@@ -354,10 +354,10 @@ You will get in `target/releases` the distribution file.
 
 ## Install the plugin
 
-If you have an elasticsearch 5.0.0-alpha4 version somewhere, you can install this plugin with:
+If you have an elasticsearch 5.0.0-alpha5 version somewhere, you can install this plugin with:
 
 ```sh
-bin/elasticsearch-plugin install file:///path/to/target/releases/ingest-bano-5.0.0-alpha4-SNAPSHOT.zip
+bin/elasticsearch-plugin install file:///path/to/target/releases/ingest-bano-5.0.0-alpha5-SNAPSHOT.zip
 ```
 
 Then you can start elasticsearch with `bin/elasticsearch`  and check in logs that the plugin is loaded.
@@ -366,7 +366,7 @@ You are now all set!
 
 ## Next?
 
-In a coming blog post, I'll explain how to write an Ingest plugin based on the skeleton we just built.
+In a coming blog post, I'll explain [how to write an Ingest plugin]({% post_url 2016-07-28-creating-an-ingest-plugin-for-elasticsearch %}) based on the skeleton we just built.
 But note that this skeleton can be used for [whatever purpose](https://www.elastic.co/guide/en/elasticsearch/plugins/master/index.html):
 
 * Analysis plugins
@@ -375,6 +375,7 @@ But note that this skeleton can be used for [whatever purpose](https://www.elast
 * REST plugins
 * Native Script plugins
 * Security plugins
+* [Ingest plugins]({% post_url 2016-07-28-creating-an-ingest-plugin-for-elasticsearch %})
 * ...
 
 Your imagination is now the limit! :)
