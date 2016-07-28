@@ -14,21 +14,21 @@ Elasticsearch 5.0 [switched to Gradle in October 2015](https://github.com/elasti
 You can obviously write a plugin using Gradle if you wish and you could benefit from all the goodies elasticsearch team wrote
 when it comes to integration tests and so on.
 
-My colleague, Alexander Reelsen aka [Spinscale on Twitter](http://twitter.com/spinscale) wrote 
+My colleague, Alexander Reelsen aka [Spinscale on Twitter](http://twitter.com/spinscale), wrote 
 [a super nice template](https://github.com/spinscale/cookiecutter-elasticsearch-ingest-processor) if 
 you wish to create an Ingest plugin for 5.0.
 
-Hey! Wait! You wrote `Ingest`? What is that?
+> Hey! Wait! You wrote `Ingest`? What is that?
 
 Ingest is a new feature coming in elasticsearch 5.0. It helps you to transform your data on the fly
-while injecting them into elasticsearch. Read more in [elastic blog post](https://www.elastic.co/blog/ingest-node-a-clients-perspective).
+while injecting it into elasticsearch. Read more in [elastic blog post](https://www.elastic.co/blog/ingest-node-a-clients-perspective).
 
 If you know me and my work before I joined elastic, I have always been in love with data crawling and transformation as
-I wrote myself some plugins called rivers.
+I wrote myself some plugins called [rivers](https://www.elastic.co/blog/deprecating-rivers).
 
 This blog post is a part of a serie of 3 which will teach you:
 
-* How to write a plugin for elasticsearch 5.0 with Maven
+* How to write a plugin for elasticsearch 5.0 using Maven
 * How to write an ingest plugin for elasticsearch 5.0
 * How I wrote the `ingest-bano` plugin which will be hopefully released soonish.
 
@@ -37,7 +37,7 @@ This blog post is a part of a serie of 3 which will teach you:
 Let's get started!
 
 **Note**: this article applies to elasticsearch 5.0.0 alpha 4. It might
-not be applicable for newer versions as APIs could change.
+be not applicable for newer versions as APIs could change.
 
 ## Create a skeleton
 
@@ -132,7 +132,7 @@ We create a file `src/main/assemblies/plugin.xml` with:
 Note that we are filtering `plugin-descriptor.properties` file which means that at package time
 all Maven placeholders will be replaced by their needed values.
 
-In `pom.xml`, we don't want to add this file in classes so we tell that to Maven:
+We don't want to add this file in our JAR so we tell that to Maven in the `pom.xml`:
 
 ```
 <build>
@@ -196,7 +196,7 @@ Because we want to use Java 8, we need to configure the compiler plugin:
 
 ### Create Plugin class skeleton
 
-Create an empty plugin. 
+Create an empty plugin class in `src/main/java/org/elasticsearch/ingest/bano/`. 
 
 ```java
 package org.elasticsearch.ingest.bano;
@@ -295,7 +295,8 @@ Add a default `log4j.xml` in `src/test/resources`:
 </log4j:configuration>
 ```
 
-We can now extend `ESIntegTestCase` class to run integration tests:
+We can now extend `ESIntegTestCase` class to run integration tests. You can create a `BanoPluginIntegrationTest` 
+class in `src/test/java/org/elasticsearch/ingest/bano/`:
 
 ```java
 package org.elasticsearch.ingest.bano;
@@ -335,7 +336,10 @@ public class BanoPluginIntegrationTest extends ESIntegTestCase {
 ```
 
 When you run this class, a cluster of a random number of nodes is started using random Locale settings.
-The plugin we created is added to nodes. So we just have to call the plugin as we want.
+The plugin we just created is added to nodes using `nodePlugins()` class.
+
+So we just have to use the plugin as we want now. In this example, we are just testing that the plugin is
+actually loaded on every node.
 
 
 ## Build the plugin
