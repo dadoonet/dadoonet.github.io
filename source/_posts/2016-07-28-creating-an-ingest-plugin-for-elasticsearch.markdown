@@ -28,6 +28,8 @@ I wrote myself some plugins called [rivers](https://www.elastic.co/blog/deprecat
 
 With what we saw [in the previous article]({% post_url 2016-07-27-creating-a-plugin-for-elasticsearch-5-dot-0-using-maven %}), we now have a Plugin skeleton ready to host our Ingest code.
 
+> **Note**: this article has been updated on July 2016, the 29th by moving tests to [real integration tests]({% post_url 2016-07-29-elasticsearch-real-integration-tests %}).
+
 But first, let's describe a bit more what `Ingest` actually is.
 
 ## Ingest
@@ -227,37 +229,13 @@ public class IngestBanoPlugin extends Plugin implements IngestPlugin {
 
 We can now add more tests to check that our processor can be used in a pipeline.
 
-We can create a new integration test class `BanoProcessorIntegrationTest` in `src/test/java/org/elasticsearch/ingest/bano/`:
+We can create a new integration test class `BanoProcessorIT` in `src/test/java/org/elasticsearch/ingest/bano/`:
 
 ```java
-package org.elasticsearch.ingest.bano;
-
-import org.elasticsearch.action.ingest.SimulateDocumentBaseResult;
-import org.elasticsearch.action.ingest.SimulatePipelineResponse;
-import org.elasticsearch.common.bytes.BytesReference;
-import org.elasticsearch.ingest.IngestDocument;
-import org.elasticsearch.plugins.Plugin;
-import org.elasticsearch.test.ESIntegTestCase;
-
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-
-import static org.elasticsearch.common.xcontent.XContentFactory.jsonBuilder;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.instanceOf;
-import static org.hamcrest.Matchers.nullValue;
-
-public class BanoProcessorIntegrationTest extends ESIntegTestCase {
-
-    @Override
-    protected Collection<Class<? extends Plugin>> nodePlugins() {
-        return Collections.singleton(IngestBanoPlugin.class);
-    }
+public class BanoProcessorIT extends AbstractITCase {
 
     public void testSimulateProcessor() throws Exception {
-        BytesReference bytes = jsonBuilder().startObject()
+        String json = jsonBuilder().startObject()
                 .startObject("pipeline")
                     .startArray("processors")
                         .startObject()
@@ -276,17 +254,25 @@ public class BanoProcessorIntegrationTest extends ESIntegTestCase {
                         .endObject()
                     .endObject()
                 .endArray()
-                .endObject().bytes();
+                .endObject().string();
 
-        SimulatePipelineResponse response = client().admin().cluster().prepareSimulatePipeline(bytes).get();
-        assertThat(response.getResults().size(), equalTo(1));
-        assertThat(response.getResults().get(0), instanceOf(SimulateDocumentBaseResult.class));
-        SimulateDocumentBaseResult simulateDocumentBaseResult = (SimulateDocumentBaseResult) response.getResults().get(0);
-        Map<String, Object> source = new HashMap<>();
-        source.put("foo", "bar");
-        IngestDocument ingestDocument = new IngestDocument("index", "type", "id", null, null, null, null, source);
-        assertThat(simulateDocumentBaseResult.getIngestDocument().getSourceAndMetadata(), equalTo(ingestDocument.getSourceAndMetadata()));
-        assertThat(simulateDocumentBaseResult.getFailure(), nullValue());
+        Map<String, Object> expected = new HashMap<>();
+        expected.put("foo", "bar");
+
+        Response response = client.performRequest("POST", "/_ingest/pipeline/_simulate",
+                Collections.emptyMap(), new NStringEntity(json, ContentType.APPLICATION_JSON));
+
+        Map<String, Object> responseMap = entityAsMap(response);
+        assertThat(responseMap, hasKey("docs"));
+        List<Map<String, Object>> docs = (List<Map<String, Object>>) responseMap.get("docs");
+        assertThat(docs.size(), equalTo(1));
+        Map<String, Object> doc1 = docs.get(0);
+        assertThat(doc1, hasKey("doc"));
+        Map<String, Object> doc = (Map<String, Object>) doc1.get("doc");
+        assertThat(doc, hasKey("_source"));
+        Map<String, Object> docSource = (Map<String, Object>) doc.get("_source");
+
+        assertThat(docSource, is(expected));
     }
 }
 ```
@@ -294,8 +280,7 @@ public class BanoProcessorIntegrationTest extends ESIntegTestCase {
 This test basically sends a JSON document `{"foo":"bar"}` to the simulate pipeline method and check that we get back the same
 content as we did not transform yet anything.
 
-Note that this test might fail with elasticsearch 5.0.0-alpha5 because of [this bug](https://github.com/elastic/elasticsearch/pull/19650).
-This is by the way why I love the Randomized Testing framework! :)
+Note that this test was failling with elasticsearch 5.0.0-alpha5 because of [this bug](https://github.com/elastic/elasticsearch/pull/19650) I found thanks to the Randomized Testing framework! :) As we moved our tests to REST tests, it won't fail anymore.
 
 ## Implement the logic
 
@@ -333,11 +318,9 @@ public void execute(IngestDocument ingestDocument) throws Exception {
 Of course, we need to modify our test now as we expect a new field in our document:
 
 ```java
-Map<String, Object> source = new HashMap<>();
-source.put("foo", "bar");
-source.put("new_foo", "bar");
-IngestDocument ingestDocument = new IngestDocument("index", "type", "id", null, null, null, null, source);
-assertThat(simulateDocumentBaseResult.getIngestDocument().getSourceAndMetadata(), equalTo(ingestDocument.getSourceAndMetadata()));
+Map<String, Object> expected = new HashMap<>();
+expected.put("foo", "bar");
+expected.put("new_foo", "bar");
 ```
 
 ## Make it more flexible
@@ -390,42 +373,59 @@ public Processor create(Map<String, Processor.Factory> processorFactories, Strin
 Note that `readStringProperty` method comes from `org.elasticsearch.ingest.ConfigurationUtils` class.
 
 If you run the existing test, it should pass as we are using all default values.
-We can add a new test which checks that we can read from another field than `foo`, here `anotherfoo`:
+We can add a new test which checks that we can read from another field than `foo`, here `anotherfoo`.
+But first as we will run the same kind of test again and again, let's generify the test code:
+
+```java
+private void simulatePipeline(String json, Map<String, Object> expected) throws IOException {
+    Response response = client.performRequest("POST", "/_ingest/pipeline/_simulate",
+            Collections.emptyMap(), new NStringEntity(json, ContentType.APPLICATION_JSON));
+
+    Map<String, Object> responseMap = entityAsMap(response);
+    assertThat(responseMap, hasKey("docs"));
+    List<Map<String, Object>> docs = (List<Map<String, Object>>) responseMap.get("docs");
+    assertThat(docs.size(), equalTo(1));
+    Map<String, Object> doc1 = docs.get(0);
+    assertThat(doc1, hasKey("doc"));
+    Map<String, Object> doc = (Map<String, Object>) doc1.get("doc");
+    assertThat(doc, hasKey("_source"));
+    Map<String, Object> docSource = (Map<String, Object>) doc.get("_source");
+
+    assertThat(docSource, is(expected));
+}
+```
+
+And implements the new test based on that:
 
 ```java
 public void testSimulateProcessorConfigSource() throws Exception {
-	BytesReference bytes = jsonBuilder().startObject()
-	        .startObject("pipeline")
-	            .startArray("processors")
-	                .startObject()
-	                    .startObject("bano")
-	                        .field("source", "anotherfoo")
-	                    .endObject()
-	                .endObject()
-	            .endArray()
-	        .endObject()
-	        .startArray("docs")
-	            .startObject()
-	                .field("_index", "index")
-	                .field("_type", "type")
-	                .field("_id", "id")
-	                .startObject("_source")
-	                    .field("anotherfoo", "bar")
-	                .endObject()
-	            .endObject()
-	        .endArray()
-	        .endObject().bytes();
+    String json = jsonBuilder().startObject()
+            .startObject("pipeline")
+                .startArray("processors")
+                    .startObject()
+                        .startObject("bano")
+                            .field("source", "anotherfoo")
+                        .endObject()
+                    .endObject()
+                .endArray()
+            .endObject()
+            .startArray("docs")
+                .startObject()
+                    .field("_index", "index")
+                    .field("_type", "type")
+                    .field("_id", "id")
+                    .startObject("_source")
+                        .field("anotherfoo", "bar")
+                    .endObject()
+                .endObject()
+            .endArray()
+            .endObject().string();
 
-	SimulatePipelineResponse response = client().admin().cluster().prepareSimulatePipeline(bytes).get();
-	assertThat(response.getResults().size(), equalTo(1));
-	assertThat(response.getResults().get(0), instanceOf(SimulateDocumentBaseResult.class));
-	SimulateDocumentBaseResult simulateDocumentBaseResult = (SimulateDocumentBaseResult) response.getResults().get(0);
-	Map<String, Object> source = new HashMap<>();
-	source.put("anotherfoo", "bar");
-	source.put("new_anotherfoo", "bar");
-	IngestDocument ingestDocument = new IngestDocument("index", "type", "id", null, null, null, null, source);
-	assertThat(simulateDocumentBaseResult.getIngestDocument().getSourceAndMetadata(), equalTo(ingestDocument.getSourceAndMetadata()));
-	assertThat(simulateDocumentBaseResult.getFailure(), nullValue());
+    Map<String, Object> expected = new HashMap<>();
+    expected.put("anotherfoo", "bar");
+    expected.put("new_anotherfoo", "bar");
+
+    simulatePipeline(json, expected);
 }
 ```
 
@@ -433,7 +433,7 @@ Also test that you can write to another target field:
 
 ```java
 public void testSimulateProcessorConfigTarget() throws Exception {
-    BytesReference bytes = jsonBuilder().startObject()
+    String json = jsonBuilder().startObject()
             .startObject("pipeline")
                 .startArray("processors")
                     .startObject()
@@ -454,18 +454,13 @@ public void testSimulateProcessorConfigTarget() throws Exception {
                     .endObject()
                 .endObject()
             .endArray()
-            .endObject().bytes();
+            .endObject().string();
 
-    SimulatePipelineResponse response = client().admin().cluster().prepareSimulatePipeline(bytes).get();
-    assertThat(response.getResults().size(), equalTo(1));
-    assertThat(response.getResults().get(0), instanceOf(SimulateDocumentBaseResult.class));
-    SimulateDocumentBaseResult simulateDocumentBaseResult = (SimulateDocumentBaseResult) response.getResults().get(0);
-    Map<String, Object> source = new HashMap<>();
-    source.put("anotherfoo", "bar");
-    source.put("another_new_foo", "bar");
-    IngestDocument ingestDocument = new IngestDocument("index", "type", "id", null, null, null, null, source);
-    assertThat(simulateDocumentBaseResult.getIngestDocument().getSourceAndMetadata(), equalTo(ingestDocument.getSourceAndMetadata()));
-    assertThat(simulateDocumentBaseResult.getFailure(), nullValue());
+    Map<String, Object> expected = new HashMap<>();
+    expected.put("anotherfoo", "bar");
+    expected.put("another_new_foo", "bar");
+
+    simulatePipeline(json, expected);
 }
 ```
 
@@ -510,7 +505,7 @@ Let's add another test:
 
 ```java
 public void testSimulateProcessorConfigRemove() throws Exception {
-    BytesReference bytes = jsonBuilder().startObject()
+    String json = jsonBuilder().startObject()
             .startObject("pipeline")
                 .startArray("processors")
                     .startObject()
@@ -530,17 +525,12 @@ public void testSimulateProcessorConfigRemove() throws Exception {
                     .endObject()
                 .endObject()
             .endArray()
-            .endObject().bytes();
+            .endObject().string();
 
-    SimulatePipelineResponse response = client().admin().cluster().prepareSimulatePipeline(bytes).get();
-    assertThat(response.getResults().size(), equalTo(1));
-    assertThat(response.getResults().get(0), instanceOf(SimulateDocumentBaseResult.class));
-    SimulateDocumentBaseResult simulateDocumentBaseResult = (SimulateDocumentBaseResult) response.getResults().get(0);
-    Map<String, Object> source = new HashMap<>();
-    source.put("new_foo", "bar");
-    IngestDocument ingestDocument = new IngestDocument("index", "type", "id", null, null, null, null, source);
-    assertThat(simulateDocumentBaseResult.getIngestDocument().getSourceAndMetadata(), equalTo(ingestDocument.getSourceAndMetadata()));
-    assertThat(simulateDocumentBaseResult.getFailure(), nullValue());
+    Map<String, Object> expected = new HashMap<>();
+    expected.put("new_foo", "bar");
+
+    simulatePipeline(json, expected);
 }
 ```
 
