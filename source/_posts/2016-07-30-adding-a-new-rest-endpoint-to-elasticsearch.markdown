@@ -338,7 +338,7 @@ public void testBano() throws Exception {
         client.performRequest("PUT", "/" + randomAsciiOfLengthBetween(6, 10).toLowerCase(Locale.getDefault()));
     }
 
-    client.performRequest("GET", "/_cluster/health?wait_for_status=yellow");
+    client.performRequest("GET", "/_cluster/health", Collections.singletonMap("wait_for_status", "yellow"));
 
     Response response = client.performRequest("GET", "/_bano");
     Map<String, Object> responseMap = entityAsMap(response);
