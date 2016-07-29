@@ -6,6 +6,9 @@ comments: true
 image: /images/covers/new/elasticsearch.png
 categories: 
 - elasticsearch
+- maven
+- ant
+- test
 ---
 
 Integration tests... How do you run them?
