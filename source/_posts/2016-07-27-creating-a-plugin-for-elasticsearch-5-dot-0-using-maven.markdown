@@ -28,8 +28,8 @@ I wrote myself some plugins called [rivers](https://www.elastic.co/blog/deprecat
 
 This blog post is part of a series which will teach you:
 
-* How to write a plugin for elasticsearch 5.0 using Maven
-* [How to write an ingest plugin for elasticsearch 5.0]({% post_url 2016-07-28-creating-an-ingest-plugin-for-elasticsearch %})
+* How to write a plugin for elasticsearch 5.0 using Maven (what you are reading now).
+* [How to write an ingest plugin for elasticsearch 5.0]({% post_url 2016-07-28-creating-an-ingest-plugin-for-elasticsearch %}).
 * How I wrote the `ingest-bano` plugin which will be hopefully released soonish.
 
 <!-- more -->
@@ -366,13 +366,14 @@ You are now all set!
 
 ## Next?
 
-In a coming blog post, I'll explain [how to write an Ingest plugin]({% post_url 2016-07-28-creating-an-ingest-plugin-for-elasticsearch %}) based on the skeleton we just built.
+In a coming blog post, I'll explain [how to write an Ingest plugin]({% post_url 2016-07-28-creating-an-ingest-plugin-for-elasticsearch %}) based on the skeleton we just built and also [how to create real integration tests]({% post_url 2016-07-29-elasticsearch-real-integration-tests %}). 
+
 But note that this skeleton can be used for [whatever purpose](https://www.elastic.co/guide/en/elasticsearch/plugins/master/index.html):
 
 * Analysis plugins
 * Discovery plugins
 * Repository plugins
-* REST plugins
+* [REST plugins]({% post_url 2016-07-30-adding-a-new-rest-endpoint-to-elasticsearch %})
 * Native Script plugins
 * Security plugins
 * [Ingest plugins]({% post_url 2016-07-28-creating-an-ingest-plugin-for-elasticsearch %})

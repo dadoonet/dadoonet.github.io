@@ -10,8 +10,8 @@ categories:
 
 This blog post is part of a series which will teach you:
 
-* [How to write a plugin for elasticsearch 5.0 using Maven]({% post_url 2016-07-27-creating-a-plugin-for-elasticsearch-5-dot-0-using-maven %})
-* How to write an ingest plugin for elasticsearch 5.0
+* [How to write a plugin for elasticsearch 5.0 using Maven]({% post_url 2016-07-27-creating-a-plugin-for-elasticsearch-5-dot-0-using-maven %}).
+* How to write an ingest plugin for elasticsearch 5.0 (what you are reading now).
 * How I wrote the `ingest-bano` plugin which will be hopefully released soonish.
 
 Today, we will focus on writing an Ingest plugin for elasticsearch.
