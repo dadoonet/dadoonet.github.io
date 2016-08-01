@@ -370,6 +370,7 @@ In a coming blog post, I'll explain [how to write an Ingest plugin]({% post_url 
 
 But note that this skeleton can be used for [whatever purpose](https://www.elastic.co/guide/en/elasticsearch/plugins/master/index.html):
 
+* [Generic Action plugins]({% post_url 2016-08-01-creating-elasticsearch-transport-action %})
 * Analysis plugins
 * Discovery plugins
 * Repository plugins
