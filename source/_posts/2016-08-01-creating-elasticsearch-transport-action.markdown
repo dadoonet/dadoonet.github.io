@@ -413,6 +413,201 @@ public void testHelloWithListener() throws ExecutionException, InterruptedExcept
 }
 ```
 
+## What about our Bano REST action?
+
+We can do the same thing for the `RestBanoAction` class.
+Remember [it was]({% post_url 2016-07-30-adding-a-new-rest-endpoint-to-elasticsearch %}):
+
+
+```java
+@Override
+public void handleRequest(RestRequest request, RestChannel channel, NodeClient client) throws Exception {
+    RestToXContentListener<ToXContent> listener = new RestToXContentListener<>(channel);
+
+    client.admin().indices().prepareGetIndex()
+            .setIndices(".bano*")
+            .execute(new ActionListener<GetIndexResponse>() {
+        @Override
+        public void onResponse(GetIndexResponse getIndexResponse) {
+            Indices indices = new Indices();
+            for (String index : getIndexResponse.getIndices()) {
+                indices.addIndex(index);
+            }
+            listener.onResponse(indices);
+        }
+
+        @Override
+        public void onFailure(Exception e) {
+            listener.onFailure(e);
+        }
+    });
+}
+
+class Indices implements ToXContent {
+
+    private final List<String> indices;
+
+    public Indices() {
+        indices = new ArrayList<>();
+    }
+
+    public void addIndex(String index) {
+        indices.add(index);
+    }
+
+    @Override
+    public XContentBuilder toXContent(XContentBuilder builder, Params params) throws IOException {
+        builder.startArray("bano");
+        for (String index : indices) {
+            builder.value(index);
+        }
+        return builder.endArray();
+    }
+}
+```
+
+Let's replace all that with:
+
+```java
+@Override
+public void handleRequest(RestRequest restRequest, RestChannel channel, NodeClient client) throws Exception {
+    BanoRequest request = new BanoRequest();
+
+    String dept = restRequest.param("dept");
+    if (dept != null) {
+        request.setDept(dept);
+    }
+
+    client.execute(BanoAction.INSTANCE, request, new RestToXContentListener<>(channel));
+}
+```
+
+A `BanoRequest` basically just contains a `dept` field.
+A `BanoResponse` is providing a list in a very similar way as the previous `Indices` inner class we wrote.
+In `IngestBanoPlugin`, we just have to register the new action with:
+
+```java
+@Override
+public List<ActionHandler<? extends ActionRequest<?>, ? extends ActionResponse>> getActions() {
+    return Arrays.asList(
+            new ActionHandler<>(HelloAction.INSTANCE, TransportHelloAction.class),
+            new ActionHandler<>(BanoAction.INSTANCE, TransportBanoAction.class));
+}
+```
+
+The TransportBanoAction is:
+
+```java
+public class TransportBanoAction extends HandledTransportAction<BanoRequest, BanoResponse> {
+
+    private final ClusterService clusterService;
+
+    @Inject
+    public TransportBanoAction(Settings settings, ThreadPool threadPool, ActionFilters actionFilters,
+                               IndexNameExpressionResolver resolver, TransportService transportService,
+                               ClusterService clusterService) {
+        super(settings, BanoAction.NAME, threadPool, transportService, actionFilters, resolver, BanoRequest::new);
+        this.clusterService = clusterService;
+    }
+
+    @Override
+    protected void doExecute(BanoRequest request, ActionListener<BanoResponse> listener) {
+        String indices = ".bano-";
+
+        if (request.getDept() != null) {
+            indices += request.getDept();
+        } else {
+            indices += "*";
+        }
+
+        BanoResponse response = new BanoResponse();
+
+        try {
+            GetIndexRequest indexRequest = new GetIndexRequest().indices(indices);
+            String[] concreteIndices = indexNameExpressionResolver.concreteIndexNames(clusterService.state(), indexRequest);
+
+            for (String index : concreteIndices) {
+                response.addIndex(index);
+            }
+
+            listener.onResponse(response);
+        } catch (IndexNotFoundException e) {
+            listener.onResponse(response);
+        } catch (Exception e) {
+            listener.onFailure(e);
+        }
+    }
+}
+```
+
+Note that we injected here the `ClusterService` as we need it to retrieve the indices.
+
+Cherry on the cake, we can test that with JUnit as we have seen before:
+
+```java
+@ESIntegTestCase.ClusterScope(transportClientRatio = 0.9)
+public class TransportBanoTest extends ESIntegTestCase {
+
+    @Override
+    protected Collection<Class<? extends Plugin>> nodePlugins() {
+        return Collections.singletonList(IngestBanoPlugin.class);
+    }
+
+    @Override
+    protected Collection<Class<? extends Plugin>> transportClientPlugins() {
+        return Collections.singletonList(IngestBanoPlugin.class);
+    }
+
+    private int numIndices;
+
+    @Before
+    public void createIndices() {
+        // We first create some indices
+        numIndices = randomIntBetween(1, 10);
+        for (int i = 0; i < numIndices; i++) {
+            createIndex(".bano-" + i);
+        }
+
+        // We create some manual indices
+        createIndex(".bano-17", ".bano-29", ".bano-95");
+
+        // We create some other indices
+        int numOtherIndices = randomIntBetween(1, 10);
+        for (int i = 0; i < numOtherIndices; i++) {
+            createIndex(randomAsciiOfLengthBetween(6, 10).toLowerCase(Locale.getDefault()));
+        }
+
+        ensureYellow();
+    }
+
+    public void testBanoNoDept() throws ExecutionException, InterruptedException {
+        BanoRequest request = new BanoRequest();
+        BanoResponse response = client().execute(BanoAction.INSTANCE, request).get();
+        for (int i = 0; i < numIndices; i++) {
+            assertThat(response.getIndices(), hasItem(".bano-" + i));
+        }
+        assertThat(response.getIndices(), hasItem(".bano-17"));
+        assertThat(response.getIndices(), hasItem(".bano-29"));
+        assertThat(response.getIndices(), hasItem(".bano-95"));
+    }
+
+    public void testBanoOneDept() throws ExecutionException, InterruptedException {
+        BanoRequest request = new BanoRequest();
+        request.setDept("17");
+        BanoResponse response = client().execute(BanoAction.INSTANCE, request).get();
+        assertThat(response.getIndices(), iterableWithSize(1));
+        assertThat(response.getIndices(), hasItem(".bano-17"));
+    }
+
+    public void testBanoNonExistingDept() throws ExecutionException, InterruptedException {
+        BanoRequest request = new BanoRequest();
+        request.setDept("idontbelieverandomizedtestingwillgeneratethat");
+        BanoResponse response = client().execute(BanoAction.INSTANCE, request).get();
+        assertThat(response.getIndices(), iterableWithSize(0));
+    }
+}
+```
+
 ## What's next?
 
 Et voilà! 
