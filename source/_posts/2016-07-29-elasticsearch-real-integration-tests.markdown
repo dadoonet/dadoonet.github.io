@@ -52,6 +52,17 @@ Ideally, we want to:
 We want to do that during maven integration test phase. No need to do that every time.
 Also, we might want to be able to run the tests from our IDE against an external cluster we installed manually.
 
+### Separated skipTests
+
+If we want to be able to skip either unit tests or integration tests, we can
+define 3 properties in our `pom.xml`:
+
+```xml
+<skipTests>false</skipTests>
+<skipUnitTests>${skipTests}</skipUnitTests>
+<skipIntegTests>${skipTests}</skipIntegTests>
+```
+
 ### Writing a ANT script
 
 Elasticsearch team wrote an ANT script to achieve some of the goals we described before.
@@ -398,7 +409,7 @@ Then add the dependency plugin:
                 <goal>copy</goal>
             </goals>
             <configuration>
-                <skip>${skipTests}</skip>
+                <skip>${skipIntegTests}</skip>
                 <artifactItems>
                     <artifactItem>
                         <groupId>${elasticsearch.groupid}</groupId>
@@ -435,7 +446,7 @@ You can use Maven ant plugin:
                 <goal>run</goal>
             </goals>
             <configuration>
-                <skip>${skipTests}</skip>
+                <skip>${skipIntegTests}</skip>
                 <target>
                     <ant antfile="src/test/ant/integration-tests.xml" target="start-external-cluster-with-plugin"/>
                 </target>
@@ -449,7 +460,7 @@ You can use Maven ant plugin:
                 <goal>run</goal>
             </goals>
             <configuration>
-                <skip>${skipTests}</skip>
+                <skip>${skipIntegTests}</skip>
                 <target>
                     <ant antfile="src/test/ant/integration-tests.xml" target="stop-external-cluster"/>
                 </target>
@@ -509,6 +520,7 @@ Then, I configure the randomizedtesting plugin:
             </goals>
             <inherited>true</inherited>
             <configuration>
+                <skipTests>${skipUnitTests}</skipTests>
                 <includes>
                     <include>**/*Test.class</include>
                 </includes>
@@ -525,6 +537,7 @@ Then, I configure the randomizedtesting plugin:
             </goals>
             <inherited>true</inherited>
             <configuration>
+                <skipTests>${skipIntegTests}</skipTests>
                 <includes>
                     <include>**/*IT.class</include>
                 </includes>
@@ -538,7 +551,16 @@ Then, I configure the randomizedtesting plugin:
 ```
 
 You can see in the configuration that tests with name ending with `Test` are considered as unit tests.
-Tests ending with `IT` will be launched only during integration tests phase.
+Tests ending with `IT` will be launched only during integration tests phase. Note that we skip the tests
+depending on `skipUnitTests` and `skipIntegTests`.
+
+So running something like:
+
+```sh
+mvn clean install -DskipUnitTests
+```
+
+Will only launch integration tests.
 
 ### Adding profiles for 1.x and 2.x
 
