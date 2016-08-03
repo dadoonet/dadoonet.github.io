@@ -95,7 +95,7 @@ You can put this `integration-tests.xml` file in `src/test/ant/` for example:
 
             <!-- create a temp CWD, to enforce that commands don't rely on CWD -->
             <local name="temp.cwd"/>
-            <tempfile property="temp.cwd" destDir="${project.build.directory}/integration-tests/run/tmp"/>
+            <tempfile property="temp.cwd" destDir="${project.build.directory}/integration-tests/run/tmp" deleteonexit="true"/>
             <mkdir dir="${temp.cwd}"/>
 
             <!-- print commands we run -->
@@ -158,20 +158,6 @@ You can put this `integration-tests.xml` file in `src/test/ant/` for example:
                      checkevery="500" checkeveryunit="millisecond"
                      timeoutproperty="@{timeoutproperty}">
                 <http url="http://localhost:@{port}"/>
-            </waitfor>
-        </sequential>
-    </macrodef>
-
-    <!-- waits for cluster to form and have exactly two nodes -->
-    <macrodef name="waitfor-two-nodes">
-        <attribute name="port"/>
-        <attribute name="timeoutproperty"/>
-        <sequential>
-            <echo>Waiting for elasticsearch to form a cluster of two...</echo>
-            <waitfor maxwait="30" maxwaitunit="second"
-                     checkevery="500" checkeveryunit="millisecond"
-                     timeoutproperty="@{timeoutproperty}">
-                <http url="http://localhost:@{port}/_cluster/health?wait_for_nodes=2"/>
             </waitfor>
         </sequential>
     </macrodef>
