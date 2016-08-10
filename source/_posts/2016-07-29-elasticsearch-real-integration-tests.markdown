@@ -111,7 +111,7 @@ You can put this `integration-tests.xml` file in `src/test/ant/` for example:
                 <arg value="&quot;"/>
             </exec>
 
-            <exec executable="sh" osfamily="unix" dir="${temp.cwd}" failonerror="${failonerror}" spawn="@{spawn}" taskname="${script.base}">
+            <exec executable="bash" osfamily="unix" dir="${temp.cwd}" failonerror="${failonerror}" spawn="@{spawn}" taskname="${script.base}">
                 <arg value="@{script}"/>
                 <nested/>
             </exec>
