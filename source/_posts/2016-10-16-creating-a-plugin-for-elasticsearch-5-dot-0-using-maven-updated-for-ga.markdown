@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "Creating a plugin for elasticsearch 5.0 using Maven"
-date: 2016-07-27 16:00:27 +0200
+title: "Creating a plugin for elasticsearch 5.0 using Maven (Updated for GA)"
+date: 2016-10-16 04:00:00 +0200
 comments: true
 image: /images/covers/new/elasticsearch.png
 categories:
@@ -9,7 +9,7 @@ categories:
 - maven
 ---
 
-**NOTE:** This article is now outdated. Please read [Creating a plugin for elasticsearch 5.0 using Maven (Updated for GA)]({% post_url 2016-10-16-creating-a-plugin-for-elasticsearch-5-dot-0-using-maven-updated-for-ga %}) instead!
+**NOTE:** This article is an updated version of [Creating a plugin for elasticsearch 5.0 using Maven]({% post_url 2016-07-27-creating-a-plugin-for-elasticsearch-5-dot-0-using-maven %})
 
 Elasticsearch 5.0 [switched to Gradle in October 2015](https://github.com/elastic/elasticsearch/issues/13930).
 
@@ -31,15 +31,12 @@ I wrote myself some plugins called [rivers](https://www.elastic.co/blog/deprecat
 This blog post is part of a series which will teach you:
 
 * How to write a plugin for elasticsearch 5.0 using Maven (what you are reading now).
-* [How to write an ingest plugin for elasticsearch 5.0]({% post_url 2016-07-28-creating-an-ingest-plugin-for-elasticsearch %}).
+* [How to write an ingest plugin for elasticsearch 5.0]({% post_url 2016-10-17-creating-an-ingest-plugin-for-elasticsearch-updated-for-ga %}).
 * How I wrote the `ingest-bano` plugin which will be hopefully released soonish.
 
 <!-- more -->
 
 Let's get started!
-
-**Note**: this article applies to elasticsearch 5.0.0 alpha 5. It might
-be not applicable for newer versions as APIs could change.
 
 ## Create a skeleton
 
@@ -56,7 +53,7 @@ Create in your new project directory, let say `ingest-bano`, a `pom.xml` file:
 
     <groupId>fr.pilato.elasticsearch.ingest</groupId>
     <artifactId>ingest-bano</artifactId>
-    <version>5.0.0-alpha5-SNAPSHOT</version>
+    <version>5.0.0-SNAPSHOT</version>
     <name>Plugin: Ingest: BANO</name>
     <description>BANO Ingest Plugin for elasticsearch</description>
 
@@ -65,11 +62,11 @@ Create in your new project directory, let say `ingest-bano`, a `pom.xml` file:
 
 ## Add elasticsearch core dependency
 
-Just add `org.elasticsearch:elasticsearch:5.0.0-alpha5` as a `provided` dependency:
+Just add `org.elasticsearch:elasticsearch:5.0.0` as a `provided` dependency:
 
 ```xml
 <properties>
-    <elasticsearch.version>5.0.0-alpha5</elasticsearch.version>
+    <elasticsearch.version>5.0.0</elasticsearch.version>
 </properties>
 
 <dependencies>
@@ -230,9 +227,15 @@ Let's add it to our project:
     <scope>test</scope>
 </dependency>
 <dependency>
-    <groupId>log4j</groupId>
-    <artifactId>log4j</artifactId>
-    <version>1.2.17</version>
+    <groupId>org.apache.logging.log4j</groupId>
+    <artifactId>log4j-api</artifactId>
+    <version>2.7</version>
+    <scope>test</scope>
+</dependency>
+<dependency>
+    <groupId>org.apache.logging.log4j</groupId>
+    <artifactId>log4j-core</artifactId>
+    <version>2.7</version>
     <scope>test</scope>
 </dependency>
 ```
@@ -356,10 +359,10 @@ You will get in `target/releases` the distribution file.
 
 ## Install the plugin
 
-If you have an elasticsearch 5.0.0-alpha5 version somewhere, you can install this plugin with:
+If you have an elasticsearch 5.0.0 version somewhere, you can install this plugin with:
 
 ```sh
-bin/elasticsearch-plugin install file:///path/to/target/releases/ingest-bano-5.0.0-alpha5-SNAPSHOT.zip
+bin/elasticsearch-plugin install file:///path/to/target/releases/ingest-bano-5.0.0-SNAPSHOT.zip
 ```
 
 Then you can start elasticsearch with `bin/elasticsearch`  and check in logs that the plugin is loaded.
@@ -368,18 +371,18 @@ You are now all set!
 
 ## Next?
 
-In a coming blog post, I'll explain [how to write an Ingest plugin]({% post_url 2016-07-28-creating-an-ingest-plugin-for-elasticsearch %}) based on the skeleton we just built and also [how to create real integration tests]({% post_url 2016-07-29-elasticsearch-real-integration-tests %}).
+In a coming blog post, I'll explain [how to write an Ingest plugin]({% post_url 2016-10-17-creating-an-ingest-plugin-for-elasticsearch-updated-for-ga %}) based on the skeleton we just built and also [how to create real integration tests]({% post_url 2016-10-18-elasticsearch-real-integration-tests-updated-for-ga %}).
 
 But note that this skeleton can be used for [whatever purpose](https://www.elastic.co/guide/en/elasticsearch/plugins/master/index.html):
 
-* [Generic Action plugins]({% post_url 2016-08-01-creating-elasticsearch-transport-action %})
+* [Generic Action plugins]({% post_url 2016-10-20-creating-elasticsearch-transport-action-updated-for-ga %})
 * Analysis plugins
 * Discovery plugins
 * Repository plugins
-* [REST plugins]({% post_url 2016-07-30-adding-a-new-rest-endpoint-to-elasticsearch %})
+* [REST plugins]({% post_url 2016-10-19-adding-a-new-rest-endpoint-to-elasticsearch-updated-for-ga %})
 * Native Script plugins
 * Security plugins
-* [Ingest plugins]({% post_url 2016-07-28-creating-an-ingest-plugin-for-elasticsearch %})
+* [Ingest plugins]({% post_url 2016-10-17-creating-an-ingest-plugin-for-elasticsearch-updated-for-ga %})
 * ...
 
 Your imagination is now the limit! :)
