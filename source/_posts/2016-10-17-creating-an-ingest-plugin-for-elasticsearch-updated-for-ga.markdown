@@ -1,18 +1,18 @@
 ---
 layout: post
-title: "Creating an Ingest plugin for elasticsearch"
-date: 2016-07-28 10:55:29 +0200
+title: "Creating an Ingest plugin for elasticsearch (Updated for GA)"
+date: 2016-10-17 10:55:29 +0200
 comments: true
 image: /images/covers/new/elasticsearch.png
 categories:
 - elasticsearch
 ---
 
-**NOTE:** This article is now outdated. Please read [Creating an Ingest plugin for elasticsearch (Updated for GA)]({% post_url 2016-10-17-creating-an-ingest-plugin-for-elasticsearch-updated-for-ga %}) instead!
+**NOTE:** This article is an updated version of [Creating an Ingest plugin for elasticsearch]({% post_url 2016-07-28-creating-an-ingest-plugin-for-elasticsearch %})
 
 This blog post is part of a series which will teach you:
 
-* [How to write a plugin for elasticsearch 5.0 using Maven]({% post_url 2016-07-27-creating-a-plugin-for-elasticsearch-5-dot-0-using-maven %}).
+* [How to write a plugin for elasticsearch 5.0 using Maven]({% post_url 2016-10-16-creating-a-plugin-for-elasticsearch-5-dot-0-using-maven-updated-for-ga %}).
 * How to write an ingest plugin for elasticsearch 5.0 (what you are reading now).
 * How I wrote the `ingest-bano` plugin which will be hopefully released soonish.
 
@@ -28,9 +28,9 @@ I wrote myself some plugins called [rivers](https://www.elastic.co/blog/deprecat
 
 <!-- more -->
 
-With what we saw [in the previous article]({% post_url 2016-07-27-creating-a-plugin-for-elasticsearch-5-dot-0-using-maven %}), we now have a Plugin skeleton ready to host our Ingest code.
+With what we saw [in the previous article]({% post_url 2016-10-16-creating-a-plugin-for-elasticsearch-5-dot-0-using-maven-updated-for-ga %}), we now have a Plugin skeleton ready to host our Ingest code.
 
-> **Note**: this article has been updated on July 2016, the 29th by moving tests to [real integration tests]({% post_url 2016-07-29-elasticsearch-real-integration-tests %}).
+> **Note**: this article has been updated on July 2016, the 29th by moving tests to [real integration tests]({% post_url 2016-10-18-elasticsearch-real-integration-tests-updated-for-ga %}).
 
 But first, let's describe a bit more what `Ingest` actually is.
 
