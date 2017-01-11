@@ -266,7 +266,7 @@ It now gives:
 We just have to use a [set processor](https://www.elastic.co/guide/en/elasticsearch/reference/current/set-processor.html):
 
 ```json
-{ "set": { "field": "_id", "value": "{{id}}" } }
+{ "set": { "field": "_id", "value": "{% raw %}{{id}}{% endraw %}" } }
 ```
 
 This will change the metadata of our document from:
@@ -417,7 +417,7 @@ PUT _ingest/pipeline/talks
         "formats" : ["dd/MM/yyyy"],
         "timezone" : "Europe/Paris"
     } },
-    { "set": { "field": "_id", "value": "{{id}}" } },
+    { "set": { "field": "_id", "value": "{% raw %}{{id}}{% endraw %}" } },
     { "remove": { "field": "message" } },
     { "remove": { "field": "beat" } },
     { "remove": { "field": "input_type" } },
