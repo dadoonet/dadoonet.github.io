@@ -1,0 +1,641 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Using JS Auth With Found Cluster - -Xmx128gb -Xms128gb</title>
+  <meta name="author" content="David Pilato">
+
+  
+  <meta name="description" content="Using JS Auth With Found Cluster May 19th, 2015 5:06 pm | Comments Using Found by elastic cluster helps a lot to have a ready to use and managed &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://david.pilato.fr/blog/2015/05/19/using-js-auth-with-found-cluster/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/elevator.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="-Xmx128gb -Xms128gb" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<script src="/javascripts/elevator.min.js"></script>
+
+  
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-62381049-1', 'auto');
+// Using JS Auth with found cluster
+
+ga('send', 'pageview', {
+  page: '/blog/2015/05/19/using-js-auth-with-found-cluster/',
+  title: 'Using JS Auth with found cluster'
+});
+
+</script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">-Xmx128gb -Xms128gb</a></h1>
+  
+    <h2>adding more memory to my brain!</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="david.pilato.fr">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title"><img src="/images/covers/found_logo.png"/>Using JS Auth With Found Cluster</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-05-19T17:06:22+02:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>19</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>5:06 pm</span></time>
+        
+           | <a href="#disqus_thread"
+             data-disqus-identifier="http://david.pilato.fr">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Using <a href="https://www.found.no/">Found by elastic</a> cluster helps a lot to have a ready to use and managed elasticsearch cluster.</p>
+
+<p><img class="center" src="/blog/images/found01/found_byelastic_logo_512x185.png" title="Found by elastic" ></p>
+
+<p>I started my own cluster yesterday to power <a href="http://www.brownbaglunch.fr/">brownbaglunch.fr</a> website (work in progress) and it was ready to use after some clicks!</p>
+
+<p><strong>It&rsquo;s a kind of magic!</strong></p>
+
+<div class="embed-video-container"><iframe src="//www.youtube.com/embed/0p_1QSUsbsM" allowfullscreen></iframe></div>
+
+
+<p>But I ran into an issue when you secure it and use the <a href="https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/index.html">elasticsearch javascript client</a>.</p>
+
+<!-- more -->
+
+
+<h2>Creating your cluster</h2>
+
+<p><img class="center" src="/blog/images/found01/found-1.png" title="Found Console" ></p>
+
+<h2>Adding ACL</h2>
+
+<p>By default, your cluster is opened but you can fix that by opening &ldquo;Access Control&rdquo; menu.
+Found proposes a default configuration which generates two users and restrict some access.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="c1"># Deny everyone by default, as authentication is required.</span>
+</span><span class='line'><span class="c1"># Deny is the default also if no &quot;default&quot; is specified,</span>
+</span><span class='line'><span class="c1"># so it&#39;s only necessary to specify it if you want the</span>
+</span><span class='line'><span class="c1"># default to be &quot;allow&quot;.</span>
+</span><span class='line'><span class="l-Scalar-Plain">default</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">deny</span>
+</span><span class='line'>
+</span><span class='line'><span class="l-Scalar-Plain">auth</span><span class="p-Indicator">:</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">users</span><span class="p-Indicator">:</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">searchonly</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">searchonlypassword</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">readwrite</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">readwritepassword</span>
+</span><span class='line'>
+</span><span class='line'><span class="l-Scalar-Plain">rules</span><span class="p-Indicator">:</span>
+</span><span class='line'>  <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">paths</span><span class="p-Indicator">:</span>
+</span><span class='line'>      <span class="c1"># Match all search requests.</span>
+</span><span class='line'>      <span class="p-Indicator">-</span> <span class="s">&#39;/_search|/([^_/]+/_search)|/[^_/]+/[^_/]+/_search&#39;</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">conditions</span><span class="p-Indicator">:</span>
+</span><span class='line'>      <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">basic_auth</span><span class="p-Indicator">:</span>
+</span><span class='line'>          <span class="l-Scalar-Plain">users</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="nv">searchonly</span><span class="p-Indicator">]</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">action</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">allow</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># Also, allow any GET-request.</span>
+</span><span class='line'>  <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">paths</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="s">&#39;.*&#39;</span><span class="p-Indicator">]</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">conditions</span><span class="p-Indicator">:</span>
+</span><span class='line'>      <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">basic_auth</span><span class="p-Indicator">:</span>
+</span><span class='line'>          <span class="l-Scalar-Plain">users</span><span class="p-Indicator">:</span>
+</span><span class='line'>            <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">searchonly</span>
+</span><span class='line'>      <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">method</span><span class="p-Indicator">:</span>
+</span><span class='line'>          <span class="l-Scalar-Plain">verbs</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="nv">GET</span><span class="p-Indicator">]</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">action</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">allow</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># Allow everything for the readwrite-user</span>
+</span><span class='line'>  <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">paths</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="s">&#39;.*&#39;</span><span class="p-Indicator">]</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">conditions</span><span class="p-Indicator">:</span>
+</span><span class='line'>      <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">basic_auth</span><span class="p-Indicator">:</span>
+</span><span class='line'>          <span class="l-Scalar-Plain">users</span><span class="p-Indicator">:</span>
+</span><span class='line'>            <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">readwrite</span>
+</span><span class='line'><span class="c1"># Uncomment the following if you want to require SSL.</span>
+</span><span class='line'><span class="c1">#      - ssl:</span>
+</span><span class='line'><span class="c1">#          require: true</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">action</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">allow</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Create your javascript application</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="cp">&lt;!DOCTYPE html&gt;</span>
+</span><span class='line'><span class="nt">&lt;html&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;head&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;https://cdn.rawgit.com/elastic/bower-elasticsearch-js/12ec0b8ee6d776e077b160e6dd6fc2e1b5818a86/elasticsearch.min.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/head&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;body&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;script&gt;</span>
+</span><span class='line'>      <span class="kd">var</span> <span class="nx">login</span> <span class="o">=</span> <span class="s2">&quot;readwrite&quot;</span><span class="p">;</span>
+</span><span class='line'>      <span class="kd">var</span> <span class="nx">password</span> <span class="o">=</span> <span class="s2">&quot;readwritepassword&quot;</span><span class="p">;</span>
+</span><span class='line'>      <span class="kd">var</span> <span class="nx">hostname</span> <span class="o">=</span> <span class="s2">&quot;youclusteraddress.foundcluster.com&quot;</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="kd">var</span> <span class="nx">client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">elasticsearch</span><span class="p">.</span><span class="nx">Client</span><span class="p">({</span>
+</span><span class='line'>        <span class="nx">hosts</span><span class="o">:</span> <span class="p">[</span>
+</span><span class='line'>          <span class="p">{</span>
+</span><span class='line'>            <span class="nx">host</span><span class="o">:</span> <span class="nx">hostname</span><span class="p">,</span>
+</span><span class='line'>            <span class="nx">auth</span><span class="o">:</span> <span class="nx">login</span> <span class="o">+</span> <span class="s1">&#39;:&#39;</span> <span class="o">+</span> <span class="nx">password</span>
+</span><span class='line'>          <span class="p">}</span>
+</span><span class='line'>        <span class="p">]</span>
+</span><span class='line'>      <span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="nx">client</span><span class="p">.</span><span class="nx">cluster</span><span class="p">.</span><span class="nx">health</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="nx">done</span><span class="p">,</span> <span class="nx">done</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="kd">function</span> <span class="nx">done</span><span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">resp</span><span class="p">);</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>    <span class="nt">&lt;/script&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/body&gt;</span>
+</span><span class='line'><span class="nt">&lt;/html&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>If you run it, you will get something like:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'>elasticsearch.min.js:18 OPTIONS http://youclusteraddress.foundcluster.com:9200/_cluster/health 401 (Unauthorized)26.d.request @ elasticsearch.min.js:18c @ elasticsearch.min.js:1842.j.applyArgs @ elasticsearch.min.js:18k @ elasticsearch.min.js:11(anonymous function) @ elasticsearch.min.js:11
+</span><span class='line'>bblfr_elasticsearch.dev/:1 XMLHttpRequest cannot load http://youclusteraddress.foundcluster.com:9200/_cluster/health. Invalid HTTP status code 401
+</span><span class='line'>elasticsearch.min.js:18 ERROR: 2015-05-19T14:47:01Z
+</span><span class='line'>  Error: Request error, retrying -- Request failed to complete.
+</span><span class='line'>      at d.29.d.error (http://bblfr_elasticsearch.dev/lib/elasticsearch.min.js:18:15537)
+</span><span class='line'>      at d (http://bblfr_elasticsearch.dev/lib/elasticsearch.min.js:18:22917)
+</span><span class='line'>      at XMLHttpRequest.26.d.request.d.onreadystatechange (http://bblfr_elasticsearch.dev/lib/elasticsearch.min.js:18:9781)
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Modify ACL</h2>
+
+<p>The javascript client needs to discuss with found using <code>OPTIONS</code> verb. So you basically need to add:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='yaml'><span class='line'>  <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">paths</span><span class="p-Indicator">:</span>
+</span><span class='line'>      <span class="p-Indicator">-</span> <span class="s">&#39;.*&#39;</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">conditions</span><span class="p-Indicator">:</span>
+</span><span class='line'>      <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">method</span><span class="p-Indicator">:</span>
+</span><span class='line'>          <span class="l-Scalar-Plain">verbs</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="nv">OPTIONS</span><span class="p-Indicator">]</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">action</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">allow</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Running the same code will now work as expected!</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="nx">cluster_name</span><span class="o">:</span> <span class="s2">&quot;youclusteraddress&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">status</span><span class="o">:</span> <span class="s2">&quot;green&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">timed_out</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">number_of_nodes</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">number_of_data_nodes</span><span class="o">:</span> <span class="mi">1</span>
+</span><span class='line'>  <span class="c1">// ...</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Using ACL for aliases</h2>
+
+<p>Note that for the project, I created one index named <code>bbl_1</code> and one alias on top of it <code>bbl</code>.
+So I opened read access to anonymous users on this alias and add a secured one when it comes to write operations.
+<code>OPTIONS</code> in that case is applied only to the <code>bbl</code> alias. I came up with this config:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="l-Scalar-Plain">default</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">deny</span>
+</span><span class='line'>
+</span><span class='line'><span class="l-Scalar-Plain">auth</span><span class="p-Indicator">:</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">users</span><span class="p-Indicator">:</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">readwrite</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">readwritepassword</span>
+</span><span class='line'>
+</span><span class='line'><span class="l-Scalar-Plain">rules</span><span class="p-Indicator">:</span>
+</span><span class='line'>  <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">paths</span><span class="p-Indicator">:</span>
+</span><span class='line'>      <span class="p-Indicator">-</span> <span class="s">&#39;/bbl/.*&#39;</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">conditions</span><span class="p-Indicator">:</span>
+</span><span class='line'>      <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">method</span><span class="p-Indicator">:</span>
+</span><span class='line'>          <span class="l-Scalar-Plain">verbs</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="nv">OPTIONS</span><span class="p-Indicator">]</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">action</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">allow</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">paths</span><span class="p-Indicator">:</span>
+</span><span class='line'>      <span class="p-Indicator">-</span> <span class="s">&#39;/bbl/_search&#39;</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">conditions</span><span class="p-Indicator">:</span>
+</span><span class='line'>      <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">method</span><span class="p-Indicator">:</span>
+</span><span class='line'>          <span class="l-Scalar-Plain">verbs</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="nv">GET</span><span class="p-Indicator">,</span> <span class="nv">POST</span><span class="p-Indicator">]</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">action</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">allow</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">paths</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="s">&#39;/bbl/.*&#39;</span><span class="p-Indicator">]</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">conditions</span><span class="p-Indicator">:</span>
+</span><span class='line'>      <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">method</span><span class="p-Indicator">:</span>
+</span><span class='line'>          <span class="l-Scalar-Plain">verbs</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="nv">GET</span><span class="p-Indicator">]</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">action</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">allow</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">paths</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="s">&#39;/bbl/.*&#39;</span><span class="p-Indicator">]</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">conditions</span><span class="p-Indicator">:</span>
+</span><span class='line'>      <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">method</span><span class="p-Indicator">:</span>
+</span><span class='line'>          <span class="l-Scalar-Plain">verbs</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="nv">PUT</span><span class="p-Indicator">,</span> <span class="nv">DELETE</span><span class="p-Indicator">]</span>
+</span><span class='line'>      <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">basic_auth</span><span class="p-Indicator">:</span>
+</span><span class='line'>          <span class="l-Scalar-Plain">users</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="nv">readwrite</span><span class="p-Indicator">]</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">action</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">allow</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+
+
+  <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">David Pilato</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2015-05-19T17:06:22+02:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>19</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>5:06 pm</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/elasticsearch/'>elasticsearch</a>, <a class='category' href='/blog/categories/found/'>found</a>, <a class='category' href='/blog/categories/javascript/'>javascript</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://david.pilato.fr/blog/2015/05/19/using-js-auth-with-found-cluster/" data-via="dadoonet" data-counturl="http://david.pilato.fr/blog/2015/05/19/using-js-auth-with-found-cluster/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2015/05/09/advanced-search-for-your-legacy-application/" title="Previous Post: Advanced search for your Legacy application">&laquo; Advanced search for your Legacy application</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2015/05/20/reindex-elasticsearch-with-logstash/" title="Next Post: Reindex elasticsearch with Logstash">Reindex elasticsearch with Logstash &raquo;</a>
+      
+    </p>
+    <p class="meta">
+        <div class="elevator">
+          <svg class="sweet-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve" height="100px" width="100px">
+              <path d="M70,47.5H30c-1.4,0-2.5,1.1-2.5,2.5v40c0,1.4,1.1,2.5,2.5,2.5h40c1.4,0,2.5-1.1,2.5-2.5V50C72.5,48.6,71.4,47.5,70,47.5z   M47.5,87.5h-5v-25h5V87.5z M57.5,87.5h-5v-25h5V87.5z M67.5,87.5h-5V60c0-1.4-1.1-2.5-2.5-2.5H40c-1.4,0-2.5,1.1-2.5,2.5v27.5h-5  v-35h35V87.5z"/>
+              <path d="M50,42.5c1.4,0,2.5-1.1,2.5-2.5V16l5.7,5.7c0.5,0.5,1.1,0.7,1.8,0.7s1.3-0.2,1.8-0.7c1-1,1-2.6,0-3.5l-10-10  c-1-1-2.6-1-3.5,0l-10,10c-1,1-1,2.6,0,3.5c1,1,2.6,1,3.5,0l5.7-5.7v24C47.5,41.4,48.6,42.5,50,42.5z"/>
+          </svg>
+          Back to Top
+        </div>
+    </p>
+<script>
+// Elevator script included on the page, already.
+
+window.onload = function() {
+  var elevator = new Elevator({
+    element: document.querySelector('.elevator'),
+    mainAudio: '/music/elevator-music.mp3',
+    endAudio: '/music/ding.mp3'
+  });
+}
+</script>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>About Me</h1>
+  <p>Developer | Evangelist at <a href="http://elastic.co/">elastic</a> and creator of the Elastic French Speakers <a href="http://www.meetup.com/elasticsearchfr/">User Group</a>. Frequent speaker about all things Elastic, in conferences, for User Groups and in companies with <a href="http://www.brownbaglunch.fr/">BBL talks</a>. In my free time, I enjoy coding and DJ four times per year, just for fun. Living with my family in Cergy, France.</p>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2017/01/09/4-years-at-elastic/">4 Years at Elastic!</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/10/21/elasticsearch-real-integration-tests-with-security-enabled-updated-for-ga/">Elasticsearch Real Integration Tests With Security Enabled (Updated for GA)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/10/20/creating-elasticsearch-transport-action-updated-for-ga/">Creating Elasticsearch Transport Action (Updated for GA)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/10/19/adding-a-new-rest-endpoint-to-elasticsearch-updated-for-ga/">Adding a New REST Endpoint to Elasticsearch (Updated for GA)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/10/18/elasticsearch-real-integration-tests-updated-for-ga/">Elasticsearch Real Integration Tests (Updated for GA)</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+<section class="twitterOct">
+  <h1 style="margin-bottom: 0.4em"> Tweets </h1>
+  <a class="twitter-timeline"
+	 data-dnt="true" href="https://twitter.com/dadoonet" 
+     data-widget-id="593022343921979392">
+     
+     Tweets by @dadoonet
+  </a>
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</section>
+
+
+<section>
+
+  <h1>Main GitHub Repos</h1>
+
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'dadoonet',
+            count: 10,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2017 - David Pilato -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'dadoonet';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://david.pilato.fr/blog/2015/05/19/using-js-auth-with-found-cluster/';
+        var disqus_url = 'http://david.pilato.fr/blog/2015/05/19/using-js-auth-with-found-cluster/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

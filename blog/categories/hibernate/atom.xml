@@ -1,0 +1,2255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Hibernate | -Xmx128gb -Xms128gb]]></title>
+  <link href="http://david.pilato.fr/blog/categories/hibernate/atom.xml" rel="self"/>
+  <link href="http://david.pilato.fr/"/>
+  <updated>2017-01-11T20:55:21+01:00</updated>
+  <id>http://david.pilato.fr/</id>
+  <author>
+    <name><![CDATA[David Pilato]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Advanced Search for Your Legacy Application]]></title>
+    <link href="http://david.pilato.fr/blog/2015/05/09/advanced-search-for-your-legacy-application/"/>
+    <updated>2015-05-09T13:15:05+02:00</updated>
+    <id>http://david.pilato.fr/blog/2015/05/09/advanced-search-for-your-legacy-application</id>
+    <content type="html"><![CDATA[I gave recently a [talk at Voxxed Istanbul 2015](http://sched.co/2p7l) and I'd like to share here the story of this talk.
+
+The talk was about adding a real search engine for your legacy application.
+Here "legacy" means an application which is still using SQL statements to execute search requests. 
+
+<script async class="speakerdeck-embed" data-id="14b4a923983d4fdd93a2cc218f0deee7" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<!-- more -->
+
+Our current CRM application can visualize our customers. Each person is represented as a `Person` bean and have some properties like `name`, `dateOfBirth`, `children`, `country`, `city` and some metrics related to the number of clicks each person did on the `car` or `food` buttons on our mobile application (center of interests that is).
+
+<img class="center" src="/blog/images/legacy-search/beans.png" title="Java Beans" >
+
+Our database schema is quite similar.
+
+<img class="center" src="/blog/images/legacy-search/tables.png" title="Database tables" >
+
+## Running the existing code
+
+
+The existing code is available on [Github](https://github.com/dadoonet/legacy-search):
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>git clone https://github.com/dadoonet/legacy-search.git
+</span><span class='line'>git checkout 00-legacy
+</span></code></pre></td></tr></table></div></figure>
+
+You need to have:
+
+* Maven
+* JDK7 or higher
+* Postgresql up and running
+
+Modify [src/main/resources/hibernate.cfg.xml](src/main/resources/hibernate.cfg.xml) file to reflect your own postgresql settings:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="c">&lt;!-- Database connection settings --&gt;</span>
+</span><span class='line'><span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;hibernate.connection.url&quot;</span><span class="nt">&gt;</span>jdbc:postgresql://localhost:5432/dpilato<span class="nt">&lt;/property&gt;</span>
+</span><span class='line'><span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;hibernate.connection.username&quot;</span><span class="nt">&gt;</span>dpilato<span class="nt">&lt;/property&gt;</span>
+</span><span class='line'><span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;hibernate.connection.password&quot;</span><span class="nt">&gt;&lt;/property&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+Start the server using jetty:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>mvn clean install
+</span><span class='line'>mvn jetty:run
+</span></code></pre></td></tr></table></div></figure>
+
+Then open your browser at http://0.0.0.0:8080/. You should see that our database is empty.
+
+Click on the [init tab](http://0.0.0.0:8080/#/init) and inject 10000 random persons.
+
+<img src="/blog/images/legacy-search/00-inject.png" title="Injecting 10 000 documents" >
+
+[Home page](http://0.0.0.0:8080/#/) now gives you your 10 000 persons back.
+
+<img src="/blog/images/legacy-search/00-search-all.png" title="Searching all" >
+
+Note that you can search within `name`, `country` and `city` fields.
+
+<img src="/blog/images/legacy-search/00-search-jo.png" title="Searching for jo" >
+
+The [Advanced Search tab](http://0.0.0.0:8080/#/advanced) allows to run more specific searches using a more classic search form with 3 fields.
+
+<img src="/blog/images/legacy-search/00-search-advanced.png" title="Searching for joe, england, plymouth" >
+
+
+## Adding elasticsearch
+
+### Using an ETL or a JDBC River
+
+You can use an ETL and to read again your database and inject documents in elasticsearch. But you have to think of keeping all the things in sync. For example, when you want to remove an object from the database, you need to deal with that to remove it as well from elasticsearch. You can potentially use a technical table to do that which will contain something like a date, the id of the person which has been modified and the type of action, like `upsert` or `delete`.
+
+This way the ETL can read again the same table every x minutes and do what is needed and also remove from this technical table all objects that has been processed so far. 
+
+Remember that reading again a database might have a cost on the database especially if you have a complicated model with collections of collections of collections of attributes.
+
+And also, if you need to propose to your user real-time search or near real-time search, that won't be possible with an ETL which runs every x minutes.
+
+The exact same thing applies to the [JDBC river](https://github.com/jprante/elasticsearch-river-jdbc) although it's a very well written component, it's still an ETL but running inside an elasticsearch node. Also consider that [rivers have been deprecated](https://www.elastic.co/blog/deprecating_rivers) and will be removed in the future.
+
+### Direct connection
+
+So, my favorite way to deal with that and by the way reduce the overall complexity is by modifying directly the existing application. When you are about to write a bean to the database, you can reuse the exact same bean which is already loaded in memory, serialize it to JSON and send it to elasticsearch.
+
+### Adding elasticsearch
+
+You first need to add elasticsearch library to your `pom.xml` file:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="c">&lt;!-- Elasticsearch --&gt;</span>
+</span><span class='line'><span class="nt">&lt;dependency&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;groupId&gt;</span>org.elasticsearch<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;artifactId&gt;</span>elasticsearch<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;version&gt;</span>1.5.2<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'><span class="nt">&lt;/dependency&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+Create a new `ElasticsearchDao` class in the `dao` package:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="c1">// We are using RESTX framework here so it&#39;s a restx.factory.Component annotation</span>
+</span><span class='line'><span class="nd">@Component</span>
+</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ElasticsearchDao</span> <span class="o">{</span>
+</span><span class='line'>  <span class="kd">final</span> <span class="kd">private</span> <span class="n">ObjectMapper</span> <span class="n">mapper</span><span class="o">;</span>
+</span><span class='line'>  <span class="kd">final</span> <span class="kd">private</span> <span class="n">Client</span> <span class="n">esClient</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nd">@Inject</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="nf">ElasticsearchDao</span><span class="o">(</span><span class="n">ObjectMapper</span> <span class="n">mapper</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>    <span class="k">this</span><span class="o">.</span><span class="na">mapper</span> <span class="o">=</span> <span class="n">mapper</span><span class="o">;</span>
+</span><span class='line'>    <span class="k">this</span><span class="o">.</span><span class="na">esClient</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span> <span class="c1">// TODO add a client</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">save</span><span class="o">(</span><span class="n">Person</span> <span class="n">person</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span><span class='line'>    <span class="c1">// TODO implement</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">delete</span><span class="o">(</span><span class="n">String</span> <span class="n">reference</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span><span class='line'>    <span class="c1">// TODO implement</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">public</span> <span class="n">SearchResponse</span> <span class="nf">search</span><span class="o">(</span><span class="n">QueryBuilder</span> <span class="n">query</span><span class="o">,</span> <span class="n">Integer</span> <span class="n">from</span><span class="o">,</span> <span class="n">Integer</span> <span class="n">size</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>    <span class="c1">// TODO implement</span>
+</span><span class='line'>    <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+Inject this class in `PersonService`:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">PersonService</span> <span class="o">{</span>
+</span><span class='line'>  <span class="c1">// ...</span>
+</span><span class='line'>  <span class="kd">private</span> <span class="kd">final</span> <span class="n">ElasticsearchDao</span> <span class="n">elasticsearchDao</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nd">@Inject</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="nf">PersonService</span><span class="o">(</span><span class="n">PersonDao</span> <span class="n">personDao</span><span class="o">,</span> <span class="n">SearchDao</span> <span class="n">searchDao</span><span class="o">,</span>
+</span><span class='line'>                       <span class="n">HibernateService</span> <span class="n">hibernateService</span><span class="o">,</span>
+</span><span class='line'>                       <span class="n">ElasticsearchDao</span> <span class="n">elasticsearchDao</span><span class="o">,</span>
+</span><span class='line'>                       <span class="n">ObjectMapper</span> <span class="n">mapper</span><span class="o">,</span> <span class="n">DozerBeanMapper</span> <span class="n">dozerBeanMapper</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>    <span class="c1">// ...</span>
+</span><span class='line'>    <span class="k">this</span><span class="o">.</span><span class="na">elasticsearchDao</span> <span class="o">=</span> <span class="n">elasticsearchDao</span><span class="o">;</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'><span class="c1">// ...</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+Call elasticsearch DAO save and delete methods from the service layer:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="n">Person</span> <span class="nf">save</span><span class="o">(</span><span class="n">Person</span> <span class="n">person</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>  <span class="c1">// ...</span>
+</span><span class='line'>  <span class="n">Person</span> <span class="n">personDb</span> <span class="o">=</span> <span class="n">personDao</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">person</span><span class="o">);</span>
+</span><span class='line'>  <span class="c1">// Add here the call to delete method</span>
+</span><span class='line'>  <span class="k">try</span> <span class="o">{</span>
+</span><span class='line'>    <span class="n">elasticsearchDao</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">person</span><span class="o">);</span>
+</span><span class='line'>  <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>    <span class="n">logger</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="s">&quot;Houston, we have a problem!&quot;</span><span class="o">,</span> <span class="n">e</span><span class="o">);</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>  <span class="c1">// ...</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">delete</span><span class="o">(</span><span class="n">String</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>  <span class="c1">// ...</span>
+</span><span class='line'>  <span class="n">personDao</span><span class="o">.</span><span class="na">delete</span><span class="o">(</span><span class="n">person</span><span class="o">);</span>
+</span><span class='line'>  <span class="c1">// Add here the call to delete method</span>
+</span><span class='line'>  <span class="k">try</span> <span class="o">{</span>
+</span><span class='line'>    <span class="n">elasticsearchDao</span><span class="o">.</span><span class="na">delete</span><span class="o">(</span><span class="n">person</span><span class="o">.</span><span class="na">getReference</span><span class="o">());</span>
+</span><span class='line'>  <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>    <span class="n">logger</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="s">&quot;Houston, we have a problem!&quot;</span><span class="o">,</span> <span class="n">e</span><span class="o">);</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>  <span class="c1">// ...</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+Note that we choose here to simply log the error and not fail the transaction because we want to make sure that our bean is stored in the database.
+You could potentially want to rollback the current transaction and keep both systems consistent.
+
+Here we just log so it will be the responsability of our OPS team to deal with errors and reinject missing documents.
+You could also think of sending errors in another table or in a message queue system to process them later.
+
+### Create a client
+
+Let's implement our dao. First we need to create a client to connect to a running elasticsearch cluster:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="k">this</span><span class="o">.</span><span class="na">esClient</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">TransportClient</span><span class="o">()</span>
+</span><span class='line'>  <span class="o">.</span><span class="na">addTransportAddress</span><span class="o">(</span>
+</span><span class='line'>    <span class="c1">// We will connect locally on default transport port 9300</span>
+</span><span class='line'>    <span class="k">new</span> <span class="nf">InetSocketTransportAddress</span><span class="o">(</span><span class="s">&quot;127.0.0.1&quot;</span><span class="o">,</span> <span class="mi">9300</span><span class="o">));</span>
+</span></code></pre></td></tr></table></div></figure>
+
+We are using here a `TransportClient` but you can use also a `NodeClient`. See [this article (french)](/blog/2012/02/13/quel-client-java-pour-elasticsearch/).
+
+### Save an object
+
+Then, implement our `save` method:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="c1">// We use Jackson to generate a JSON document from our bean</span>
+</span><span class='line'><span class="kt">byte</span><span class="o">[]</span> <span class="n">bytes</span> <span class="o">=</span> <span class="n">mapper</span><span class="o">.</span><span class="na">writeValueAsBytes</span><span class="o">(</span><span class="n">person</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// We execute an index operation</span>
+</span><span class='line'><span class="n">esClient</span><span class="o">.</span><span class="na">index</span><span class="o">(</span>
+</span><span class='line'>  <span class="k">new</span> <span class="nf">IndexRequest</span><span class="o">(</span>
+</span><span class='line'>      <span class="s">&quot;person&quot;</span><span class="o">,</span>              <span class="c1">// Index name</span>
+</span><span class='line'>      <span class="s">&quot;person&quot;</span><span class="o">,</span>              <span class="c1">// Our document type</span>
+</span><span class='line'>      <span class="n">person</span><span class="o">.</span><span class="na">getReference</span><span class="o">()</span>  <span class="c1">// We provide a unique _id for this doc</span>
+</span><span class='line'>    <span class="o">)</span>
+</span><span class='line'>    <span class="o">.</span><span class="na">source</span><span class="o">(</span><span class="n">bytes</span><span class="o">)</span>           <span class="c1">// We provide the JSON content</span>
+</span><span class='line'>  <span class="o">).</span><span class="na">get</span><span class="o">();</span>                   <span class="c1">// We execute and get back the response</span>
+</span></code></pre></td></tr></table></div></figure>
+
+### Remove an object
+
+`delete` method is quite similar:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">esClient</span><span class="o">.</span><span class="na">delete</span><span class="o">(</span>
+</span><span class='line'>  <span class="k">new</span> <span class="nf">DeleteRequest</span><span class="o">(</span>
+</span><span class='line'>    <span class="s">&quot;person&quot;</span><span class="o">,</span>       <span class="c1">// Index name</span>
+</span><span class='line'>    <span class="s">&quot;person&quot;</span><span class="o">,</span>       <span class="c1">// Our document type</span>
+</span><span class='line'>    <span class="n">reference</span><span class="o">)</span>      <span class="c1">// The document we want to remove</span>
+</span><span class='line'>  <span class="o">).</span><span class="na">get</span><span class="o">();</span>          <span class="c1">// We execute and get back the response</span>
+</span></code></pre></td></tr></table></div></figure>
+
+### Using bulk
+
+But this is not the more efficient way for doing that. In order to have a much faster injection time, please use bulk. Bulk allows to add a set of requests and process the bulk every `x` seconds or every `y` documents.
+
+Instead of writing all the logic by yourself you can easily use the `BulkProcessor` class which has been designed for that. Add it to the `ElasticsearchDao` class:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">final</span> <span class="kd">private</span> <span class="n">BulkProcessor</span> <span class="n">bulkProcessor</span><span class="o">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+In the contructor, add:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="k">this</span><span class="o">.</span><span class="na">bulkProcessor</span> <span class="o">=</span> <span class="n">BulkProcessor</span><span class="o">.</span><span class="na">builder</span><span class="o">(</span><span class="n">esClient</span><span class="o">,</span> <span class="k">new</span> <span class="n">BulkProcessor</span><span class="o">.</span><span class="na">Listener</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>  <span class="nd">@Override</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">beforeBulk</span><span class="o">(</span><span class="kt">long</span> <span class="n">executionId</span><span class="o">,</span> <span class="n">BulkRequest</span> <span class="n">request</span><span class="o">)</span> <span class="o">{</span> <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nd">@Override</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">afterBulk</span><span class="o">(</span><span class="kt">long</span> <span class="n">executionId</span><span class="o">,</span> <span class="n">BulkRequest</span> <span class="n">request</span><span class="o">,</span> <span class="n">BulkResponse</span> <span class="n">response</span><span class="o">)</span> <span class="o">{</span> <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nd">@Override</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">afterBulk</span><span class="o">(</span><span class="kt">long</span> <span class="n">executionId</span><span class="o">,</span> <span class="n">BulkRequest</span> <span class="n">request</span><span class="o">,</span> <span class="n">Throwable</span> <span class="n">failure</span><span class="o">)</span> <span class="o">{</span> <span class="o">}</span>
+</span><span class='line'><span class="o">})</span>
+</span><span class='line'>  <span class="o">.</span><span class="na">setBulkActions</span><span class="o">(</span><span class="mi">10000</span><span class="o">)</span> <span class="c1">// We flush every 10 000 requests</span>
+</span><span class='line'>  <span class="o">.</span><span class="na">setFlushInterval</span><span class="o">(</span><span class="n">TimeValue</span><span class="o">.</span><span class="na">timeValueSeconds</span><span class="o">(</span><span class="mi">5</span><span class="o">))</span> <span class="c1">// Or every 5 seconds</span>
+</span><span class='line'>  <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+</span></code></pre></td></tr></table></div></figure>
+
+Replace in the `save` method:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">esClient</span><span class="o">.</span><span class="na">index</span><span class="o">(</span>
+</span><span class='line'>  <span class="k">new</span> <span class="nf">IndexRequest</span><span class="o">(</span>
+</span><span class='line'>      <span class="s">&quot;person&quot;</span><span class="o">,</span>              <span class="c1">// Index name</span>
+</span><span class='line'>      <span class="s">&quot;person&quot;</span><span class="o">,</span>              <span class="c1">// Our document type</span>
+</span><span class='line'>      <span class="n">person</span><span class="o">.</span><span class="na">getReference</span><span class="o">()</span>  <span class="c1">// We provide a unique _id for this doc</span>
+</span><span class='line'>    <span class="o">)</span>
+</span><span class='line'>    <span class="o">.</span><span class="na">source</span><span class="o">(</span><span class="n">bytes</span><span class="o">)</span>           <span class="c1">// We provide the JSON content</span>
+</span><span class='line'>  <span class="o">).</span><span class="na">get</span><span class="o">();</span>                   <span class="c1">// We execute and get back the response</span>
+</span></code></pre></td></tr></table></div></figure>
+
+by
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">bulkProcessor</span><span class="o">.</span><span class="na">add</span><span class="o">(</span>
+</span><span class='line'>  <span class="k">new</span> <span class="nf">IndexRequest</span><span class="o">(</span>
+</span><span class='line'>      <span class="s">&quot;person&quot;</span><span class="o">,</span>              <span class="c1">// Index name</span>
+</span><span class='line'>      <span class="s">&quot;person&quot;</span><span class="o">,</span>              <span class="c1">// Our document type</span>
+</span><span class='line'>      <span class="n">person</span><span class="o">.</span><span class="na">getReference</span><span class="o">()</span>  <span class="c1">// We provide a unique _id for this doc</span>
+</span><span class='line'>    <span class="o">)</span>
+</span><span class='line'>    <span class="o">.</span><span class="na">source</span><span class="o">(</span><span class="n">bytes</span><span class="o">)</span>           <span class="c1">// We provide the JSON content</span>
+</span><span class='line'>  <span class="o">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+Same for `delete`:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">bulkProcessor</span><span class="o">.</span><span class="na">add</span><span class="o">(</span>
+</span><span class='line'>  <span class="k">new</span> <span class="nf">DeleteRequest</span><span class="o">(</span>
+</span><span class='line'>    <span class="s">&quot;person&quot;</span><span class="o">,</span>       <span class="c1">// Index name</span>
+</span><span class='line'>    <span class="s">&quot;person&quot;</span><span class="o">,</span>       <span class="c1">// Our document type</span>
+</span><span class='line'>    <span class="n">reference</span><span class="o">)</span>      <span class="c1">// The document we want to remove</span>
+</span><span class='line'>  <span class="o">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+### Searching for documents
+
+So far, we can save and delete documents but we need to adapt our search to this as it's still using the SQL search.
+
+We have already created a skeleton for the `search` method in the `ElasticsearchDao` class. Let's implement it!
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="k">return</span> <span class="n">esClient</span><span class="o">.</span><span class="na">prepareSearch</span><span class="o">(</span><span class="s">&quot;person&quot;</span><span class="o">)</span> <span class="c1">// We search in &quot;person&quot; index</span>
+</span><span class='line'>  <span class="o">.</span><span class="na">setTypes</span><span class="o">(</span><span class="s">&quot;person&quot;</span><span class="o">)</span>                   <span class="c1">// We only want &quot;person&quot; documents</span>
+</span><span class='line'>  <span class="o">.</span><span class="na">setQuery</span><span class="o">(</span><span class="n">query</span><span class="o">)</span>                      <span class="c1">// We pass the query</span>
+</span><span class='line'>  <span class="o">.</span><span class="na">setFrom</span><span class="o">(</span><span class="n">from</span><span class="o">)</span>                        <span class="c1">// We set the pagination (from)</span>
+</span><span class='line'>  <span class="o">.</span><span class="na">setSize</span><span class="o">(</span><span class="n">size</span><span class="o">)</span>                        <span class="c1">// We set the page size</span>
+</span><span class='line'>  <span class="o">.</span><span class="na">get</span><span class="o">();</span>                               <span class="c1">// We execute, get back the result and return it</span>
+</span></code></pre></td></tr></table></div></figure>
+
+In `PersonService` we can create the Query we need for our fulltext search.
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="n">String</span> <span class="nf">search</span><span class="o">(</span><span class="n">String</span> <span class="n">q</span><span class="o">,</span> <span class="n">String</span> <span class="n">f_country</span><span class="o">,</span> <span class="n">String</span> <span class="n">f_date</span><span class="o">,</span> <span class="n">Integer</span> <span class="n">from</span><span class="o">,</span> <span class="n">Integer</span> <span class="n">size</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>  <span class="n">QueryBuilder</span> <span class="n">query</span><span class="o">;</span>
+</span><span class='line'>  <span class="c1">// If the user does not provide any text to query, let&#39;s match all documents</span>
+</span><span class='line'>  <span class="k">if</span> <span class="o">(!</span><span class="n">Strings</span><span class="o">.</span><span class="na">hasText</span><span class="o">(</span><span class="n">q</span><span class="o">))</span> <span class="o">{</span>
+</span><span class='line'>    <span class="n">query</span> <span class="o">=</span> <span class="n">QueryBuilders</span><span class="o">.</span><span class="na">matchAllQuery</span><span class="o">();</span>
+</span><span class='line'>  <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span><span class='line'>    <span class="n">query</span> <span class="o">=</span> <span class="n">QueryBuilders</span><span class="o">.</span><span class="na">simpleQueryStringQuery</span><span class="o">(</span><span class="n">q</span><span class="o">)</span> <span class="c1">// What we are searching for</span>
+</span><span class='line'>      <span class="o">.</span><span class="na">field</span><span class="o">(</span><span class="s">&quot;name&quot;</span><span class="o">)</span>                                <span class="c1">// in name field</span>
+</span><span class='line'>      <span class="o">.</span><span class="na">field</span><span class="o">(</span><span class="s">&quot;gender&quot;</span><span class="o">)</span>                              <span class="c1">// in gender field</span>
+</span><span class='line'>      <span class="o">.</span><span class="na">field</span><span class="o">(</span><span class="s">&quot;address.country&quot;</span><span class="o">)</span>                     <span class="c1">// in address.country field</span>
+</span><span class='line'>      <span class="o">.</span><span class="na">field</span><span class="o">(</span><span class="s">&quot;address.city&quot;</span><span class="o">);</span>                       <span class="c1">// in address.city field</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>  <span class="c1">// We execute our Dao</span>
+</span><span class='line'>  <span class="n">SearchResponse</span> <span class="n">response</span> <span class="o">=</span> <span class="n">elasticsearchDao</span><span class="o">.</span><span class="na">search</span><span class="o">(</span><span class="n">query</span><span class="o">,</span> <span class="n">from</span><span class="o">,</span> <span class="n">size</span><span class="o">);</span>
+</span><span class='line'>  <span class="c1">// We return here the result as a JSON document as we have an AngularJS webapp</span>
+</span><span class='line'>  <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+Same for advanced search:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="n">String</span> <span class="nf">advancedSearch</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="n">String</span> <span class="n">country</span><span class="o">,</span> <span class="n">String</span> <span class="n">city</span><span class="o">,</span> <span class="n">Integer</span> <span class="n">from</span><span class="o">,</span> <span class="n">Integer</span> <span class="n">size</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>  <span class="n">QueryBuilder</span> <span class="n">query</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// If the user does not provide any text to query, let&#39;s match all documents</span>
+</span><span class='line'>  <span class="k">if</span> <span class="o">(!</span><span class="n">Strings</span><span class="o">.</span><span class="na">hasText</span><span class="o">(</span><span class="n">name</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">Strings</span><span class="o">.</span><span class="na">hasText</span><span class="o">(</span><span class="n">country</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">Strings</span><span class="o">.</span><span class="na">hasText</span><span class="o">(</span><span class="n">city</span><span class="o">))</span> <span class="o">{</span>
+</span><span class='line'>    <span class="n">query</span> <span class="o">=</span> <span class="n">QueryBuilders</span><span class="o">.</span><span class="na">matchAllQuery</span><span class="o">();</span>
+</span><span class='line'>  <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span><span class='line'>    <span class="c1">// Otherwise we will run a boolean query</span>
+</span><span class='line'>    <span class="n">BoolQueryBuilder</span> <span class="n">boolQueryBuilder</span> <span class="o">=</span> <span class="n">QueryBuilders</span><span class="o">.</span><span class="na">boolQuery</span><span class="o">();</span>
+</span><span class='line'>    <span class="k">if</span> <span class="o">(</span><span class="n">Strings</span><span class="o">.</span><span class="na">hasText</span><span class="o">(</span><span class="n">name</span><span class="o">))</span> <span class="o">{</span>
+</span><span class='line'>      <span class="c1">// If name parameter is set, its content must match name field</span>
+</span><span class='line'>      <span class="n">boolQueryBuilder</span><span class="o">.</span><span class="na">must</span><span class="o">(</span>
+</span><span class='line'>              <span class="n">QueryBuilders</span><span class="o">.</span><span class="na">matchQuery</span><span class="o">(</span><span class="s">&quot;name&quot;</span><span class="o">,</span> <span class="n">name</span><span class="o">)</span>
+</span><span class='line'>      <span class="o">);</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>    <span class="k">if</span> <span class="o">(</span><span class="n">Strings</span><span class="o">.</span><span class="na">hasText</span><span class="o">(</span><span class="n">country</span><span class="o">))</span> <span class="o">{</span>
+</span><span class='line'>      <span class="c1">// If country parameter is set, its content must match name field</span>
+</span><span class='line'>      <span class="n">boolQueryBuilder</span><span class="o">.</span><span class="na">must</span><span class="o">(</span>
+</span><span class='line'>              <span class="n">QueryBuilders</span><span class="o">.</span><span class="na">matchQuery</span><span class="o">(</span><span class="s">&quot;address.country&quot;</span><span class="o">,</span> <span class="n">country</span><span class="o">)</span>
+</span><span class='line'>      <span class="o">);</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>    <span class="k">if</span> <span class="o">(</span><span class="n">Strings</span><span class="o">.</span><span class="na">hasText</span><span class="o">(</span><span class="n">city</span><span class="o">))</span> <span class="o">{</span>
+</span><span class='line'>      <span class="c1">// If city parameter is set, its content must match name field</span>
+</span><span class='line'>      <span class="n">boolQueryBuilder</span><span class="o">.</span><span class="na">must</span><span class="o">(</span>
+</span><span class='line'>              <span class="n">QueryBuilders</span><span class="o">.</span><span class="na">matchQuery</span><span class="o">(</span><span class="s">&quot;address.city&quot;</span><span class="o">,</span> <span class="n">city</span><span class="o">)</span>
+</span><span class='line'>      <span class="o">);</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">query</span> <span class="o">=</span> <span class="n">boolQueryBuilder</span><span class="o">;</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// We execute our Dao</span>
+</span><span class='line'>  <span class="n">SearchResponse</span> <span class="n">response</span> <span class="o">=</span> <span class="n">elasticsearchDao</span><span class="o">.</span><span class="na">search</span><span class="o">(</span><span class="n">query</span><span class="o">,</span> <span class="n">from</span><span class="o">,</span> <span class="n">size</span><span class="o">);</span>
+</span><span class='line'>  <span class="c1">// We return here the result as a JSON document as we have an AngularJS webapp</span>
+</span><span class='line'>  <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+### Running it
+
+Have a look at the final result in branch `02-bulk`.
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>git checkout 02-bulk
+</span></code></pre></td></tr></table></div></figure>
+
+We are now ready to run it.
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>mvn clean install
+</span><span class='line'>mvn jetty:run
+</span></code></pre></td></tr></table></div></figure>
+
+Download, install and start elasticsearch:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>wget https://download.elastic.co/elasticsearch/elasticsearch/elasticsearch-1.5.2.tar.gz
+</span><span class='line'>tar xzf elasticsearch-1.5.2.tar.gz
+</span><span class='line'><span class="c"># Install marvel</span>
+</span><span class='line'>elasticsearch-1.5.2/bin/plugin -install elasticsearch/marvel/latest
+</span><span class='line'><span class="c"># Start elasticsearch</span>
+</span><span class='line'>elasticsearch-1.5.2/bin/elasticsearch
+</span></code></pre></td></tr></table></div></figure>
+
+[Initialize 10000 persons](http://0.0.0.0:8080/#/init) and look at the effect in [marvel](http://127.0.0.1:9200/_plugin/marvel/).
+
+<img class="center" src="/blog/images/legacy-search/02-marvel.png" title="Marvel 10k documents" >
+
+Try now [to search for](http://0.0.0.0:8080/) `j`, `jo` or `joe`. What's wrong?
+Searching for `j` or `jo` does not match any document but `joe` gives expected results.
+
+> Why this? 
+
+Because elasticsearch analyze your text at index and search times and compare then tokens.
+In the inverted index, for the first name `Joe`, we have actually indexed `joe`. And `j` is different than `joe`. Same for `jo`. But `joe` equals `joe` so a document which contains `Joe` will match the query.
+
+Same goes for advanced search. Searching for a country `fran` won't match but the full term `france` would match.
+
+If you want to learn more about the analysis process, I'd suggest you read the fantastic [Mapping and Analysis chapter](http://www.elastic.co/guide/en/elasticsearch/guide/current/mapping-analysis.html) of the official elasticsearch user guide.
+
+> Can we fix that? 
+
+For sure, we can use a [wildcard query](http://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-wildcard-query.html) or a [prefix query](http://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-prefix-query.html) but this is really inefficient! Please, don't do that! :)
+
+## Fix the mapping
+
+Give a look [in sense](http://127.0.0.1:9200/_plugin/marvel/sense/index.html) at the generated mapping: 
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>GET person/person/_mapping
+</span></code></pre></td></tr></table></div></figure>
+
+It gives
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+<span class='line-number'>80</span>
+<span class='line-number'>81</span>
+<span class='line-number'>82</span>
+<span class='line-number'>83</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="p">{</span>
+</span><span class='line'>   <span class="nt">&quot;person&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nt">&quot;mappings&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>         <span class="nt">&quot;person&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>            <span class="nt">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>               <span class="nt">&quot;address&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                  <span class="nt">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                     <span class="nt">&quot;city&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span>
+</span><span class='line'>                     <span class="p">},</span>
+</span><span class='line'>                     <span class="nt">&quot;country&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span>
+</span><span class='line'>                     <span class="p">},</span>
+</span><span class='line'>                     <span class="nt">&quot;countrycode&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span>
+</span><span class='line'>                     <span class="p">},</span>
+</span><span class='line'>                     <span class="nt">&quot;location&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                        <span class="nt">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                           <span class="nt">&quot;lat&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                              <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;double&quot;</span>
+</span><span class='line'>                           <span class="p">},</span>
+</span><span class='line'>                           <span class="nt">&quot;lon&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                              <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;double&quot;</span>
+</span><span class='line'>                           <span class="p">}</span>
+</span><span class='line'>                        <span class="p">}</span>
+</span><span class='line'>                     <span class="p">},</span>
+</span><span class='line'>                     <span class="nt">&quot;zipcode&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span>
+</span><span class='line'>                     <span class="p">}</span>
+</span><span class='line'>                  <span class="p">}</span>
+</span><span class='line'>               <span class="p">},</span>
+</span><span class='line'>               <span class="nt">&quot;children&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                  <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;long&quot;</span>
+</span><span class='line'>               <span class="p">},</span>
+</span><span class='line'>               <span class="nt">&quot;dateOfBirth&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                  <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;date&quot;</span><span class="p">,</span>
+</span><span class='line'>                  <span class="nt">&quot;format&quot;</span><span class="p">:</span> <span class="s2">&quot;dateOptionalTime&quot;</span>
+</span><span class='line'>               <span class="p">},</span>
+</span><span class='line'>               <span class="nt">&quot;gender&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                  <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span>
+</span><span class='line'>               <span class="p">},</span>
+</span><span class='line'>               <span class="nt">&quot;marketing&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                  <span class="nt">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                     <span class="nt">&quot;cars&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;long&quot;</span>
+</span><span class='line'>                     <span class="p">},</span>
+</span><span class='line'>                     <span class="nt">&quot;electronic&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;long&quot;</span>
+</span><span class='line'>                     <span class="p">},</span>
+</span><span class='line'>                     <span class="nt">&quot;fashion&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;long&quot;</span>
+</span><span class='line'>                     <span class="p">},</span>
+</span><span class='line'>                     <span class="nt">&quot;food&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;long&quot;</span>
+</span><span class='line'>                     <span class="p">},</span>
+</span><span class='line'>                     <span class="nt">&quot;garden&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;long&quot;</span>
+</span><span class='line'>                     <span class="p">},</span>
+</span><span class='line'>                     <span class="nt">&quot;hifi&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;long&quot;</span>
+</span><span class='line'>                     <span class="p">},</span>
+</span><span class='line'>                     <span class="nt">&quot;music&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;long&quot;</span>
+</span><span class='line'>                     <span class="p">},</span>
+</span><span class='line'>                     <span class="nt">&quot;shoes&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;long&quot;</span>
+</span><span class='line'>                     <span class="p">},</span>
+</span><span class='line'>                     <span class="nt">&quot;toys&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;long&quot;</span>
+</span><span class='line'>                     <span class="p">}</span>
+</span><span class='line'>                  <span class="p">}</span>
+</span><span class='line'>               <span class="p">},</span>
+</span><span class='line'>               <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                  <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span>
+</span><span class='line'>               <span class="p">},</span>
+</span><span class='line'>               <span class="nt">&quot;reference&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                  <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span>
+</span><span class='line'>               <span class="p">}</span>
+</span><span class='line'>            <span class="p">}</span>
+</span><span class='line'>         <span class="p">}</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>   <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+As you can imagine, we are using here all defaults to elasticsearch. So we are using a [standard analyzer](http://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-standard-analyzer.html) for example to analyze our text.
+
+Let's say that instead of indexing `joe`, we want also to index `j` and `jo`. We can do that using a [edge ngram tokenfilter](http://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-edgengram-tokenizer.html). To do that, you need to create your own analyzer. It can be done when you create your index by providing settings:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="nt">&quot;analysis&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nt">&quot;analyzer&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>            <span class="nt">&quot;ngram&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                <span class="nt">&quot;filter&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span class='line'>                    <span class="s2">&quot;lowercase&quot;</span>
+</span><span class='line'>                <span class="p">],</span>
+</span><span class='line'>                <span class="nt">&quot;tokenizer&quot;</span><span class="p">:</span> <span class="s2">&quot;ngram_tokenizer&quot;</span>
+</span><span class='line'>            <span class="p">}</span>
+</span><span class='line'>        <span class="p">},</span>
+</span><span class='line'>        <span class="nt">&quot;tokenizer&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>            <span class="nt">&quot;ngram_tokenizer&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                <span class="nt">&quot;max_gram&quot;</span><span class="p">:</span> <span class="s2">&quot;10&quot;</span><span class="p">,</span>
+</span><span class='line'>                <span class="nt">&quot;min_gram&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
+</span><span class='line'>                <span class="nt">&quot;token_chars&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span class='line'>                    <span class="s2">&quot;letter&quot;</span><span class="p">,</span>
+</span><span class='line'>                    <span class="s2">&quot;digit&quot;</span>
+</span><span class='line'>                <span class="p">],</span>
+</span><span class='line'>                <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;edgeNGram&quot;</span>
+</span><span class='line'>            <span class="p">}</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+We have defined here a `ngram` analyzer which will lowercase the content we need to index and will produce grams for each token (up to 10 characters).
+
+Now, we need to force the mapping instead of letting elasticsearch automatically guessing for us.
+
+For example let's look at our `name` field. It looks like this by default:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="s2">&quot;name&quot;</span><span class="err">:</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+We can now change its analyzer:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="s2">&quot;name&quot;</span><span class="err">:</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nt">&quot;analyzer&quot;</span><span class="p">:</span> <span class="s2">&quot;ngram&quot;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+But at search time, searching for `joe` will also return unexpected results such as `jane`. Why this? Because by default, we use the same analyzer at search time and index time.
+`joe` is once again analyzed at search time and produces `j`, `jo` and `joe`.
+`jane` has been indexed as `j`, `ja`, `jan` and `jane`. `j` from `joe` equals `j` from `jane`!
+
+In this use case, a user who enters `joe` is probably looking for someone named `joe` so we should only use a `lowercase` filter. The [simple analyzer](http://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-simple-analyzer.html) does that perfectly. Let's use it:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="s2">&quot;name&quot;</span><span class="err">:</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nt">&quot;index_analyzer&quot;</span><span class="p">:</span> <span class="s2">&quot;ngram&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nt">&quot;search_analyzer&quot;</span><span class="p">:</span> <span class="s2">&quot;simple&quot;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+If for some reason, you want to keep the "old" (standard) analyzer as well and index the same field in different ways, you can use the multifield feature of elasticsearch and write:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="s2">&quot;name&quot;</span><span class="err">:</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nt">&quot;fields&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nt">&quot;autocomplete&quot;</span> <span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;index_analyzer&quot;</span><span class="p">:</span> <span class="s2">&quot;ngram&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;search_analyzer&quot;</span><span class="p">:</span> <span class="s2">&quot;simple&quot;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+It means that if you search in `name` you will use the standard analyzer. But if you search in `name.autocomplete`, you will use the expected behavior we have just described.
+
+And you can do that for all other fields...
+
+> Why not indexing all fields in a single field?
+
+Instead of searching in `name`, `address.country`, `address.city` and `gender` fields, we can create at index time a new field on the fly using the very cool [copy_to feature](http://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-core-types.html#copy-to):
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="s2">&quot;name&quot;</span><span class="err">:</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nt">&quot;copy_to&quot;</span><span class="p">:</span> <span class="s2">&quot;fulltext&quot;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+You can define analyzer you want to use for this new field:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="s2">&quot;fulltext&quot;</span> <span class="err">:</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nt">&quot;type&quot;</span> <span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nt">&quot;index_analyzer&quot;</span><span class="p">:</span> <span class="s2">&quot;ngram&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nt">&quot;search_analyzer&quot;</span><span class="p">:</span> <span class="s2">&quot;simple&quot;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+At the end, you full mapping will become:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+<span class='line-number'>80</span>
+<span class='line-number'>81</span>
+<span class='line-number'>82</span>
+<span class='line-number'>83</span>
+<span class='line-number'>84</span>
+<span class='line-number'>85</span>
+<span class='line-number'>86</span>
+<span class='line-number'>87</span>
+<span class='line-number'>88</span>
+<span class='line-number'>89</span>
+<span class='line-number'>90</span>
+<span class='line-number'>91</span>
+<span class='line-number'>92</span>
+<span class='line-number'>93</span>
+<span class='line-number'>94</span>
+<span class='line-number'>95</span>
+<span class='line-number'>96</span>
+<span class='line-number'>97</span>
+<span class='line-number'>98</span>
+<span class='line-number'>99</span>
+<span class='line-number'>100</span>
+<span class='line-number'>101</span>
+<span class='line-number'>102</span>
+<span class='line-number'>103</span>
+<span class='line-number'>104</span>
+<span class='line-number'>105</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="nt">&quot;person&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nt">&quot;_all&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>            <span class="nt">&quot;enabled&quot;</span><span class="p">:</span> <span class="kc">false</span>
+</span><span class='line'>        <span class="p">},</span>
+</span><span class='line'>        <span class="nt">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>            <span class="nt">&quot;address&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                <span class="nt">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                    <span class="nt">&quot;city&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                        <span class="nt">&quot;copy_to&quot;</span><span class="p">:</span> <span class="s2">&quot;fulltext&quot;</span><span class="p">,</span>
+</span><span class='line'>                        <span class="nt">&quot;fields&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                            <span class="nt">&quot;autocomplete&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                                <span class="nt">&quot;index_analyzer&quot;</span><span class="p">:</span> <span class="s2">&quot;ngram&quot;</span><span class="p">,</span>
+</span><span class='line'>                                <span class="nt">&quot;search_analyzer&quot;</span><span class="p">:</span> <span class="s2">&quot;simple&quot;</span><span class="p">,</span>
+</span><span class='line'>                                <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span>
+</span><span class='line'>                            <span class="p">}</span>
+</span><span class='line'>                        <span class="p">},</span>
+</span><span class='line'>                        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span>
+</span><span class='line'>                    <span class="p">},</span>
+</span><span class='line'>                    <span class="nt">&quot;country&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                        <span class="nt">&quot;copy_to&quot;</span><span class="p">:</span> <span class="s2">&quot;fulltext&quot;</span><span class="p">,</span>
+</span><span class='line'>                        <span class="nt">&quot;fields&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                            <span class="nt">&quot;autocomplete&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                                <span class="nt">&quot;index_analyzer&quot;</span><span class="p">:</span> <span class="s2">&quot;ngram&quot;</span><span class="p">,</span>
+</span><span class='line'>                                <span class="nt">&quot;search_analyzer&quot;</span><span class="p">:</span> <span class="s2">&quot;simple&quot;</span><span class="p">,</span>
+</span><span class='line'>                                <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span>
+</span><span class='line'>                            <span class="p">}</span>
+</span><span class='line'>                        <span class="p">},</span>
+</span><span class='line'>                        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span>
+</span><span class='line'>                    <span class="p">},</span>
+</span><span class='line'>                    <span class="nt">&quot;countrycode&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span>
+</span><span class='line'>                    <span class="p">},</span>
+</span><span class='line'>                    <span class="nt">&quot;location&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;geo_point&quot;</span>
+</span><span class='line'>                    <span class="p">},</span>
+</span><span class='line'>                    <span class="nt">&quot;zipcode&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span>
+</span><span class='line'>                    <span class="p">}</span>
+</span><span class='line'>                <span class="p">}</span>
+</span><span class='line'>            <span class="p">},</span>
+</span><span class='line'>            <span class="nt">&quot;children&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;long&quot;</span>
+</span><span class='line'>            <span class="p">},</span>
+</span><span class='line'>            <span class="nt">&quot;dateOfBirth&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                <span class="nt">&quot;format&quot;</span><span class="p">:</span> <span class="s2">&quot;dateOptionalTime&quot;</span><span class="p">,</span>
+</span><span class='line'>                <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;date&quot;</span>
+</span><span class='line'>            <span class="p">},</span>
+</span><span class='line'>            <span class="nt">&quot;fulltext&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                <span class="nt">&quot;index_analyzer&quot;</span><span class="p">:</span> <span class="s2">&quot;ngram&quot;</span><span class="p">,</span>
+</span><span class='line'>                <span class="nt">&quot;search_analyzer&quot;</span><span class="p">:</span> <span class="s2">&quot;simple&quot;</span><span class="p">,</span>
+</span><span class='line'>                <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span>
+</span><span class='line'>            <span class="p">},</span>
+</span><span class='line'>            <span class="nt">&quot;gender&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                <span class="nt">&quot;copy_to&quot;</span><span class="p">:</span> <span class="s2">&quot;fulltext&quot;</span><span class="p">,</span>
+</span><span class='line'>                <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span>
+</span><span class='line'>            <span class="p">},</span>
+</span><span class='line'>            <span class="nt">&quot;marketing&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                <span class="nt">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                    <span class="nt">&quot;cars&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;long&quot;</span>
+</span><span class='line'>                    <span class="p">},</span>
+</span><span class='line'>                    <span class="nt">&quot;electronic&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;long&quot;</span>
+</span><span class='line'>                    <span class="p">},</span>
+</span><span class='line'>                    <span class="nt">&quot;fashion&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;long&quot;</span>
+</span><span class='line'>                    <span class="p">},</span>
+</span><span class='line'>                    <span class="nt">&quot;food&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;long&quot;</span>
+</span><span class='line'>                    <span class="p">},</span>
+</span><span class='line'>                    <span class="nt">&quot;garden&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;long&quot;</span>
+</span><span class='line'>                    <span class="p">},</span>
+</span><span class='line'>                    <span class="nt">&quot;hifi&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;long&quot;</span>
+</span><span class='line'>                    <span class="p">},</span>
+</span><span class='line'>                    <span class="nt">&quot;music&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;long&quot;</span>
+</span><span class='line'>                    <span class="p">},</span>
+</span><span class='line'>                    <span class="nt">&quot;shoes&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;long&quot;</span>
+</span><span class='line'>                    <span class="p">},</span>
+</span><span class='line'>                    <span class="nt">&quot;toys&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;long&quot;</span>
+</span><span class='line'>                    <span class="p">}</span>
+</span><span class='line'>                <span class="p">}</span>
+</span><span class='line'>            <span class="p">},</span>
+</span><span class='line'>            <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                <span class="nt">&quot;copy_to&quot;</span><span class="p">:</span> <span class="s2">&quot;fulltext&quot;</span><span class="p">,</span>
+</span><span class='line'>                <span class="nt">&quot;fields&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                    <span class="nt">&quot;autocomplete&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                        <span class="nt">&quot;index_analyzer&quot;</span><span class="p">:</span> <span class="s2">&quot;ngram&quot;</span><span class="p">,</span>
+</span><span class='line'>                        <span class="nt">&quot;search_analyzer&quot;</span><span class="p">:</span> <span class="s2">&quot;simple&quot;</span><span class="p">,</span>
+</span><span class='line'>                        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span>
+</span><span class='line'>                    <span class="p">}</span>
+</span><span class='line'>                <span class="p">},</span>
+</span><span class='line'>                <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span>
+</span><span class='line'>            <span class="p">},</span>
+</span><span class='line'>            <span class="nt">&quot;reference&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span>
+</span><span class='line'>            <span class="p">}</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+Note that we also disabled `_all` field as we won't use it and defined `location` field as a `geo_point`.
+
+## Elasticsearch Beyonder
+
+You can of course use your client to create your index with the settings we have defined and then create a new type `person` which will use the mapping we created.
+
+[Elasticsearch Beyonder](https://github.com/dadoonet/elasticsearch-beyonder) project will do that *automagically* for you if they don't exist already by reading what you have in the classloader.
+
+By convention, it will search in your classloader for a `/elasticsearch` resource. If it contains a directory, that will be the index name. If this directory contains a `_settings.json` file, it will use it to put the settings when creating the index.
+Then for each other `.json` file, it will create a new type based on the file name and will apply the mapping defined in it.
+
+In our case, we will create in `src/main/resources`:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="err">resources/</span>
+</span><span class='line'><span class="err">├──</span> <span class="err">elasticsearch</span>
+</span><span class='line'><span class="err">│  </span> <span class="err">└──</span> <span class="err">person</span>
+</span><span class='line'><span class="err">│  </span>     <span class="err">├──</span> <span class="err">_settings.json</span>
+</span><span class='line'><span class="err">│  </span>     <span class="err">└──</span> <span class="err">person.json</span>
+</span></code></pre></td></tr></table></div></figure>
+
+Let's now add Beyonder project in our `pom.xml` file:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;dependency&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;groupId&gt;</span>fr.pilato.elasticsearch<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;artifactId&gt;</span>elasticsearch-beyonder<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;version&gt;</span>1.5.0<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'><span class="nt">&lt;/dependency&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+To use it, just after you have created your client in `ElasticsearchDao` constructor, you can use it by calling:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="k">try</span> <span class="o">{</span>
+</span><span class='line'>  <span class="n">ElasticsearchBeyonder</span><span class="o">.</span><span class="na">start</span><span class="o">(</span><span class="n">esClient</span><span class="o">);</span>
+</span><span class='line'><span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>  <span class="n">logger</span><span class="o">.</span><span class="na">warn</span><span class="o">(</span><span class="s">&quot;can not create index and mappings&quot;</span><span class="o">,</span> <span class="n">e</span><span class="o">);</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+## Modify search queries
+
+Instead of searching in all fields we can now search in `fulltext` field:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">query</span> <span class="o">=</span> <span class="n">QueryBuilders</span><span class="o">.</span><span class="na">simpleQueryStringQuery</span><span class="o">(</span><span class="n">q</span><span class="o">)</span>
+</span><span class='line'>  <span class="o">.</span><span class="na">field</span><span class="o">(</span><span class="s">&quot;fulltext&quot;</span><span class="o">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+But we can also play with relevancy here. Let's say that a user has the name `France` but lives in `Germany` and another one is `Joe` living in `France`. We want to make sure that in that case the first one will appear at the first position. Let's search also in `name` field and boost the score by a factor 3 in case it matches:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">query</span> <span class="o">=</span> <span class="n">QueryBuilders</span><span class="o">.</span><span class="na">simpleQueryStringQuery</span><span class="o">(</span><span class="n">q</span><span class="o">)</span>
+</span><span class='line'>  <span class="o">.</span><span class="na">field</span><span class="o">(</span><span class="s">&quot;fulltext&quot;</span><span class="o">);</span>
+</span><span class='line'>  <span class="o">.</span><span class="na">field</span><span class="o">(</span><span class="s">&quot;name&quot;</span><span class="o">,</span> <span class="mf">3.0f</span><span class="o">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+We can also modify our advanced search and use now `.autocomplete` subfields:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">BoolQueryBuilder</span> <span class="n">boolQueryBuilder</span> <span class="o">=</span> <span class="n">QueryBuilders</span><span class="o">.</span><span class="na">boolQuery</span><span class="o">();</span>
+</span><span class='line'><span class="k">if</span> <span class="o">(</span><span class="n">Strings</span><span class="o">.</span><span class="na">hasText</span><span class="o">(</span><span class="n">name</span><span class="o">))</span> <span class="o">{</span>
+</span><span class='line'>  <span class="n">boolQueryBuilder</span><span class="o">.</span><span class="na">must</span><span class="o">(</span>
+</span><span class='line'>    <span class="n">QueryBuilders</span><span class="o">.</span><span class="na">matchQuery</span><span class="o">(</span><span class="s">&quot;name.autocomplete&quot;</span><span class="o">,</span> <span class="n">name</span><span class="o">)</span>
+</span><span class='line'>  <span class="o">);</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'><span class="k">if</span> <span class="o">(</span><span class="n">Strings</span><span class="o">.</span><span class="na">hasText</span><span class="o">(</span><span class="n">country</span><span class="o">))</span> <span class="o">{</span>
+</span><span class='line'>  <span class="n">boolQueryBuilder</span><span class="o">.</span><span class="na">must</span><span class="o">(</span>
+</span><span class='line'>    <span class="n">QueryBuilders</span><span class="o">.</span><span class="na">matchQuery</span><span class="o">(</span><span class="s">&quot;address.country.autocomplete&quot;</span><span class="o">,</span> <span class="n">country</span><span class="o">)</span>
+</span><span class='line'>  <span class="o">);</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'><span class="k">if</span> <span class="o">(</span><span class="n">Strings</span><span class="o">.</span><span class="na">hasText</span><span class="o">(</span><span class="n">city</span><span class="o">))</span> <span class="o">{</span>
+</span><span class='line'>  <span class="n">boolQueryBuilder</span><span class="o">.</span><span class="na">must</span><span class="o">(</span>
+</span><span class='line'>    <span class="n">QueryBuilders</span><span class="o">.</span><span class="na">matchQuery</span><span class="o">(</span><span class="s">&quot;address.city.autocomplete&quot;</span><span class="o">,</span> <span class="n">city</span><span class="o">)</span>
+</span><span class='line'>  <span class="o">);</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+To run that, first delete your existing documents with SENSE to have Beyonder creating again index and type:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">DELETE</span> <span class="n">person</span>
+</span></code></pre></td></tr></table></div></figure>
+
+And restart the application, inject 10 000 documents and search for `j` and then for `joe`. 
+
+<img class="center" src="/blog/images/legacy-search/03-search-j.png" title="Searching for J" >
+
+It works as it was working before we started! `\o/`
+
+## But it will slow down my application, right?
+
+I have this question very often when doing talks. 
+
+Indeed. Adding something to your current injection process might slow it down. But is elasticsearch really the thing you need to optimize first?
+
+Let's run a small test about that.
+
+In our `PersonService#save` method, we can try to disable database operation and only keep indexing operation.
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="n">Person</span> <span class="nf">save</span><span class="o">(</span><span class="n">Person</span> <span class="n">person</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>  <span class="k">try</span> <span class="o">{</span>
+</span><span class='line'>    <span class="n">elasticsearchDao</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">person</span><span class="o">);</span>
+</span><span class='line'>  <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>    <span class="n">logger</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="s">&quot;Houston, we have a problem!&quot;</span><span class="o">,</span> <span class="n">e</span><span class="o">);</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>  <span class="k">return</span> <span class="n">person</span><span class="o">;</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+Restart. And now inject 10 000 documents. You might not see that it has been done as it was so fast... So inject 1 000 000 documents now. You should see that you are injecting must faster without the database then with the database. On my laptop, it's from around 200 docs per second to around 10 000 docs per second. Ok, I have SSD drives but this gives you an idea.
+
+It means that basically elasticsearch won't slow down that much your process.
+
+## Faceted navigation
+
+Let's do something even more interesting. Let's try to add a [faceted navigation](http://en.wikipedia.org/wiki/Faceted_search).
+We want to display our result set broken per 10 years (`by_year`) and also get the repartition of our result set per country (`by_country`).
+
+Everything was [already coded on the interface](https://github.com/dadoonet/legacy-search/blob/01-direct/src/main/webapp/partials/search.html#L27-60). So we just have to provide the aggregation result now...
+
+Let's modify `ElasticsearchDao#search` method:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="n">SearchResponse</span> <span class="nf">search</span><span class="o">(</span><span class="n">QueryBuilder</span> <span class="n">query</span><span class="o">,</span> <span class="n">Integer</span> <span class="n">from</span><span class="o">,</span> <span class="n">Integer</span> <span class="n">size</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>  <span class="k">return</span> <span class="n">esClient</span><span class="o">.</span><span class="na">prepareSearch</span><span class="o">(</span><span class="s">&quot;person&quot;</span><span class="o">)</span>
+</span><span class='line'>    <span class="o">.</span><span class="na">setTypes</span><span class="o">(</span><span class="s">&quot;person&quot;</span><span class="o">)</span>
+</span><span class='line'>    <span class="o">.</span><span class="na">setQuery</span><span class="o">(</span><span class="n">query</span><span class="o">)</span>
+</span><span class='line'>    <span class="c1">// We add the by_country aggregation</span>
+</span><span class='line'>    <span class="o">.</span><span class="na">addAggregation</span><span class="o">(</span>
+</span><span class='line'>      <span class="n">AggregationBuilders</span><span class="o">.</span><span class="na">terms</span><span class="o">(</span><span class="s">&quot;by_country&quot;</span><span class="o">).</span><span class="na">field</span><span class="o">(</span><span class="s">&quot;address.country&quot;</span><span class="o">)</span>
+</span><span class='line'>    <span class="o">)</span>
+</span><span class='line'>    <span class="c1">// We add the by_year aggregation</span>
+</span><span class='line'>    <span class="o">.</span><span class="na">addAggregation</span><span class="o">(</span>
+</span><span class='line'>      <span class="n">AggregationBuilders</span><span class="o">.</span><span class="na">dateHistogram</span><span class="o">(</span><span class="s">&quot;by_year&quot;</span><span class="o">)</span>
+</span><span class='line'>        <span class="o">.</span><span class="na">field</span><span class="o">(</span><span class="s">&quot;dateOfBirth&quot;</span><span class="o">)</span>
+</span><span class='line'>        <span class="o">.</span><span class="na">minDocCount</span><span class="o">(</span><span class="mi">0</span><span class="o">)</span>
+</span><span class='line'>        <span class="o">.</span><span class="na">interval</span><span class="o">(</span><span class="n">DateHistogram</span><span class="o">.</span><span class="na">Interval</span><span class="o">.</span><span class="na">YEAR</span><span class="o">)</span>
+</span><span class='line'>        <span class="o">.</span><span class="na">extendedBounds</span><span class="o">(</span><span class="s">&quot;1940&quot;</span><span class="o">,</span> <span class="s">&quot;2009&quot;</span><span class="o">)</span>
+</span><span class='line'>        <span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">&quot;YYYY&quot;</span><span class="o">)</span>
+</span><span class='line'>    <span class="o">)</span>
+</span><span class='line'>    <span class="o">.</span><span class="na">setFrom</span><span class="o">(</span><span class="n">from</span><span class="o">)</span>
+</span><span class='line'>    <span class="o">.</span><span class="na">setSize</span><span class="o">(</span><span class="n">size</span><span class="o">)</span>
+</span><span class='line'>    <span class="o">.</span><span class="na">get</span><span class="o">();</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+Relaunching will now give you the following.
+
+<img class="center" src="/blog/images/legacy-search/04-faceted-1.png" title="Faceted results" >
+
+Let say you now want to click on a country to filter results or on a decade.
+
+Change `PersonService#search` with the following code.
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="n">String</span> <span class="nf">search</span><span class="o">(</span><span class="n">String</span> <span class="n">q</span><span class="o">,</span> <span class="n">String</span> <span class="n">f_country</span><span class="o">,</span> <span class="n">String</span> <span class="n">f_date</span><span class="o">,</span> <span class="n">Integer</span> <span class="n">from</span><span class="o">,</span> <span class="n">Integer</span> <span class="n">size</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>  <span class="n">QueryBuilder</span> <span class="n">query</span><span class="o">;</span>
+</span><span class='line'>  <span class="k">if</span> <span class="o">(!</span><span class="n">Strings</span><span class="o">.</span><span class="na">hasText</span><span class="o">(</span><span class="n">q</span><span class="o">))</span> <span class="o">{</span>
+</span><span class='line'>    <span class="n">query</span> <span class="o">=</span> <span class="n">QueryBuilders</span><span class="o">.</span><span class="na">matchAllQuery</span><span class="o">();</span>
+</span><span class='line'>  <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span><span class='line'>    <span class="n">query</span> <span class="o">=</span> <span class="n">QueryBuilders</span><span class="o">.</span><span class="na">simpleQueryStringQuery</span><span class="o">(</span><span class="n">q</span><span class="o">)</span>
+</span><span class='line'>      <span class="o">.</span><span class="na">field</span><span class="o">(</span><span class="s">&quot;fulltext&quot;</span><span class="o">)</span>
+</span><span class='line'>      <span class="o">.</span><span class="na">field</span><span class="o">(</span><span class="s">&quot;name&quot;</span><span class="o">,</span> <span class="mf">3.0f</span><span class="o">);</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// If the user defined a country filter or a date filter</span>
+</span><span class='line'>  <span class="k">if</span> <span class="o">(</span><span class="n">Strings</span><span class="o">.</span><span class="na">hasText</span><span class="o">(</span><span class="n">f_country</span><span class="o">)</span> <span class="o">||</span> <span class="n">Strings</span><span class="o">.</span><span class="na">hasText</span><span class="o">(</span><span class="n">f_date</span><span class="o">))</span> <span class="o">{</span>
+</span><span class='line'>    <span class="c1">// Create a And Filter</span>
+</span><span class='line'>    <span class="n">AndFilterBuilder</span> <span class="n">andFilter</span> <span class="o">=</span> <span class="n">FilterBuilders</span><span class="o">.</span><span class="na">andFilter</span><span class="o">();</span>
+</span><span class='line'>    <span class="k">if</span> <span class="o">(</span><span class="n">Strings</span><span class="o">.</span><span class="na">hasText</span><span class="o">(</span><span class="n">f_country</span><span class="o">))</span> <span class="o">{</span>
+</span><span class='line'>      <span class="c1">// If needed filter by country</span>
+</span><span class='line'>      <span class="n">andFilter</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">FilterBuilders</span><span class="o">.</span><span class="na">termFilter</span><span class="o">(</span><span class="s">&quot;address.country&quot;</span><span class="o">,</span> <span class="n">f_country</span><span class="o">));</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>    <span class="k">if</span> <span class="o">(</span><span class="n">Strings</span><span class="o">.</span><span class="na">hasText</span><span class="o">(</span><span class="n">f_date</span><span class="o">))</span> <span class="o">{</span>
+</span><span class='line'>      <span class="c1">// Or by decade</span>
+</span><span class='line'>      <span class="n">String</span> <span class="n">endDate</span> <span class="o">=</span> <span class="s">&quot;&quot;</span> <span class="o">+</span> <span class="o">(</span><span class="n">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">f_date</span><span class="o">)</span> <span class="o">+</span> <span class="mi">10</span><span class="o">);</span>
+</span><span class='line'>      <span class="n">andFilter</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">FilterBuilders</span><span class="o">.</span><span class="na">rangeFilter</span><span class="o">(</span><span class="s">&quot;dateOfBirth&quot;</span><span class="o">).</span><span class="na">gte</span><span class="o">(</span><span class="n">f_date</span><span class="o">).</span><span class="na">lt</span><span class="o">(</span><span class="n">endDate</span><span class="o">));</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">// Wrap the existing query and the new filter in a Filtered query</span>
+</span><span class='line'>    <span class="n">query</span> <span class="o">=</span> <span class="n">QueryBuilders</span><span class="o">.</span><span class="na">filteredQuery</span><span class="o">(</span><span class="n">query</span><span class="o">,</span> <span class="n">andFilter</span><span class="o">);</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">SearchResponse</span> <span class="n">response</span> <span class="o">=</span> <span class="n">elasticsearchDao</span><span class="o">.</span><span class="na">search</span><span class="o">(</span><span class="n">query</span><span class="o">,</span> <span class="n">from</span><span class="o">,</span> <span class="n">size</span><span class="o">);</span>
+</span><span class='line'>  <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+You can now filter your results!
+
+<img class="center" src="/blog/images/legacy-search/04-faceted-2.png" title="Filtered results" >
+
+## Understand your dataset
+
+> Ok. We have 1 000 000 documents. What do they look like?
+
+We can change our first aggregation and create an aggregation tree.
+So for each country, we want to break down our data to [almost every 10 years (3659 days)](https://github.com/elastic/elasticsearch/issues/8939) and for each "decade" get the average number of children.
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="n">SearchResponse</span> <span class="nf">search</span><span class="o">(</span><span class="n">QueryBuilder</span> <span class="n">query</span><span class="o">,</span> <span class="n">Integer</span> <span class="n">from</span><span class="o">,</span> <span class="n">Integer</span> <span class="n">size</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>  <span class="k">return</span> <span class="n">esClient</span><span class="o">.</span><span class="na">prepareSearch</span><span class="o">(</span><span class="s">&quot;person&quot;</span><span class="o">)</span>
+</span><span class='line'>    <span class="o">.</span><span class="na">setTypes</span><span class="o">(</span><span class="s">&quot;person&quot;</span><span class="o">)</span>
+</span><span class='line'>    <span class="o">.</span><span class="na">setQuery</span><span class="o">(</span><span class="n">query</span><span class="o">)</span>
+</span><span class='line'>    <span class="o">.</span><span class="na">addAggregation</span><span class="o">(</span>
+</span><span class='line'>      <span class="n">AggregationBuilders</span><span class="o">.</span><span class="na">terms</span><span class="o">(</span><span class="s">&quot;by_country&quot;</span><span class="o">).</span><span class="na">field</span><span class="o">(</span><span class="s">&quot;address.country&quot;</span><span class="o">)</span>
+</span><span class='line'>        <span class="o">.</span><span class="na">subAggregation</span><span class="o">(</span><span class="n">AggregationBuilders</span><span class="o">.</span><span class="na">dateHistogram</span><span class="o">(</span><span class="s">&quot;by_year&quot;</span><span class="o">)</span>
+</span><span class='line'>          <span class="o">.</span><span class="na">field</span><span class="o">(</span><span class="s">&quot;dateOfBirth&quot;</span><span class="o">)</span>
+</span><span class='line'>          <span class="o">.</span><span class="na">minDocCount</span><span class="o">(</span><span class="mi">0</span><span class="o">)</span>
+</span><span class='line'>          <span class="o">.</span><span class="na">interval</span><span class="o">(</span><span class="n">DateHistogram</span><span class="o">.</span><span class="na">Interval</span><span class="o">.</span><span class="na">days</span><span class="o">(</span><span class="mi">3652</span><span class="o">))</span>
+</span><span class='line'>          <span class="o">.</span><span class="na">extendedBounds</span><span class="o">(</span><span class="s">&quot;1940&quot;</span><span class="o">,</span> <span class="s">&quot;2009&quot;</span><span class="o">)</span>
+</span><span class='line'>          <span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">&quot;YYYY&quot;</span><span class="o">)</span>
+</span><span class='line'>          <span class="o">.</span><span class="na">subAggregation</span><span class="o">(</span>
+</span><span class='line'>            <span class="n">AggregationBuilders</span><span class="o">.</span><span class="na">avg</span><span class="o">(</span><span class="s">&quot;avg_children&quot;</span><span class="o">).</span><span class="na">field</span><span class="o">(</span><span class="s">&quot;children&quot;</span><span class="o">)</span>
+</span><span class='line'>          <span class="o">)</span>
+</span><span class='line'>        <span class="o">)</span>
+</span><span class='line'>    <span class="o">)</span>
+</span><span class='line'>    <span class="o">.</span><span class="na">addAggregation</span><span class="o">(</span>
+</span><span class='line'>      <span class="n">AggregationBuilders</span><span class="o">.</span><span class="na">dateHistogram</span><span class="o">(</span><span class="s">&quot;by_year&quot;</span><span class="o">)</span>
+</span><span class='line'>        <span class="o">.</span><span class="na">field</span><span class="o">(</span><span class="s">&quot;dateOfBirth&quot;</span><span class="o">)</span>
+</span><span class='line'>        <span class="o">.</span><span class="na">minDocCount</span><span class="o">(</span><span class="mi">0</span><span class="o">)</span>
+</span><span class='line'>        <span class="o">.</span><span class="na">interval</span><span class="o">(</span><span class="n">DateHistogram</span><span class="o">.</span><span class="na">Interval</span><span class="o">.</span><span class="na">YEAR</span><span class="o">)</span>
+</span><span class='line'>        <span class="o">.</span><span class="na">extendedBounds</span><span class="o">(</span><span class="s">&quot;1940&quot;</span><span class="o">,</span> <span class="s">&quot;2009&quot;</span><span class="o">)</span>
+</span><span class='line'>        <span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">&quot;YYYY&quot;</span><span class="o">)</span>
+</span><span class='line'>    <span class="o">)</span>
+</span><span class='line'>    <span class="o">.</span><span class="na">setFrom</span><span class="o">(</span><span class="n">from</span><span class="o">)</span>
+</span><span class='line'>    <span class="o">.</span><span class="na">setSize</span><span class="o">(</span><span class="n">size</span><span class="o">)</span>
+</span><span class='line'>    <span class="o">.</span><span class="na">get</span><span class="o">();</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+Also add the compute tab in `index.html`.
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://david.pilato.fr/#/compute&quot;</span><span class="nt">&gt;</span>Compute<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+You can run the final version using `05-compute` branch:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>git checkout 05-compute
+</span><span class='line'>mvn clean install
+</span><span class='line'>mvn jetty:run
+</span></code></pre></td></tr></table></div></figure>
+
+Opening [Compute tab](http://0.0.0.0:8080/#/compute) now gives you more knowledge about your dataset.
+
+<img class="center" src="/blog/images/legacy-search/05-compute.png" title="Compute results" >
+
+
+## Conclusion
+
+So we have migrated our search part of our application to a search engine instead of using search features provided by our datastore. We are keeping our source of truth in the SQL database but you could also imagine migrating from the legacy datastore to a NoSQL one if you need/want to.
+
+What would happen in case of failure? For example, let say you want to stop your elasticsearch cluster for whatever reason. All index operation will failed and you will have to deal with that by yourself.
+
+If you want to introduce an asynchronous indexing process, you could image to push your JSON documents to a message queue system and instead of writing by yourself the code which will read from the message queue, push to elasticsearch, deal with failures, you can use [Logstash](https://www.elastic.co/products/logstash) and one of its [input plugins](http://www.elastic.co/guide/en/logstash/current/input-plugins.html), for example:
+
+* [Kafka](http://www.elastic.co/guide/en/logstash/current/plugins-inputs-kafka.html)
+* [RabbitMQ](http://www.elastic.co/guide/en/logstash/current/plugins-inputs-rabbitmq.html)
+* [Redis](http://www.elastic.co/guide/en/logstash/current/plugins-inputs-redis.html)
+
+You can also scale out Logstash on multiple nodes if you need more injection power.
+
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Devoxx France 2015]]></title>
+    <link href="http://david.pilato.fr/blog/2015/05/02/devoxx-france-2015/"/>
+    <updated>2015-05-02T01:30:00+02:00</updated>
+    <id>http://david.pilato.fr/blog/2015/05/02/devoxx-france-2015</id>
+    <content type="html"><![CDATA[I gave recently a [talk at Devoxx France 2015](http://cfp.devoxx.fr/2015/talk/OMZ-7895/Elles_ressemblent_a_quoi_mes_donnees_%3F) with [Colin Surprenant](https://twitter.com/@colinsurprenant) and I'd like to share here some of the examples we used for the talk.
+
+The talk was about "what my data look like?".
+
+<script async class="speakerdeck-embed" data-id="84b56957191849ff92b445078abf40aa" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+We said that our manager was asking us to answer some questions:
+
+* who are our customers?
+* how do they use our services?
+* what do they think about us on Twitter?
+
+<!-- more -->
+
+## Our CRM database
+
+So we have a PostgreSQL database containing our data.
+We created live a Java application which fetch our data, convert them to JSON and send them to elasticsearch.
+
+We started from an existing code which is able to connect to our database using Hibernate. We have already annotated beans which represent our model.
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">CrmApp</span> <span class="o">{</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">CrmFactory</span><span class="o">.</span><span class="na">sessionFactory</span><span class="o">();</span>
+</span><span class='line'>        <span class="n">HibernateService</span> <span class="n">hibernate</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">HibernateService</span><span class="o">();</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="kt">int</span> <span class="n">from</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
+</span><span class='line'>        <span class="kt">boolean</span> <span class="n">haveRecords</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="c1">// While we have data to get, we read 10 000 records in the database</span>
+</span><span class='line'>        <span class="k">while</span> <span class="o">(</span><span class="n">haveRecords</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>            <span class="n">hibernate</span><span class="o">.</span><span class="na">beginTransaction</span><span class="o">();</span>
+</span><span class='line'>            <span class="n">Criteria</span> <span class="n">criteria</span> <span class="o">=</span> <span class="n">hibernate</span><span class="o">.</span><span class="na">getSession</span><span class="o">().</span><span class="na">createCriteria</span><span class="o">(</span><span class="n">Person</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+</span><span class='line'>            <span class="n">criteria</span><span class="o">.</span><span class="na">setFirstResult</span><span class="o">(</span><span class="n">from</span><span class="o">);</span>
+</span><span class='line'>            <span class="n">criteria</span><span class="o">.</span><span class="na">setMaxResults</span><span class="o">(</span><span class="mi">10000</span><span class="o">);</span>
+</span><span class='line'>            <span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="n">persons</span> <span class="o">=</span> <span class="n">criteria</span><span class="o">.</span><span class="na">list</span><span class="o">();</span>
+</span><span class='line'>            <span class="k">for</span> <span class="o">(</span><span class="n">Person</span> <span class="n">person</span> <span class="o">:</span> <span class="n">persons</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>              <span class="c1">// We have a person here</span>
+</span><span class='line'>            <span class="o">}</span>
+</span><span class='line'>            <span class="n">hibernate</span><span class="o">.</span><span class="na">commitTransaction</span><span class="o">();</span>
+</span><span class='line'>
+</span><span class='line'>            <span class="k">if</span> <span class="o">(</span><span class="n">persons</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>                <span class="n">haveRecords</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+</span><span class='line'>            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span><span class='line'>                <span class="n">from</span> <span class="o">+=</span> <span class="mi">10000</span><span class="o">;</span>
+</span><span class='line'>            <span class="o">}</span>
+</span><span class='line'>        <span class="o">}</span>
+</span><span class='line'>        <span class="n">CrmFactory</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+The first thing to do is to add `elasticsearch` as a dependency to the project in our `pom.xml` file:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;dependency&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;groupId&gt;</span>org.elasticsearch<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;artifactId&gt;</span>elasticsearch<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;version&gt;</span>1.5.0<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'><span class="nt">&lt;/dependency&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+We will also use Jackson library to serialize our documents in JSON:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;dependency&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;groupId&gt;</span>com.fasterxml.jackson.core<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;artifactId&gt;</span>jackson-databind<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;version&gt;</span>2.3.5<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'><span class="nt">&lt;/dependency&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+We first need to create an elasticsearch client. We will use here a [Transport Client](/blog/2012/02/13/quel-client-java-pour-elasticsearch/):
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="c1">// Create a transport client with cluster.name=devoxx and default IP/Port</span>
+</span><span class='line'><span class="n">Client</span> <span class="n">esClient</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">TransportClient</span><span class="o">(</span>
+</span><span class='line'>    <span class="n">ImmutableSettings</span><span class="o">.</span><span class="na">builder</span><span class="o">().</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;cluster.name&quot;</span><span class="o">,</span> <span class="s">&quot;devoxx&quot;</span><span class="o">)</span>
+</span><span class='line'>  <span class="o">).</span><span class="na">addTransportAddress</span><span class="o">(</span>
+</span><span class='line'>    <span class="k">new</span> <span class="nf">InetSocketTransportAddress</span><span class="o">(</span><span class="s">&quot;127.0.0.1&quot;</span><span class="o">,</span> <span class="mi">9300</span><span class="o">)</span>
+</span><span class='line'>  <span class="o">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+We can either index documents one by one but this is super inefficient. The best way for doing that is by using the `BulkProcessor` class which is provided by elasticsearch. A Bulk will basically execute a given set of requests (index, update or delete) instead of executing each request indivdually:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="c1">// Create a bulk processor</span>
+</span><span class='line'><span class="n">BulkProcessor</span> <span class="n">bulk</span> <span class="o">=</span> <span class="n">BulkProcessor</span><span class="o">.</span><span class="na">builder</span><span class="o">(</span><span class="n">esClient</span><span class="o">,</span> <span class="k">new</span> <span class="n">BulkProcessor</span><span class="o">.</span><span class="na">Listener</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>  <span class="nd">@Override</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">beforeBulk</span><span class="o">(</span><span class="kt">long</span> <span class="n">executionId</span><span class="o">,</span> <span class="n">BulkRequest</span> <span class="n">request</span><span class="o">)</span> <span class="o">{</span> <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nd">@Override</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">afterBulk</span><span class="o">(</span><span class="kt">long</span> <span class="n">executionId</span><span class="o">,</span> <span class="n">BulkRequest</span> <span class="n">request</span><span class="o">,</span> <span class="n">BulkResponse</span> <span class="n">response</span><span class="o">)</span> <span class="o">{</span> <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nd">@Override</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">afterBulk</span><span class="o">(</span><span class="kt">long</span> <span class="n">executionId</span><span class="o">,</span> <span class="n">BulkRequest</span> <span class="n">request</span><span class="o">,</span> <span class="n">Throwable</span> <span class="n">failure</span><span class="o">)</span> <span class="o">{</span> <span class="o">}</span>
+</span><span class='line'><span class="o">})</span>
+</span><span class='line'>  <span class="c1">// We will send the bulk every 10 000 requests</span>
+</span><span class='line'>  <span class="o">.</span><span class="na">setBulkActions</span><span class="o">(</span><span class="mi">10000</span><span class="o">)</span>
+</span><span class='line'>  <span class="c1">// We will send the bulk every 5 seconds even if we don&#39;t have 10 000 requests</span>
+</span><span class='line'>  <span class="o">.</span><span class="na">setFlushInterval</span><span class="o">(</span><span class="n">TimeValue</span><span class="o">.</span><span class="na">timeValueSeconds</span><span class="o">(</span><span class="mi">5</span><span class="o">))</span>
+</span><span class='line'>  <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+</span></code></pre></td></tr></table></div></figure>
+
+Let's create an `ObjectMapper` to serialize into JSON:
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="c1">// Create Jackson mapper</span>
+</span><span class='line'><span class="n">ObjectMapper</span> <span class="n">mapper</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">ObjectMapper</span><span class="o">();</span>
+</span></code></pre></td></tr></table></div></figure>
+
+And now, we just have to send every single object we get from the database to elasticsearch:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="k">for</span> <span class="o">(</span><span class="n">Person</span> <span class="n">person</span> <span class="o">:</span> <span class="n">persons</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>    <span class="c1">// Serialize our bean to a JSON (as bytes or String)</span>
+</span><span class='line'>    <span class="kt">byte</span><span class="o">[]</span> <span class="n">bytes</span> <span class="o">=</span> <span class="n">mapper</span><span class="o">.</span><span class="na">writeValueAsBytes</span><span class="o">(</span><span class="n">person</span><span class="o">);</span>
+</span><span class='line'>    <span class="c1">// Send our JSON to elasticsearch</span>
+</span><span class='line'>    <span class="c1">// index name will be &quot;persons&quot;, type is &quot;person&quot; and we use our bean id as id</span>
+</span><span class='line'>    <span class="n">bulk</span><span class="o">.</span><span class="na">add</span><span class="o">(</span>
+</span><span class='line'>      <span class="k">new</span> <span class="nf">IndexRequest</span><span class="o">(</span><span class="s">&quot;persons&quot;</span><span class="o">,</span> <span class="s">&quot;person&quot;</span><span class="o">,</span> <span class="s">&quot;&quot;</span> <span class="o">+</span> <span class="n">person</span><span class="o">.</span><span class="na">getId</span><span class="o">()).</span><span class="na">source</span><span class="o">(</span><span class="n">bytes</span><span class="o">)</span>
+</span><span class='line'>    <span class="o">);</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+We can run our application and check that everything is working fine but running:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">curl</span> <span class="o">-</span><span class="n">XGET</span> <span class="nl">localhost:</span><span class="mi">9200</span><span class="o">/</span><span class="n">persons</span><span class="o">/</span><span class="n">person</span><span class="o">/</span><span class="n">_count</span><span class="o">?</span><span class="n">pretty</span>
+</span></code></pre></td></tr></table></div></figure>
+
+We can also build our Kibana dashboard which represents our customers:
+
+<img src="/blog/images/devoxx2015/dashboard-crm.png" title="CRM dashboard" >
+
+## Service usage
+
+We have logs coming from nginx as JSON documents:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="nt">&quot;agent&quot;</span><span class="p">:</span> <span class="s2">&quot;Debian APT-HTTP/1.3 (0.9.7.9)&quot;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;code&quot;</span><span class="p">:</span> <span class="mi">404</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;host&quot;</span><span class="p">:</span> <span class="s2">&quot;packages.elasticsearch.org&quot;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;machine&quot;</span><span class="p">:</span> <span class="s2">&quot;i-ea96c300&quot;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;origin&quot;</span><span class="p">:</span> <span class="s2">&quot;50.57.209.100&quot;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;referrer&quot;</span><span class="p">:</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;remote&quot;</span><span class="p">:</span> <span class="s2">&quot;10.5.45.194&quot;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;request&quot;</span><span class="p">:</span> <span class="s2">&quot;GET /logstash/1.4/debian/dists/stable/main/i18n/Translation-en_US.bz2 HTTP/1.1&quot;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;size&quot;</span><span class="p">:</span> <span class="mi">335</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;time&quot;</span><span class="p">:</span> <span class="s2">&quot;2015-03-01T22:00:01+00:00&quot;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+We have collected one day of data in `nginx-logs`:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>ls nginx-logs
+</span></code></pre></td></tr></table></div></figure>
+
+gives
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>download.log.2015-04-01.00-00-01.i-4548086a.gz
+</span><span class='line'>download.log.2015-04-01.00-00-01.i-737c3a89.gz
+</span><span class='line'>download.log.2015-04-01.00-00-01.i-8cd72f7c.gz
+</span><span class='line'>download.log.2015-04-01.00-00-01.i-951754ba.gz
+</span><span class='line'>...
+</span><span class='line'>download.log.2015-04-01.23-00-01.i-951754ba.gz
+</span><span class='line'>download.log.2015-04-01.23-00-01.i-97783e6d.gz
+</span><span class='line'>download.log.2015-04-01.23-00-01.i-c4904b34.gz
+</span></code></pre></td></tr></table></div></figure>
+
+As an input, we will use `stdin` input filter with `json_lines` codec plugin:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="n">input</span> <span class="p">{</span>
+</span><span class='line'>  <span class="n">stdin</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">codec</span> <span class="o">=&gt;</span> <span class="n">json_lines</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+We will extract the date from `time` field, generate information about geo location of the user based on its ip address available in `origin` field and also get some details about the `useragent` field:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="n">filter</span> <span class="p">{</span>
+</span><span class='line'>  <span class="n">date</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">match</span> <span class="o">=&gt;</span> <span class="o">[</span> <span class="s2">&quot;time&quot;</span><span class="p">,</span> <span class="s2">&quot;ISO8601&quot;</span> <span class="o">]</span>
+</span><span class='line'>    <span class="n">locale</span> <span class="o">=&gt;</span> <span class="n">en</span>
+</span><span class='line'>    <span class="n">remove_field</span> <span class="o">=&gt;</span> <span class="s2">&quot;time&quot;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">geoip</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">source</span> <span class="o">=&gt;</span> <span class="s2">&quot;origin&quot;</span>
+</span><span class='line'>    <span class="n">remove_field</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="s2">&quot;remote&quot;</span><span class="p">,</span> <span class="s2">&quot;machine&quot;</span><span class="o">]</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">useragent</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">source</span> <span class="o">=&gt;</span> <span class="s2">&quot;agent&quot;</span>
+</span><span class='line'>    <span class="n">target</span> <span class="o">=&gt;</span> <span class="s2">&quot;useragent&quot;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+A little trick has been added as a filter. Sometimes, gives back 2 IP addresses in `origin` field: `"origin": "192.168.27.32, 195.214.227.49"`. We are going to extract only the last part with `mutate` `gsub`:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="n">mutate</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nb">gsub</span> <span class="o">=&gt;</span> <span class="o">[</span>
+</span><span class='line'>    <span class="s2">&quot;origin&quot;</span><span class="p">,</span> <span class="s2">&quot;.*, &quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span>
+</span><span class='line'>  <span class="o">]</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+Then we just have to send all our data to elasticsearch:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="n">output</span> <span class="p">{</span>
+</span><span class='line'>  <span class="n">stdout</span> <span class="p">{</span> <span class="n">codec</span> <span class="o">=&gt;</span> <span class="n">dots</span> <span class="p">}</span>
+</span><span class='line'>  <span class="n">elasticsearch</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">protocol</span> <span class="o">=&gt;</span> <span class="s2">&quot;http&quot;</span>
+</span><span class='line'>    <span class="n">host</span> <span class="o">=&gt;</span> <span class="s2">&quot;localhost&quot;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+Let's parse our logs with logstash:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>gzcat nginx-logs/* <span class="p">|</span> bin/logstash -f nginx.conf
+</span></code></pre></td></tr></table></div></figure>
+
+We can now build our Kibana dashboard which represents our logs:
+
+<img src="/blog/images/devoxx2015/dashboard-logs.png" title="LOGS dashboard" >
+
+
+## Twitter tracking
+
+We just have to use the Twitter input plugin for that. We will track everything about `devoxx`, `elk`, `elasticsearch`, `logstash` and `kibana` and we want to index all fields coming from the twitter API:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="n">input</span> <span class="p">{</span>
+</span><span class='line'>  <span class="n">twitter</span> <span class="p">{</span>
+</span><span class='line'>      <span class="n">consumer_key</span> <span class="o">=&gt;</span> <span class="s2">&quot;consumer_key&quot;</span>
+</span><span class='line'>      <span class="n">consumer_secret</span> <span class="o">=&gt;</span> <span class="s2">&quot;consumer_secret&quot;</span>
+</span><span class='line'>      <span class="n">oauth_token</span> <span class="o">=&gt;</span> <span class="s2">&quot;oauth_token&quot;</span>
+</span><span class='line'>      <span class="n">oauth_token_secret</span> <span class="o">=&gt;</span> <span class="s2">&quot;oauth_token_secret&quot;</span>
+</span><span class='line'>      <span class="n">keywords</span> <span class="o">=&gt;</span> <span class="o">[</span> <span class="s2">&quot;devoxx&quot;</span><span class="p">,</span> <span class="s2">&quot;elk&quot;</span><span class="p">,</span> <span class="s2">&quot;elasticsearch&quot;</span><span class="p">,</span> <span class="s2">&quot;logstash&quot;</span><span class="p">,</span> <span class="s2">&quot;kibana&quot;</span> <span class="o">]</span>
+</span><span class='line'>      <span class="n">full_tweet</span> <span class="o">=&gt;</span> <span class="kp">true</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+We don't need any filter here:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="n">filter</span> <span class="p">{</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+We will index into elasticsearch but we need to provide a specific index template to define what our mapping will look like:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="n">output</span> <span class="p">{</span>
+</span><span class='line'>  <span class="n">stdout</span> <span class="p">{</span> <span class="n">codec</span> <span class="o">=&gt;</span> <span class="n">dots</span> <span class="p">}</span>
+</span><span class='line'>  <span class="n">elasticsearch</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">protocol</span> <span class="o">=&gt;</span> <span class="s2">&quot;http&quot;</span>
+</span><span class='line'>    <span class="n">host</span> <span class="o">=&gt;</span> <span class="s2">&quot;localhost&quot;</span>
+</span><span class='line'>    <span class="n">index</span> <span class="o">=&gt;</span> <span class="s2">&quot;twitter&quot;</span>
+</span><span class='line'>    <span class="n">index_type</span> <span class="o">=&gt;</span> <span class="s2">&quot;tweet&quot;</span>
+</span><span class='line'>    <span class="n">template</span> <span class="o">=&gt;</span> <span class="s2">&quot;twitter_template.json&quot;</span>
+</span><span class='line'>    <span class="n">template_name</span> <span class="o">=&gt;</span> <span class="s2">&quot;twitter&quot;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+`twitter_template.json` file contains our template. We define that we use 1 single shard, that we don't need `_all` field and that we will index `coordinates.coordinates` field as a `geo_point`:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="nt">&quot;template&quot;</span><span class="p">:</span> <span class="s2">&quot;twitter&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nt">&quot;order&quot;</span><span class="p">:</span>    <span class="mi">1</span><span class="p">,</span>
+</span><span class='line'>  <span class="nt">&quot;settings&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nt">&quot;number_of_shards&quot;</span><span class="p">:</span> <span class="mi">1</span>
+</span><span class='line'>  <span class="p">},</span>
+</span><span class='line'>  <span class="nt">&quot;mappings&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nt">&quot;tweet&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nt">&quot;_all&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nt">&quot;enabled&quot;</span><span class="p">:</span> <span class="kc">false</span>
+</span><span class='line'>      <span class="p">},</span>
+</span><span class='line'>      <span class="nt">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nt">&quot;coordinates&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>          <span class="nt">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>             <span class="nt">&quot;coordinates&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;geo_point&quot;</span>
+</span><span class='line'>             <span class="p">},</span>
+</span><span class='line'>             <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span>
+</span><span class='line'>             <span class="p">}</span>
+</span><span class='line'>          <span class="p">}</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+Let's start to listen to Twitter now:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="err">logstash</span><span class="mf">-1.5</span><span class="err">.</span><span class="mi">0</span><span class="err">.rc</span><span class="mi">2</span><span class="err">/bin/logstash</span> <span class="err">-f</span> <span class="err">twitter.conf</span>
+</span></code></pre></td></tr></table></div></figure>
+
+For each tweet coming, you will see a dot printed.
+
+We can now build our Kibana dashboard which represents our logs.
+
+The funny thing with this demo is that we are tracking everything about `elk`. But ELK does not only mean Elasticsearch, Logstash and Kibana. It's also [an animal](http://en.wikipedia.org/wiki/Elk)!
+
+<img src="/blog/images/devoxx2015/Rocky_Mountain_Bull_Elk.jpg" title="ELK" >
+
+So when US is awake, we often get tweets with other terms like `hunt`, `hunting` and so on. But with Kibana, it's easy to add a "negative" filter on those terms so we can easily get information on what we are actually looking for!
+
+<img src="/blog/images/devoxx2015/dashboard-twitter.png" title="Twitter dashboard" >
+
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Using Log4J2 With Hibernate 4]]></title>
+    <link href="http://david.pilato.fr/blog/2015/03/05/using-log4j2-with-hibernate-4/"/>
+    <updated>2015-03-05T21:00:00+01:00</updated>
+    <id>http://david.pilato.fr/blog/2015/03/05/using-log4j2-with-hibernate-4</id>
+    <content type="html"><![CDATA[I was trying to use Hibernate 4.3.8.Final with Log4J2 and I spent some hours to find why Hibernate was not using Log4J2 though it was declared in my pom.xml file.
+
+Actually, I hit issue [JBLOGGING-107](https://issues.jboss.org/browse/JBLOGGING-107).
+
+The workaround is simply to add a more recent jboss-logging dependency than the one shipped by default with Hibernate 4.3.8.Final.
+
+<figure class='code'><figcaption><span>pom.xml file</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;dependency&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;groupId&gt;</span>org.jboss.logging<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;artifactId&gt;</span>jboss-logging<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;version&gt;</span>3.2.1.Final<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'><span class="nt">&lt;/dependency&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[La Recherche élastique...]]></title>
+    <link href="http://david.pilato.fr/blog/2011/03/09/la-recherche-elastique/"/>
+    <updated>2011-03-09T22:30:32+01:00</updated>
+    <id>http://david.pilato.fr/blog/2011/03/09/la-recherche-elastique</id>
+    <content type="html"><![CDATA[Elasticsearch, un projet mature en quelques mois... A suivre de très près !
+
+<!-- more -->
+
+En cherchant un bout de code pour rendre la couche [Hibernate Search](http://docs.jboss.org/hibernate/stable/search/reference/en-US/html/search-configuration.html#jms-backend) facilement distribuable sur un cluster de machines JBoss, je suis tombé sur le projet [Elasticsearch](http://elasticsearch.org).
+
+Au début, un peu interloqué... Puis, je me lance...
+
+Je télécharge le projet. Je dézippe.
+
+Je lance...
+
+Miracle. En quelques secondes, je dispose d'un outil dans un Cloud, simple, me permettant d'indexer n'importe quel type de document, de le récupérer et de faire une recherche (au sens google du terme) sur n'importe quel champ... Et cela, quelque soit la technologie employée (Java, C#, .Net, Php, à la main, ...).
+
+La simplicité repose sur l'intégration de quelques technologies simples et éprouvées : JSon, REST, Lucene.
+
+Là, où cela devient très fort, c'est lorsque vous démarrez sur une seconde machine dans le même réseau, une autre instance d'Elastic Search... Et là : réplication automatique. Votre nouvelle instance fait parti du Cloud...
+
+Sans rien faire... Presque magique.
+
+Lorsque vous montez encore 2 autres instances (ça peut être sur la même machine - les ports d'écoute s'adaptent automatiquement), alors Elastic Search réparti l'indexation sur plusieurs machines...
+
+La Team est très active. Il suffit de regarder [la fréquence des commits](https://github.com/elasticsearch/elasticsearch) sur github. Elle fournit un composant Java simple à utiliser.
+
+En deux lignes, on se connecte au cloud (sans trop savoir à quelle machine exactement, le principal étant de trouver un service), et on envoie nos demandes d'indexation ou de recherche...
+
+Je vous recommande fortement de regarder de très près ce projet qui va rapidement s'imposer comme une référence.
+
+Pour ma part, je travaille en ce moment à développer une méthode très simple pour interfacer automatiquement et de façon transparente l'indexation des entités gérées par Hibernate. L'idée est de pousser les entités Hibernate à chaque fois qu'elles sont insérées, mises à jour ou effacées vers Elastic Search plutôt que vers Hibernate Search. Le tout avec très peu d'annotations.
+
+Plus d'informations dans quelques jours je pense...
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Utilisation Du Mode Lazy d'Hibernate Avec Struts Et Spring]]></title>
+    <link href="http://david.pilato.fr/blog/2010/02/24/utilisation-du-mode-lazy-dhibernate-avec-struts-et-spring/"/>
+    <updated>2010-02-24T14:56:56+01:00</updated>
+    <id>http://david.pilato.fr/blog/2010/02/24/utilisation-du-mode-lazy-dhibernate-avec-struts-et-spring</id>
+    <content type="html"><![CDATA[Lorsqu'on utilise Hibernate pour déléguer la gestion de la persistence, se pose alors le classique problème de l'exception [LazyInitialisationException](https://www.hibernate.org/hib_docs/v3/api/org/hibernate/LazyInitializationException.html).
+
+<!-- more -->
+
+En effet, dans une modélisation assez classique, imaginons le cas suivant :
+
+## Couche Modèle (ou DAO)
+
+### Classe POJO contenant un attribut x et une collection cols
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="nd">@Entity</span>
+</span><span class='line'><span class="nd">@Inheritance</span><span class="o">(</span><span class="n">strategy</span><span class="o">=</span><span class="n">InheritanceType</span><span class="o">.</span><span class="na">SINGLE_TABLE</span><span class="o">)</span>
+</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Dossier</span> <span class="o">{</span>
+</span><span class='line'>	<span class="nd">@Id</span>
+</span><span class='line'>	<span class="nd">@GeneratedValue</span>
+</span><span class='line'>	<span class="kd">private</span> <span class="n">Long</span> <span class="n">id</span><span class="o">;</span>
+</span><span class='line'>	<span class="kd">private</span> <span class="n">String</span> <span class="n">x</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'>	<span class="nd">@OneToMany</span><span class="o">(</span><span class="n">cascade</span><span class="o">=</span><span class="n">CascadeType</span><span class="o">.</span><span class="na">ALL</span><span class="o">)</span>
+</span><span class='line'>	<span class="kd">private</span> <span class="n">Collections</span> <span class="n">cols</span><span class="o">;</span>
+</span><span class='line'>	<span class="c1">// Getter et setters</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+### Classe DAO
+
+
+Voir le [blog](http://bit.ly/a05odS) pour l'utilisation des generics de Java5 afin d'éviter d'avoir à coder toujours les mêmes méthodes CRUD.
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="nd">@Repository</span>
+</span><span class='line'><span class="nd">@Transactional</span>
+</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">DossierDAO</span> <span class="o">{</span>
+</span><span class='line'>	<span class="nd">@Autowired</span>
+</span><span class='line'>	<span class="kd">protected</span> <span class="n">SessionFactory</span> <span class="n">factory</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'>	<span class="kd">public</span> <span class="n">Dossier</span> <span class="nf">getOne</span> <span class="o">(</span><span class="n">Long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>		<span class="n">Session</span> <span class="n">session</span> <span class="o">=</span> <span class="n">factory</span><span class="o">.</span><span class="na">getCurrentSession</span><span class="o">();</span>
+</span><span class='line'>		<span class="k">return</span> <span class="o">(</span><span class="n">Dossier</span><span class="o">)(</span><span class="n">session</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">Dossier</span><span class="o">.</span><span class="na">class</span><span class="o">,</span><span class="n">id</span><span class="o">));</span>
+</span><span class='line'>	<span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+## Couche Métier (ou Service)
+
+### Classe Service contenant l'injection du DAO
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="nd">@Transactional</span>
+</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">DossierServiceImpl</span> <span class="kd">implements</span> <span class="n">DossierService</span> <span class="o">{</span>
+</span><span class='line'>	<span class="nd">@Autowired</span>
+</span><span class='line'>	<span class="nd">@Qualifier</span><span class="o">(</span><span class="s">&quot;dossierDao&quot;</span><span class="o">)</span>
+</span><span class='line'>	<span class="kd">private</span> <span class="n">DossierDAO</span> <span class="n">dossierDao</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'>	<span class="kd">public</span> <span class="n">Dossier</span> <span class="nf">read</span><span class="o">(</span><span class="n">Long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>		<span class="k">return</span> <span class="n">dossierDao</span><span class="o">.</span><span class="na">getOne</span><span class="o">(</span><span class="n">Dossier</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getName</span><span class="o">(),</span> <span class="n">id</span><span class="o">);</span>
+</span><span class='line'>	<span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+On voit ici que la transaction peut démarrer au niveau du service et que par défaut, en mode Lazy, seul l'attribut x de Dossier sera chargé.
+
+Pour que l'application Web appelante puisse faire une itération sur la collection, il faudrait que celle-ci soit chargée.
+Il est possible de changer le mode LAZY pour dire à Hibernate de tout récupérer mais pour un arbre de données assez profond, cela peut devenir désastreux.
+Il est également de modifier la méthode read du service DossierService ainsi :
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="n">Dossier</span> <span class="nf">read</span><span class="o">(</span><span class="n">Long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>	<span class="n">Dossier</span> <span class="n">d</span> <span class="o">=</span> <span class="n">dossierDao</span><span class="o">.</span><span class="na">getOne</span><span class="o">(</span><span class="n">Dossier</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getName</span><span class="o">(),</span> <span class="n">id</span><span class="o">);</span>
+</span><span class='line'>	<span class="n">d</span><span class="o">.</span><span class="na">getCols</span><span class="o">();</span>
+</span><span class='line'>	<span class="k">return</span> <span class="n">d</span><span class="o">;</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+Dans ce cas, on a déclenché manuellement la recherche du contenu de la collection...
+
+Autre possibilité, garder la connexion avec Hibernate pendant tout le temps du traitement de la requête Web de l'utilisateur.
+Pour se faire, on doit ouvrir la transaction au début du traitement de la requête pour ne la restituer qu'à la fin de la génération de la vue.
+
+On modifie le `web.xml` :
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;filter&gt;</span>
+</span><span class='line'>   <span class="nt">&lt;filter-name&gt;</span>OpenSessionInViewFilter<span class="nt">&lt;/filter-name&gt;</span>
+</span><span class='line'>   <span class="nt">&lt;filter-class&gt;</span>org.springframework.orm.hibernate3.support.OpenSessionInViewFilter<span class="nt">&lt;/filter-class&gt;</span>
+</span><span class='line'><span class="nt">&lt;/filter&gt;</span>
+</span><span class='line'><span class="nt">&lt;filter-mapping&gt;</span>
+</span><span class='line'>   <span class="nt">&lt;filter-name&gt;</span>OpenSessionInViewFilter<span class="nt">&lt;/filter-name&gt;</span>
+</span><span class='line'>   <span class="nt">&lt;url-pattern&gt;</span>*.do<span class="nt">&lt;/url-pattern&gt;</span>
+</span><span class='line'><span class="nt">&lt;/filter-mapping&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+Dans cette configuration, le filtre [OpenSessionInViewFilter](http://static.springsource.org/spring/docs/2.5.x/api/org/springframework/orm/hibernate3/support/OpenSessionInViewFilter.html) mis sur tous les appels `*.do` va déclencher une ouverture de session hibernate jusqu'à la restitution de la vue.
+Ainsi, si dans la JSP, on trouve une itération de l'attribut cols du bean `Dossier`, un appel à la base de données via Hibernate sera déclenché à ce moment là (et seulement à ce moment là).
+Autrement dit, si pour une autre JSP vous n'avez pas besoin d'afficher la collection, l'appel à la base ne sera pas réalisé.
+]]></content>
+  </entry>
+  
+</feed>

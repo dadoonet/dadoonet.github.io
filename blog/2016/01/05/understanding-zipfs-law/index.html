@@ -1,0 +1,721 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Understanding Zipf's Law - -Xmx128gb -Xms128gb</title>
+  <meta name="author" content="David Pilato">
+
+  
+  <meta name="description" content="Understanding Zipf's Law Jan 5th, 2016 12:13 pm | Comments I just discovered a nice video which explains the Zipf&rsquo;s law. I&rsquo;m wondering &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://david.pilato.fr/blog/2016/01/05/understanding-zipfs-law/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/elevator.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="-Xmx128gb -Xms128gb" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<script src="/javascripts/elevator.min.js"></script>
+
+  
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-62381049-1', 'auto');
+// Understanding Zipf's law
+
+ga('send', 'pageview', {
+  page: '/blog/2016/01/05/understanding-zipfs-law/',
+  title: 'Understanding Zipf's law'
+});
+
+</script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">-Xmx128gb -Xms128gb</a></h1>
+  
+    <h2>adding more memory to my brain!</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="david.pilato.fr">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title"><img src="/images/covers/logstash.png"/>Understanding Zipf's Law</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2016-01-05T12:13:02+01:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>5</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>12:13 pm</span></time>
+        
+           | <a href="#disqus_thread"
+             data-disqus-identifier="http://david.pilato.fr">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I just discovered a nice video which explains the <a href="https://en.wikipedia.org/wiki/Zipf%27s_law">Zipf&rsquo;s law</a>.</p>
+
+<div class="embed-video-container"><iframe src="//www.youtube.com/embed/fCn8zs912OE" allowfullscreen></iframe></div>
+
+
+<p>I&rsquo;m wondering if I can index the <a href="http://www.lexique.org/">french lexique from Université de Savoie</a> and find some funny things based on that&hellip;</p>
+
+<!-- more -->
+
+
+<h2>Download french words</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>wget http://www.lexique.org/listes/liste_mots.txt
+</span><span class='line'>head -20 liste_mots.txt
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>What do we have?</p>
+
+<p>It&rsquo;s a CSV file (tabulation as separator):</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>1_graph 8_frantfreqparm
+</span><span class='line'><span class="m">0</span> 279.84
+</span><span class='line'><span class="m">1</span> 612.10
+</span><span class='line'><span class="m">2</span> 1043.90
+</span><span class='line'><span class="m">3</span> 839.32
+</span><span class='line'><span class="m">4</span> 832.23
+</span><span class='line'><span class="m">5</span> 913.87
+</span><span class='line'><span class="m">6</span> 603.42
+</span><span class='line'><span class="m">7</span> 600.61
+</span><span class='line'><span class="m">8</span> 908.03
+</span><span class='line'><span class="m">9</span> 1427.45
+</span><span class='line'>a 4294.90
+</span><span class='line'>aa  0.55
+</span><span class='line'>aaah  0.29
+</span><span class='line'>abaissa 1.45
+</span><span class='line'>abaissai  0.06
+</span><span class='line'>abaissaient 0.26
+</span><span class='line'>abaissait 1.29
+</span><span class='line'>abaissant 2.39
+</span><span class='line'>abaisse 5.39
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The first line is the title. Other lines are really easy to understand:</p>
+
+<ul>
+<li>term</li>
+<li>frequency</li>
+</ul>
+
+
+<h2>Convert to JSON</h2>
+
+<p>I&rsquo;ll use logstash 2.1.1 for this.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>wget https://download.elastic.co/logstash/logstash/logstash-2.1.1.tar.gz
+</span><span class='line'>tar xzf logstash-2.1.1.tar.gz
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>As usual, I&rsquo;m starting from a blank logstash configuration file, <code>zipf.conf</code>:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">input</span> <span class="p">{</span> <span class="n">stdin</span> <span class="p">{}</span> <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">filter</span> <span class="p">{}</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">output</span> <span class="p">{</span> <span class="n">stdout</span> <span class="p">{</span> <span class="n">codec</span> <span class="o">=&gt;</span> <span class="n">rubydebug</span> <span class="p">}</span> <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I check that everything runs fine:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">head</span> <span class="o">-</span><span class="mi">20</span> <span class="n">liste_mots</span><span class="o">.</span><span class="n">txt</span> <span class="o">|</span> <span class="n">logstash</span><span class="o">-</span><span class="mi">2</span><span class="o">.</span><span class="mi">1</span><span class="o">.</span><span class="mi">1</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">logstash</span> <span class="o">-</span><span class="n">f</span> <span class="n">zipf</span><span class="o">.</span><span class="n">conf</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>It gives:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="ss">Settings</span><span class="p">:</span> <span class="no">Default</span> <span class="n">filter</span> <span class="ss">workers</span><span class="p">:</span> <span class="mi">2</span>
+</span><span class='line'><span class="no">Logstash</span> <span class="n">startup</span> <span class="n">completed</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>       <span class="s2">&quot;message&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;1_graph</span><span class="se">\t</span><span class="s2">8_frantfreqparm&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="s2">&quot;@version&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
+</span><span class='line'>    <span class="s2">&quot;@timestamp&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;2016-01-05T11:33:16.269Z&quot;</span><span class="p">,</span>
+</span><span class='line'>          <span class="s2">&quot;host&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;MacBook-Pro.local&quot;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="o">.</span><span class="n">.</span><span class="o">.</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>       <span class="s2">&quot;message&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;abaisse</span><span class="se">\t</span><span class="s2">5.39&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="s2">&quot;@version&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
+</span><span class='line'>    <span class="s2">&quot;@timestamp&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;2016-01-05T11:33:16.275Z&quot;</span><span class="p">,</span>
+</span><span class='line'>          <span class="s2">&quot;host&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;MacBook-Pro.local&quot;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="no">Logstash</span> <span class="n">shutdown</span> <span class="n">completed</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Parse CSV lines</h3>
+
+<p>We have a CSV file so we should use here the <a href="http://www.elastic.co/guide/en/logstash/current/plugins-filters-csv.html">CSV filter plugin</a>:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">csv</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">separator</span> <span class="o">=&gt;</span> <span class="s2">&quot; &quot;</span>
+</span><span class='line'>    <span class="n">columns</span> <span class="o">=&gt;</span> <span class="o">[</span> <span class="s2">&quot;term&quot;</span><span class="p">,</span> <span class="s2">&quot;frequency&quot;</span> <span class="o">]</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Note that you have to use the actual tab (ASCII character code 9) and not <code>\t</code>!</p>
+
+<p>It now gives:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="p">{</span>
+</span><span class='line'>       <span class="nt">&quot;message&quot;</span> <span class="err">=&gt;</span> <span class="s2">&quot;abaisse\t5.39&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;@version&quot;</span> <span class="err">=&gt;</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;@timestamp&quot;</span> <span class="err">=&gt;</span> <span class="s2">&quot;2016-01-05T13:47:52.374Z&quot;</span><span class="p">,</span>
+</span><span class='line'>          <span class="nt">&quot;host&quot;</span> <span class="err">=&gt;</span> <span class="s2">&quot;MacBook-Pro.local&quot;</span><span class="p">,</span>
+</span><span class='line'>          <span class="nt">&quot;term&quot;</span> <span class="err">=&gt;</span> <span class="s2">&quot;abaisse&quot;</span><span class="p">,</span>
+</span><span class='line'>     <span class="nt">&quot;frequency&quot;</span> <span class="err">=&gt;</span> <span class="s2">&quot;5.39&quot;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Cleanup</h3>
+
+<p>We need to ignore the first line as it contains column names:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">if</span> <span class="o">[</span><span class="n">term</span><span class="o">]</span> <span class="o">==</span> <span class="s2">&quot;1_graph&quot;</span> <span class="p">{</span>
+</span><span class='line'>  <span class="n">drop</span> <span class="p">{}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And we can also mutate the <code>frequency</code> field to become actually a number and remove non needed fields:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">mutate</span> <span class="p">{</span>
+</span><span class='line'>  <span class="n">convert</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="s2">&quot;frequency&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;float&quot;</span> <span class="p">}</span>
+</span><span class='line'>  <span class="n">remove_field</span> <span class="o">=&gt;</span> <span class="o">[</span> <span class="s2">&quot;message&quot;</span><span class="p">,</span> <span class="s2">&quot;@version&quot;</span><span class="p">,</span> <span class="s2">&quot;@timestamp&quot;</span><span class="p">,</span> <span class="s2">&quot;host&quot;</span> <span class="o">]</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>We have now:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="p">{</span>
+</span><span class='line'>         <span class="nt">&quot;term&quot;</span> <span class="err">=&gt;</span> <span class="s2">&quot;abaisse&quot;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;frequency&quot;</span> <span class="err">=&gt;</span> <span class="mf">5.39</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>We still have a format issue as the original file is not encoded with <code>UTF-8</code>.</p>
+
+<p>For example <code>accompagné</code> gives:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="nt">&quot;term&quot;</span> <span class="err">=&gt;</span> <span class="s2">&quot;accompagn\\xE9\\t15.65&quot;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>With some logstash warnings:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="err">Received</span> <span class="err">an</span> <span class="err">event</span> <span class="err">that</span> <span class="err">has</span> <span class="err">a</span> <span class="err">different</span> <span class="err">character</span> <span class="err">encoding</span> <span class="err">than</span> <span class="err">you</span> <span class="err">configured.</span> <span class="p">{</span><span class="err">:text=&gt;</span><span class="nt">&quot;ab\\xEEm\\xE9es\\t0.42&quot;</span><span class="p">,</span> <span class="err">:expected_charset=&gt;</span><span class="nt">&quot;UTF-8&quot;</span><span class="p">,</span> <span class="err">:level=&gt;:warn</span><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Looking at what the browser detected it looks like we have &ldquo;Windows-1252&rdquo; encoding here:</p>
+
+<p><img src="/blog/images/zipf/chrome.png" title="Encoding" ></p>
+
+<p>So we need to tell logstash how to parse stdin:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">input</span> <span class="p">{</span>
+</span><span class='line'>  <span class="n">stdin</span> <span class="p">{</span>
+</span><span class='line'>      <span class="n">codec</span> <span class="o">=&gt;</span> <span class="n">line</span> <span class="p">{</span>
+</span><span class='line'>          <span class="s2">&quot;charset&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;Windows-1252&quot;</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Index and analyze</h2>
+
+<p>I&rsquo;m going to use my <a href="https://found.elastic.co/#clusters/">found</a> instance here. In seconds, I have up and running my elasticsearch cluster with kibana, all with the latest versions.</p>
+
+<p>I just have to define my security settings, and configure logstash again.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">output</span> <span class="p">{</span>
+</span><span class='line'>  <span class="n">stdout</span> <span class="p">{</span> <span class="n">codec</span> <span class="o">=&gt;</span> <span class="n">dots</span> <span class="p">}</span>
+</span><span class='line'>  <span class="n">elasticsearch</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">ssl</span> <span class="o">=&gt;</span> <span class="kp">true</span>
+</span><span class='line'>    <span class="n">hosts</span> <span class="o">=&gt;</span> <span class="o">[</span> <span class="s2">&quot;MYCLUSTERONFOUND.found.io:9243&quot;</span> <span class="o">]</span>
+</span><span class='line'>    <span class="n">index</span> <span class="o">=&gt;</span> <span class="s2">&quot;zipf&quot;</span>
+</span><span class='line'>    <span class="n">document_type</span> <span class="o">=&gt;</span> <span class="s2">&quot;french&quot;</span>
+</span><span class='line'>    <span class="n">template</span> <span class="o">=&gt;</span> <span class="s2">&quot;zipf_template.json&quot;</span>
+</span><span class='line'>    <span class="n">template_name</span> <span class="o">=&gt;</span> <span class="s2">&quot;zipf&quot;</span>
+</span><span class='line'>    <span class="n">user</span> <span class="o">=&gt;</span> <span class="s2">&quot;admin&quot;</span>
+</span><span class='line'>    <span class="n">password</span> <span class="o">=&gt;</span> <span class="s2">&quot;mygeneratedpassword&quot;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>We need a template here as we don&rsquo;t want to analyze our <code>term</code> field. Let&rsquo;s define <code>zipf_template.json</code>:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="nt">&quot;order&quot;</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+</span><span class='line'>  <span class="nt">&quot;template&quot;</span> <span class="p">:</span> <span class="s2">&quot;zipf&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nt">&quot;settings&quot;</span> <span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nt">&quot;index&quot;</span> <span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nt">&quot;refresh_interval&quot;</span> <span class="p">:</span> <span class="s2">&quot;5s&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;number_of_shards&quot;</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;number_of_replicas&quot;</span> <span class="p">:</span> <span class="mi">0</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>  <span class="p">},</span>
+</span><span class='line'>  <span class="nt">&quot;mappings&quot;</span> <span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nt">&quot;french&quot;</span> <span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nt">&quot;properties&quot;</span> <span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nt">&quot;term&quot;</span> <span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>          <span class="nt">&quot;type&quot;</span> <span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
+</span><span class='line'>          <span class="nt">&quot;index&quot;</span><span class="p">:</span> <span class="s2">&quot;not_analyzed&quot;</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And now, run it on all the dataset and wait for its completion:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="err">cat</span> <span class="err">liste_mots.txt</span> <span class="err">|</span> <span class="err">logstash</span><span class="mf">-2.1</span><span class="err">.</span><span class="mi">1</span><span class="err">/bin/logstash</span> <span class="err">-f</span> <span class="err">zipf.conf</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Most and less frequent french terms</h2>
+
+<p>According to this dataset, we can extract some information with Kibana:</p>
+
+<p><img src="/blog/images/zipf/all-terms.png" title="All french terms" ></p>
+
+<p>We can see that obviously terms like <code>de</code>, <code>la</code> and <code>et</code> are very frequent but we use rarely the terms <code>compassions</code>, <code>croulante</code> and <code>croulantes</code>.</p>
+
+<p>What? We have almost no &ldquo;compassion&rdquo; in France? Actually we do, but we use really often the singular form not the plural! Searching for <code>compassion*</code> in Kibana shows it:</p>
+
+<p><img src="/blog/images/zipf/compassion.png" title="compassion* terms" ></p>
+
+<p>I also looked at terms starting with <code>ch</code>. It gives:</p>
+
+<p><img src="/blog/images/zipf/starts-with-ch.png" title="ch* terms" ></p>
+
+<p><code>chez</code>, <code>chaque</code> and <code>chose</code> are really common terms. I don&rsquo;t know what <code>chabler</code>, <code>chaboisseaux</code> and <code>chabots</code> actually mean! :D</p>
+
+<h2>Zipf Law</h2>
+
+<p>Let&rsquo;s build a final visualization and see if we can have a curve like the one exposed in the video.</p>
+
+<p><img src="/blog/images/zipf/zipf.png" title="Zipf's Law" ></p>
+
+<p>I changed the graph options and used a log Y Axis scale and also increased the number of terms to 1000.</p>
+
+<p><img src="/blog/images/zipf/zipf-log.png" title="Zipf's Law Log Axis" ></p>
+
+<p>Well. It looks close.</p>
+
+<p>I think I should now try to index an actual french book to see how it compares with this data source&hellip;</p>
+
+<p>Stay tuned :)</p>
+</div>
+
+
+  <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">David Pilato</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2016-01-05T12:13:02+01:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>5</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>12:13 pm</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/elasticsearch/'>elasticsearch</a>, <a class='category' href='/blog/categories/kibana/'>kibana</a>, <a class='category' href='/blog/categories/logstash/'>logstash</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://david.pilato.fr/blog/2016/01/05/understanding-zipfs-law/" data-via="dadoonet" data-counturl="http://david.pilato.fr/blog/2016/01/05/understanding-zipfs-law/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2015/12/10/building-a-directory-map-with-elk/" title="Previous Post: Building a directory map with ELK">&laquo; Building a directory map with ELK</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2016/01/12/3-years-time-flies/" title="Next Post: 3 years! Time flies!">3 years! Time flies! &raquo;</a>
+      
+    </p>
+    <p class="meta">
+        <div class="elevator">
+          <svg class="sweet-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve" height="100px" width="100px">
+              <path d="M70,47.5H30c-1.4,0-2.5,1.1-2.5,2.5v40c0,1.4,1.1,2.5,2.5,2.5h40c1.4,0,2.5-1.1,2.5-2.5V50C72.5,48.6,71.4,47.5,70,47.5z   M47.5,87.5h-5v-25h5V87.5z M57.5,87.5h-5v-25h5V87.5z M67.5,87.5h-5V60c0-1.4-1.1-2.5-2.5-2.5H40c-1.4,0-2.5,1.1-2.5,2.5v27.5h-5  v-35h35V87.5z"/>
+              <path d="M50,42.5c1.4,0,2.5-1.1,2.5-2.5V16l5.7,5.7c0.5,0.5,1.1,0.7,1.8,0.7s1.3-0.2,1.8-0.7c1-1,1-2.6,0-3.5l-10-10  c-1-1-2.6-1-3.5,0l-10,10c-1,1-1,2.6,0,3.5c1,1,2.6,1,3.5,0l5.7-5.7v24C47.5,41.4,48.6,42.5,50,42.5z"/>
+          </svg>
+          Back to Top
+        </div>
+    </p>
+<script>
+// Elevator script included on the page, already.
+
+window.onload = function() {
+  var elevator = new Elevator({
+    element: document.querySelector('.elevator'),
+    mainAudio: '/music/elevator-music.mp3',
+    endAudio: '/music/ding.mp3'
+  });
+}
+</script>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>About Me</h1>
+  <p>Developer | Evangelist at <a href="http://elastic.co/">elastic</a> and creator of the Elastic French Speakers <a href="http://www.meetup.com/elasticsearchfr/">User Group</a>. Frequent speaker about all things Elastic, in conferences, for User Groups and in companies with <a href="http://www.brownbaglunch.fr/">BBL talks</a>. In my free time, I enjoy coding and DJ four times per year, just for fun. Living with my family in Cergy, France.</p>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2017/01/09/4-years-at-elastic/">4 Years at Elastic!</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/10/21/elasticsearch-real-integration-tests-with-security-enabled-updated-for-ga/">Elasticsearch Real Integration Tests With Security Enabled (Updated for GA)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/10/20/creating-elasticsearch-transport-action-updated-for-ga/">Creating Elasticsearch Transport Action (Updated for GA)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/10/19/adding-a-new-rest-endpoint-to-elasticsearch-updated-for-ga/">Adding a New REST Endpoint to Elasticsearch (Updated for GA)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/10/18/elasticsearch-real-integration-tests-updated-for-ga/">Elasticsearch Real Integration Tests (Updated for GA)</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+<section class="twitterOct">
+  <h1 style="margin-bottom: 0.4em"> Tweets </h1>
+  <a class="twitter-timeline"
+	 data-dnt="true" href="https://twitter.com/dadoonet" 
+     data-widget-id="593022343921979392">
+     
+     Tweets by @dadoonet
+  </a>
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</section>
+
+
+<section>
+
+  <h1>Main GitHub Repos</h1>
+
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'dadoonet',
+            count: 10,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2017 - David Pilato -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'dadoonet';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://david.pilato.fr/blog/2016/01/05/understanding-zipfs-law/';
+        var disqus_url = 'http://david.pilato.fr/blog/2016/01/05/understanding-zipfs-law/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

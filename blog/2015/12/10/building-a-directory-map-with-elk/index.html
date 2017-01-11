@@ -1,0 +1,1303 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Building a Directory Map With ELK - -Xmx128gb -Xms128gb</title>
+  <meta name="author" content="David Pilato">
+
+  
+  <meta name="description" content="Building a Directory Map With ELK Dec 10th, 2015 9:28 am | Comments I gave a BBL talk recently and while chatting with attendees, one of them told &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://david.pilato.fr/blog/2015/12/10/building-a-directory-map-with-elk/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/elevator.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="-Xmx128gb -Xms128gb" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<script src="/javascripts/elevator.min.js"></script>
+
+  
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-62381049-1', 'auto');
+// Building a directory map with ELK
+
+ga('send', 'pageview', {
+  page: '/blog/2015/12/10/building-a-directory-map-with-elk/',
+  title: 'Building a directory map with ELK'
+});
+
+</script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">-Xmx128gb -Xms128gb</a></h1>
+  
+    <h2>adding more memory to my brain!</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="david.pilato.fr">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title"><img src="/images/covers/logstash.png"/>Building a Directory Map With ELK</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-12-10T09:28:15+01:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>10</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>9:28 am</span></time>
+        
+           | <a href="#disqus_thread"
+             data-disqus-identifier="http://david.pilato.fr">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I gave a <a href="http://www.brownbaglunch.fr/">BBL talk</a> recently and while chatting with attendees, one of them told me a simple use case he covered with elasticsearch: indexing metadata files on a NAS with a simple <code>ls -lR</code> like command.
+His need is to be able to search on a NAS for files when a user wants to restore a deleted file.</p>
+
+<p>As you can imagine a search engine is super helpful when you have hundreds of millions files!</p>
+
+<p>I found this idea great and this is by the way why I love speaking at conferences or in companies: you always get great ideas when you listen to others!</p>
+
+<p>I decided then to adapt this idea using the ELK stack.</p>
+
+<!-- more -->
+
+
+<h2>Find the command line</h2>
+
+<p>As I&rsquo;m running on MacOS, I need to install first <a href="https://makandracards.com/mmarschall/4445-change-time-format-when-using-ls-on-mac-osx">coreutils</a> as I&rsquo;m missing one cool parameter to the <code>ls</code> command: <code>--time-style</code>.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>brew install coreutils
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I&rsquo;m starting with <code>find</code> and <code>ls</code> which offers here a nice way to display our filesystem from a given directory, <code>~/Documents</code> here.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>find ~/Documents -type f -print0 <span class="p">|</span> xargs -0 gls -l --time-style<span class="o">=</span><span class="s2">&quot;+%Y-%m-%dT%H:%M:%S&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This gives something like:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>-rw-r--r-- <span class="m">1</span> dpilato staff   <span class="m">6148</span> 2014-09-18T12:49:23 /Users/dpilato/Documents/Elasticsearch/tmp/es/.DS_Store
+</span><span class='line'>-rw-r--r-- <span class="m">1</span> dpilato staff <span class="m">110831</span> 2013-01-28T08:47:27 /Users/dpilato/Documents/Elasticsearch/tmp/es/docs/Autoentreprise2012.pdf
+</span><span class='line'>-rw-r--r-- <span class="m">1</span> dpilato staff <span class="m">145244</span> 2013-01-15T14:47:28 /Users/dpilato/Documents/Elasticsearch/tmp/es/meetups/Meetup.pdf
+</span><span class='line'>-rw-r--r-- <span class="m">1</span> dpilato staff     <span class="m">11</span> 2015-05-12T16:34:08 /Users/dpilato/Documents/Elasticsearch/tmp/es/test.txt
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Parse with logstash</h2>
+
+<p>Let&rsquo;s create a nice JSON document with logstash.</p>
+
+<h3>Analyze current format</h3>
+
+<p>What is the format we have? Each line has two main parts separated by a space:</p>
+
+<ul>
+<li>metadata: <code>-rw-r--r-- 1 dpilato staff     11 2015-05-12T16:34:08</code></li>
+<li>fullpath: <code>/Users/dpilato/Documents/Elasticsearch/tmp/es/test.txt</code></li>
+</ul>
+
+
+<p>metadata contains:</p>
+
+<ul>
+<li><code>d</code> if path is a directory or <code>-</code> if file. We only print files so we have only <code>-</code>.</li>
+<li><code>rwx</code> user rights: <code>r</code> for read, <code>w</code> for write and <code>x</code> for execution</li>
+<li><code>r-x</code> group rights: same format as for user rights</li>
+<li><code>r-x</code> other rights: same format as for user rights</li>
+<li><code></code>: a blank</li>
+<li><code>1</code>: number of links</li>
+<li><code></code>: a blank</li>
+<li><code>dpilato</code>: user name</li>
+<li><code></code>: a blank</li>
+<li><code>staff  </code>: group name</li>
+<li><code></code>: a blank</li>
+<li><code>   11</code>: file size. The text length depends on the biggest file we will find.</li>
+<li><code></code>: a blank</li>
+<li><code>2015-05-12T16:34:08</code>: last modification date.</li>
+</ul>
+
+
+<h3>Grok it!</h3>
+
+<p>I&rsquo;m using <a href="http://grokconstructor.appspot.com/">GROK Constructor</a> to incrementally build the grok pattern.</p>
+
+<p>I&rsquo;m ending up with:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="o">[</span>d-<span class="o">][</span>r-<span class="o">][</span>w-<span class="o">][</span>x-<span class="o">][</span>r-<span class="o">][</span>w-<span class="o">][</span>x-<span class="o">][</span>r-<span class="o">][</span>w-<span class="o">][</span>x-<span class="o">]</span> %<span class="o">{</span>INT<span class="o">}</span> %<span class="o">{</span>USERNAME<span class="o">}</span> %<span class="o">{</span>USERNAME<span class="o">}</span> %<span class="o">{</span>SPACE<span class="o">}</span>%<span class="o">{</span>NUMBER<span class="o">}</span> %<span class="o">{</span>TIMESTAMP_ISO8601<span class="o">}</span> %<span class="o">{</span>GREEDYDATA<span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Translating to <a href="https://www.elastic.co/guide/en/logstash/current/plugins-filters-grok.html">logstash grok filter</a> and setting field names, it gives:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="o">(</span>?:d<span class="p">|</span>-<span class="o">)(</span>?&lt;permission.user.read&gt;<span class="o">[</span>r-<span class="o">])(</span>?&lt;permission.user.write&gt;<span class="o">[</span>w-<span class="o">])(</span>?&lt;permission.user.execute&gt;<span class="o">[</span>x-<span class="o">])(</span>?&lt;permission.group.read&gt;<span class="o">[</span>r-<span class="o">])(</span>?&lt;permission.group.write&gt;<span class="o">[</span>w-<span class="o">])(</span>?&lt;permission.group.execute&gt;<span class="o">[</span>x-<span class="o">])(</span>?&lt;permission.other.read&gt;<span class="o">[</span>r-<span class="o">])(</span>?&lt;permission.other.write&gt;<span class="o">[</span>w-<span class="o">])(</span>?&lt;permission.other.execute&gt;<span class="o">[</span>x-<span class="o">])</span> %<span class="o">{</span>INT:links:int<span class="o">}</span> %<span class="o">{</span>USERNAME:user<span class="o">}</span> %<span class="o">{</span>USERNAME:group<span class="o">}</span> %<span class="o">{</span>SPACE<span class="o">}</span>%<span class="o">{</span>NUMBER:size:int<span class="o">}</span> %<span class="o">{</span>TIMESTAMP_ISO8601:date<span class="o">}</span> %<span class="o">{</span>GREEDYDATA:name<span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Let&rsquo;s test it!</p>
+
+<p>I create a file <code>treemap.conf</code>:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">input</span> <span class="p">{</span> <span class="n">stdin</span> <span class="p">{}</span> <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">filter</span> <span class="p">{</span>
+</span><span class='line'>  <span class="n">grok</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">match</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="s2">&quot;message&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;(?:d|-)(?&lt;permission.user.read&gt;[r-])(?&lt;permission.user.write&gt;[w-])(?&lt;permission.user.execute&gt;[x-])(?&lt;permission.group.read&gt;[r-])(?&lt;permission.group.write&gt;[w-])(?&lt;permission.group.execute&gt;[x-])(?&lt;permission.other.read&gt;[r-])(?&lt;permission.other.write&gt;[w-])(?&lt;permission.other.execute&gt;[x-]) %{INT:links:int} %{USERNAME:user} %{USERNAME:group} %{SPACE}%{NUMBER:size:int} %{TIMESTAMP_ISO8601:date} %{GREEDYDATA:name}&quot;</span> <span class="p">}</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">output</span> <span class="p">{</span> <span class="n">stdout</span> <span class="p">{</span> <span class="n">codec</span> <span class="o">=&gt;</span> <span class="n">rubydebug</span> <span class="p">}</span> <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Then I launch logstash:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>find ~/Documents -type f -print0 <span class="p">|</span> xargs -0 gls -l --time-style<span class="o">=</span><span class="s2">&quot;+%Y-%m-%dT%H:%M:%S&quot;</span> <span class="p">|</span> bin/logstash -f treemap.conf
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>It gives for the same line we discussed before:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>             <span class="s2">&quot;message&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;-rw-r--r-- 1 dpilato staff     11 2015-05-12T16:34:08 /Users/dpilato/Documents/Elasticsearch/tmp/es/test.txt&quot;</span><span class="p">,</span>
+</span><span class='line'>            <span class="s2">&quot;@version&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
+</span><span class='line'>          <span class="s2">&quot;@timestamp&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;2015-12-11T11:27:06.386Z&quot;</span><span class="p">,</span>
+</span><span class='line'>                <span class="s2">&quot;host&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;MacBook-Air-de-David.local&quot;</span><span class="p">,</span>
+</span><span class='line'><span class="s2">&quot;permission.user.read&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span>
+</span><span class='line'>   <span class="s2">&quot;permission.user.write&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span>
+</span><span class='line'> <span class="s2">&quot;permission.user.execute&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span>
+</span><span class='line'>   <span class="s2">&quot;permission.group.read&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="s2">&quot;permission.group.write&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span>
+</span><span class='line'><span class="s2">&quot;permission.group.execute&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span>
+</span><span class='line'>   <span class="s2">&quot;permission.other.read&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="s2">&quot;permission.other.write&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span>
+</span><span class='line'><span class="s2">&quot;permission.other.execute&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span>
+</span><span class='line'>               <span class="s2">&quot;links&quot;</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span>
+</span><span class='line'>                <span class="s2">&quot;user&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;dpilato&quot;</span><span class="p">,</span>
+</span><span class='line'>               <span class="s2">&quot;group&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;staff&quot;</span><span class="p">,</span>
+</span><span class='line'>                <span class="s2">&quot;size&quot;</span> <span class="o">=&gt;</span> <span class="mi">11</span><span class="p">,</span>
+</span><span class='line'>                <span class="s2">&quot;date&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;2015-05-12T16:34:08&quot;</span><span class="p">,</span>
+</span><span class='line'>                <span class="s2">&quot;name&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot; /Users/dpilato/Documents/Elasticsearch/tmp/es/test.txt&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>When I try to write permission properties to nested fields, I hit an <a href="https://github.com/logstash-plugins/logstash-filter-grok/issues/66">issue</a>. So I need to add some transformations.</p>
+
+<h3>Fix permissions</h3>
+
+<p>As seen before, we want to write permissions to a nested data structure.
+We can use the <a href="https://www.elastic.co/guide/en/logstash/current/plugins-filters-mutate.html">mutate filter</a>.</p>
+
+<p>First, let&rsquo;s replace <code>rwx</code> values to <code>true</code> and <code>-</code> to <code>false</code>:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">mutate</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nb">gsub</span> <span class="o">=&gt;</span> <span class="o">[</span>
+</span><span class='line'>      <span class="s2">&quot;permission.user.read&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="s2">&quot;permission.user.read&quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;false&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="s2">&quot;permission.user.write&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="s2">&quot;permission.user.write&quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;false&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="s2">&quot;permission.user.execute&quot;</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="s2">&quot;permission.user.execute&quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;false&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="s2">&quot;permission.group.read&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="s2">&quot;permission.group.read&quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;false&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="s2">&quot;permission.group.write&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="s2">&quot;permission.group.write&quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;false&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="s2">&quot;permission.group.execute&quot;</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="s2">&quot;permission.group.execute&quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;false&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="s2">&quot;permission.other.read&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="s2">&quot;permission.other.read&quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;false&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="s2">&quot;permission.other.write&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="s2">&quot;permission.other.write&quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;false&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="s2">&quot;permission.other.execute&quot;</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="s2">&quot;permission.other.execute&quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;false&quot;</span>
+</span><span class='line'>  <span class="o">]</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>It now gives:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="s2">&quot;permission.user.read&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span>
+</span><span class='line'>   <span class="s2">&quot;permission.user.write&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span>
+</span><span class='line'> <span class="s2">&quot;permission.user.execute&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;false&quot;</span><span class="p">,</span>
+</span><span class='line'>   <span class="s2">&quot;permission.group.read&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="s2">&quot;permission.group.write&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;false&quot;</span><span class="p">,</span>
+</span><span class='line'><span class="s2">&quot;permission.group.execute&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;false&quot;</span><span class="p">,</span>
+</span><span class='line'>   <span class="s2">&quot;permission.other.read&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="s2">&quot;permission.other.write&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;false&quot;</span><span class="p">,</span>
+</span><span class='line'><span class="s2">&quot;permission.other.execute&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;false&quot;</span><span class="p">,</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>We can mutate again those fields as actual booleans:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">mutate</span> <span class="p">{</span>
+</span><span class='line'>  <span class="n">rename</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="s2">&quot;permission.user.read&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;[permission][user][read]&quot;</span> <span class="p">}</span>
+</span><span class='line'>  <span class="n">rename</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="s2">&quot;permission.user.write&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;[permission][user][write]&quot;</span> <span class="p">}</span>
+</span><span class='line'>  <span class="n">rename</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="s2">&quot;permission.user.execute&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;[permission][user][execute]&quot;</span> <span class="p">}</span>
+</span><span class='line'>  <span class="n">rename</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="s2">&quot;permission.group.read&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;[permission][group][read]&quot;</span> <span class="p">}</span>
+</span><span class='line'>  <span class="n">rename</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="s2">&quot;permission.group.write&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;[permission][group][write]&quot;</span> <span class="p">}</span>
+</span><span class='line'>  <span class="n">rename</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="s2">&quot;permission.group.execute&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;[permission][group][execute]&quot;</span> <span class="p">}</span>
+</span><span class='line'>  <span class="n">rename</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="s2">&quot;permission.other.read&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;[permission][other][read]&quot;</span> <span class="p">}</span>
+</span><span class='line'>  <span class="n">rename</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="s2">&quot;permission.other.write&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;[permission][other][write]&quot;</span> <span class="p">}</span>
+</span><span class='line'>  <span class="n">rename</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="s2">&quot;permission.other.execute&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;[permission][other][execute]&quot;</span> <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>It now gives:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="s2">&quot;permission&quot;</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span><span class='line'>     <span class="s2">&quot;user&quot;</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span><span class='line'>           <span class="s2">&quot;read&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span>
+</span><span class='line'>          <span class="s2">&quot;write&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span>
+</span><span class='line'>        <span class="s2">&quot;execute&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;false&quot;</span>
+</span><span class='line'>    <span class="p">},</span>
+</span><span class='line'>    <span class="s2">&quot;group&quot;</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span><span class='line'>           <span class="s2">&quot;read&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span>
+</span><span class='line'>          <span class="s2">&quot;write&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;false&quot;</span><span class="p">,</span>
+</span><span class='line'>        <span class="s2">&quot;execute&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;false&quot;</span>
+</span><span class='line'>    <span class="p">},</span>
+</span><span class='line'>    <span class="s2">&quot;other&quot;</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span><span class='line'>           <span class="s2">&quot;read&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span>
+</span><span class='line'>          <span class="s2">&quot;write&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;false&quot;</span><span class="p">,</span>
+</span><span class='line'>        <span class="s2">&quot;execute&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;false&quot;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Let&rsquo;s now move to <code>booleans</code>. We can add that to the same latest mutate filter we just added:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">convert</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="s2">&quot;[permission][user][read]&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;boolean&quot;</span> <span class="p">}</span>
+</span><span class='line'><span class="n">convert</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="s2">&quot;[permission][user][write]&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;boolean&quot;</span> <span class="p">}</span>
+</span><span class='line'><span class="n">convert</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="s2">&quot;[permission][user][execute]&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;boolean&quot;</span> <span class="p">}</span>
+</span><span class='line'><span class="n">convert</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="s2">&quot;[permission][group][read]&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;boolean&quot;</span> <span class="p">}</span>
+</span><span class='line'><span class="n">convert</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="s2">&quot;[permission][group][write]&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;boolean&quot;</span> <span class="p">}</span>
+</span><span class='line'><span class="n">convert</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="s2">&quot;[permission][group][execute]&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;boolean&quot;</span> <span class="p">}</span>
+</span><span class='line'><span class="n">convert</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="s2">&quot;[permission][other][read]&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;boolean&quot;</span> <span class="p">}</span>
+</span><span class='line'><span class="n">convert</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="s2">&quot;[permission][other][write]&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;boolean&quot;</span> <span class="p">}</span>
+</span><span class='line'><span class="n">convert</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="s2">&quot;[permission][other][execute]&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;boolean&quot;</span> <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Et voilà!</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="s2">&quot;permission&quot;</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span><span class='line'>     <span class="s2">&quot;user&quot;</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span><span class='line'>           <span class="s2">&quot;read&quot;</span> <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">,</span>
+</span><span class='line'>          <span class="s2">&quot;write&quot;</span> <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">,</span>
+</span><span class='line'>        <span class="s2">&quot;execute&quot;</span> <span class="o">=&gt;</span> <span class="kp">false</span>
+</span><span class='line'>    <span class="p">},</span>
+</span><span class='line'>    <span class="s2">&quot;group&quot;</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span><span class='line'>           <span class="s2">&quot;read&quot;</span> <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">,</span>
+</span><span class='line'>          <span class="s2">&quot;write&quot;</span> <span class="o">=&gt;</span> <span class="kp">false</span><span class="p">,</span>
+</span><span class='line'>        <span class="s2">&quot;execute&quot;</span> <span class="o">=&gt;</span> <span class="kp">false</span>
+</span><span class='line'>    <span class="p">},</span>
+</span><span class='line'>    <span class="s2">&quot;other&quot;</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span><span class='line'>           <span class="s2">&quot;read&quot;</span> <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">,</span>
+</span><span class='line'>          <span class="s2">&quot;write&quot;</span> <span class="o">=&gt;</span> <span class="kp">false</span><span class="p">,</span>
+</span><span class='line'>        <span class="s2">&quot;execute&quot;</span> <span class="o">=&gt;</span> <span class="kp">false</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Date reconciliation</h3>
+
+<p>We have 2 fields related to a timestamp:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="s2">&quot;@timestamp&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;2015-12-11T11:27:06.386Z&quot;</span><span class="p">,</span>
+</span><span class='line'>        <span class="s2">&quot;date&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;2015-05-12T16:34:08&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The <a href="https://www.elastic.co/guide/en/logstash/current/plugins-filters-date.html">date filter</a> will reconciliate the <code>@timestamp</code> field with the file date.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">date</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">match</span> <span class="o">=&gt;</span> <span class="o">[</span> <span class="s2">&quot;date&quot;</span><span class="p">,</span> <span class="s2">&quot;ISO8601&quot;</span> <span class="o">]</span>
+</span><span class='line'>    <span class="n">remove_field</span> <span class="o">=&gt;</span> <span class="o">[</span> <span class="s2">&quot;date&quot;</span> <span class="o">]</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Timestamp is now correct:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="s2">&quot;@timestamp&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;2013-01-15T13:47:28.000Z&quot;</span><span class="p">,</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Cleanup</h3>
+
+<p>Some fields are now not needed anymore so we can simply remove them by adding a <code>remove_field</code> directive to our mutate filter:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">remove_field</span> <span class="o">=&gt;</span> <span class="o">[</span> <span class="s2">&quot;message&quot;</span><span class="p">,</span> <span class="s2">&quot;host&quot;</span><span class="p">,</span> <span class="s2">&quot;@version&quot;</span> <span class="o">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>We are now all set to send the final data to elasticsearch!</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="s2">&quot;@timestamp&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;2015-05-12T14:34:08.000Z&quot;</span><span class="p">,</span>
+</span><span class='line'>         <span class="s2">&quot;links&quot;</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span>
+</span><span class='line'>          <span class="s2">&quot;user&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;dpilato&quot;</span><span class="p">,</span>
+</span><span class='line'>         <span class="s2">&quot;group&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;staff&quot;</span><span class="p">,</span>
+</span><span class='line'>          <span class="s2">&quot;size&quot;</span> <span class="o">=&gt;</span> <span class="mi">11</span><span class="p">,</span>
+</span><span class='line'>          <span class="s2">&quot;name&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;/Users/dpilato/Documents/Elasticsearch/tmp/es/test.txt&quot;</span><span class="p">,</span>
+</span><span class='line'>    <span class="s2">&quot;permission&quot;</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span><span class='line'>         <span class="s2">&quot;user&quot;</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span><span class='line'>               <span class="s2">&quot;read&quot;</span> <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">,</span>
+</span><span class='line'>              <span class="s2">&quot;write&quot;</span> <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">,</span>
+</span><span class='line'>            <span class="s2">&quot;execute&quot;</span> <span class="o">=&gt;</span> <span class="kp">false</span>
+</span><span class='line'>        <span class="p">},</span>
+</span><span class='line'>        <span class="s2">&quot;group&quot;</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span><span class='line'>               <span class="s2">&quot;read&quot;</span> <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">,</span>
+</span><span class='line'>              <span class="s2">&quot;write&quot;</span> <span class="o">=&gt;</span> <span class="kp">false</span><span class="p">,</span>
+</span><span class='line'>            <span class="s2">&quot;execute&quot;</span> <span class="o">=&gt;</span> <span class="kp">false</span>
+</span><span class='line'>        <span class="p">},</span>
+</span><span class='line'>        <span class="s2">&quot;other&quot;</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span><span class='line'>               <span class="s2">&quot;read&quot;</span> <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">,</span>
+</span><span class='line'>              <span class="s2">&quot;write&quot;</span> <span class="o">=&gt;</span> <span class="kp">false</span><span class="p">,</span>
+</span><span class='line'>            <span class="s2">&quot;execute&quot;</span> <span class="o">=&gt;</span> <span class="kp">false</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Send to elasticsearch</h2>
+
+<p>As usual we just have to connect the <a href="https://www.elastic.co/guide/en/logstash/current/plugins-outputs-elasticsearch.html">elasticsearch output</a>:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">elasticsearch</span> <span class="p">{</span>
+</span><span class='line'>  <span class="n">index</span> <span class="o">=&gt;</span> <span class="s2">&quot;treemap-%{+YYYY.MM}&quot;</span>
+</span><span class='line'>    <span class="n">document_type</span> <span class="o">=&gt;</span> <span class="s2">&quot;file&quot;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Use a template</h3>
+
+<p>Actually, we don&rsquo;t want elasticsearch decide for us what the mapping would be. So let&rsquo;s use a template and pass it to logstash:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">elasticsearch</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">index</span> <span class="o">=&gt;</span> <span class="s2">&quot;treemap-%{+YYYY.MM}&quot;</span>
+</span><span class='line'>    <span class="n">document_type</span> <span class="o">=&gt;</span> <span class="s2">&quot;file&quot;</span>
+</span><span class='line'>    <span class="n">template</span> <span class="o">=&gt;</span> <span class="s2">&quot;treemap-template.json&quot;</span>
+</span><span class='line'>    <span class="n">template_name</span> <span class="o">=&gt;</span> <span class="s2">&quot;treemap&quot;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Index settings</h3>
+
+<p>In <code>treemap-template.json</code>, we will define the following index settings:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="s2">&quot;index&quot;</span> <span class="err">:</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nt">&quot;refresh_interval&quot;</span> <span class="p">:</span> <span class="s2">&quot;5s&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nt">&quot;number_of_shards&quot;</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+</span><span class='line'>  <span class="nt">&quot;number_of_replicas&quot;</span> <span class="p">:</span> <span class="mi">0</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Path Analyzer</h3>
+
+<p>Also, we need a <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-pathhierarchy-tokenizer.html">path tokenizer</a> to analyze the fullpath, so we define an analyzer in index settings:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="s2">&quot;analysis&quot;</span><span class="err">:</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nt">&quot;analyzer&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nt">&quot;path-analyzer&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;custom&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;tokenizer&quot;</span><span class="p">:</span> <span class="s2">&quot;path-tokenizer&quot;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>  <span class="p">},</span>
+</span><span class='line'>  <span class="nt">&quot;tokenizer&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nt">&quot;path-tokenizer&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;path_hierarchy&quot;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Mapping</h3>
+
+<p>Let&rsquo;s disable the <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-all-field.html">_all feature</a>.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="s2">&quot;_all&quot;</span><span class="err">:</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nt">&quot;enabled&quot;</span><span class="p">:</span> <span class="kc">false</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Also, we don&rsquo;t analyze string fields but for <code>name</code> field, we use our <code>path-analyzer</code>:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="s2">&quot;name&quot;</span> <span class="err">:</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nt">&quot;type&quot;</span> <span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nt">&quot;analyzer&quot;</span><span class="p">:</span> <span class="s2">&quot;path-analyzer&quot;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Kibana</h2>
+
+<p>While I&rsquo;m creating some visualizations, I&rsquo;m also launching the full injection:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>find ~/Documents -type f -print0 <span class="p">|</span> xargs -0 gls -l --time-style<span class="o">=</span><span class="s2">&quot;+%Y-%m-%dT%H:%M:%S&quot;</span> <span class="p">|</span> bin/logstash -f treemap.conf
+</span><span class='line'>find ~/Applications -type f -print0 <span class="p">|</span> xargs -0 gls -l --time-style<span class="o">=</span><span class="s2">&quot;+%Y-%m-%dT%H:%M:%S&quot;</span> <span class="p">|</span> bin/logstash -f treemap.conf
+</span><span class='line'>find ~/Desktop -type f -print0 <span class="p">|</span> xargs -0 gls -l --time-style<span class="o">=</span><span class="s2">&quot;+%Y-%m-%dT%H:%M:%S&quot;</span> <span class="p">|</span> bin/logstash -f treemap.conf
+</span><span class='line'>find ~/Downloads -type f -print0 <span class="p">|</span> xargs -0 gls -l --time-style<span class="o">=</span><span class="s2">&quot;+%Y-%m-%dT%H:%M:%S&quot;</span> <span class="p">|</span> bin/logstash -f treemap.conf
+</span><span class='line'>find ~/Dropbox -type f -print0 <span class="p">|</span> xargs -0 gls -l --time-style<span class="o">=</span><span class="s2">&quot;+%Y-%m-%dT%H:%M:%S&quot;</span> <span class="p">|</span> bin/logstash -f treemap.conf
+</span><span class='line'>find ~/Movies -type f -print0 <span class="p">|</span> xargs -0 gls -l --time-style<span class="o">=</span><span class="s2">&quot;+%Y-%m-%dT%H:%M:%S&quot;</span> <span class="p">|</span> bin/logstash -f treemap.conf
+</span><span class='line'>find ~/Music -type f -print0 <span class="p">|</span> xargs -0 gls -l --time-style<span class="o">=</span><span class="s2">&quot;+%Y-%m-%dT%H:%M:%S&quot;</span> <span class="p">|</span> bin/logstash -f treemap.conf
+</span><span class='line'>find ~/Pictures -type f -print0 <span class="p">|</span> xargs -0 gls -l --time-style<span class="o">=</span><span class="s2">&quot;+%Y-%m-%dT%H:%M:%S&quot;</span> <span class="p">|</span> bin/logstash -f treemap.conf
+</span><span class='line'>find ~/Public -type f -print0 <span class="p">|</span> xargs -0 gls -l --time-style<span class="o">=</span><span class="s2">&quot;+%Y-%m-%dT%H:%M:%S&quot;</span> <span class="p">|</span> bin/logstash -f treemap.conf
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And finally, I can build my visualization&hellip;</p>
+
+<p><img class="center" src="/blog/images/treemap/kibana1.png" title="My hard disk" ></p>
+
+<p>Please don&rsquo;t tell to my boss that I have more music files than work files (in term of disk space)! :D</p>
+
+<h2>Complete files</h2>
+
+<p>For the record (in case you want to replay all that)&hellip;</p>
+
+<h3>Logstash</h3>
+
+<p><code>treemap.conf</code> file:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">input</span> <span class="p">{</span> <span class="n">stdin</span> <span class="p">{}</span> <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">filter</span> <span class="p">{</span>
+</span><span class='line'>  <span class="n">grok</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">match</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="s2">&quot;message&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;(?:d|-)(?&lt;permission.user.read&gt;[r-])(?&lt;permission.user.write&gt;[w-])(?&lt;permission.user.execute&gt;[x-])(?&lt;permission.group.read&gt;[r-])(?&lt;permission.group.write&gt;[w-])(?&lt;permission.group.execute&gt;[x-])(?&lt;permission.other.read&gt;[r-])(?&lt;permission.other.write&gt;[w-])(?&lt;permission.other.execute&gt;[x-]) %{INT:links:int} %{USERNAME:user} %{USERNAME:group} %{SPACE}%{NUMBER:size:int} %{TIMESTAMP_ISO8601:date} %{GREEDYDATA:name}&quot;</span> <span class="p">}</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">mutate</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nb">gsub</span> <span class="o">=&gt;</span> <span class="o">[</span>
+</span><span class='line'>      <span class="s2">&quot;permission.user.read&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="s2">&quot;permission.user.read&quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;false&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="s2">&quot;permission.user.write&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="s2">&quot;permission.user.write&quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;false&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="s2">&quot;permission.user.execute&quot;</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="s2">&quot;permission.user.execute&quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;false&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="s2">&quot;permission.group.read&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="s2">&quot;permission.group.read&quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;false&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="s2">&quot;permission.group.write&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="s2">&quot;permission.group.write&quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;false&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="s2">&quot;permission.group.execute&quot;</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="s2">&quot;permission.group.execute&quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;false&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="s2">&quot;permission.other.read&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="s2">&quot;permission.other.read&quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;false&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="s2">&quot;permission.other.write&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="s2">&quot;permission.other.write&quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;false&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="s2">&quot;permission.other.execute&quot;</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="s2">&quot;permission.other.execute&quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;false&quot;</span>
+</span><span class='line'>    <span class="o">]</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">mutate</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">rename</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="s2">&quot;permission.user.read&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;[permission][user][read]&quot;</span> <span class="p">}</span>
+</span><span class='line'>    <span class="n">rename</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="s2">&quot;permission.user.write&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;[permission][user][write]&quot;</span> <span class="p">}</span>
+</span><span class='line'>    <span class="n">rename</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="s2">&quot;permission.user.execute&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;[permission][user][execute]&quot;</span> <span class="p">}</span>
+</span><span class='line'>    <span class="n">rename</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="s2">&quot;permission.group.read&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;[permission][group][read]&quot;</span> <span class="p">}</span>
+</span><span class='line'>    <span class="n">rename</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="s2">&quot;permission.group.write&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;[permission][group][write]&quot;</span> <span class="p">}</span>
+</span><span class='line'>    <span class="n">rename</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="s2">&quot;permission.group.execute&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;[permission][group][execute]&quot;</span> <span class="p">}</span>
+</span><span class='line'>    <span class="n">rename</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="s2">&quot;permission.other.read&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;[permission][other][read]&quot;</span> <span class="p">}</span>
+</span><span class='line'>    <span class="n">rename</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="s2">&quot;permission.other.write&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;[permission][other][write]&quot;</span> <span class="p">}</span>
+</span><span class='line'>    <span class="n">rename</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="s2">&quot;permission.other.execute&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;[permission][other][execute]&quot;</span> <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">convert</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="s2">&quot;[permission][user][read]&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;boolean&quot;</span> <span class="p">}</span>
+</span><span class='line'>    <span class="n">convert</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="s2">&quot;[permission][user][write]&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;boolean&quot;</span> <span class="p">}</span>
+</span><span class='line'>    <span class="n">convert</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="s2">&quot;[permission][user][execute]&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;boolean&quot;</span> <span class="p">}</span>
+</span><span class='line'>    <span class="n">convert</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="s2">&quot;[permission][group][read]&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;boolean&quot;</span> <span class="p">}</span>
+</span><span class='line'>    <span class="n">convert</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="s2">&quot;[permission][group][write]&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;boolean&quot;</span> <span class="p">}</span>
+</span><span class='line'>    <span class="n">convert</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="s2">&quot;[permission][group][execute]&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;boolean&quot;</span> <span class="p">}</span>
+</span><span class='line'>    <span class="n">convert</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="s2">&quot;[permission][other][read]&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;boolean&quot;</span> <span class="p">}</span>
+</span><span class='line'>    <span class="n">convert</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="s2">&quot;[permission][other][write]&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;boolean&quot;</span> <span class="p">}</span>
+</span><span class='line'>    <span class="n">convert</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="s2">&quot;[permission][other][execute]&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;boolean&quot;</span> <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">remove_field</span> <span class="o">=&gt;</span> <span class="o">[</span> <span class="s2">&quot;message&quot;</span><span class="p">,</span> <span class="s2">&quot;host&quot;</span><span class="p">,</span> <span class="s2">&quot;@version&quot;</span> <span class="o">]</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">date</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">match</span> <span class="o">=&gt;</span> <span class="o">[</span> <span class="s2">&quot;date&quot;</span><span class="p">,</span> <span class="s2">&quot;ISO8601&quot;</span> <span class="o">]</span>
+</span><span class='line'>    <span class="n">remove_field</span> <span class="o">=&gt;</span> <span class="o">[</span> <span class="s2">&quot;date&quot;</span> <span class="o">]</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">output</span> <span class="p">{</span>
+</span><span class='line'>  <span class="n">stdout</span> <span class="p">{</span> <span class="n">codec</span> <span class="o">=&gt;</span> <span class="n">dots</span> <span class="p">}</span>
+</span><span class='line'>  <span class="n">elasticsearch</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">index</span> <span class="o">=&gt;</span> <span class="s2">&quot;treemap-%{+YYYY.MM}&quot;</span>
+</span><span class='line'>    <span class="n">document_type</span> <span class="o">=&gt;</span> <span class="s2">&quot;file&quot;</span>
+</span><span class='line'>    <span class="n">template</span> <span class="o">=&gt;</span> <span class="s2">&quot;treemap-template.json&quot;</span>
+</span><span class='line'>    <span class="n">template_name</span> <span class="o">=&gt;</span> <span class="s2">&quot;treemap&quot;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Template</h3>
+
+<p><code>treemap-template.json</code> file:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+<span class='line-number'>80</span>
+<span class='line-number'>81</span>
+<span class='line-number'>82</span>
+<span class='line-number'>83</span>
+<span class='line-number'>84</span>
+<span class='line-number'>85</span>
+<span class='line-number'>86</span>
+<span class='line-number'>87</span>
+<span class='line-number'>88</span>
+<span class='line-number'>89</span>
+<span class='line-number'>90</span>
+<span class='line-number'>91</span>
+<span class='line-number'>92</span>
+<span class='line-number'>93</span>
+<span class='line-number'>94</span>
+<span class='line-number'>95</span>
+<span class='line-number'>96</span>
+<span class='line-number'>97</span>
+<span class='line-number'>98</span>
+<span class='line-number'>99</span>
+<span class='line-number'>100</span>
+<span class='line-number'>101</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="nt">&quot;order&quot;</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+</span><span class='line'>  <span class="nt">&quot;template&quot;</span> <span class="p">:</span> <span class="s2">&quot;treemap-*&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nt">&quot;settings&quot;</span> <span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nt">&quot;index&quot;</span> <span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nt">&quot;refresh_interval&quot;</span> <span class="p">:</span> <span class="s2">&quot;5s&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;number_of_shards&quot;</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;number_of_replicas&quot;</span> <span class="p">:</span> <span class="mi">0</span>
+</span><span class='line'>    <span class="p">},</span>
+</span><span class='line'>    <span class="nt">&quot;analysis&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nt">&quot;analyzer&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nt">&quot;path-analyzer&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>          <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;custom&quot;</span><span class="p">,</span>
+</span><span class='line'>          <span class="nt">&quot;tokenizer&quot;</span><span class="p">:</span> <span class="s2">&quot;path-tokenizer&quot;</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>      <span class="p">},</span>
+</span><span class='line'>      <span class="nt">&quot;tokenizer&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nt">&quot;path-tokenizer&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>          <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;path_hierarchy&quot;</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>  <span class="p">},</span>
+</span><span class='line'>  <span class="nt">&quot;mappings&quot;</span> <span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nt">&quot;file&quot;</span> <span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nt">&quot;_all&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nt">&quot;enabled&quot;</span><span class="p">:</span> <span class="kc">false</span>
+</span><span class='line'>      <span class="p">},</span>
+</span><span class='line'>      <span class="nt">&quot;properties&quot;</span> <span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nt">&quot;@timestamp&quot;</span> <span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>          <span class="nt">&quot;type&quot;</span> <span class="p">:</span> <span class="s2">&quot;date&quot;</span><span class="p">,</span>
+</span><span class='line'>          <span class="nt">&quot;format&quot;</span> <span class="p">:</span> <span class="s2">&quot;strict_date_optional_time||epoch_millis&quot;</span>
+</span><span class='line'>        <span class="p">},</span>
+</span><span class='line'>        <span class="nt">&quot;group&quot;</span> <span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>          <span class="nt">&quot;type&quot;</span> <span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
+</span><span class='line'>          <span class="nt">&quot;index&quot;</span><span class="p">:</span> <span class="s2">&quot;not_analyzed&quot;</span>
+</span><span class='line'>        <span class="p">},</span>
+</span><span class='line'>        <span class="nt">&quot;links&quot;</span> <span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>          <span class="nt">&quot;type&quot;</span> <span class="p">:</span> <span class="s2">&quot;long&quot;</span>
+</span><span class='line'>        <span class="p">},</span>
+</span><span class='line'>        <span class="nt">&quot;name&quot;</span> <span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>          <span class="nt">&quot;type&quot;</span> <span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
+</span><span class='line'>          <span class="nt">&quot;analyzer&quot;</span><span class="p">:</span> <span class="s2">&quot;path-analyzer&quot;</span>
+</span><span class='line'>        <span class="p">},</span>
+</span><span class='line'>        <span class="nt">&quot;permission&quot;</span> <span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>          <span class="nt">&quot;properties&quot;</span> <span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>            <span class="nt">&quot;group&quot;</span> <span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>              <span class="nt">&quot;properties&quot;</span> <span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                <span class="nt">&quot;execute&quot;</span> <span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                  <span class="nt">&quot;type&quot;</span> <span class="p">:</span> <span class="s2">&quot;boolean&quot;</span>
+</span><span class='line'>                <span class="p">},</span>
+</span><span class='line'>                <span class="nt">&quot;read&quot;</span> <span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                  <span class="nt">&quot;type&quot;</span> <span class="p">:</span> <span class="s2">&quot;boolean&quot;</span>
+</span><span class='line'>                <span class="p">},</span>
+</span><span class='line'>                <span class="nt">&quot;write&quot;</span> <span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                  <span class="nt">&quot;type&quot;</span> <span class="p">:</span> <span class="s2">&quot;boolean&quot;</span>
+</span><span class='line'>                <span class="p">}</span>
+</span><span class='line'>              <span class="p">}</span>
+</span><span class='line'>            <span class="p">},</span>
+</span><span class='line'>            <span class="nt">&quot;other&quot;</span> <span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>              <span class="nt">&quot;properties&quot;</span> <span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                <span class="nt">&quot;execute&quot;</span> <span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                  <span class="nt">&quot;type&quot;</span> <span class="p">:</span> <span class="s2">&quot;boolean&quot;</span>
+</span><span class='line'>                <span class="p">},</span>
+</span><span class='line'>                <span class="nt">&quot;read&quot;</span> <span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                  <span class="nt">&quot;type&quot;</span> <span class="p">:</span> <span class="s2">&quot;boolean&quot;</span>
+</span><span class='line'>                <span class="p">},</span>
+</span><span class='line'>                <span class="nt">&quot;write&quot;</span> <span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                  <span class="nt">&quot;type&quot;</span> <span class="p">:</span> <span class="s2">&quot;boolean&quot;</span>
+</span><span class='line'>                <span class="p">}</span>
+</span><span class='line'>              <span class="p">}</span>
+</span><span class='line'>            <span class="p">},</span>
+</span><span class='line'>            <span class="nt">&quot;user&quot;</span> <span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>              <span class="nt">&quot;properties&quot;</span> <span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                <span class="nt">&quot;execute&quot;</span> <span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                  <span class="nt">&quot;type&quot;</span> <span class="p">:</span> <span class="s2">&quot;boolean&quot;</span>
+</span><span class='line'>                <span class="p">},</span>
+</span><span class='line'>                <span class="nt">&quot;read&quot;</span> <span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                  <span class="nt">&quot;type&quot;</span> <span class="p">:</span> <span class="s2">&quot;boolean&quot;</span>
+</span><span class='line'>                <span class="p">},</span>
+</span><span class='line'>                <span class="nt">&quot;write&quot;</span> <span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                  <span class="nt">&quot;type&quot;</span> <span class="p">:</span> <span class="s2">&quot;boolean&quot;</span>
+</span><span class='line'>                <span class="p">}</span>
+</span><span class='line'>              <span class="p">}</span>
+</span><span class='line'>            <span class="p">}</span>
+</span><span class='line'>          <span class="p">}</span>
+</span><span class='line'>        <span class="p">},</span>
+</span><span class='line'>        <span class="nt">&quot;size&quot;</span> <span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>          <span class="nt">&quot;type&quot;</span> <span class="p">:</span> <span class="s2">&quot;long&quot;</span>
+</span><span class='line'>        <span class="p">},</span>
+</span><span class='line'>        <span class="nt">&quot;user&quot;</span> <span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>          <span class="nt">&quot;type&quot;</span> <span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
+</span><span class='line'>          <span class="nt">&quot;index&quot;</span><span class="p">:</span> <span class="s2">&quot;not_analyzed&quot;</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>  <span class="p">},</span>
+</span><span class='line'>  <span class="nt">&quot;aliases&quot;</span> <span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nt">&quot;files&quot;</span> <span class="p">:</span> <span class="p">{}</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+
+
+  <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">David Pilato</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2015-12-10T09:28:15+01:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>10</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>9:28 am</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/elasticsearch/'>elasticsearch</a>, <a class='category' href='/blog/categories/kibana/'>kibana</a>, <a class='category' href='/blog/categories/logstash/'>logstash</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://david.pilato.fr/blog/2015/12/10/building-a-directory-map-with-elk/" data-via="dadoonet" data-counturl="http://david.pilato.fr/blog/2015/12/10/building-a-directory-map-with-elk/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2015/11/17/index-twitter-on-found/" title="Previous Post: Index Twitter on found">&laquo; Index Twitter on found</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2016/01/05/understanding-zipfs-law/" title="Next Post: Understanding Zipf's law">Understanding Zipf's law &raquo;</a>
+      
+    </p>
+    <p class="meta">
+        <div class="elevator">
+          <svg class="sweet-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve" height="100px" width="100px">
+              <path d="M70,47.5H30c-1.4,0-2.5,1.1-2.5,2.5v40c0,1.4,1.1,2.5,2.5,2.5h40c1.4,0,2.5-1.1,2.5-2.5V50C72.5,48.6,71.4,47.5,70,47.5z   M47.5,87.5h-5v-25h5V87.5z M57.5,87.5h-5v-25h5V87.5z M67.5,87.5h-5V60c0-1.4-1.1-2.5-2.5-2.5H40c-1.4,0-2.5,1.1-2.5,2.5v27.5h-5  v-35h35V87.5z"/>
+              <path d="M50,42.5c1.4,0,2.5-1.1,2.5-2.5V16l5.7,5.7c0.5,0.5,1.1,0.7,1.8,0.7s1.3-0.2,1.8-0.7c1-1,1-2.6,0-3.5l-10-10  c-1-1-2.6-1-3.5,0l-10,10c-1,1-1,2.6,0,3.5c1,1,2.6,1,3.5,0l5.7-5.7v24C47.5,41.4,48.6,42.5,50,42.5z"/>
+          </svg>
+          Back to Top
+        </div>
+    </p>
+<script>
+// Elevator script included on the page, already.
+
+window.onload = function() {
+  var elevator = new Elevator({
+    element: document.querySelector('.elevator'),
+    mainAudio: '/music/elevator-music.mp3',
+    endAudio: '/music/ding.mp3'
+  });
+}
+</script>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>About Me</h1>
+  <p>Developer | Evangelist at <a href="http://elastic.co/">elastic</a> and creator of the Elastic French Speakers <a href="http://www.meetup.com/elasticsearchfr/">User Group</a>. Frequent speaker about all things Elastic, in conferences, for User Groups and in companies with <a href="http://www.brownbaglunch.fr/">BBL talks</a>. In my free time, I enjoy coding and DJ four times per year, just for fun. Living with my family in Cergy, France.</p>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2017/01/09/4-years-at-elastic/">4 Years at Elastic!</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/10/21/elasticsearch-real-integration-tests-with-security-enabled-updated-for-ga/">Elasticsearch Real Integration Tests With Security Enabled (Updated for GA)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/10/20/creating-elasticsearch-transport-action-updated-for-ga/">Creating Elasticsearch Transport Action (Updated for GA)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/10/19/adding-a-new-rest-endpoint-to-elasticsearch-updated-for-ga/">Adding a New REST Endpoint to Elasticsearch (Updated for GA)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/10/18/elasticsearch-real-integration-tests-updated-for-ga/">Elasticsearch Real Integration Tests (Updated for GA)</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+<section class="twitterOct">
+  <h1 style="margin-bottom: 0.4em"> Tweets </h1>
+  <a class="twitter-timeline"
+	 data-dnt="true" href="https://twitter.com/dadoonet" 
+     data-widget-id="593022343921979392">
+     
+     Tweets by @dadoonet
+  </a>
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</section>
+
+
+<section>
+
+  <h1>Main GitHub Repos</h1>
+
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'dadoonet',
+            count: 10,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2017 - David Pilato -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'dadoonet';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://david.pilato.fr/blog/2015/12/10/building-a-directory-map-with-elk/';
+        var disqus_url = 'http://david.pilato.fr/blog/2015/12/10/building-a-directory-map-with-elk/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

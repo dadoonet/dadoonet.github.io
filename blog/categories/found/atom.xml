@@ -1,0 +1,698 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Found | -Xmx128gb -Xms128gb]]></title>
+  <link href="http://david.pilato.fr/blog/categories/found/atom.xml" rel="self"/>
+  <link href="http://david.pilato.fr/"/>
+  <updated>2017-01-11T20:55:21+01:00</updated>
+  <id>http://david.pilato.fr/</id>
+  <author>
+    <name><![CDATA[David Pilato]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Index Twitter on Found]]></title>
+    <link href="http://david.pilato.fr/blog/2015/11/17/index-twitter-on-found/"/>
+    <updated>2015-11-17T11:51:43+01:00</updated>
+    <id>http://david.pilato.fr/blog/2015/11/17/index-twitter-on-found</id>
+    <content type="html"><![CDATA[Some months ago, I published a recipe on how to [index Twitter with Logstash and Elasticsearch](/blog/2015/06/01/indexing-twitter-with-logstash-and-elasticsearch/).
+
+I have the same need today as I want to monitor Twitter when we run the [elastic FR meetup](http://meetup.com/elasticfr) (join us by the way if you are in France!).
+
+Well, this recipe can be really simplified and actually I don't want to waste my time anymore on building and managing elasticsearch and Kibana clusters anymore. 
+
+Let's use a [Found by elastic](https://found.elastic.co/) cluster instead.
+
+<img class="center" src="/blog/images/found02/found_logo.png" title="Found by elastic" >
+
+<!-- more -->
+
+## Create your cluster
+
+Well. That's easy. Just connect to [Found](https://found.elastic.co/) and create your cluster.
+Found is always up to date with all the latest elasticsearch versions so here I'm using a 2.0.0 elasticsearch cluster.
+
+## Add Kibana 4
+
+In the configuration tab, just activate Kibana 4 and you're done with Kibana! :D
+Same here, Kibana is always up to date so I'm using here Kibana 4.2.1 which has just been released yesterday evening!
+
+<img class="center" src="/blog/images/found02/activate_kibana.png" title="Activate Kibana 4" >
+
+## Create Shield users
+
+Well, with found you have automatically out of the box all the security needed to operate an elasticsearch cluster in the cloud. You just have to configure it (and it comes with good defaults).
+
+I defined 3 roles:
+
+* `kibana4admin`: can read and write Kibana dashboards
+* `kibana4`: can read only Kibana dashboards
+* `twitter`: can write data to any index which name starts with `twitter-`
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="l-Scalar-Plain">kibana4admin</span><span class="p-Indicator">:</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">cluster</span><span class="p-Indicator">:</span>
+</span><span class='line'>      <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">cluster:monitor/nodes/info</span>
+</span><span class='line'>      <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">cluster:monitor/health</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">indices</span><span class="p-Indicator">:</span>
+</span><span class='line'>    <span class="s">&#39;*&#39;</span><span class="p-Indicator">:</span>
+</span><span class='line'>      <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">indices:admin/mappings/fields/get</span>
+</span><span class='line'>      <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">indices:admin/validate/query</span>
+</span><span class='line'>      <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">indices:data/read/search</span>
+</span><span class='line'>      <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">indices:data/read/msearch</span>
+</span><span class='line'>      <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">indices:admin/get</span>
+</span><span class='line'>    <span class="s">&#39;.kibana&#39;</span><span class="p-Indicator">:</span>
+</span><span class='line'>      <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">indices:admin/exists</span>
+</span><span class='line'>      <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">indices:admin/mapping/put</span>
+</span><span class='line'>      <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">indices:admin/mappings/fields/get</span>
+</span><span class='line'>      <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">indices:admin/refresh</span>
+</span><span class='line'>      <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">indices:admin/validate/query</span>
+</span><span class='line'>      <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">indices:data/read/get</span>
+</span><span class='line'>      <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">indices:data/read/mget</span>
+</span><span class='line'>      <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">indices:data/read/search</span>
+</span><span class='line'>      <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">indices:data/write/delete</span>
+</span><span class='line'>      <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">indices:data/write/index</span>
+</span><span class='line'>      <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">indices:data/write/update</span>
+</span><span class='line'>      <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">indices:admin/create</span>
+</span><span class='line'>
+</span><span class='line'><span class="l-Scalar-Plain">kibana4</span><span class="p-Indicator">:</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">cluster</span><span class="p-Indicator">:</span>
+</span><span class='line'>      <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">cluster:monitor/nodes/info</span>
+</span><span class='line'>      <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">cluster:monitor/health</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">indices</span><span class="p-Indicator">:</span>
+</span><span class='line'>    <span class="s">&#39;*&#39;</span><span class="p-Indicator">:</span>
+</span><span class='line'>      <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">indices:admin/mappings/fields/get</span>
+</span><span class='line'>      <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">indices:admin/validate/query</span>
+</span><span class='line'>      <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">indices:data/read/search</span>
+</span><span class='line'>      <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">indices:data/read/msearch</span>
+</span><span class='line'>      <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">indices:admin/get</span>
+</span><span class='line'>    <span class="s">&#39;.kibana&#39;</span><span class="p-Indicator">:</span>
+</span><span class='line'>      <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">indices:admin/exists</span>
+</span><span class='line'>      <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">indices:admin/mappings/fields/get</span>
+</span><span class='line'>      <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">indices:admin/validate/query</span>
+</span><span class='line'>      <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">indices:data/read/get</span>
+</span><span class='line'>      <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">indices:data/read/mget</span>
+</span><span class='line'>      <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">indices:data/read/search</span>
+</span><span class='line'>
+</span><span class='line'><span class="l-Scalar-Plain">twitter</span><span class="p-Indicator">:</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">cluster</span><span class="p-Indicator">:</span>
+</span><span class='line'>    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">indices:admin/template/get</span>
+</span><span class='line'>    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">indices:admin/template/put</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">indices</span><span class="p-Indicator">:</span>
+</span><span class='line'>    <span class="s">&#39;*&#39;</span><span class="p-Indicator">:</span>
+</span><span class='line'>      <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">indices:data/write/bulk</span>
+</span><span class='line'>    <span class="s">&#39;twitter&#39;</span><span class="p-Indicator">:</span>
+</span><span class='line'>      <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">indices:admin/create</span>
+</span><span class='line'>      <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">indices:data/write/index</span>
+</span></code></pre></td></tr></table></div></figure>
+
+I add 3 users:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="l-Scalar-Plain">kibana</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">password1</span>
+</span><span class='line'><span class="l-Scalar-Plain">kibanaadmin</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">password2</span>
+</span><span class='line'><span class="l-Scalar-Plain">logstash</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">password3</span>
+</span></code></pre></td></tr></table></div></figure>
+
+And I map my roles and users:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="l-Scalar-Plain">kibana4</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">kibana</span>
+</span><span class='line'><span class="l-Scalar-Plain">kibana4admin</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">kibanaadmin</span>
+</span><span class='line'><span class="l-Scalar-Plain">twitter</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">logstash</span>
+</span></code></pre></td></tr></table></div></figure>
+
+Just save the configuration and everything in found is now set up!
+
+## Get data from Twitter
+
+For now, found does not run Logstash clusters so for that part, so I will build my own instance on AWS here.
+But note that it can run from whatever cloud provider you want.
+
+### Twitter application
+
+Create your [Twitter application](https://apps.twitter.com/) and open the "Keys and Access Tokens" tab.
+Note your `consumer_key` and `consumer_secret` (generate them if needed).
+Note also your `access_token` and `access_token_secret` (generate them if needed).
+
+### Logstash
+
+On the instance, I install [logstash](https://www.elastic.co/downloads/logstash):
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>wget https://download.elastic.co/logstash/logstash/logstash-2.0.0.tar.gz
+</span><span class='line'>tar xzf logstash-2.0.0.tar.gz
+</span></code></pre></td></tr></table></div></figure>
+
+Then I create an elasticsearch template file as explained in [my previous post](/blog/2015/06/01/indexing-twitter-with-logstash-and-elasticsearch/):
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="nt">&quot;template&quot;</span><span class="p">:</span> <span class="s2">&quot;twitter*&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nt">&quot;order&quot;</span><span class="p">:</span>    <span class="mi">1</span><span class="p">,</span>
+</span><span class='line'>  <span class="nt">&quot;settings&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nt">&quot;number_of_shards&quot;</span><span class="p">:</span> <span class="mi">1</span>
+</span><span class='line'>  <span class="p">},</span>
+</span><span class='line'>  <span class="nt">&quot;mappings&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nt">&quot;tweet&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nt">&quot;_all&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nt">&quot;enabled&quot;</span><span class="p">:</span> <span class="kc">false</span>
+</span><span class='line'>      <span class="p">},</span>
+</span><span class='line'>      <span class="nt">&quot;dynamic_templates&quot;</span> <span class="p">:</span> <span class="p">[</span> <span class="p">{</span>
+</span><span class='line'>         <span class="nt">&quot;message_field&quot;</span> <span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>           <span class="nt">&quot;match&quot;</span> <span class="p">:</span> <span class="s2">&quot;message&quot;</span><span class="p">,</span>
+</span><span class='line'>           <span class="nt">&quot;match_mapping_type&quot;</span> <span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
+</span><span class='line'>           <span class="nt">&quot;mapping&quot;</span> <span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>             <span class="nt">&quot;type&quot;</span> <span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span> <span class="nt">&quot;index&quot;</span> <span class="p">:</span> <span class="s2">&quot;analyzed&quot;</span><span class="p">,</span> <span class="nt">&quot;omit_norms&quot;</span> <span class="p">:</span> <span class="kc">true</span>
+</span><span class='line'>           <span class="p">}</span>
+</span><span class='line'>         <span class="p">}</span>
+</span><span class='line'>       <span class="p">},</span> <span class="p">{</span>
+</span><span class='line'>         <span class="nt">&quot;string_fields&quot;</span> <span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>           <span class="nt">&quot;match&quot;</span> <span class="p">:</span> <span class="s2">&quot;*&quot;</span><span class="p">,</span>
+</span><span class='line'>           <span class="nt">&quot;match_mapping_type&quot;</span> <span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
+</span><span class='line'>           <span class="nt">&quot;mapping&quot;</span> <span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>             <span class="nt">&quot;type&quot;</span> <span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span> <span class="nt">&quot;index&quot;</span> <span class="p">:</span> <span class="s2">&quot;analyzed&quot;</span><span class="p">,</span> <span class="nt">&quot;omit_norms&quot;</span> <span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+</span><span class='line'>               <span class="nt">&quot;fields&quot;</span> <span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                 <span class="nt">&quot;raw&quot;</span> <span class="p">:</span> <span class="p">{</span><span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span> <span class="nt">&quot;index&quot;</span> <span class="p">:</span> <span class="s2">&quot;not_analyzed&quot;</span><span class="p">,</span> <span class="nt">&quot;ignore_above&quot;</span> <span class="p">:</span> <span class="mi">256</span><span class="p">}</span>
+</span><span class='line'>               <span class="p">}</span>
+</span><span class='line'>           <span class="p">}</span>
+</span><span class='line'>         <span class="p">}</span>
+</span><span class='line'>       <span class="p">}</span> <span class="p">],</span>
+</span><span class='line'>      <span class="nt">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nt">&quot;text&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>          <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span>
+</span><span class='line'>        <span class="p">},</span>
+</span><span class='line'>      	<span class="nt">&quot;coordinates&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>          <span class="nt">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>             <span class="nt">&quot;coordinates&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;geo_point&quot;</span>
+</span><span class='line'>             <span class="p">},</span>
+</span><span class='line'>             <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span>
+</span><span class='line'>             <span class="p">}</span>
+</span><span class='line'>          <span class="p">}</span>
+</span><span class='line'>       <span class="p">}</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+Then I create my logstash configuration file `meetup_fr.conf`. I will track everything about `elasticfr`:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">input</span> <span class="p">{</span>
+</span><span class='line'>  <span class="n">twitter</span> <span class="p">{</span>
+</span><span class='line'>      <span class="n">consumer_key</span> <span class="o">=&gt;</span> <span class="s2">&quot;consumer_key&quot;</span>
+</span><span class='line'>      <span class="n">consumer_secret</span> <span class="o">=&gt;</span> <span class="s2">&quot;consumer_secret&quot;</span>
+</span><span class='line'>      <span class="n">oauth_token</span> <span class="o">=&gt;</span> <span class="s2">&quot;access_token&quot;</span>
+</span><span class='line'>      <span class="n">oauth_token_secret</span> <span class="o">=&gt;</span> <span class="s2">&quot;access_token_secret&quot;</span>
+</span><span class='line'>      <span class="n">keywords</span> <span class="o">=&gt;</span> <span class="o">[</span> <span class="s2">&quot;elasticfr&quot;</span> <span class="o">]</span>
+</span><span class='line'>      <span class="n">full_tweet</span> <span class="o">=&gt;</span> <span class="kp">true</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">filter</span> <span class="p">{</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">output</span> <span class="p">{</span>
+</span><span class='line'>  <span class="n">stdout</span> <span class="p">{</span> <span class="n">codec</span> <span class="o">=&gt;</span> <span class="n">dots</span> <span class="p">}</span>
+</span><span class='line'>  <span class="n">elasticsearch</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">ssl</span> <span class="o">=&gt;</span> <span class="kp">true</span>
+</span><span class='line'>    <span class="n">hosts</span> <span class="o">=&gt;</span> <span class="o">[</span> <span class="s2">&quot;MYCLUSTERONFOUND.found.io:9243&quot;</span> <span class="o">]</span>
+</span><span class='line'>    <span class="n">index</span> <span class="o">=&gt;</span> <span class="s2">&quot;twitter_meetup_fr_201511&quot;</span>
+</span><span class='line'>    <span class="n">document_type</span> <span class="o">=&gt;</span> <span class="s2">&quot;tweet&quot;</span>
+</span><span class='line'>    <span class="n">template</span> <span class="o">=&gt;</span> <span class="s2">&quot;twitter_template.json&quot;</span>
+</span><span class='line'>    <span class="n">template_name</span> <span class="o">=&gt;</span> <span class="s2">&quot;twitter&quot;</span>
+</span><span class='line'>    <span class="n">user</span> <span class="o">=&gt;</span> <span class="s2">&quot;logstash&quot;</span>
+</span><span class='line'>    <span class="n">password</span> <span class="o">=&gt;</span> <span class="s2">&quot;password3&quot;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+Then, just launch logstash:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>./logstash-2.0.0/bin/logstash -f meetup_fr.conf
+</span></code></pre></td></tr></table></div></figure>
+
+Tweet!
+
+<center><blockquote class="twitter-tweet" lang="fr"><p lang="en" dir="ltr">Don&#39;t forget our next <a href="https://twitter.com/ElasticFR">@ElasticFR</a> meetup! See you there guys! :D <a href="https://twitter.com/hashtag/elasticfr?src=hash">#elasticfr</a> <a href="https://t.co/SO2KxdEbv5">https://t.co/SO2KxdEbv5</a></p>&mdash; David Pilato (@dadoonet) <a href="https://twitter.com/dadoonet/status/666600269246038016">2015/11/17</a></blockquote></center>
+
+## Understand your data
+
+Well, just open your Kibana 4 instance which is running on found and build as usual your dashboards.
+
+Our tweet is here!
+
+<img class="center" src="/blog/images/found02/kibana_tweet.png" title="Tweet is here" >
+
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Using JS Auth With Found Cluster]]></title>
+    <link href="http://david.pilato.fr/blog/2015/05/19/using-js-auth-with-found-cluster/"/>
+    <updated>2015-05-19T17:06:22+02:00</updated>
+    <id>http://david.pilato.fr/blog/2015/05/19/using-js-auth-with-found-cluster</id>
+    <content type="html"><![CDATA[Using [Found by elastic](https://www.found.no/) cluster helps a lot to have a ready to use and managed elasticsearch cluster.
+
+<img class="center" src="/blog/images/found01/found_byelastic_logo_512x185.png" title="Found by elastic" >
+
+I started my own cluster yesterday to power [brownbaglunch.fr](http://www.brownbaglunch.fr/) website (work in progress) and it was ready to use after some clicks!
+
+**It's a kind of magic!**
+
+<div class="embed-video-container"><iframe src="//www.youtube.com/embed/0p_1QSUsbsM" allowfullscreen></iframe></div>
+
+But I ran into an issue when you secure it and use the [elasticsearch javascript client](https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/index.html). 
+
+<!-- more -->
+
+## Creating your cluster
+
+<img class="center" src="/blog/images/found01/found-1.png" title="Found Console" >
+
+## Adding ACL
+
+By default, your cluster is opened but you can fix that by opening "Access Control" menu.
+Found proposes a default configuration which generates two users and restrict some access.
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="c1"># Deny everyone by default, as authentication is required.</span>
+</span><span class='line'><span class="c1"># Deny is the default also if no &quot;default&quot; is specified,</span>
+</span><span class='line'><span class="c1"># so it&#39;s only necessary to specify it if you want the</span>
+</span><span class='line'><span class="c1"># default to be &quot;allow&quot;.</span>
+</span><span class='line'><span class="l-Scalar-Plain">default</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">deny</span>
+</span><span class='line'>
+</span><span class='line'><span class="l-Scalar-Plain">auth</span><span class="p-Indicator">:</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">users</span><span class="p-Indicator">:</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">searchonly</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">searchonlypassword</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">readwrite</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">readwritepassword</span>
+</span><span class='line'>
+</span><span class='line'><span class="l-Scalar-Plain">rules</span><span class="p-Indicator">:</span>
+</span><span class='line'>  <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">paths</span><span class="p-Indicator">:</span>
+</span><span class='line'>      <span class="c1"># Match all search requests.</span>
+</span><span class='line'>      <span class="p-Indicator">-</span> <span class="s">&#39;/_search|/([^_/]+/_search)|/[^_/]+/[^_/]+/_search&#39;</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">conditions</span><span class="p-Indicator">:</span>
+</span><span class='line'>      <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">basic_auth</span><span class="p-Indicator">:</span>
+</span><span class='line'>          <span class="l-Scalar-Plain">users</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="nv">searchonly</span><span class="p-Indicator">]</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">action</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">allow</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># Also, allow any GET-request.</span>
+</span><span class='line'>  <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">paths</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="s">&#39;.*&#39;</span><span class="p-Indicator">]</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">conditions</span><span class="p-Indicator">:</span>
+</span><span class='line'>      <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">basic_auth</span><span class="p-Indicator">:</span>
+</span><span class='line'>          <span class="l-Scalar-Plain">users</span><span class="p-Indicator">:</span>
+</span><span class='line'>            <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">searchonly</span>
+</span><span class='line'>      <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">method</span><span class="p-Indicator">:</span>
+</span><span class='line'>          <span class="l-Scalar-Plain">verbs</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="nv">GET</span><span class="p-Indicator">]</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">action</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">allow</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># Allow everything for the readwrite-user</span>
+</span><span class='line'>  <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">paths</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="s">&#39;.*&#39;</span><span class="p-Indicator">]</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">conditions</span><span class="p-Indicator">:</span>
+</span><span class='line'>      <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">basic_auth</span><span class="p-Indicator">:</span>
+</span><span class='line'>          <span class="l-Scalar-Plain">users</span><span class="p-Indicator">:</span>
+</span><span class='line'>            <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">readwrite</span>
+</span><span class='line'><span class="c1"># Uncomment the following if you want to require SSL.</span>
+</span><span class='line'><span class="c1">#      - ssl:</span>
+</span><span class='line'><span class="c1">#          require: true</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">action</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">allow</span>
+</span></code></pre></td></tr></table></div></figure>
+
+## Create your javascript application
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="cp">&lt;!DOCTYPE html&gt;</span>
+</span><span class='line'><span class="nt">&lt;html&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;head&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;https://cdn.rawgit.com/elastic/bower-elasticsearch-js/12ec0b8ee6d776e077b160e6dd6fc2e1b5818a86/elasticsearch.min.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/head&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;body&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;script&gt;</span>
+</span><span class='line'>      <span class="kd">var</span> <span class="nx">login</span> <span class="o">=</span> <span class="s2">&quot;readwrite&quot;</span><span class="p">;</span>
+</span><span class='line'>      <span class="kd">var</span> <span class="nx">password</span> <span class="o">=</span> <span class="s2">&quot;readwritepassword&quot;</span><span class="p">;</span>
+</span><span class='line'>      <span class="kd">var</span> <span class="nx">hostname</span> <span class="o">=</span> <span class="s2">&quot;youclusteraddress.foundcluster.com&quot;</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="kd">var</span> <span class="nx">client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">elasticsearch</span><span class="p">.</span><span class="nx">Client</span><span class="p">({</span>
+</span><span class='line'>        <span class="nx">hosts</span><span class="o">:</span> <span class="p">[</span>
+</span><span class='line'>          <span class="p">{</span>
+</span><span class='line'>            <span class="nx">host</span><span class="o">:</span> <span class="nx">hostname</span><span class="p">,</span>
+</span><span class='line'>            <span class="nx">auth</span><span class="o">:</span> <span class="nx">login</span> <span class="o">+</span> <span class="s1">&#39;:&#39;</span> <span class="o">+</span> <span class="nx">password</span>
+</span><span class='line'>          <span class="p">}</span>
+</span><span class='line'>        <span class="p">]</span>
+</span><span class='line'>      <span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="nx">client</span><span class="p">.</span><span class="nx">cluster</span><span class="p">.</span><span class="nx">health</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="nx">done</span><span class="p">,</span> <span class="nx">done</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="kd">function</span> <span class="nx">done</span><span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">resp</span><span class="p">);</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>    <span class="nt">&lt;/script&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/body&gt;</span>
+</span><span class='line'><span class="nt">&lt;/html&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+If you run it, you will get something like:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'>elasticsearch.min.js:18 OPTIONS http://youclusteraddress.foundcluster.com:9200/_cluster/health 401 (Unauthorized)26.d.request @ elasticsearch.min.js:18c @ elasticsearch.min.js:1842.j.applyArgs @ elasticsearch.min.js:18k @ elasticsearch.min.js:11(anonymous function) @ elasticsearch.min.js:11
+</span><span class='line'>bblfr_elasticsearch.dev/:1 XMLHttpRequest cannot load http://youclusteraddress.foundcluster.com:9200/_cluster/health. Invalid HTTP status code 401
+</span><span class='line'>elasticsearch.min.js:18 ERROR: 2015-05-19T14:47:01Z
+</span><span class='line'>  Error: Request error, retrying -- Request failed to complete.
+</span><span class='line'>      at d.29.d.error (http://bblfr_elasticsearch.dev/lib/elasticsearch.min.js:18:15537)
+</span><span class='line'>      at d (http://bblfr_elasticsearch.dev/lib/elasticsearch.min.js:18:22917)
+</span><span class='line'>      at XMLHttpRequest.26.d.request.d.onreadystatechange (http://bblfr_elasticsearch.dev/lib/elasticsearch.min.js:18:9781)
+</span></code></pre></td></tr></table></div></figure>
+
+## Modify ACL
+
+The javascript client needs to discuss with found using `OPTIONS` verb. So you basically need to add:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='yaml'><span class='line'>  <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">paths</span><span class="p-Indicator">:</span>
+</span><span class='line'>      <span class="p-Indicator">-</span> <span class="s">&#39;.*&#39;</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">conditions</span><span class="p-Indicator">:</span>
+</span><span class='line'>      <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">method</span><span class="p-Indicator">:</span>
+</span><span class='line'>          <span class="l-Scalar-Plain">verbs</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="nv">OPTIONS</span><span class="p-Indicator">]</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">action</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">allow</span>
+</span></code></pre></td></tr></table></div></figure>
+
+Running the same code will now work as expected!
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="p">{</span>
+</span><span class='line'>	<span class="nx">cluster_name</span><span class="o">:</span> <span class="s2">&quot;youclusteraddress&quot;</span><span class="p">,</span>
+</span><span class='line'>	<span class="nx">status</span><span class="o">:</span> <span class="s2">&quot;green&quot;</span><span class="p">,</span>
+</span><span class='line'>	<span class="nx">timed_out</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+</span><span class='line'>	<span class="nx">number_of_nodes</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+</span><span class='line'>	<span class="nx">number_of_data_nodes</span><span class="o">:</span> <span class="mi">1</span>
+</span><span class='line'>	<span class="c1">// ...</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+## Using ACL for aliases
+
+Note that for the project, I created one index named `bbl_1` and one alias on top of it `bbl`.
+So I opened read access to anonymous users on this alias and add a secured one when it comes to write operations.
+`OPTIONS` in that case is applied only to the `bbl` alias. I came up with this config:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="l-Scalar-Plain">default</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">deny</span>
+</span><span class='line'>
+</span><span class='line'><span class="l-Scalar-Plain">auth</span><span class="p-Indicator">:</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">users</span><span class="p-Indicator">:</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">readwrite</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">readwritepassword</span>
+</span><span class='line'>
+</span><span class='line'><span class="l-Scalar-Plain">rules</span><span class="p-Indicator">:</span>
+</span><span class='line'>  <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">paths</span><span class="p-Indicator">:</span>
+</span><span class='line'>      <span class="p-Indicator">-</span> <span class="s">&#39;/bbl/.*&#39;</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">conditions</span><span class="p-Indicator">:</span>
+</span><span class='line'>      <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">method</span><span class="p-Indicator">:</span>
+</span><span class='line'>          <span class="l-Scalar-Plain">verbs</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="nv">OPTIONS</span><span class="p-Indicator">]</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">action</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">allow</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">paths</span><span class="p-Indicator">:</span>
+</span><span class='line'>      <span class="p-Indicator">-</span> <span class="s">&#39;/bbl/_search&#39;</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">conditions</span><span class="p-Indicator">:</span>
+</span><span class='line'>      <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">method</span><span class="p-Indicator">:</span>
+</span><span class='line'>          <span class="l-Scalar-Plain">verbs</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="nv">GET</span><span class="p-Indicator">,</span> <span class="nv">POST</span><span class="p-Indicator">]</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">action</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">allow</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">paths</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="s">&#39;/bbl/.*&#39;</span><span class="p-Indicator">]</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">conditions</span><span class="p-Indicator">:</span>
+</span><span class='line'>      <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">method</span><span class="p-Indicator">:</span>
+</span><span class='line'>          <span class="l-Scalar-Plain">verbs</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="nv">GET</span><span class="p-Indicator">]</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">action</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">allow</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">paths</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="s">&#39;/bbl/.*&#39;</span><span class="p-Indicator">]</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">conditions</span><span class="p-Indicator">:</span>
+</span><span class='line'>      <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">method</span><span class="p-Indicator">:</span>
+</span><span class='line'>          <span class="l-Scalar-Plain">verbs</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="nv">PUT</span><span class="p-Indicator">,</span> <span class="nv">DELETE</span><span class="p-Indicator">]</span>
+</span><span class='line'>      <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">basic_auth</span><span class="p-Indicator">:</span>
+</span><span class='line'>          <span class="l-Scalar-Plain">users</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="nv">readwrite</span><span class="p-Indicator">]</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">action</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">allow</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+]]></content>
+  </entry>
+  
+</feed>

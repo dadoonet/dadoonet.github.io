@@ -1,0 +1,913 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Beats | -Xmx128gb -Xms128gb]]></title>
+  <link href="http://david.pilato.fr/blog/categories/beats/atom.xml" rel="self"/>
+  <link href="http://david.pilato.fr/"/>
+  <updated>2017-01-11T20:55:21+01:00</updated>
+  <id>http://david.pilato.fr/</id>
+  <author>
+    <name><![CDATA[David Pilato]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[And the Beats Go On!]]></title>
+    <link href="http://david.pilato.fr/blog/2016/03/17/and-the-beats-go-on/"/>
+    <updated>2016-03-17T17:35:39+01:00</updated>
+    <id>http://david.pilato.fr/blog/2016/03/17/and-the-beats-go-on</id>
+    <content type="html"><![CDATA[Sounds like a cool music, right? At least this is one of my favorite tracks.
+
+<div class="embed-video-container"><iframe src="//www.youtube.com/embed/fOaxEa5ONJw" allowfullscreen></iframe></div>
+
+May be some of you already know that, I enjoy doing [some DeeJaying](https://itunes.apple.com/fr/podcast/dj-dadoo.net-mixes/id959495351)
+for my friends.
+
+But today, I want to speak about another kind of beats. Elastic beats!
+
+<center>
+<img src="/blog/images/beats1/beats.png" title="Elastic Beats" >
+</center>
+
+
+<!-- more -->
+
+Actually my favorite funky music track is a one from Georges Duke: Reach out! 
+But this is another story...
+
+<div class="embed-video-container"><iframe src="//www.youtube.com/embed/Aw0MpVVNj0g" allowfullscreen></iframe></div>
+
+## Beats!
+
+So what are beats? 
+
+> Beats are lightweight shippers that collect and ship all kinds of operational data to Elasticsearch
+
+Important terms here:
+
+* `lightweight`: indeed, written in Golang, using few resources
+* `all kinds of operational data`: yeah! You are just limited by your imagination :). It can come from a [network card](https://www.elastic.co/products/beats/packetbeat) from where you can *sniff* a known protocol such as MySQL, PostgreSQL, MongoDB, ICMP, HTTP... It can come from a [file](https://www.elastic.co/products/beats/filebeat) you can basically `tail -f` to elasticsearch. It can come from various [metrics](https://www.elastic.co/products/beats/topbeat) from your system, like running a TOP command on every single machine you have and correlate information from them...
+
+So very flexible...
+
+I came with this idea... I like music. I like beats. Let's try to create another beat: `soundbeat`!
+
+## Prerequisites
+
+You need to have:
+
+* `go`: `brew install go`
+* `glide`: `brew install glide`
+
+## Soundbeat
+
+The goal is more to learn how to write a beat than the feature itself.
+The `soundbeat` will read a MP3 file, then extract the sound level for left and right channels using a given period for each sample.
+
+The final goal is to generate a waveform like this:
+
+<center>
+<img src="/blog/images/beats1/TheWhispers-AndTheBeatGoesOn.png" title="And the beat goes on" >
+</center>
+
+### Generate a beat from a template
+
+We will use the great [Beat generator project](https://github.com/elastic/beat-generator) which basically creates a skeleton for your beat.
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>cookiecutter https://github.com/elastic/beat-generator.git
+</span></code></pre></td></tr></table></div></figure>
+
+The generator is asking some questions:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>project_name <span class="o">[</span>Examplebeat<span class="o">]</span>: soundbeat
+</span><span class='line'>github_name <span class="o">[</span>your-github-name<span class="o">]</span>: dadoonet
+</span><span class='line'>beat <span class="o">[</span>soundbeat<span class="o">]</span>:
+</span><span class='line'>beat_path <span class="o">[</span>github.com/dadoonet<span class="o">]</span>:
+</span><span class='line'>full_name <span class="o">[</span>Firstname Lastname<span class="o">]</span>: David Pilato
+</span></code></pre></td></tr></table></div></figure>
+
+Just `cd` in the generated dir:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nb">cd</span> <span class="nv">$GOPATH</span>/src/github.com/dadoonet/soundbeat
+</span></code></pre></td></tr></table></div></figure>
+
+You have a full beat project:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>tree
+</span><span class='line'>.
+</span><span class='line'>├── CONTRIBUTING.md
+</span><span class='line'>├── LICENSE
+</span><span class='line'>├── Makefile
+</span><span class='line'>├── README.md
+</span><span class='line'>├── beater
+</span><span class='line'>│   └── soundbeat.go
+</span><span class='line'>├── config
+</span><span class='line'>│   └── config.go
+</span><span class='line'>├── dev-tools
+</span><span class='line'>│   └── packer
+</span><span class='line'>│       ├── Makefile
+</span><span class='line'>│       ├── beats
+</span><span class='line'>│       │   └── soundbeat.yml
+</span><span class='line'>│       └── version.yml
+</span><span class='line'>├── docs
+</span><span class='line'>│   └── index.asciidoc
+</span><span class='line'>├── etc
+</span><span class='line'>│   ├── beat.yml
+</span><span class='line'>│   ├── fields.yml
+</span><span class='line'>│   └── soundbeat.template.json
+</span><span class='line'>├── glide.yaml
+</span><span class='line'>├── main.go
+</span><span class='line'>├── main_test.go
+</span><span class='line'>└── tests
+</span><span class='line'>    └── system
+</span><span class='line'>        ├── config
+</span><span class='line'>        │   └── soundbeat.yml.j2
+</span><span class='line'>        ├── requirements.txt
+</span><span class='line'>        ├── soundbeat.py
+</span><span class='line'>        └── test_base.py
+</span></code></pre></td></tr></table></div></figure>
+
+This project depends on [libbeat](https://github.com/elastic/beats/tree/master/libbeat) which provides already all the needed stuff to read configuration file or write data to stdout or elasticsearch.
+
+Just run now:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>make
+</span></code></pre></td></tr></table></div></figure>
+
+It will install the needed dependencies and create your git repository and `git add` all your files.
+
+If you run `make` again, it will compile and build your binary `soundbeat`.
+
+
+### libsox sound library
+
+The [SoX library](http://sox.sourceforge.net/) provides all the tool we need for our use case. 
+You have different ways for installing the library. On my mac, I used:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>brew install sox
+</span></code></pre></td></tr></table></div></figure>
+
+Kristoffer Grönlund created a [golang binding for SoX](https://github.com/krig/go-sox). Let's use it.
+
+In `glide.yaml`, we add this dependency:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>- package: github.com/krig/go-sox
+</span></code></pre></td></tr></table></div></figure>
+
+Then pull the library from internet with:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>make update-deps
+</span></code></pre></td></tr></table></div></figure>
+
+We now have the library. We can start coding our beat.
+
+### Writing the logic
+
+All the code will basically go into `beater/soundbeat.go`.
+
+#### Import libs
+
+We have to import all the needed libs:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'><span class="kn">import</span> <span class="p">(</span>
+</span><span class='line'>	<span class="s">&quot;fmt&quot;</span>
+</span><span class='line'>	<span class="s">&quot;time&quot;</span>
+</span><span class='line'>	<span class="s">&quot;errors&quot;</span>
+</span><span class='line'>	<span class="s">&quot;math&quot;</span>
+</span><span class='line'>
+</span><span class='line'>	<span class="s">&quot;github.com/krig/go-sox&quot;</span>
+</span><span class='line'>
+</span><span class='line'>	<span class="s">&quot;github.com/elastic/beats/libbeat/beat&quot;</span>
+</span><span class='line'>	<span class="s">&quot;github.com/elastic/beats/libbeat/cfgfile&quot;</span>
+</span><span class='line'>	<span class="s">&quot;github.com/elastic/beats/libbeat/common&quot;</span>
+</span><span class='line'>	<span class="s">&quot;github.com/elastic/beats/libbeat/logp&quot;</span>
+</span><span class='line'>
+</span><span class='line'>	<span class="s">&quot;github.com/dadoonet/soundbeat/config&quot;</span>
+</span><span class='line'><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+#### Soundbeat settings
+
+We will define 3 settings:
+
+* `name`: MP3 filename
+* `period`: size of one sound sample (like `100ms`)
+* `zoom`: it's basically a hack for a better rendering in Kibana as it [does not support aggregations under 1 second](https://github.com/elastic/kibana/issues/6559).
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'><span class="kd">type</span> <span class="nx">Soundbeat</span> <span class="kd">struct</span> <span class="p">{</span>
+</span><span class='line'>	<span class="nx">beatConfig</span> <span class="o">*</span><span class="nx">config</span><span class="p">.</span><span class="nx">Config</span>
+</span><span class='line'>	<span class="nx">done</span>       <span class="kd">chan</span> <span class="kd">struct</span><span class="p">{}</span>
+</span><span class='line'>
+</span><span class='line'>	<span class="nx">name</span>       <span class="kt">string</span>
+</span><span class='line'>	<span class="nx">period</span>     <span class="nx">time</span><span class="p">.</span><span class="nx">Duration</span>
+</span><span class='line'>	<span class="nx">zoom</span>       <span class="kt">float64</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+Settings are read from `soundbeat.yml` file by default. This file is automatically generated from the default [libbeat configuration file](https://github.com/elastic/beats/blob/master/libbeat/etc/libbeat.yml) and the content of `etc/beat.yml`.
+
+We can change this file and provide a default example:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="c1">################### Soundbeat Configuration Example #########################</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">############################# Soundbeat ######################################</span>
+</span><span class='line'>
+</span><span class='line'><span class="l-Scalar-Plain">soundbeat</span><span class="p-Indicator">:</span>
+</span><span class='line'>  <span class="c1"># MP3 file to analyze</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">musics/TheWhispers-AndTheBeatGoesOn.mp3</span>
+</span><span class='line'>  <span class="c1"># Defines the size of each sample</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">period</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">100ms</span>
+</span><span class='line'>  <span class="c1"># Zoom factor for a better Kibana rendering (default to 1.0)</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">zoom</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">10.0</span>
+</span></code></pre></td></tr></table></div></figure>
+
+The `config/config.go` file managed this configuration file:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'><span class="c1">// Config is put into a different package to prevent cyclic imports in case</span>
+</span><span class='line'><span class="c1">// it is needed in several locations</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">package</span> <span class="nx">config</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">type</span> <span class="nx">Config</span> <span class="kd">struct</span> <span class="p">{</span>
+</span><span class='line'>	<span class="nx">Soundbeat</span> <span class="nx">SoundbeatConfig</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">type</span> <span class="nx">SoundbeatConfig</span> <span class="kd">struct</span> <span class="p">{</span>
+</span><span class='line'>	<span class="nx">Name</span> <span class="kt">string</span> <span class="s">`yaml:&quot;name&quot;`</span>
+</span><span class='line'>	<span class="nx">Period</span> <span class="kt">string</span> <span class="s">`yaml:&quot;period&quot;`</span>
+</span><span class='line'>	<span class="nx">Zoom</span> <span class="kt">float64</span> <span class="s">`yaml:&quot;zoom&quot;`</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+We need to change the code in `Setup` method:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'><span class="kd">func</span> <span class="p">(</span><span class="nx">bt</span> <span class="o">*</span><span class="nx">Soundbeat</span><span class="p">)</span> <span class="nx">Setup</span><span class="p">(</span><span class="nx">b</span> <span class="o">*</span><span class="nx">beat</span><span class="p">.</span><span class="nx">Beat</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
+</span><span class='line'>  <span class="c1">// All libSoX applications must start by initializing the SoX library</span>
+</span><span class='line'>	<span class="k">if</span> <span class="p">!</span><span class="nx">sox</span><span class="p">.</span><span class="nx">Init</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>		<span class="k">return</span> <span class="nx">errors</span><span class="p">.</span><span class="nx">New</span><span class="p">(</span><span class="s">&quot;Failed to initialize SoX&quot;</span><span class="p">)</span>
+</span><span class='line'>	<span class="p">}</span>
+</span><span class='line'>  <span class="c1">// Make sure to call Quit before terminating</span>
+</span><span class='line'>  <span class="k">defer</span> <span class="nx">sox</span><span class="p">.</span><span class="nx">Quit</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nx">period</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">configDuration</span><span class="p">(</span><span class="nx">bt</span><span class="p">.</span><span class="nx">beatConfig</span><span class="p">.</span><span class="nx">Soundbeat</span><span class="p">.</span><span class="nx">Period</span><span class="p">,</span> <span class="mi">10</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Millisecond</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="nx">err</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>	<span class="nx">name</span> <span class="o">:=</span> <span class="nx">bt</span><span class="p">.</span><span class="nx">beatConfig</span><span class="p">.</span><span class="nx">Soundbeat</span><span class="p">.</span><span class="nx">Name</span>
+</span><span class='line'>	<span class="k">if</span> <span class="nx">name</span> <span class="o">==</span> <span class="s">&quot;&quot;</span> <span class="p">{</span>
+</span><span class='line'>		<span class="k">return</span> <span class="nx">errors</span><span class="p">.</span><span class="nx">New</span><span class="p">(</span><span class="s">&quot;no name set&quot;</span><span class="p">)</span>
+</span><span class='line'>	<span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nx">zoom</span> <span class="o">:=</span> <span class="mf">1.0</span>
+</span><span class='line'>  <span class="k">if</span> <span class="nx">bt</span><span class="p">.</span><span class="nx">beatConfig</span><span class="p">.</span><span class="nx">Soundbeat</span><span class="p">.</span><span class="nx">Zoom</span> <span class="o">!=</span> <span class="mf">0.0</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">zoom</span> <span class="p">=</span> <span class="nx">bt</span><span class="p">.</span><span class="nx">beatConfig</span><span class="p">.</span><span class="nx">Soundbeat</span><span class="p">.</span><span class="nx">Zoom</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nx">bt</span><span class="p">.</span><span class="nx">name</span> <span class="p">=</span> <span class="nx">name</span>
+</span><span class='line'>  <span class="nx">bt</span><span class="p">.</span><span class="nx">period</span> <span class="p">=</span> <span class="nx">period</span>
+</span><span class='line'>  <span class="nx">bt</span><span class="p">.</span><span class="nx">zoom</span> <span class="p">=</span> <span class="nx">zoom</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">return</span> <span class="kc">nil</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">func</span> <span class="nx">configDuration</span><span class="p">(</span><span class="nx">cfg</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">d</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Duration</span><span class="p">)</span> <span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Duration</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">if</span> <span class="nx">cfg</span> <span class="o">!=</span> <span class="s">&quot;&quot;</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="nx">time</span><span class="p">.</span><span class="nx">ParseDuration</span><span class="p">(</span><span class="nx">cfg</span><span class="p">)</span>
+</span><span class='line'>  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="nx">d</span><span class="p">,</span> <span class="kc">nil</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+In this method, we make sure that `libSoX` is working well. We also define all default values and check that a name has been set.
+
+
+### The Run method
+
+The `Run` method is where we need to implement the logic. It will read the file, extract the samples and for each sample will generate an event which should be sent to elasticsearch.
+
+
+This opens the file for reading:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'><span class="nx">in</span> <span class="o">:=</span> <span class="nx">sox</span><span class="p">.</span><span class="nx">OpenRead</span><span class="p">(</span><span class="nx">bt</span><span class="p">.</span><span class="nx">name</span><span class="p">)</span>
+</span><span class='line'><span class="k">if</span> <span class="nx">in</span> <span class="o">==</span> <span class="kc">nil</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">logp</span><span class="p">.</span><span class="nx">Err</span><span class="p">(</span><span class="s">&quot;Failed to open input file&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="c1">// Close the file before exiting</span>
+</span><span class='line'><span class="k">defer</span> <span class="nx">in</span><span class="p">.</span><span class="nx">Release</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+The total duration is the number of samples given by `Length()` divided by 2 (as we expect a stereo file) divided by the rate give by `Rate()`.
+
+For example, for the MP3 file of `The Whispers`, we have `26 123 340` samples, the file is a stereo file (2 tracks) and the bitrate is `44 100 Hz`.
+So the duration of the track is: `26123340/2/44100` which is `296.182s`
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'><span class="nx">duration</span> <span class="o">:=</span> <span class="nb">float64</span><span class="p">(</span><span class="nx">in</span><span class="p">.</span><span class="nx">Signal</span><span class="p">().</span><span class="nx">Length</span><span class="p">())</span> <span class="o">/</span> <span class="nb">float64</span><span class="p">(</span><span class="nx">in</span><span class="p">.</span><span class="nx">Signal</span><span class="p">().</span><span class="nx">Channels</span><span class="p">())</span> <span class="o">/</span> <span class="nx">in</span><span class="p">.</span><span class="nx">Signal</span><span class="p">().</span><span class="nx">Rate</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+We will use the `@timestamp` defacto standard for the timestamp field in Logstash/Beats/Kibana applications.
+So we will start from `now()` and add a new sample every `period`.
+
+We also apply the zoom factor to the time scale.
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'><span class="nx">modifed_period</span> <span class="o">:=</span> <span class="nb">float64</span><span class="p">(</span><span class="nx">period</span><span class="p">.</span><span class="nx">Nanoseconds</span><span class="p">())</span> <span class="o">*</span> <span class="nx">bt</span><span class="p">.</span><span class="nx">zoom</span>
+</span><span class='line'><span class="nx">now</span> <span class="p">=</span> <span class="nx">now</span><span class="p">.</span><span class="nx">Add</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Duration</span><span class="p">(</span><span class="nx">modifed_period</span><span class="p">))</span>
+</span></code></pre></td></tr></table></div></figure>
+
+For each sample, we get the level of the sound for left and right channels and we store them in `left` and `right` fields.
+
+Then we generate an event which contains this information and we publish it:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'><span class="nx">event</span> <span class="o">:=</span> <span class="nx">common</span><span class="p">.</span><span class="nx">MapStr</span><span class="p">{</span>
+</span><span class='line'>  <span class="s">&quot;@timestamp&quot;</span><span class="p">:</span>   <span class="nx">common</span><span class="p">.</span><span class="nx">Time</span><span class="p">(</span><span class="nx">now</span><span class="p">),</span>
+</span><span class='line'>  <span class="s">&quot;type&quot;</span><span class="p">:</span>         <span class="nx">b</span><span class="p">.</span><span class="nx">Name</span><span class="p">,</span>
+</span><span class='line'>  <span class="s">&quot;left&quot;</span><span class="p">:</span>         <span class="nx">left</span> <span class="o">*</span> <span class="mf">100.0</span><span class="p">,</span>
+</span><span class='line'>  <span class="s">&quot;right&quot;</span><span class="p">:</span>        <span class="nx">right</span> <span class="o">*</span> <span class="mf">100.0</span><span class="p">,</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">b</span><span class="p">.</span><span class="nx">Events</span><span class="p">.</span><span class="nx">PublishEvent</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+This is how the full `Run` method looks like:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'><span class="kd">func</span> <span class="p">(</span><span class="nx">bt</span> <span class="o">*</span><span class="nx">Soundbeat</span><span class="p">)</span> <span class="nx">Run</span><span class="p">(</span><span class="nx">b</span> <span class="o">*</span><span class="nx">beat</span><span class="p">.</span><span class="nx">Beat</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">logp</span><span class="p">.</span><span class="nx">Info</span><span class="p">(</span><span class="s">&quot;soundbeat is starting...&quot;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// Open the input file (with default parameters)</span>
+</span><span class='line'>  <span class="nx">in</span> <span class="o">:=</span> <span class="nx">sox</span><span class="p">.</span><span class="nx">OpenRead</span><span class="p">(</span><span class="nx">bt</span><span class="p">.</span><span class="nx">name</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">if</span> <span class="nx">in</span> <span class="o">==</span> <span class="kc">nil</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">logp</span><span class="p">.</span><span class="nx">Err</span><span class="p">(</span><span class="s">&quot;Failed to open input file&quot;</span><span class="p">)</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  <span class="c1">// Close the file before exiting</span>
+</span><span class='line'>  <span class="k">defer</span> <span class="nx">in</span><span class="p">.</span><span class="nx">Release</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// This example program requires that the audio has precisely 2 channels:</span>
+</span><span class='line'>  <span class="k">if</span> <span class="nx">in</span><span class="p">.</span><span class="nx">Signal</span><span class="p">().</span><span class="nx">Channels</span><span class="p">()</span> <span class="o">!=</span> <span class="mi">2</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">logp</span><span class="p">.</span><span class="nx">Err</span><span class="p">(</span><span class="s">&quot;Input must be 2 channels&quot;</span><span class="p">)</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nx">duration</span> <span class="o">:=</span> <span class="nb">float64</span><span class="p">(</span><span class="nx">in</span><span class="p">.</span><span class="nx">Signal</span><span class="p">().</span><span class="nx">Length</span><span class="p">())</span> <span class="o">/</span> <span class="nb">float64</span><span class="p">(</span><span class="nx">in</span><span class="p">.</span><span class="nx">Signal</span><span class="p">().</span><span class="nx">Channels</span><span class="p">())</span> <span class="o">/</span> <span class="nx">in</span><span class="p">.</span><span class="nx">Signal</span><span class="p">().</span><span class="nx">Rate</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nx">now</span> <span class="o">:=</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Now</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nx">period</span> <span class="o">:=</span> <span class="nx">bt</span><span class="p">.</span><span class="nx">period</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// Convert block size (in seconds) to a number of samples:</span>
+</span><span class='line'>  <span class="nx">block_size</span> <span class="o">:=</span> <span class="nb">int64</span><span class="p">(</span><span class="nx">period</span><span class="p">.</span><span class="nx">Seconds</span><span class="p">()</span> <span class="o">*</span> <span class="nb">float64</span><span class="p">(</span><span class="nx">in</span><span class="p">.</span><span class="nx">Signal</span><span class="p">().</span><span class="nx">Rate</span><span class="p">())</span> <span class="o">*</span> <span class="nb">float64</span><span class="p">(</span><span class="nx">in</span><span class="p">.</span><span class="nx">Signal</span><span class="p">().</span><span class="nx">Channels</span><span class="p">())</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">)</span>
+</span><span class='line'>  <span class="c1">// Make sure that this is at a `wide sample&#39; boundary:</span>
+</span><span class='line'>  <span class="nx">block_size</span> <span class="o">-=</span> <span class="nx">block_size</span> <span class="o">%</span> <span class="nb">int64</span><span class="p">(</span><span class="nx">in</span><span class="p">.</span><span class="nx">Signal</span><span class="p">().</span><span class="nx">Channels</span><span class="p">())</span>
+</span><span class='line'>  <span class="c1">// Allocate a block of memory to store the block of audio samples:</span>
+</span><span class='line'>  <span class="nx">buf</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="nx">sox</span><span class="p">.</span><span class="nx">Sample</span><span class="p">,</span> <span class="nx">block_size</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// Read and process blocks of audio for the selected duration or until EOF:</span>
+</span><span class='line'>  <span class="k">for</span> <span class="nx">blocks</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">in</span><span class="p">.</span><span class="nx">Read</span><span class="p">(</span><span class="nx">buf</span><span class="p">,</span> <span class="nb">uint</span><span class="p">(</span><span class="nx">block_size</span><span class="p">))</span> <span class="o">==</span> <span class="nx">block_size</span> <span class="o">&amp;&amp;</span> <span class="nb">float64</span><span class="p">(</span><span class="nx">blocks</span><span class="p">)</span> <span class="o">*</span> <span class="nx">period</span><span class="p">.</span><span class="nx">Seconds</span><span class="p">()</span> <span class="p">&lt;</span> <span class="nx">duration</span><span class="p">;</span> <span class="nx">blocks</span><span class="o">++</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">left</span> <span class="o">:=</span> <span class="mf">0.0</span>
+</span><span class='line'>    <span class="nx">right</span> <span class="o">:=</span> <span class="mf">0.0</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">// We increment time with a block_size (in seconds)</span>
+</span><span class='line'>    <span class="c1">// But we first zoom accordingly to the zoom factor we set</span>
+</span><span class='line'>    <span class="nx">modifed_period</span> <span class="o">:=</span> <span class="nb">float64</span><span class="p">(</span><span class="nx">period</span><span class="p">.</span><span class="nx">Nanoseconds</span><span class="p">())</span> <span class="o">*</span> <span class="nx">bt</span><span class="p">.</span><span class="nx">zoom</span>
+</span><span class='line'>    <span class="nx">now</span> <span class="p">=</span> <span class="nx">now</span><span class="p">.</span><span class="nx">Add</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Duration</span><span class="p">(</span><span class="nx">modifed_period</span><span class="p">))</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="nb">int64</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nx">block_size</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+</span><span class='line'>      <span class="c1">// convert the sample from SoX&#39;s internal format to a `float64&#39; for</span>
+</span><span class='line'>      <span class="c1">// processing in this application:</span>
+</span><span class='line'>      <span class="nx">sample</span> <span class="o">:=</span> <span class="nx">sox</span><span class="p">.</span><span class="nx">SampleToFloat64</span><span class="p">(</span><span class="nx">buf</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="c1">// The samples for each channel are interleaved; in this example</span>
+</span><span class='line'>      <span class="c1">// we allow only stereo audio, so the left channel audio can be found in</span>
+</span><span class='line'>      <span class="c1">// even-numbered samples, and the right channel audio in odd-numbered</span>
+</span><span class='line'>      <span class="c1">// samples:</span>
+</span><span class='line'>      <span class="k">if</span> <span class="p">(</span><span class="nx">i</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">right</span> <span class="p">=</span> <span class="nx">math</span><span class="p">.</span><span class="nx">Max</span><span class="p">(</span><span class="nx">right</span><span class="p">,</span> <span class="nx">math</span><span class="p">.</span><span class="nx">Abs</span><span class="p">(</span><span class="nx">sample</span><span class="p">))</span>
+</span><span class='line'>      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">left</span> <span class="p">=</span> <span class="nx">math</span><span class="p">.</span><span class="nx">Max</span><span class="p">(</span><span class="nx">left</span><span class="p">,</span> <span class="nx">math</span><span class="p">.</span><span class="nx">Abs</span><span class="p">(</span><span class="nx">sample</span><span class="p">))</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">event</span> <span class="o">:=</span> <span class="nx">common</span><span class="p">.</span><span class="nx">MapStr</span><span class="p">{</span>
+</span><span class='line'>      <span class="s">&quot;@timestamp&quot;</span><span class="p">:</span>   <span class="nx">common</span><span class="p">.</span><span class="nx">Time</span><span class="p">(</span><span class="nx">now</span><span class="p">),</span>
+</span><span class='line'>      <span class="s">&quot;type&quot;</span><span class="p">:</span>         <span class="nx">b</span><span class="p">.</span><span class="nx">Name</span><span class="p">,</span>
+</span><span class='line'>      <span class="s">&quot;left&quot;</span><span class="p">:</span>         <span class="nx">left</span> <span class="o">*</span> <span class="mf">100.0</span><span class="p">,</span>
+</span><span class='line'>      <span class="s">&quot;right&quot;</span><span class="p">:</span>        <span class="nx">right</span> <span class="o">*</span> <span class="mf">100.0</span><span class="p">,</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">b</span><span class="p">.</span><span class="nx">Events</span><span class="p">.</span><span class="nx">PublishEvent</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nx">logp</span><span class="p">.</span><span class="nx">Info</span><span class="p">(</span><span class="s">&quot;soundbeat ended analyzing file %s&quot;</span><span class="p">,</span> <span class="nx">bt</span><span class="p">.</span><span class="nx">name</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">return</span> <span class="kc">nil</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+We can now build our beat:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c"># This will merge our changes in etc/beat.yml to ./soundbeat.yml</span>
+</span><span class='line'>make update
+</span><span class='line'><span class="c"># This will compile</span>
+</span><span class='line'>make
+</span></code></pre></td></tr></table></div></figure>
+
+And use it! This will start our beat in debug mode without pushing anything:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>./soundbeat -N -e -d <span class="s2">&quot;*&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+It will produce something like:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>2016/03/18 12:40:18.031084 beat.go:221: DBG  Initializing output plugins
+</span><span class='line'>2016/03/18 12:40:18.031128 publish.go:205: INFO Dry run mode. All output types except the file based one are disabled.
+</span><span class='line'>2016/03/18 12:40:18.031144 geolite.go:24: INFO GeoIP disabled: No paths were <span class="nb">set </span>under shipper.geoip.paths
+</span><span class='line'>2016/03/18 12:40:18.031186 publish.go:291: INFO Publisher name: MacBook-Pro-4.local
+</span><span class='line'>2016/03/18 12:40:18.031320 beat.go:238: INFO Init Beat: soundbeat<span class="p">;</span> Version: 5.0.0-SNAPSHOT
+</span><span class='line'>2016/03/18 12:40:18.031670 soundbeat.go:76: INFO soundbeat has been configured:
+</span><span class='line'>2016/03/18 12:40:18.031681 soundbeat.go:77: INFO  - Name: musics/TheWhispers-AndTheBeatGoesOn.mp3
+</span><span class='line'>2016/03/18 12:40:18.031687 soundbeat.go:78: INFO  - Period: 100ms
+</span><span class='line'>2016/03/18 12:40:18.031703 soundbeat.go:79: INFO  - Zoom: 10.000000
+</span><span class='line'>2016/03/18 12:40:18.031769 beat.go:267: INFO soundbeat sucessfully setup. Start running.
+</span><span class='line'>2016/03/18 12:40:18.031774 soundbeat.go:93: INFO soundbeat is starting...
+</span><span class='line'>2016/03/18 12:40:18.032152 soundbeat.go:116: INFO  - Duration 296.182993 s
+</span><span class='line'>2016/03/18 12:40:18.032165 soundbeat.go:117: INFO  - Channels 2
+</span><span class='line'>2016/03/18 12:40:18.032171 soundbeat.go:118: INFO  - Rate <span class="m">44100</span> Hz
+</span><span class='line'>2016/03/18 12:40:18.032721 publish.go:112: DBG  Publish: <span class="o">{</span>
+</span><span class='line'>  <span class="s2">&quot;@timestamp&quot;</span>: <span class="s2">&quot;2016-03-18T12:40:19.032Z&quot;</span>,
+</span><span class='line'>  <span class="s2">&quot;beat&quot;</span>: <span class="o">{</span>
+</span><span class='line'>    <span class="s2">&quot;hostname&quot;</span>: <span class="s2">&quot;MacBook-Pro-4.local&quot;</span>,
+</span><span class='line'>    <span class="s2">&quot;name&quot;</span>: <span class="s2">&quot;MacBook-Pro-4.local&quot;</span>
+</span><span class='line'>  <span class="o">}</span>,
+</span><span class='line'>  <span class="s2">&quot;left&quot;</span>: 0,
+</span><span class='line'>  <span class="s2">&quot;right&quot;</span>: 0,
+</span><span class='line'>  <span class="s2">&quot;type&quot;</span>: <span class="s2">&quot;soundbeat&quot;</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'>...
+</span><span class='line'>2016/03/18 12:38:52.469365 async.go:48: DBG  publisher disabled
+</span><span class='line'>2016/03/18 12:38:52.469688 publish.go:112: DBG  Publish: <span class="o">{</span>
+</span><span class='line'>  <span class="s2">&quot;@timestamp&quot;</span>: <span class="s2">&quot;2016-03-18T13:28:10.947Z&quot;</span>,
+</span><span class='line'>  <span class="s2">&quot;beat&quot;</span>: <span class="o">{</span>
+</span><span class='line'>    <span class="s2">&quot;hostname&quot;</span>: <span class="s2">&quot;MacBook-Pro-4.local&quot;</span>,
+</span><span class='line'>    <span class="s2">&quot;name&quot;</span>: <span class="s2">&quot;MacBook-Pro-4.local&quot;</span>
+</span><span class='line'>  <span class="o">}</span>,
+</span><span class='line'>  <span class="s2">&quot;left&quot;</span>: 0,
+</span><span class='line'>  <span class="s2">&quot;right&quot;</span>: 0,
+</span><span class='line'>  <span class="s2">&quot;type&quot;</span>: <span class="s2">&quot;soundbeat&quot;</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'>2016/03/18 12:38:52.469695 async.go:48: DBG  publisher disabled
+</span><span class='line'>2016/03/18 12:38:52.469768 soundbeat.go:167: INFO soundbeat ended analyzing file musics/TheWhispers-AndTheBeatGoesOn.mp3
+</span><span class='line'>2016/03/18 12:38:52.469911 beat.go:307: INFO Start exiting beat
+</span><span class='line'>2016/03/18 12:38:52.469926 beat.go:282: INFO Stopping Beat
+</span><span class='line'>2016/03/18 12:38:52.469937 beat.go:290: INFO Cleaning up soundbeat before shutting down.
+</span><span class='line'>2016/03/18 12:38:52.469945 beat.go:139: INFO Exit beat completed
+</span></code></pre></td></tr></table></div></figure>
+
+## Connecting to elasticsearch
+
+We need to define a template for elasticsearch if we want to force elasticsearch using our mapping.
+But we are lucky! The beat-generator provides everything out of the box!
+
+Just edit `etc/fields.yml` and change the `soundbeat` part to:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="l-Scalar-Plain">soundbeat</span><span class="p-Indicator">:</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">type</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">group</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">fields</span><span class="p-Indicator">:</span>
+</span><span class='line'>    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">name</span>
+</span><span class='line'>      <span class="l-Scalar-Plain">type</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">string</span>
+</span><span class='line'>      <span class="l-Scalar-Plain">required</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span>
+</span><span class='line'>      <span class="l-Scalar-Plain">description</span><span class="p-Indicator">:</span> <span class="p-Indicator">&gt;</span>
+</span><span class='line'>        <span class="no">Sound file name</span>
+</span><span class='line'>    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">left</span>
+</span><span class='line'>      <span class="l-Scalar-Plain">type</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">double</span>
+</span><span class='line'>      <span class="l-Scalar-Plain">required</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span>
+</span><span class='line'>      <span class="l-Scalar-Plain">description</span><span class="p-Indicator">:</span> <span class="p-Indicator">&gt;</span>
+</span><span class='line'>        <span class="no">Left sound level</span>
+</span><span class='line'>    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">right</span>
+</span><span class='line'>      <span class="l-Scalar-Plain">type</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">double</span>
+</span><span class='line'>      <span class="l-Scalar-Plain">required</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span>
+</span><span class='line'>      <span class="l-Scalar-Plain">description</span><span class="p-Indicator">:</span> <span class="p-Indicator">&gt;</span>
+</span><span class='line'>        <span class="no">Right sound level</span>
+</span></code></pre></td></tr></table></div></figure>
+
+Then, run:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>make update
+</span></code></pre></td></tr></table></div></figure>
+
+It will generate the `etc/soundbeat.template.json` file. And cherry on the cake, it will also update the documentation in `docs` dir.
+
+
+Start elasticsearch:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>bin/elasticsearch
+</span><span class='line'><span class="o">[</span>2016-03-18 14:53:33,487<span class="o">][</span>INFO <span class="o">][</span>node                     <span class="o">]</span> <span class="o">[</span>Katu<span class="o">]</span> version<span class="o">[</span>2.2.1<span class="o">]</span>, pid<span class="o">[</span>82105<span class="o">]</span>, build<span class="o">[</span>d045fc2/2016-03-09T09:38:54Z<span class="o">]</span>
+</span><span class='line'><span class="o">[</span>2016-03-18 14:53:33,489<span class="o">][</span>INFO <span class="o">][</span>node                     <span class="o">]</span> <span class="o">[</span>Katu<span class="o">]</span> initializing ...
+</span><span class='line'><span class="o">[</span>2016-03-18 14:53:34,111<span class="o">][</span>INFO <span class="o">][</span>plugins                  <span class="o">]</span> <span class="o">[</span>Katu<span class="o">]</span> modules <span class="o">[</span>lang-expression, lang-groovy<span class="o">]</span>, plugins <span class="o">[]</span>, sites <span class="o">[]</span>
+</span><span class='line'><span class="o">[</span>2016-03-18 14:53:34,285<span class="o">][</span>INFO <span class="o">][</span>env                      <span class="o">]</span> <span class="o">[</span>Katu<span class="o">]</span> using <span class="o">[</span>1<span class="o">]</span> data paths, mounts <span class="o">[[</span>/ <span class="o">(</span>/dev/disk1<span class="o">)]]</span>, net usable_space <span class="o">[</span>3.6gb<span class="o">]</span>, net total_space <span class="o">[</span>464.7gb<span class="o">]</span>, spins? <span class="o">[</span>unknown<span class="o">]</span>, types <span class="o">[</span>hfs<span class="o">]</span>
+</span><span class='line'><span class="o">[</span>2016-03-18 14:53:34,285<span class="o">][</span>INFO <span class="o">][</span>env                      <span class="o">]</span> <span class="o">[</span>Katu<span class="o">]</span> heap size <span class="o">[</span>990.7mb<span class="o">]</span>, compressed ordinary object pointers <span class="o">[</span><span class="nb">true</span><span class="o">]</span>
+</span><span class='line'><span class="o">[</span>2016-03-18 14:53:34,286<span class="o">][</span>WARN <span class="o">][</span>env                      <span class="o">]</span> <span class="o">[</span>Katu<span class="o">]</span> max file descriptors <span class="o">[</span>10240<span class="o">]</span> <span class="k">for</span> elasticsearch process likely too low, consider increasing to at least <span class="o">[</span>65536<span class="o">]</span>
+</span><span class='line'><span class="o">[</span>2016-03-18 14:53:36,456<span class="o">][</span>INFO <span class="o">][</span>node                     <span class="o">]</span> <span class="o">[</span>Katu<span class="o">]</span> initialized
+</span><span class='line'><span class="o">[</span>2016-03-18 14:53:36,456<span class="o">][</span>INFO <span class="o">][</span>node                     <span class="o">]</span> <span class="o">[</span>Katu<span class="o">]</span> starting ...
+</span><span class='line'><span class="o">[</span>2016-03-18 14:53:36,572<span class="o">][</span>INFO <span class="o">][</span>transport                <span class="o">]</span> <span class="o">[</span>Katu<span class="o">]</span> publish_address <span class="o">{</span>127.0.0.1:9300<span class="o">}</span>, bound_addresses <span class="o">{[</span>fe80::1<span class="o">]</span>:9300<span class="o">}</span>, <span class="o">{[</span>::1<span class="o">]</span>:9300<span class="o">}</span>, <span class="o">{</span>127.0.0.1:9300<span class="o">}</span>
+</span><span class='line'><span class="o">[</span>2016-03-18 14:53:36,584<span class="o">][</span>INFO <span class="o">][</span>discovery                <span class="o">]</span> <span class="o">[</span>Katu<span class="o">]</span> elasticsearch/b_T6HUb-TXyUTN8Af6YdEQ
+</span><span class='line'><span class="o">[</span>2016-03-18 14:53:39,618<span class="o">][</span>INFO <span class="o">][</span>cluster.service          <span class="o">]</span> <span class="o">[</span>Katu<span class="o">]</span> new_master <span class="o">{</span>Katu<span class="o">}{</span>b_T6HUb-TXyUTN8Af6YdEQ<span class="o">}{</span>127.0.0.1<span class="o">}{</span>127.0.0.1:9300<span class="o">}</span>, reason: zen-disco-join<span class="o">(</span>elected_as_master, <span class="o">[</span>0<span class="o">]</span> joins received<span class="o">)</span>
+</span><span class='line'><span class="o">[</span>2016-03-18 14:53:39,638<span class="o">][</span>INFO <span class="o">][</span>http                     <span class="o">]</span> <span class="o">[</span>Katu<span class="o">]</span> publish_address <span class="o">{</span>127.0.0.1:9200<span class="o">}</span>, bound_addresses <span class="o">{[</span>fe80::1<span class="o">]</span>:9200<span class="o">}</span>, <span class="o">{[</span>::1<span class="o">]</span>:9200<span class="o">}</span>, <span class="o">{</span>127.0.0.1:9200<span class="o">}</span>
+</span><span class='line'><span class="o">[</span>2016-03-18 14:53:39,638<span class="o">][</span>INFO <span class="o">][</span>node                     <span class="o">]</span> <span class="o">[</span>Katu<span class="o">]</span> started
+</span></code></pre></td></tr></table></div></figure>
+
+And apply the template:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>curl -XPUT <span class="s1">&#39;http://localhost:9200/_template/soundbeat&#39;</span> -d@etc/soundbeat.template.json
+</span></code></pre></td></tr></table></div></figure>
+
+And launch `soundbeat` again with the standard mode:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>./soundbeat
+</span></code></pre></td></tr></table></div></figure>
+
+In elasticsearch logs, you should see:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="o">[</span>2016-03-18 14:54:31,599<span class="o">][</span>INFO <span class="o">][</span>cluster.metadata         <span class="o">]</span> <span class="o">[</span>Katu<span class="o">]</span> <span class="o">[</span>soundbeat-2016.03.18<span class="o">]</span> creating index, cause <span class="o">[</span>auto<span class="o">(</span>bulk api<span class="o">)]</span>, templates <span class="o">[</span>soundbeat<span class="o">]</span>, shards <span class="o">[</span>5<span class="o">]</span>/<span class="o">[</span>1<span class="o">]</span>, mappings <span class="o">[</span>_default_, soundbeat<span class="o">]</span>
+</span><span class='line'><span class="o">[</span>2016-03-18 14:54:31,725<span class="o">][</span>INFO <span class="o">][</span>cluster.metadata         <span class="o">]</span> <span class="o">[</span>Katu<span class="o">]</span> <span class="o">[</span>soundbeat-2016.03.18<span class="o">]</span> update_mapping <span class="o">[</span>soundbeat<span class="o">]</span>
+</span><span class='line'><span class="o">[</span>2016-03-18 14:54:31,744<span class="o">][</span>INFO <span class="o">][</span>cluster.routing.allocation<span class="o">]</span> <span class="o">[</span>Katu<span class="o">]</span> Cluster health status changed from <span class="o">[</span>RED<span class="o">]</span> to <span class="o">[</span>YELLOW<span class="o">]</span> <span class="o">(</span>reason: <span class="o">[</span>shards started <span class="o">[[</span>soundbeat-2016.03.18<span class="o">][</span>4<span class="o">]</span>, <span class="o">[</span>soundbeat-2016.03.18<span class="o">][</span>4<span class="o">]]</span> ...<span class="o">])</span>.
+</span></code></pre></td></tr></table></div></figure>
+
+## Visualize in Kibana
+
+Just launch Kibana:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>bin/kibana
+</span></code></pre></td></tr></table></div></figure>
+
+And open http://0.0.0.0:5601/
+
+You have to change the time range. And look into the future!
+
+Why this? Because we injected data from now and generated a 5 minutes long music waveform.
+But remember that we used a `zoom` factor of `10x` for a better rendering in Kibana.
+
+So here, I'll look at data from `2016-03-18 14:54:30` to `2016-03-18 15:03:30` for the begining of the music.
+
+<center>
+<img src="/blog/images/beats1/kibana1.png" title="Select time range" >
+</center>
+
+Let's create a Timeseries visualization!
+
+<center>
+<img src="/blog/images/beats1/kibana2.png" title="Timeseries visualization" >
+</center>
+
+Then, we define interval to `1s` and set the Timelion expression:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>.es<span class="o">(</span><span class="nv">index</span><span class="o">=</span><span class="s2">&quot;soundbeat-*&quot;</span>,metric<span class="o">=</span><span class="s2">&quot;min:left&quot;</span><span class="o">)</span>.bars<span class="o">(</span>1<span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+<center>
+<img src="/blog/images/beats1/kibana3.png" title="Left waveform" >
+</center>
+
+We can also add the right channel:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>.es<span class="o">(</span><span class="nv">index</span><span class="o">=</span><span class="s2">&quot;soundbeat-*&quot;</span>,metric<span class="o">=</span><span class="s2">&quot;min:left&quot;</span><span class="o">)</span>.bars<span class="o">(</span>1<span class="o">)</span>,.es<span class="o">(</span><span class="nv">index</span><span class="o">=</span><span class="s2">&quot;soundbeat-*&quot;</span>,metric<span class="o">=</span><span class="s2">&quot;min:right&quot;</span><span class="o">)</span>.bars<span class="o">(</span>1<span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+<center>
+<img src="/blog/images/beats1/kibana4.png" title="With Right waveform" >
+</center>
+
+But this will overlap. So let's fix that by negative by `1` the left channel:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>.es<span class="o">(</span><span class="nv">index</span><span class="o">=</span><span class="s2">&quot;soundbeat-*&quot;</span>,metric<span class="o">=</span><span class="s2">&quot;min:left&quot;</span><span class="o">)</span>.multiply<span class="o">(</span>-1<span class="o">)</span>.bars<span class="o">(</span>1<span class="o">)</span>,.es<span class="o">(</span><span class="nv">index</span><span class="o">=</span><span class="s2">&quot;soundbeat-*&quot;</span>,metric<span class="o">=</span><span class="s2">&quot;min:right&quot;</span><span class="o">)</span>.bars<span class="o">(</span>1<span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+We now have something which looks like the waveform we are looking for!
+
+
+<center>
+<img src="/blog/images/beats1/kibana5.png" title="Final waveform" >
+</center>
+
+## Resources
+
+* [Beats Platform Reference](https://www.elastic.co/guide/en/beats/libbeat/current/index.html)
+* [Beat Generator](https://github.com/elastic/beat-generator)
+* [Beat developer guide](https://www.elastic.co/guide/en/beats/libbeat/current/new-beat.html)
+* [soundbeat source code](https://github.com/dadoonet/soundbeat)
+
+
+
+
+
+
+
+
+
+
+
+]]></content>
+  </entry>
+  
+</feed>

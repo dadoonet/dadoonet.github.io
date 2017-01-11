@@ -1,0 +1,926 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Creating a Plugin for Elasticsearch 5.0 Using Maven - -Xmx128gb -Xms128gb</title>
+  <meta name="author" content="David Pilato">
+
+  
+  <meta name="description" content="Creating a Plugin for Elasticsearch 5.0 Using Maven Jul 27th, 2016 4:00 pm | Comments NOTE: This article is now outdated. Please read Creating a &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://david.pilato.fr/blog/2016/07/27/creating-a-plugin-for-elasticsearch-5-dot-0-using-maven/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/elevator.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="-Xmx128gb -Xms128gb" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<script src="/javascripts/elevator.min.js"></script>
+
+  
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-62381049-1', 'auto');
+// Creating a plugin for elasticsearch 5.0 using Maven
+
+ga('send', 'pageview', {
+  page: '/blog/2016/07/27/creating-a-plugin-for-elasticsearch-5-dot-0-using-maven/',
+  title: 'Creating a plugin for elasticsearch 5.0 using Maven'
+});
+
+</script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">-Xmx128gb -Xms128gb</a></h1>
+  
+    <h2>adding more memory to my brain!</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="david.pilato.fr">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title"><img src="/images/covers/new/elasticsearch.png"/>Creating a Plugin for Elasticsearch 5.0 Using Maven</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2016-07-27T16:00:27+02:00'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>27</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>4:00 pm</span></time>
+        
+           | <a href="#disqus_thread"
+             data-disqus-identifier="http://david.pilato.fr">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><strong>NOTE:</strong> This article is now outdated. Please read <a href="/blog/2016/10/16/creating-a-plugin-for-elasticsearch-5-dot-0-using-maven-updated-for-ga/">Creating a plugin for elasticsearch 5.0 using Maven (Updated for GA)</a> instead!</p>
+
+<p>Elasticsearch 5.0 <a href="https://github.com/elastic/elasticsearch/issues/13930">switched to Gradle in October 2015</a>.</p>
+
+<p>You can obviously write a plugin using Gradle if you wish and you could benefit from all the goodies elasticsearch team wrote
+when it comes to integration tests and so on.</p>
+
+<p>My colleague, Alexander Reelsen aka <a href="http://twitter.com/spinscale">Spinscale on Twitter</a>, wrote
+<a href="https://github.com/spinscale/cookiecutter-elasticsearch-ingest-processor">a super nice template</a> if
+you wish to create an Ingest plugin for 5.0.</p>
+
+<blockquote><p>Hey! Wait! You wrote <code>Ingest</code>? What is that?</p></blockquote>
+
+<p>Ingest is a new feature coming in elasticsearch 5.0. It helps you to transform your data on the fly
+while injecting it into elasticsearch. Read more in <a href="https://www.elastic.co/blog/ingest-node-a-clients-perspective">elastic blog post</a>.</p>
+
+<p>If you know me and my work before I joined elastic, I have always been in love with data crawling and transformation as
+I wrote myself some plugins called <a href="https://www.elastic.co/blog/deprecating-rivers">rivers</a>.</p>
+
+<p>This blog post is part of a series which will teach you:</p>
+
+<ul>
+<li>How to write a plugin for elasticsearch 5.0 using Maven (what you are reading now).</li>
+<li><a href="/blog/2016/07/28/creating-an-ingest-plugin-for-elasticsearch/">How to write an ingest plugin for elasticsearch 5.0</a>.</li>
+<li>How I wrote the <code>ingest-bano</code> plugin which will be hopefully released soonish.</li>
+</ul>
+
+
+<!-- more -->
+
+
+<p>Let&rsquo;s get started!</p>
+
+<p><strong>Note</strong>: this article applies to elasticsearch 5.0.0 alpha 5. It might
+be not applicable for newer versions as APIs could change.</p>
+
+<h2>Create a skeleton</h2>
+
+<h3>Create Maven skeleton</h3>
+
+<p>Create in your new project directory, let say <code>ingest-bano</code>, a <code>pom.xml</code> file:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+</span><span class='line'><span class="nt">&lt;project</span> <span class="na">xmlns=</span><span class="s">&quot;http://maven.apache.org/POM/4.0.0&quot;</span>
+</span><span class='line'>         <span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>
+</span><span class='line'>         <span class="na">xsi:schemaLocation=</span><span class="s">&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;modelVersion&gt;</span>4.0.0<span class="nt">&lt;/modelVersion&gt;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nt">&lt;groupId&gt;</span>fr.pilato.elasticsearch.ingest<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;artifactId&gt;</span>ingest-bano<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;version&gt;</span>5.0.0-alpha5-SNAPSHOT<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;name&gt;</span>Plugin: Ingest: BANO<span class="nt">&lt;/name&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;description&gt;</span>BANO Ingest Plugin for elasticsearch<span class="nt">&lt;/description&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;/project&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Add elasticsearch core dependency</h2>
+
+<p>Just add <code>org.elasticsearch:elasticsearch:5.0.0-alpha5</code> as a <code>provided</code> dependency:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;properties&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;elasticsearch.version&gt;</span>5.0.0-alpha5<span class="nt">&lt;/elasticsearch.version&gt;</span>
+</span><span class='line'><span class="nt">&lt;/properties&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;dependencies&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;dependency&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;groupId&gt;</span>org.elasticsearch<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;artifactId&gt;</span>elasticsearch<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;version&gt;</span>${elasticsearch.version}<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;scope&gt;</span>provided<span class="nt">&lt;/scope&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/dependency&gt;</span>
+</span><span class='line'><span class="nt">&lt;/dependencies&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Why <code>provided</code>? Actually our plugin will run <strong>in</strong> elasticsearch. So elasticsearch
+is already provided here.</p>
+
+<h3>Add plugin descriptor file</h3>
+
+<p>As explained in <a href="https://www.elastic.co/guide/en/elasticsearch/plugins/master/plugin-authors.html#_plugin_descriptor_file">Plugin developer reference</a>,
+you need to provide a <code>plugin-descriptor.properties</code> which must be assembled with your plugin artifact in the <code>elasticsearch</code> dir.</p>
+
+<p>Create this file in <code>src/main/resources</code>:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='properties'><span class='line'><span class="na">description</span><span class="o">=</span><span class="s">${project.description}.</span>
+</span><span class='line'><span class="na">version</span><span class="o">=</span><span class="s">${project.version}</span>
+</span><span class='line'><span class="na">name</span><span class="o">=</span><span class="s">${project.artifactId}</span>
+</span><span class='line'><span class="na">classname</span><span class="o">=</span><span class="s">org.elasticsearch.ingest.bano.IngestBanoPlugin</span>
+</span><span class='line'><span class="na">java.version</span><span class="o">=</span><span class="s">1.8</span>
+</span><span class='line'><span class="na">elasticsearch.version</span><span class="o">=</span><span class="s">${elasticsearch.version}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>It does not need to be added to the project classes but only packaged within the ZIP file.
+Let&rsquo;s tell Maven to do that!</p>
+
+<p>We create a file <code>src/main/assemblies/plugin.xml</code> with:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
+</span><span class='line'><span class="nt">&lt;assembly&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;id&gt;</span>plugin<span class="nt">&lt;/id&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;formats&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;format&gt;</span>zip<span class="nt">&lt;/format&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/formats&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;includeBaseDirectory&gt;</span>false<span class="nt">&lt;/includeBaseDirectory&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;files&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;file&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;source&gt;</span>${project.basedir}/src/main/resources/plugin-descriptor.properties<span class="nt">&lt;/source&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;outputDirectory&gt;</span>elasticsearch<span class="nt">&lt;/outputDirectory&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;filtered&gt;</span>true<span class="nt">&lt;/filtered&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/file&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/files&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;dependencySets&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;dependencySet&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;outputDirectory&gt;</span>elasticsearch<span class="nt">&lt;/outputDirectory&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;useProjectArtifact&gt;</span>true<span class="nt">&lt;/useProjectArtifact&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;useTransitiveFiltering&gt;</span>true<span class="nt">&lt;/useTransitiveFiltering&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/dependencySet&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/dependencySets&gt;</span>
+</span><span class='line'><span class="nt">&lt;/assembly&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Note that we are filtering <code>plugin-descriptor.properties</code> file which means that at package time
+all Maven placeholders will be replaced by their needed values.</p>
+
+<p>We don&rsquo;t want to add this file in our JAR so we tell that to Maven in the <code>pom.xml</code>:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;build&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;resources&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;resource&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;directory&gt;</span>src/main/resources<span class="nt">&lt;/directory&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;filtering&gt;</span>false<span class="nt">&lt;/filtering&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;excludes&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;exclude&gt;</span>*.properties<span class="nt">&lt;/exclude&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/excludes&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/resource&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/resources&gt;</span>
+</span><span class='line'><span class="nt">&lt;/build&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>We need to declare the maven assembly plugin now:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;build&gt;</span>
+</span><span class='line'>  <span class="c">&lt;!-- ... --&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;plugins&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;plugin&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;artifactId&gt;</span>maven-assembly-plugin<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;version&gt;</span>2.6<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;configuration&gt;</span>
+</span><span class='line'>              <span class="nt">&lt;appendAssemblyId&gt;</span>false<span class="nt">&lt;/appendAssemblyId&gt;</span>
+</span><span class='line'>              <span class="nt">&lt;outputDirectory&gt;</span>${project.build.directory}/releases/<span class="nt">&lt;/outputDirectory&gt;</span>
+</span><span class='line'>              <span class="nt">&lt;descriptors&gt;</span>
+</span><span class='line'>                  <span class="nt">&lt;descriptor&gt;</span>${basedir}/src/main/assemblies/plugin.xml<span class="nt">&lt;/descriptor&gt;</span>
+</span><span class='line'>              <span class="nt">&lt;/descriptors&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;/configuration&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;executions&gt;</span>
+</span><span class='line'>              <span class="nt">&lt;execution&gt;</span>
+</span><span class='line'>                  <span class="nt">&lt;phase&gt;</span>package<span class="nt">&lt;/phase&gt;</span>
+</span><span class='line'>                  <span class="nt">&lt;goals&gt;</span>
+</span><span class='line'>                      <span class="nt">&lt;goal&gt;</span>single<span class="nt">&lt;/goal&gt;</span>
+</span><span class='line'>                  <span class="nt">&lt;/goals&gt;</span>
+</span><span class='line'>              <span class="nt">&lt;/execution&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;/executions&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;/plugin&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/plugins&gt;</span>
+</span><span class='line'><span class="nt">&lt;/build&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Configure Compiler plugin for Java 8</h3>
+
+<p>Because we want to use Java 8, we need to configure the compiler plugin:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;plugin&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;artifactId&gt;</span>maven-compiler-plugin<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;version&gt;</span>3.3<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;configuration&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;source&gt;</span>1.8<span class="nt">&lt;/source&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;target&gt;</span>1.8<span class="nt">&lt;/target&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/configuration&gt;</span>
+</span><span class='line'><span class="nt">&lt;/plugin&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Create Plugin class skeleton</h3>
+
+<p>Create an empty plugin class in <code>src/main/java/org/elasticsearch/ingest/bano/</code>.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">package</span> <span class="n">org</span><span class="o">.</span><span class="na">elasticsearch</span><span class="o">.</span><span class="na">ingest</span><span class="o">.</span><span class="na">bano</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">import</span> <span class="nn">org.elasticsearch.plugins.Plugin</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">IngestBanoPlugin</span> <span class="kd">extends</span> <span class="n">Plugin</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Add test infrastructure</h2>
+
+<p>Elasticsearch provides a nice test framework which can be reused to run some tests.</p>
+
+<p>Let&rsquo;s add it to our project:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;dependency&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;groupId&gt;</span>org.elasticsearch.test<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;artifactId&gt;</span>framework<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;version&gt;</span>${elasticsearch.version}<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+</span><span class='line'><span class="nt">&lt;/dependency&gt;</span>
+</span><span class='line'><span class="nt">&lt;dependency&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;groupId&gt;</span>net.java.dev.jna<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;artifactId&gt;</span>jna<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;version&gt;</span>4.1.0<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+</span><span class='line'><span class="nt">&lt;/dependency&gt;</span>
+</span><span class='line'><span class="nt">&lt;dependency&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;groupId&gt;</span>log4j<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;artifactId&gt;</span>log4j<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;version&gt;</span>1.2.17<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+</span><span class='line'><span class="nt">&lt;/dependency&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Let&rsquo;s add the fantastic Randomized Testing framework:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;plugin&gt;</span>
+</span><span class='line'>    <span class="c">&lt;!-- we skip surefire to work with randomized testing above --&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;artifactId&gt;</span>maven-surefire-plugin<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;version&gt;</span>2.9<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;configuration&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;skipTests&gt;</span>true<span class="nt">&lt;/skipTests&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/configuration&gt;</span>
+</span><span class='line'><span class="nt">&lt;/plugin&gt;</span>
+</span><span class='line'><span class="nt">&lt;plugin&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;groupId&gt;</span>com.carrotsearch.randomizedtesting<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;artifactId&gt;</span>junit4-maven-plugin<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;version&gt;</span>2.3.3<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nt">&lt;configuration&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;assertions</span> <span class="na">enableSystemAssertions=</span><span class="s">&quot;false&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;enable/&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/assertions&gt;</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="nt">&lt;listeners&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;report-text</span> <span class="nt">/&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/listeners&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/configuration&gt;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nt">&lt;executions&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;execution&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;id&gt;</span>unit-tests<span class="nt">&lt;/id&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;phase&gt;</span>test<span class="nt">&lt;/phase&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;goals&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;goal&gt;</span>junit4<span class="nt">&lt;/goal&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/goals&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/execution&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/executions&gt;</span>
+</span><span class='line'><span class="nt">&lt;/plugin&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Add a default <code>log4j.xml</code> in <code>src/test/resources</code>:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span>
+</span><span class='line'><span class="cp">&lt;!DOCTYPE log4j:configuration SYSTEM &quot;log4j.dtd&quot;&gt;</span>
+</span><span class='line'><span class="nt">&lt;log4j:configuration&gt;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nt">&lt;appender</span> <span class="na">name=</span><span class="s">&quot;console&quot;</span> <span class="na">class=</span><span class="s">&quot;org.apache.log4j.ConsoleAppender&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;layout</span> <span class="na">class=</span><span class="s">&quot;org.apache.log4j.PatternLayout&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;ConversionPattern&quot;</span> <span class="na">value=</span><span class="s">&quot;[%d{ISO8601}][%-5p][%-25c] %m%n&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/layout&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/appender&gt;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nt">&lt;root&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;level</span> <span class="na">value=</span><span class="s">&quot;INFO&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;appender-ref</span> <span class="na">ref=</span><span class="s">&quot;console&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/root&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;/log4j:configuration&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>We can now extend <code>ESIntegTestCase</code> class to run integration tests. You can create a <code>BanoPluginIntegrationTest</code>
+class in <code>src/test/java/org/elasticsearch/ingest/bano/</code>:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">package</span> <span class="n">org</span><span class="o">.</span><span class="na">elasticsearch</span><span class="o">.</span><span class="na">ingest</span><span class="o">.</span><span class="na">bano</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">import</span> <span class="nn">org.elasticsearch.action.admin.cluster.node.info.NodeInfo</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">org.elasticsearch.action.admin.cluster.node.info.NodesInfoResponse</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">org.elasticsearch.plugins.Plugin</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">org.elasticsearch.plugins.PluginInfo</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">org.elasticsearch.test.ESIntegTestCase</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">import</span> <span class="nn">java.util.Collection</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">java.util.Collections</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">import</span> <span class="nn">static</span> <span class="n">org</span><span class="o">.</span><span class="na">hamcrest</span><span class="o">.</span><span class="na">Matchers</span><span class="o">.</span><span class="na">is</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">BanoPluginIntegrationTest</span> <span class="kd">extends</span> <span class="n">ESIntegTestCase</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nd">@Override</span>
+</span><span class='line'>    <span class="kd">protected</span> <span class="n">Collection</span><span class="o">&lt;</span><span class="n">Class</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="n">Plugin</span><span class="o">&gt;&gt;</span> <span class="nf">nodePlugins</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>        <span class="k">return</span> <span class="n">Collections</span><span class="o">.</span><span class="na">singleton</span><span class="o">(</span><span class="n">IngestBanoPlugin</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testPluginIsLoaded</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">NodesInfoResponse</span> <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">().</span><span class="na">admin</span><span class="o">().</span><span class="na">cluster</span><span class="o">().</span><span class="na">prepareNodesInfo</span><span class="o">().</span><span class="na">setPlugins</span><span class="o">(</span><span class="kc">true</span><span class="o">).</span><span class="na">get</span><span class="o">();</span>
+</span><span class='line'>        <span class="k">for</span> <span class="o">(</span><span class="n">NodeInfo</span> <span class="n">nodeInfo</span> <span class="o">:</span> <span class="n">response</span><span class="o">.</span><span class="na">getNodes</span><span class="o">())</span> <span class="o">{</span>
+</span><span class='line'>            <span class="kt">boolean</span> <span class="n">pluginFound</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+</span><span class='line'>            <span class="k">for</span> <span class="o">(</span><span class="n">PluginInfo</span> <span class="n">pluginInfo</span> <span class="o">:</span> <span class="n">nodeInfo</span><span class="o">.</span><span class="na">getPlugins</span><span class="o">().</span><span class="na">getPluginInfos</span><span class="o">())</span> <span class="o">{</span>
+</span><span class='line'>                <span class="k">if</span> <span class="o">(</span><span class="n">pluginInfo</span><span class="o">.</span><span class="na">getName</span><span class="o">().</span><span class="na">equals</span><span class="o">(</span><span class="n">IngestBanoPlugin</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getName</span><span class="o">()))</span> <span class="o">{</span>
+</span><span class='line'>                    <span class="n">pluginFound</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+</span><span class='line'>                    <span class="k">break</span><span class="o">;</span>
+</span><span class='line'>                <span class="o">}</span>
+</span><span class='line'>            <span class="o">}</span>
+</span><span class='line'>            <span class="n">assertThat</span><span class="o">(</span><span class="n">pluginFound</span><span class="o">,</span> <span class="n">is</span><span class="o">(</span><span class="kc">true</span><span class="o">));</span>
+</span><span class='line'>        <span class="o">}</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>When you run this class, a cluster of a random number of nodes is started using random Locale settings.
+The plugin we just created is added to nodes using <code>nodePlugins()</code> class.</p>
+
+<p>So we just have to use the plugin as we want now. In this example, we are just testing that the plugin is
+actually loaded on every node.</p>
+
+<h2>Build the plugin</h2>
+
+<p>Just run:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>mvn clean install
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>You will get in <code>target/releases</code> the distribution file.</p>
+
+<h2>Install the plugin</h2>
+
+<p>If you have an elasticsearch 5.0.0-alpha5 version somewhere, you can install this plugin with:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>bin/elasticsearch-plugin install file:///path/to/target/releases/ingest-bano-5.0.0-alpha5-SNAPSHOT.zip
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Then you can start elasticsearch with <code>bin/elasticsearch</code>  and check in logs that the plugin is loaded.</p>
+
+<p>You are now all set!</p>
+
+<h2>Next?</h2>
+
+<p>In a coming blog post, I&rsquo;ll explain <a href="/blog/2016/07/28/creating-an-ingest-plugin-for-elasticsearch/">how to write an Ingest plugin</a> based on the skeleton we just built and also <a href="/blog/2016/07/29/elasticsearch-real-integration-tests/">how to create real integration tests</a>.</p>
+
+<p>But note that this skeleton can be used for <a href="https://www.elastic.co/guide/en/elasticsearch/plugins/master/index.html">whatever purpose</a>:</p>
+
+<ul>
+<li><a href="/blog/2016/08/01/creating-elasticsearch-transport-action/">Generic Action plugins</a></li>
+<li>Analysis plugins</li>
+<li>Discovery plugins</li>
+<li>Repository plugins</li>
+<li><a href="/blog/2016/07/30/adding-a-new-rest-endpoint-to-elasticsearch/">REST plugins</a></li>
+<li>Native Script plugins</li>
+<li>Security plugins</li>
+<li><a href="/blog/2016/07/28/creating-an-ingest-plugin-for-elasticsearch/">Ingest plugins</a></li>
+<li>&hellip;</li>
+</ul>
+
+
+<p>Your imagination is now the limit! :)</p>
+
+<p>Stay tuned!</p>
+</div>
+
+
+  <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">David Pilato</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2016-07-27T16:00:27+02:00'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>27</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>4:00 pm</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/elasticsearch/'>elasticsearch</a>, <a class='category' href='/blog/categories/maven/'>maven</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://david.pilato.fr/blog/2016/07/27/creating-a-plugin-for-elasticsearch-5-dot-0-using-maven/" data-via="dadoonet" data-counturl="http://david.pilato.fr/blog/2016/07/27/creating-a-plugin-for-elasticsearch-5-dot-0-using-maven/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2016/03/17/and-the-beats-go-on/" title="Previous Post: And the beats go on!">&laquo; And the beats go on!</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2016/07/28/creating-an-ingest-plugin-for-elasticsearch/" title="Next Post: Creating an Ingest plugin for elasticsearch">Creating an Ingest plugin for elasticsearch &raquo;</a>
+      
+    </p>
+    <p class="meta">
+        <div class="elevator">
+          <svg class="sweet-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve" height="100px" width="100px">
+              <path d="M70,47.5H30c-1.4,0-2.5,1.1-2.5,2.5v40c0,1.4,1.1,2.5,2.5,2.5h40c1.4,0,2.5-1.1,2.5-2.5V50C72.5,48.6,71.4,47.5,70,47.5z   M47.5,87.5h-5v-25h5V87.5z M57.5,87.5h-5v-25h5V87.5z M67.5,87.5h-5V60c0-1.4-1.1-2.5-2.5-2.5H40c-1.4,0-2.5,1.1-2.5,2.5v27.5h-5  v-35h35V87.5z"/>
+              <path d="M50,42.5c1.4,0,2.5-1.1,2.5-2.5V16l5.7,5.7c0.5,0.5,1.1,0.7,1.8,0.7s1.3-0.2,1.8-0.7c1-1,1-2.6,0-3.5l-10-10  c-1-1-2.6-1-3.5,0l-10,10c-1,1-1,2.6,0,3.5c1,1,2.6,1,3.5,0l5.7-5.7v24C47.5,41.4,48.6,42.5,50,42.5z"/>
+          </svg>
+          Back to Top
+        </div>
+    </p>
+<script>
+// Elevator script included on the page, already.
+
+window.onload = function() {
+  var elevator = new Elevator({
+    element: document.querySelector('.elevator'),
+    mainAudio: '/music/elevator-music.mp3',
+    endAudio: '/music/ding.mp3'
+  });
+}
+</script>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>About Me</h1>
+  <p>Developer | Evangelist at <a href="http://elastic.co/">elastic</a> and creator of the Elastic French Speakers <a href="http://www.meetup.com/elasticsearchfr/">User Group</a>. Frequent speaker about all things Elastic, in conferences, for User Groups and in companies with <a href="http://www.brownbaglunch.fr/">BBL talks</a>. In my free time, I enjoy coding and DJ four times per year, just for fun. Living with my family in Cergy, France.</p>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2017/01/09/4-years-at-elastic/">4 Years at Elastic!</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/10/21/elasticsearch-real-integration-tests-with-security-enabled-updated-for-ga/">Elasticsearch Real Integration Tests With Security Enabled (Updated for GA)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/10/20/creating-elasticsearch-transport-action-updated-for-ga/">Creating Elasticsearch Transport Action (Updated for GA)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/10/19/adding-a-new-rest-endpoint-to-elasticsearch-updated-for-ga/">Adding a New REST Endpoint to Elasticsearch (Updated for GA)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/10/18/elasticsearch-real-integration-tests-updated-for-ga/">Elasticsearch Real Integration Tests (Updated for GA)</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+<section class="twitterOct">
+  <h1 style="margin-bottom: 0.4em"> Tweets </h1>
+  <a class="twitter-timeline"
+	 data-dnt="true" href="https://twitter.com/dadoonet" 
+     data-widget-id="593022343921979392">
+     
+     Tweets by @dadoonet
+  </a>
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</section>
+
+
+<section>
+
+  <h1>Main GitHub Repos</h1>
+
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'dadoonet',
+            count: 10,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2017 - David Pilato -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'dadoonet';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://david.pilato.fr/blog/2016/07/27/creating-a-plugin-for-elasticsearch-5-dot-0-using-maven/';
+        var disqus_url = 'http://david.pilato.fr/blog/2016/07/27/creating-a-plugin-for-elasticsearch-5-dot-0-using-maven/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

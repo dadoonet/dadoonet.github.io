@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Jetty | -Xmx128gb -Xms128gb]]></title>
+  <link href="http://david.pilato.fr/blog/categories/jetty/atom.xml" rel="self"/>
+  <link href="http://david.pilato.fr/"/>
+  <updated>2017-01-11T20:55:21+01:00</updated>
+  <id>http://david.pilato.fr/</id>
+  <author>
+    <name><![CDATA[David Pilato]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Protéger Son Cluster Elasticsearch Avec Jetty]]></title>
+    <link href="http://david.pilato.fr/blog/2012/04/10/proteger-son-cluster-elasticsearch-avec-jetty/"/>
+    <updated>2012-04-10T22:29:29+02:00</updated>
+    <id>http://david.pilato.fr/blog/2012/04/10/proteger-son-cluster-elasticsearch-avec-jetty</id>
+    <content type="html"><![CDATA[Nativement, Elasticsearch expose l'ensemble de ses services sans aucune authentification et donc une commande du type `curl -XDELETE http://localhost:9200/myindex` peut faire de nombreux dégâts non désirés.
+
+De plus, si vous développez une application JQuery avec un accès direct depuis le poste client à votre cluster Elasticsearch, le risque qu'un utilisateur joue un peu avec votre cluster est grand !
+
+Alors, pas de panique... La société Sonian Inc. a open sourcé son [plugin Jetty pour Elasticsearch](https://github.com/sonian/elasticsearch-jetty) pour notre plus grand bonheur ;-)
+
+<!-- more -->
+
+## Principe
+
+Le principe consiste à rajouter une surcouche Jetty à Elasticsearch, sous forme de plugin.
+
+Il ne reste plus qu'à restreindre certaines URL et certaines méthodes (`DELETE` par exemple) à certains utilisateurs.
+
+
+## Guide d'installation
+
+Pour installer le plugin, connectez vous à votre serveur hébergeant Elasticsearch et allez dans le répertoire d'installation :
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span><span class="nb">cd</span> /usr/local/elasticsearch/elasticsearch-0.19.2/
+</span></code></pre></td></tr></table></div></figure>
+
+Installez le plugin (vérifiez la compatibilité entre la version du plugin et celle de votre noeud) :
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>sudo bin/plugin -install sonian/elasticsearch-jetty/0.19.2
+</span><span class='line'>- Installing sonian/elasticsearch-jetty/0.19.2...
+</span><span class='line'>Trying https://github.com/downloads/sonian/elasticsearch-jetty/elasticsearch-jetty-0.19.2.zip...
+</span><span class='line'>Downloading .......................................................................................................................................................................DONE
+</span><span class='line'>Installed jetty
+</span></code></pre></td></tr></table></div></figure>
+
+Récupérez le fichier de configuration de jetty proposé par Sonian en exemple :
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo curl https://raw.github.com/sonian/elasticsearch-jetty/master/config/jetty.xml -o config/jetty.xml
+</span></code></pre></td></tr></table></div></figure>
+
+Idem pour le fichier avec les logins / password :
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo curl https://raw.github.com/sonian/elasticsearch-jetty/master/config/realm.properties -o config/realm.properties
+</span></code></pre></td></tr></table></div></figure>
+
+Il faut ensuite modifier la configuration Elasticsearch et ajouter la ligne suivante dans `config/elasticsearch.yml` :
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>sudo vi config/elasticsearch.yml
+</span></code></pre></td></tr></table></div></figure>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="c1"># Jetty Plugin</span>
+</span><span class='line'><span class="l-Scalar-Plain">http.type</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">com.sonian.elasticsearch.http.jetty.JettyHttpServerTransportModule</span>
+</span></code></pre></td></tr></table></div></figure>
+
+Les petits gars de Sonian ayant très bien fait leur boulot, les protections nécessaires sont déjà en place avec le fichier `config/jetty.xml` très complet.
+
+Modifiez les valeurs par défaut de login/password dans `config/realm.properties` :
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='properties'><span class='line'><span class="na">superuser</span><span class="o">:</span> <span class="s">YOURSUPERUSERPASSWORD,admin,readwrite</span>
+</span><span class='line'><span class="na">user</span><span class="o">:</span> <span class="s">USERPASSWORD,readwrite</span>
+</span></code></pre></td></tr></table></div></figure>
+
+Redémarrez Elasticsearch. Si vous l'avez installé en tant que service :
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='properties'><span class='line'><span class="err">$</span> <span class="err">sudo</span> <span class="err">service</span> <span class="err">elasticsearch</span> <span class="err">restart</span>
+</span></code></pre></td></tr></table></div></figure>
+
+Et voilà ! Impossible de faire des commandes du type :
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>curl http://localhost:9200/_refresh
+</span><span class='line'><span class="c"># 401 Unauthorized</span>
+</span></code></pre></td></tr></table></div></figure>
+
+Mais avec authentification, ça passe :
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>curl -u user:USERPASSWORD http://localhost:9200/_refresh
+</span><span class='line'><span class="c"># {&quot;ok&quot;:true,&quot;_shards&quot;:{&quot;total&quot;:23,&quot;successful&quot;:23,&quot;failed&quot;:0}}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Utiliser Jetty 7 Avec Maven]]></title>
+    <link href="http://david.pilato.fr/blog/2010/02/26/utiliser-jetty-7-avec-maven/"/>
+    <updated>2010-02-26T00:52:07+01:00</updated>
+    <id>http://david.pilato.fr/blog/2010/02/26/utiliser-jetty-7-avec-maven</id>
+    <content type="html"><![CDATA[Jetty peut être très utile aux projets Maven, notamment dans la phase de tests d'intégration.
+
+Il faut souvent déployer l'application sur un serveur type JBoss puis lancer les tests. Avec Jetty, on dispose alors d'un conteneur léger qui permet de disposer des fonctionnalités essentielles d'un conteneur (webapp, datasource, ...).
+
+<!-- more -->
+
+Problème : avec la version 7 de Jetty, il faut gérer l'authentification. Sinon, on obtient une erreur du type :
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>java.lang.IllegalStateException: No LoginService <span class="k">for</span> org.eclipse.jetty.security.authentication.BasicAuthenticator@4095c5ec in ConstraintSecurityHandler@28f52a14@
+</span></code></pre></td></tr></table></div></figure>
+
+J'ai trouvé la solution à ce problème sur le blog de [Max Berger](http://blog.max.berger.name/2010/02/jetty-7-maven-plugin-authentication.html).
+
+A SUIVRE
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Problème Jetty / Maven Sous Windows]]></title>
+    <link href="http://david.pilato.fr/blog/2010/02/24/probleme-jetty-maven-sous-windows/"/>
+    <updated>2010-02-24T21:14:51+01:00</updated>
+    <id>http://david.pilato.fr/blog/2010/02/24/probleme-jetty-maven-sous-windows</id>
+    <content type="html"><![CDATA[Lorsqu'on souhaite lancer une WebApp avec le plugin [Jetty](http://docs.codehaus.org/display/JETTY/Maven+Jetty+Plugin) sous Maven 2 depuis un PC sous windows on obtient une erreur référencée sous JIRA [#JETTY-1063](http://jira.codehaus.org/browse/JETTY-1063) :
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>java.net.URISyntaxException: Illegal character in path at index 18: file:/C:/Documents and Settings/USER/.m2/repository/org/mortbay/jetty/jetty-maven-plugin/7.0.0.1beta2/jetty-maven-plugin-7.0.0.1beta2.jar
+</span></code></pre></td></tr></table></div></figure>
+
+<!-- more -->
+
+Ce problème n’est résolu que sous [Maven 3](http://maven.apache.org/release-notes-3.0.x.html).
+
+Pour ceux qui souhaitent rester sous Maven 2 (Maven 3 est encore en version alpha), il faut modifier l'emplacement de la repository pour éviter le souci du caractère ESPACE présent dans le chemin `C:\Documents and settings\USER\.m2\repository` (chemin par défaut).
+
+Il est fortement recommandé de déplacer le répertoire repository dans `c:\maven2\repository`par exemple et modifier ensuite le fichier settings.xml qui se trouve normalement dans `C:\Documents and settings\USER\.m2` ou (moins bien) dans votre répertoire d’installation de maven sous `/conf`.
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;localRepository&gt;</span>/c:/maven2/repository<span class="nt">&lt;/localRepository&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+Ainsi, Maven ira chercher les libs dans un répertoire sans espaces…
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,1240 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Next Movie to Watch Based on Recommendation - -Xmx128gb -Xms128gb</title>
+  <meta name="author" content="David Pilato">
+
+  
+  <meta name="description" content="Next Movie to Watch Based on Recommendation Sep 17th, 2015 2:42 pm | Comments This article is based on Recommender System with Mahout and &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://david.pilato.fr/blog/2015/09/17/next-movie-to-watch-based-on-recommendation/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/elevator.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="-Xmx128gb -Xms128gb" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<script src="/javascripts/elevator.min.js"></script>
+
+  
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-62381049-1', 'auto');
+// Next movie to watch based on recommendation
+
+ga('send', 'pageview', {
+  page: '/blog/2015/09/17/next-movie-to-watch-based-on-recommendation/',
+  title: 'Next movie to watch based on recommendation'
+});
+
+</script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">-Xmx128gb -Xms128gb</a></h1>
+  
+    <h2>adding more memory to my brain!</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="david.pilato.fr">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title"><img src="/images/covers/elastic_logo_only.png"/>Next Movie to Watch Based on Recommendation</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-09-17T14:42:05+02:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>17</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>2:42 pm</span></time>
+        
+           | <a href="#disqus_thread"
+             data-disqus-identifier="http://david.pilato.fr">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>This article is based on <a href="https://www.mapr.com/products/mapr-sandbox-hadoop/tutorials/recommender-tutorial">Recommender System with Mahout and Elasticsearch tutorial</a> created by <a href="https://www.mapr.com">MapR</a>.</p>
+
+<p>It now uses the <a href="http://grouplens.org/datasets/movielens/">20M MovieLens dataset</a> which contains: 20 million ratings and 465 000 tag applications applied to 27 000 movies by 138 000 users and was released in 4/2015.
+The format with this recent version has changed a bit so I needed to adapt the existing scripts to the new format.</p>
+
+<!-- more -->
+
+
+<h2>Prerequisites</h2>
+
+<ul>
+<li>Download the <a href="http://grouplens.org/datasets/movielens/">20M MovieLens dataset</a>. Unzip it. You&rsquo;ll get a <code>ml-20m</code> dir.</li>
+<li>Install <a href="http://www.elastic.co/guide/en/elasticsearch/guide/current/index.html">elasticsearch</a></li>
+<li>Install <a href="http://mahout.apache.org/">Mahout</a></li>
+<li>Install <a href="https://www.mapr.com/products/mapr-sandbox-hadoop">MapR sandbox</a> (optional)</li>
+</ul>
+
+
+<h2>Step 1: generate Mahout dataset with recommandations</h2>
+
+<p>The <code>ml-20m/ratings.csv</code> file looks like:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>userId,movieId,rating,timestamp
+</span><span class='line'>1,2,3.5,1112486027
+</span><span class='line'>1,29,3.5,1112484676
+</span><span class='line'>1,32,3.5,1112484819
+</span><span class='line'>1,47,3.5,1112484727
+</span><span class='line'>1,50,3.5,1112484580
+</span><span class='line'>1,112,3.5,1094785740
+</span><span class='line'>1,151,4.0,1094785734
+</span><span class='line'>1,223,4.0,1112485573
+</span><span class='line'>1,253,4.0,1112484940</span></code></pre></td></tr></table></div></figure>
+
+
+<p>We use a python script <code>01-generateMahout.py</code> to generate a bulk file for elasticsearch:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">re</span>
+</span><span class='line'><span class="n">count</span><span class="o">=</span><span class="mi">0</span>
+</span><span class='line'><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;ml-20m/ratings.csv&#39;</span><span class="p">,</span><span class="s">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">csv_file</span><span class="p">:</span>
+</span><span class='line'>   <span class="n">content</span> <span class="o">=</span> <span class="n">csv_file</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+</span><span class='line'>   <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">content</span><span class="p">:</span>
+</span><span class='line'>        <span class="n">fixed</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s">&quot;,&quot;</span><span class="p">,</span> <span class="s">&quot;</span><span class="se">\t</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">line</span><span class="p">)</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span>
+</span><span class='line'>        <span class="n">splitted</span> <span class="o">=</span> <span class="n">fixed</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\t</span><span class="s">&quot;</span><span class="p">)</span>
+</span><span class='line'>        <span class="k">if</span> <span class="n">splitted</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">&lt;&gt;</span><span class="s">&quot;userId&quot;</span><span class="p">:</span>
+</span><span class='line'>            <span class="k">print</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">fixed</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Execute:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>python 01-generateMahout.py &gt; ratings.mahout
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>ratings.mahout</code> now contains:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>1  2   3.5 1112486027
+</span><span class='line'>1 29  3.5 1112484676
+</span><span class='line'>1 32  3.5 1112484819
+</span><span class='line'>1 47  3.5 1112484727
+</span><span class='line'>1 50  3.5 1112484580
+</span><span class='line'>1 112 3.5 1094785740
+</span><span class='line'>1 151 4.0 1094785734
+</span><span class='line'>1 223 4.0 1112485573
+</span><span class='line'>1 253 4.0 1112484940
+</span><span class='line'>1 260 4.0 1112484826
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Step 2: run Mahout on recommandation dataset</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>mahout/apache-mahout-distribution-0.11.0/bin/mahout itemsimilarity <span class="se">\</span>
+</span><span class='line'>  --input ratings.mahout <span class="se">\</span>
+</span><span class='line'>  --output ratings.ml <span class="se">\</span>
+</span><span class='line'>  --similarityClassname SIMILARITY_LOGLIKELIHOOD <span class="se">\</span>
+</span><span class='line'>  --booleanData TRUE <span class="se">\</span>
+</span><span class='line'>  --tempDir tmp
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>ratings.ml/part-r-00000</code> contains:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>1  9   0.9213700644458795
+</span><span class='line'>1 287 0.9517320394600995
+</span><span class='line'>1 538 0.9364996182501258
+</span><span class='line'>1 1060    0.9431549395675928
+</span><span class='line'>1 1100    0.926317994961507
+</span><span class='line'>1 1248    0.9393274329597747
+</span><span class='line'>1 1306    0.9294993147867059
+</span><span class='line'>1 1381    0.921063088822617
+</span><span class='line'>1 1767    0.932077384608552
+</span><span class='line'>1 2048    0.926317994961507
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Step 3: generate elasticsearch dataset with movies</h2>
+
+<p>Unzip it. You should see <code>ml-20m/movies.csv</code> file. It looks like:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>movieId,title,genres
+</span><span class='line'>1,Toy Story <span class="o">(</span>1995<span class="o">)</span>,Adventure<span class="p">|</span>Animation<span class="p">|</span>Children<span class="p">|</span>Comedy<span class="p">|</span>Fantasy
+</span><span class='line'>2,Jumanji <span class="o">(</span>1995<span class="o">)</span>,Adventure<span class="p">|</span>Children<span class="p">|</span>Fantasy
+</span><span class='line'>3,Grumpier Old Men <span class="o">(</span>1995<span class="o">)</span>,Comedy<span class="p">|</span>Romance
+</span><span class='line'>4,Waiting to Exhale <span class="o">(</span>1995<span class="o">)</span>,Comedy<span class="p">|</span>Drama<span class="p">|</span>Romance
+</span><span class='line'>5,Father of the Bride Part II <span class="o">(</span>1995<span class="o">)</span>,Comedy
+</span><span class='line'>6,Heat <span class="o">(</span>1995<span class="o">)</span>,Action<span class="p">|</span>Crime<span class="p">|</span>Thriller
+</span><span class='line'>7,Sabrina <span class="o">(</span>1995<span class="o">)</span>,Comedy<span class="p">|</span>Romance
+</span><span class='line'>8,Tom and Huck <span class="o">(</span>1995<span class="o">)</span>,Adventure<span class="p">|</span>Children
+</span><span class='line'>9,Sudden Death <span class="o">(</span>1995<span class="o">)</span>,Action
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>We use a python script <code>03-generateJson.py</code> to generate a bulk file for elasticsearch:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">re</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">json</span>
+</span><span class='line'><span class="n">count</span><span class="o">=</span><span class="mi">0</span>
+</span><span class='line'><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;ml-20m/movies.csv&#39;</span><span class="p">,</span><span class="s">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">csv_file</span><span class="p">:</span>
+</span><span class='line'>   <span class="n">content</span> <span class="o">=</span> <span class="n">csv_file</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+</span><span class='line'>   <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">content</span><span class="p">:</span>
+</span><span class='line'>        <span class="n">fixed</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s">&quot;,&quot;</span><span class="p">,</span> <span class="s">&quot;</span><span class="se">\t</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">line</span><span class="p">)</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\t</span><span class="s">&quot;</span><span class="p">)</span>
+</span><span class='line'>        <span class="k">if</span> <span class="n">fixed</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">&lt;&gt;</span><span class="s">&quot;movieId&quot;</span><span class="p">:</span>
+</span><span class='line'>          <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">fixed</span><span class="p">)</span><span class="o">==</span><span class="mi">3</span><span class="p">:</span>
+</span><span class='line'>            <span class="n">title</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s">&quot; \(.*\)$&quot;</span><span class="p">,</span> <span class="s">&quot;&quot;</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s">&#39;&quot;&#39;</span><span class="p">,</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="n">fixed</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+</span><span class='line'>            <span class="n">genre</span> <span class="o">=</span> <span class="n">fixed</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;|&#39;</span><span class="p">)</span>
+</span><span class='line'>            <span class="k">print</span> <span class="s">&#39;{ &quot;create&quot; : { &quot;_index&quot; : &quot;bigmovie&quot;, &quot;_type&quot; : &quot;film&quot;, &quot;_id&quot; : &quot;</span><span class="si">%s</span><span class="s">&quot; } }&#39;</span> <span class="o">%</span>  <span class="n">fixed</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span><span class='line'>            <span class="k">print</span> <span class="s">&#39;{ &quot;id&quot;: &quot;</span><span class="si">%s</span><span class="s">&quot;, &quot;title&quot; : &quot;</span><span class="si">%s</span><span class="s">&quot;, &quot;year&quot;:&quot;</span><span class="si">%s</span><span class="s">&quot; , &quot;genre&quot;:</span><span class="si">%s</span><span class="s"> }&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">fixed</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">title</span><span class="p">,</span> <span class="n">fixed</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="o">-</span><span class="mi">5</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">genre</span><span class="p">))</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Execute:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>python 03-generateJson.py &gt; movies.json
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>movies.json</code> now contains:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="p">{</span> <span class="nt">&quot;create&quot;</span> <span class="p">:</span> <span class="p">{</span> <span class="nt">&quot;_index&quot;</span> <span class="p">:</span> <span class="s2">&quot;bigmovie&quot;</span><span class="p">,</span> <span class="nt">&quot;_type&quot;</span> <span class="p">:</span> <span class="s2">&quot;film&quot;</span><span class="p">,</span> <span class="nt">&quot;_id&quot;</span> <span class="p">:</span> <span class="s2">&quot;1&quot;</span> <span class="p">}</span> <span class="p">}</span>
+</span><span class='line'><span class="p">{</span> <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="nt">&quot;title&quot;</span> <span class="p">:</span> <span class="s2">&quot;Toy Story&quot;</span><span class="p">,</span> <span class="nt">&quot;year&quot;</span><span class="p">:</span><span class="s2">&quot;1995&quot;</span> <span class="p">,</span> <span class="nt">&quot;genre&quot;</span><span class="p">:[</span><span class="s2">&quot;Adventure&quot;</span><span class="p">,</span> <span class="s2">&quot;Animation&quot;</span><span class="p">,</span> <span class="s2">&quot;Children&quot;</span><span class="p">,</span> <span class="s2">&quot;Comedy&quot;</span><span class="p">,</span> <span class="s2">&quot;Fantasy&quot;</span><span class="p">]</span> <span class="p">}</span>
+</span><span class='line'><span class="p">{</span> <span class="nt">&quot;create&quot;</span> <span class="p">:</span> <span class="p">{</span> <span class="nt">&quot;_index&quot;</span> <span class="p">:</span> <span class="s2">&quot;bigmovie&quot;</span><span class="p">,</span> <span class="nt">&quot;_type&quot;</span> <span class="p">:</span> <span class="s2">&quot;film&quot;</span><span class="p">,</span> <span class="nt">&quot;_id&quot;</span> <span class="p">:</span> <span class="s2">&quot;2&quot;</span> <span class="p">}</span> <span class="p">}</span>
+</span><span class='line'><span class="p">{</span> <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span> <span class="nt">&quot;title&quot;</span> <span class="p">:</span> <span class="s2">&quot;Jumanji&quot;</span><span class="p">,</span> <span class="nt">&quot;year&quot;</span><span class="p">:</span><span class="s2">&quot;1995&quot;</span> <span class="p">,</span> <span class="nt">&quot;genre&quot;</span><span class="p">:[</span><span class="s2">&quot;Adventure&quot;</span><span class="p">,</span> <span class="s2">&quot;Children&quot;</span><span class="p">,</span> <span class="s2">&quot;Fantasy&quot;</span><span class="p">]</span> <span class="p">}</span>
+</span><span class='line'><span class="p">{</span> <span class="nt">&quot;create&quot;</span> <span class="p">:</span> <span class="p">{</span> <span class="nt">&quot;_index&quot;</span> <span class="p">:</span> <span class="s2">&quot;bigmovie&quot;</span><span class="p">,</span> <span class="nt">&quot;_type&quot;</span> <span class="p">:</span> <span class="s2">&quot;film&quot;</span><span class="p">,</span> <span class="nt">&quot;_id&quot;</span> <span class="p">:</span> <span class="s2">&quot;3&quot;</span> <span class="p">}</span> <span class="p">}</span>
+</span><span class='line'><span class="p">{</span> <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;3&quot;</span><span class="p">,</span> <span class="nt">&quot;title&quot;</span> <span class="p">:</span> <span class="s2">&quot;Grumpier Old Men&quot;</span><span class="p">,</span> <span class="nt">&quot;year&quot;</span><span class="p">:</span><span class="s2">&quot;1995&quot;</span> <span class="p">,</span> <span class="nt">&quot;genre&quot;</span><span class="p">:[</span><span class="s2">&quot;Comedy&quot;</span><span class="p">,</span> <span class="s2">&quot;Romance&quot;</span><span class="p">]</span> <span class="p">}</span>
+</span><span class='line'><span class="p">{</span> <span class="nt">&quot;create&quot;</span> <span class="p">:</span> <span class="p">{</span> <span class="nt">&quot;_index&quot;</span> <span class="p">:</span> <span class="s2">&quot;bigmovie&quot;</span><span class="p">,</span> <span class="nt">&quot;_type&quot;</span> <span class="p">:</span> <span class="s2">&quot;film&quot;</span><span class="p">,</span> <span class="nt">&quot;_id&quot;</span> <span class="p">:</span> <span class="s2">&quot;4&quot;</span> <span class="p">}</span> <span class="p">}</span>
+</span><span class='line'><span class="p">{</span> <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;4&quot;</span><span class="p">,</span> <span class="nt">&quot;title&quot;</span> <span class="p">:</span> <span class="s2">&quot;Waiting to Exhale&quot;</span><span class="p">,</span> <span class="nt">&quot;year&quot;</span><span class="p">:</span><span class="s2">&quot;1995&quot;</span> <span class="p">,</span> <span class="nt">&quot;genre&quot;</span><span class="p">:[</span><span class="s2">&quot;Comedy&quot;</span><span class="p">,</span> <span class="s2">&quot;Drama&quot;</span><span class="p">,</span> <span class="s2">&quot;Romance&quot;</span><span class="p">]</span> <span class="p">}</span>
+</span><span class='line'><span class="p">{</span> <span class="nt">&quot;create&quot;</span> <span class="p">:</span> <span class="p">{</span> <span class="nt">&quot;_index&quot;</span> <span class="p">:</span> <span class="s2">&quot;bigmovie&quot;</span><span class="p">,</span> <span class="nt">&quot;_type&quot;</span> <span class="p">:</span> <span class="s2">&quot;film&quot;</span><span class="p">,</span> <span class="nt">&quot;_id&quot;</span> <span class="p">:</span> <span class="s2">&quot;5&quot;</span> <span class="p">}</span> <span class="p">}</span>
+</span><span class='line'><span class="p">{</span> <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;5&quot;</span><span class="p">,</span> <span class="nt">&quot;title&quot;</span> <span class="p">:</span> <span class="s2">&quot;Father of the Bride Part II&quot;</span><span class="p">,</span> <span class="nt">&quot;year&quot;</span><span class="p">:</span><span class="s2">&quot;1995&quot;</span> <span class="p">,</span> <span class="nt">&quot;genre&quot;</span><span class="p">:[</span><span class="s2">&quot;Comedy&quot;</span><span class="p">]</span> <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Step 4: generate elasticsearch update with recommandations</h2>
+
+<p>Using <code>ratings.ml/part-r-00000</code> we have generated earlier, we can now generate an update script for elasticsearch.</p>
+
+<p>We use a python script <code>04-generateUpdate.py</code> to generate the bulk file:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">fileinput</span>
+</span><span class='line'><span class="kn">from</span> <span class="nn">string</span> <span class="kn">import</span> <span class="n">join</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">json</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">csv</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">json</span>
+</span><span class='line'><span class="c">### read the output from MAHOUT and collect into hash ###</span>
+</span><span class='line'><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;ratings.ml/part-r-00000&#39;</span><span class="p">,</span><span class="s">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">csv_file</span><span class="p">:</span>
+</span><span class='line'>    <span class="n">csv_reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">csv_file</span><span class="p">,</span><span class="n">delimiter</span><span class="o">=</span><span class="s">&#39;</span><span class="se">\t</span><span class="s">&#39;</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">old_id</span> <span class="o">=</span> <span class="s">&quot;&quot;</span>
+</span><span class='line'>    <span class="n">indicators</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span class='line'>    <span class="n">update</span> <span class="o">=</span> <span class="p">{</span><span class="s">&quot;update&quot;</span> <span class="p">:</span> <span class="p">{</span><span class="s">&quot;_id&quot;</span><span class="p">:</span><span class="s">&quot;&quot;</span><span class="p">}}</span>
+</span><span class='line'>    <span class="n">doc</span> <span class="o">=</span> <span class="p">{</span><span class="s">&quot;doc&quot;</span> <span class="p">:</span> <span class="p">{</span><span class="s">&quot;indicators&quot;</span><span class="p">:[],</span> <span class="s">&quot;numFields&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">}}</span>
+</span><span class='line'>    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">csv_reader</span><span class="p">:</span>
+</span><span class='line'>        <span class="nb">id</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span><span class='line'>        <span class="k">if</span> <span class="p">(</span><span class="nb">id</span> <span class="o">!=</span> <span class="n">old_id</span> <span class="ow">and</span> <span class="n">old_id</span> <span class="o">!=</span> <span class="s">&quot;&quot;</span><span class="p">):</span>
+</span><span class='line'>            <span class="n">update</span><span class="p">[</span><span class="s">&quot;update&quot;</span><span class="p">][</span><span class="s">&quot;_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">old_id</span>
+</span><span class='line'>            <span class="n">doc</span><span class="p">[</span><span class="s">&quot;doc&quot;</span><span class="p">][</span><span class="s">&quot;indicators&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">indicators</span>
+</span><span class='line'>            <span class="n">doc</span><span class="p">[</span><span class="s">&quot;doc&quot;</span><span class="p">][</span><span class="s">&quot;numFields&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">indicators</span><span class="p">)</span>
+</span><span class='line'>            <span class="k">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">update</span><span class="p">))</span>
+</span><span class='line'>            <span class="k">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">doc</span><span class="p">))</span>
+</span><span class='line'>            <span class="n">indicators</span> <span class="o">=</span> <span class="p">[</span><span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
+</span><span class='line'>        <span class="k">else</span><span class="p">:</span>
+</span><span class='line'>            <span class="n">indicators</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</span><span class='line'>        <span class="n">old_id</span> <span class="o">=</span> <span class="nb">id</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Execute:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>python 04-generateUpdate.py &gt; updates.json
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>updates.json</code> now contains:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="p">{</span><span class="nt">&quot;update&quot;</span><span class="p">:</span> <span class="p">{</span><span class="nt">&quot;_id&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">}}</span>
+</span><span class='line'><span class="p">{</span><span class="nt">&quot;doc&quot;</span><span class="p">:</span> <span class="p">{</span><span class="nt">&quot;indicators&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;9&quot;</span><span class="p">,</span> <span class="s2">&quot;287&quot;</span><span class="p">,</span> <span class="s2">&quot;538&quot;</span><span class="p">,</span> <span class="s2">&quot;1060&quot;</span><span class="p">,</span> <span class="s2">&quot;1100&quot;</span><span class="p">,</span> <span class="s2">&quot;1248&quot;</span><span class="p">,</span> <span class="s2">&quot;1306&quot;</span><span class="p">,</span> <span class="s2">&quot;1381&quot;</span><span class="p">,</span> <span class="s2">&quot;1767&quot;</span><span class="p">,</span> <span class="s2">&quot;2048&quot;</span><span class="p">,</span> <span class="s2">&quot;2056&quot;</span><span class="p">,</span> <span class="s2">&quot;2161&quot;</span><span class="p">,</span> <span class="s2">&quot;2259&quot;</span><span class="p">,</span> <span class="s2">&quot;2283&quot;</span><span class="p">,</span> <span class="s2">&quot;2380&quot;</span><span class="p">,</span> <span class="s2">&quot;2416&quot;</span><span class="p">,</span> <span class="s2">&quot;2605&quot;</span><span class="p">,</span> <span class="s2">&quot;2798&quot;</span><span class="p">,</span> <span class="s2">&quot;2814&quot;</span><span class="p">,</span> <span class="s2">&quot;2988&quot;</span><span class="p">,</span> <span class="s2">&quot;3114&quot;</span><span class="p">,</span> <span class="s2">&quot;3264&quot;</span><span class="p">,</span> <span class="s2">&quot;3616&quot;</span><span class="p">,</span> <span class="s2">&quot;3720&quot;</span><span class="p">,</span> <span class="s2">&quot;3783&quot;</span><span class="p">,</span> <span class="s2">&quot;3912&quot;</span><span class="p">,</span> <span class="s2">&quot;3948&quot;</span><span class="p">,</span> <span class="s2">&quot;3996&quot;</span><span class="p">,</span> <span class="s2">&quot;4711&quot;</span><span class="p">,</span> <span class="s2">&quot;4963&quot;</span><span class="p">,</span> <span class="s2">&quot;6148&quot;</span><span class="p">,</span> <span class="s2">&quot;6408&quot;</span><span class="p">,</span> <span class="s2">&quot;6659&quot;</span><span class="p">,</span> <span class="s2">&quot;6711&quot;</span><span class="p">,</span> <span class="s2">&quot;7442&quot;</span><span class="p">,</span> <span class="s2">&quot;7481&quot;</span><span class="p">,</span> <span class="s2">&quot;8493&quot;</span><span class="p">,</span> <span class="s2">&quot;8915&quot;</span><span class="p">,</span> <span class="s2">&quot;9005&quot;</span><span class="p">,</span> <span class="s2">&quot;26631&quot;</span><span class="p">,</span> <span class="s2">&quot;26812&quot;</span><span class="p">,</span> <span class="s2">&quot;27395&quot;</span><span class="p">,</span> <span class="s2">&quot;42728&quot;</span><span class="p">,</span> <span class="s2">&quot;43396&quot;</span><span class="p">,</span> <span class="s2">&quot;43556&quot;</span><span class="p">,</span> <span class="s2">&quot;45179&quot;</span><span class="p">,</span> <span class="s2">&quot;45499&quot;</span><span class="p">,</span> <span class="s2">&quot;45722&quot;</span><span class="p">,</span> <span class="s2">&quot;46322&quot;</span><span class="p">,</span> <span class="s2">&quot;47423&quot;</span><span class="p">,</span> <span class="s2">&quot;47997&quot;</span><span class="p">,</span> <span class="s2">&quot;49822&quot;</span><span class="p">,</span> <span class="s2">&quot;51709&quot;</span><span class="p">,</span> <span class="s2">&quot;52435&quot;</span><span class="p">,</span> <span class="s2">&quot;52806&quot;</span><span class="p">,</span> <span class="s2">&quot;52950&quot;</span><span class="p">,</span> <span class="s2">&quot;53460&quot;</span><span class="p">,</span> <span class="s2">&quot;57274&quot;</span><span class="p">,</span> <span class="s2">&quot;57946&quot;</span><span class="p">,</span> <span class="s2">&quot;58299&quot;</span><span class="p">,</span> <span class="s2">&quot;62662&quot;</span><span class="p">,</span> <span class="s2">&quot;62999&quot;</span><span class="p">,</span> <span class="s2">&quot;65982&quot;</span><span class="p">,</span> <span class="s2">&quot;68952&quot;</span><span class="p">,</span> <span class="s2">&quot;71464&quot;</span><span class="p">,</span> <span class="s2">&quot;73808&quot;</span><span class="p">,</span> <span class="s2">&quot;74624&quot;</span><span class="p">,</span> <span class="s2">&quot;79139&quot;</span><span class="p">,</span> <span class="s2">&quot;79541&quot;</span><span class="p">,</span> <span class="s2">&quot;79681&quot;</span><span class="p">,</span> <span class="s2">&quot;79695&quot;</span><span class="p">,</span> <span class="s2">&quot;82459&quot;</span><span class="p">,</span> <span class="s2">&quot;82931&quot;</span><span class="p">,</span> <span class="s2">&quot;85056&quot;</span><span class="p">,</span> <span class="s2">&quot;85131&quot;</span><span class="p">,</span> <span class="s2">&quot;88235&quot;</span><span class="p">,</span> <span class="s2">&quot;89190&quot;</span><span class="p">,</span> <span class="s2">&quot;89347&quot;</span><span class="p">,</span> <span class="s2">&quot;91995&quot;</span><span class="p">,</span> <span class="s2">&quot;92420&quot;</span><span class="p">,</span> <span class="s2">&quot;93295&quot;</span><span class="p">,</span> <span class="s2">&quot;93363&quot;</span><span class="p">,</span> <span class="s2">&quot;93547&quot;</span><span class="p">,</span> <span class="s2">&quot;93766&quot;</span><span class="p">,</span> <span class="s2">&quot;95223&quot;</span><span class="p">,</span> <span class="s2">&quot;96144&quot;</span><span class="p">,</span> <span class="s2">&quot;96407&quot;</span><span class="p">,</span> <span class="s2">&quot;97070&quot;</span><span class="p">,</span> <span class="s2">&quot;97913&quot;</span><span class="p">,</span> <span class="s2">&quot;98243&quot;</span><span class="p">,</span> <span class="s2">&quot;98809&quot;</span><span class="p">,</span> <span class="s2">&quot;102407&quot;</span><span class="p">,</span> <span class="s2">&quot;102903&quot;</span><span class="p">,</span> <span class="s2">&quot;103433&quot;</span><span class="p">,</span> <span class="s2">&quot;105181&quot;</span><span class="p">,</span> <span class="s2">&quot;105959&quot;</span><span class="p">,</span> <span class="s2">&quot;106002&quot;</span><span class="p">,</span> <span class="s2">&quot;106565&quot;</span><span class="p">,</span> <span class="s2">&quot;108120&quot;</span><span class="p">,</span> <span class="s2">&quot;109487&quot;</span><span class="p">,</span> <span class="s2">&quot;111362&quot;</span><span class="p">,</span> <span class="s2">&quot;112705&quot;</span><span class="p">],</span> <span class="nt">&quot;numFields&quot;</span><span class="p">:</span> <span class="mi">102</span><span class="p">}}</span>
+</span><span class='line'><span class="p">{</span><span class="nt">&quot;update&quot;</span><span class="p">:</span> <span class="p">{</span><span class="nt">&quot;_id&quot;</span><span class="p">:</span> <span class="s2">&quot;2&quot;</span><span class="p">}}</span>
+</span><span class='line'><span class="p">{</span><span class="nt">&quot;doc&quot;</span><span class="p">:</span> <span class="p">{</span><span class="nt">&quot;indicators&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;13&quot;</span><span class="p">,</span> <span class="s2">&quot;42&quot;</span><span class="p">,</span> <span class="s2">&quot;54&quot;</span><span class="p">,</span> <span class="s2">&quot;73&quot;</span><span class="p">,</span> <span class="s2">&quot;103&quot;</span><span class="p">,</span> <span class="s2">&quot;141&quot;</span><span class="p">,</span> <span class="s2">&quot;152&quot;</span><span class="p">,</span> <span class="s2">&quot;155&quot;</span><span class="p">,</span> <span class="s2">&quot;248&quot;</span><span class="p">,</span> <span class="s2">&quot;257&quot;</span><span class="p">,</span> <span class="s2">&quot;304&quot;</span><span class="p">,</span> <span class="s2">&quot;542&quot;</span><span class="p">,</span> <span class="s2">&quot;543&quot;</span><span class="p">,</span> <span class="s2">&quot;688&quot;</span><span class="p">,</span> <span class="s2">&quot;754&quot;</span><span class="p">,</span> <span class="s2">&quot;785&quot;</span><span class="p">,</span> <span class="s2">&quot;879&quot;</span><span class="p">,</span> <span class="s2">&quot;1020&quot;</span><span class="p">,</span> <span class="s2">&quot;1175&quot;</span><span class="p">,</span> <span class="s2">&quot;1265&quot;</span><span class="p">,</span> <span class="s2">&quot;1489&quot;</span><span class="p">,</span> <span class="s2">&quot;1590&quot;</span><span class="p">,</span> <span class="s2">&quot;1869&quot;</span><span class="p">,</span> <span class="s2">&quot;2045&quot;</span><span class="p">,</span> <span class="s2">&quot;2090&quot;</span><span class="p">,</span> <span class="s2">&quot;2092&quot;</span><span class="p">,</span> <span class="s2">&quot;2099&quot;</span><span class="p">,</span> <span class="s2">&quot;2135&quot;</span><span class="p">,</span> <span class="s2">&quot;2173&quot;</span><span class="p">,</span> <span class="s2">&quot;2278&quot;</span><span class="p">,</span> <span class="s2">&quot;2294&quot;</span><span class="p">,</span> <span class="s2">&quot;2322&quot;</span><span class="p">,</span> <span class="s2">&quot;2377&quot;</span><span class="p">,</span> <span class="s2">&quot;2587&quot;</span><span class="p">,</span> <span class="s2">&quot;2616&quot;</span><span class="p">,</span> <span class="s2">&quot;2672&quot;</span><span class="p">,</span> <span class="s2">&quot;2687&quot;</span><span class="p">,</span> <span class="s2">&quot;2989&quot;</span><span class="p">,</span> <span class="s2">&quot;3159&quot;</span><span class="p">,</span> <span class="s2">&quot;3448&quot;</span><span class="p">,</span> <span class="s2">&quot;3710&quot;</span><span class="p">,</span> <span class="s2">&quot;3717&quot;</span><span class="p">,</span> <span class="s2">&quot;3763&quot;</span><span class="p">,</span> <span class="s2">&quot;3821&quot;</span><span class="p">,</span> <span class="s2">&quot;3825&quot;</span><span class="p">,</span> <span class="s2">&quot;3889&quot;</span><span class="p">,</span> <span class="s2">&quot;3972&quot;</span><span class="p">,</span> <span class="s2">&quot;4005&quot;</span><span class="p">,</span> <span class="s2">&quot;4207&quot;</span><span class="p">,</span> <span class="s2">&quot;4293&quot;</span><span class="p">,</span> <span class="s2">&quot;4958&quot;</span><span class="p">,</span> <span class="s2">&quot;4974&quot;</span><span class="p">,</span> <span class="s2">&quot;5055&quot;</span><span class="p">,</span> <span class="s2">&quot;5159&quot;</span><span class="p">,</span> <span class="s2">&quot;5265&quot;</span><span class="p">,</span> <span class="s2">&quot;5463&quot;</span><span class="p">,</span> <span class="s2">&quot;5582&quot;</span><span class="p">,</span> <span class="s2">&quot;5628&quot;</span><span class="p">,</span> <span class="s2">&quot;5784&quot;</span><span class="p">,</span> <span class="s2">&quot;5785&quot;</span><span class="p">,</span> <span class="s2">&quot;5833&quot;</span><span class="p">,</span> <span class="s2">&quot;5970&quot;</span><span class="p">,</span> <span class="s2">&quot;6196&quot;</span><span class="p">,</span> <span class="s2">&quot;6210&quot;</span><span class="p">,</span> <span class="s2">&quot;6548&quot;</span><span class="p">,</span> <span class="s2">&quot;6663&quot;</span><span class="p">,</span> <span class="s2">&quot;8528&quot;</span><span class="p">,</span> <span class="s2">&quot;8814&quot;</span><span class="p">,</span> <span class="s2">&quot;26527&quot;</span><span class="p">,</span> <span class="s2">&quot;33004&quot;</span><span class="p">,</span> <span class="s2">&quot;33679&quot;</span><span class="p">,</span> <span class="s2">&quot;34532&quot;</span><span class="p">,</span> <span class="s2">&quot;37058&quot;</span><span class="p">,</span> <span class="s2">&quot;38867&quot;</span><span class="p">,</span> <span class="s2">&quot;39231&quot;</span><span class="p">,</span> <span class="s2">&quot;43727&quot;</span><span class="p">,</span> <span class="s2">&quot;45668&quot;</span><span class="p">,</span> <span class="s2">&quot;48304&quot;</span><span class="p">,</span> <span class="s2">&quot;48997&quot;</span><span class="p">,</span> <span class="s2">&quot;49280&quot;</span><span class="p">,</span> <span class="s2">&quot;50160&quot;</span><span class="p">,</span> <span class="s2">&quot;50442&quot;</span><span class="p">,</span> <span class="s2">&quot;52241&quot;</span><span class="p">,</span> <span class="s2">&quot;52283&quot;</span><span class="p">,</span> <span class="s2">&quot;53550&quot;</span><span class="p">,</span> <span class="s2">&quot;54278&quot;</span><span class="p">,</span> <span class="s2">&quot;55241&quot;</span><span class="p">,</span> <span class="s2">&quot;55768&quot;</span><span class="p">,</span> <span class="s2">&quot;56915&quot;</span><span class="p">,</span> <span class="s2">&quot;58103&quot;</span><span class="p">,</span> <span class="s2">&quot;58154&quot;</span><span class="p">,</span> <span class="s2">&quot;59016&quot;</span><span class="p">,</span> <span class="s2">&quot;59336&quot;</span><span class="p">,</span> <span class="s2">&quot;61729&quot;</span><span class="p">,</span> <span class="s2">&quot;64497&quot;</span><span class="p">,</span> <span class="s2">&quot;65514&quot;</span><span class="p">,</span> <span class="s2">&quot;68324&quot;</span><span class="p">,</span> <span class="s2">&quot;71205&quot;</span><span class="p">,</span> <span class="s2">&quot;74297&quot;</span><span class="p">,</span> <span class="s2">&quot;74545&quot;</span><span class="p">,</span> <span class="s2">&quot;82602&quot;</span><span class="p">,</span> <span class="s2">&quot;83758&quot;</span><span class="p">,</span> <span class="s2">&quot;84954&quot;</span><span class="p">,</span> <span class="s2">&quot;86190&quot;</span><span class="p">,</span> <span class="s2">&quot;88814&quot;</span><span class="p">,</span> <span class="s2">&quot;89308&quot;</span><span class="p">,</span> <span class="s2">&quot;89753&quot;</span><span class="p">,</span> <span class="s2">&quot;91542&quot;</span><span class="p">,</span> <span class="s2">&quot;95207&quot;</span><span class="p">,</span> <span class="s2">&quot;102553&quot;</span><span class="p">,</span> <span class="s2">&quot;109366&quot;</span><span class="p">,</span> <span class="s2">&quot;110562&quot;</span><span class="p">,</span> <span class="s2">&quot;127136&quot;</span><span class="p">],</span> <span class="nt">&quot;numFields&quot;</span><span class="p">:</span> <span class="mi">113</span><span class="p">}}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Step 5: import in elasticsearch</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>curl -XDELETE <span class="s1">&#39;http://0.0.0.0:9200/bigmovie?pretty&#39;</span>
+</span><span class='line'>curl -XPUT <span class="s1">&#39;http://0.0.0.0:9200/bigmovie?pretty&#39;</span> -d <span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">{</span>
+</span><span class='line'><span class="s1">  &quot;mappings&quot;: {</span>
+</span><span class='line'><span class="s1">    &quot;film&quot; : {</span>
+</span><span class='line'><span class="s1">      &quot;properties&quot; : {</span>
+</span><span class='line'><span class="s1">        &quot;numFields&quot; : { &quot;type&quot;: &quot;integer&quot; },</span>
+</span><span class='line'><span class="s1">        &quot;genre&quot;: { &quot;type&quot;: &quot;string&quot;, &quot;index&quot;: &quot;not_analyzed&quot; }</span>
+</span><span class='line'><span class="s1">      }</span>
+</span><span class='line'><span class="s1">    }</span>
+</span><span class='line'><span class="s1">  }</span>
+</span><span class='line'><span class="s1">}&#39;</span>
+</span><span class='line'>curl -s -XPOST <span class="s1">&#39;0.0.0.0:9200/_bulk&#39;</span> --data-binary @movies.json<span class="p">;</span> <span class="nb">echo</span>
+</span><span class='line'>curl -s -XPOST <span class="s1">&#39;0.0.0.0:9200/bigmovie/film/_bulk&#39;</span> --data-binary @updates.json<span class="p">;</span> <span class="nb">echo</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Step 6: play with the dataset</h2>
+
+<p>Let&rsquo;s pick a movie named <code>superman</code>:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="err">GET</span> <span class="err">bigmovie/_search</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nt">&quot;match&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;superman&quot;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>  <span class="p">},</span>
+</span><span class='line'>  <span class="nt">&quot;fields&quot;</span><span class="p">:[</span><span class="s2">&quot;title&quot;</span><span class="p">,</span><span class="s2">&quot;genre&quot;</span><span class="p">,</span> <span class="s2">&quot;year&quot;</span><span class="p">]</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>One of the movie I loved. Note its <code>_id</code> (<code>2641</code>):</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="nt">&quot;_index&quot;</span><span class="p">:</span> <span class="s2">&quot;bigmovie&quot;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;_type&quot;</span><span class="p">:</span> <span class="s2">&quot;film&quot;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;_id&quot;</span><span class="p">:</span> <span class="s2">&quot;2641&quot;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;_score&quot;</span><span class="p">:</span> <span class="mf">4.83445</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;fields&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>       <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span class='line'>          <span class="s2">&quot;Superman II&quot;</span>
+</span><span class='line'>       <span class="p">],</span>
+</span><span class='line'>       <span class="nt">&quot;genre&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span class='line'>          <span class="s2">&quot;Action&quot;</span><span class="p">,</span>
+</span><span class='line'>          <span class="s2">&quot;Sci-Fi&quot;</span>
+</span><span class='line'>       <span class="p">],</span>
+</span><span class='line'>       <span class="nt">&quot;year&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span class='line'>          <span class="s2">&quot;1980&quot;</span>
+</span><span class='line'>       <span class="p">]</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Searching for <code>batman</code>:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="err">GET</span> <span class="err">bigmovie/_search</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nt">&quot;match&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;batman&quot;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>  <span class="p">},</span>
+</span><span class='line'>  <span class="nt">&quot;fields&quot;</span><span class="p">:[</span><span class="s2">&quot;title&quot;</span><span class="p">,</span><span class="s2">&quot;genre&quot;</span><span class="p">,</span> <span class="s2">&quot;year&quot;</span><span class="p">]</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>Batman Begins</code> is a good one! (<code>_id</code>:<code>33794</code>)</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="nt">&quot;_index&quot;</span><span class="p">:</span> <span class="s2">&quot;bigmovie&quot;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;_type&quot;</span><span class="p">:</span> <span class="s2">&quot;film&quot;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;_id&quot;</span><span class="p">:</span> <span class="s2">&quot;33794&quot;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;_score&quot;</span><span class="p">:</span> <span class="mf">4.604375</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;fields&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>       <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span class='line'>          <span class="s2">&quot;Batman Begins&quot;</span>
+</span><span class='line'>       <span class="p">],</span>
+</span><span class='line'>       <span class="nt">&quot;genre&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span class='line'>          <span class="s2">&quot;Action&quot;</span><span class="p">,</span>
+</span><span class='line'>          <span class="s2">&quot;Crime&quot;</span><span class="p">,</span>
+</span><span class='line'>          <span class="s2">&quot;IMAX&quot;</span>
+</span><span class='line'>       <span class="p">],</span>
+</span><span class='line'>       <span class="nt">&quot;year&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span class='line'>          <span class="s2">&quot;2005&quot;</span>
+</span><span class='line'>       <span class="p">]</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>What other users could recommand me now?</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="err">GET</span> <span class="err">/bigmovie/film/_search?pretty</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>     <span class="nt">&quot;bool&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>       <span class="nt">&quot;must&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="p">{</span> <span class="nt">&quot;match&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&quot;indicators&quot;</span><span class="p">:</span><span class="s2">&quot;2641 33794&quot;</span><span class="p">}</span> <span class="p">}</span> <span class="p">],</span>
+</span><span class='line'>       <span class="nt">&quot;must_not&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="p">{</span> <span class="nt">&quot;ids&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&quot;values&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;2641&quot;</span><span class="p">,</span> <span class="s2">&quot;33794&quot;</span><span class="p">]</span> <span class="p">}</span> <span class="p">}</span> <span class="p">]</span>
+</span><span class='line'>     <span class="p">}</span>
+</span><span class='line'>  <span class="p">},</span>
+</span><span class='line'>  <span class="nt">&quot;fields&quot;</span><span class="p">:[</span><span class="s2">&quot;title&quot;</span><span class="p">,</span><span class="s2">&quot;genre&quot;</span><span class="p">,</span> <span class="s2">&quot;year&quot;</span><span class="p">]</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I&rsquo;m getting back:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+<span class='line-number'>80</span>
+<span class='line-number'>81</span>
+<span class='line-number'>82</span>
+<span class='line-number'>83</span>
+<span class='line-number'>84</span>
+<span class='line-number'>85</span>
+<span class='line-number'>86</span>
+<span class='line-number'>87</span>
+<span class='line-number'>88</span>
+<span class='line-number'>89</span>
+<span class='line-number'>90</span>
+<span class='line-number'>91</span>
+<span class='line-number'>92</span>
+<span class='line-number'>93</span>
+<span class='line-number'>94</span>
+<span class='line-number'>95</span>
+<span class='line-number'>96</span>
+<span class='line-number'>97</span>
+<span class='line-number'>98</span>
+<span class='line-number'>99</span>
+<span class='line-number'>100</span>
+<span class='line-number'>101</span>
+<span class='line-number'>102</span>
+<span class='line-number'>103</span>
+<span class='line-number'>104</span>
+<span class='line-number'>105</span>
+<span class='line-number'>106</span>
+<span class='line-number'>107</span>
+<span class='line-number'>108</span>
+<span class='line-number'>109</span>
+<span class='line-number'>110</span>
+<span class='line-number'>111</span>
+<span class='line-number'>112</span>
+<span class='line-number'>113</span>
+<span class='line-number'>114</span>
+<span class='line-number'>115</span>
+<span class='line-number'>116</span>
+<span class='line-number'>117</span>
+<span class='line-number'>118</span>
+<span class='line-number'>119</span>
+<span class='line-number'>120</span>
+<span class='line-number'>121</span>
+<span class='line-number'>122</span>
+<span class='line-number'>123</span>
+<span class='line-number'>124</span>
+<span class='line-number'>125</span>
+<span class='line-number'>126</span>
+<span class='line-number'>127</span>
+<span class='line-number'>128</span>
+<span class='line-number'>129</span>
+<span class='line-number'>130</span>
+<span class='line-number'>131</span>
+<span class='line-number'>132</span>
+<span class='line-number'>133</span>
+<span class='line-number'>134</span>
+<span class='line-number'>135</span>
+<span class='line-number'>136</span>
+<span class='line-number'>137</span>
+<span class='line-number'>138</span>
+<span class='line-number'>139</span>
+<span class='line-number'>140</span>
+<span class='line-number'>141</span>
+<span class='line-number'>142</span>
+<span class='line-number'>143</span>
+<span class='line-number'>144</span>
+<span class='line-number'>145</span>
+<span class='line-number'>146</span>
+<span class='line-number'>147</span>
+<span class='line-number'>148</span>
+<span class='line-number'>149</span>
+<span class='line-number'>150</span>
+<span class='line-number'>151</span>
+<span class='line-number'>152</span>
+<span class='line-number'>153</span>
+<span class='line-number'>154</span>
+<span class='line-number'>155</span>
+<span class='line-number'>156</span>
+<span class='line-number'>157</span>
+<span class='line-number'>158</span>
+<span class='line-number'>159</span>
+<span class='line-number'>160</span>
+<span class='line-number'>161</span>
+<span class='line-number'>162</span>
+<span class='line-number'>163</span>
+<span class='line-number'>164</span>
+<span class='line-number'>165</span>
+<span class='line-number'>166</span>
+<span class='line-number'>167</span>
+<span class='line-number'>168</span>
+<span class='line-number'>169</span>
+<span class='line-number'>170</span>
+<span class='line-number'>171</span>
+<span class='line-number'>172</span>
+<span class='line-number'>173</span>
+<span class='line-number'>174</span>
+<span class='line-number'>175</span>
+<span class='line-number'>176</span>
+<span class='line-number'>177</span>
+<span class='line-number'>178</span>
+<span class='line-number'>179</span>
+<span class='line-number'>180</span>
+<span class='line-number'>181</span>
+<span class='line-number'>182</span>
+<span class='line-number'>183</span>
+<span class='line-number'>184</span>
+<span class='line-number'>185</span>
+<span class='line-number'>186</span>
+<span class='line-number'>187</span>
+<span class='line-number'>188</span>
+<span class='line-number'>189</span>
+<span class='line-number'>190</span>
+<span class='line-number'>191</span>
+<span class='line-number'>192</span>
+<span class='line-number'>193</span>
+<span class='line-number'>194</span>
+<span class='line-number'>195</span>
+<span class='line-number'>196</span>
+<span class='line-number'>197</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="p">{</span>
+</span><span class='line'>   <span class="nt">&quot;took&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+</span><span class='line'>   <span class="nt">&quot;timed_out&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+</span><span class='line'>   <span class="nt">&quot;_shards&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nt">&quot;total&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;successful&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;failed&quot;</span><span class="p">:</span> <span class="mi">0</span>
+</span><span class='line'>   <span class="p">},</span>
+</span><span class='line'>   <span class="nt">&quot;hits&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nt">&quot;total&quot;</span><span class="p">:</span> <span class="mi">72</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;max_score&quot;</span><span class="p">:</span> <span class="mf">0.51542056</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;hits&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span class='line'>         <span class="p">{</span>
+</span><span class='line'>            <span class="nt">&quot;_index&quot;</span><span class="p">:</span> <span class="s2">&quot;bigmovie&quot;</span><span class="p">,</span>
+</span><span class='line'>            <span class="nt">&quot;_type&quot;</span><span class="p">:</span> <span class="s2">&quot;film&quot;</span><span class="p">,</span>
+</span><span class='line'>            <span class="nt">&quot;_id&quot;</span><span class="p">:</span> <span class="s2">&quot;32535&quot;</span><span class="p">,</span>
+</span><span class='line'>            <span class="nt">&quot;_score&quot;</span><span class="p">:</span> <span class="mf">0.51542056</span><span class="p">,</span>
+</span><span class='line'>            <span class="nt">&quot;fields&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>               <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span class='line'>                  <span class="s2">&quot;No One Writes to the Colonel&quot;</span>
+</span><span class='line'>               <span class="p">],</span>
+</span><span class='line'>               <span class="nt">&quot;genre&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span class='line'>                  <span class="s2">&quot;Drama&quot;</span>
+</span><span class='line'>               <span class="p">],</span>
+</span><span class='line'>               <span class="nt">&quot;year&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span class='line'>                  <span class="s2">&quot;1999&quot;</span>
+</span><span class='line'>               <span class="p">]</span>
+</span><span class='line'>            <span class="p">}</span>
+</span><span class='line'>         <span class="p">},</span>
+</span><span class='line'>         <span class="p">{</span>
+</span><span class='line'>            <span class="nt">&quot;_index&quot;</span><span class="p">:</span> <span class="s2">&quot;bigmovie&quot;</span><span class="p">,</span>
+</span><span class='line'>            <span class="nt">&quot;_type&quot;</span><span class="p">:</span> <span class="s2">&quot;film&quot;</span><span class="p">,</span>
+</span><span class='line'>            <span class="nt">&quot;_id&quot;</span><span class="p">:</span> <span class="s2">&quot;2101&quot;</span><span class="p">,</span>
+</span><span class='line'>            <span class="nt">&quot;_score&quot;</span><span class="p">:</span> <span class="mf">0.3404896</span><span class="p">,</span>
+</span><span class='line'>            <span class="nt">&quot;fields&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>               <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span class='line'>                  <span class="s2">&quot;Squanto: A Warrior&#39;s Tale&quot;</span>
+</span><span class='line'>               <span class="p">],</span>
+</span><span class='line'>               <span class="nt">&quot;genre&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span class='line'>                  <span class="s2">&quot;Adventure&quot;</span><span class="p">,</span>
+</span><span class='line'>                  <span class="s2">&quot;Drama&quot;</span>
+</span><span class='line'>               <span class="p">],</span>
+</span><span class='line'>               <span class="nt">&quot;year&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span class='line'>                  <span class="s2">&quot;1994&quot;</span>
+</span><span class='line'>               <span class="p">]</span>
+</span><span class='line'>            <span class="p">}</span>
+</span><span class='line'>         <span class="p">},</span>
+</span><span class='line'>         <span class="p">{</span>
+</span><span class='line'>            <span class="nt">&quot;_index&quot;</span><span class="p">:</span> <span class="s2">&quot;bigmovie&quot;</span><span class="p">,</span>
+</span><span class='line'>            <span class="nt">&quot;_type&quot;</span><span class="p">:</span> <span class="s2">&quot;film&quot;</span><span class="p">,</span>
+</span><span class='line'>            <span class="nt">&quot;_id&quot;</span><span class="p">:</span> <span class="s2">&quot;539&quot;</span><span class="p">,</span>
+</span><span class='line'>            <span class="nt">&quot;_score&quot;</span><span class="p">:</span> <span class="mf">0.2979284</span><span class="p">,</span>
+</span><span class='line'>            <span class="nt">&quot;fields&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>               <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span class='line'>                  <span class="s2">&quot;Sleepless in Seattle&quot;</span>
+</span><span class='line'>               <span class="p">],</span>
+</span><span class='line'>               <span class="nt">&quot;genre&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span class='line'>                  <span class="s2">&quot;Comedy&quot;</span><span class="p">,</span>
+</span><span class='line'>                  <span class="s2">&quot;Drama&quot;</span><span class="p">,</span>
+</span><span class='line'>                  <span class="s2">&quot;Romance&quot;</span>
+</span><span class='line'>               <span class="p">],</span>
+</span><span class='line'>               <span class="nt">&quot;year&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span class='line'>                  <span class="s2">&quot;1993&quot;</span>
+</span><span class='line'>               <span class="p">]</span>
+</span><span class='line'>            <span class="p">}</span>
+</span><span class='line'>         <span class="p">},</span>
+</span><span class='line'>         <span class="p">{</span>
+</span><span class='line'>            <span class="nt">&quot;_index&quot;</span><span class="p">:</span> <span class="s2">&quot;bigmovie&quot;</span><span class="p">,</span>
+</span><span class='line'>            <span class="nt">&quot;_type&quot;</span><span class="p">:</span> <span class="s2">&quot;film&quot;</span><span class="p">,</span>
+</span><span class='line'>            <span class="nt">&quot;_id&quot;</span><span class="p">:</span> <span class="s2">&quot;2533&quot;</span><span class="p">,</span>
+</span><span class='line'>            <span class="nt">&quot;_score&quot;</span><span class="p">:</span> <span class="mf">0.29684773</span><span class="p">,</span>
+</span><span class='line'>            <span class="nt">&quot;fields&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>               <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span class='line'>                  <span class="s2">&quot;Escape from the Planet of the Apes&quot;</span>
+</span><span class='line'>               <span class="p">],</span>
+</span><span class='line'>               <span class="nt">&quot;genre&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span class='line'>                  <span class="s2">&quot;Action&quot;</span><span class="p">,</span>
+</span><span class='line'>                  <span class="s2">&quot;Sci-Fi&quot;</span>
+</span><span class='line'>               <span class="p">],</span>
+</span><span class='line'>               <span class="nt">&quot;year&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span class='line'>                  <span class="s2">&quot;1971&quot;</span>
+</span><span class='line'>               <span class="p">]</span>
+</span><span class='line'>            <span class="p">}</span>
+</span><span class='line'>         <span class="p">},</span>
+</span><span class='line'>         <span class="p">{</span>
+</span><span class='line'>            <span class="nt">&quot;_index&quot;</span><span class="p">:</span> <span class="s2">&quot;bigmovie&quot;</span><span class="p">,</span>
+</span><span class='line'>            <span class="nt">&quot;_type&quot;</span><span class="p">:</span> <span class="s2">&quot;film&quot;</span><span class="p">,</span>
+</span><span class='line'>            <span class="nt">&quot;_id&quot;</span><span class="p">:</span> <span class="s2">&quot;1849&quot;</span><span class="p">,</span>
+</span><span class='line'>            <span class="nt">&quot;_score&quot;</span><span class="p">:</span> <span class="mf">0.27565312</span><span class="p">,</span>
+</span><span class='line'>            <span class="nt">&quot;fields&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>               <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span class='line'>                  <span class="s2">&quot;Prince Valiant&quot;</span>
+</span><span class='line'>               <span class="p">],</span>
+</span><span class='line'>               <span class="nt">&quot;genre&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span class='line'>                  <span class="s2">&quot;Adventure&quot;</span>
+</span><span class='line'>               <span class="p">],</span>
+</span><span class='line'>               <span class="nt">&quot;year&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span class='line'>                  <span class="s2">&quot;1997&quot;</span>
+</span><span class='line'>               <span class="p">]</span>
+</span><span class='line'>            <span class="p">}</span>
+</span><span class='line'>         <span class="p">},</span>
+</span><span class='line'>         <span class="p">{</span>
+</span><span class='line'>            <span class="nt">&quot;_index&quot;</span><span class="p">:</span> <span class="s2">&quot;bigmovie&quot;</span><span class="p">,</span>
+</span><span class='line'>            <span class="nt">&quot;_type&quot;</span><span class="p">:</span> <span class="s2">&quot;film&quot;</span><span class="p">,</span>
+</span><span class='line'>            <span class="nt">&quot;_id&quot;</span><span class="p">:</span> <span class="s2">&quot;2412&quot;</span><span class="p">,</span>
+</span><span class='line'>            <span class="nt">&quot;_score&quot;</span><span class="p">:</span> <span class="mf">0.27565312</span><span class="p">,</span>
+</span><span class='line'>            <span class="nt">&quot;fields&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>               <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span class='line'>                  <span class="s2">&quot;Rocky V&quot;</span>
+</span><span class='line'>               <span class="p">],</span>
+</span><span class='line'>               <span class="nt">&quot;genre&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span class='line'>                  <span class="s2">&quot;Action&quot;</span><span class="p">,</span>
+</span><span class='line'>                  <span class="s2">&quot;Drama&quot;</span>
+</span><span class='line'>               <span class="p">],</span>
+</span><span class='line'>               <span class="nt">&quot;year&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span class='line'>                  <span class="s2">&quot;1990&quot;</span>
+</span><span class='line'>               <span class="p">]</span>
+</span><span class='line'>            <span class="p">}</span>
+</span><span class='line'>         <span class="p">},</span>
+</span><span class='line'>         <span class="p">{</span>
+</span><span class='line'>            <span class="nt">&quot;_index&quot;</span><span class="p">:</span> <span class="s2">&quot;bigmovie&quot;</span><span class="p">,</span>
+</span><span class='line'>            <span class="nt">&quot;_type&quot;</span><span class="p">:</span> <span class="s2">&quot;film&quot;</span><span class="p">,</span>
+</span><span class='line'>            <span class="nt">&quot;_id&quot;</span><span class="p">:</span> <span class="s2">&quot;2640&quot;</span><span class="p">,</span>
+</span><span class='line'>            <span class="nt">&quot;_score&quot;</span><span class="p">:</span> <span class="mf">0.27565312</span><span class="p">,</span>
+</span><span class='line'>            <span class="nt">&quot;fields&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>               <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span class='line'>                  <span class="s2">&quot;Superman&quot;</span>
+</span><span class='line'>               <span class="p">],</span>
+</span><span class='line'>               <span class="nt">&quot;genre&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span class='line'>                  <span class="s2">&quot;Action&quot;</span><span class="p">,</span>
+</span><span class='line'>                  <span class="s2">&quot;Adventure&quot;</span><span class="p">,</span>
+</span><span class='line'>                  <span class="s2">&quot;Sci-Fi&quot;</span>
+</span><span class='line'>               <span class="p">],</span>
+</span><span class='line'>               <span class="nt">&quot;year&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span class='line'>                  <span class="s2">&quot;1978&quot;</span>
+</span><span class='line'>               <span class="p">]</span>
+</span><span class='line'>            <span class="p">}</span>
+</span><span class='line'>         <span class="p">},</span>
+</span><span class='line'>         <span class="p">{</span>
+</span><span class='line'>            <span class="nt">&quot;_index&quot;</span><span class="p">:</span> <span class="s2">&quot;bigmovie&quot;</span><span class="p">,</span>
+</span><span class='line'>            <span class="nt">&quot;_type&quot;</span><span class="p">:</span> <span class="s2">&quot;film&quot;</span><span class="p">,</span>
+</span><span class='line'>            <span class="nt">&quot;_id&quot;</span><span class="p">:</span> <span class="s2">&quot;2291&quot;</span><span class="p">,</span>
+</span><span class='line'>            <span class="nt">&quot;_score&quot;</span><span class="p">:</span> <span class="mf">0.26844263</span><span class="p">,</span>
+</span><span class='line'>            <span class="nt">&quot;fields&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>               <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span class='line'>                  <span class="s2">&quot;Edward Scissorhands&quot;</span>
+</span><span class='line'>               <span class="p">],</span>
+</span><span class='line'>               <span class="nt">&quot;genre&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span class='line'>                  <span class="s2">&quot;Drama&quot;</span><span class="p">,</span>
+</span><span class='line'>                  <span class="s2">&quot;Fantasy&quot;</span><span class="p">,</span>
+</span><span class='line'>                  <span class="s2">&quot;Romance&quot;</span>
+</span><span class='line'>               <span class="p">],</span>
+</span><span class='line'>               <span class="nt">&quot;year&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span class='line'>                  <span class="s2">&quot;1990&quot;</span>
+</span><span class='line'>               <span class="p">]</span>
+</span><span class='line'>            <span class="p">}</span>
+</span><span class='line'>         <span class="p">},</span>
+</span><span class='line'>         <span class="p">{</span>
+</span><span class='line'>            <span class="nt">&quot;_index&quot;</span><span class="p">:</span> <span class="s2">&quot;bigmovie&quot;</span><span class="p">,</span>
+</span><span class='line'>            <span class="nt">&quot;_type&quot;</span><span class="p">:</span> <span class="s2">&quot;film&quot;</span><span class="p">,</span>
+</span><span class='line'>            <span class="nt">&quot;_id&quot;</span><span class="p">:</span> <span class="s2">&quot;8807&quot;</span><span class="p">,</span>
+</span><span class='line'>            <span class="nt">&quot;_score&quot;</span><span class="p">:</span> <span class="mf">0.26844263</span><span class="p">,</span>
+</span><span class='line'>            <span class="nt">&quot;fields&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>               <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span class='line'>                  <span class="s2">&quot;Harold and Kumar Go to White Castle&quot;</span>
+</span><span class='line'>               <span class="p">],</span>
+</span><span class='line'>               <span class="nt">&quot;genre&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span class='line'>                  <span class="s2">&quot;Adventure&quot;</span><span class="p">,</span>
+</span><span class='line'>                  <span class="s2">&quot;Comedy&quot;</span>
+</span><span class='line'>               <span class="p">],</span>
+</span><span class='line'>               <span class="nt">&quot;year&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span class='line'>                  <span class="s2">&quot;2004&quot;</span>
+</span><span class='line'>               <span class="p">]</span>
+</span><span class='line'>            <span class="p">}</span>
+</span><span class='line'>         <span class="p">},</span>
+</span><span class='line'>         <span class="p">{</span>
+</span><span class='line'>            <span class="nt">&quot;_index&quot;</span><span class="p">:</span> <span class="s2">&quot;bigmovie&quot;</span><span class="p">,</span>
+</span><span class='line'>            <span class="nt">&quot;_type&quot;</span><span class="p">:</span> <span class="s2">&quot;film&quot;</span><span class="p">,</span>
+</span><span class='line'>            <span class="nt">&quot;_id&quot;</span><span class="p">:</span> <span class="s2">&quot;4370&quot;</span><span class="p">,</span>
+</span><span class='line'>            <span class="nt">&quot;_score&quot;</span><span class="p">:</span> <span class="mf">0.2622487</span><span class="p">,</span>
+</span><span class='line'>            <span class="nt">&quot;fields&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>               <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span class='line'>                  <span class="s2">&quot;A.I. Artificial Intelligence&quot;</span>
+</span><span class='line'>               <span class="p">],</span>
+</span><span class='line'>               <span class="nt">&quot;genre&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span class='line'>                  <span class="s2">&quot;Adventure&quot;</span><span class="p">,</span>
+</span><span class='line'>                  <span class="s2">&quot;Drama&quot;</span><span class="p">,</span>
+</span><span class='line'>                  <span class="s2">&quot;Sci-Fi&quot;</span>
+</span><span class='line'>               <span class="p">],</span>
+</span><span class='line'>               <span class="nt">&quot;year&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span class='line'>                  <span class="s2">&quot;2001&quot;</span>
+</span><span class='line'>               <span class="p">]</span>
+</span><span class='line'>            <span class="p">}</span>
+</span><span class='line'>         <span class="p">}</span>
+</span><span class='line'>      <span class="p">]</span>
+</span><span class='line'>   <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I now know what I should look next! :)</p>
+
+<h2>Step 6+: recommend titles, not ids!</h2>
+
+<p>For now we recommend movies by looking first at other movies based on their ids.
+My goal is to create an interface on top of elasticsearch, actually I&rsquo;ll use Kibana and directly enter a movie name, a category or whatever and find the TOP10 recommended movies.</p>
+
+<p>Stay tuned!</p>
+</div>
+
+
+  <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">David Pilato</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2015-09-17T14:42:05+02:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>17</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>2:42 pm</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/elasticsearch/'>elasticsearch</a>, <a class='category' href='/blog/categories/mahout/'>mahout</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://david.pilato.fr/blog/2015/09/17/next-movie-to-watch-based-on-recommendation/" data-via="dadoonet" data-counturl="http://david.pilato.fr/blog/2015/09/17/next-movie-to-watch-based-on-recommendation/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2015/09/14/import-from-sql-without-database/" title="Previous Post: Importing from a database without a database">&laquo; Importing from a database without a database</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2015/11/17/index-twitter-on-found/" title="Next Post: Index Twitter on found">Index Twitter on found &raquo;</a>
+      
+    </p>
+    <p class="meta">
+        <div class="elevator">
+          <svg class="sweet-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve" height="100px" width="100px">
+              <path d="M70,47.5H30c-1.4,0-2.5,1.1-2.5,2.5v40c0,1.4,1.1,2.5,2.5,2.5h40c1.4,0,2.5-1.1,2.5-2.5V50C72.5,48.6,71.4,47.5,70,47.5z   M47.5,87.5h-5v-25h5V87.5z M57.5,87.5h-5v-25h5V87.5z M67.5,87.5h-5V60c0-1.4-1.1-2.5-2.5-2.5H40c-1.4,0-2.5,1.1-2.5,2.5v27.5h-5  v-35h35V87.5z"/>
+              <path d="M50,42.5c1.4,0,2.5-1.1,2.5-2.5V16l5.7,5.7c0.5,0.5,1.1,0.7,1.8,0.7s1.3-0.2,1.8-0.7c1-1,1-2.6,0-3.5l-10-10  c-1-1-2.6-1-3.5,0l-10,10c-1,1-1,2.6,0,3.5c1,1,2.6,1,3.5,0l5.7-5.7v24C47.5,41.4,48.6,42.5,50,42.5z"/>
+          </svg>
+          Back to Top
+        </div>
+    </p>
+<script>
+// Elevator script included on the page, already.
+
+window.onload = function() {
+  var elevator = new Elevator({
+    element: document.querySelector('.elevator'),
+    mainAudio: '/music/elevator-music.mp3',
+    endAudio: '/music/ding.mp3'
+  });
+}
+</script>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>About Me</h1>
+  <p>Developer | Evangelist at <a href="http://elastic.co/">elastic</a> and creator of the Elastic French Speakers <a href="http://www.meetup.com/elasticsearchfr/">User Group</a>. Frequent speaker about all things Elastic, in conferences, for User Groups and in companies with <a href="http://www.brownbaglunch.fr/">BBL talks</a>. In my free time, I enjoy coding and DJ four times per year, just for fun. Living with my family in Cergy, France.</p>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2017/01/09/4-years-at-elastic/">4 Years at Elastic!</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/10/21/elasticsearch-real-integration-tests-with-security-enabled-updated-for-ga/">Elasticsearch Real Integration Tests With Security Enabled (Updated for GA)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/10/20/creating-elasticsearch-transport-action-updated-for-ga/">Creating Elasticsearch Transport Action (Updated for GA)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/10/19/adding-a-new-rest-endpoint-to-elasticsearch-updated-for-ga/">Adding a New REST Endpoint to Elasticsearch (Updated for GA)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/10/18/elasticsearch-real-integration-tests-updated-for-ga/">Elasticsearch Real Integration Tests (Updated for GA)</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+<section class="twitterOct">
+  <h1 style="margin-bottom: 0.4em"> Tweets </h1>
+  <a class="twitter-timeline"
+	 data-dnt="true" href="https://twitter.com/dadoonet" 
+     data-widget-id="593022343921979392">
+     
+     Tweets by @dadoonet
+  </a>
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</section>
+
+
+<section>
+
+  <h1>Main GitHub Repos</h1>
+
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'dadoonet',
+            count: 10,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2017 - David Pilato -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'dadoonet';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://david.pilato.fr/blog/2015/09/17/next-movie-to-watch-based-on-recommendation/';
+        var disqus_url = 'http://david.pilato.fr/blog/2015/09/17/next-movie-to-watch-based-on-recommendation/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

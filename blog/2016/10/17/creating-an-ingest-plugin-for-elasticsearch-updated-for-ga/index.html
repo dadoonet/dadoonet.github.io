@@ -1,0 +1,1187 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Creating an Ingest Plugin for Elasticsearch (Updated for GA) - -Xmx128gb -Xms128gb</title>
+  <meta name="author" content="David Pilato">
+
+  
+  <meta name="description" content="Creating an Ingest Plugin for Elasticsearch (Updated for GA) Oct 17th, 2016 10:55 am | Comments NOTE: This article is an updated version of Creating &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://david.pilato.fr/blog/2016/10/17/creating-an-ingest-plugin-for-elasticsearch-updated-for-ga/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/elevator.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="-Xmx128gb -Xms128gb" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<script src="/javascripts/elevator.min.js"></script>
+
+  
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-62381049-1', 'auto');
+// Creating an Ingest plugin for elasticsearch (Updated for GA)
+
+ga('send', 'pageview', {
+  page: '/blog/2016/10/17/creating-an-ingest-plugin-for-elasticsearch-updated-for-ga/',
+  title: 'Creating an Ingest plugin for elasticsearch (Updated for GA)'
+});
+
+</script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">-Xmx128gb -Xms128gb</a></h1>
+  
+    <h2>adding more memory to my brain!</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="david.pilato.fr">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title"><img src="/images/covers/new/elasticsearch.png"/>Creating an Ingest Plugin for Elasticsearch (Updated for GA)</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2016-10-17T10:55:29+02:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>17</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>10:55 am</span></time>
+        
+           | <a href="#disqus_thread"
+             data-disqus-identifier="http://david.pilato.fr">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><strong>NOTE:</strong> This article is an updated version of <a href="/blog/2016/07/28/creating-an-ingest-plugin-for-elasticsearch/">Creating an Ingest plugin for elasticsearch</a></p>
+
+<p>This blog post is part of a series which will teach you:</p>
+
+<ul>
+<li><a href="/blog/2016/10/16/creating-a-plugin-for-elasticsearch-5-dot-0-using-maven-updated-for-ga/">How to write a plugin for elasticsearch 5.0 using Maven</a>.</li>
+<li>How to write an ingest plugin for elasticsearch 5.0 (what you are reading now).</li>
+<li>How I wrote the <code>ingest-bano</code> plugin which will be hopefully released soonish.</li>
+</ul>
+
+
+<p>Today, we will focus on writing an Ingest plugin for elasticsearch.</p>
+
+<blockquote><p>Hey! Wait! You wrote <code>Ingest</code>? What is that?</p></blockquote>
+
+<p>Ingest is a new feature coming in elasticsearch 5.0. It helps you to transform your data on the fly
+while injecting it into elasticsearch. Read more in <a href="https://www.elastic.co/blog/ingest-node-a-clients-perspective">elastic blog post</a>.</p>
+
+<p>If you know me and my work before I joined elastic, I have always been in love with data crawling and transformation as
+I wrote myself some plugins called <a href="https://www.elastic.co/blog/deprecating-rivers">rivers</a>.</p>
+
+<!-- more -->
+
+
+<p>With what we saw <a href="/blog/2016/10/16/creating-a-plugin-for-elasticsearch-5-dot-0-using-maven-updated-for-ga/">in the previous article</a>, we now have a Plugin skeleton ready to host our Ingest code.</p>
+
+<blockquote><p><strong>Note</strong>: this article has been updated on July 2016, the 29th by moving tests to <a href="/blog/2016/10/18/elasticsearch-real-integration-tests-updated-for-ga/">real integration tests</a>.</p></blockquote>
+
+<p>But first, let&rsquo;s describe a bit more what <code>Ingest</code> actually is.</p>
+
+<h2>Ingest</h2>
+
+<blockquote><p>If you already know Ingest feature, you can skip this section.</p></blockquote>
+
+<p>With Ingest, you can:</p>
+
+<ul>
+<li>define a pipeline</li>
+<li>simulate a pipeline</li>
+<li>use a pipeline at index time to transform data on the fly</li>
+</ul>
+
+
+<p>The pipeline is used to define all the actions you can perform on a source document.
+Each action is performed by a processor. A processor basically takes a document as input, transform it then outputs a new version of the document.</p>
+
+<p>A lot of core processors <a href="https://www.elastic.co/guide/en/elasticsearch/reference/master/ingest-processors.html">already exists in elasticsearch 5.0</a>
+and I can imagine that as this feature will be more and more popular, new processor will be added by the community, either in core or as plugins.</p>
+
+<h3>Define a pipeline</h3>
+
+<p>Let&rsquo;s look at one of them: the <a href="https://www.elastic.co/guide/en/elasticsearch/reference/master/lowercase-processor.html">Lowercase processor</a>.</p>
+
+<p>As you can imagine, the goal is to simply provide a lowercase version of a given field.</p>
+
+<p>Let say that you define an ingest pipeline <code>lowercase-example</code> like this:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>curl -XPUT localhost:9200/_ingest/pipeline/lowercase-example -d <span class="s1">&#39;{</span>
+</span><span class='line'><span class="s1">  &quot;processors&quot; : [</span>
+</span><span class='line'><span class="s1">    {</span>
+</span><span class='line'><span class="s1">      &quot;lowercase&quot; : {</span>
+</span><span class='line'><span class="s1">        &quot;field&quot;: &quot;message&quot;</span>
+</span><span class='line'><span class="s1">      }</span>
+</span><span class='line'><span class="s1">    }</span>
+</span><span class='line'><span class="s1">  ]</span>
+</span><span class='line'><span class="s1">}&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Simulate a pipeline</h3>
+
+<p>You can use the <code>_simulate</code> endpoint to simulate a pipeline without the need of
+actually creating a pipeline and indexing a document.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>curl -XGET <span class="s2">&quot;localhost:9200/_ingest/pipeline/_simulate?pretty&quot;</span> -d <span class="s1">&#39;{</span>
+</span><span class='line'><span class="s1">  &quot;pipeline&quot; : {</span>
+</span><span class='line'><span class="s1">    &quot;processors&quot; : [</span>
+</span><span class='line'><span class="s1">     {</span>
+</span><span class='line'><span class="s1">       &quot;lowercase&quot; : {</span>
+</span><span class='line'><span class="s1">         &quot;field&quot;: &quot;foo&quot;</span>
+</span><span class='line'><span class="s1">       }</span>
+</span><span class='line'><span class="s1">     }</span>
+</span><span class='line'><span class="s1">    ]</span>
+</span><span class='line'><span class="s1">  },</span>
+</span><span class='line'><span class="s1">  &quot;docs&quot; : [</span>
+</span><span class='line'><span class="s1">    {</span>
+</span><span class='line'><span class="s1">      &quot;_source&quot; : {</span>
+</span><span class='line'><span class="s1">        &quot;foo&quot; : &quot;This test CONTAINS also UPPER-CASE chars&quot;</span>
+</span><span class='line'><span class="s1">      }</span>
+</span><span class='line'><span class="s1">    }</span>
+</span><span class='line'><span class="s1">  ]</span>
+</span><span class='line'><span class="s1">}&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This gives:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="nt">&quot;_index&quot;</span> <span class="p">:</span> <span class="s2">&quot;test&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nt">&quot;_type&quot;</span> <span class="p">:</span> <span class="s2">&quot;doc&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nt">&quot;_id&quot;</span> <span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nt">&quot;_version&quot;</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+</span><span class='line'>  <span class="nt">&quot;found&quot;</span> <span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+</span><span class='line'>  <span class="nt">&quot;_source&quot;</span> <span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nt">&quot;foo&quot;</span> <span class="p">:</span> <span class="s2">&quot;this test contains also upper-case chars&quot;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Transform a document on the fly</h3>
+
+<p>Well. That&rsquo;s easy. Just add the <code>pipeline</code> URL parameter to your index operation.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>curl -XPUT <span class="s2">&quot;localhost:9200/test/doc/1?pipeline=lowercase-example&amp;pretty&quot;</span> -d <span class="s1">&#39;{</span>
+</span><span class='line'><span class="s1">  &quot;foo&quot; : &quot;This test CONTAINS also UPPER-CASE chars&quot;</span>
+</span><span class='line'><span class="s1">}&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>If you look at what has been really sent to elasticsearch as <code>_source</code> field:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>curl -XGET <span class="s2">&quot;localhost:9200/test/doc/1?pretty&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>You will see that the document has been transformed:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="nt">&quot;_index&quot;</span> <span class="p">:</span> <span class="s2">&quot;test&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nt">&quot;_type&quot;</span> <span class="p">:</span> <span class="s2">&quot;doc&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nt">&quot;_id&quot;</span> <span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nt">&quot;_version&quot;</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+</span><span class='line'>  <span class="nt">&quot;found&quot;</span> <span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+</span><span class='line'>  <span class="nt">&quot;_source&quot;</span> <span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nt">&quot;foo&quot;</span> <span class="p">:</span> <span class="s2">&quot;this test contains also upper-case chars&quot;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Coding our own processor</h2>
+
+<p>Well. This is why you are reading this article, right? Time to do it!</p>
+
+<h3>Processor skeleton</h3>
+
+<p>So you have basically to write a class which extends <code>AbstractProcessor</code>.
+Here we add a <code>BanoProcessor</code> in <code>src/main/java/org/elasticsearch/ingest/bano/</code></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">package</span> <span class="n">org</span><span class="o">.</span><span class="na">elasticsearch</span><span class="o">.</span><span class="na">ingest</span><span class="o">.</span><span class="na">bano</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">import</span> <span class="nn">org.elasticsearch.ingest.AbstractProcessor</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">org.elasticsearch.ingest.IngestDocument</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="nc">BanoProcessor</span> <span class="kd">extends</span> <span class="n">AbstractProcessor</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">public</span> <span class="kd">final</span> <span class="kd">static</span> <span class="n">String</span> <span class="n">NAME</span> <span class="o">=</span> <span class="s">&quot;bano&quot;</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">protected</span> <span class="nf">BanoProcessor</span><span class="o">(</span><span class="n">String</span> <span class="n">tag</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="kd">super</span><span class="o">(</span><span class="n">tag</span><span class="o">);</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nd">@Override</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getType</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>        <span class="k">return</span> <span class="n">NAME</span><span class="o">;</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nd">@Override</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">execute</span><span class="o">(</span><span class="n">IngestDocument</span> <span class="n">ingestDocument</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span><span class='line'>        <span class="c1">// Implement your logic code here</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>getType()</code> gives the processor name. So you will be able to write a pipeline like:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>curl -XPUT localhost:9200/_ingest/pipeline/bano-example -d <span class="s1">&#39;{</span>
+</span><span class='line'><span class="s1">  &quot;processors&quot; : [</span>
+</span><span class='line'><span class="s1">    {</span>
+</span><span class='line'><span class="s1">      &quot;bano&quot; : { }</span>
+</span><span class='line'><span class="s1">    }</span>
+</span><span class='line'><span class="s1">  ]</span>
+</span><span class='line'><span class="s1">}&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>execute(IngestDocument)</code> is where you will implement all the logic. Transformation of data that is.</p>
+
+<p>For now, the processor we just defined won&rsquo;t do anything. It will leave the source document as is.</p>
+
+<h3>Register the processor</h3>
+
+<p>We need to tell elasticsearch that this processor exists.
+To do that we need to provide a factory which implements <code>Processor.Factory</code>:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kd">class</span> <span class="nc">BanoFactory</span> <span class="kd">implements</span> <span class="n">Processor</span><span class="o">.</span><span class="na">Factory</span> <span class="o">{</span>
+</span><span class='line'>    <span class="nd">@Override</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="n">Processor</span> <span class="nf">create</span><span class="o">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Processor</span><span class="o">.</span><span class="na">Factory</span><span class="o">&gt;</span> <span class="n">processorFactories</span><span class="o">,</span> <span class="n">String</span> <span class="n">tag</span><span class="o">,</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">config</span><span class="o">)</span>
+</span><span class='line'>                  <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span><span class='line'>        <span class="k">return</span> <span class="k">new</span> <span class="nf">BanoProcessor</span><span class="o">(</span><span class="n">tag</span><span class="o">);</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li><code>processorFactories</code> gives you access to other processors which may be created inside this processor</li>
+<li><code>tag</code> is the <a href="https://www.elastic.co/guide/en/elasticsearch/reference/master/ingest-processors.html">tag for the processor</a>.
+It can be used when you define a processor in a pipeline.</li>
+<li><code>config</code> gives you access to the configuration for the pipeline. We will cover that in a next section.</li>
+</ul>
+
+
+<p>Note that you can create this class as an inner class of the BanoProcessor class itself.</p>
+
+<p>We now need to tell the plugin that it will provide Ingest plugin features by implementing <code>IngestPlugin</code> interface and
+overriding the <code>getProcessors</code> method:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">IngestBanoPlugin</span> <span class="kd">extends</span> <span class="n">Plugin</span> <span class="kd">implements</span> <span class="n">IngestPlugin</span> <span class="o">{</span>
+</span><span class='line'>    <span class="nd">@Override</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Processor</span><span class="o">.</span><span class="na">Factory</span><span class="o">&gt;</span> <span class="nf">getProcessors</span><span class="o">(</span><span class="n">Processor</span><span class="o">.</span><span class="na">Parameters</span> <span class="n">parameters</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="k">return</span> <span class="n">Collections</span><span class="o">.</span><span class="na">singletonMap</span><span class="o">(</span><span class="s">&quot;bano&quot;</span><span class="o">,</span> <span class="k">new</span> <span class="n">BanoProcessor</span><span class="o">.</span><span class="na">BanoFactory</span><span class="o">());</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Test the processor</h3>
+
+<p>We can now add more tests to check that our processor can be used in a pipeline.</p>
+
+<p>We can create a new integration test class <code>BanoProcessorIT</code> in <code>src/test/java/org/elasticsearch/ingest/bano/</code>:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">BanoProcessorIT</span> <span class="kd">extends</span> <span class="n">AbstractITCase</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testSimulateProcessor</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">String</span> <span class="n">json</span> <span class="o">=</span> <span class="n">jsonBuilder</span><span class="o">().</span><span class="na">startObject</span><span class="o">()</span>
+</span><span class='line'>                <span class="o">.</span><span class="na">startObject</span><span class="o">(</span><span class="s">&quot;pipeline&quot;</span><span class="o">)</span>
+</span><span class='line'>                    <span class="o">.</span><span class="na">startArray</span><span class="o">(</span><span class="s">&quot;processors&quot;</span><span class="o">)</span>
+</span><span class='line'>                        <span class="o">.</span><span class="na">startObject</span><span class="o">()</span>
+</span><span class='line'>                            <span class="o">.</span><span class="na">startObject</span><span class="o">(</span><span class="s">&quot;bano&quot;</span><span class="o">)</span>
+</span><span class='line'>                            <span class="o">.</span><span class="na">endObject</span><span class="o">()</span>
+</span><span class='line'>                        <span class="o">.</span><span class="na">endObject</span><span class="o">()</span>
+</span><span class='line'>                    <span class="o">.</span><span class="na">endArray</span><span class="o">()</span>
+</span><span class='line'>                <span class="o">.</span><span class="na">endObject</span><span class="o">()</span>
+</span><span class='line'>                <span class="o">.</span><span class="na">startArray</span><span class="o">(</span><span class="s">&quot;docs&quot;</span><span class="o">)</span>
+</span><span class='line'>                    <span class="o">.</span><span class="na">startObject</span><span class="o">()</span>
+</span><span class='line'>                        <span class="o">.</span><span class="na">field</span><span class="o">(</span><span class="s">&quot;_index&quot;</span><span class="o">,</span> <span class="s">&quot;index&quot;</span><span class="o">)</span>
+</span><span class='line'>                        <span class="o">.</span><span class="na">field</span><span class="o">(</span><span class="s">&quot;_type&quot;</span><span class="o">,</span> <span class="s">&quot;type&quot;</span><span class="o">)</span>
+</span><span class='line'>                        <span class="o">.</span><span class="na">field</span><span class="o">(</span><span class="s">&quot;_id&quot;</span><span class="o">,</span> <span class="s">&quot;id&quot;</span><span class="o">)</span>
+</span><span class='line'>                        <span class="o">.</span><span class="na">startObject</span><span class="o">(</span><span class="s">&quot;_source&quot;</span><span class="o">)</span>
+</span><span class='line'>                            <span class="o">.</span><span class="na">field</span><span class="o">(</span><span class="s">&quot;foo&quot;</span><span class="o">,</span> <span class="s">&quot;bar&quot;</span><span class="o">)</span>
+</span><span class='line'>                        <span class="o">.</span><span class="na">endObject</span><span class="o">()</span>
+</span><span class='line'>                    <span class="o">.</span><span class="na">endObject</span><span class="o">()</span>
+</span><span class='line'>                <span class="o">.</span><span class="na">endArray</span><span class="o">()</span>
+</span><span class='line'>                <span class="o">.</span><span class="na">endObject</span><span class="o">().</span><span class="na">string</span><span class="o">();</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">expected</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;();</span>
+</span><span class='line'>        <span class="n">expected</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;foo&quot;</span><span class="o">,</span> <span class="s">&quot;bar&quot;</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">Response</span> <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="na">performRequest</span><span class="o">(</span><span class="s">&quot;POST&quot;</span><span class="o">,</span> <span class="s">&quot;/_ingest/pipeline/_simulate&quot;</span><span class="o">,</span>
+</span><span class='line'>                <span class="n">Collections</span><span class="o">.</span><span class="na">emptyMap</span><span class="o">(),</span> <span class="k">new</span> <span class="nf">NStringEntity</span><span class="o">(</span><span class="n">json</span><span class="o">,</span> <span class="n">ContentType</span><span class="o">.</span><span class="na">APPLICATION_JSON</span><span class="o">));</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">responseMap</span> <span class="o">=</span> <span class="n">entityAsMap</span><span class="o">(</span><span class="n">response</span><span class="o">);</span>
+</span><span class='line'>        <span class="n">assertThat</span><span class="o">(</span><span class="n">responseMap</span><span class="o">,</span> <span class="n">hasKey</span><span class="o">(</span><span class="s">&quot;docs&quot;</span><span class="o">));</span>
+</span><span class='line'>        <span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;&gt;</span> <span class="n">docs</span> <span class="o">=</span> <span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;&gt;)</span> <span class="n">responseMap</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;docs&quot;</span><span class="o">);</span>
+</span><span class='line'>        <span class="n">assertThat</span><span class="o">(</span><span class="n">docs</span><span class="o">.</span><span class="na">size</span><span class="o">(),</span> <span class="n">equalTo</span><span class="o">(</span><span class="mi">1</span><span class="o">));</span>
+</span><span class='line'>        <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">doc1</span> <span class="o">=</span> <span class="n">docs</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+</span><span class='line'>        <span class="n">assertThat</span><span class="o">(</span><span class="n">doc1</span><span class="o">,</span> <span class="n">hasKey</span><span class="o">(</span><span class="s">&quot;doc&quot;</span><span class="o">));</span>
+</span><span class='line'>        <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">doc</span> <span class="o">=</span> <span class="o">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;)</span> <span class="n">doc1</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;doc&quot;</span><span class="o">);</span>
+</span><span class='line'>        <span class="n">assertThat</span><span class="o">(</span><span class="n">doc</span><span class="o">,</span> <span class="n">hasKey</span><span class="o">(</span><span class="s">&quot;_source&quot;</span><span class="o">));</span>
+</span><span class='line'>        <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">docSource</span> <span class="o">=</span> <span class="o">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;)</span> <span class="n">doc</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;_source&quot;</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">assertThat</span><span class="o">(</span><span class="n">docSource</span><span class="o">,</span> <span class="n">is</span><span class="o">(</span><span class="n">expected</span><span class="o">));</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This test basically sends a JSON document <code>{"foo":"bar"}</code> to the simulate pipeline method and check that we get back the same
+content as we did not transform yet anything.</p>
+
+<p>Note that this test was failling with elasticsearch 5.0.0-alpha5 because of <a href="https://github.com/elastic/elasticsearch/pull/19650">this bug</a> I found thanks to the Randomized Testing framework! :) As we moved our tests to REST tests, it won&rsquo;t fail anymore.</p>
+
+<h2>Implement the logic</h2>
+
+<p>Now that we are all set, we can enrich our documents in <code>BanoProcessor#execute(IngestDocument)</code> method.
+As an example, we are going to copy the value existing in field <code>foo</code> to a new field named <code>new_foo</code>.</p>
+
+<p>So if we have a document like:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="nt">&quot;foo&quot;</span><span class="p">:</span> <span class="s2">&quot;bar&quot;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>It should become:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="nt">&quot;foo&quot;</span><span class="p">:</span> <span class="s2">&quot;bar&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nt">&quot;new_foo&quot;</span><span class="p">:</span> <span class="s2">&quot;bar&quot;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Implementation will be:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="nd">@Override</span>
+</span><span class='line'><span class="kd">public</span> <span class="kt">void</span> <span class="nf">execute</span><span class="o">(</span><span class="n">IngestDocument</span> <span class="n">ingestDocument</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span><span class='line'>    <span class="k">if</span> <span class="o">(</span><span class="n">ingestDocument</span><span class="o">.</span><span class="na">hasField</span><span class="o">(</span><span class="s">&quot;foo&quot;</span><span class="o">))</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">ingestDocument</span><span class="o">.</span><span class="na">setFieldValue</span><span class="o">(</span><span class="s">&quot;new_foo&quot;</span><span class="o">,</span> <span class="n">ingestDocument</span><span class="o">.</span><span class="na">getFieldValue</span><span class="o">(</span><span class="s">&quot;foo&quot;</span><span class="o">,</span> <span class="n">String</span><span class="o">.</span><span class="na">class</span><span class="o">));</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Of course, we need to modify our test now as we expect a new field in our document:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">expected</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;();</span>
+</span><span class='line'><span class="n">expected</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;foo&quot;</span><span class="o">,</span> <span class="s">&quot;bar&quot;</span><span class="o">);</span>
+</span><span class='line'><span class="n">expected</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;new_foo&quot;</span><span class="o">,</span> <span class="s">&quot;bar&quot;</span><span class="o">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Make it more flexible</h2>
+
+<p>Well, we are reading the original value from <code>foo</code> which is hardcoded here.
+And we are writing to <code>new_foo</code> which is also hardcoded.</p>
+
+<p>Let&rsquo;s fix that by adding 2 optional settings for our processor:</p>
+
+<ul>
+<li><code>source</code>: source field, defaults to <code>"foo"</code></li>
+<li><code>target</code>: target field, defaults to <code>"new_" + source</code></li>
+</ul>
+
+
+<p>Let&rsquo;s change our constructor for BanoProcessor and add 2 private fields:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">private</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">sourceField</span><span class="o">;</span>
+</span><span class='line'><span class="kd">private</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">targetField</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">protected</span> <span class="nf">BanoProcessor</span><span class="o">(</span><span class="n">String</span> <span class="n">tag</span><span class="o">,</span> <span class="n">String</span> <span class="n">sourceField</span><span class="o">,</span> <span class="n">String</span> <span class="n">targetField</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>    <span class="kd">super</span><span class="o">(</span><span class="n">tag</span><span class="o">);</span>
+</span><span class='line'>    <span class="k">this</span><span class="o">.</span><span class="na">sourceField</span> <span class="o">=</span> <span class="n">sourceField</span><span class="o">;</span>
+</span><span class='line'>    <span class="k">this</span><span class="o">.</span><span class="na">targetField</span> <span class="o">=</span> <span class="n">targetField</span><span class="o">;</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Use them in <code>execute(IngestDocument)</code> method:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="nd">@Override</span>
+</span><span class='line'><span class="kd">public</span> <span class="kt">void</span> <span class="nf">execute</span><span class="o">(</span><span class="n">IngestDocument</span> <span class="n">ingestDocument</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span><span class='line'>    <span class="k">if</span> <span class="o">(</span><span class="n">ingestDocument</span><span class="o">.</span><span class="na">hasField</span><span class="o">(</span><span class="n">sourceField</span><span class="o">))</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">ingestDocument</span><span class="o">.</span><span class="na">setFieldValue</span><span class="o">(</span><span class="n">targetField</span><span class="o">,</span> <span class="n">ingestDocument</span><span class="o">.</span><span class="na">getFieldValue</span><span class="o">(</span><span class="n">sourceField</span><span class="o">,</span> <span class="n">String</span><span class="o">.</span><span class="na">class</span><span class="o">));</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Change now the <code>BanoFactory</code> class:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="nd">@Override</span>
+</span><span class='line'><span class="kd">public</span> <span class="n">Processor</span> <span class="nf">create</span><span class="o">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Processor</span><span class="o">.</span><span class="na">Factory</span><span class="o">&gt;</span> <span class="n">processorFactories</span><span class="o">,</span> <span class="n">String</span> <span class="n">tag</span><span class="o">,</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">config</span><span class="o">)</span> <span class="kd">throws</span>
+</span><span class='line'>        <span class="n">Exception</span> <span class="o">{</span>
+</span><span class='line'>    <span class="n">String</span> <span class="n">source</span> <span class="o">=</span> <span class="n">readStringProperty</span><span class="o">(</span><span class="n">NAME</span><span class="o">,</span> <span class="n">tag</span><span class="o">,</span> <span class="n">config</span><span class="o">,</span> <span class="s">&quot;source&quot;</span><span class="o">,</span> <span class="s">&quot;foo&quot;</span><span class="o">);</span>
+</span><span class='line'>    <span class="n">String</span> <span class="n">target</span> <span class="o">=</span> <span class="n">readStringProperty</span><span class="o">(</span><span class="n">NAME</span><span class="o">,</span> <span class="n">tag</span><span class="o">,</span> <span class="n">config</span><span class="o">,</span> <span class="s">&quot;target&quot;</span><span class="o">,</span> <span class="s">&quot;new_&quot;</span> <span class="o">+</span> <span class="n">source</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">return</span> <span class="k">new</span> <span class="nf">BanoProcessor</span><span class="o">(</span><span class="n">tag</span><span class="o">,</span> <span class="n">source</span><span class="o">,</span> <span class="n">target</span><span class="o">);</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Note that <code>readStringProperty</code> method comes from <code>org.elasticsearch.ingest.ConfigurationUtils</code> class.</p>
+
+<p>If you run the existing test, it should pass as we are using all default values.
+We can add a new test which checks that we can read from another field than <code>foo</code>, here <code>anotherfoo</code>.
+But first as we will run the same kind of test again and again, let&rsquo;s generify the test code:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">private</span> <span class="kt">void</span> <span class="nf">simulatePipeline</span><span class="o">(</span><span class="n">String</span> <span class="n">json</span><span class="o">,</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">expected</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="o">{</span>
+</span><span class='line'>    <span class="n">Response</span> <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="na">performRequest</span><span class="o">(</span><span class="s">&quot;POST&quot;</span><span class="o">,</span> <span class="s">&quot;/_ingest/pipeline/_simulate&quot;</span><span class="o">,</span>
+</span><span class='line'>            <span class="n">Collections</span><span class="o">.</span><span class="na">emptyMap</span><span class="o">(),</span> <span class="k">new</span> <span class="nf">NStringEntity</span><span class="o">(</span><span class="n">json</span><span class="o">,</span> <span class="n">ContentType</span><span class="o">.</span><span class="na">APPLICATION_JSON</span><span class="o">));</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">responseMap</span> <span class="o">=</span> <span class="n">entityAsMap</span><span class="o">(</span><span class="n">response</span><span class="o">);</span>
+</span><span class='line'>    <span class="n">assertThat</span><span class="o">(</span><span class="n">responseMap</span><span class="o">,</span> <span class="n">hasKey</span><span class="o">(</span><span class="s">&quot;docs&quot;</span><span class="o">));</span>
+</span><span class='line'>    <span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;&gt;</span> <span class="n">docs</span> <span class="o">=</span> <span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;&gt;)</span> <span class="n">responseMap</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;docs&quot;</span><span class="o">);</span>
+</span><span class='line'>    <span class="n">assertThat</span><span class="o">(</span><span class="n">docs</span><span class="o">.</span><span class="na">size</span><span class="o">(),</span> <span class="n">equalTo</span><span class="o">(</span><span class="mi">1</span><span class="o">));</span>
+</span><span class='line'>    <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">doc1</span> <span class="o">=</span> <span class="n">docs</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+</span><span class='line'>    <span class="n">assertThat</span><span class="o">(</span><span class="n">doc1</span><span class="o">,</span> <span class="n">hasKey</span><span class="o">(</span><span class="s">&quot;doc&quot;</span><span class="o">));</span>
+</span><span class='line'>    <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">doc</span> <span class="o">=</span> <span class="o">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;)</span> <span class="n">doc1</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;doc&quot;</span><span class="o">);</span>
+</span><span class='line'>    <span class="n">assertThat</span><span class="o">(</span><span class="n">doc</span><span class="o">,</span> <span class="n">hasKey</span><span class="o">(</span><span class="s">&quot;_source&quot;</span><span class="o">));</span>
+</span><span class='line'>    <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">docSource</span> <span class="o">=</span> <span class="o">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;)</span> <span class="n">doc</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;_source&quot;</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">assertThat</span><span class="o">(</span><span class="n">docSource</span><span class="o">,</span> <span class="n">is</span><span class="o">(</span><span class="n">expected</span><span class="o">));</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And implements the new test based on that:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kt">void</span> <span class="nf">testSimulateProcessorConfigSource</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span><span class='line'>    <span class="n">String</span> <span class="n">json</span> <span class="o">=</span> <span class="n">jsonBuilder</span><span class="o">().</span><span class="na">startObject</span><span class="o">()</span>
+</span><span class='line'>            <span class="o">.</span><span class="na">startObject</span><span class="o">(</span><span class="s">&quot;pipeline&quot;</span><span class="o">)</span>
+</span><span class='line'>                <span class="o">.</span><span class="na">startArray</span><span class="o">(</span><span class="s">&quot;processors&quot;</span><span class="o">)</span>
+</span><span class='line'>                    <span class="o">.</span><span class="na">startObject</span><span class="o">()</span>
+</span><span class='line'>                        <span class="o">.</span><span class="na">startObject</span><span class="o">(</span><span class="s">&quot;bano&quot;</span><span class="o">)</span>
+</span><span class='line'>                            <span class="o">.</span><span class="na">field</span><span class="o">(</span><span class="s">&quot;source&quot;</span><span class="o">,</span> <span class="s">&quot;anotherfoo&quot;</span><span class="o">)</span>
+</span><span class='line'>                        <span class="o">.</span><span class="na">endObject</span><span class="o">()</span>
+</span><span class='line'>                    <span class="o">.</span><span class="na">endObject</span><span class="o">()</span>
+</span><span class='line'>                <span class="o">.</span><span class="na">endArray</span><span class="o">()</span>
+</span><span class='line'>            <span class="o">.</span><span class="na">endObject</span><span class="o">()</span>
+</span><span class='line'>            <span class="o">.</span><span class="na">startArray</span><span class="o">(</span><span class="s">&quot;docs&quot;</span><span class="o">)</span>
+</span><span class='line'>                <span class="o">.</span><span class="na">startObject</span><span class="o">()</span>
+</span><span class='line'>                    <span class="o">.</span><span class="na">field</span><span class="o">(</span><span class="s">&quot;_index&quot;</span><span class="o">,</span> <span class="s">&quot;index&quot;</span><span class="o">)</span>
+</span><span class='line'>                    <span class="o">.</span><span class="na">field</span><span class="o">(</span><span class="s">&quot;_type&quot;</span><span class="o">,</span> <span class="s">&quot;type&quot;</span><span class="o">)</span>
+</span><span class='line'>                    <span class="o">.</span><span class="na">field</span><span class="o">(</span><span class="s">&quot;_id&quot;</span><span class="o">,</span> <span class="s">&quot;id&quot;</span><span class="o">)</span>
+</span><span class='line'>                    <span class="o">.</span><span class="na">startObject</span><span class="o">(</span><span class="s">&quot;_source&quot;</span><span class="o">)</span>
+</span><span class='line'>                        <span class="o">.</span><span class="na">field</span><span class="o">(</span><span class="s">&quot;anotherfoo&quot;</span><span class="o">,</span> <span class="s">&quot;bar&quot;</span><span class="o">)</span>
+</span><span class='line'>                    <span class="o">.</span><span class="na">endObject</span><span class="o">()</span>
+</span><span class='line'>                <span class="o">.</span><span class="na">endObject</span><span class="o">()</span>
+</span><span class='line'>            <span class="o">.</span><span class="na">endArray</span><span class="o">()</span>
+</span><span class='line'>            <span class="o">.</span><span class="na">endObject</span><span class="o">().</span><span class="na">string</span><span class="o">();</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">expected</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;();</span>
+</span><span class='line'>    <span class="n">expected</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;anotherfoo&quot;</span><span class="o">,</span> <span class="s">&quot;bar&quot;</span><span class="o">);</span>
+</span><span class='line'>    <span class="n">expected</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;new_anotherfoo&quot;</span><span class="o">,</span> <span class="s">&quot;bar&quot;</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">simulatePipeline</span><span class="o">(</span><span class="n">json</span><span class="o">,</span> <span class="n">expected</span><span class="o">);</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Also test that you can write to another target field:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kt">void</span> <span class="nf">testSimulateProcessorConfigTarget</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span><span class='line'>    <span class="n">String</span> <span class="n">json</span> <span class="o">=</span> <span class="n">jsonBuilder</span><span class="o">().</span><span class="na">startObject</span><span class="o">()</span>
+</span><span class='line'>            <span class="o">.</span><span class="na">startObject</span><span class="o">(</span><span class="s">&quot;pipeline&quot;</span><span class="o">)</span>
+</span><span class='line'>                <span class="o">.</span><span class="na">startArray</span><span class="o">(</span><span class="s">&quot;processors&quot;</span><span class="o">)</span>
+</span><span class='line'>                    <span class="o">.</span><span class="na">startObject</span><span class="o">()</span>
+</span><span class='line'>                        <span class="o">.</span><span class="na">startObject</span><span class="o">(</span><span class="s">&quot;bano&quot;</span><span class="o">)</span>
+</span><span class='line'>                            <span class="o">.</span><span class="na">field</span><span class="o">(</span><span class="s">&quot;source&quot;</span><span class="o">,</span> <span class="s">&quot;anotherfoo&quot;</span><span class="o">)</span>
+</span><span class='line'>                            <span class="o">.</span><span class="na">field</span><span class="o">(</span><span class="s">&quot;target&quot;</span><span class="o">,</span> <span class="s">&quot;another_new_foo&quot;</span><span class="o">)</span>
+</span><span class='line'>                        <span class="o">.</span><span class="na">endObject</span><span class="o">()</span>
+</span><span class='line'>                    <span class="o">.</span><span class="na">endObject</span><span class="o">()</span>
+</span><span class='line'>                <span class="o">.</span><span class="na">endArray</span><span class="o">()</span>
+</span><span class='line'>            <span class="o">.</span><span class="na">endObject</span><span class="o">()</span>
+</span><span class='line'>            <span class="o">.</span><span class="na">startArray</span><span class="o">(</span><span class="s">&quot;docs&quot;</span><span class="o">)</span>
+</span><span class='line'>                <span class="o">.</span><span class="na">startObject</span><span class="o">()</span>
+</span><span class='line'>                    <span class="o">.</span><span class="na">field</span><span class="o">(</span><span class="s">&quot;_index&quot;</span><span class="o">,</span> <span class="s">&quot;index&quot;</span><span class="o">)</span>
+</span><span class='line'>                    <span class="o">.</span><span class="na">field</span><span class="o">(</span><span class="s">&quot;_type&quot;</span><span class="o">,</span> <span class="s">&quot;type&quot;</span><span class="o">)</span>
+</span><span class='line'>                    <span class="o">.</span><span class="na">field</span><span class="o">(</span><span class="s">&quot;_id&quot;</span><span class="o">,</span> <span class="s">&quot;id&quot;</span><span class="o">)</span>
+</span><span class='line'>                    <span class="o">.</span><span class="na">startObject</span><span class="o">(</span><span class="s">&quot;_source&quot;</span><span class="o">)</span>
+</span><span class='line'>                        <span class="o">.</span><span class="na">field</span><span class="o">(</span><span class="s">&quot;anotherfoo&quot;</span><span class="o">,</span> <span class="s">&quot;bar&quot;</span><span class="o">)</span>
+</span><span class='line'>                    <span class="o">.</span><span class="na">endObject</span><span class="o">()</span>
+</span><span class='line'>                <span class="o">.</span><span class="na">endObject</span><span class="o">()</span>
+</span><span class='line'>            <span class="o">.</span><span class="na">endArray</span><span class="o">()</span>
+</span><span class='line'>            <span class="o">.</span><span class="na">endObject</span><span class="o">().</span><span class="na">string</span><span class="o">();</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">expected</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;();</span>
+</span><span class='line'>    <span class="n">expected</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;anotherfoo&quot;</span><span class="o">,</span> <span class="s">&quot;bar&quot;</span><span class="o">);</span>
+</span><span class='line'>    <span class="n">expected</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;another_new_foo&quot;</span><span class="o">,</span> <span class="s">&quot;bar&quot;</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">simulatePipeline</span><span class="o">(</span><span class="n">json</span><span class="o">,</span> <span class="n">expected</span><span class="o">);</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Remove the source field</h2>
+
+<p>We can also add another option to remove the source field as we copied the content we want to the target field.
+Let&rsquo;s add a new <code>remove</code> boolean option:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="c1">// ...</span>
+</span><span class='line'><span class="kd">private</span> <span class="kd">final</span> <span class="n">Boolean</span> <span class="n">removeOption</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">protected</span> <span class="nf">BanoProcessor</span><span class="o">(</span><span class="n">String</span> <span class="n">tag</span><span class="o">,</span> <span class="n">String</span> <span class="n">sourceField</span><span class="o">,</span> <span class="n">String</span> <span class="n">targetField</span><span class="o">,</span> <span class="n">Boolean</span> <span class="n">removeOption</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="c1">// ...</span>
+</span><span class='line'>    <span class="k">this</span><span class="o">.</span><span class="na">removeOption</span> <span class="o">=</span> <span class="n">removeOption</span><span class="o">;</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="nd">@Override</span>
+</span><span class='line'><span class="kd">public</span> <span class="kt">void</span> <span class="nf">execute</span><span class="o">(</span><span class="n">IngestDocument</span> <span class="n">ingestDocument</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span><span class='line'>    <span class="k">if</span> <span class="o">(</span><span class="n">ingestDocument</span><span class="o">.</span><span class="na">hasField</span><span class="o">(</span><span class="n">sourceField</span><span class="o">))</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">ingestDocument</span><span class="o">.</span><span class="na">setFieldValue</span><span class="o">(</span><span class="n">targetField</span><span class="o">,</span> <span class="n">ingestDocument</span><span class="o">.</span><span class="na">getFieldValue</span><span class="o">(</span><span class="n">sourceField</span><span class="o">,</span> <span class="n">String</span><span class="o">.</span><span class="na">class</span><span class="o">));</span>
+</span><span class='line'>        <span class="k">if</span> <span class="o">(</span><span class="n">removeOption</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>            <span class="n">ingestDocument</span><span class="o">.</span><span class="na">removeField</span><span class="o">(</span><span class="n">sourceField</span><span class="o">);</span>
+</span><span class='line'>        <span class="o">}</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kd">class</span> <span class="nc">BanoFactory</span> <span class="kd">implements</span> <span class="n">Processor</span><span class="o">.</span><span class="na">Factory</span> <span class="o">{</span>
+</span><span class='line'>    <span class="nd">@Override</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="n">Processor</span> <span class="nf">create</span><span class="o">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Processor</span><span class="o">.</span><span class="na">Factory</span><span class="o">&gt;</span> <span class="n">processorFactories</span><span class="o">,</span> <span class="n">String</span> <span class="n">tag</span><span class="o">,</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">config</span><span class="o">)</span> <span class="kd">throws</span>
+</span><span class='line'>            <span class="n">Exception</span> <span class="o">{</span>
+</span><span class='line'>              <span class="c1">// ...</span>
+</span><span class='line'>        <span class="n">Boolean</span> <span class="n">remove</span> <span class="o">=</span> <span class="n">readBooleanProperty</span><span class="o">(</span><span class="n">NAME</span><span class="o">,</span> <span class="n">tag</span><span class="o">,</span> <span class="n">config</span><span class="o">,</span> <span class="s">&quot;remove&quot;</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="k">return</span> <span class="k">new</span> <span class="nf">BanoProcessor</span><span class="o">(</span><span class="n">tag</span><span class="o">,</span> <span class="n">source</span><span class="o">,</span> <span class="n">target</span><span class="o">,</span> <span class="n">remove</span><span class="o">);</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Existing tests should still work.
+Let&rsquo;s add another test:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kt">void</span> <span class="nf">testSimulateProcessorConfigRemove</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span><span class='line'>    <span class="n">String</span> <span class="n">json</span> <span class="o">=</span> <span class="n">jsonBuilder</span><span class="o">().</span><span class="na">startObject</span><span class="o">()</span>
+</span><span class='line'>            <span class="o">.</span><span class="na">startObject</span><span class="o">(</span><span class="s">&quot;pipeline&quot;</span><span class="o">)</span>
+</span><span class='line'>                <span class="o">.</span><span class="na">startArray</span><span class="o">(</span><span class="s">&quot;processors&quot;</span><span class="o">)</span>
+</span><span class='line'>                    <span class="o">.</span><span class="na">startObject</span><span class="o">()</span>
+</span><span class='line'>                        <span class="o">.</span><span class="na">startObject</span><span class="o">(</span><span class="s">&quot;bano&quot;</span><span class="o">)</span>
+</span><span class='line'>                            <span class="o">.</span><span class="na">field</span><span class="o">(</span><span class="s">&quot;remove&quot;</span><span class="o">,</span> <span class="kc">true</span><span class="o">)</span>
+</span><span class='line'>                        <span class="o">.</span><span class="na">endObject</span><span class="o">()</span>
+</span><span class='line'>                    <span class="o">.</span><span class="na">endObject</span><span class="o">()</span>
+</span><span class='line'>                <span class="o">.</span><span class="na">endArray</span><span class="o">()</span>
+</span><span class='line'>            <span class="o">.</span><span class="na">endObject</span><span class="o">()</span>
+</span><span class='line'>            <span class="o">.</span><span class="na">startArray</span><span class="o">(</span><span class="s">&quot;docs&quot;</span><span class="o">)</span>
+</span><span class='line'>                <span class="o">.</span><span class="na">startObject</span><span class="o">()</span>
+</span><span class='line'>                    <span class="o">.</span><span class="na">field</span><span class="o">(</span><span class="s">&quot;_index&quot;</span><span class="o">,</span> <span class="s">&quot;index&quot;</span><span class="o">)</span>
+</span><span class='line'>                    <span class="o">.</span><span class="na">field</span><span class="o">(</span><span class="s">&quot;_type&quot;</span><span class="o">,</span> <span class="s">&quot;type&quot;</span><span class="o">)</span>
+</span><span class='line'>                    <span class="o">.</span><span class="na">field</span><span class="o">(</span><span class="s">&quot;_id&quot;</span><span class="o">,</span> <span class="s">&quot;id&quot;</span><span class="o">)</span>
+</span><span class='line'>                    <span class="o">.</span><span class="na">startObject</span><span class="o">(</span><span class="s">&quot;_source&quot;</span><span class="o">)</span>
+</span><span class='line'>                        <span class="o">.</span><span class="na">field</span><span class="o">(</span><span class="s">&quot;foo&quot;</span><span class="o">,</span> <span class="s">&quot;bar&quot;</span><span class="o">)</span>
+</span><span class='line'>                    <span class="o">.</span><span class="na">endObject</span><span class="o">()</span>
+</span><span class='line'>                <span class="o">.</span><span class="na">endObject</span><span class="o">()</span>
+</span><span class='line'>            <span class="o">.</span><span class="na">endArray</span><span class="o">()</span>
+</span><span class='line'>            <span class="o">.</span><span class="na">endObject</span><span class="o">().</span><span class="na">string</span><span class="o">();</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">expected</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;();</span>
+</span><span class='line'>    <span class="n">expected</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;new_foo&quot;</span><span class="o">,</span> <span class="s">&quot;bar&quot;</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">simulatePipeline</span><span class="o">(</span><span class="n">json</span><span class="o">,</span> <span class="n">expected</span><span class="o">);</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>What&rsquo;s next?</h2>
+
+<p>In a coming blog post, I&rsquo;ll explain how to create an ingest plugin which will helps you to transform a french postal address to geo coordinates or the other way around.</p>
+
+<p>Stay tuned!</p>
+</div>
+
+
+  <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">David Pilato</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2016-10-17T10:55:29+02:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>17</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>10:55 am</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/elasticsearch/'>elasticsearch</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://david.pilato.fr/blog/2016/10/17/creating-an-ingest-plugin-for-elasticsearch-updated-for-ga/" data-via="dadoonet" data-counturl="http://david.pilato.fr/blog/2016/10/17/creating-an-ingest-plugin-for-elasticsearch-updated-for-ga/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2016/10/16/creating-a-plugin-for-elasticsearch-5-dot-0-using-maven-updated-for-ga/" title="Previous Post: Creating a plugin for elasticsearch 5.0 using Maven (Updated for GA)">&laquo; Creating a plugin for elasticsearch 5.0 using Maven (Updated for GA)</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2016/10/18/elasticsearch-real-integration-tests-updated-for-ga/" title="Next Post: Elasticsearch real integration tests (Updated for GA)">Elasticsearch real integration tests (Updated for GA) &raquo;</a>
+      
+    </p>
+    <p class="meta">
+        <div class="elevator">
+          <svg class="sweet-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve" height="100px" width="100px">
+              <path d="M70,47.5H30c-1.4,0-2.5,1.1-2.5,2.5v40c0,1.4,1.1,2.5,2.5,2.5h40c1.4,0,2.5-1.1,2.5-2.5V50C72.5,48.6,71.4,47.5,70,47.5z   M47.5,87.5h-5v-25h5V87.5z M57.5,87.5h-5v-25h5V87.5z M67.5,87.5h-5V60c0-1.4-1.1-2.5-2.5-2.5H40c-1.4,0-2.5,1.1-2.5,2.5v27.5h-5  v-35h35V87.5z"/>
+              <path d="M50,42.5c1.4,0,2.5-1.1,2.5-2.5V16l5.7,5.7c0.5,0.5,1.1,0.7,1.8,0.7s1.3-0.2,1.8-0.7c1-1,1-2.6,0-3.5l-10-10  c-1-1-2.6-1-3.5,0l-10,10c-1,1-1,2.6,0,3.5c1,1,2.6,1,3.5,0l5.7-5.7v24C47.5,41.4,48.6,42.5,50,42.5z"/>
+          </svg>
+          Back to Top
+        </div>
+    </p>
+<script>
+// Elevator script included on the page, already.
+
+window.onload = function() {
+  var elevator = new Elevator({
+    element: document.querySelector('.elevator'),
+    mainAudio: '/music/elevator-music.mp3',
+    endAudio: '/music/ding.mp3'
+  });
+}
+</script>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>About Me</h1>
+  <p>Developer | Evangelist at <a href="http://elastic.co/">elastic</a> and creator of the Elastic French Speakers <a href="http://www.meetup.com/elasticsearchfr/">User Group</a>. Frequent speaker about all things Elastic, in conferences, for User Groups and in companies with <a href="http://www.brownbaglunch.fr/">BBL talks</a>. In my free time, I enjoy coding and DJ four times per year, just for fun. Living with my family in Cergy, France.</p>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2017/01/09/4-years-at-elastic/">4 Years at Elastic!</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/10/21/elasticsearch-real-integration-tests-with-security-enabled-updated-for-ga/">Elasticsearch Real Integration Tests With Security Enabled (Updated for GA)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/10/20/creating-elasticsearch-transport-action-updated-for-ga/">Creating Elasticsearch Transport Action (Updated for GA)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/10/19/adding-a-new-rest-endpoint-to-elasticsearch-updated-for-ga/">Adding a New REST Endpoint to Elasticsearch (Updated for GA)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/10/18/elasticsearch-real-integration-tests-updated-for-ga/">Elasticsearch Real Integration Tests (Updated for GA)</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+<section class="twitterOct">
+  <h1 style="margin-bottom: 0.4em"> Tweets </h1>
+  <a class="twitter-timeline"
+	 data-dnt="true" href="https://twitter.com/dadoonet" 
+     data-widget-id="593022343921979392">
+     
+     Tweets by @dadoonet
+  </a>
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</section>
+
+
+<section>
+
+  <h1>Main GitHub Repos</h1>
+
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'dadoonet',
+            count: 10,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2017 - David Pilato -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'dadoonet';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://david.pilato.fr/blog/2016/10/17/creating-an-ingest-plugin-for-elasticsearch-updated-for-ga/';
+        var disqus_url = 'http://david.pilato.fr/blog/2016/10/17/creating-an-ingest-plugin-for-elasticsearch-updated-for-ga/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

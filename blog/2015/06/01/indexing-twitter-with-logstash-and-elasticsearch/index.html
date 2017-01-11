@@ -1,0 +1,625 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Indexing Twitter With Logstash and Elasticsearch - -Xmx128gb -Xms128gb</title>
+  <meta name="author" content="David Pilato">
+
+  
+  <meta name="description" content="Indexing Twitter With Logstash and Elasticsearch Jun 1st, 2015 4:23 pm | Comments I&rsquo;m often running some demos during conferences where we &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://david.pilato.fr/blog/2015/06/01/indexing-twitter-with-logstash-and-elasticsearch/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/elevator.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="-Xmx128gb -Xms128gb" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<script src="/javascripts/elevator.min.js"></script>
+
+  
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-62381049-1', 'auto');
+// Indexing Twitter with Logstash and Elasticsearch
+
+ga('send', 'pageview', {
+  page: '/blog/2015/06/01/indexing-twitter-with-logstash-and-elasticsearch/',
+  title: 'Indexing Twitter with Logstash and Elasticsearch'
+});
+
+</script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">-Xmx128gb -Xms128gb</a></h1>
+  
+    <h2>adding more memory to my brain!</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="david.pilato.fr">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title"><img src="/images/covers/logstash.png"/>Indexing Twitter With Logstash and Elasticsearch</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-06-01T16:23:03+02:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>1</span><span class='date-suffix'>st</span>, <span class='date-year'>2015</span></span> <span class='time'>4:23 pm</span></time>
+        
+           | <a href="#disqus_thread"
+             data-disqus-identifier="http://david.pilato.fr">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I&rsquo;m often running some demos during conferences where we have a booth.
+As many others, I&rsquo;m using Twitter feed as my datasource.</p>
+
+<p>I have been using <a href="https://github.com/elastic/elasticsearch-river-twitter">Twitter river plugin</a> for many years but, you know, <a href="https://www.elastic.co/blog/deprecating_rivers">rivers have been deprecated</a>.</p>
+
+<p>Logstash <a href="https://www.elastic.co/blog/logstash-1-5-0-ga-released">1.5.0</a> provides a safer and more flexible way to deal with tweets with its <a href="https://www.elastic.co/guide/en/logstash/current/plugins-inputs-twitter.html">twitter input</a>.</p>
+
+<p>Let&rsquo;s do it!</p>
+
+<!-- more -->
+
+
+<p>Let&rsquo;s assume that you have already elasticsearch 1.5.2, Logstash 1.5.0 and Kibana 4.0.2 running on your laptop or on a cloud instance.</p>
+
+<h2>Twitter application</h2>
+
+<p>Create first your <a href="https://apps.twitter.com/">Twitter application</a> and open the &ldquo;Keys and Access Tokens&rdquo; tab.
+Note your <code>consumer_key</code> and <code>consumer_secret</code> (generate them if needed).
+Note also your <code>access_token</code> and <code>access_token_secret</code> (generate them if needed).</p>
+
+<h2>Logstash configuration</h2>
+
+<p>First define your twitter input to track whatever term you want. Let&rsquo;s say here that I will collect data for <a href="http://www.dotscale.io/">dotScale conference</a> (Elastic sponsors it so if you are around come to say hello at our booth!):</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">input</span> <span class="p">{</span>
+</span><span class='line'>  <span class="n">twitter</span> <span class="p">{</span>
+</span><span class='line'>      <span class="n">consumer_key</span> <span class="o">=&gt;</span> <span class="s2">&quot;consumer_key&quot;</span>
+</span><span class='line'>      <span class="n">consumer_secret</span> <span class="o">=&gt;</span> <span class="s2">&quot;consumer_secret&quot;</span>
+</span><span class='line'>      <span class="n">oauth_token</span> <span class="o">=&gt;</span> <span class="s2">&quot;access_token&quot;</span>
+</span><span class='line'>      <span class="n">oauth_token_secret</span> <span class="o">=&gt;</span> <span class="s2">&quot;access_token_secret&quot;</span>
+</span><span class='line'>      <span class="n">keywords</span> <span class="o">=&gt;</span> <span class="o">[</span> <span class="s2">&quot;dotscale&quot;</span> <span class="o">]</span>
+</span><span class='line'>      <span class="n">full_tweet</span> <span class="o">=&gt;</span> <span class="kp">true</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>We won&rsquo;t do any filtering as tweets come as JSON documents already well formed.
+We could of course omit some fields but let&rsquo;s keep that simple:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">filter</span> <span class="p">{</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Connect elasticsearch:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">output</span> <span class="p">{</span>
+</span><span class='line'>  <span class="n">stdout</span> <span class="p">{</span> <span class="n">codec</span> <span class="o">=&gt;</span> <span class="n">dots</span> <span class="p">}</span>
+</span><span class='line'>  <span class="n">elasticsearch</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">protocol</span> <span class="o">=&gt;</span> <span class="s2">&quot;http&quot;</span>
+</span><span class='line'>    <span class="n">host</span> <span class="o">=&gt;</span> <span class="s2">&quot;localhost&quot;</span>
+</span><span class='line'>    <span class="n">index</span> <span class="o">=&gt;</span> <span class="s2">&quot;twitter&quot;</span>
+</span><span class='line'>    <span class="n">document_type</span> <span class="o">=&gt;</span> <span class="s2">&quot;tweet&quot;</span>
+</span><span class='line'>    <span class="n">template</span> <span class="o">=&gt;</span> <span class="s2">&quot;twitter_template.json&quot;</span>
+</span><span class='line'>    <span class="n">template_name</span> <span class="o">=&gt;</span> <span class="s2">&quot;twitter&quot;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Elasticsearch template</h2>
+
+<p>We have set that we will use a <code>twitter</code> template defined in <code>twitter_template.json</code>:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="nt">&quot;template&quot;</span><span class="p">:</span> <span class="s2">&quot;twitter&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nt">&quot;order&quot;</span><span class="p">:</span>    <span class="mi">1</span><span class="p">,</span>
+</span><span class='line'>  <span class="nt">&quot;settings&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nt">&quot;number_of_shards&quot;</span><span class="p">:</span> <span class="mi">1</span>
+</span><span class='line'>  <span class="p">},</span>
+</span><span class='line'>  <span class="nt">&quot;mappings&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nt">&quot;tweet&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nt">&quot;_all&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nt">&quot;enabled&quot;</span><span class="p">:</span> <span class="kc">false</span>
+</span><span class='line'>      <span class="p">},</span>
+</span><span class='line'>      <span class="nt">&quot;dynamic_templates&quot;</span> <span class="p">:</span> <span class="p">[</span> <span class="p">{</span>
+</span><span class='line'>         <span class="nt">&quot;message_field&quot;</span> <span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>           <span class="nt">&quot;match&quot;</span> <span class="p">:</span> <span class="s2">&quot;message&quot;</span><span class="p">,</span>
+</span><span class='line'>           <span class="nt">&quot;match_mapping_type&quot;</span> <span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
+</span><span class='line'>           <span class="nt">&quot;mapping&quot;</span> <span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>             <span class="nt">&quot;type&quot;</span> <span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span> <span class="nt">&quot;index&quot;</span> <span class="p">:</span> <span class="s2">&quot;analyzed&quot;</span><span class="p">,</span> <span class="nt">&quot;omit_norms&quot;</span> <span class="p">:</span> <span class="kc">true</span>
+</span><span class='line'>           <span class="p">}</span>
+</span><span class='line'>         <span class="p">}</span>
+</span><span class='line'>       <span class="p">},</span> <span class="p">{</span>
+</span><span class='line'>         <span class="nt">&quot;string_fields&quot;</span> <span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>           <span class="nt">&quot;match&quot;</span> <span class="p">:</span> <span class="s2">&quot;*&quot;</span><span class="p">,</span>
+</span><span class='line'>           <span class="nt">&quot;match_mapping_type&quot;</span> <span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
+</span><span class='line'>           <span class="nt">&quot;mapping&quot;</span> <span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>             <span class="nt">&quot;type&quot;</span> <span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span> <span class="nt">&quot;index&quot;</span> <span class="p">:</span> <span class="s2">&quot;analyzed&quot;</span><span class="p">,</span> <span class="nt">&quot;omit_norms&quot;</span> <span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+</span><span class='line'>               <span class="nt">&quot;fields&quot;</span> <span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                 <span class="nt">&quot;raw&quot;</span> <span class="p">:</span> <span class="p">{</span><span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span> <span class="nt">&quot;index&quot;</span> <span class="p">:</span> <span class="s2">&quot;not_analyzed&quot;</span><span class="p">,</span> <span class="nt">&quot;ignore_above&quot;</span> <span class="p">:</span> <span class="mi">256</span><span class="p">}</span>
+</span><span class='line'>               <span class="p">}</span>
+</span><span class='line'>           <span class="p">}</span>
+</span><span class='line'>         <span class="p">}</span>
+</span><span class='line'>       <span class="p">}</span> <span class="p">],</span>
+</span><span class='line'>      <span class="nt">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nt">&quot;text&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>          <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span>
+</span><span class='line'>        <span class="p">},</span>
+</span><span class='line'>          <span class="nt">&quot;coordinates&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>          <span class="nt">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>             <span class="nt">&quot;coordinates&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;geo_point&quot;</span>
+</span><span class='line'>             <span class="p">},</span>
+</span><span class='line'>             <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span>
+</span><span class='line'>             <span class="p">}</span>
+</span><span class='line'>          <span class="p">}</span>
+</span><span class='line'>       <span class="p">}</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>We are basically using something similar to logstash default template but we also disable <code>raw</code> subfield for <code>message</code> field and we define that <code>coordinates.coordinates</code> is actually a <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-geo-point-type.html">geo_point</a>.</p>
+
+<p>Then, we can start logstash with this configuration and let it run forever&hellip;</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>nohup bin/logstash -f dotscale.conf <span class="p">&amp;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>If you send some tweets, you should be able to see them indexed in elasticsearch:</p>
+
+<center><blockquote class="twitter-tweet" lang="fr"><p lang="en" dir="ltr">testing dotscale twitter wall. <a href="https://twitter.com/hashtag/ignore?src=hash">#ignore</a></p>&mdash; David Pilato (@dadoonetest) <a href="https://twitter.com/dadoonetest/status/605370839328915456">1 Juin 2015</a></blockquote></center>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="err">GET</span> <span class="err">twitter/_search</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This should give you some tweets back.</p>
+
+<h2>Kibana</h2>
+
+<p>And now you can play with Kibana!</p>
+
+<p><img class="center" src="/blog/images/twitter01/kibana-twitter.png" title="Twitter dataset" ></p>
+
+<h2>Open your data (but secure them first)!</h2>
+
+<p>If you want to share your results, you should secure your elasticsearch instance before opening it to the world!</p>
+
+<p>I tried at first to add a Ngnix layer but I had hard time configuring it.
+I decided then to use <a href="https://www.elastic.co/products/shield">Shield</a> which is a free add-on for elasticsearch customers (yeah we have a <a href="https://www.elastic.co/subscriptions">fantastic support team</a> who can definitely help you to build the best cluster ever).</p>
+
+<p>Shield has a 30 days evaluation period so here I can use it as I will most likely track data only from few days before the conference and to some days after.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>bin/plugin -i elasticsearch/license/latest
+</span><span class='line'>bin/plugin -i elasticsearch/shield/latest
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Restart elasticsearch.</p>
+
+<p>Then you can a new user who has the default <code>logstash</code> role:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>bin/shield/esusers useradd twitter -r logstash
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Give whatever password you want&hellip;</p>
+
+<p>Modify Logstash configuration as now your elasticsearch output needs to provide credentials:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">output</span> <span class="p">{</span>
+</span><span class='line'>  <span class="n">elasticsearch</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">protocol</span> <span class="o">=&gt;</span> <span class="s2">&quot;http&quot;</span>
+</span><span class='line'>    <span class="n">host</span> <span class="o">=&gt;</span> <span class="s2">&quot;localhost&quot;</span>
+</span><span class='line'>    <span class="n">index</span> <span class="o">=&gt;</span> <span class="s2">&quot;twitter&quot;</span>
+</span><span class='line'>    <span class="n">document_type</span> <span class="o">=&gt;</span> <span class="s2">&quot;tweet&quot;</span>
+</span><span class='line'>    <span class="n">template</span> <span class="o">=&gt;</span> <span class="s2">&quot;twitter_template.json&quot;</span>
+</span><span class='line'>    <span class="n">template_name</span> <span class="o">=&gt;</span> <span class="s2">&quot;twitter&quot;</span>
+</span><span class='line'>    <span class="n">user</span> <span class="o">=&gt;</span> <span class="s2">&quot;twitter&quot;</span>
+</span><span class='line'>    <span class="n">password</span> <span class="o">=&gt;</span> <span class="s2">&quot;whateverpasswordyouset&quot;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Restart Logstash and you&rsquo;re done!</p>
+
+<p>You probably want to also create another user who can access to Kibana4:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>bin/shield/esusers useradd dadoonet -r kibana4
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Set your password. And now you should be able to connect to Kibana4 using your username and password.</p>
+
+<h2>After dotScale update</h2>
+
+<p>I finally got this result after one day at dotScale.</p>
+
+<p><img class="center" src="/blog/images/twitter01/kibana-twitter-final.png" title="Twitter dataset" ></p>
+</div>
+
+
+  <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">David Pilato</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2015-06-01T16:23:03+02:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>1</span><span class='date-suffix'>st</span>, <span class='date-year'>2015</span></span> <span class='time'>4:23 pm</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/elasticsearch/'>elasticsearch</a>, <a class='category' href='/blog/categories/logstash/'>logstash</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://david.pilato.fr/blog/2015/06/01/indexing-twitter-with-logstash-and-elasticsearch/" data-via="dadoonet" data-counturl="http://david.pilato.fr/blog/2015/06/01/indexing-twitter-with-logstash-and-elasticsearch/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2015/05/20/reindex-elasticsearch-with-logstash/" title="Previous Post: Reindex elasticsearch with Logstash">&laquo; Reindex elasticsearch with Logstash</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2015/06/29/voxxed-istanbul-2015-interview/" title="Next Post: Voxxed Istanbul 2015 interview">Voxxed Istanbul 2015 interview &raquo;</a>
+      
+    </p>
+    <p class="meta">
+        <div class="elevator">
+          <svg class="sweet-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve" height="100px" width="100px">
+              <path d="M70,47.5H30c-1.4,0-2.5,1.1-2.5,2.5v40c0,1.4,1.1,2.5,2.5,2.5h40c1.4,0,2.5-1.1,2.5-2.5V50C72.5,48.6,71.4,47.5,70,47.5z   M47.5,87.5h-5v-25h5V87.5z M57.5,87.5h-5v-25h5V87.5z M67.5,87.5h-5V60c0-1.4-1.1-2.5-2.5-2.5H40c-1.4,0-2.5,1.1-2.5,2.5v27.5h-5  v-35h35V87.5z"/>
+              <path d="M50,42.5c1.4,0,2.5-1.1,2.5-2.5V16l5.7,5.7c0.5,0.5,1.1,0.7,1.8,0.7s1.3-0.2,1.8-0.7c1-1,1-2.6,0-3.5l-10-10  c-1-1-2.6-1-3.5,0l-10,10c-1,1-1,2.6,0,3.5c1,1,2.6,1,3.5,0l5.7-5.7v24C47.5,41.4,48.6,42.5,50,42.5z"/>
+          </svg>
+          Back to Top
+        </div>
+    </p>
+<script>
+// Elevator script included on the page, already.
+
+window.onload = function() {
+  var elevator = new Elevator({
+    element: document.querySelector('.elevator'),
+    mainAudio: '/music/elevator-music.mp3',
+    endAudio: '/music/ding.mp3'
+  });
+}
+</script>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>About Me</h1>
+  <p>Developer | Evangelist at <a href="http://elastic.co/">elastic</a> and creator of the Elastic French Speakers <a href="http://www.meetup.com/elasticsearchfr/">User Group</a>. Frequent speaker about all things Elastic, in conferences, for User Groups and in companies with <a href="http://www.brownbaglunch.fr/">BBL talks</a>. In my free time, I enjoy coding and DJ four times per year, just for fun. Living with my family in Cergy, France.</p>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2017/01/09/4-years-at-elastic/">4 Years at Elastic!</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/10/21/elasticsearch-real-integration-tests-with-security-enabled-updated-for-ga/">Elasticsearch Real Integration Tests With Security Enabled (Updated for GA)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/10/20/creating-elasticsearch-transport-action-updated-for-ga/">Creating Elasticsearch Transport Action (Updated for GA)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/10/19/adding-a-new-rest-endpoint-to-elasticsearch-updated-for-ga/">Adding a New REST Endpoint to Elasticsearch (Updated for GA)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/10/18/elasticsearch-real-integration-tests-updated-for-ga/">Elasticsearch Real Integration Tests (Updated for GA)</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+<section class="twitterOct">
+  <h1 style="margin-bottom: 0.4em"> Tweets </h1>
+  <a class="twitter-timeline"
+	 data-dnt="true" href="https://twitter.com/dadoonet" 
+     data-widget-id="593022343921979392">
+     
+     Tweets by @dadoonet
+  </a>
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</section>
+
+
+<section>
+
+  <h1>Main GitHub Repos</h1>
+
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'dadoonet',
+            count: 10,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2017 - David Pilato -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'dadoonet';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://david.pilato.fr/blog/2015/06/01/indexing-twitter-with-logstash-and-elasticsearch/';
+        var disqus_url = 'http://david.pilato.fr/blog/2015/06/01/indexing-twitter-with-logstash-and-elasticsearch/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

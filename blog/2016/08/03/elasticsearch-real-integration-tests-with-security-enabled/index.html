@@ -1,0 +1,1004 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Elasticsearch Real Integration Tests With Security Enabled - -Xmx128gb -Xms128gb</title>
+  <meta name="author" content="David Pilato">
+
+  
+  <meta name="description" content="Elasticsearch Real Integration Tests With Security Enabled Aug 3rd, 2016 6:24 pm | Comments NOTE: This article is now outdated. Please read &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://david.pilato.fr/blog/2016/08/03/elasticsearch-real-integration-tests-with-security-enabled/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/elevator.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="-Xmx128gb -Xms128gb" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<script src="/javascripts/elevator.min.js"></script>
+
+  
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-62381049-1', 'auto');
+// Elasticsearch real integration tests with security enabled
+
+ga('send', 'pageview', {
+  page: '/blog/2016/08/03/elasticsearch-real-integration-tests-with-security-enabled/',
+  title: 'Elasticsearch real integration tests with security enabled'
+});
+
+</script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">-Xmx128gb -Xms128gb</a></h1>
+  
+    <h2>adding more memory to my brain!</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="david.pilato.fr">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title"><img src="/images/covers/new/elasticsearch.png"/>Elasticsearch Real Integration Tests With Security Enabled</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2016-08-03T18:24:37+02:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>3</span><span class='date-suffix'>rd</span>, <span class='date-year'>2016</span></span> <span class='time'>6:24 pm</span></time>
+        
+           | <a href="#disqus_thread"
+             data-disqus-identifier="http://david.pilato.fr">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><strong>NOTE:</strong> This article is now outdated. Please read <a href="/blog/2016/10/21/elasticsearch-real-integration-tests-with-security-enabled-updated-for-ga/">Elasticsearch real integration tests with security enabled (Updated for GA)</a> instead!</p>
+
+<p>In a recent post we have seen <a href="/blog/2016/07/29/elasticsearch-real-integration-tests/">how to create real integration tests</a>.
+Those tests launch a real elasticsearch cluster, then run some tests you write with JUnit or your favorite test framework
+then stop the cluster.</p>
+
+<p>But sometimes, you may want to add existing plugins in your integration test cluster.</p>
+
+<p>For example, you might want to use <a href="https://www.elastic.co/downloads/x-pack">X-Pack</a> to bring fantastic features such as:</p>
+
+<ul>
+<li>Security</li>
+<li>Alerting</li>
+<li>Monitoring</li>
+<li>Graph</li>
+<li>Reporting</li>
+</ul>
+
+
+<p>Let&rsquo;s see how you can do that with Maven and Ant again&hellip;</p>
+
+<!-- more -->
+
+
+<h2>Copy the plugins from maven central</h2>
+
+<p>We can add a new <code>execution</code> to the <code>maven-dependency-plugin</code> we already defined.
+The goal is to copy all plugins we need to a <code>target/integration-tests/plugins</code> directory.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;plugin&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;artifactId&gt;</span>maven-dependency-plugin<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;version&gt;</span>2.10<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;executions&gt;</span>
+</span><span class='line'>          <span class="c">&lt;!-- ... --&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;execution&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;id&gt;</span>integ-setup-dependencies-plugins<span class="nt">&lt;/id&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;phase&gt;</span>pre-integration-test<span class="nt">&lt;/phase&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;goals&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;goal&gt;</span>copy<span class="nt">&lt;/goal&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/goals&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;configuration&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;skip&gt;</span>${skipIntegTests}<span class="nt">&lt;/skip&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;artifactItems&gt;</span>
+</span><span class='line'>                    <span class="nt">&lt;artifactItem&gt;</span>
+</span><span class='line'>                        <span class="nt">&lt;groupId&gt;</span>org.elasticsearch.plugin<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>                        <span class="nt">&lt;artifactId&gt;</span>x-pack<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'>                        <span class="nt">&lt;version&gt;</span>${elasticsearch.version}<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'>                        <span class="nt">&lt;type&gt;</span>zip<span class="nt">&lt;/type&gt;</span>
+</span><span class='line'>                    <span class="nt">&lt;/artifactItem&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;/artifactItems&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;useBaseVersion&gt;</span>true<span class="nt">&lt;/useBaseVersion&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;outputDirectory&gt;</span>${project.build.directory}/integration-tests/plugins<span class="nt">&lt;/outputDirectory&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/configuration&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/execution&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/executions&gt;</span>
+</span><span class='line'><span class="nt">&lt;/plugin&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Here we are just copying <code>x-pack</code> but you can add <a href="https://www.elastic.co/guide/en/elasticsearch/plugins/master/index.html">as many plugins</a>
+as you need.</p>
+
+<h2>Modify ANT scripts</h2>
+
+<p>First we will need some additional features for ANT so we add <code>ant-contrib</code>
+in <code>maven-antrun-plugin</code>:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;plugin&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;artifactId&gt;</span>maven-antrun-plugin<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;version&gt;</span>1.8<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'>    <span class="c">&lt;!-- ... --&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;dependencies&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;dependency&gt;</span>
+</span><span class='line'>              <span class="nt">&lt;groupId&gt;</span>ant-contrib<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>              <span class="nt">&lt;artifactId&gt;</span>ant-contrib<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'>              <span class="nt">&lt;version&gt;</span>1.0b3<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'>              <span class="nt">&lt;exclusions&gt;</span>
+</span><span class='line'>                  <span class="nt">&lt;exclusion&gt;</span>
+</span><span class='line'>                      <span class="nt">&lt;groupId&gt;</span>ant<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>                      <span class="nt">&lt;artifactId&gt;</span>ant<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'>                  <span class="nt">&lt;/exclusion&gt;</span>
+</span><span class='line'>              <span class="nt">&lt;/exclusions&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;/dependency&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;/dependencies&gt;</span>
+</span><span class='line'><span class="nt">&lt;/plugin&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>In out ANT script, we add in the header:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;project</span> <span class="na">name=</span><span class="s">&quot;integration-tests&quot;</span>
+</span><span class='line'>         <span class="na">xmlns:if=</span><span class="s">&quot;ant:if&quot;</span>
+</span><span class='line'>         <span class="na">xmlns:unless=</span><span class="s">&quot;ant:unless&quot;</span>
+</span><span class='line'>         <span class="na">xmlns:ac=</span><span class="s">&quot;antlib:net.sf.antcontrib&quot;</span><span class="nt">&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Install other plugins</h3>
+
+<p>We need first to extract the plugin name from its file name.
+I used the great <a href="https://regex101.com/">regex101 online tester</a> tool to find the right
+regular expression and came to:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;taskdef</span> <span class="na">resource=</span><span class="s">&quot;net/sf/antcontrib/antcontrib.properties&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;macrodef</span> <span class="na">name=</span><span class="s">&quot;convert-plugin-name&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;attribute</span> <span class="na">name=</span><span class="s">&quot;file&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;attribute</span> <span class="na">name=</span><span class="s">&quot;outputproperty&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;sequential&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;local</span> <span class="na">name=</span><span class="s">&quot;file.base&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;basename</span> <span class="na">file=</span><span class="s">&quot;@{file}&quot;</span> <span class="na">property=</span><span class="s">&quot;file.base&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;propertyregex</span> <span class="na">property=</span><span class="s">&quot;@{outputproperty}&quot;</span> <span class="na">input=</span><span class="s">&quot;${file.base}&quot;</span> <span class="na">regexp=</span><span class="s">&quot;^(.*)-[0-9].*\.zip&quot;</span> <span class="na">select=</span><span class="s">&quot;\1&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/sequential&gt;</span>
+</span><span class='line'><span class="nt">&lt;/macrodef&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>To install the plugins, we modify <code>start-external-cluster-with-plugin</code> target:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;target</span> <span class="na">name=</span><span class="s">&quot;start-external-cluster-with-plugin&quot;</span> <span class="na">depends=</span><span class="s">&quot;setup-workspace&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;install-plugin</span> <span class="na">name=</span><span class="s">&quot;${project.artifactId}&quot;</span> <span class="na">file=</span><span class="s">&quot;${project.build.directory}/releases/${project.artifactId}-${project.version}.zip&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;ac:for</span> <span class="na">param=</span><span class="s">&quot;file&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;path&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;fileset</span> <span class="na">dir=</span><span class="s">&quot;${project.build.directory}/integration-tests/plugins&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/path&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;sequential&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;local</span> <span class="na">name=</span><span class="s">&quot;plugin.name&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;convert-plugin-name</span> <span class="na">file=</span><span class="s">&quot;@{file}&quot;</span> <span class="na">outputproperty=</span><span class="s">&quot;plugin.name&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;install-plugin</span> <span class="na">name=</span><span class="s">&quot;${plugin.name}&quot;</span> <span class="na">file=</span><span class="s">&quot;@{file}&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/sequential&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/ac:for&gt;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nt">&lt;startup-elasticsearch/&gt;</span>
+</span><span class='line'><span class="nt">&lt;/target&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>It executes the following steps:</p>
+
+<ul>
+<li>Install the plugin we are currently creating</li>
+<li>Install every single plugin which is available in <code>target/integration-tests/plugins</code></li>
+<li>Launch elasticsearch</li>
+</ul>
+
+
+<h3>Authentification</h3>
+
+<p>When you install <code>x-pack</code>, your cluster is automatically secured. Well, it can cause
+some problems when you run your tests or want to check that the cluster is running.
+Because you need to be authenticated.</p>
+
+<p>You could potentially create with ant again a user but fortunately <code>x-pack</code> comes
+with a default user <code>elastic</code> and a <code>changeme</code> password, so we just have to use that.</p>
+
+<p>In our ant script, it means that we need to adapt a bit our code:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;macrodef</span> <span class="na">name=</span><span class="s">&quot;waitfor-elasticsearch&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;attribute</span> <span class="na">name=</span><span class="s">&quot;port&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;attribute</span> <span class="na">name=</span><span class="s">&quot;timeoutproperty&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;attribute</span> <span class="na">name=</span><span class="s">&quot;username&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;attribute</span> <span class="na">name=</span><span class="s">&quot;password&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;sequential&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;echo&gt;</span>Waiting for elasticsearch to become available on port @{port}...<span class="nt">&lt;/echo&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;waitfor</span> <span class="na">maxwait=</span><span class="s">&quot;30&quot;</span> <span class="na">maxwaitunit=</span><span class="s">&quot;second&quot;</span>
+</span><span class='line'>                 <span class="na">checkevery=</span><span class="s">&quot;500&quot;</span> <span class="na">checkeveryunit=</span><span class="s">&quot;millisecond&quot;</span>
+</span><span class='line'>                 <span class="na">timeoutproperty=</span><span class="s">&quot;@{timeoutproperty}&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;socket</span> <span class="na">server=</span><span class="s">&quot;127.0.0.1&quot;</span> <span class="na">port=</span><span class="s">&quot;@{port}&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/waitfor&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;echo&gt;</span>Elasticsearch is running on port @{port}...<span class="nt">&lt;/echo&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;echo&gt;</span>Check that we can authenticate with user @{username}/@{password}...<span class="nt">&lt;/echo&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;local</span> <span class="na">name=</span><span class="s">&quot;temp.file&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;tempfile</span> <span class="na">property=</span><span class="s">&quot;temp.file&quot;</span> <span class="na">destdir=</span><span class="s">&quot;${java.io.tmpdir}&quot;</span> <span class="na">deleteonexit=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;get</span> <span class="na">src=</span><span class="s">&quot;http://127.0.0.1:@{port}/&quot;</span> <span class="na">dest=</span><span class="s">&quot;${temp.file}&quot;</span>
+</span><span class='line'>             <span class="na">username=</span><span class="s">&quot;@{username}&quot;</span> <span class="na">password=</span><span class="s">&quot;@{password}&quot;</span> <span class="na">verbose=</span><span class="s">&quot;true&quot;</span> <span class="na">retries=</span><span class="s">&quot;10&quot;</span> <span class="na">ignoreerrors=</span><span class="s">&quot;true&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;echo&gt;</span>We can access http://127.0.0.1:@{port}/...<span class="nt">&lt;/echo&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/sequential&gt;</span>
+</span><span class='line'><span class="nt">&lt;/macrodef&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Then when we call this macro, we pass the username and password:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;local</span> <span class="na">name=</span><span class="s">&quot;failed.to.start&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'><span class="nt">&lt;waitfor-elasticsearch</span> <span class="na">port=</span><span class="s">&quot;@{es.http.port}&quot;</span>
+</span><span class='line'>                       <span class="na">timeoutproperty=</span><span class="s">&quot;failed.to.start&quot;</span>
+</span><span class='line'>                       <span class="na">username=</span><span class="s">&quot;${integ.security.username}&quot;</span>
+</span><span class='line'>                       <span class="na">password=</span><span class="s">&quot;${integ.security.password}&quot;</span>
+</span><span class='line'><span class="nt">/&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Which we just have to define in our <code>pom.xml</code> as properties:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;integ.security.username&gt;</span>elastic<span class="nt">&lt;/integ.security.username&gt;</span>
+</span><span class='line'><span class="nt">&lt;integ.security.password&gt;</span>changeme<span class="nt">&lt;/integ.security.password&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Using REST authentication</h2>
+
+<p>In our <code>AbstractITCase</code>, we need to change how we create our REST client and provide a <code>CredentialsProvider</code>:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="nd">@BeforeClass</span>
+</span><span class='line'><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">startRestClient</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>    <span class="kd">final</span> <span class="n">CredentialsProvider</span> <span class="n">credentialsProvider</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">BasicCredentialsProvider</span><span class="o">();</span>
+</span><span class='line'>    <span class="n">credentialsProvider</span><span class="o">.</span><span class="na">setCredentials</span><span class="o">(</span><span class="n">AuthScope</span><span class="o">.</span><span class="na">ANY</span><span class="o">,</span> <span class="k">new</span> <span class="nf">UsernamePasswordCredentials</span><span class="o">(</span><span class="s">&quot;elastic&quot;</span><span class="o">,</span> <span class="s">&quot;changeme&quot;</span><span class="o">));</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">client</span> <span class="o">=</span> <span class="n">RestClient</span><span class="o">.</span><span class="na">builder</span><span class="o">(</span><span class="k">new</span> <span class="nf">HttpHost</span><span class="o">(</span><span class="s">&quot;127.0.0.1&quot;</span><span class="o">,</span> <span class="n">HTTP_TEST_PORT</span><span class="o">))</span>
+</span><span class='line'>            <span class="o">.</span><span class="na">setHttpClientConfigCallback</span><span class="o">(</span><span class="n">httpClientBuilder</span> <span class="o">-&gt;</span> <span class="n">httpClientBuilder</span><span class="o">.</span><span class="na">setDefaultCredentialsProvider</span><span class="o">(</span><span class="n">credentialsProvider</span><span class="o">))</span>
+</span><span class='line'>            <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">// ...</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And&hellip; We&rsquo;re done!</p>
+
+<p>Just run:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>mvn install -DskipUnitTests<span class="o">=</span><span class="nb">true</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And see the result.</p>
+
+<p>It will create the plugin ZIP, copy elasticsearch to <code>target/integration-tests/binaries</code> and <code>x-pack</code> to <code>target/integration-tests/plugins</code>:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="o">[</span>INFO<span class="o">]</span> --- maven-assembly-plugin:2.6:single <span class="o">(</span>default<span class="o">)</span> @ ingest-bano ---
+</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> Reading assembly descriptor: /Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/src/main/assemblies/plugin.xml
+</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> Building zip: /Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/releases/ingest-bano-5.0.0-alpha5.zip
+</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span>
+</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> --- maven-dependency-plugin:2.10:copy <span class="o">(</span>integ-setup-dependencies<span class="o">)</span> @ ingest-bano ---
+</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> Configured Artifact: org.elasticsearch.distribution.zip:elasticsearch:5.0.0-alpha5:zip
+</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> org.elasticsearch.distribution.zip:elasticsearch:5.0.0-alpha5:zip already exists in /Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/integration-tests/binaries
+</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span>
+</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> --- maven-dependency-plugin:2.10:copy <span class="o">(</span>integ-setup-dependencies-plugins<span class="o">)</span> @ ingest-bano ---
+</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> Configured Artifact: org.elasticsearch.plugin:x-pack:5.0.0-alpha5:zip
+</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> org.elasticsearch.plugin:x-pack:5.0.0-alpha5:zip already exists in /Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/integration-tests/plugins
+</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Then it will unzip elasticsearch, install <code>ingest-bano</code> and <code>x-pack</code>. Then start the cluster:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+<span class='line-number'>80</span>
+<span class='line-number'>81</span>
+<span class='line-number'>82</span>
+<span class='line-number'>83</span>
+<span class='line-number'>84</span>
+<span class='line-number'>85</span>
+<span class='line-number'>86</span>
+<span class='line-number'>87</span>
+<span class='line-number'>88</span>
+<span class='line-number'>89</span>
+<span class='line-number'>90</span>
+<span class='line-number'>91</span>
+<span class='line-number'>92</span>
+<span class='line-number'>93</span>
+<span class='line-number'>94</span>
+<span class='line-number'>95</span>
+<span class='line-number'>96</span>
+<span class='line-number'>97</span>
+<span class='line-number'>98</span>
+<span class='line-number'>99</span>
+<span class='line-number'>100</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="o">[</span>INFO<span class="o">]</span> --- maven-antrun-plugin:1.8:run <span class="o">(</span>integ-setup<span class="o">)</span> @ ingest-bano ---
+</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> Executing tasks
+</span><span class='line'>
+</span><span class='line'>main:
+</span><span class='line'>
+</span><span class='line'>stop-external-cluster:
+</span><span class='line'>
+</span><span class='line'>setup-workspace:
+</span><span class='line'>   <span class="o">[</span>delete<span class="o">]</span> Deleting directory /Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/integration-tests/run
+</span><span class='line'>    <span class="o">[</span>unzip<span class="o">]</span> Expanding: /Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/integration-tests/binaries/elasticsearch-5.0.0-alpha5.zip into /Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/integration-tests/run
+</span><span class='line'>
+</span><span class='line'>start-external-cluster-with-plugin:
+</span><span class='line'>     <span class="o">[</span><span class="nb">echo</span><span class="o">]</span> Installing plugin ingest-bano...
+</span><span class='line'>    <span class="o">[</span>mkdir<span class="o">]</span> Created dir: /Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/integration-tests/run/tmp/null223436133
+</span><span class='line'>&lt;?xml <span class="nv">version</span><span class="o">=</span><span class="s2">&quot;1.0&quot;</span> <span class="nv">encoding</span><span class="o">=</span><span class="s2">&quot;UTF-8&quot;</span>?&gt;
+</span><span class='line'>&lt;<span class="nb">exec </span><span class="nv">script</span><span class="o">=</span><span class="s2">&quot;elasticsearch-plugin&quot;</span>&gt;
+</span><span class='line'>  &lt;arg <span class="nv">value</span><span class="o">=</span><span class="s2">&quot;install&quot;</span> /&gt;
+</span><span class='line'>  &lt;arg <span class="nv">value</span><span class="o">=</span><span class="s2">&quot;file:/Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/releases/ingest-bano-5.0.0-alpha5.zip&quot;</span> /&gt;
+</span><span class='line'>&lt;/exec&gt;
+</span><span class='line'><span class="o">[</span>elasticsearch-plugin<span class="o">]</span> Plugins directory <span class="o">[</span>/Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/integration-tests/run/elasticsearch-5.0.0-alpha5/plugins<span class="o">]</span> does not exist. Creating...
+</span><span class='line'><span class="o">[</span>elasticsearch-plugin<span class="o">]</span> -&gt; Downloading file:/Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/releases/ingest-bano-5.0.0-alpha5.zip
+</span><span class='line'><span class="o">[</span>elasticsearch-plugin<span class="o">]</span>
+</span><span class='line'><span class="o">[</span>elasticsearch-plugin<span class="o">]</span> -&gt; Installed ingest-bano
+</span><span class='line'>     <span class="o">[</span><span class="nb">echo</span><span class="o">]</span> Installing plugin x-pack...
+</span><span class='line'>    <span class="o">[</span>mkdir<span class="o">]</span> Created dir: /Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/integration-tests/run/tmp/null463986480
+</span><span class='line'>&lt;?xml <span class="nv">version</span><span class="o">=</span><span class="s2">&quot;1.0&quot;</span> <span class="nv">encoding</span><span class="o">=</span><span class="s2">&quot;UTF-8&quot;</span>?&gt;
+</span><span class='line'>&lt;<span class="nb">exec </span><span class="nv">script</span><span class="o">=</span><span class="s2">&quot;elasticsearch-plugin&quot;</span>&gt;
+</span><span class='line'>  &lt;arg <span class="nv">value</span><span class="o">=</span><span class="s2">&quot;install&quot;</span> /&gt;
+</span><span class='line'>  &lt;arg <span class="nv">value</span><span class="o">=</span><span class="s2">&quot;file:/Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/integration-tests/plugins/x-pack-5.0.0-alpha5.zip&quot;</span> /&gt;
+</span><span class='line'>&lt;/exec&gt;
+</span><span class='line'><span class="o">[</span>elasticsearch-plugin<span class="o">]</span> -&gt; Downloading file:/Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/integration-tests/plugins/x-pack-5.0.0-alpha5.zip
+</span><span class='line'><span class="o">[</span>elasticsearch-plugin<span class="o">]</span>
+</span><span class='line'><span class="o">[</span>elasticsearch-plugin<span class="o">]</span> @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+</span><span class='line'><span class="o">[</span>elasticsearch-plugin<span class="o">]</span> @     WARNING: plugin requires additional permissions     @
+</span><span class='line'><span class="o">[</span>elasticsearch-plugin<span class="o">]</span> @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+</span><span class='line'><span class="o">[</span>elasticsearch-plugin<span class="o">]</span> * java.lang.RuntimePermission accessClassInPackage.com.sun.activation.registries
+</span><span class='line'><span class="o">[</span>elasticsearch-plugin<span class="o">]</span> * java.lang.RuntimePermission getClassLoader
+</span><span class='line'><span class="o">[</span>elasticsearch-plugin<span class="o">]</span> * java.lang.RuntimePermission setContextClassLoader
+</span><span class='line'><span class="o">[</span>elasticsearch-plugin<span class="o">]</span> * java.lang.RuntimePermission setFactory
+</span><span class='line'><span class="o">[</span>elasticsearch-plugin<span class="o">]</span> * java.security.SecurityPermission createPolicy.JavaPolicy
+</span><span class='line'><span class="o">[</span>elasticsearch-plugin<span class="o">]</span> * java.security.SecurityPermission getPolicy
+</span><span class='line'><span class="o">[</span>elasticsearch-plugin<span class="o">]</span> * java.security.SecurityPermission putProviderProperty.BC
+</span><span class='line'><span class="o">[</span>elasticsearch-plugin<span class="o">]</span> * java.security.SecurityPermission setPolicy
+</span><span class='line'><span class="o">[</span>elasticsearch-plugin<span class="o">]</span> * java.util.PropertyPermission * <span class="nb">read</span>,write
+</span><span class='line'><span class="o">[</span>elasticsearch-plugin<span class="o">]</span> * java.util.PropertyPermission sun.nio.ch.bugLevel write
+</span><span class='line'><span class="o">[</span>elasticsearch-plugin<span class="o">]</span> * javax.net.ssl.SSLPermission setHostnameVerifier
+</span><span class='line'><span class="o">[</span>elasticsearch-plugin<span class="o">]</span> See http://docs.oracle.com/javase/8/docs/technotes/guides/security/permissions.html
+</span><span class='line'><span class="o">[</span>elasticsearch-plugin<span class="o">]</span> <span class="k">for</span> descriptions of what these permissions allow and the associated risks.
+</span><span class='line'><span class="o">[</span>elasticsearch-plugin<span class="o">]</span> -&gt; Installed x-pack
+</span><span class='line'>     <span class="o">[</span><span class="nb">echo</span><span class="o">]</span> Starting up external cluster...
+</span><span class='line'>     <span class="o">[</span><span class="nb">echo</span><span class="o">]</span> running Elasticsearch 5.0.0 or superior
+</span><span class='line'>    <span class="o">[</span>mkdir<span class="o">]</span> Created dir: /Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/integration-tests/run/tmp/null1562972688
+</span><span class='line'>&lt;?xml <span class="nv">version</span><span class="o">=</span><span class="s2">&quot;1.0&quot;</span> <span class="nv">encoding</span><span class="o">=</span><span class="s2">&quot;UTF-8&quot;</span>?&gt;
+</span><span class='line'>&lt;<span class="nb">exec </span><span class="nv">script</span><span class="o">=</span><span class="s2">&quot;elasticsearch&quot;</span>&gt;
+</span><span class='line'>  &lt;arg <span class="nv">value</span><span class="o">=</span><span class="s2">&quot;-Epidfile=/Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/integration-tests/run/es.pid&quot;</span> /&gt;
+</span><span class='line'>  &lt;arg <span class="nv">value</span><span class="o">=</span><span class="s2">&quot;-Ecluster.name=elasticsearch_integration&quot;</span> /&gt;
+</span><span class='line'>  &lt;arg <span class="nv">value</span><span class="o">=</span><span class="s2">&quot;-Ehttp.port=9400&quot;</span> /&gt;
+</span><span class='line'>  &lt;arg <span class="nv">value</span><span class="o">=</span><span class="s2">&quot;-Etransport.tcp.port=9500&quot;</span> /&gt;
+</span><span class='line'>  &lt;arg <span class="nv">value</span><span class="o">=</span><span class="s2">&quot;-Enetwork.host=127.0.0.1&quot;</span> /&gt;
+</span><span class='line'>&lt;/exec&gt;
+</span><span class='line'>     <span class="o">[</span><span class="nb">echo</span><span class="o">]</span> Waiting <span class="k">for</span> elasticsearch to become available on port 9400...
+</span><span class='line'>     <span class="o">[</span><span class="nb">echo</span><span class="o">]</span> Elasticsearch is running on port 9400...
+</span><span class='line'>     <span class="o">[</span><span class="nb">echo</span><span class="o">]</span> Check that we can authenticate with user elastic/changeme...
+</span><span class='line'>      <span class="o">[</span>get<span class="o">]</span> Getting: http://127.0.0.1:9400/
+</span><span class='line'>      <span class="o">[</span>get<span class="o">]</span> To: /var/folders/r_/r14sy86n2zb91jyz1ptb5b4w0000gn/T/null600789717
+</span><span class='line'>.
+</span><span class='line'>     <span class="o">[</span><span class="nb">echo</span><span class="o">]</span> We can access http://127.0.0.1:9400/...
+</span><span class='line'><span class="o">[</span>elasticsearch<span class="o">]</span> <span class="o">[</span>2016-08-03 19:36:57,508<span class="o">][</span>INFO <span class="o">][</span>node                     <span class="o">]</span> <span class="o">[]</span> initializing ...
+</span><span class='line'><span class="o">[</span>elasticsearch<span class="o">]</span> <span class="o">[</span>2016-08-03 19:36:57,570<span class="o">][</span>INFO <span class="o">][</span>env                      <span class="o">]</span> <span class="o">[</span>hQWaRT2<span class="o">]</span> using <span class="o">[</span>1<span class="o">]</span> data paths, mounts <span class="o">[[</span>/ <span class="o">(</span>/dev/disk1<span class="o">)]]</span>, net usable_space <span class="o">[</span>32.5gb<span class="o">]</span>, net total_space <span class="o">[</span>464.7gb<span class="o">]</span>, spins? <span class="o">[</span>unknown<span class="o">]</span>, types <span class="o">[</span>hfs<span class="o">]</span>
+</span><span class='line'><span class="o">[</span>elasticsearch<span class="o">]</span> <span class="o">[</span>2016-08-03 19:36:57,570<span class="o">][</span>INFO <span class="o">][</span>env                      <span class="o">]</span> <span class="o">[</span>hQWaRT2<span class="o">]</span> heap size <span class="o">[</span>1.9gb<span class="o">]</span>, compressed ordinary object pointers <span class="o">[</span><span class="nb">true</span><span class="o">]</span>
+</span><span class='line'><span class="o">[</span>elasticsearch<span class="o">]</span> <span class="o">[</span>2016-08-03 19:36:57,571<span class="o">][</span>INFO <span class="o">][</span>node                     <span class="o">]</span> <span class="o">[</span>hQWaRT2<span class="o">]</span> node name <span class="o">[</span>hQWaRT2<span class="o">]</span> derived from node ID<span class="p">;</span> <span class="nb">set</span> <span class="o">[</span>node.name<span class="o">]</span> to override
+</span><span class='line'><span class="o">[</span>elasticsearch<span class="o">]</span> <span class="o">[</span>2016-08-03 19:36:57,572<span class="o">][</span>INFO <span class="o">][</span>node                     <span class="o">]</span> <span class="o">[</span>hQWaRT2<span class="o">]</span> version<span class="o">[</span>5.0.0-alpha5<span class="o">]</span>, pid<span class="o">[</span>24989<span class="o">]</span>, build<span class="o">[</span>6b7d409/2016-07-29T07:51:41.648Z<span class="o">]</span>, OS<span class="o">[</span>Mac OS X/10.11.6/x86_64<span class="o">]</span>, JVM<span class="o">[</span>Oracle Corporation/Java HotSpot<span class="o">(</span>TM<span class="o">)</span> 64-Bit Server VM/1.8.0_60/25.60-b23<span class="o">]</span>
+</span><span class='line'><span class="o">[</span>elasticsearch<span class="o">]</span> <span class="o">[</span>2016-08-03 19:36:58,569<span class="o">][</span>INFO <span class="o">][</span>io.netty.util.internal.PlatformDependent<span class="o">]</span> Your platform does not provide <span class="nb">complete </span>low-level API <span class="k">for</span> accessing direct buffers reliably. Unless explicitly requested, heap buffer will always be preferred to avoid potential system unstability.
+</span><span class='line'><span class="o">[</span>elasticsearch<span class="o">]</span> <span class="o">[</span>2016-08-03 19:36:58,953<span class="o">][</span>INFO <span class="o">][</span>xpack.security.crypto    <span class="o">]</span> <span class="o">[</span>hQWaRT2<span class="o">]</span> system key <span class="o">[</span>/Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/integration-tests/run/elasticsearch-5.0.0-alpha5/config/x-pack/system_key<span class="o">]</span> has been loaded
+</span><span class='line'><span class="o">[</span>elasticsearch<span class="o">]</span> <span class="o">[</span>2016-08-03 19:36:58,970<span class="o">][</span>INFO <span class="o">][</span>plugins                  <span class="o">]</span> <span class="o">[</span>hQWaRT2<span class="o">]</span> loaded module <span class="o">[</span>aggs-matrix-stats<span class="o">]</span>
+</span><span class='line'><span class="o">[</span>elasticsearch<span class="o">]</span> <span class="o">[</span>2016-08-03 19:36:58,970<span class="o">][</span>INFO <span class="o">][</span>plugins                  <span class="o">]</span> <span class="o">[</span>hQWaRT2<span class="o">]</span> loaded module <span class="o">[</span>ingest-common<span class="o">]</span>
+</span><span class='line'><span class="o">[</span>elasticsearch<span class="o">]</span> <span class="o">[</span>2016-08-03 19:36:58,970<span class="o">][</span>INFO <span class="o">][</span>plugins                  <span class="o">]</span> <span class="o">[</span>hQWaRT2<span class="o">]</span> loaded module <span class="o">[</span>lang-expression<span class="o">]</span>
+</span><span class='line'><span class="o">[</span>elasticsearch<span class="o">]</span> <span class="o">[</span>2016-08-03 19:36:58,971<span class="o">][</span>INFO <span class="o">][</span>plugins                  <span class="o">]</span> <span class="o">[</span>hQWaRT2<span class="o">]</span> loaded module <span class="o">[</span>lang-groovy<span class="o">]</span>
+</span><span class='line'><span class="o">[</span>elasticsearch<span class="o">]</span> <span class="o">[</span>2016-08-03 19:36:58,971<span class="o">][</span>INFO <span class="o">][</span>plugins                  <span class="o">]</span> <span class="o">[</span>hQWaRT2<span class="o">]</span> loaded module <span class="o">[</span>lang-mustache<span class="o">]</span>
+</span><span class='line'><span class="o">[</span>elasticsearch<span class="o">]</span> <span class="o">[</span>2016-08-03 19:36:58,971<span class="o">][</span>INFO <span class="o">][</span>plugins                  <span class="o">]</span> <span class="o">[</span>hQWaRT2<span class="o">]</span> loaded module <span class="o">[</span>lang-painless<span class="o">]</span>
+</span><span class='line'><span class="o">[</span>elasticsearch<span class="o">]</span> <span class="o">[</span>2016-08-03 19:36:58,971<span class="o">][</span>INFO <span class="o">][</span>plugins                  <span class="o">]</span> <span class="o">[</span>hQWaRT2<span class="o">]</span> loaded module <span class="o">[</span>percolator<span class="o">]</span>
+</span><span class='line'><span class="o">[</span>elasticsearch<span class="o">]</span> <span class="o">[</span>2016-08-03 19:36:58,971<span class="o">][</span>INFO <span class="o">][</span>plugins                  <span class="o">]</span> <span class="o">[</span>hQWaRT2<span class="o">]</span> loaded module <span class="o">[</span>reindex<span class="o">]</span>
+</span><span class='line'><span class="o">[</span>elasticsearch<span class="o">]</span> <span class="o">[</span>2016-08-03 19:36:58,971<span class="o">][</span>INFO <span class="o">][</span>plugins                  <span class="o">]</span> <span class="o">[</span>hQWaRT2<span class="o">]</span> loaded module <span class="o">[</span>transport-netty3<span class="o">]</span>
+</span><span class='line'><span class="o">[</span>elasticsearch<span class="o">]</span> <span class="o">[</span>2016-08-03 19:36:58,971<span class="o">][</span>INFO <span class="o">][</span>plugins                  <span class="o">]</span> <span class="o">[</span>hQWaRT2<span class="o">]</span> loaded module <span class="o">[</span>transport-netty4<span class="o">]</span>
+</span><span class='line'><span class="o">[</span>elasticsearch<span class="o">]</span> <span class="o">[</span>2016-08-03 19:36:58,971<span class="o">][</span>INFO <span class="o">][</span>plugins                  <span class="o">]</span> <span class="o">[</span>hQWaRT2<span class="o">]</span> loaded plugin <span class="o">[</span>ingest-bano<span class="o">]</span>
+</span><span class='line'><span class="o">[</span>elasticsearch<span class="o">]</span> <span class="o">[</span>2016-08-03 19:36:58,971<span class="o">][</span>INFO <span class="o">][</span>plugins                  <span class="o">]</span> <span class="o">[</span>hQWaRT2<span class="o">]</span> loaded plugin <span class="o">[</span>x-pack<span class="o">]</span>
+</span><span class='line'><span class="o">[</span>elasticsearch<span class="o">]</span> <span class="o">[</span>2016-08-03 19:37:02,019<span class="o">][</span>INFO <span class="o">][</span>node                     <span class="o">]</span> <span class="o">[</span>hQWaRT2<span class="o">]</span> initialized
+</span><span class='line'><span class="o">[</span>elasticsearch<span class="o">]</span> <span class="o">[</span>2016-08-03 19:37:02,019<span class="o">][</span>INFO <span class="o">][</span>node                     <span class="o">]</span> <span class="o">[</span>hQWaRT2<span class="o">]</span> starting ...
+</span><span class='line'><span class="o">[</span>elasticsearch<span class="o">]</span> <span class="o">[</span>2016-08-03 19:37:02,025<span class="o">][</span>WARN <span class="o">][</span>xpack.security.authc.file<span class="o">]</span> <span class="o">[</span>hQWaRT2<span class="o">]</span> no users found in users file <span class="o">[</span>/Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/integration-tests/run/elasticsearch-5.0.0-alpha5/config/x-pack/users<span class="o">]</span>. use bin/x-pack/users to add users and role mappings
+</span><span class='line'><span class="o">[</span>elasticsearch<span class="o">]</span> <span class="o">[</span>2016-08-03 19:37:02,029<span class="o">][</span>WARN <span class="o">][</span>xpack.security.authc.file<span class="o">]</span> <span class="o">[</span>hQWaRT2<span class="o">]</span> no entries found in users_roles file <span class="o">[</span>/Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/integration-tests/run/elasticsearch-5.0.0-alpha5/config/x-pack/users_roles<span class="o">]</span>. use bin/xpack/users to add users and role mappings
+</span><span class='line'><span class="o">[</span>elasticsearch<span class="o">]</span> <span class="o">[</span>2016-08-03 19:37:02,296<span class="o">][</span>INFO <span class="o">][</span>xpack.security.transport <span class="o">]</span> <span class="o">[</span>hQWaRT2<span class="o">]</span> publish_address <span class="o">{</span>127.0.0.1:9500<span class="o">}</span>, bound_addresses <span class="o">{</span>127.0.0.1:9500<span class="o">}</span>
+</span><span class='line'><span class="o">[</span>elasticsearch<span class="o">]</span> <span class="o">[</span>2016-08-03 19:37:02,301<span class="o">][</span>WARN <span class="o">][</span>bootstrap                <span class="o">]</span> <span class="o">[</span>hQWaRT2<span class="o">]</span> initial heap size <span class="o">[</span>268435456<span class="o">]</span> not equal to maximum heap size <span class="o">[</span>2147483648<span class="o">]</span><span class="p">;</span> this can cause resize pauses and prevents mlockall from locking the entire heap
+</span><span class='line'><span class="o">[</span>elasticsearch<span class="o">]</span> <span class="o">[</span>2016-08-03 19:37:02,301<span class="o">][</span>WARN <span class="o">][</span>bootstrap                <span class="o">]</span> <span class="o">[</span>hQWaRT2<span class="o">]</span> please <span class="nb">set</span> <span class="o">[</span>discovery.zen.minimum_master_nodes<span class="o">]</span> to a majority of the number of master eligible nodes in your cluster
+</span><span class='line'><span class="o">[</span>elasticsearch<span class="o">]</span> <span class="o">[</span>2016-08-03 19:37:05,373<span class="o">][</span>INFO <span class="o">][</span>cluster.service          <span class="o">]</span> <span class="o">[</span>hQWaRT2<span class="o">]</span> new_master <span class="o">{</span>hQWaRT2<span class="o">}{</span>hQWaRT2TRvW8aYzm4uI51g<span class="o">}{</span>dx2GKBz6QaGaDcbOVnuEqg<span class="o">}{</span>127.0.0.1<span class="o">}{</span>127.0.0.1:9500<span class="o">}</span>, reason: zen-disco-elected-as-master <span class="o">([</span>0<span class="o">]</span> nodes joined<span class="o">)</span>
+</span><span class='line'><span class="o">[</span>elasticsearch<span class="o">]</span> <span class="o">[</span>2016-08-03 19:37:05,385<span class="o">][</span>INFO <span class="o">][</span>http                     <span class="o">]</span> <span class="o">[</span>hQWaRT2<span class="o">]</span> publish_address <span class="o">{</span>127.0.0.1:9400<span class="o">}</span>, bound_addresses <span class="o">{</span>127.0.0.1:9400<span class="o">}</span>
+</span><span class='line'><span class="o">[</span>elasticsearch<span class="o">]</span> <span class="o">[</span>2016-08-03 19:37:05,386<span class="o">][</span>INFO <span class="o">][</span>node                     <span class="o">]</span> <span class="o">[</span>hQWaRT2<span class="o">]</span> started
+</span><span class='line'><span class="o">[</span>elasticsearch<span class="o">]</span> <span class="o">[</span>2016-08-03 19:37:05,511<span class="o">][</span>INFO <span class="o">][</span>gateway                  <span class="o">]</span> <span class="o">[</span>hQWaRT2<span class="o">]</span> recovered <span class="o">[</span>0<span class="o">]</span> indices into cluster_state
+</span><span class='line'>     <span class="o">[</span><span class="nb">echo</span><span class="o">]</span> External node started PID 24989
+</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> Executed tasks
+</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Then it will launch the tests as usual:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="o">[</span>INFO<span class="o">]</span> --- junit4-maven-plugin:2.3.3:junit4 <span class="o">(</span>integration-tests<span class="o">)</span> @ ingest-bano ---
+</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> &lt;JUnit4&gt; says 今日は! Master seed: 4CB5E1A5F9A89609
+</span><span class='line'>Executing <span class="m">1</span> suite with <span class="m">1</span> JVM.
+</span><span class='line'>
+</span><span class='line'>Started J0 PID<span class="o">(</span>25006@MacBook-Pro-4.local<span class="o">)</span>.
+</span><span class='line'>Suite: org.elasticsearch.ingest.bano.BanoPluginIT
+</span><span class='line'>  1&gt; <span class="o">[</span>2016-08-03 19:37:08,141<span class="o">][</span>WARN <span class="o">][</span>org.elasticsearch.bootstrap<span class="o">]</span> Unable to lock JVM Memory: <span class="nv">error</span><span class="o">=</span>78, <span class="nv">reason</span><span class="o">=</span>Function not implemented
+</span><span class='line'>  1&gt; <span class="o">[</span>2016-08-03 19:37:08,142<span class="o">][</span>WARN <span class="o">][</span>org.elasticsearch.bootstrap<span class="o">]</span> This can result in part of the JVM being swapped out.
+</span><span class='line'>  1&gt; <span class="o">[</span>2016-08-03 19:37:09,127<span class="o">][</span>INFO <span class="o">][</span>it                       <span class="o">]</span> Integration tests ready to start... Cluster is running.
+</span><span class='line'>OK      0.11s <span class="p">|</span> BanoPluginIT.testPluginIsLoaded
+</span><span class='line'>  1&gt; <span class="o">[</span>2016-08-03 19:37:09,243<span class="o">][</span>INFO <span class="o">][</span>it                       <span class="o">]</span> Stopping integration tests against an external cluster
+</span><span class='line'>Completed <span class="o">[</span>1/1<span class="o">]</span> in 1.40s, <span class="m">1</span> <span class="nb">test</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> JVM J0:     0.58 ..     2.36 <span class="o">=</span>     1.78s
+</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> Execution <span class="nb">time </span>total: 2.36 sec.
+</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> Tests summary: <span class="m">1</span> suite, <span class="m">1</span> <span class="nb">test</span>
+</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span>
+</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> --- maven-antrun-plugin:1.8:run <span class="o">(</span>integ-teardown<span class="o">)</span> @ ingest-bano ---
+</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> Executing tasks
+</span><span class='line'>
+</span><span class='line'>main:
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And finally it will stop the cluster:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>stop-external-cluster:
+</span><span class='line'>     <span class="o">[</span><span class="nb">echo</span><span class="o">]</span> Shutting down external node PID 24989
+</span><span class='line'>   <span class="o">[</span>delete<span class="o">]</span> Deleting: /Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/integration-tests/run/es.pid
+</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> Executed tasks
+</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span>
+</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> --- maven-install-plugin:2.4:install <span class="o">(</span>default-install<span class="o">)</span> @ ingest-bano ---
+</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> Installing /Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/ingest-bano-5.0.0-alpha5.jar to /Users/dpilato/.m2/repository/fr/pilato/elasticsearch/ingest/ingest-bano/5.0.0-alpha5/ingest-bano-5.0.0-alpha5.jar
+</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> Installing /Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/pom.xml to /Users/dpilato/.m2/repository/fr/pilato/elasticsearch/ingest/ingest-bano/5.0.0-alpha5/ingest-bano-5.0.0-alpha5.pom
+</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> Installing /Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/releases/ingest-bano-5.0.0-alpha5.zip to /Users/dpilato/.m2/repository/fr/pilato/elasticsearch/ingest/ingest-bano/5.0.0-alpha5/ingest-bano-5.0.0-alpha5.zip
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Et voilà! :)</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="o">[</span>INFO<span class="o">]</span> ------------------------------------------------------------------------
+</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> BUILD SUCCESS
+</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> ------------------------------------------------------------------------
+</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> Total <span class="nb">time</span>: 21.124 s
+</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> Finished at: 2016-08-03T19:37:09+02:00
+</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> Final Memory: 32M/520M
+</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> ------------------------------------------------------------------------
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+
+
+  <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">David Pilato</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2016-08-03T18:24:37+02:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>3</span><span class='date-suffix'>rd</span>, <span class='date-year'>2016</span></span> <span class='time'>6:24 pm</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/ant/'>ant</a>, <a class='category' href='/blog/categories/elasticsearch/'>elasticsearch</a>, <a class='category' href='/blog/categories/maven/'>maven</a>, <a class='category' href='/blog/categories/test/'>test</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://david.pilato.fr/blog/2016/08/03/elasticsearch-real-integration-tests-with-security-enabled/" data-via="dadoonet" data-counturl="http://david.pilato.fr/blog/2016/08/03/elasticsearch-real-integration-tests-with-security-enabled/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2016/08/01/creating-elasticsearch-transport-action/" title="Previous Post: Creating Elasticsearch Transport Action">&laquo; Creating Elasticsearch Transport Action</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2016/10/16/creating-a-plugin-for-elasticsearch-5-dot-0-using-maven-updated-for-ga/" title="Next Post: Creating a plugin for elasticsearch 5.0 using Maven (Updated for GA)">Creating a plugin for elasticsearch 5.0 using Maven (Updated for GA) &raquo;</a>
+      
+    </p>
+    <p class="meta">
+        <div class="elevator">
+          <svg class="sweet-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve" height="100px" width="100px">
+              <path d="M70,47.5H30c-1.4,0-2.5,1.1-2.5,2.5v40c0,1.4,1.1,2.5,2.5,2.5h40c1.4,0,2.5-1.1,2.5-2.5V50C72.5,48.6,71.4,47.5,70,47.5z   M47.5,87.5h-5v-25h5V87.5z M57.5,87.5h-5v-25h5V87.5z M67.5,87.5h-5V60c0-1.4-1.1-2.5-2.5-2.5H40c-1.4,0-2.5,1.1-2.5,2.5v27.5h-5  v-35h35V87.5z"/>
+              <path d="M50,42.5c1.4,0,2.5-1.1,2.5-2.5V16l5.7,5.7c0.5,0.5,1.1,0.7,1.8,0.7s1.3-0.2,1.8-0.7c1-1,1-2.6,0-3.5l-10-10  c-1-1-2.6-1-3.5,0l-10,10c-1,1-1,2.6,0,3.5c1,1,2.6,1,3.5,0l5.7-5.7v24C47.5,41.4,48.6,42.5,50,42.5z"/>
+          </svg>
+          Back to Top
+        </div>
+    </p>
+<script>
+// Elevator script included on the page, already.
+
+window.onload = function() {
+  var elevator = new Elevator({
+    element: document.querySelector('.elevator'),
+    mainAudio: '/music/elevator-music.mp3',
+    endAudio: '/music/ding.mp3'
+  });
+}
+</script>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>About Me</h1>
+  <p>Developer | Evangelist at <a href="http://elastic.co/">elastic</a> and creator of the Elastic French Speakers <a href="http://www.meetup.com/elasticsearchfr/">User Group</a>. Frequent speaker about all things Elastic, in conferences, for User Groups and in companies with <a href="http://www.brownbaglunch.fr/">BBL talks</a>. In my free time, I enjoy coding and DJ four times per year, just for fun. Living with my family in Cergy, France.</p>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2017/01/09/4-years-at-elastic/">4 Years at Elastic!</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/10/21/elasticsearch-real-integration-tests-with-security-enabled-updated-for-ga/">Elasticsearch Real Integration Tests With Security Enabled (Updated for GA)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/10/20/creating-elasticsearch-transport-action-updated-for-ga/">Creating Elasticsearch Transport Action (Updated for GA)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/10/19/adding-a-new-rest-endpoint-to-elasticsearch-updated-for-ga/">Adding a New REST Endpoint to Elasticsearch (Updated for GA)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/10/18/elasticsearch-real-integration-tests-updated-for-ga/">Elasticsearch Real Integration Tests (Updated for GA)</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+<section class="twitterOct">
+  <h1 style="margin-bottom: 0.4em"> Tweets </h1>
+  <a class="twitter-timeline"
+	 data-dnt="true" href="https://twitter.com/dadoonet" 
+     data-widget-id="593022343921979392">
+     
+     Tweets by @dadoonet
+  </a>
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</section>
+
+
+<section>
+
+  <h1>Main GitHub Repos</h1>
+
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'dadoonet',
+            count: 10,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2017 - David Pilato -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'dadoonet';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://david.pilato.fr/blog/2016/08/03/elasticsearch-real-integration-tests-with-security-enabled/';
+        var disqus_url = 'http://david.pilato.fr/blog/2016/08/03/elasticsearch-real-integration-tests-with-security-enabled/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

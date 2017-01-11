@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Javascript | -Xmx128gb -Xms128gb]]></title>
+  <link href="http://david.pilato.fr/blog/categories/javascript/atom.xml" rel="self"/>
+  <link href="http://david.pilato.fr/"/>
+  <updated>2017-01-11T20:55:21+01:00</updated>
+  <id>http://david.pilato.fr/</id>
+  <author>
+    <name><![CDATA[David Pilato]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Using JS Auth With Found Cluster]]></title>
+    <link href="http://david.pilato.fr/blog/2015/05/19/using-js-auth-with-found-cluster/"/>
+    <updated>2015-05-19T17:06:22+02:00</updated>
+    <id>http://david.pilato.fr/blog/2015/05/19/using-js-auth-with-found-cluster</id>
+    <content type="html"><![CDATA[Using [Found by elastic](https://www.found.no/) cluster helps a lot to have a ready to use and managed elasticsearch cluster.
+
+<img class="center" src="/blog/images/found01/found_byelastic_logo_512x185.png" title="Found by elastic" >
+
+I started my own cluster yesterday to power [brownbaglunch.fr](http://www.brownbaglunch.fr/) website (work in progress) and it was ready to use after some clicks!
+
+**It's a kind of magic!**
+
+<div class="embed-video-container"><iframe src="//www.youtube.com/embed/0p_1QSUsbsM" allowfullscreen></iframe></div>
+
+But I ran into an issue when you secure it and use the [elasticsearch javascript client](https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/index.html). 
+
+<!-- more -->
+
+## Creating your cluster
+
+<img class="center" src="/blog/images/found01/found-1.png" title="Found Console" >
+
+## Adding ACL
+
+By default, your cluster is opened but you can fix that by opening "Access Control" menu.
+Found proposes a default configuration which generates two users and restrict some access.
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="c1"># Deny everyone by default, as authentication is required.</span>
+</span><span class='line'><span class="c1"># Deny is the default also if no &quot;default&quot; is specified,</span>
+</span><span class='line'><span class="c1"># so it&#39;s only necessary to specify it if you want the</span>
+</span><span class='line'><span class="c1"># default to be &quot;allow&quot;.</span>
+</span><span class='line'><span class="l-Scalar-Plain">default</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">deny</span>
+</span><span class='line'>
+</span><span class='line'><span class="l-Scalar-Plain">auth</span><span class="p-Indicator">:</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">users</span><span class="p-Indicator">:</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">searchonly</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">searchonlypassword</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">readwrite</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">readwritepassword</span>
+</span><span class='line'>
+</span><span class='line'><span class="l-Scalar-Plain">rules</span><span class="p-Indicator">:</span>
+</span><span class='line'>  <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">paths</span><span class="p-Indicator">:</span>
+</span><span class='line'>      <span class="c1"># Match all search requests.</span>
+</span><span class='line'>      <span class="p-Indicator">-</span> <span class="s">&#39;/_search|/([^_/]+/_search)|/[^_/]+/[^_/]+/_search&#39;</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">conditions</span><span class="p-Indicator">:</span>
+</span><span class='line'>      <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">basic_auth</span><span class="p-Indicator">:</span>
+</span><span class='line'>          <span class="l-Scalar-Plain">users</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="nv">searchonly</span><span class="p-Indicator">]</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">action</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">allow</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># Also, allow any GET-request.</span>
+</span><span class='line'>  <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">paths</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="s">&#39;.*&#39;</span><span class="p-Indicator">]</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">conditions</span><span class="p-Indicator">:</span>
+</span><span class='line'>      <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">basic_auth</span><span class="p-Indicator">:</span>
+</span><span class='line'>          <span class="l-Scalar-Plain">users</span><span class="p-Indicator">:</span>
+</span><span class='line'>            <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">searchonly</span>
+</span><span class='line'>      <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">method</span><span class="p-Indicator">:</span>
+</span><span class='line'>          <span class="l-Scalar-Plain">verbs</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="nv">GET</span><span class="p-Indicator">]</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">action</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">allow</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># Allow everything for the readwrite-user</span>
+</span><span class='line'>  <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">paths</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="s">&#39;.*&#39;</span><span class="p-Indicator">]</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">conditions</span><span class="p-Indicator">:</span>
+</span><span class='line'>      <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">basic_auth</span><span class="p-Indicator">:</span>
+</span><span class='line'>          <span class="l-Scalar-Plain">users</span><span class="p-Indicator">:</span>
+</span><span class='line'>            <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">readwrite</span>
+</span><span class='line'><span class="c1"># Uncomment the following if you want to require SSL.</span>
+</span><span class='line'><span class="c1">#      - ssl:</span>
+</span><span class='line'><span class="c1">#          require: true</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">action</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">allow</span>
+</span></code></pre></td></tr></table></div></figure>
+
+## Create your javascript application
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="cp">&lt;!DOCTYPE html&gt;</span>
+</span><span class='line'><span class="nt">&lt;html&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;head&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;https://cdn.rawgit.com/elastic/bower-elasticsearch-js/12ec0b8ee6d776e077b160e6dd6fc2e1b5818a86/elasticsearch.min.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/head&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;body&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;script&gt;</span>
+</span><span class='line'>      <span class="kd">var</span> <span class="nx">login</span> <span class="o">=</span> <span class="s2">&quot;readwrite&quot;</span><span class="p">;</span>
+</span><span class='line'>      <span class="kd">var</span> <span class="nx">password</span> <span class="o">=</span> <span class="s2">&quot;readwritepassword&quot;</span><span class="p">;</span>
+</span><span class='line'>      <span class="kd">var</span> <span class="nx">hostname</span> <span class="o">=</span> <span class="s2">&quot;youclusteraddress.foundcluster.com&quot;</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="kd">var</span> <span class="nx">client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">elasticsearch</span><span class="p">.</span><span class="nx">Client</span><span class="p">({</span>
+</span><span class='line'>        <span class="nx">hosts</span><span class="o">:</span> <span class="p">[</span>
+</span><span class='line'>          <span class="p">{</span>
+</span><span class='line'>            <span class="nx">host</span><span class="o">:</span> <span class="nx">hostname</span><span class="p">,</span>
+</span><span class='line'>            <span class="nx">auth</span><span class="o">:</span> <span class="nx">login</span> <span class="o">+</span> <span class="s1">&#39;:&#39;</span> <span class="o">+</span> <span class="nx">password</span>
+</span><span class='line'>          <span class="p">}</span>
+</span><span class='line'>        <span class="p">]</span>
+</span><span class='line'>      <span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="nx">client</span><span class="p">.</span><span class="nx">cluster</span><span class="p">.</span><span class="nx">health</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="nx">done</span><span class="p">,</span> <span class="nx">done</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="kd">function</span> <span class="nx">done</span><span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">resp</span><span class="p">);</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>    <span class="nt">&lt;/script&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/body&gt;</span>
+</span><span class='line'><span class="nt">&lt;/html&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+If you run it, you will get something like:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'>elasticsearch.min.js:18 OPTIONS http://youclusteraddress.foundcluster.com:9200/_cluster/health 401 (Unauthorized)26.d.request @ elasticsearch.min.js:18c @ elasticsearch.min.js:1842.j.applyArgs @ elasticsearch.min.js:18k @ elasticsearch.min.js:11(anonymous function) @ elasticsearch.min.js:11
+</span><span class='line'>bblfr_elasticsearch.dev/:1 XMLHttpRequest cannot load http://youclusteraddress.foundcluster.com:9200/_cluster/health. Invalid HTTP status code 401
+</span><span class='line'>elasticsearch.min.js:18 ERROR: 2015-05-19T14:47:01Z
+</span><span class='line'>  Error: Request error, retrying -- Request failed to complete.
+</span><span class='line'>      at d.29.d.error (http://bblfr_elasticsearch.dev/lib/elasticsearch.min.js:18:15537)
+</span><span class='line'>      at d (http://bblfr_elasticsearch.dev/lib/elasticsearch.min.js:18:22917)
+</span><span class='line'>      at XMLHttpRequest.26.d.request.d.onreadystatechange (http://bblfr_elasticsearch.dev/lib/elasticsearch.min.js:18:9781)
+</span></code></pre></td></tr></table></div></figure>
+
+## Modify ACL
+
+The javascript client needs to discuss with found using `OPTIONS` verb. So you basically need to add:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='yaml'><span class='line'>  <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">paths</span><span class="p-Indicator">:</span>
+</span><span class='line'>      <span class="p-Indicator">-</span> <span class="s">&#39;.*&#39;</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">conditions</span><span class="p-Indicator">:</span>
+</span><span class='line'>      <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">method</span><span class="p-Indicator">:</span>
+</span><span class='line'>          <span class="l-Scalar-Plain">verbs</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="nv">OPTIONS</span><span class="p-Indicator">]</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">action</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">allow</span>
+</span></code></pre></td></tr></table></div></figure>
+
+Running the same code will now work as expected!
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="p">{</span>
+</span><span class='line'>	<span class="nx">cluster_name</span><span class="o">:</span> <span class="s2">&quot;youclusteraddress&quot;</span><span class="p">,</span>
+</span><span class='line'>	<span class="nx">status</span><span class="o">:</span> <span class="s2">&quot;green&quot;</span><span class="p">,</span>
+</span><span class='line'>	<span class="nx">timed_out</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+</span><span class='line'>	<span class="nx">number_of_nodes</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+</span><span class='line'>	<span class="nx">number_of_data_nodes</span><span class="o">:</span> <span class="mi">1</span>
+</span><span class='line'>	<span class="c1">// ...</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+## Using ACL for aliases
+
+Note that for the project, I created one index named `bbl_1` and one alias on top of it `bbl`.
+So I opened read access to anonymous users on this alias and add a secured one when it comes to write operations.
+`OPTIONS` in that case is applied only to the `bbl` alias. I came up with this config:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="l-Scalar-Plain">default</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">deny</span>
+</span><span class='line'>
+</span><span class='line'><span class="l-Scalar-Plain">auth</span><span class="p-Indicator">:</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">users</span><span class="p-Indicator">:</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">readwrite</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">readwritepassword</span>
+</span><span class='line'>
+</span><span class='line'><span class="l-Scalar-Plain">rules</span><span class="p-Indicator">:</span>
+</span><span class='line'>  <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">paths</span><span class="p-Indicator">:</span>
+</span><span class='line'>      <span class="p-Indicator">-</span> <span class="s">&#39;/bbl/.*&#39;</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">conditions</span><span class="p-Indicator">:</span>
+</span><span class='line'>      <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">method</span><span class="p-Indicator">:</span>
+</span><span class='line'>          <span class="l-Scalar-Plain">verbs</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="nv">OPTIONS</span><span class="p-Indicator">]</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">action</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">allow</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">paths</span><span class="p-Indicator">:</span>
+</span><span class='line'>      <span class="p-Indicator">-</span> <span class="s">&#39;/bbl/_search&#39;</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">conditions</span><span class="p-Indicator">:</span>
+</span><span class='line'>      <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">method</span><span class="p-Indicator">:</span>
+</span><span class='line'>          <span class="l-Scalar-Plain">verbs</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="nv">GET</span><span class="p-Indicator">,</span> <span class="nv">POST</span><span class="p-Indicator">]</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">action</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">allow</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">paths</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="s">&#39;/bbl/.*&#39;</span><span class="p-Indicator">]</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">conditions</span><span class="p-Indicator">:</span>
+</span><span class='line'>      <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">method</span><span class="p-Indicator">:</span>
+</span><span class='line'>          <span class="l-Scalar-Plain">verbs</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="nv">GET</span><span class="p-Indicator">]</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">action</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">allow</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">paths</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="s">&#39;/bbl/.*&#39;</span><span class="p-Indicator">]</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">conditions</span><span class="p-Indicator">:</span>
+</span><span class='line'>      <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">method</span><span class="p-Indicator">:</span>
+</span><span class='line'>          <span class="l-Scalar-Plain">verbs</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="nv">PUT</span><span class="p-Indicator">,</span> <span class="nv">DELETE</span><span class="p-Indicator">]</span>
+</span><span class='line'>      <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">basic_auth</span><span class="p-Indicator">:</span>
+</span><span class='line'>          <span class="l-Scalar-Plain">users</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="nv">readwrite</span><span class="p-Indicator">]</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">action</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">allow</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+]]></content>
+  </entry>
+  
+</feed>
