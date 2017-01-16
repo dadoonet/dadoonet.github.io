@@ -226,7 +226,7 @@ So we will use <code>input_type</code> <code>stdin</code> instead of <code>log</
 <span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="l-Scalar-Plain">filebeat.prospectors</span><span class="p-Indicator">:</span>
 </span><span class='line'><span class="p-Indicator">-</span> <span class="l-Scalar-Plain">input_type</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">stdin</span>
-</span><span class='line'><span class="err">    </span><span class="l-Scalar-Plain">document_type</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">talk</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">document_type</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">talk</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -818,10 +818,10 @@ And secure it with <a href="https://www.elastic.co/products/x-pack">X-Pack</a>&h
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 </pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="l-Scalar-Plain">processors</span><span class="p-Indicator">:</span>
-</span><span class='line'> <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">drop_event</span><span class="p-Indicator">:</span>
-</span><span class='line'>     <span class="l-Scalar-Plain">when</span><span class="p-Indicator">:</span>
-</span><span class='line'>        <span class="l-Scalar-Plain">regexp</span><span class="p-Indicator">:</span>
-</span><span class='line'>            <span class="l-Scalar-Plain">message</span><span class="p-Indicator">:</span> <span class="s">&quot;^;.*$&quot;</span>
+</span><span class='line'><span class="p-Indicator">-</span> <span class="l-Scalar-Plain">drop_event</span><span class="p-Indicator">:</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">when</span><span class="p-Indicator">:</span>
+</span><span class='line'>      <span class="l-Scalar-Plain">regexp</span><span class="p-Indicator">:</span>
+</span><span class='line'>          <span class="l-Scalar-Plain">message</span><span class="p-Indicator">:</span> <span class="s">&quot;^;.*$&quot;</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -1014,10 +1014,10 @@ We can see that <code>location</code> field is not mapped as a <code>geo_point</
 </span><span class='line'>  <span class="l-Scalar-Plain">document_type</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">talk</span>
 </span><span class='line'>
 </span><span class='line'><span class="l-Scalar-Plain">processors</span><span class="p-Indicator">:</span>
-</span><span class='line'> <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">drop_event</span><span class="p-Indicator">:</span>
-</span><span class='line'>     <span class="l-Scalar-Plain">when</span><span class="p-Indicator">:</span>
-</span><span class='line'>        <span class="l-Scalar-Plain">regexp</span><span class="p-Indicator">:</span>
-</span><span class='line'>            <span class="l-Scalar-Plain">message</span><span class="p-Indicator">:</span> <span class="s">&quot;^;.*$&quot;</span>
+</span><span class='line'><span class="p-Indicator">-</span> <span class="l-Scalar-Plain">drop_event</span><span class="p-Indicator">:</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">when</span><span class="p-Indicator">:</span>
+</span><span class='line'>      <span class="l-Scalar-Plain">regexp</span><span class="p-Indicator">:</span>
+</span><span class='line'>          <span class="l-Scalar-Plain">message</span><span class="p-Indicator">:</span> <span class="s">&quot;^;.*$&quot;</span>
 </span><span class='line'>
 </span><span class='line'><span class="l-Scalar-Plain">output.elasticsearch</span><span class="p-Indicator">:</span>
 </span><span class='line'><span class="l-Scalar-Plain">output.elasticsearch</span><span class="p-Indicator">:</span>
