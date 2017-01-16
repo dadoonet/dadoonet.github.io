@@ -97,7 +97,7 @@ I also want to change the document type to `talk` instead of `log`:
 ```yml
 filebeat.prospectors:
 - input_type: stdin
-	document_type: talk
+  document_type: talk
 ```
 
 I need to download [elasticsearch](https://www.elastic.co/products/elasticsearch), [Kibana](https://www.elastic.co/products/kibana) and install all that now on my server.
@@ -469,10 +469,10 @@ We can tell filebeat to ignore those lines using a [drop_event processor](https:
 
 ```yml
 processors:
- - drop_event:
-     when:
-        regexp:
-            message: "^;.*$"
+- drop_event:
+    when:
+      regexp:
+          message: "^;.*$"
 ```
 
 ### Mapping
@@ -597,10 +597,10 @@ filebeat.prospectors:
   document_type: talk
 
 processors:
- - drop_event:
-     when:
-        regexp:
-            message: "^;.*$"
+- drop_event:
+    when:
+      regexp:
+          message: "^;.*$"
 
 output.elasticsearch:
 output.elasticsearch:
