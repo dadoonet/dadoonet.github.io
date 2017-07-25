@@ -3,7 +3,7 @@ layout: post
 title: "4 years at elastic!"
 date: 2017-01-09 18:15:00 +0100
 comments: true
-image: /images/covers/elastic_logo_only.png
+image: /images/covers/new/elastic.png
 categories: elasticsearch
 ---
 

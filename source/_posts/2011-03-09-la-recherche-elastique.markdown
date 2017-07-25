@@ -3,7 +3,7 @@ comments: true
 date: 2011-03-09 21:30:32+00:00
 layout: post
 title: La recherche élastique...
-image: /images/covers/elastic_logo_only.png
+image: /images/covers/new/elastic.png
 categories:
 - elasticsearch
 - hibernate

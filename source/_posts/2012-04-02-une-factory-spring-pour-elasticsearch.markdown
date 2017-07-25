@@ -3,7 +3,7 @@ comments: true
 date: 2012-04-02 20:02:09+00:00
 layout: post
 title: Une factory Spring pour Elasticsearch
-image: /images/covers/elastic_logo_only.png
+image: /images/covers/new/elastic.png
 categories:
 - elasticsearch
 - Spring

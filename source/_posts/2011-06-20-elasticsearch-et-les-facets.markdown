@@ -3,7 +3,7 @@ comments: true
 date: 2011-06-20 20:34:49+00:00
 layout: post
 title: Elasticsearch et les "facets"
-image: /images/covers/elastic_logo_only.png
+image: /images/covers/new/elastic.png
 categories:
 - elasticsearch
 - java

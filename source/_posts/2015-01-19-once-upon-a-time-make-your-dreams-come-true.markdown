@@ -3,7 +3,7 @@ layout: post
 title: "Once upon a time: Make your dreams come true"
 date: 2015-01-19 20:30:00 +0200
 comments: true
-image: /images/covers/elastic_logo_only.png
+image: /images/covers/new/elastic.png
 categories: elasticsearch
 ---
 

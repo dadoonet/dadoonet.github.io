@@ -3,7 +3,7 @@ layout: post
 title: "Next movie to watch based on recommendation"
 date: 2015-09-17 14:42:05 +0200
 comments: true
-image: /images/covers/elastic_logo_only.png
+image: /images/covers/new/elastic.png
 categories: 
 - elasticsearch
 - mahout

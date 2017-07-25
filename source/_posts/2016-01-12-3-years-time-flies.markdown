@@ -3,7 +3,7 @@ layout: post
 title: "3 years! Time flies!"
 date: 2016-01-12 08:37:00 +0100
 comments: true
-image: /images/covers/elastic_logo_only.png
+image: /images/covers/new/elastic.png
 categories: elasticsearch
 ---
 

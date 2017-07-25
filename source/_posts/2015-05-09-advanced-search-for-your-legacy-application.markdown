@@ -3,7 +3,7 @@ layout: post
 title: "Advanced search for your Legacy application"
 date: 2015-05-09 14:15:05 +0300
 comments: true
-image: /images/covers/elastic_logo_only.png
+image: /images/covers/new/elastic.png
 categories: 
 - elasticsearch
 - conference

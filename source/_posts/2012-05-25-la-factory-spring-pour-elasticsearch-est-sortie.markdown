@@ -3,7 +3,7 @@ comments: true
 date: 2012-05-25 16:45:36+00:00
 layout: post
 title: La factory Spring pour Elasticsearch est sortie !
-image: /images/covers/elastic_logo_only.png
+image: /images/covers/new/elastic.png
 categories:
 - elasticsearch
 - java

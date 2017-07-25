@@ -3,7 +3,7 @@ layout: post
 title: "Once upon a time..."
 date: 2013-01-15 20:00:00 +0200
 comments: true
-image: /images/covers/elastic_logo_only.png
+image: /images/covers/new/elastic.png
 categories: elasticsearch
 ---
 

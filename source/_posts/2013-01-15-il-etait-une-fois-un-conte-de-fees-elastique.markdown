@@ -3,7 +3,7 @@ comments: true
 date: 2013-01-15 19:00:13+00:00
 layout: post
 title: 'Il était une fois : un conte de fées élastique !'
-image: /images/covers/elastic_logo_only.png
+image: /images/covers/new/elastic.png
 categories:
 - elasticsearch
 ---
