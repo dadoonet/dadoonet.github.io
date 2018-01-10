@@ -9,7 +9,7 @@
   <meta name="author" content="David Pilato">
 
   
-  <meta name="description" content="NOTE: This article is now outdated. Please read Elasticsearch real integration tests (Updated for GA) instead! Integration tests&hellip; How do you &hellip;">
+  <meta name="description" content="NOTE: This article is now outdated. Please read Adding a new REST endpoint to elasticsearch (Updated for GA) instead! This blog post is part of a &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -81,6 +81,129 @@ ga('send', 'pageview');
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><img src="/images/covers/new/elasticsearch.png"/><a href="/blog/2016/07/30/adding-a-new-rest-endpoint-to-elasticsearch/">Adding a New REST Endpoint to Elasticsearch</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2016-07-30T14:50:00+02:00'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>30</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>2:50 pm</span></time>
+        
+           | <a href="/blog/2016/07/30/adding-a-new-rest-endpoint-to-elasticsearch/#disqus_thread"
+             data-disqus-identifier="http://david.pilato.fr/blog/2016/07/30/adding-a-new-rest-endpoint-to-elasticsearch/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><strong>NOTE:</strong> This article is now outdated. Please read <a href="/blog/2016/10/19/adding-a-new-rest-endpoint-to-elasticsearch-updated-for-ga/">Adding a new REST endpoint to elasticsearch (Updated for GA)</a> instead!</p>
+
+<p>This blog post is part of a series which will teach you:</p>
+
+<ul>
+<li><a href="/blog/2016/07/27/creating-a-plugin-for-elasticsearch-5-dot-0-using-maven/">How to write a plugin for elasticsearch 5.0 using Maven</a>.</li>
+<li>How to add a new REST endpoint plugin to elasticsearch 5.0 (what you are reading now).</li>
+<li>How I wrote the <code>ingest-bano</code> plugin which will be hopefully released soonish. In this plugin, new REST endpoints have been added.</li>
+</ul>
+
+
+<p>Imagine that you wish to add a new REST endpoint so you can send requests like:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>curl -XGET <span class="s2">&quot;http://localhost:9200/_hello?name=David&amp;pretty&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># Or</span>
+</span><span class='line'>
+</span><span class='line'>curl -XGET <span class="s2">&quot;http://localhost:9200/_hello/David&amp;pretty&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># Or</span>
+</span><span class='line'>
+</span><span class='line'>curl -XGET <span class="s2">&quot;http://localhost:9200/_hello?pretty&quot;</span> -d <span class="s1">&#39;{</span>
+</span><span class='line'><span class="s1">    &quot;name&quot;: &quot;David&quot;</span>
+</span><span class='line'><span class="s1">}&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># Or</span>
+</span><span class='line'>
+</span><span class='line'>curl -XPOST <span class="s2">&quot;http://localhost:9200/_hello?pretty&quot;</span> -d <span class="s1">&#39;{</span>
+</span><span class='line'><span class="s1">    &quot;name&quot;: &quot;David&quot;</span>
+</span><span class='line'><span class="s1">}&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And you want to get back something like:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="nt">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;Hello David!&quot;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Without any parameter:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>curl -XGET <span class="s2">&quot;http://localhost:9200/_hello?pretty&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>It should return:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="nt">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;Hello World!&quot;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Or get back a list of existing indices and the number of documents for a given type of indices with:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>curl -XGET http://localhost:9200/_bano
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Let&rsquo;s see how to implement that!</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2016/07/30/adding-a-new-rest-endpoint-to-elasticsearch/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -541,60 +664,6 @@ The format with this recent version has changed a bit so I needed to adapt the e
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><img src="/images/covers/logstash.png"/><a href="/blog/2015/09/14/import-from-sql-without-database/">Importing From a Database Without a Database</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-09-14T11:05:00+02:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>14</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>11:05 am</span></time>
-        
-           | <a href="/blog/2015/09/14/import-from-sql-without-database/#disqus_thread"
-             data-disqus-identifier="http://david.pilato.fr/blog/2015/09/14/import-from-sql-without-database/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Recently, I got a database MySQL dump and I was thinking of importing it into elasticsearch.</p>
-
-<p>The first idea which pops up was:</p>
-
-<ul>
-<li>install MySQL</li>
-<li>import the database</li>
-<li>read the database with Logstash and import into elasticsearch</li>
-<li>drop the database</li>
-<li>uninstall MySQL</li>
-</ul>
-
-
-<p>Well. I found that some of the steps are really not needed.</p>
-
-<p>I can actually use <a href="https://www.elastic.co/products">ELK stack</a> and create a simple recipe which can be used to import SQL dump scripts without needing to actually load the data to a database and then read it again from the database.</p>
-
-<p>Let&rsquo;s do it!</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2015/09/14/import-from-sql-without-database/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/3">&larr; Older</a>
@@ -617,6 +686,10 @@ The format with this recent version has changed a bit so I needed to adapt the e
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2018/01/10/5-years-what-a-milestone/">5 Years. What a Milestone!</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2017/01/09/4-years-at-elastic/">4 Years at Elastic!</a>
       </li>
     
@@ -630,10 +703,6 @@ The format with this recent version has changed a bit so I needed to adapt the e
     
       <li class="post">
         <a href="/blog/2016/10/19/adding-a-new-rest-endpoint-to-elasticsearch-updated-for-ga/">Adding a New REST Endpoint to Elasticsearch (Updated for GA)</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2016/10/18/elasticsearch-real-integration-tests-updated-for-ga/">Elasticsearch Real Integration Tests (Updated for GA)</a>
       </li>
     
   </ul>
@@ -690,7 +759,7 @@ The format with this recent version has changed a bit so I needed to adapt the e
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2017 - David Pilato -
+  Copyright &copy; 2018 - David Pilato -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

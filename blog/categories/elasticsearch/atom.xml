@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Elasticsearch | -Xmx128gb -Xms128gb]]></title>
   <link href="http://david.pilato.fr/blog/categories/elasticsearch/atom.xml" rel="self"/>
   <link href="http://david.pilato.fr/"/>
-  <updated>2017-07-25T18:14:35+02:00</updated>
+  <updated>2018-01-10T08:14:51+01:00</updated>
   <id>http://david.pilato.fr/</id>
   <author>
     <name><![CDATA[David Pilato]]></name>
@@ -12,6 +12,780 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[5 Years. What a Milestone!]]></title>
+    <link href="http://david.pilato.fr/blog/2018/01/10/5-years-what-a-milestone/"/>
+    <updated>2018-01-10T09:00:00+01:00</updated>
+    <id>http://david.pilato.fr/blog/2018/01/10/5-years-what-a-milestone</id>
+    <content type="html"><![CDATA[What a milestone! Can you imagine how changed the company in the last 5 years?
+From 10 employees when I joined to more than 700 now!
+
+If you want to read again my story, it's there:
+
+* 2013: [Once upon a time...](/blog/2013/01/15/once-upon-a-time-dot-dot-dot/)
+* 2014: [Once upon a time: a year later...](/blog/2014/01/10/once-upon-a-time-a-year-later-dot-dot-dot/)
+* 2015: [Once upon a time: Make your dreams come true](/blog/2015/01/19/once-upon-a-time-make-your-dreams-come-true/)
+* 2016: [3 years! Time flies!](/blog/2016/01/12/3-years-time-flies/)
+* 2017: [4 years at elastic!](/blog/2017/01/09/4-years-at-elastic/)
+
+Before speaking about what happened the last 5 years for me, let's modify a bit [the script I wrote last year](/blog/2017/01/09/4-years-at-elastic/).
+
+<!-- more -->
+
+## Upgrading the cluster
+
+What I'd like to see now, is my activity over years. But first of all, I want to upgrade my existing cloud instance to the lastest version available: `6.1.1`.
+Because, I've been using `5.2.2`, I first need to upgrade to `5.6.5`.
+
+<img src="/blog/images/once-upon6/upgrade1.png" title="Choosing version 5.6.5" >
+
+Kind of magic, elastic cloud is starting a new instance, with elasticsearch 5.6.5, moving my old data to this new cluster and then switching off the old cluster.
+
+<img src="/blog/images/once-upon6/upgrade2.png" title="Upgrade in progress" >
+
+I just have to click one other button to upgrade Kibana as well to the right version.
+
+<img src="/blog/images/once-upon6/upgrade3.png" title="Upgrading Kibana" >
+
+Just go to the Upgrade Assistant and apply what is recommended.
+
+<img src="/blog/images/once-upon6/upgrade4.png" title="Upgrade assistant" >
+
+The reindex helper helps a lot doing that in one click.
+
+<img src="/blog/images/once-upon6/upgrade5.png" title="Reindex helper" >
+
+And now I'm ready for the big jump!
+
+<img src="/blog/images/once-upon6/upgrade6.png" title="Choosing version 6.1.1" >
+
+Et voilà!
+
+<img src="/blog/images/once-upon6/upgrade7.png" title="Ready for 6.1.1" >
+
+## Changing the ingestion layer
+
+### CSV format changes
+
+As I'd like to have more metrics, I changed a bit the CSV file format and I added a `country` field which will help to build some other statistics. Now the CSV is looking like:
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>;Talk;Nb;Date;Type;Country;Location;Coordinates;Distance;Total;Attendees
+</span><span class='line'>1;Metricbeat FR;1;09/01/2017;Webinar;France;CERGY;49.040068,2.0169159;0;0;100
+</span><span class='line'>2;ES Core OPS;1;10/01/2017;Training;France;PARIS;48.845316,2.3732776;50;100;20
+</span><span class='line'>3;ES Core DEV;1;11/01/2017;Training;France;PARIS;48.845316,2.3732776;100;200;20
+</span><span class='line'>4;maarch.org;1;17/01/2017;BBL;France;NANTERRE;48.8890776,2.195139;38;76;10
+</span><span class='line'>5;Incityz;1;26/01/2017;BBL;France;PARIS;48.8643677,2.3532333;40;80;15</span></code></pre></td></tr></table></div></figure>
+
+### Changing the ingest pipeline
+
+Which means that I need to adapt the `grok` processor I used to:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="nt">&quot;grok&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nt">&quot;field&quot;</span><span class="p">:</span> <span class="s2">&quot;message&quot;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;patterns&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span class='line'>      <span class="s2">&quot;%{INT:id};%{DATA:name};%{INT:number_of_talks};%{DATA:date};%{DATA:type};%{DATA:city};%{DATA:location.lat},%{DATA:location.lon};%{INT};%{INT:distance};%{INT:number_of_attendees}&quot;</span>
+</span><span class='line'>    <span class="p">]</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+Also, I'd like to create one index per year. I'm adding the `date_index_name` processor to my pipeline:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="nt">&quot;date_index_name&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nt">&quot;field&quot;</span><span class="p">:</span> <span class="s2">&quot;@timestamp&quot;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;index_name_prefix&quot;</span><span class="p">:</span> <span class="s2">&quot;talks-&quot;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;index_name_format&quot;</span><span class="p">:</span> <span class="s2">&quot;yyyy&quot;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;date_rounding&quot;</span><span class="p">:</span> <span class="s2">&quot;y&quot;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+With this a talk given at `26/01/2017` will be indexed in `talks-2017`.
+
+### Using index templates
+
+Last year, I created manually the mapping for my index. But as I will have more and more indices, let's use an [index template](https://www.elastic.co/guide/en/elasticsearch/reference/6.1/indices-templates.html) now:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="err">PUT</span> <span class="err">_template/talks</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="nt">&quot;index_patterns&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span class='line'>    <span class="s2">&quot;talks-*&quot;</span>
+</span><span class='line'>  <span class="p">],</span>
+</span><span class='line'>  <span class="nt">&quot;settings&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>  <span class="p">},</span>
+</span><span class='line'>  <span class="nt">&quot;mappings&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>  <span class="p">},</span>
+</span><span class='line'>  <span class="nt">&quot;aliases&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+This template matches any index which name starts with `talks-`.
+
+#### Index settings
+
+Then I choose to change the default index settings as 1 shard will be enough and I don't need replicas as I have only one node:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="s2">&quot;settings&quot;</span><span class="err">:</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nt">&quot;number_of_shards&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+</span><span class='line'>  <span class="nt">&quot;number_of_replicas&quot;</span><span class="p">:</span> <span class="mi">0</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+#### Index mapping
+
+For the mapping, I change the `talk` type name to `doc` which is the recommended name. Remember that [types are going away](https://www.elastic.co/blog/removal-of-mapping-types-elasticsearch). Also, I add the `country` field.
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="s2">&quot;mappings&quot;</span><span class="err">:</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nt">&quot;doc&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nt">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nt">&quot;@timestamp&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;date&quot;</span>
+</span><span class='line'>      <span class="p">},</span>
+</span><span class='line'>      <span class="nt">&quot;city&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;text&quot;</span><span class="p">,</span>
+</span><span class='line'>        <span class="nt">&quot;fields&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>          <span class="nt">&quot;keyword&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>            <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;keyword&quot;</span>
+</span><span class='line'>          <span class="p">}</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>      <span class="p">},</span>
+</span><span class='line'>      <span class="nt">&quot;country&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;text&quot;</span><span class="p">,</span>
+</span><span class='line'>        <span class="nt">&quot;fields&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>          <span class="nt">&quot;keyword&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>            <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;keyword&quot;</span>
+</span><span class='line'>          <span class="p">}</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>      <span class="p">},</span>
+</span><span class='line'>      <span class="nt">&quot;distance&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;long&quot;</span>
+</span><span class='line'>      <span class="p">},</span>
+</span><span class='line'>      <span class="nt">&quot;location&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;geo_point&quot;</span>
+</span><span class='line'>      <span class="p">},</span>
+</span><span class='line'>      <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;text&quot;</span><span class="p">,</span>
+</span><span class='line'>        <span class="nt">&quot;fields&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>          <span class="nt">&quot;keyword&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>            <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;keyword&quot;</span>
+</span><span class='line'>          <span class="p">}</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>      <span class="p">},</span>
+</span><span class='line'>      <span class="nt">&quot;number_of_attendees&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;long&quot;</span>
+</span><span class='line'>      <span class="p">},</span>
+</span><span class='line'>      <span class="nt">&quot;number_of_talks&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;long&quot;</span>
+</span><span class='line'>      <span class="p">},</span>
+</span><span class='line'>      <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;keyword&quot;</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+#### Alias
+
+I don't want to use wildcards when searching in indices so I'm just adding my index to an alias named `talks`:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="s2">&quot;aliases&quot;</span><span class="err">:</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nt">&quot;talks&quot;</span><span class="p">:</span> <span class="p">{}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+### Using filebeat 6.1.1
+
+I [download the new version of filebeat](https://www.elastic.co/downloads/beats/filebeat) and 
+change as well the filebeat configuration. I don't want to `cat` anymore my file but I'd like that filebeat process my CSV anytime I'm changing it or adding a new one in `/path/to/my/csv/files/`:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="l-Scalar-Plain">filebeat.prospectors</span><span class="p-Indicator">:</span>
+</span><span class='line'><span class="p-Indicator">-</span> <span class="l-Scalar-Plain">paths</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="s">&quot;/path/to/my/csv/files/*.csv&quot;</span><span class="p-Indicator">]</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">document_type</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">doc</span>
+</span></code></pre></td></tr></table></div></figure>
+
+The connection to cloud instances has been simplified. I just need to copy and paste the `cloud.id` from my cloud interface and give my credentials:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="l-Scalar-Plain">cloud.id</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">COPY_THIS_FROM_CLOUD_UI</span>
+</span><span class='line'><span class="l-Scalar-Plain">cloud.auth</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">USERNAME:PASSWORD</span>
+</span></code></pre></td></tr></table></div></figure>
+
+With filebeat 6.x, filebeat tries to automatically load templates in Elasticsearch and Kibana. Because I don't need that, I just disable this feature:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="l-Scalar-Plain">setup.template.enabled</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>
+</span></code></pre></td></tr></table></div></figure>
+
+I just have to launch filebeat now and let it work:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>./filebeat -e
+</span></code></pre></td></tr></table></div></figure>
+
+## Kibana analysis
+
+I'm changing a bit the [https://73531b275dde9af18f03de55b5d02fca.us-east-1.aws.found.io:9243/app/kibana#/dashboard/Talks](Kibana dashboard) (demo / elastic). Well, 6.x is providing new cool features, so let's use that.
+
+By the way, I'm changing my own made `kibana_reader` role for the `demo` user to the official `kibana_dashboard_only_user` role.
+This is a super cool "Read Only mode" feature provided by X-Pack as it removes all the buttons you don't have access to anyway.
+
+<img src="/blog/images/once-upon6/kibana1.png" title="Kibana read only mode" >
+
+### 5 years of evangelism
+
+Let's deep dive a bit now...
+
+<img src="/blog/images/once-upon6/kibana2-summary.png" title="Summary" >
+
+The last 5 years, I spent more than 265 000 kilometers in traveling to meet the community and share my passion with more than 16 000 persons. Probably more as I don't count the number of views of the videos you can watch on internet.
+
+<img src="/blog/images/once-upon6/kibana2-events-km.png" title="Events and Kilometers" >
+
+What we can see is that the number of events per year is almost the same (around 75 per year) but I traveled more than 92 000 kilometers in 2017!
+
+<img src="/blog/images/once-upon6/kibana2-type.png" title="Type of event" >
+
+It's super obvious that I'm spending a lot of time doing BBLs. I wrote this year [a blog post about it](https://www.elastic.co/blog/free-lunch-for-open-source-engineers). It's super time consuming, you meet a few people, but it is really worth it as you reach a part of the community you don't normally meet at conferences. Obviously, you reach much more people when you give talks at conferences.
+
+<img src="/blog/images/once-upon6/kibana2-attendees-and-type.png" title="Distribution of attendees per type of event" >
+
+By the way, in my dataset, I'm using `Conference` type of event when I'm maning the booth and `Talk` when I'm giving a public talk.
+
+Let's filter the dataset to see only my BBL activity:
+
+<img src="/blog/images/once-upon6/kibana2-bbl-only.png" title="BBL only" >
+
+We can see that I reduced that a bit this year which kind of make sense as the last 5 years I already spoke in almost 130 companies, mostly in France. I probably need to reach now companies I never spoke to or other territories.
+
+<img src="/blog/images/once-upon6/kibana2-bbl-location.png" title="BBL locations" >
+
+This chart represents the farest countries I've been to and the number of events I attended there. 
+
+<img src="/blog/images/once-upon6/kibana2-distance.png" title="Events by distance" >
+
+No real surprise here. I'm speaking mostly in France. But wait... What is this `United Arab Emirates` with 0 kilometers?
+Actually I gave a talk remotely for a [Hadoop United Arab Emirates User Group](https://www.meetup.com/Hadoop-User-Group-UAE/events/219512233/?_cookie-check=5nTt5MFXvQbSB29Z). That was from home... :D
+
+### Focus on 2017
+
+<img src="/blog/images/once-upon6/kibana3-2017-overview.png" title="Overview of 2017" >
+
+In 2017, I spoke to around 3 250 person at 72 events. Almost 2 events per week. And because of very long trips, the average number of kilometers per trip has been more than 1 200 kilometers...
+
+<img src="/blog/images/once-upon6/kibana3-2017.png" width="2017">
+
+I gave 4 talks in Poland, 3 in Canada, 2 in Belarus, Morocco and Netherlands. The "orange" vertical bar chart does not include obviously France. ;) 
+
+Here are the main locations I've been to in Europe this year.
+
+<img src="/blog/images/once-upon6/kibana3-2017-europe.png" width="2017" title="in Europe" >
+
+### Is it only pleasant?
+
+Traveling is nice. Really nice. Speaking in other language than your mother tongue is also exciting.
+Meeting new people, sharing your love to the community, getting the love from the community is super pleasant.
+
+But. I did not realize before this year how much exhausting traveling is. Yes, you go to nice hotels, visit cool places, but all that has a price. You are not at home. Your brain needs to change its context everytime. You don't have your habits. You need sometime to fix family issues remotely. It's hard. Not the same "hard" as being at a factory and producing beans tin can but another kind of hard.
+
+I'm fortunate enough working in the best company ever. Sometimes my manager is asking me to slow down a bit and make sure I'm spending enough time with my family and not missing important family dates. Yeah love comes from the community but from your colleagues as well!
+
+I helped hiring some colleagues in 2017. They know now that I was telling the truth about how much working at elastic is a dreamed job!
+
+### What's next?
+
+2018... That is going to be a super interesting year. I said that we are more than 700 people now. Which means that a lot of work, new features, new products is coming constantly...
+For example, in 2017, we joined our forces with [Swiftype](https://www.elastic.co/solutions/site-search). I can't wait to test it and eventually propose new talks about that field which is closed to my heart.
+
+We celebrated the [5th anniversary of BBLs](https://www.elastic.co/blog/free-lunch-for-open-source-engineers) at Société Générale on January 9th.
+And I already have booked part of my 2018 year (from January to July). I know I'll be going this year to:
+
+* Orléans
+* [Montpellier](https://www.jug-montpellier.org/)
+* [Grenoble](http://snowcamp.io/fr/)
+* [Elastic{ON} Paris](https://www.elastic.co/elasticon/tour/2017/paris)
+* [Elastic{ON} Munich](https://www.elastic.co/elasticon/tour/2017/munich)
+* [Stockholm](https://www.jfokus.se/jfokus/)
+* [Elastic{ON} San Francisco](https://www.elastic.co/elasticon/conf/2018/sf)
+* [Montréal](https://confoo.ca/en/yul2018/)
+* [Bucharest](https://voxxeddays.com/romania/bucharest/2018-03-22/)
+* [Turin](http://2018.cloudconf.it/)
+* [Devoxx FR 2018](http://devoxx.fr/)
+* [Bangalore](http://www.developermarch.com/developersummit/)
+* [Nice](http://www.sophiaconf.fr/)
+
+So if you are around, please come and meet! If you want to organize a BBL in your company, just [ping me on Twitter](https://twitter.com/dadoonet)!
+
+Happy 2018!
+
+## Full code
+
+The full pipeline:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+<span class='line-number'>80</span>
+<span class='line-number'>81</span>
+<span class='line-number'>82</span>
+<span class='line-number'>83</span>
+<span class='line-number'>84</span>
+<span class='line-number'>85</span>
+<span class='line-number'>86</span>
+<span class='line-number'>87</span>
+<span class='line-number'>88</span>
+<span class='line-number'>89</span>
+<span class='line-number'>90</span>
+<span class='line-number'>91</span>
+<span class='line-number'>92</span>
+<span class='line-number'>93</span>
+<span class='line-number'>94</span>
+<span class='line-number'>95</span>
+<span class='line-number'>96</span>
+<span class='line-number'>97</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>PUT _ingest/pipeline/talks
+</span><span class='line'><span class="o">{</span>
+</span><span class='line'>  <span class="s2">&quot;processors&quot;</span>: <span class="o">[</span>
+</span><span class='line'>    <span class="o">{</span>
+</span><span class='line'>      <span class="s2">&quot;grok&quot;</span>: <span class="o">{</span>
+</span><span class='line'>        <span class="s2">&quot;field&quot;</span>: <span class="s2">&quot;message&quot;</span>,
+</span><span class='line'>        <span class="s2">&quot;patterns&quot;</span>: <span class="o">[</span>
+</span><span class='line'>          <span class="s2">&quot;%{INT:id};%{DATA:name};%{INT:number_of_talks};%{DATA:date};%{DATA:type};%{DATA:city};%{DATA:location.lat},%{DATA:location.lon};%{INT};%{INT:distance};%{INT:number_of_attendees}&quot;</span>
+</span><span class='line'>        <span class="o">]</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>    <span class="o">}</span>,
+</span><span class='line'>    <span class="o">{</span>
+</span><span class='line'>      <span class="s2">&quot;date&quot;</span>: <span class="o">{</span>
+</span><span class='line'>        <span class="s2">&quot;field&quot;</span>: <span class="s2">&quot;date&quot;</span>,
+</span><span class='line'>        <span class="s2">&quot;target_field&quot;</span>: <span class="s2">&quot;@timestamp&quot;</span>,
+</span><span class='line'>        <span class="s2">&quot;formats&quot;</span>: <span class="o">[</span>
+</span><span class='line'>          <span class="s2">&quot;dd/MM/yyyy&quot;</span>
+</span><span class='line'>        <span class="o">]</span>,
+</span><span class='line'>        <span class="s2">&quot;timezone&quot;</span>: <span class="s2">&quot;Europe/Paris&quot;</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>    <span class="o">}</span>,
+</span><span class='line'>    <span class="o">{</span>
+</span><span class='line'>      <span class="s2">&quot;set&quot;</span>: <span class="o">{</span>
+</span><span class='line'>        <span class="s2">&quot;field&quot;</span>: <span class="s2">&quot;_id&quot;</span>,
+</span><span class='line'>        <span class="s2">&quot;value&quot;</span>: <span class="s2">&quot;&quot;</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>    <span class="o">}</span>,
+</span><span class='line'>    <span class="o">{</span>
+</span><span class='line'>      <span class="s2">&quot;remove&quot;</span>: <span class="o">{</span>
+</span><span class='line'>        <span class="s2">&quot;field&quot;</span>: <span class="s2">&quot;message&quot;</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>    <span class="o">}</span>,
+</span><span class='line'>    <span class="o">{</span>
+</span><span class='line'>      <span class="s2">&quot;remove&quot;</span>: <span class="o">{</span>
+</span><span class='line'>        <span class="s2">&quot;field&quot;</span>: <span class="s2">&quot;beat&quot;</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>    <span class="o">}</span>,
+</span><span class='line'>    <span class="o">{</span>
+</span><span class='line'>      <span class="s2">&quot;remove&quot;</span>: <span class="o">{</span>
+</span><span class='line'>        <span class="s2">&quot;field&quot;</span>: <span class="s2">&quot;offset&quot;</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>    <span class="o">}</span>,
+</span><span class='line'>    <span class="o">{</span>
+</span><span class='line'>      <span class="s2">&quot;remove&quot;</span>: <span class="o">{</span>
+</span><span class='line'>        <span class="s2">&quot;field&quot;</span>: <span class="s2">&quot;source&quot;</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>    <span class="o">}</span>,
+</span><span class='line'>    <span class="o">{</span>
+</span><span class='line'>      <span class="s2">&quot;remove&quot;</span>: <span class="o">{</span>
+</span><span class='line'>        <span class="s2">&quot;field&quot;</span>: <span class="s2">&quot;date&quot;</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>    <span class="o">}</span>,
+</span><span class='line'>    <span class="o">{</span>
+</span><span class='line'>      <span class="s2">&quot;remove&quot;</span>: <span class="o">{</span>
+</span><span class='line'>        <span class="s2">&quot;field&quot;</span>: <span class="s2">&quot;id&quot;</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>    <span class="o">}</span>,
+</span><span class='line'>    <span class="o">{</span>
+</span><span class='line'>      <span class="s2">&quot;convert&quot;</span>: <span class="o">{</span>
+</span><span class='line'>        <span class="s2">&quot;field&quot;</span>: <span class="s2">&quot;number_of_attendees&quot;</span>,
+</span><span class='line'>        <span class="s2">&quot;type&quot;</span>: <span class="s2">&quot;integer&quot;</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>    <span class="o">}</span>,
+</span><span class='line'>    <span class="o">{</span>
+</span><span class='line'>      <span class="s2">&quot;convert&quot;</span>: <span class="o">{</span>
+</span><span class='line'>        <span class="s2">&quot;field&quot;</span>: <span class="s2">&quot;distance&quot;</span>,
+</span><span class='line'>        <span class="s2">&quot;type&quot;</span>: <span class="s2">&quot;integer&quot;</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>    <span class="o">}</span>,
+</span><span class='line'>    <span class="o">{</span>
+</span><span class='line'>      <span class="s2">&quot;convert&quot;</span>: <span class="o">{</span>
+</span><span class='line'>        <span class="s2">&quot;field&quot;</span>: <span class="s2">&quot;location.lon&quot;</span>,
+</span><span class='line'>        <span class="s2">&quot;type&quot;</span>: <span class="s2">&quot;float&quot;</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>    <span class="o">}</span>,
+</span><span class='line'>    <span class="o">{</span>
+</span><span class='line'>      <span class="s2">&quot;convert&quot;</span>: <span class="o">{</span>
+</span><span class='line'>        <span class="s2">&quot;field&quot;</span>: <span class="s2">&quot;location.lat&quot;</span>,
+</span><span class='line'>        <span class="s2">&quot;type&quot;</span>: <span class="s2">&quot;float&quot;</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>    <span class="o">}</span>,
+</span><span class='line'>    <span class="o">{</span>
+</span><span class='line'>      <span class="s2">&quot;convert&quot;</span>: <span class="o">{</span>
+</span><span class='line'>        <span class="s2">&quot;field&quot;</span>: <span class="s2">&quot;number_of_talks&quot;</span>,
+</span><span class='line'>        <span class="s2">&quot;type&quot;</span>: <span class="s2">&quot;integer&quot;</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>    <span class="o">}</span>,
+</span><span class='line'>    <span class="o">{</span>
+</span><span class='line'>      <span class="s2">&quot;date_index_name&quot;</span>: <span class="o">{</span>
+</span><span class='line'>        <span class="s2">&quot;field&quot;</span>: <span class="s2">&quot;@timestamp&quot;</span>,
+</span><span class='line'>        <span class="s2">&quot;index_name_prefix&quot;</span>: <span class="s2">&quot;talks-&quot;</span>,
+</span><span class='line'>        <span class="s2">&quot;index_name_format&quot;</span>: <span class="s2">&quot;yyyy&quot;</span>,
+</span><span class='line'>        <span class="s2">&quot;date_rounding&quot;</span>: <span class="s2">&quot;y&quot;</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>  <span class="o">]</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+The index template:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>PUT _template/talks
+</span><span class='line'><span class="o">{</span>
+</span><span class='line'>  <span class="s2">&quot;index_patterns&quot;</span>: <span class="o">[</span>
+</span><span class='line'>    <span class="s2">&quot;talks-*&quot;</span>
+</span><span class='line'>  <span class="o">]</span>,
+</span><span class='line'>  <span class="s2">&quot;settings&quot;</span>: <span class="o">{</span>
+</span><span class='line'>    <span class="s2">&quot;number_of_shards&quot;</span>: 1,
+</span><span class='line'>    <span class="s2">&quot;number_of_replicas&quot;</span>: 0
+</span><span class='line'>  <span class="o">}</span>,
+</span><span class='line'>  <span class="s2">&quot;mappings&quot;</span>: <span class="o">{</span>
+</span><span class='line'>    <span class="s2">&quot;doc&quot;</span>: <span class="o">{</span>
+</span><span class='line'>      <span class="s2">&quot;properties&quot;</span>: <span class="o">{</span>
+</span><span class='line'>        <span class="s2">&quot;@timestamp&quot;</span>: <span class="o">{</span>
+</span><span class='line'>          <span class="s2">&quot;type&quot;</span>: <span class="s2">&quot;date&quot;</span>
+</span><span class='line'>        <span class="o">}</span>,
+</span><span class='line'>        <span class="s2">&quot;city&quot;</span>: <span class="o">{</span>
+</span><span class='line'>          <span class="s2">&quot;type&quot;</span>: <span class="s2">&quot;text&quot;</span>,
+</span><span class='line'>          <span class="s2">&quot;fields&quot;</span>: <span class="o">{</span>
+</span><span class='line'>            <span class="s2">&quot;keyword&quot;</span>: <span class="o">{</span>
+</span><span class='line'>              <span class="s2">&quot;type&quot;</span>: <span class="s2">&quot;keyword&quot;</span>
+</span><span class='line'>            <span class="o">}</span>
+</span><span class='line'>          <span class="o">}</span>
+</span><span class='line'>        <span class="o">}</span>,
+</span><span class='line'>        <span class="s2">&quot;country&quot;</span>: <span class="o">{</span>
+</span><span class='line'>          <span class="s2">&quot;type&quot;</span>: <span class="s2">&quot;text&quot;</span>,
+</span><span class='line'>          <span class="s2">&quot;fields&quot;</span>: <span class="o">{</span>
+</span><span class='line'>            <span class="s2">&quot;keyword&quot;</span>: <span class="o">{</span>
+</span><span class='line'>              <span class="s2">&quot;type&quot;</span>: <span class="s2">&quot;keyword&quot;</span>
+</span><span class='line'>            <span class="o">}</span>
+</span><span class='line'>          <span class="o">}</span>
+</span><span class='line'>        <span class="o">}</span>,
+</span><span class='line'>        <span class="s2">&quot;distance&quot;</span>: <span class="o">{</span>
+</span><span class='line'>          <span class="s2">&quot;type&quot;</span>: <span class="s2">&quot;long&quot;</span>
+</span><span class='line'>        <span class="o">}</span>,
+</span><span class='line'>        <span class="s2">&quot;location&quot;</span>: <span class="o">{</span>
+</span><span class='line'>          <span class="s2">&quot;type&quot;</span>: <span class="s2">&quot;geo_point&quot;</span>
+</span><span class='line'>        <span class="o">}</span>,
+</span><span class='line'>        <span class="s2">&quot;name&quot;</span>: <span class="o">{</span>
+</span><span class='line'>          <span class="s2">&quot;type&quot;</span>: <span class="s2">&quot;text&quot;</span>,
+</span><span class='line'>          <span class="s2">&quot;fields&quot;</span>: <span class="o">{</span>
+</span><span class='line'>            <span class="s2">&quot;keyword&quot;</span>: <span class="o">{</span>
+</span><span class='line'>              <span class="s2">&quot;type&quot;</span>: <span class="s2">&quot;keyword&quot;</span>
+</span><span class='line'>            <span class="o">}</span>
+</span><span class='line'>          <span class="o">}</span>
+</span><span class='line'>        <span class="o">}</span>,
+</span><span class='line'>        <span class="s2">&quot;number_of_attendees&quot;</span>: <span class="o">{</span>
+</span><span class='line'>          <span class="s2">&quot;type&quot;</span>: <span class="s2">&quot;long&quot;</span>
+</span><span class='line'>        <span class="o">}</span>,
+</span><span class='line'>        <span class="s2">&quot;number_of_talks&quot;</span>: <span class="o">{</span>
+</span><span class='line'>          <span class="s2">&quot;type&quot;</span>: <span class="s2">&quot;long&quot;</span>
+</span><span class='line'>        <span class="o">}</span>,
+</span><span class='line'>        <span class="s2">&quot;type&quot;</span>: <span class="o">{</span>
+</span><span class='line'>          <span class="s2">&quot;type&quot;</span>: <span class="s2">&quot;keyword&quot;</span>
+</span><span class='line'>        <span class="o">}</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>  <span class="o">}</span>,
+</span><span class='line'>  <span class="s2">&quot;aliases&quot;</span>: <span class="o">{</span>
+</span><span class='line'>    <span class="s2">&quot;talks&quot;</span>: <span class="o">{}</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+The `filebeat.yml` configuration:
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="l-Scalar-Plain">filebeat.prospectors</span><span class="p-Indicator">:</span>
+</span><span class='line'><span class="p-Indicator">-</span> <span class="l-Scalar-Plain">paths</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="s">&quot;/path/to/my/csv/files/*.csv&quot;</span><span class="p-Indicator">]</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">document_type</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">doc</span>
+</span><span class='line'>
+</span><span class='line'><span class="l-Scalar-Plain">processors</span><span class="p-Indicator">:</span>
+</span><span class='line'><span class="p-Indicator">-</span> <span class="l-Scalar-Plain">drop_event</span><span class="p-Indicator">:</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">when</span><span class="p-Indicator">:</span>
+</span><span class='line'>      <span class="l-Scalar-Plain">regexp</span><span class="p-Indicator">:</span>
+</span><span class='line'>          <span class="l-Scalar-Plain">message</span><span class="p-Indicator">:</span> <span class="s">&quot;^;.*$&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="l-Scalar-Plain">cloud.id</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">COPY_THIS_FROM_CLOUD_UI</span>
+</span><span class='line'><span class="l-Scalar-Plain">cloud.auth</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">USERNAME:PASSWORD</span>
+</span><span class='line'>
+</span><span class='line'><span class="l-Scalar-Plain">output.elasticsearch.index</span><span class="p-Indicator">:</span> <span class="s">&quot;talks&quot;</span>
+</span><span class='line'><span class="l-Scalar-Plain">output.elasticsearch.pipeline</span><span class="p-Indicator">:</span> <span class="s">&quot;talks&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="l-Scalar-Plain">setup.template.enabled</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[4 Years at Elastic!]]></title>
@@ -54,7 +828,7 @@ Well, if you are reading this blog the answer is pretty much obvious. Let's use 
 
 I exported my Numbers sheet to a CSV file so I have something like this now:
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -66,18 +840,19 @@ I exported my Numbers sheet to a CSV file so I have something like this now:
 <span class='line-number'>10</span>
 <span class='line-number'>11</span>
 <span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>;Talk;Nb;Date;Type;Location;Coordinates;Distance;Total;Attendees
-</span><span class='line'>1;SnowCamp;1;20/01/2016;Workshop;GRENOBLE;45.190531,5.713413;627;1254;20
-</span><span class='line'>2;SnowCamp;1;21/01/2016;Talk;GRENOBLE;45.190652,5.767197;0;0;50
-</span><span class='line'>3;Louis Vuitton;1;26/01/2016;BBL;PARIS;48.860952,2.342081;50;100;16
-</span><span class='line'>4;Meetup Paris Data Geek;1;28/01/2016;Talk;PARIS;48.8788901,2.3294209;50;100;90
-</span><span class='line'>5;Meetup ES FR;1;03/02/2016;Meetup;PARIS;48.8753439,2.3358584;50;100;100
-</span><span class='line'>6;Kantar Media;1;04/02/2016;BBL;PARIS;48.8880874,2.231051;50;100;15
-</span><span class='line'>7;Meetup CERN;1;08/02/2016;Talk;GENEVE;46.2521574,6.0312076;592;1184;100
-</span><span class='line'>8;Live AMA (french);1;09/02/2016;Webinar;CERGY;49.0408975,2.0157605;0;0;20
-</span><span class='line'>9;elastic{ON};0;16/02/2016;Conference;SAN FRANCISCO;37.7772284,-122.391211;9400;18800;20
-</span><span class='line'>10;Company All Hands;0;20/01/2017;Company;LAKE TAHOE;38.9578871,-119.9442902;302;604;0
-</span><span class='line'>11;Prisma Media;1;01/03/2016;BBL;GENNEVILLIERS;48.918442,2.2953263;40;80;10</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="l-Scalar-Plain">;Talk;Nb;Date;Type;Location;Coordinates;Distance;Total;Attendees</span>
+</span><span class='line'><span class="l-Scalar-Plain">1;SnowCamp;1;20/01/2016;Workshop;GRENOBLE;45.190531,5.713413;627;1254;20</span>
+</span><span class='line'><span class="l-Scalar-Plain">2;SnowCamp;1;21/01/2016;Talk;GRENOBLE;45.190652,5.767197;0;0;50</span>
+</span><span class='line'><span class="l-Scalar-Plain">3;Louis Vuitton;1;26/01/2016;BBL;PARIS;48.860952,2.342081;50;100;16</span>
+</span><span class='line'><span class="l-Scalar-Plain">4;Meetup Paris Data Geek;1;28/01/2016;Talk;PARIS;48.8788901,2.3294209;50;100;90</span>
+</span><span class='line'><span class="l-Scalar-Plain">5;Meetup ES FR;1;03/02/2016;Meetup;PARIS;48.8753439,2.3358584;50;100;100</span>
+</span><span class='line'><span class="l-Scalar-Plain">6;Kantar Media;1;04/02/2016;BBL;PARIS;48.8880874,2.231051;50;100;15</span>
+</span><span class='line'><span class="l-Scalar-Plain">7;Meetup CERN;1;08/02/2016;Talk;GENEVE;46.2521574,6.0312076;592;1184;100</span>
+</span><span class='line'><span class="l-Scalar-Plain">8;Live AMA (french);1;09/02/2016;Webinar;CERGY;49.0408975,2.0157605;0;0;20</span>
+</span><span class='line'><span class="l-Scalar-Plain">9;elastic{ON};0;16/02/2016;Conference;SAN FRANCISCO;37.7772284,-122.391211;9400;18800;20</span>
+</span><span class='line'><span class="l-Scalar-Plain">10;Company All Hands;0;20/01/2017;Company;LAKE TAHOE;38.9578871,-119.9442902;302;604;0</span>
+</span><span class='line'><span class="l-Scalar-Plain">11;Prisma Media;1;01/03/2016;BBL;GENNEVILLIERS;48.918442,2.2953263;40;80;10</span>
+</span></code></pre></td></tr></table></div></figure>
 
 I need to produce a JSON document from each line.
 
@@ -3261,1487 +4036,6 @@ In a coming blog post, I'll explain how to create an ingest plugin which will he
 (download CSV files from bano website, extract, transform to JSON and index in elasticsearch).
 
 Stay tuned!
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Elasticsearch Real Integration Tests (Updated for GA)]]></title>
-    <link href="http://david.pilato.fr/blog/2016/10/18/elasticsearch-real-integration-tests-updated-for-ga/"/>
-    <updated>2016-10-18T03:02:48+02:00</updated>
-    <id>http://david.pilato.fr/blog/2016/10/18/elasticsearch-real-integration-tests-updated-for-ga</id>
-    <content type="html"><![CDATA[**NOTE:** This article is an updated version of [Elasticsearch real integration tests](/blog/2016/07/29/elasticsearch-real-integration-tests/)
-
-Integration tests... How do you run them?
-
-Often, you are tempted to run services you want to test from JUnit for example.
-In elasticsearch, you can extend `ESIntegTestCase` class which will start a cluster of a given
-number of nodes.
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">BanoPluginIntegrationTest</span> <span class="kd">extends</span> <span class="n">ESIntegTestCase</span> <span class="o">{</span>
-</span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testPluginIsLoaded</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
-</span><span class='line'>    	<span class="c1">// Your code here</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-But to be honest, the test you are running does not guarantee that you will have the same
-result in production.
-
-Why this? Because some services might be disabled, some others might be mocked.
-
-Instead, running tests against a real cluster as the one you would install locally on your machine
-is the way to go.
-
-Let's see how you can do that with Maven...
-
-<!-- more -->
-
-## How do we want to test?
-
-Ideally, we want to:
-
-* download elasticsearch 5.0.0 version
-* unzip it
-* install the plugin we are building if this is what we are doing
-* install any other plugin we could need for the tests
-* launch elasticsearch
-* run our integration tests against this cluster
-* stop the cluster at the end
-
-We want to do that during maven integration test phase. No need to do that every time.
-Also, we might want to be able to run the tests from our IDE against an external cluster we installed manually.
-
-### Separated skipTests
-
-If we want to be able to skip either unit tests or integration tests, we can
-define 3 properties in our `pom.xml`:
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;skipTests&gt;</span>false<span class="nt">&lt;/skipTests&gt;</span>
-</span><span class='line'><span class="nt">&lt;skipUnitTests&gt;</span>${skipTests}<span class="nt">&lt;/skipUnitTests&gt;</span>
-</span><span class='line'><span class="nt">&lt;skipIntegTests&gt;</span>${skipTests}<span class="nt">&lt;/skipIntegTests&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-### Writing a ANT script
-
-Elasticsearch team wrote an ANT script to achieve some of the goals we described before.
-You can read the original script I used [on github](https://github.com/elastic/elasticsearch/blob/2.4/dev-tools/src/main/resources/ant/integration-tests.xml).
-
-You can put this `integration-tests.xml` file in `src/test/ant/` for example:
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-<span class='line-number'>55</span>
-<span class='line-number'>56</span>
-<span class='line-number'>57</span>
-<span class='line-number'>58</span>
-<span class='line-number'>59</span>
-<span class='line-number'>60</span>
-<span class='line-number'>61</span>
-<span class='line-number'>62</span>
-<span class='line-number'>63</span>
-<span class='line-number'>64</span>
-<span class='line-number'>65</span>
-<span class='line-number'>66</span>
-<span class='line-number'>67</span>
-<span class='line-number'>68</span>
-<span class='line-number'>69</span>
-<span class='line-number'>70</span>
-<span class='line-number'>71</span>
-<span class='line-number'>72</span>
-<span class='line-number'>73</span>
-<span class='line-number'>74</span>
-<span class='line-number'>75</span>
-<span class='line-number'>76</span>
-<span class='line-number'>77</span>
-<span class='line-number'>78</span>
-<span class='line-number'>79</span>
-<span class='line-number'>80</span>
-<span class='line-number'>81</span>
-<span class='line-number'>82</span>
-<span class='line-number'>83</span>
-<span class='line-number'>84</span>
-<span class='line-number'>85</span>
-<span class='line-number'>86</span>
-<span class='line-number'>87</span>
-<span class='line-number'>88</span>
-<span class='line-number'>89</span>
-<span class='line-number'>90</span>
-<span class='line-number'>91</span>
-<span class='line-number'>92</span>
-<span class='line-number'>93</span>
-<span class='line-number'>94</span>
-<span class='line-number'>95</span>
-<span class='line-number'>96</span>
-<span class='line-number'>97</span>
-<span class='line-number'>98</span>
-<span class='line-number'>99</span>
-<span class='line-number'>100</span>
-<span class='line-number'>101</span>
-<span class='line-number'>102</span>
-<span class='line-number'>103</span>
-<span class='line-number'>104</span>
-<span class='line-number'>105</span>
-<span class='line-number'>106</span>
-<span class='line-number'>107</span>
-<span class='line-number'>108</span>
-<span class='line-number'>109</span>
-<span class='line-number'>110</span>
-<span class='line-number'>111</span>
-<span class='line-number'>112</span>
-<span class='line-number'>113</span>
-<span class='line-number'>114</span>
-<span class='line-number'>115</span>
-<span class='line-number'>116</span>
-<span class='line-number'>117</span>
-<span class='line-number'>118</span>
-<span class='line-number'>119</span>
-<span class='line-number'>120</span>
-<span class='line-number'>121</span>
-<span class='line-number'>122</span>
-<span class='line-number'>123</span>
-<span class='line-number'>124</span>
-<span class='line-number'>125</span>
-<span class='line-number'>126</span>
-<span class='line-number'>127</span>
-<span class='line-number'>128</span>
-<span class='line-number'>129</span>
-<span class='line-number'>130</span>
-<span class='line-number'>131</span>
-<span class='line-number'>132</span>
-<span class='line-number'>133</span>
-<span class='line-number'>134</span>
-<span class='line-number'>135</span>
-<span class='line-number'>136</span>
-<span class='line-number'>137</span>
-<span class='line-number'>138</span>
-<span class='line-number'>139</span>
-<span class='line-number'>140</span>
-<span class='line-number'>141</span>
-<span class='line-number'>142</span>
-<span class='line-number'>143</span>
-<span class='line-number'>144</span>
-<span class='line-number'>145</span>
-<span class='line-number'>146</span>
-<span class='line-number'>147</span>
-<span class='line-number'>148</span>
-<span class='line-number'>149</span>
-<span class='line-number'>150</span>
-<span class='line-number'>151</span>
-<span class='line-number'>152</span>
-<span class='line-number'>153</span>
-<span class='line-number'>154</span>
-<span class='line-number'>155</span>
-<span class='line-number'>156</span>
-<span class='line-number'>157</span>
-<span class='line-number'>158</span>
-<span class='line-number'>159</span>
-<span class='line-number'>160</span>
-<span class='line-number'>161</span>
-<span class='line-number'>162</span>
-<span class='line-number'>163</span>
-<span class='line-number'>164</span>
-<span class='line-number'>165</span>
-<span class='line-number'>166</span>
-<span class='line-number'>167</span>
-<span class='line-number'>168</span>
-<span class='line-number'>169</span>
-<span class='line-number'>170</span>
-<span class='line-number'>171</span>
-<span class='line-number'>172</span>
-<span class='line-number'>173</span>
-<span class='line-number'>174</span>
-<span class='line-number'>175</span>
-<span class='line-number'>176</span>
-<span class='line-number'>177</span>
-<span class='line-number'>178</span>
-<span class='line-number'>179</span>
-<span class='line-number'>180</span>
-<span class='line-number'>181</span>
-<span class='line-number'>182</span>
-<span class='line-number'>183</span>
-<span class='line-number'>184</span>
-<span class='line-number'>185</span>
-<span class='line-number'>186</span>
-<span class='line-number'>187</span>
-<span class='line-number'>188</span>
-<span class='line-number'>189</span>
-<span class='line-number'>190</span>
-<span class='line-number'>191</span>
-<span class='line-number'>192</span>
-<span class='line-number'>193</span>
-<span class='line-number'>194</span>
-<span class='line-number'>195</span>
-<span class='line-number'>196</span>
-<span class='line-number'>197</span>
-<span class='line-number'>198</span>
-<span class='line-number'>199</span>
-<span class='line-number'>200</span>
-<span class='line-number'>201</span>
-<span class='line-number'>202</span>
-<span class='line-number'>203</span>
-<span class='line-number'>204</span>
-<span class='line-number'>205</span>
-<span class='line-number'>206</span>
-<span class='line-number'>207</span>
-<span class='line-number'>208</span>
-<span class='line-number'>209</span>
-<span class='line-number'>210</span>
-<span class='line-number'>211</span>
-<span class='line-number'>212</span>
-<span class='line-number'>213</span>
-<span class='line-number'>214</span>
-<span class='line-number'>215</span>
-<span class='line-number'>216</span>
-<span class='line-number'>217</span>
-<span class='line-number'>218</span>
-<span class='line-number'>219</span>
-<span class='line-number'>220</span>
-<span class='line-number'>221</span>
-<span class='line-number'>222</span>
-<span class='line-number'>223</span>
-<span class='line-number'>224</span>
-<span class='line-number'>225</span>
-<span class='line-number'>226</span>
-<span class='line-number'>227</span>
-<span class='line-number'>228</span>
-<span class='line-number'>229</span>
-<span class='line-number'>230</span>
-<span class='line-number'>231</span>
-<span class='line-number'>232</span>
-<span class='line-number'>233</span>
-<span class='line-number'>234</span>
-<span class='line-number'>235</span>
-<span class='line-number'>236</span>
-<span class='line-number'>237</span>
-<span class='line-number'>238</span>
-<span class='line-number'>239</span>
-<span class='line-number'>240</span>
-<span class='line-number'>241</span>
-<span class='line-number'>242</span>
-<span class='line-number'>243</span>
-<span class='line-number'>244</span>
-<span class='line-number'>245</span>
-<span class='line-number'>246</span>
-<span class='line-number'>247</span>
-<span class='line-number'>248</span>
-<span class='line-number'>249</span>
-<span class='line-number'>250</span>
-<span class='line-number'>251</span>
-<span class='line-number'>252</span>
-<span class='line-number'>253</span>
-<span class='line-number'>254</span>
-<span class='line-number'>255</span>
-<span class='line-number'>256</span>
-<span class='line-number'>257</span>
-<span class='line-number'>258</span>
-<span class='line-number'>259</span>
-<span class='line-number'>260</span>
-<span class='line-number'>261</span>
-<span class='line-number'>262</span>
-<span class='line-number'>263</span>
-<span class='line-number'>264</span>
-<span class='line-number'>265</span>
-<span class='line-number'>266</span>
-<span class='line-number'>267</span>
-<span class='line-number'>268</span>
-<span class='line-number'>269</span>
-<span class='line-number'>270</span>
-<span class='line-number'>271</span>
-<span class='line-number'>272</span>
-<span class='line-number'>273</span>
-<span class='line-number'>274</span>
-<span class='line-number'>275</span>
-<span class='line-number'>276</span>
-<span class='line-number'>277</span>
-<span class='line-number'>278</span>
-<span class='line-number'>279</span>
-<span class='line-number'>280</span>
-<span class='line-number'>281</span>
-<span class='line-number'>282</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
-</span><span class='line'><span class="nt">&lt;project</span> <span class="na">name=</span><span class="s">&quot;integration-tests&quot;</span> <span class="na">xmlns:if=</span><span class="s">&quot;ant:if&quot;</span> <span class="na">xmlns:unless=</span><span class="s">&quot;ant:unless&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>    <span class="c">&lt;!-- our pid file for easy cleanup --&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;integ.pidfile&quot;</span> <span class="na">location=</span><span class="s">&quot;${project.build.directory}/integration-tests/run/es.pid&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="c">&lt;!-- if this exists, ES is running (maybe) --&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;available</span> <span class="na">property=</span><span class="s">&quot;integ.pidfile.exists&quot;</span> <span class="na">file=</span><span class="s">&quot;${integ.pidfile}&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="c">&lt;!-- name of our cluster, maybe needs changing --&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;integ.cluster.name&quot;</span> <span class="na">value=</span><span class="s">&quot;elasticsearch_integration&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="c">&lt;!-- runs an OS script --&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;macrodef</span> <span class="na">name=</span><span class="s">&quot;run-script&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;attribute</span> <span class="na">name=</span><span class="s">&quot;script&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;attribute</span> <span class="na">name=</span><span class="s">&quot;spawn&quot;</span> <span class="na">default=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;nested&quot;</span> <span class="na">optional=</span><span class="s">&quot;true&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;sequential&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;local</span> <span class="na">name=</span><span class="s">&quot;failonerror&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;condition</span> <span class="na">property=</span><span class="s">&quot;failonerror&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>                <span class="nt">&lt;isfalse</span> <span class="na">value=</span><span class="s">&quot;@{spawn}&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;/condition&gt;</span>
-</span><span class='line'>
-</span><span class='line'>            <span class="c">&lt;!-- create a temp CWD, to enforce that commands don&#39;t rely on CWD --&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;local</span> <span class="na">name=</span><span class="s">&quot;temp.cwd&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;tempfile</span> <span class="na">property=</span><span class="s">&quot;temp.cwd&quot;</span> <span class="na">destDir=</span><span class="s">&quot;${project.build.directory}/integration-tests/run/tmp&quot;</span> <span class="na">deleteonexit=</span><span class="s">&quot;true&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;mkdir</span> <span class="na">dir=</span><span class="s">&quot;${temp.cwd}&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>
-</span><span class='line'>            <span class="c">&lt;!-- print commands we run --&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;local</span> <span class="na">name=</span><span class="s">&quot;script.base&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;basename</span> <span class="na">file=</span><span class="s">&quot;@{script}&quot;</span> <span class="na">property=</span><span class="s">&quot;script.base&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>            <span class="c">&lt;!-- crappy way to output, but we need it. make it nice later --&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;echoxml&gt;&lt;exec</span> <span class="na">script=</span><span class="s">&quot;${script.base}&quot;</span><span class="nt">&gt;&lt;nested/&gt;&lt;/exec&gt;&lt;/echoxml&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;exec</span> <span class="na">executable=</span><span class="s">&quot;cmd&quot;</span> <span class="na">osfamily=</span><span class="s">&quot;winnt&quot;</span> <span class="na">dir=</span><span class="s">&quot;${temp.cwd}&quot;</span> <span class="na">failonerror=</span><span class="s">&quot;${failonerror}&quot;</span> <span class="na">spawn=</span><span class="s">&quot;@{spawn}&quot;</span> <span class="na">taskname=</span><span class="s">&quot;${script.base}&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>                <span class="nt">&lt;arg</span> <span class="na">value=</span><span class="s">&quot;/c&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>                <span class="nt">&lt;arg</span> <span class="na">value=</span><span class="s">&quot;&amp;quot;&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>                <span class="nt">&lt;arg</span> <span class="na">value=</span><span class="s">&quot;@{script}.bat&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>                <span class="nt">&lt;nested/&gt;</span>
-</span><span class='line'>                <span class="nt">&lt;arg</span> <span class="na">value=</span><span class="s">&quot;&amp;quot;&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;/exec&gt;</span>
-</span><span class='line'>
-</span><span class='line'>            <span class="nt">&lt;exec</span> <span class="na">executable=</span><span class="s">&quot;bash&quot;</span> <span class="na">osfamily=</span><span class="s">&quot;unix&quot;</span> <span class="na">dir=</span><span class="s">&quot;${temp.cwd}&quot;</span> <span class="na">failonerror=</span><span class="s">&quot;${failonerror}&quot;</span> <span class="na">spawn=</span><span class="s">&quot;@{spawn}&quot;</span> <span class="na">taskname=</span><span class="s">&quot;${script.base}&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>                <span class="nt">&lt;arg</span> <span class="na">value=</span><span class="s">&quot;@{script}&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>                <span class="nt">&lt;nested/&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;/exec&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;/sequential&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;/macrodef&gt;</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="c">&lt;!-- extracts PID from file --&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;macrodef</span> <span class="na">name=</span><span class="s">&quot;extract-pid&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;attribute</span> <span class="na">name=</span><span class="s">&quot;file&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;attribute</span> <span class="na">name=</span><span class="s">&quot;property&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;sequential&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;loadfile</span> <span class="na">srcFile=</span><span class="s">&quot;@{file}&quot;</span> <span class="na">property=</span><span class="s">&quot;@{property}&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>                <span class="nt">&lt;filterchain&gt;</span>
-</span><span class='line'>                    <span class="nt">&lt;striplinebreaks/&gt;</span>
-</span><span class='line'>                <span class="nt">&lt;/filterchain&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;/loadfile&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;/sequential&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;/macrodef&gt;</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="c">&lt;!-- applies transformations to src and stores in dst --&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;macrodef</span> <span class="na">name=</span><span class="s">&quot;filter-property&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;attribute</span> <span class="na">name=</span><span class="s">&quot;src&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;attribute</span> <span class="na">name=</span><span class="s">&quot;dest&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;chain&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;sequential&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;loadresource</span> <span class="na">property=</span><span class="s">&quot;@{dest}&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>                <span class="nt">&lt;propertyresource</span> <span class="na">name=</span><span class="s">&quot;@{src}&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>                <span class="nt">&lt;filterchain&gt;</span>
-</span><span class='line'>                    <span class="nt">&lt;tokenfilter&gt;</span>
-</span><span class='line'>                        <span class="nt">&lt;chain/&gt;</span>
-</span><span class='line'>                    <span class="nt">&lt;/tokenfilter&gt;</span>
-</span><span class='line'>                <span class="nt">&lt;/filterchain&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;/loadresource&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;/sequential&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;/macrodef&gt;</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="c">&lt;!-- waits for elasticsearch to start --&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;macrodef</span> <span class="na">name=</span><span class="s">&quot;waitfor-elasticsearch&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;attribute</span> <span class="na">name=</span><span class="s">&quot;port&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;attribute</span> <span class="na">name=</span><span class="s">&quot;timeoutproperty&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;sequential&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;echo&gt;</span>Waiting for elasticsearch to become available on port @{port}...<span class="nt">&lt;/echo&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;waitfor</span> <span class="na">maxwait=</span><span class="s">&quot;30&quot;</span> <span class="na">maxwaitunit=</span><span class="s">&quot;second&quot;</span>
-</span><span class='line'>                     <span class="na">checkevery=</span><span class="s">&quot;500&quot;</span> <span class="na">checkeveryunit=</span><span class="s">&quot;millisecond&quot;</span>
-</span><span class='line'>                     <span class="na">timeoutproperty=</span><span class="s">&quot;@{timeoutproperty}&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>                <span class="nt">&lt;http</span> <span class="na">url=</span><span class="s">&quot;http://localhost:@{port}&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;/waitfor&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;/sequential&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;/macrodef&gt;</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="nt">&lt;scriptdef</span> <span class="na">name=</span><span class="s">&quot;isGreater&quot;</span> <span class="na">language=</span><span class="s">&quot;javascript&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;attribute</span> <span class="na">name=</span><span class="s">&quot;v1&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;attribute</span> <span class="na">name=</span><span class="s">&quot;v2&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>        <span class="ni">&amp;lt;</span>![CDATA[
-</span><span class='line'>
-</span><span class='line'>            var i, l, d, s = false;
-</span><span class='line'>
-</span><span class='line'>            a = attributes.get(&quot;v1&quot;).split(&#39;.&#39;);
-</span><span class='line'>            b = attributes.get(&quot;v2&quot;).split(&#39;.&#39;);
-</span><span class='line'>            l = Math.min(a.length, b.length);
-</span><span class='line'>
-</span><span class='line'>            for (i=0; i<span class="nt">&lt;l</span><span class="err">;</span> <span class="err">i++)</span> <span class="err">{</span>
-</span><span class='line'>                <span class="na">d =</span> <span class="s">parseInt(a[i],</span> <span class="err">10)</span> <span class="err">-</span> <span class="err">parseInt(b[i],</span> <span class="err">10);</span>
-</span><span class='line'>                <span class="err">if</span> <span class="err">(d</span> <span class="err">!==</span> <span class="err">0)</span> <span class="err">{</span>
-</span><span class='line'>                    <span class="err">project.setProperty(&quot;compare-result&quot;,</span> <span class="err">d</span> <span class="nt">&gt;</span> 0);
-</span><span class='line'>                    s = true;
-</span><span class='line'>                    break;
-</span><span class='line'>                }
-</span><span class='line'>            }
-</span><span class='line'>
-</span><span class='line'>            if(!s){
-</span><span class='line'>                d = a.length - b.length;
-</span><span class='line'>                project.setProperty(&quot;compare-result&quot;, d &gt;= 0);
-</span><span class='line'>            }
-</span><span class='line'>
-</span><span class='line'>            ]]<span class="ni">&amp;gt;</span>
-</span><span class='line'>    <span class="nt">&lt;/scriptdef&gt;</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="c">&lt;!-- start elasticsearch and wait until its ready --&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;macrodef</span> <span class="na">name=</span><span class="s">&quot;startup-elasticsearch&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;attribute</span> <span class="na">name=</span><span class="s">&quot;home&quot;</span> <span class="na">default=</span><span class="s">&quot;${project.build.directory}/integration-tests/run/elasticsearch-${elasticsearch.version}&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;attribute</span> <span class="na">name=</span><span class="s">&quot;spawn&quot;</span> <span class="na">default=</span><span class="s">&quot;true&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;attribute</span> <span class="na">name=</span><span class="s">&quot;es.cluster.name&quot;</span> <span class="na">default=</span><span class="s">&quot;${integ.cluster.name}&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;attribute</span> <span class="na">name=</span><span class="s">&quot;es.http.port&quot;</span> <span class="na">default=</span><span class="s">&quot;${integ.http.port}&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;attribute</span> <span class="na">name=</span><span class="s">&quot;es.transport.tcp.port&quot;</span> <span class="na">default=</span><span class="s">&quot;${integ.transport.port}&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;attribute</span> <span class="na">name=</span><span class="s">&quot;es.pidfile&quot;</span> <span class="na">default=</span><span class="s">&quot;${integ.pidfile}&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;additional-args&quot;</span> <span class="na">optional=</span><span class="s">&quot;true&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;sequential&gt;</span>
-</span><span class='line'>            <span class="c">&lt;!-- make sure no elasticsearch instance is currently running and listening on the port we need --&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;fail</span> <span class="na">message=</span><span class="s">&quot;This test expects port @{es.http.port} to be free but an elasticsearch instance is already running and listening on that port.</span>
-</span><span class='line'><span class="s">      Maybe the last test run did not manage to shut down the node correctly?</span>
-</span><span class='line'><span class="s">      You must kill it before tests can run.&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>                <span class="nt">&lt;condition&gt;</span>
-</span><span class='line'>                    <span class="nt">&lt;socket</span> <span class="na">server=</span><span class="s">&quot;localhost&quot;</span> <span class="na">port=</span><span class="s">&quot;@{es.http.port}&quot;</span><span class="nt">&gt;&lt;/socket&gt;</span>
-</span><span class='line'>                <span class="nt">&lt;/condition&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;/fail&gt;</span>
-</span><span class='line'>            <span class="c">&lt;!-- run bin/elasticsearch with args --&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;echo&gt;</span>Starting up external cluster...<span class="nt">&lt;/echo&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;isGreater</span> <span class="na">v1=</span><span class="s">&quot;${elasticsearch.version}&quot;</span> <span class="na">v2=</span><span class="s">&quot;5.0.0&quot;</span> <span class="nt">/&gt;</span>
-</span><span class='line'>
-</span><span class='line'>            <span class="nt">&lt;echo</span> <span class="na">if:true=</span><span class="s">&quot;${compare-result}&quot;</span><span class="nt">&gt;</span>running Elasticsearch 5.0.0 or superior<span class="nt">&lt;/echo&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;echo</span> <span class="na">unless:true=</span><span class="s">&quot;${compare-result}&quot;</span><span class="nt">&gt;</span>running Elasticsearch <span class="ni">&amp;lt;</span> 5.0.0<span class="nt">&lt;/echo&gt;</span>
-</span><span class='line'>
-</span><span class='line'>            <span class="nt">&lt;run-script</span> <span class="na">script=</span><span class="s">&quot;@{home}/bin/elasticsearch&quot;</span>
-</span><span class='line'>                        <span class="na">spawn=</span><span class="s">&quot;@{spawn}&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>                <span class="nt">&lt;nested&gt;</span>
-</span><span class='line'>                    <span class="nt">&lt;arg</span> <span class="na">value=</span><span class="s">&quot;-Des.pidfile=@{es.pidfile}&quot;</span> <span class="na">unless:true=</span><span class="s">&quot;${compare-result}&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>                    <span class="nt">&lt;arg</span> <span class="na">value=</span><span class="s">&quot;-Des.cluster.name=@{es.cluster.name}&quot;</span> <span class="na">unless:true=</span><span class="s">&quot;${compare-result}&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>                    <span class="nt">&lt;arg</span> <span class="na">value=</span><span class="s">&quot;-Des.http.port=@{es.http.port}&quot;</span> <span class="na">unless:true=</span><span class="s">&quot;${compare-result}&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>                    <span class="nt">&lt;arg</span> <span class="na">value=</span><span class="s">&quot;-Des.transport.tcp.port=@{es.transport.tcp.port}&quot;</span> <span class="na">unless:true=</span><span class="s">&quot;${compare-result}&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>                    <span class="nt">&lt;arg</span> <span class="na">value=</span><span class="s">&quot;-Des.network.host=127.0.0.1&quot;</span> <span class="na">unless:true=</span><span class="s">&quot;${compare-result}&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>                    <span class="nt">&lt;arg</span> <span class="na">value=</span><span class="s">&quot;-Epidfile=@{es.pidfile}&quot;</span> <span class="na">if:true=</span><span class="s">&quot;${compare-result}&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>                    <span class="nt">&lt;arg</span> <span class="na">value=</span><span class="s">&quot;-Ecluster.name=@{es.cluster.name}&quot;</span> <span class="na">if:true=</span><span class="s">&quot;${compare-result}&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>                    <span class="nt">&lt;arg</span> <span class="na">value=</span><span class="s">&quot;-Ehttp.port=@{es.http.port}&quot;</span> <span class="na">if:true=</span><span class="s">&quot;${compare-result}&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>                    <span class="nt">&lt;arg</span> <span class="na">value=</span><span class="s">&quot;-Etransport.tcp.port=@{es.transport.tcp.port}&quot;</span> <span class="na">if:true=</span><span class="s">&quot;${compare-result}&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>                    <span class="nt">&lt;arg</span> <span class="na">value=</span><span class="s">&quot;-Enetwork.host=127.0.0.1&quot;</span> <span class="na">if:true=</span><span class="s">&quot;${compare-result}&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>                    <span class="nt">&lt;additional-args/&gt;</span>
-</span><span class='line'>                <span class="nt">&lt;/nested&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;/run-script&gt;</span>
-</span><span class='line'>
-</span><span class='line'>            <span class="c">&lt;!-- wait for startup --&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;local</span> <span class="na">name=</span><span class="s">&quot;failed.to.start&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;waitfor-elasticsearch</span> <span class="na">port=</span><span class="s">&quot;@{es.http.port}&quot;</span>
-</span><span class='line'>                                   <span class="na">timeoutproperty=</span><span class="s">&quot;failed.to.start&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>
-</span><span class='line'>            <span class="c">&lt;!-- best effort, print console log. useful if it fails especially --&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;local</span> <span class="na">name=</span><span class="s">&quot;log.contents&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;loadfile</span> <span class="na">srcFile=</span><span class="s">&quot;@{home}/logs/@{es.cluster.name}.log&quot;</span>
-</span><span class='line'>                      <span class="na">property=</span><span class="s">&quot;log.contents&quot;</span>
-</span><span class='line'>                      <span class="na">failonerror=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;echo</span> <span class="na">message=</span><span class="s">&quot;${log.contents}&quot;</span> <span class="na">taskname=</span><span class="s">&quot;elasticsearch&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>
-</span><span class='line'>            <span class="nt">&lt;fail</span> <span class="na">message=</span><span class="s">&quot;ES instance did not start&quot;</span> <span class="na">if=</span><span class="s">&quot;failed.to.start&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>
-</span><span class='line'>            <span class="nt">&lt;local</span> <span class="na">name=</span><span class="s">&quot;integ.pid&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;extract-pid</span> <span class="na">file=</span><span class="s">&quot;@{es.pidfile}&quot;</span> <span class="na">property=</span><span class="s">&quot;integ.pid&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;echo&gt;</span>External node started PID ${integ.pid}<span class="nt">&lt;/echo&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;/sequential&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;/macrodef&gt;</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="nt">&lt;macrodef</span> <span class="na">name=</span><span class="s">&quot;stop-node&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;attribute</span> <span class="na">name=</span><span class="s">&quot;es.pidfile&quot;</span> <span class="na">default=</span><span class="s">&quot;${integ.pidfile}&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;sequential&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;local</span> <span class="na">name=</span><span class="s">&quot;integ.pid&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>
-</span><span class='line'>            <span class="nt">&lt;extract-pid</span> <span class="na">file=</span><span class="s">&quot;@{es.pidfile}&quot;</span> <span class="na">property=</span><span class="s">&quot;integ.pid&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;echo&gt;</span>Shutting down external node PID ${integ.pid}<span class="nt">&lt;/echo&gt;</span>
-</span><span class='line'>            <span class="c">&lt;!-- verify with jps that this actually is the correct pid.</span>
-</span><span class='line'><span class="c">            See if we can find the line &quot;pid org.elasticsearch.bootstrap.Elasticsearch&quot; in the output of jps -l.--&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;local</span> <span class="na">name=</span><span class="s">&quot;jps.pidline&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;local</span> <span class="na">name=</span><span class="s">&quot;jps.executable&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;local</span> <span class="na">name=</span><span class="s">&quot;environment&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;property</span> <span class="na">environment=</span><span class="s">&quot;environment&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;jps.executable&quot;</span> <span class="na">location=</span><span class="s">&quot;${environment.JAVA_HOME}/bin/jps&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;exec</span> <span class="na">executable=</span><span class="s">&quot;${jps.executable}&quot;</span> <span class="na">failonerror=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>                <span class="nt">&lt;arg</span> <span class="na">value=</span><span class="s">&quot;-l&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>                <span class="nt">&lt;redirector</span> <span class="na">outputproperty=</span><span class="s">&quot;jps.pidline&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>                    <span class="nt">&lt;outputfilterchain&gt;</span>
-</span><span class='line'>                        <span class="nt">&lt;linecontains&gt;</span>
-</span><span class='line'>                            <span class="nt">&lt;contains</span> <span class="na">value=</span><span class="s">&quot;${integ.pid} org.elasticsearch.bootstrap.Elasticsearch&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>                        <span class="nt">&lt;/linecontains&gt;</span>
-</span><span class='line'>                    <span class="nt">&lt;/outputfilterchain&gt;</span>
-</span><span class='line'>                <span class="nt">&lt;/redirector&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;/exec&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;fail</span>
-</span><span class='line'>                    <span class="na">message=</span><span class="s">&quot;pid file at @{es.pidfile} is ${integ.pid} but jps -l did not report any process with org.elasticsearch.bootstrap.Elasticsearch and this pid.</span>
-</span><span class='line'><span class="s">          Did you run mvn clean? Maybe an old pid file is still lying around.&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>                <span class="nt">&lt;condition&gt;</span>
-</span><span class='line'>                    <span class="nt">&lt;equals</span> <span class="na">arg1=</span><span class="s">&quot;${jps.pidline}&quot;</span> <span class="na">arg2=</span><span class="s">&quot;&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>                <span class="nt">&lt;/condition&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;/fail&gt;</span>
-</span><span class='line'>
-</span><span class='line'>            <span class="nt">&lt;exec</span> <span class="na">executable=</span><span class="s">&quot;taskkill&quot;</span> <span class="na">failonerror=</span><span class="s">&quot;true&quot;</span> <span class="na">osfamily=</span><span class="s">&quot;winnt&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>                <span class="nt">&lt;arg</span> <span class="na">value=</span><span class="s">&quot;/F&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>                <span class="nt">&lt;arg</span> <span class="na">value=</span><span class="s">&quot;/PID&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>                <span class="nt">&lt;arg</span> <span class="na">value=</span><span class="s">&quot;${integ.pid}&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;/exec&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;exec</span> <span class="na">executable=</span><span class="s">&quot;kill&quot;</span> <span class="na">failonerror=</span><span class="s">&quot;true&quot;</span> <span class="na">osfamily=</span><span class="s">&quot;unix&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>                <span class="nt">&lt;arg</span> <span class="na">value=</span><span class="s">&quot;-9&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>                <span class="nt">&lt;arg</span> <span class="na">value=</span><span class="s">&quot;${integ.pid}&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;/exec&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;delete</span> <span class="na">file=</span><span class="s">&quot;@{es.pidfile}&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;/sequential&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;/macrodef&gt;</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="nt">&lt;target</span> <span class="na">name=</span><span class="s">&quot;stop-external-cluster&quot;</span> <span class="na">if=</span><span class="s">&quot;integ.pidfile.exists&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;stop-node/&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;/target&gt;</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="nt">&lt;target</span> <span class="na">name=</span><span class="s">&quot;setup-workspace&quot;</span> <span class="na">depends=</span><span class="s">&quot;stop-external-cluster&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;sequential&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;delete</span> <span class="na">dir=</span><span class="s">&quot;${project.build.directory}/integration-tests/run&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;unzip</span> <span class="na">src=</span><span class="s">&quot;${project.build.directory}/integration-tests/binaries/elasticsearch-${elasticsearch.version}.zip&quot;</span>
-</span><span class='line'>                   <span class="na">dest=</span><span class="s">&quot;${project.build.directory}/integration-tests/run&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;/sequential&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;/target&gt;</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="nt">&lt;target</span> <span class="na">name=</span><span class="s">&quot;start-external-cluster&quot;</span> <span class="na">depends=</span><span class="s">&quot;setup-workspace&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;startup-elasticsearch/&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;/target&gt;</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="c">&lt;!-- unzip integ test artifact, install plugin, then start ES --&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;target</span> <span class="na">name=</span><span class="s">&quot;start-external-cluster-with-plugin&quot;</span> <span class="na">depends=</span><span class="s">&quot;setup-workspace&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;install-plugin</span> <span class="na">name=</span><span class="s">&quot;${project.artifactId}&quot;</span> <span class="na">file=</span><span class="s">&quot;${project.build.directory}/releases/${project.artifactId}-${project.version}.zip&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;startup-elasticsearch/&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;/target&gt;</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="c">&lt;!-- installs a plugin into elasticsearch --&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;macrodef</span> <span class="na">name=</span><span class="s">&quot;install-plugin&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;attribute</span> <span class="na">name=</span><span class="s">&quot;home&quot;</span> <span class="na">default=</span><span class="s">&quot;${project.build.directory}/integration-tests/run/elasticsearch-${elasticsearch.version}&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;attribute</span> <span class="na">name=</span><span class="s">&quot;name&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;attribute</span> <span class="na">name=</span><span class="s">&quot;file&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;sequential&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;local</span> <span class="na">name=</span><span class="s">&quot;url&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;makeurl</span> <span class="na">property=</span><span class="s">&quot;url&quot;</span> <span class="na">file=</span><span class="s">&quot;@{file}&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>
-</span><span class='line'>            <span class="nt">&lt;isGreater</span> <span class="na">v1=</span><span class="s">&quot;${elasticsearch.version}&quot;</span> <span class="na">v2=</span><span class="s">&quot;5.0.0&quot;</span> <span class="nt">/&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;commandline&quot;</span> <span class="na">value=</span><span class="s">&quot;@{home}/bin/plugin&quot;</span> <span class="na">unless:true=</span><span class="s">&quot;${compare-result}&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;commandline&quot;</span> <span class="na">value=</span><span class="s">&quot;@{home}/bin/elasticsearch-plugin&quot;</span> <span class="na">if:true=</span><span class="s">&quot;${compare-result}&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>
-</span><span class='line'>            <span class="c">&lt;!-- install plugin --&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;echo&gt;</span>Installing plugin @{name}...<span class="nt">&lt;/echo&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;run-script</span> <span class="na">script=</span><span class="s">&quot;${commandline}&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>                <span class="nt">&lt;nested&gt;</span>
-</span><span class='line'>                    <span class="nt">&lt;arg</span> <span class="na">value=</span><span class="s">&quot;install&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>                    <span class="nt">&lt;arg</span> <span class="na">value=</span><span class="s">&quot;${url}&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>                <span class="nt">&lt;/nested&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;/run-script&gt;</span>
-</span><span class='line'>
-</span><span class='line'>            <span class="nt">&lt;fail</span> <span class="na">message=</span><span class="s">&quot;did not find plugin installed as @{name}&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>                <span class="nt">&lt;condition&gt;</span>
-</span><span class='line'>                    <span class="nt">&lt;not&gt;</span>
-</span><span class='line'>                        <span class="nt">&lt;resourceexists&gt;</span>
-</span><span class='line'>                            <span class="nt">&lt;file</span> <span class="na">file=</span><span class="s">&quot;@{home}/plugins/@{name}&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>                        <span class="nt">&lt;/resourceexists&gt;</span>
-</span><span class='line'>                    <span class="nt">&lt;/not&gt;</span>
-</span><span class='line'>                <span class="nt">&lt;/condition&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;/fail&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;/sequential&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;/macrodef&gt;</span>
-</span><span class='line'><span class="nt">&lt;/project&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-This script provides 3 main tasks:
-
-* `start-external-cluster`: Unzip elasticsearch then starts a node
-* `start-external-cluster-with-plugin`: Unzip elasticsearch, install a plugin then starts a node
-* `stop-external-cluster`: Stop the running node
-
-It also takes into account the version you are using as options/settings might change between major versions.
-So this script has been tested against elasticsearch 1.x, 2.x and 5.x series.
-
-### Download elasticsearch
-
-You can use Maven dependency plugin for that.
-
-Define some properties first:
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;elasticsearch.groupid&gt;</span>org.elasticsearch.distribution.zip<span class="nt">&lt;/elasticsearch.groupid&gt;</span>
-</span><span class='line'><span class="nt">&lt;elasticsearch.version&gt;</span>5.0.0<span class="nt">&lt;/elasticsearch.version&gt;</span>
-</span><span class='line'><span class="nt">&lt;skipTests&gt;</span>false<span class="nt">&lt;/skipTests&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="c">&lt;!-- For integration tests using ANT --&gt;</span>
-</span><span class='line'><span class="nt">&lt;integ.http.port&gt;</span>9400<span class="nt">&lt;/integ.http.port&gt;</span>
-</span><span class='line'><span class="nt">&lt;integ.transport.port&gt;</span>9500<span class="nt">&lt;/integ.transport.port&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-Then add the dependency plugin:
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;plugin&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;artifactId&gt;</span>maven-dependency-plugin<span class="nt">&lt;/artifactId&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;version&gt;</span>2.10<span class="nt">&lt;/version&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;executions&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;execution&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;id&gt;</span>integ-setup-dependencies<span class="nt">&lt;/id&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;phase&gt;</span>pre-integration-test<span class="nt">&lt;/phase&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;goals&gt;</span>
-</span><span class='line'>                <span class="nt">&lt;goal&gt;</span>copy<span class="nt">&lt;/goal&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;/goals&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;configuration&gt;</span>
-</span><span class='line'>                <span class="nt">&lt;skip&gt;</span>${skipIntegTests}<span class="nt">&lt;/skip&gt;</span>
-</span><span class='line'>                <span class="nt">&lt;artifactItems&gt;</span>
-</span><span class='line'>                    <span class="nt">&lt;artifactItem&gt;</span>
-</span><span class='line'>                        <span class="nt">&lt;groupId&gt;</span>${elasticsearch.groupid}<span class="nt">&lt;/groupId&gt;</span>
-</span><span class='line'>                        <span class="nt">&lt;artifactId&gt;</span>elasticsearch<span class="nt">&lt;/artifactId&gt;</span>
-</span><span class='line'>                        <span class="nt">&lt;version&gt;</span>${elasticsearch.version}<span class="nt">&lt;/version&gt;</span>
-</span><span class='line'>                        <span class="nt">&lt;type&gt;</span>zip<span class="nt">&lt;/type&gt;</span>
-</span><span class='line'>                    <span class="nt">&lt;/artifactItem&gt;</span>
-</span><span class='line'>                <span class="nt">&lt;/artifactItems&gt;</span>
-</span><span class='line'>                <span class="nt">&lt;useBaseVersion&gt;</span>true<span class="nt">&lt;/useBaseVersion&gt;</span>
-</span><span class='line'>                <span class="nt">&lt;outputDirectory&gt;</span>${project.build.directory}/integration-tests/binaries<span class="nt">&lt;/outputDirectory&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;/configuration&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;/execution&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;/executions&gt;</span>
-</span><span class='line'><span class="nt">&lt;/plugin&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-This will get elasticsearch from you `.m2` local repository and if not available, it will downloaded from Maven central first.
-
-### Launch ANT script
-
-You can use Maven ant plugin:
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;plugin&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;artifactId&gt;</span>maven-antrun-plugin<span class="nt">&lt;/artifactId&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;version&gt;</span>1.8<span class="nt">&lt;/version&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;executions&gt;</span>
-</span><span class='line'>        <span class="c">&lt;!-- start up external cluster --&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;execution&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;id&gt;</span>integ-setup<span class="nt">&lt;/id&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;phase&gt;</span>pre-integration-test<span class="nt">&lt;/phase&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;goals&gt;</span>
-</span><span class='line'>                <span class="nt">&lt;goal&gt;</span>run<span class="nt">&lt;/goal&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;/goals&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;configuration&gt;</span>
-</span><span class='line'>                <span class="nt">&lt;skip&gt;</span>${skipIntegTests}<span class="nt">&lt;/skip&gt;</span>
-</span><span class='line'>                <span class="nt">&lt;target&gt;</span>
-</span><span class='line'>                    <span class="nt">&lt;ant</span> <span class="na">antfile=</span><span class="s">&quot;src/test/ant/integration-tests.xml&quot;</span> <span class="na">target=</span><span class="s">&quot;start-external-cluster-with-plugin&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>                <span class="nt">&lt;/target&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;/configuration&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;/execution&gt;</span>
-</span><span class='line'>        <span class="c">&lt;!-- shut down external cluster --&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;execution&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;id&gt;</span>integ-teardown<span class="nt">&lt;/id&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;phase&gt;</span>post-integration-test<span class="nt">&lt;/phase&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;goals&gt;</span>
-</span><span class='line'>                <span class="nt">&lt;goal&gt;</span>run<span class="nt">&lt;/goal&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;/goals&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;configuration&gt;</span>
-</span><span class='line'>                <span class="nt">&lt;skip&gt;</span>${skipIntegTests}<span class="nt">&lt;/skip&gt;</span>
-</span><span class='line'>                <span class="nt">&lt;target&gt;</span>
-</span><span class='line'>                    <span class="nt">&lt;ant</span> <span class="na">antfile=</span><span class="s">&quot;src/test/ant/integration-tests.xml&quot;</span> <span class="na">target=</span><span class="s">&quot;stop-external-cluster&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'>                <span class="nt">&lt;/target&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;/configuration&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;/execution&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;/executions&gt;</span>
-</span><span class='line'><span class="nt">&lt;/plugin&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-It will launch here the `start-external-cluster-with-plugin` task during before integration tests and `stop-external-cluster` after integration tests.
-
-
-### Separate integration tests and unit tests
-
-As I'm using the Randomized testing framework, here is what I wrote.
-
-First, I'm disabling Maven surefire plugin:
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;plugin&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;artifactId&gt;</span>maven-surefire-plugin<span class="nt">&lt;/artifactId&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;version&gt;</span>2.19<span class="nt">&lt;/version&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;executions&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;execution&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;id&gt;</span>default-test<span class="nt">&lt;/id&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;phase&gt;</span>none<span class="nt">&lt;/phase&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;/execution&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;/executions&gt;</span>
-</span><span class='line'><span class="nt">&lt;/plugin&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-Then, I configure the randomizedtesting plugin:
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;plugin&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;groupId&gt;</span>com.carrotsearch.randomizedtesting<span class="nt">&lt;/groupId&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;artifactId&gt;</span>junit4-maven-plugin<span class="nt">&lt;/artifactId&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;version&gt;</span>2.3.3<span class="nt">&lt;/version&gt;</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="nt">&lt;configuration&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;assertions</span> <span class="na">enableSystemAssertions=</span><span class="s">&quot;false&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;enable/&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;/assertions&gt;</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="nt">&lt;listeners&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;report-text</span> <span class="nt">/&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;/listeners&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;/configuration&gt;</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="nt">&lt;executions&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;execution&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;id&gt;</span>unit-tests<span class="nt">&lt;/id&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;phase&gt;</span>test<span class="nt">&lt;/phase&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;goals&gt;</span>
-</span><span class='line'>                <span class="nt">&lt;goal&gt;</span>junit4<span class="nt">&lt;/goal&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;/goals&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;inherited&gt;</span>true<span class="nt">&lt;/inherited&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;configuration&gt;</span>
-</span><span class='line'>                <span class="nt">&lt;skipTests&gt;</span>${skipUnitTests}<span class="nt">&lt;/skipTests&gt;</span>
-</span><span class='line'>                <span class="nt">&lt;includes&gt;</span>
-</span><span class='line'>                    <span class="nt">&lt;include&gt;</span>**/*Test.class<span class="nt">&lt;/include&gt;</span>
-</span><span class='line'>                <span class="nt">&lt;/includes&gt;</span>
-</span><span class='line'>                <span class="nt">&lt;excludes&gt;</span>
-</span><span class='line'>                    <span class="nt">&lt;exclude&gt;</span>**/*$*<span class="nt">&lt;/exclude&gt;</span>
-</span><span class='line'>                <span class="nt">&lt;/excludes&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;/configuration&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;/execution&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;execution&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;id&gt;</span>integration-tests<span class="nt">&lt;/id&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;phase&gt;</span>integration-test<span class="nt">&lt;/phase&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;goals&gt;</span>
-</span><span class='line'>                <span class="nt">&lt;goal&gt;</span>junit4<span class="nt">&lt;/goal&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;/goals&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;inherited&gt;</span>true<span class="nt">&lt;/inherited&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;configuration&gt;</span>
-</span><span class='line'>                <span class="nt">&lt;skipTests&gt;</span>${skipIntegTests}<span class="nt">&lt;/skipTests&gt;</span>
-</span><span class='line'>                <span class="nt">&lt;includes&gt;</span>
-</span><span class='line'>                    <span class="nt">&lt;include&gt;</span>**/*IT.class<span class="nt">&lt;/include&gt;</span>
-</span><span class='line'>                <span class="nt">&lt;/includes&gt;</span>
-</span><span class='line'>                <span class="nt">&lt;excludes&gt;</span>
-</span><span class='line'>                    <span class="nt">&lt;exclude&gt;</span>**/*$*<span class="nt">&lt;/exclude&gt;</span>
-</span><span class='line'>                <span class="nt">&lt;/excludes&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;/configuration&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;/execution&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;/executions&gt;</span>
-</span><span class='line'><span class="nt">&lt;/plugin&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-You can see in the configuration that tests with name ending with `Test` are considered as unit tests.
-Tests ending with `IT` will be launched only during integration tests phase. Note that we skip the tests
-depending on `skipUnitTests` and `skipIntegTests`.
-
-So running something like:
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>mvn clean install -DskipUnitTests
-</span></code></pre></td></tr></table></div></figure>
-
-Will only launch integration tests.
-
-### Adding profiles for 1.x and 2.x
-
-You can use Maven profiles to be able to test any version you wish.
-I choose to test only the latest version of each major branch:
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;profiles&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;profile&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;id&gt;</span>es-1x<span class="nt">&lt;/id&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;properties&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;elasticsearch.groupid&gt;</span>org.elasticsearch<span class="nt">&lt;/elasticsearch.groupid&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;elasticsearch.version&gt;</span>1.7.5<span class="nt">&lt;/elasticsearch.version&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;/properties&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;/profile&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;profile&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;id&gt;</span>es-2x<span class="nt">&lt;/id&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;properties&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;elasticsearch.groupid&gt;</span>org.elasticsearch.distribution.zip<span class="nt">&lt;/elasticsearch.groupid&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;elasticsearch.version&gt;</span>2.3.3<span class="nt">&lt;/elasticsearch.version&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;/properties&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;/profile&gt;</span>
-</span><span class='line'><span class="nt">&lt;/profiles&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-When you want to test against 5.x, just run:
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>mvn clean install
-</span></code></pre></td></tr></table></div></figure>
-
-To test against 2.x, run:
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>mvn clean install -Pes-2x
-</span></code></pre></td></tr></table></div></figure>
-
-To test against 1.x, run:
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>mvn clean install -Pes-1x
-</span></code></pre></td></tr></table></div></figure>
-
-> This is theorical as for example the test framework does not exist in 1.7 and plugins from 2.0 must
-> match the exact version they have built for.
-> But if you are building a standalone application and want to test your application, this is the
-> way to go. This is exactly what I did for [FSCrawler project](https://github.com/dadoonet/fscrawler).
-
-## Write Integration tests
-
-### Add Elasticsearch REST Client
-
-Elasticsearch 5.0.0 comes with a new low level REST client.
-We can use it to run our tests:
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;dependency&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;groupId&gt;</span>org.elasticsearch.client<span class="nt">&lt;/groupId&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;artifactId&gt;</span>rest<span class="nt">&lt;/artifactId&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;version&gt;</span>${elasticsearch.rest.version}<span class="nt">&lt;/version&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
-</span><span class='line'><span class="nt">&lt;/dependency&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-Note that we added a new maven property called `elasticsearch.rest.version`:
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;properties&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;elasticsearch.rest.version&gt;</span>5.0.0<span class="nt">&lt;/elasticsearch.rest.version&gt;</span>
-</span><span class='line'><span class="nt">&lt;/properties&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-Why is it another property than `${elasticsearch.version}` than the elasticsearch?
-Actually if you run your tests against a 2.x or 1.x version, the REST client
-does not exist for versions before 5.0. But it is compatible with older versions.
-So when we use a profile `es-1x` or `es-2x`, we must stick with the version 5.x of
-the REST plugin.
-
-### Skip tests if no cluster
-
-When we run from the IDE, we don't want to fail our tests because we did not start
-an external cluster.
-
-Let's build an abstract class for all our Integration tests:
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">AbstractITCase</span> <span class="kd">extends</span> <span class="n">ESTestCase</span> <span class="o">{</span>
-</span><span class='line'>    <span class="kd">protected</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">Logger</span> <span class="n">staticLogger</span> <span class="o">=</span> <span class="n">ESLoggerFactory</span><span class="o">.</span><span class="na">getLogger</span><span class="o">(</span><span class="s">&quot;it&quot;</span><span class="o">);</span>
-</span><span class='line'>    <span class="kd">protected</span> <span class="kd">final</span> <span class="kd">static</span> <span class="kt">int</span> <span class="n">HTTP_TEST_PORT</span> <span class="o">=</span> <span class="mi">9400</span><span class="o">;</span>
-</span><span class='line'>    <span class="kd">protected</span> <span class="kd">static</span> <span class="n">RestClient</span> <span class="n">client</span><span class="o">;</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="nd">@BeforeClass</span>
-</span><span class='line'>    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">startRestClient</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>        <span class="n">client</span> <span class="o">=</span> <span class="n">RestClient</span><span class="o">.</span><span class="na">builder</span><span class="o">(</span><span class="k">new</span> <span class="nf">HttpHost</span><span class="o">(</span><span class="s">&quot;localhost&quot;</span><span class="o">,</span> <span class="n">HTTP_TEST_PORT</span><span class="o">)).</span><span class="na">build</span><span class="o">();</span>
-</span><span class='line'>        <span class="k">try</span> <span class="o">{</span>
-</span><span class='line'>            <span class="n">Response</span> <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="na">performRequest</span><span class="o">(</span><span class="s">&quot;GET&quot;</span><span class="o">,</span> <span class="s">&quot;/&quot;</span><span class="o">);</span>
-</span><span class='line'>            <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">responseMap</span> <span class="o">=</span> <span class="n">entityAsMap</span><span class="o">(</span><span class="n">response</span><span class="o">);</span>
-</span><span class='line'>            <span class="n">assertThat</span><span class="o">(</span><span class="n">responseMap</span><span class="o">,</span> <span class="n">hasEntry</span><span class="o">(</span><span class="s">&quot;tagline&quot;</span><span class="o">,</span> <span class="s">&quot;You Know, for Search&quot;</span><span class="o">));</span>
-</span><span class='line'>            <span class="n">staticLogger</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">&quot;Integration tests ready to start... Cluster is running.&quot;</span><span class="o">);</span>
-</span><span class='line'>        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>            <span class="c1">// If we have an exception here, let&#39;s ignore the test</span>
-</span><span class='line'>            <span class="n">staticLogger</span><span class="o">.</span><span class="na">warn</span><span class="o">(</span><span class="s">&quot;Integration tests are skipped: [{}]&quot;</span><span class="o">,</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
-</span><span class='line'>            <span class="n">assumeThat</span><span class="o">(</span><span class="s">&quot;Integration tests are skipped&quot;</span><span class="o">,</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">(),</span> <span class="n">not</span><span class="o">(</span><span class="n">containsString</span><span class="o">(</span><span class="s">&quot;Connection refused&quot;</span><span class="o">)));</span>
-</span><span class='line'>            <span class="n">staticLogger</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="s">&quot;Full error is&quot;</span><span class="o">,</span> <span class="n">e</span><span class="o">);</span>
-</span><span class='line'>            <span class="n">fail</span><span class="o">(</span><span class="s">&quot;Something wrong is happening. REST Client seemed to raise an exception.&quot;</span><span class="o">);</span>
-</span><span class='line'>        <span class="o">}</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="nd">@AfterClass</span>
-</span><span class='line'>    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">stopRestClient</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="o">{</span>
-</span><span class='line'>        <span class="k">if</span> <span class="o">(</span><span class="n">client</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>            <span class="n">client</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
-</span><span class='line'>            <span class="n">client</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
-</span><span class='line'>        <span class="o">}</span>
-</span><span class='line'>        <span class="n">staticLogger</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">&quot;Stopping integration tests against an external cluster&quot;</span><span class="o">);</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-This class test before launching any test that a cluster is running on port `9400`.
-If not, `assumeThat()` method will simply mark the test as ignored.
-
-### Our first integration test
-
-We want to test that the plugin is actually loaded. So we call the [Nodes Info API](https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster-nodes-info.html).
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">BanoPluginIT</span> <span class="kd">extends</span> <span class="n">AbstractITCase</span> <span class="o">{</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testPluginIsLoaded</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="n">Response</span> <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="na">performRequest</span><span class="o">(</span><span class="s">&quot;GET&quot;</span><span class="o">,</span> <span class="s">&quot;/_nodes/plugins&quot;</span><span class="o">);</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">nodes</span> <span class="o">=</span> <span class="o">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;)</span> <span class="n">entityAsMap</span><span class="o">(</span><span class="n">response</span><span class="o">).</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;nodes&quot;</span><span class="o">);</span>
-</span><span class='line'>        <span class="k">for</span> <span class="o">(</span><span class="n">String</span> <span class="n">nodeName</span> <span class="o">:</span> <span class="n">nodes</span><span class="o">.</span><span class="na">keySet</span><span class="o">())</span> <span class="o">{</span>
-</span><span class='line'>            <span class="kt">boolean</span> <span class="n">pluginFound</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
-</span><span class='line'>            <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">node</span> <span class="o">=</span> <span class="o">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;)</span> <span class="n">nodes</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">nodeName</span><span class="o">);</span>
-</span><span class='line'>            <span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;&gt;</span> <span class="n">plugins</span> <span class="o">=</span> <span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;&gt;)</span> <span class="n">node</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;plugins&quot;</span><span class="o">);</span>
-</span><span class='line'>            <span class="k">for</span> <span class="o">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">plugin</span> <span class="o">:</span> <span class="n">plugins</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>                <span class="n">String</span> <span class="n">pluginName</span> <span class="o">=</span> <span class="o">(</span><span class="n">String</span><span class="o">)</span> <span class="n">plugin</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;name&quot;</span><span class="o">);</span>
-</span><span class='line'>                <span class="k">if</span> <span class="o">(</span><span class="n">pluginName</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">&quot;ingest-bano&quot;</span><span class="o">))</span> <span class="o">{</span>
-</span><span class='line'>                    <span class="n">pluginFound</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
-</span><span class='line'>                    <span class="k">break</span><span class="o">;</span>
-</span><span class='line'>                <span class="o">}</span>
-</span><span class='line'>            <span class="o">}</span>
-</span><span class='line'>            <span class="n">assertThat</span><span class="o">(</span><span class="n">pluginFound</span><span class="o">,</span> <span class="n">is</span><span class="o">(</span><span class="kc">true</span><span class="o">));</span>
-</span><span class='line'>        <span class="o">}</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-### Run the tests
-
-Just start `mvn install` and let Maven do all the job!
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-<span class='line-number'>55</span>
-<span class='line-number'>56</span>
-<span class='line-number'>57</span>
-<span class='line-number'>58</span>
-<span class='line-number'>59</span>
-<span class='line-number'>60</span>
-<span class='line-number'>61</span>
-<span class='line-number'>62</span>
-<span class='line-number'>63</span>
-<span class='line-number'>64</span>
-<span class='line-number'>65</span>
-<span class='line-number'>66</span>
-<span class='line-number'>67</span>
-<span class='line-number'>68</span>
-<span class='line-number'>69</span>
-<span class='line-number'>70</span>
-<span class='line-number'>71</span>
-<span class='line-number'>72</span>
-<span class='line-number'>73</span>
-<span class='line-number'>74</span>
-<span class='line-number'>75</span>
-<span class='line-number'>76</span>
-<span class='line-number'>77</span>
-<span class='line-number'>78</span>
-<span class='line-number'>79</span>
-<span class='line-number'>80</span>
-<span class='line-number'>81</span>
-<span class='line-number'>82</span>
-<span class='line-number'>83</span>
-<span class='line-number'>84</span>
-<span class='line-number'>85</span>
-<span class='line-number'>86</span>
-<span class='line-number'>87</span>
-<span class='line-number'>88</span>
-<span class='line-number'>89</span>
-<span class='line-number'>90</span>
-<span class='line-number'>91</span>
-<span class='line-number'>92</span>
-<span class='line-number'>93</span>
-<span class='line-number'>94</span>
-<span class='line-number'>95</span>
-<span class='line-number'>96</span>
-<span class='line-number'>97</span>
-<span class='line-number'>98</span>
-<span class='line-number'>99</span>
-<span class='line-number'>100</span>
-<span class='line-number'>101</span>
-<span class='line-number'>102</span>
-<span class='line-number'>103</span>
-<span class='line-number'>104</span>
-<span class='line-number'>105</span>
-<span class='line-number'>106</span>
-<span class='line-number'>107</span>
-<span class='line-number'>108</span>
-<span class='line-number'>109</span>
-<span class='line-number'>110</span>
-<span class='line-number'>111</span>
-<span class='line-number'>112</span>
-<span class='line-number'>113</span>
-<span class='line-number'>114</span>
-<span class='line-number'>115</span>
-<span class='line-number'>116</span>
-<span class='line-number'>117</span>
-<span class='line-number'>118</span>
-<span class='line-number'>119</span>
-<span class='line-number'>120</span>
-<span class='line-number'>121</span>
-<span class='line-number'>122</span>
-<span class='line-number'>123</span>
-<span class='line-number'>124</span>
-<span class='line-number'>125</span>
-<span class='line-number'>126</span>
-<span class='line-number'>127</span>
-<span class='line-number'>128</span>
-<span class='line-number'>129</span>
-<span class='line-number'>130</span>
-<span class='line-number'>131</span>
-<span class='line-number'>132</span>
-<span class='line-number'>133</span>
-<span class='line-number'>134</span>
-<span class='line-number'>135</span>
-<span class='line-number'>136</span>
-<span class='line-number'>137</span>
-<span class='line-number'>138</span>
-<span class='line-number'>139</span>
-<span class='line-number'>140</span>
-<span class='line-number'>141</span>
-<span class='line-number'>142</span>
-<span class='line-number'>143</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>mvn install
-</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> Scanning <span class="k">for</span> projects...
-</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span>
-</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> ------------------------------------------------------------------------
-</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> Building Plugin: Ingest: BANO 5.0.0-SNAPSHOT
-</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> ------------------------------------------------------------------------
-</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span>
-</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> --- maven-resources-plugin:2.6:resources <span class="o">(</span>default-resources<span class="o">)</span> @ ingest-bano ---
-</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> Copying <span class="m">0</span> resource
-</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span>
-</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> --- maven-compiler-plugin:3.3:compile <span class="o">(</span>default-compile<span class="o">)</span> @ ingest-bano ---
-</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> Nothing to compile - all classes are up to date
-</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span>
-</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> --- maven-resources-plugin:2.6:testResources <span class="o">(</span>default-testResources<span class="o">)</span> @ ingest-bano ---
-</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> Copying <span class="m">1</span> resource
-</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span>
-</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> --- maven-compiler-plugin:3.3:testCompile <span class="o">(</span>default-testCompile<span class="o">)</span> @ ingest-bano ---
-</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> Nothing to compile - all classes are up to date
-</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span>
-</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> --- junit4-maven-plugin:2.3.3:junit4 <span class="o">(</span>unit-tests<span class="o">)</span> @ ingest-bano ---
-</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> &lt;JUnit4&gt; says ahoj! Master seed: 9C880DFF84F2A5FD
-</span><span class='line'>Executing <span class="m">1</span> suite with <span class="m">1</span> JVM.
-</span><span class='line'>
-</span><span class='line'><span class="c"># UNIT TESTS HERE</span>
-</span><span class='line'>
-</span><span class='line'>Completed <span class="o">[</span>1/1<span class="o">]</span> in 4.18s, <span class="m">1</span> <span class="nb">test</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> JVM J0:     0.65 ..     5.47 <span class="o">=</span>     4.82s
-</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> Execution <span class="nb">time </span>total: 5.47 sec.
-</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> Tests summary: <span class="m">1</span> suite, <span class="m">1</span> <span class="nb">test</span>
-</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span>
-</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> --- maven-jar-plugin:2.4:jar <span class="o">(</span>default-jar<span class="o">)</span> @ ingest-bano ---
-</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span>
-</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> --- maven-assembly-plugin:2.6:single <span class="o">(</span>default<span class="o">)</span> @ ingest-bano ---
-</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> Reading assembly descriptor: /Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/src/main/assemblies/plugin.xml
-</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> Building zip: /Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/releases/ingest-bano-5.0.0-SNAPSHOT.zip
-</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span>
-</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> --- maven-dependency-plugin:2.10:copy <span class="o">(</span>integ-setup-dependencies<span class="o">)</span> @ ingest-bano ---
-</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> Configured Artifact: org.elasticsearch.distribution.zip:elasticsearch:5.0.0:zip
-</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> org.elasticsearch.distribution.zip:elasticsearch:5.0.0:zip already exists in /Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/integration-tests/binaries
-</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span>
-</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> --- maven-antrun-plugin:1.8:run <span class="o">(</span>integ-setup<span class="o">)</span> @ ingest-bano ---
-</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> Executing tasks
-</span><span class='line'>
-</span><span class='line'>main:
-</span><span class='line'>
-</span><span class='line'>stop-external-cluster:
-</span><span class='line'>
-</span><span class='line'>setup-workspace:
-</span><span class='line'>   <span class="o">[</span>delete<span class="o">]</span> Deleting directory /Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/integration-tests/run
-</span><span class='line'>    <span class="o">[</span>unzip<span class="o">]</span> Expanding: /Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/integration-tests/binaries/elasticsearch-5.0.0.zip into /Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/integration-tests/run
-</span><span class='line'>
-</span><span class='line'>start-external-cluster-with-plugin:
-</span><span class='line'>     <span class="o">[</span><span class="nb">echo</span><span class="o">]</span> Installing plugin ingest-bano...
-</span><span class='line'>    <span class="o">[</span>mkdir<span class="o">]</span> Created dir: /Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/integration-tests/run/tmp/null463372788
-</span><span class='line'>&lt;?xml <span class="nv">version</span><span class="o">=</span><span class="s2">&quot;1.0&quot;</span> <span class="nv">encoding</span><span class="o">=</span><span class="s2">&quot;UTF-8&quot;</span>?&gt;
-</span><span class='line'>&lt;<span class="nb">exec </span><span class="nv">script</span><span class="o">=</span><span class="s2">&quot;elasticsearch-plugin&quot;</span>&gt;
-</span><span class='line'>  &lt;arg <span class="nv">value</span><span class="o">=</span><span class="s2">&quot;install&quot;</span> /&gt;
-</span><span class='line'>  &lt;arg <span class="nv">value</span><span class="o">=</span><span class="s2">&quot;file:/Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/releases/ingest-bano-5.0.0.zip&quot;</span> /&gt;
-</span><span class='line'>&lt;/exec&gt;
-</span><span class='line'><span class="o">[</span>elasticsearch-plugin<span class="o">]</span> Plugins directory <span class="o">[</span>/Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/integration-tests/run/elasticsearch-5.0.0/plugins<span class="o">]</span> does not exist. Creating...
-</span><span class='line'><span class="o">[</span>elasticsearch-plugin<span class="o">]</span> -&gt; Downloading file:/Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/releases/ingest-bano-5.0.0-SNAPSHOT.zip
-</span><span class='line'><span class="o">[</span>elasticsearch-plugin<span class="o">]</span>
-</span><span class='line'><span class="o">[</span>elasticsearch-plugin<span class="o">]</span> <span class="o">[================================================</span>&gt;<span class="o">]</span> 99%   <span class="o">[=================================================]</span> 100%   -&gt; Installed ingest-bano
-</span><span class='line'>     <span class="o">[</span><span class="nb">echo</span><span class="o">]</span> Starting up external cluster...
-</span><span class='line'>     <span class="o">[</span><span class="nb">echo</span><span class="o">]</span> running Elasticsearch 5.0.0 or superior
-</span><span class='line'>    <span class="o">[</span>mkdir<span class="o">]</span> Created dir: /Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/integration-tests/run/tmp/null353022298
-</span><span class='line'>&lt;?xml <span class="nv">version</span><span class="o">=</span><span class="s2">&quot;1.0&quot;</span> <span class="nv">encoding</span><span class="o">=</span><span class="s2">&quot;UTF-8&quot;</span>?&gt;
-</span><span class='line'>&lt;<span class="nb">exec </span><span class="nv">script</span><span class="o">=</span><span class="s2">&quot;elasticsearch&quot;</span>&gt;
-</span><span class='line'>  &lt;arg <span class="nv">value</span><span class="o">=</span><span class="s2">&quot;-Epidfile=/Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/integration-tests/run/es.pid&quot;</span> /&gt;
-</span><span class='line'>  &lt;arg <span class="nv">value</span><span class="o">=</span><span class="s2">&quot;-Ecluster.name=elasticsearch_integration&quot;</span> /&gt;
-</span><span class='line'>  &lt;arg <span class="nv">value</span><span class="o">=</span><span class="s2">&quot;-Ehttp.port=9400&quot;</span> /&gt;
-</span><span class='line'>  &lt;arg <span class="nv">value</span><span class="o">=</span><span class="s2">&quot;-Etransport.tcp.port=9500&quot;</span> /&gt;
-</span><span class='line'>  &lt;arg <span class="nv">value</span><span class="o">=</span><span class="s2">&quot;-Enetwork.host=127.0.0.1&quot;</span> /&gt;
-</span><span class='line'>&lt;/exec&gt;
-</span><span class='line'>     <span class="o">[</span><span class="nb">echo</span><span class="o">]</span> Waiting <span class="k">for</span> elasticsearch to become available on port 9400...
-</span><span class='line'><span class="o">[</span>elasticsearch<span class="o">]</span> <span class="o">[</span>2016-07-29 01:54:01,457<span class="o">][</span>INFO <span class="o">][</span>node                     <span class="o">]</span> <span class="o">[]</span> initializing ...
-</span><span class='line'><span class="o">[</span>elasticsearch<span class="o">]</span> <span class="o">[</span>2016-07-29 01:54:01,526<span class="o">][</span>INFO <span class="o">][</span>env                      <span class="o">]</span> <span class="o">[</span>GTlhLM8<span class="o">]</span> using <span class="o">[</span>1<span class="o">]</span> data paths, mounts <span class="o">[[</span>/ <span class="o">(</span>/dev/disk1<span class="o">)]]</span>, net usable_space <span class="o">[</span>24.1gb<span class="o">]</span>, net total_space <span class="o">[</span>464.7gb<span class="o">]</span>, spins? <span class="o">[</span>unknown<span class="o">]</span>, types <span class="o">[</span>hfs<span class="o">]</span>
-</span><span class='line'><span class="o">[</span>elasticsearch<span class="o">]</span> <span class="o">[</span>2016-07-29 01:54:01,526<span class="o">][</span>INFO <span class="o">][</span>env                      <span class="o">]</span> <span class="o">[</span>GTlhLM8<span class="o">]</span> heap size <span class="o">[</span>1.9gb<span class="o">]</span>, compressed ordinary object pointers <span class="o">[</span><span class="nb">true</span><span class="o">]</span>
-</span><span class='line'><span class="o">[</span>elasticsearch<span class="o">]</span> <span class="o">[</span>2016-07-29 01:54:01,527<span class="o">][</span>INFO <span class="o">][</span>node                     <span class="o">]</span> <span class="o">[</span>GTlhLM8<span class="o">]</span> node name <span class="o">[</span>GTlhLM8<span class="o">]</span> derived from node ID<span class="p">;</span> <span class="nb">set</span> <span class="o">[</span>node.name<span class="o">]</span> to override
-</span><span class='line'><span class="o">[</span>elasticsearch<span class="o">]</span> <span class="o">[</span>2016-07-29 01:54:01,528<span class="o">][</span>INFO <span class="o">][</span>node                     <span class="o">]</span> <span class="o">[</span>GTlhLM8<span class="o">]</span> version<span class="o">[</span>5.0.0<span class="o">]</span>, pid<span class="o">[</span>2942<span class="o">]</span>, build<span class="o">[</span>0d2ccf0/2016-07-28T15:02:31.650Z<span class="o">]</span>, OS<span class="o">[</span>Mac OS X/10.11.5/x86_64<span class="o">]</span>, JVM<span class="o">[</span>Oracle Corporation/Java HotSpot<span class="o">(</span>TM<span class="o">)</span> 64-Bit Server VM/1.8.0_60/25.60-b23<span class="o">]</span>
-</span><span class='line'><span class="o">[</span>elasticsearch<span class="o">]</span> <span class="o">[</span>2016-07-29 01:54:02,442<span class="o">][</span>INFO <span class="o">][</span>io.netty.util.internal.PlatformDependent<span class="o">]</span> Your platform does not provide <span class="nb">complete </span>low-level API <span class="k">for</span> accessing direct buffers reliably. Unless explicitly requested, heap buffer will always be preferred to avoid potential system unstability.
-</span><span class='line'><span class="o">[</span>elasticsearch<span class="o">]</span> <span class="o">[</span>2016-07-29 01:54:02,472<span class="o">][</span>INFO <span class="o">][</span>plugins                  <span class="o">]</span> <span class="o">[</span>GTlhLM8<span class="o">]</span> loaded module <span class="o">[</span>aggs-matrix-stats<span class="o">]</span>
-</span><span class='line'><span class="o">[</span>elasticsearch<span class="o">]</span> <span class="o">[</span>2016-07-29 01:54:02,473<span class="o">][</span>INFO <span class="o">][</span>plugins                  <span class="o">]</span> <span class="o">[</span>GTlhLM8<span class="o">]</span> loaded module <span class="o">[</span>ingest-common<span class="o">]</span>
-</span><span class='line'><span class="o">[</span>elasticsearch<span class="o">]</span> <span class="o">[</span>2016-07-29 01:54:02,473<span class="o">][</span>INFO <span class="o">][</span>plugins                  <span class="o">]</span> <span class="o">[</span>GTlhLM8<span class="o">]</span> loaded module <span class="o">[</span>lang-expression<span class="o">]</span>
-</span><span class='line'><span class="o">[</span>elasticsearch<span class="o">]</span> <span class="o">[</span>2016-07-29 01:54:02,473<span class="o">][</span>INFO <span class="o">][</span>plugins                  <span class="o">]</span> <span class="o">[</span>GTlhLM8<span class="o">]</span> loaded module <span class="o">[</span>lang-groovy<span class="o">]</span>
-</span><span class='line'><span class="o">[</span>elasticsearch<span class="o">]</span> <span class="o">[</span>2016-07-29 01:54:02,473<span class="o">][</span>INFO <span class="o">][</span>plugins                  <span class="o">]</span> <span class="o">[</span>GTlhLM8<span class="o">]</span> loaded module <span class="o">[</span>lang-mustache<span class="o">]</span>
-</span><span class='line'><span class="o">[</span>elasticsearch<span class="o">]</span> <span class="o">[</span>2016-07-29 01:54:02,473<span class="o">][</span>INFO <span class="o">][</span>plugins                  <span class="o">]</span> <span class="o">[</span>GTlhLM8<span class="o">]</span> loaded module <span class="o">[</span>lang-painless<span class="o">]</span>
-</span><span class='line'><span class="o">[</span>elasticsearch<span class="o">]</span> <span class="o">[</span>2016-07-29 01:54:02,473<span class="o">][</span>INFO <span class="o">][</span>plugins                  <span class="o">]</span> <span class="o">[</span>GTlhLM8<span class="o">]</span> loaded module <span class="o">[</span>percolator<span class="o">]</span>
-</span><span class='line'><span class="o">[</span>elasticsearch<span class="o">]</span> <span class="o">[</span>2016-07-29 01:54:02,473<span class="o">][</span>INFO <span class="o">][</span>plugins                  <span class="o">]</span> <span class="o">[</span>GTlhLM8<span class="o">]</span> loaded module <span class="o">[</span>reindex<span class="o">]</span>
-</span><span class='line'><span class="o">[</span>elasticsearch<span class="o">]</span> <span class="o">[</span>2016-07-29 01:54:02,473<span class="o">][</span>INFO <span class="o">][</span>plugins                  <span class="o">]</span> <span class="o">[</span>GTlhLM8<span class="o">]</span> loaded module <span class="o">[</span>transport-netty3<span class="o">]</span>
-</span><span class='line'><span class="o">[</span>elasticsearch<span class="o">]</span> <span class="o">[</span>2016-07-29 01:54:02,473<span class="o">][</span>INFO <span class="o">][</span>plugins                  <span class="o">]</span> <span class="o">[</span>GTlhLM8<span class="o">]</span> loaded module <span class="o">[</span>transport-netty4<span class="o">]</span>
-</span><span class='line'><span class="o">[</span>elasticsearch<span class="o">]</span> <span class="o">[</span>2016-07-29 01:54:02,475<span class="o">][</span>INFO <span class="o">][</span>plugins                  <span class="o">]</span> <span class="o">[</span>GTlhLM8<span class="o">]</span> loaded plugin <span class="o">[</span>ingest-bano<span class="o">]</span>
-</span><span class='line'><span class="o">[</span>elasticsearch<span class="o">]</span> <span class="o">[</span>2016-07-29 01:54:04,280<span class="o">][</span>INFO <span class="o">][</span>node                     <span class="o">]</span> <span class="o">[</span>GTlhLM8<span class="o">]</span> initialized
-</span><span class='line'><span class="o">[</span>elasticsearch<span class="o">]</span> <span class="o">[</span>2016-07-29 01:54:04,280<span class="o">][</span>INFO <span class="o">][</span>node                     <span class="o">]</span> <span class="o">[</span>GTlhLM8<span class="o">]</span> starting ...
-</span><span class='line'><span class="o">[</span>elasticsearch<span class="o">]</span> <span class="o">[</span>2016-07-29 01:54:04,374<span class="o">][</span>INFO <span class="o">][</span>transport                <span class="o">]</span> <span class="o">[</span>GTlhLM8<span class="o">]</span> publish_address <span class="o">{</span>127.0.0.1:9500<span class="o">}</span>, bound_addresses <span class="o">{</span>127.0.0.1:9500<span class="o">}</span>
-</span><span class='line'><span class="o">[</span>elasticsearch<span class="o">]</span> <span class="o">[</span>2016-07-29 01:54:04,384<span class="o">][</span>WARN <span class="o">][</span>bootstrap                <span class="o">]</span> <span class="o">[</span>GTlhLM8<span class="o">]</span> initial heap size <span class="o">[</span>268435456<span class="o">]</span> not equal to maximum heap size <span class="o">[</span>2147483648<span class="o">]</span><span class="p">;</span> this can cause resize pauses and prevents mlockall from locking the entire heap
-</span><span class='line'><span class="o">[</span>elasticsearch<span class="o">]</span> <span class="o">[</span>2016-07-29 01:54:04,384<span class="o">][</span>WARN <span class="o">][</span>bootstrap                <span class="o">]</span> <span class="o">[</span>GTlhLM8<span class="o">]</span> please <span class="nb">set</span> <span class="o">[</span>discovery.zen.minimum_master_nodes<span class="o">]</span> to a majority of the number of master eligible nodes in your cluster
-</span><span class='line'><span class="o">[</span>elasticsearch<span class="o">]</span> <span class="o">[</span>2016-07-29 01:54:07,442<span class="o">][</span>INFO <span class="o">][</span>cluster.service          <span class="o">]</span> <span class="o">[</span>GTlhLM8<span class="o">]</span> new_master <span class="o">{</span>GTlhLM8<span class="o">}{</span>GTlhLM8vRK2YltPhlJOgTA<span class="o">}{</span>C2ab3gH0S9OonOtQNbkmxw<span class="o">}{</span>127.0.0.1<span class="o">}{</span>127.0.0.1:9500<span class="o">}</span>, reason: zen-disco-elected-as-master <span class="o">([</span>0<span class="o">]</span> nodes joined<span class="o">)</span>
-</span><span class='line'><span class="o">[</span>elasticsearch<span class="o">]</span> <span class="o">[</span>2016-07-29 01:54:07,453<span class="o">][</span>INFO <span class="o">][</span>http                     <span class="o">]</span> <span class="o">[</span>GTlhLM8<span class="o">]</span> publish_address <span class="o">{</span>127.0.0.1:9400<span class="o">}</span>, bound_addresses <span class="o">{</span>127.0.0.1:9400<span class="o">}</span>
-</span><span class='line'><span class="o">[</span>elasticsearch<span class="o">]</span> <span class="o">[</span>2016-07-29 01:54:07,453<span class="o">][</span>INFO <span class="o">][</span>node                     <span class="o">]</span> <span class="o">[</span>GTlhLM8<span class="o">]</span> started
-</span><span class='line'><span class="o">[</span>elasticsearch<span class="o">]</span> <span class="o">[</span>2016-07-29 01:54:07,461<span class="o">][</span>INFO <span class="o">][</span>gateway                  <span class="o">]</span> <span class="o">[</span>GTlhLM8<span class="o">]</span> recovered <span class="o">[</span>0<span class="o">]</span> indices into cluster_state
-</span><span class='line'>     <span class="o">[</span><span class="nb">echo</span><span class="o">]</span> External node started PID 2942
-</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> Executed tasks
-</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span>
-</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> --- junit4-maven-plugin:2.3.3:junit4 <span class="o">(</span>integration-tests<span class="o">)</span> @ ingest-bano ---
-</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> &lt;JUnit4&gt; says jolly good day! Master seed: 781C148F31C34F3D
-</span><span class='line'>Executing <span class="m">1</span> suite with <span class="m">1</span> JVM.
-</span><span class='line'>
-</span><span class='line'>Started J0 PID<span class="o">(</span>2958@MacBook-Pro-4.local<span class="o">)</span>.
-</span><span class='line'>Suite: org.elasticsearch.ingest.bano.BanoPluginIT
-</span><span class='line'>  1&gt; <span class="o">[</span>2016-07-29 01:54:08,648<span class="o">][</span>WARN <span class="o">][</span>org.elasticsearch.bootstrap<span class="o">]</span> Unable to lock JVM Memory: <span class="nv">error</span><span class="o">=</span>78, <span class="nv">reason</span><span class="o">=</span>Function not implemented
-</span><span class='line'>  1&gt; <span class="o">[</span>2016-07-29 01:54:08,649<span class="o">][</span>WARN <span class="o">][</span>org.elasticsearch.bootstrap<span class="o">]</span> This can result in part of the JVM being swapped out.
-</span><span class='line'>  1&gt; <span class="o">[</span>2016-07-29 01:54:09,496<span class="o">][</span>INFO <span class="o">][</span>it                       <span class="o">]</span> Integration tests ready to start... Cluster is running.
-</span><span class='line'>OK      0.10s <span class="p">|</span> BanoPluginIT.testPluginIsLoaded
-</span><span class='line'>  1&gt; <span class="o">[</span>2016-07-29 01:54:09,603<span class="o">][</span>INFO <span class="o">][</span>it                       <span class="o">]</span> Stopping integration tests against an external cluster
-</span><span class='line'>Completed <span class="o">[</span>1/1<span class="o">]</span> in 1.22s, <span class="m">1</span> <span class="nb">test</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> JVM J0:     0.27 ..     2.04 <span class="o">=</span>     1.77s
-</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> Execution <span class="nb">time </span>total: 2.05 sec.
-</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> Tests summary: <span class="m">1</span> suite, <span class="m">1</span> <span class="nb">test</span>
-</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span>
-</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> --- maven-antrun-plugin:1.8:run <span class="o">(</span>integ-teardown<span class="o">)</span> @ ingest-bano ---
-</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> Executing tasks
-</span><span class='line'>
-</span><span class='line'>main:
-</span><span class='line'>
-</span><span class='line'>stop-external-cluster:
-</span><span class='line'>     <span class="o">[</span><span class="nb">echo</span><span class="o">]</span> Shutting down external node PID 2942
-</span><span class='line'>   <span class="o">[</span>delete<span class="o">]</span> Deleting: /Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/integration-tests/run/es.pid
-</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> Executed tasks
-</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span>
-</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> --- maven-install-plugin:2.4:install <span class="o">(</span>default-install<span class="o">)</span> @ ingest-bano ---
-</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> Installing /Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/ingest-bano-5.0.0-SNAPSHOT.jar to /Users/dpilato/.m2/repository/fr/pilato/elasticsearch/ingest/ingest-bano/5.0.0-SNAPSHOT/ingest-bano-5.0.0-SNAPSHOT.jar
-</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> Installing /Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/pom.xml to /Users/dpilato/.m2/repository/fr/pilato/elasticsearch/ingest/ingest-bano/5.0.0-SNAPSHOT/ingest-bano-5.0.0-SNAPSHOT.pom
-</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> Installing /Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/releases/ingest-bano-5.0.0-SNAPSHOT.zip to /Users/dpilato/.m2/repository/fr/pilato/elasticsearch/ingest/ingest-bano/5.0.0-SNAPSHOT/ingest-bano-5.0.0-SNAPSHOT.zip
-</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> ------------------------------------------------------------------------
-</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> BUILD SUCCESS
-</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> ------------------------------------------------------------------------
-</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> Total <span class="nb">time</span>: 22.102 s
-</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> Finished at: 2016-07-29T01:54:10+02:00
-</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> Final Memory: 31M/545M
-</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> ------------------------------------------------------------------------
-</span></code></pre></td></tr></table></div></figure>
-
-You can see at the end the execution of integration tests from this line:
-
-`[INFO] --- junit4-maven-plugin:2.3.3:junit4 (integration-tests) @ ingest-bano ---`
-
-Done!
 ]]></content>
   </entry>
   
