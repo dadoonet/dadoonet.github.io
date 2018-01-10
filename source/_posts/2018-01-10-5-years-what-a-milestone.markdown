@@ -227,7 +227,7 @@ I just have to launch filebeat now and let it work:
 
 ## Kibana analysis
 
-I'm changing a bit the [https://73531b275dde9af18f03de55b5d02fca.us-east-1.aws.found.io:9243/app/kibana#/dashboard/Talks](Kibana dashboard) (demo / elastic). Well, 6.x is providing new cool features, so let's use that.
+I'm changing a bit the [Kibana dashboard](https://73531b275dde9af18f03de55b5d02fca.us-east-1.aws.found.io:9243/app/kibana#/dashboard/Talks) (demo / elastic). Well, 6.x is providing new cool features, so let's use that.
 
 By the way, I'm changing my own made `kibana_reader` role for the `demo` user to the official `kibana_dashboard_only_user` role.
 This is a super cool "Read Only mode" feature provided by X-Pack as it removes all the buttons you don't have access to anyway.
