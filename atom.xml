@@ -4,7 +4,7 @@
   <title><![CDATA[-Xmx128gb -Xms128gb]]></title>
   <link href="http://david.pilato.fr/atom.xml" rel="self"/>
   <link href="http://david.pilato.fr/"/>
-  <updated>2018-01-10T08:14:51+01:00</updated>
+  <updated>2018-01-10T08:40:12+01:00</updated>
   <id>http://david.pilato.fr/</id>
   <author>
     <name><![CDATA[David Pilato]]></name>
@@ -337,7 +337,7 @@ change as well the filebeat configuration. I don&rsquo;t want to <code>cat</code
 
 <h2>Kibana analysis</h2>
 
-<p>I&rsquo;m changing a bit the <a href="Kibana%20dashboard">https://73531b275dde9af18f03de55b5d02fca.us-east-1.aws.found.io:9243/app/kibana#/dashboard/Talks</a> (demo / elastic). Well, 6.x is providing new cool features, so let&rsquo;s use that.</p>
+<p>I&rsquo;m changing a bit the <a href="https://73531b275dde9af18f03de55b5d02fca.us-east-1.aws.found.io:9243/app/kibana#/dashboard/Talks">Kibana dashboard</a> (demo / elastic). Well, 6.x is providing new cool features, so let&rsquo;s use that.</p>
 
 <p>By the way, I&rsquo;m changing my own made <code>kibana_reader</code> role for the <code>demo</code> user to the official <code>kibana_dashboard_only_user</code> role.
 This is a super cool &ldquo;Read Only mode&rdquo; feature provided by X-Pack as it removes all the buttons you don&rsquo;t have access to anyway.</p>
