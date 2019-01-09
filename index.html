@@ -9,8 +9,9 @@
   <meta name="author" content="David Pilato">
 
   
-  <meta name="description" content="What a milestone! Can you imagine how changed the company in the last 5 years?
-From 10 employees when I joined to more than 700 now! If you want to &hellip;">
+  <meta name="description" content="This blog post is part of a series of 3: Importing Bano dataset with Logstash
+Using Logstash to lookup for addresses in Bano index
+Using Logstash to &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -82,6 +83,214 @@ ga('send', 'pageview');
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><img src="/images/covers/new/logstash.png"/><a href="/blog/2018/03/24/enriching-your-postal-addresses-with-elastic-stack-part-3/">Enriching Your Postal Addresses With Elastic Stack - Part 3</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2018-03-24T17:33:30+01:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>24</span><span class='date-suffix'>th</span>, <span class='date-year'>2018</span></span> <span class='time'>5:33 pm</span></time>
+        
+           | <a href="/blog/2018/03/24/enriching-your-postal-addresses-with-elastic-stack-part-3/#disqus_thread"
+             data-disqus-identifier="http://david.pilato.fr/blog/2018/03/24/enriching-your-postal-addresses-with-elastic-stack-part-3/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>This blog post is part of a series of 3:</p>
+
+<ul>
+<li><a href="/blog/2018/03/22/enriching-your-postal-addresses-with-elastic-stack-part-1/">Importing Bano dataset with Logstash</a></li>
+<li><a href="/blog/2018/03/24/enriching-your-postal-addresses-with-elastic-stack-part-2/">Using Logstash to lookup for addresses in Bano index</a></li>
+<li><a href="/blog/2018/03/24/enriching-your-postal-addresses-with-elastic-stack-part-3/">Using Logstash to enrich an existing dataset with Bano</a></li>
+</ul>
+
+
+<p>In the <a href="/blog/2018/03/24/enriching-your-postal-addresses-with-elastic-stack-part-2/">previous post</a>, we described how we can transform a postal address to a normalized one with also the geo location point or transform a geo location point to a postal address.</p>
+
+<p>Let&rsquo;s say we have an existing dataset we want to enrich.</p>
+
+<p>We will consider 3 scenarios:</p>
+
+<ul>
+<li>We have a CSV file</li>
+<li>We have a Relational Database, MySQL</li>
+<li>We have data in elasticsearch</li>
+</ul>
+
+
+<p>Let&rsquo;s see how to enrich those datasets.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2018/03/24/enriching-your-postal-addresses-with-elastic-stack-part-3/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><img src="/images/covers/new/logstash.png"/><a href="/blog/2018/03/24/enriching-your-postal-addresses-with-elastic-stack-part-2/">Enriching Your Postal Addresses With Elastic Stack - Part 2</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2018-03-24T09:20:28+01:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>24</span><span class='date-suffix'>th</span>, <span class='date-year'>2018</span></span> <span class='time'>9:20 am</span></time>
+        
+           | <a href="/blog/2018/03/24/enriching-your-postal-addresses-with-elastic-stack-part-2/#disqus_thread"
+             data-disqus-identifier="http://david.pilato.fr/blog/2018/03/24/enriching-your-postal-addresses-with-elastic-stack-part-2/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>This blog post is part of a series of 3:</p>
+
+<ul>
+<li><a href="/blog/2018/03/22/enriching-your-postal-addresses-with-elastic-stack-part-1/">Importing Bano dataset with Logstash</a></li>
+<li><a href="/blog/2018/03/24/enriching-your-postal-addresses-with-elastic-stack-part-2/">Using Logstash to lookup for addresses in Bano index</a></li>
+<li><a href="/blog/2018/03/24/enriching-your-postal-addresses-with-elastic-stack-part-3/">Using Logstash to enrich an existing dataset with Bano</a></li>
+</ul>
+
+
+<p>In the <a href="/blog/2018/03/22/enriching-your-postal-addresses-with-elastic-stack-part-1/">previous post</a>, we described how we indexed data coming from the <a href="http://openstreetmap.fr/bano">BANO project</a> so we now have indices containing all the french postal addresses.</p>
+
+<p>Let&rsquo;s see what we can do now with this dataset.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2018/03/24/enriching-your-postal-addresses-with-elastic-stack-part-2/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><img src="/images/covers/new/logstash.png"/><a href="/blog/2018/03/22/enriching-your-postal-addresses-with-elastic-stack-part-1/">Enriching Your Postal Addresses With Elastic Stack - Part 1</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2018-03-22T15:31:49+01:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>22</span><span class='date-suffix'>nd</span>, <span class='date-year'>2018</span></span> <span class='time'>3:31 pm</span></time>
+        
+           | <a href="/blog/2018/03/22/enriching-your-postal-addresses-with-elastic-stack-part-1/#disqus_thread"
+             data-disqus-identifier="http://david.pilato.fr/blog/2018/03/22/enriching-your-postal-addresses-with-elastic-stack-part-1/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>This blog post is part of a series of 3:</p>
+
+<ul>
+<li><a href="/blog/2018/03/22/enriching-your-postal-addresses-with-elastic-stack-part-1/">Importing Bano dataset with Logstash</a></li>
+<li><a href="/blog/2018/03/24/enriching-your-postal-addresses-with-elastic-stack-part-2/">Using Logstash to lookup for addresses in Bano index</a></li>
+<li><a href="/blog/2018/03/24/enriching-your-postal-addresses-with-elastic-stack-part-3/">Using Logstash to enrich an existing dataset with Bano</a></li>
+</ul>
+
+
+<p>I&rsquo;m not really sure why, but I love the postal address use case.
+Often in my career I had to deal with that information.
+Very often the information is not well formatted so it&rsquo;s hard to find the information you need when you have as an input a not so nice dataset.</p>
+
+<p>Let&rsquo;s take a simple use case. I have a user in my database like:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Joe Smith&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nt">&quot;address&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nt">&quot;number&quot;</span><span class="p">:</span> <span class="s2">&quot;23&quot;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;street_name&quot;</span><span class="p">:</span> <span class="s2">&quot;r verdiere&quot;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;city&quot;</span><span class="p">:</span> <span class="s2">&quot;rochelle&quot;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;country&quot;</span><span class="p">:</span> <span class="s2">&quot;France&quot;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>If you live in France you might notice that this address is fairly incomplete.
+If we want to send a letter to <code>Joe</code>, it&rsquo;s going to be hard.</p>
+
+<p>Also, I&rsquo;d really like to display on a map, where my customers are located in France.</p>
+
+<p>On the other way around, let&rsquo;s say I&rsquo;m collecting data from a mobile application where I&rsquo;m meeting friends and I&rsquo;d like to remember automatically what was the address of the location last time we met. Basically I have data like:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Joe Smith&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nt">&quot;location&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nt">&quot;lat&quot;</span><span class="p">:</span> <span class="mf">46.15735</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;lon&quot;</span><span class="p">:</span> <span class="mf">-1.1551</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And I would like to get back the postal address matching this location.</p>
+
+<p>What can we do for that?</p>
+
+<p>We need something to enrich the existing data by fixing the address and providing actual coordinates or the other way back.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2018/03/22/enriching-your-postal-addresses-with-elastic-stack-part-1/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -567,191 +776,6 @@ I wrote myself some plugins called <a href="https://www.elastic.co/blog/deprecat
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><img src="/images/covers/new/elasticsearch.png"/><a href="/blog/2016/10/16/creating-a-plugin-for-elasticsearch-5-dot-0-using-maven-updated-for-ga/">Creating a Plugin for Elasticsearch 5.0 Using Maven (Updated for GA)</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2016-10-16T04:00:00+02:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>16</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>4:00 am</span></time>
-        
-           | <a href="/blog/2016/10/16/creating-a-plugin-for-elasticsearch-5-dot-0-using-maven-updated-for-ga/#disqus_thread"
-             data-disqus-identifier="http://david.pilato.fr/blog/2016/10/16/creating-a-plugin-for-elasticsearch-5-dot-0-using-maven-updated-for-ga/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><strong>NOTE:</strong> This article is an updated version of <a href="/blog/2016/07/27/creating-a-plugin-for-elasticsearch-5-dot-0-using-maven/">Creating a plugin for elasticsearch 5.0 using Maven</a></p>
-
-<p>Elasticsearch 5.0 <a href="https://github.com/elastic/elasticsearch/issues/13930">switched to Gradle in October 2015</a>.</p>
-
-<p>You can obviously write a plugin using Gradle if you wish and you could benefit from all the goodies elasticsearch team wrote
-when it comes to integration tests and so on.</p>
-
-<p>My colleague, Alexander Reelsen aka <a href="http://twitter.com/spinscale">Spinscale on Twitter</a>, wrote
-<a href="https://github.com/spinscale/cookiecutter-elasticsearch-ingest-processor">a super nice template</a> if
-you wish to create an Ingest plugin for 5.0.</p>
-
-<blockquote><p>Hey! Wait! You wrote <code>Ingest</code>? What is that?</p></blockquote>
-
-<p>Ingest is a new feature coming in elasticsearch 5.0. It helps you to transform your data on the fly
-while injecting it into elasticsearch. Read more in <a href="https://www.elastic.co/blog/ingest-node-a-clients-perspective">elastic blog post</a>.</p>
-
-<p>If you know me and my work before I joined elastic, I have always been in love with data crawling and transformation as
-I wrote myself some plugins called <a href="https://www.elastic.co/blog/deprecating-rivers">rivers</a>.</p>
-
-<p>This blog post is part of a series which will teach you:</p>
-
-<ul>
-<li>How to write a plugin for elasticsearch 5.0 using Maven (what you are reading now).</li>
-<li><a href="/blog/2016/10/17/creating-an-ingest-plugin-for-elasticsearch-updated-for-ga/">How to write an ingest plugin for elasticsearch 5.0</a>.</li>
-<li>How I wrote the <code>ingest-bano</code> plugin which will be hopefully released soonish.</li>
-</ul>
-
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2016/10/16/creating-a-plugin-for-elasticsearch-5-dot-0-using-maven-updated-for-ga/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><img src="/images/covers/new/elasticsearch.png"/><a href="/blog/2016/08/03/elasticsearch-real-integration-tests-with-security-enabled/">Elasticsearch Real Integration Tests With Security Enabled</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2016-08-03T18:24:37+02:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>3</span><span class='date-suffix'>rd</span>, <span class='date-year'>2016</span></span> <span class='time'>6:24 pm</span></time>
-        
-           | <a href="/blog/2016/08/03/elasticsearch-real-integration-tests-with-security-enabled/#disqus_thread"
-             data-disqus-identifier="http://david.pilato.fr/blog/2016/08/03/elasticsearch-real-integration-tests-with-security-enabled/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><strong>NOTE:</strong> This article is now outdated. Please read <a href="/blog/2016/10/21/elasticsearch-real-integration-tests-with-security-enabled-updated-for-ga/">Elasticsearch real integration tests with security enabled (Updated for GA)</a> instead!</p>
-
-<p>In a recent post we have seen <a href="/blog/2016/07/29/elasticsearch-real-integration-tests/">how to create real integration tests</a>.
-Those tests launch a real elasticsearch cluster, then run some tests you write with JUnit or your favorite test framework
-then stop the cluster.</p>
-
-<p>But sometimes, you may want to add existing plugins in your integration test cluster.</p>
-
-<p>For example, you might want to use <a href="https://www.elastic.co/downloads/x-pack">X-Pack</a> to bring fantastic features such as:</p>
-
-<ul>
-<li>Security</li>
-<li>Alerting</li>
-<li>Monitoring</li>
-<li>Graph</li>
-<li>Reporting</li>
-</ul>
-
-
-<p>Let&rsquo;s see how you can do that with Maven and Ant again&hellip;</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2016/08/03/elasticsearch-real-integration-tests-with-security-enabled/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><img src="/images/covers/new/elasticsearch.png"/><a href="/blog/2016/08/01/creating-elasticsearch-transport-action/">Creating Elasticsearch Transport Action</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2016-08-01T17:33:29+02:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>1</span><span class='date-suffix'>st</span>, <span class='date-year'>2016</span></span> <span class='time'>5:33 pm</span></time>
-        
-           | <a href="/blog/2016/08/01/creating-elasticsearch-transport-action/#disqus_thread"
-             data-disqus-identifier="http://david.pilato.fr/blog/2016/08/01/creating-elasticsearch-transport-action/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><strong>NOTE:</strong> This article is now outdated. Please read <a href="/blog/2016/10/20/creating-elasticsearch-transport-action-updated-for-ga/">Creating Elasticsearch Transport Action (Updated for GA)</a> instead!</p>
-
-<p>This blog post is part of a series which will teach you:</p>
-
-<ul>
-<li><a href="/blog/2016/07/27/creating-a-plugin-for-elasticsearch-5-dot-0-using-maven/">How to write a plugin for elasticsearch 5.0 using Maven</a>.</li>
-<li><a href="/blog/2016/07/30/adding-a-new-rest-endpoint-to-elasticsearch/">How to add a new REST endpoint plugin to elasticsearch 5.0</a>.</li>
-<li>How to use Transport Action classes  (what you are reading now).</li>
-<li>How I wrote the <code>ingest-bano</code> plugin which will be hopefully released soonish. In this plugin, new REST endpoints have been added.</li>
-</ul>
-
-
-<p>In <a href="/blog/2016/07/30/adding-a-new-rest-endpoint-to-elasticsearch/">the previous article</a>, we discovered how to add a REST plugin.
-It was a simple implementation as in <code>RestHelloAction</code> class we wrote something like:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kt">void</span> <span class="nf">handleRequest</span><span class="o">(</span><span class="n">RestRequest</span> <span class="n">request</span><span class="o">,</span> <span class="n">RestChannel</span> <span class="n">channel</span><span class="o">,</span> <span class="n">NodeClient</span> <span class="n">client</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
-</span><span class='line'>    <span class="n">RestToXContentListener</span><span class="o">&lt;</span><span class="n">ToXContent</span><span class="o">&gt;</span> <span class="n">listener</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RestToXContentListener</span><span class="o">&lt;&gt;(</span><span class="n">channel</span><span class="o">);</span>
-</span><span class='line'>    <span class="n">String</span> <span class="n">name</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="na">param</span><span class="o">(</span><span class="s">&quot;name&quot;</span><span class="o">);</span>
-</span><span class='line'>    <span class="n">listener</span><span class="o">.</span><span class="na">onResponse</span><span class="o">(</span><span class="k">new</span> <span class="nf">Message</span><span class="o">(</span><span class="n">name</span><span class="o">));</span>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>But actually, you will probably like to execute some actions against a Node, call some internal services&hellip;
-So the implementation we wrote needs to be modified a bit.</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2016/08/01/creating-elasticsearch-transport-action/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -772,23 +796,23 @@ So the implementation we wrote needs to be modified a bit.</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2018/03/24/enriching-your-postal-addresses-with-elastic-stack-part-3/">Enriching Your Postal Addresses With Elastic Stack - Part 3</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2018/03/24/enriching-your-postal-addresses-with-elastic-stack-part-2/">Enriching Your Postal Addresses With Elastic Stack - Part 2</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2018/03/22/enriching-your-postal-addresses-with-elastic-stack-part-1/">Enriching Your Postal Addresses With Elastic Stack - Part 1</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2018/01/10/5-years-what-a-milestone/">5 Years. What a Milestone!</a>
       </li>
     
       <li class="post">
         <a href="/blog/2017/01/09/4-years-at-elastic/">4 Years at Elastic!</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2016/10/21/elasticsearch-real-integration-tests-with-security-enabled-updated-for-ga/">Elasticsearch Real Integration Tests With Security Enabled (Updated for GA)</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2016/10/20/creating-elasticsearch-transport-action-updated-for-ga/">Creating Elasticsearch Transport Action (Updated for GA)</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2016/10/19/adding-a-new-rest-endpoint-to-elasticsearch-updated-for-ga/">Adding a New REST Endpoint to Elasticsearch (Updated for GA)</a>
       </li>
     
   </ul>
@@ -845,7 +869,7 @@ So the implementation we wrote needs to be modified a bit.</p>
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2018 - David Pilato -
+  Copyright &copy; 2019 - David Pilato -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

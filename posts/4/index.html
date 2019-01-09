@@ -9,7 +9,7 @@
   <meta name="author" content="David Pilato">
 
   
-  <meta name="description" content="I joined Elasticsearch Inc one year ago. Those were pretty exciting days! But now&hellip; ">
+  <meta name="description" content="Recently I saw a tweet where Capitaine Train team started to open data they have collected and enriched or corrected. Ouvrez, ouvrez, les données &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -81,6 +81,136 @@ ga('send', 'pageview');
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><img src="/images/covers/logstash.png"/><a href="/blog/2015/04/28/exploring-capitaine-train-dataset/">Exploring Capitaine Train Dataset</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-04-28T13:31:34+02:00'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>28</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>1:31 pm</span></time>
+        
+           | <a href="/blog/2015/04/28/exploring-capitaine-train-dataset/#disqus_thread"
+             data-disqus-identifier="http://david.pilato.fr/blog/2015/04/28/exploring-capitaine-train-dataset/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Recently I saw a tweet where <a href="https://www.capitainetrain.com/">Capitaine Train</a> team started to open data they have collected and enriched or corrected.</p>
+
+<center><blockquote class="twitter-tweet"><p>Ouvrez, ouvrez, les données structurées. Capitaine Train libère les gares : <a href="https://t.co/y6DjWsbALF">https://t.co/y6DjWsbALF</a> <a href="https://twitter.com/hashtag/opendata?src=hash">#opendata</a></p>&mdash; Capitaine Train (@capitainetrain) <a href="https://twitter.com/capitainetrain/status/591184013034938368">2015/04/23</a></blockquote></center>
+
+
+<p>I decided to play a bit with <a href="https://www.elastic.co/products">ELK stack</a> and create a simple recipe which can be used with any other <code>CSV</code> like data.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/04/28/exploring-capitaine-train-dataset/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/03/05/using-log4j2-with-hibernate-4/">Using Log4J2 With Hibernate 4</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-03-05T21:00:00+01:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>5</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>9:00 pm</span></time>
+        
+           | <a href="/blog/2015/03/05/using-log4j2-with-hibernate-4/#disqus_thread"
+             data-disqus-identifier="http://david.pilato.fr/blog/2015/03/05/using-log4j2-with-hibernate-4/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I was trying to use Hibernate 4.3.8.Final with Log4J2 and I spent some hours to find why Hibernate was not using Log4J2 though it was declared in my pom.xml file.</p>
+
+<p>Actually, I hit issue <a href="https://issues.jboss.org/browse/JBLOGGING-107">JBLOGGING-107</a>.</p>
+
+<p>The workaround is simply to add a more recent jboss-logging dependency than the one shipped by default with Hibernate 4.3.8.Final.</p>
+
+<figure class='code'><figcaption><span>pom.xml file</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;dependency&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;groupId&gt;</span>org.jboss.logging<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;artifactId&gt;</span>jboss-logging<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;version&gt;</span>3.2.1.Final<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'><span class="nt">&lt;/dependency&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><img src="/images/covers/new/elastic.png"/><a href="/blog/2015/01/19/once-upon-a-time-make-your-dreams-come-true/">Once Upon a Time: Make Your Dreams Come True</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-01-19T19:30:00+01:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>19</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>7:30 pm</span></time>
+        
+           | <a href="/blog/2015/01/19/once-upon-a-time-make-your-dreams-come-true/#disqus_thread"
+             data-disqus-identifier="http://david.pilato.fr/blog/2015/01/19/once-upon-a-time-make-your-dreams-come-true/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Oh wait! Already <a href="/blog/2013/01/15/once-upon-a-time-dot-dot-dot/">2 years spent working for Elasticsearch</a>? Time flies!</p>
+
+<p>After the first year, <a href="/blog/2014/01/10/once-upon-a-time-a-year-later-dot-dot-dot/">I wrote</a> that I did <strong>58 talks</strong> in <strong>4 countries</strong>, <strong>37 towns</strong> for about <strong>18 000 kilometers</strong> traveled. I was pretty sure that things would continue to grow.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/01/19/once-upon-a-time-make-your-dreams-come-true/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -365,127 +495,6 @@ ga('send', 'pageview');
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><img src="/images/covers/new/elastic.png"/><a href="/blog/2012/03/14/mon-talk-sur-elasticsearch-selectionne-pour-devoxx-france/">Mon Talk Sur Elasticsearch Sélectionné Pour Devoxx France</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2012-03-14T15:54:42+01:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>14</span><span class='date-suffix'>th</span>, <span class='date-year'>2012</span></span> <span class='time'>3:54 pm</span></time>
-        
-           | <a href="/blog/2012/03/14/mon-talk-sur-elasticsearch-selectionne-pour-devoxx-france/#disqus_thread"
-             data-disqus-identifier="http://david.pilato.fr/blog/2012/03/14/mon-talk-sur-elasticsearch-selectionne-pour-devoxx-france/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Bonjour,</p>
-
-<p>C'est avec une certaine émotion et fierté que j'ai appris samedi dernier la sélection de mon <a href="http://www.devoxx.com/display/FR12/ElasticSearch+++moteur+de+recherche+NoSQL+REST+JSON+taille+pour+le+cloud">talk sur Elasticsearch</a> à <a href="http://www.devoxx.com/display/FR12/Accueil">Devoxx France</a>.</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/03/14/mon-talk-sur-elasticsearch-selectionne-pour-devoxx-france/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><img src="/images/covers/new/elastic.png"/><a href="/blog/2012/02/13/quel-client-java-pour-elasticsearch/">Quel Client Java Pour Elasticsearch ?</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2012-02-13T22:37:12+01:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2012</span></span> <span class='time'>10:37 pm</span></time>
-        
-           | <a href="/blog/2012/02/13/quel-client-java-pour-elasticsearch/#disqus_thread"
-             data-disqus-identifier="http://david.pilato.fr/blog/2012/02/13/quel-client-java-pour-elasticsearch/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Il existe deux modes d'accès à elasticsearch en Java :</p>
-
-<ul>
-<li>Inscrire un noeud client dans le cluster elasticsearch</li>
-<li>Utiliser un client &ldquo;simple&rdquo;</li>
-</ul>
-
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/02/13/quel-client-java-pour-elasticsearch/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><img src="/images/covers/new/elastic.png"/><a href="/blog/2011/09/14/mon-premier-plugin-elasticsearch-rss-river/">Mon Premier Plugin Elasticsearch : RSS River</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2011-09-14T23:30:07+02:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>14</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>11:30 pm</span></time>
-        
-           | <a href="/blog/2011/09/14/mon-premier-plugin-elasticsearch-rss-river/#disqus_thread"
-             data-disqus-identifier="http://david.pilato.fr/blog/2011/09/14/mon-premier-plugin-elasticsearch-rss-river/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Il existe dans <a href="http://www.elasticsearch.org/">elasticsearch</a> la notion de <a href="http://www.elasticsearch.org/guide/reference/river/">river</a> (rivière) qui comme son nom le laisse supposer permet de voir s'écouler des données depuis une source jusqu'à elasticsearch.</p>
-
-<p>Au fur et à mesure que les données arrivent, la rivière les transporte et les envoie à l'indexation dans elasticsearch.</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2011/09/14/mon-premier-plugin-elasticsearch-rss-river/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/5">&larr; Older</a>
@@ -508,23 +517,23 @@ ga('send', 'pageview');
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2018/03/24/enriching-your-postal-addresses-with-elastic-stack-part-3/">Enriching Your Postal Addresses With Elastic Stack - Part 3</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2018/03/24/enriching-your-postal-addresses-with-elastic-stack-part-2/">Enriching Your Postal Addresses With Elastic Stack - Part 2</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2018/03/22/enriching-your-postal-addresses-with-elastic-stack-part-1/">Enriching Your Postal Addresses With Elastic Stack - Part 1</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2018/01/10/5-years-what-a-milestone/">5 Years. What a Milestone!</a>
       </li>
     
       <li class="post">
         <a href="/blog/2017/01/09/4-years-at-elastic/">4 Years at Elastic!</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2016/10/21/elasticsearch-real-integration-tests-with-security-enabled-updated-for-ga/">Elasticsearch Real Integration Tests With Security Enabled (Updated for GA)</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2016/10/20/creating-elasticsearch-transport-action-updated-for-ga/">Creating Elasticsearch Transport Action (Updated for GA)</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2016/10/19/adding-a-new-rest-endpoint-to-elasticsearch-updated-for-ga/">Adding a New REST Endpoint to Elasticsearch (Updated for GA)</a>
       </li>
     
   </ul>
@@ -581,7 +590,7 @@ ga('send', 'pageview');
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2018 - David Pilato -
+  Copyright &copy; 2019 - David Pilato -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 
