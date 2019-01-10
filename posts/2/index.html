@@ -9,7 +9,7 @@
   <meta name="author" content="David Pilato">
 
   
-  <meta name="description" content="NOTE: This article is an updated version of Creating a plugin for elasticsearch 5.0 using Maven Elasticsearch 5.0 switched to Gradle in October 2015 &hellip;">
+  <meta name="description" content="NOTE: This article is an updated version of Creating an Ingest plugin for elasticsearch This blog post is part of a series which will teach you: How &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -81,6 +81,62 @@ ga('send', 'pageview');
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><img src="/images/covers/new/elasticsearch.png"/><a href="/blog/2016/10/17/creating-an-ingest-plugin-for-elasticsearch-updated-for-ga/">Creating an Ingest Plugin for Elasticsearch (Updated for GA)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2016-10-17T10:55:29+02:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>17</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>10:55 am</span></time>
+        
+           | <a href="/blog/2016/10/17/creating-an-ingest-plugin-for-elasticsearch-updated-for-ga/#disqus_thread"
+             data-disqus-identifier="http://david.pilato.fr/blog/2016/10/17/creating-an-ingest-plugin-for-elasticsearch-updated-for-ga/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><strong>NOTE:</strong> This article is an updated version of <a href="/blog/2016/07/28/creating-an-ingest-plugin-for-elasticsearch/">Creating an Ingest plugin for elasticsearch</a></p>
+
+<p>This blog post is part of a series which will teach you:</p>
+
+<ul>
+<li><a href="/blog/2016/10/16/creating-a-plugin-for-elasticsearch-5-dot-0-using-maven-updated-for-ga/">How to write a plugin for elasticsearch 5.0 using Maven</a>.</li>
+<li>How to write an ingest plugin for elasticsearch 5.0 (what you are reading now).</li>
+<li>How I wrote the <code>ingest-bano</code> plugin which will be hopefully released soonish.</li>
+</ul>
+
+
+<p>Today, we will focus on writing an Ingest plugin for elasticsearch.</p>
+
+<blockquote><p>Hey! Wait! You wrote <code>Ingest</code>? What is that?</p></blockquote>
+
+<p>Ingest is a new feature coming in elasticsearch 5.0. It helps you to transform your data on the fly
+while injecting it into elasticsearch. Read more in <a href="https://www.elastic.co/blog/ingest-node-a-clients-perspective">elastic blog post</a>.</p>
+
+<p>If you know me and my work before I joined elastic, I have always been in love with data crawling and transformation as
+I wrote myself some plugins called <a href="https://www.elastic.co/blog/deprecating-rivers">rivers</a>.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2016/10/17/creating-an-ingest-plugin-for-elasticsearch-updated-for-ga/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -678,48 +734,6 @@ for my friends.</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><img src="/images/covers/logstash.png"/><a href="/blog/2016/01/05/understanding-zipfs-law/">Understanding Zipf's Law</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2016-01-05T12:13:02+01:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>5</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>12:13 pm</span></time>
-        
-           | <a href="/blog/2016/01/05/understanding-zipfs-law/#disqus_thread"
-             data-disqus-identifier="http://david.pilato.fr/blog/2016/01/05/understanding-zipfs-law/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I just discovered a nice video which explains the <a href="https://en.wikipedia.org/wiki/Zipf%27s_law">Zipf&rsquo;s law</a>.</p>
-
-<div class="embed-video-container"><iframe src="//www.youtube.com/embed/fCn8zs912OE" allowfullscreen></iframe></div>
-
-
-<p>I&rsquo;m wondering if I can index the <a href="http://www.lexique.org/">french lexique from Université de Savoie</a> and find some funny things based on that&hellip;</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2016/01/05/understanding-zipfs-law/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/3">&larr; Older</a>
@@ -742,6 +756,10 @@ for my friends.</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2019/01/10/from-a-startup-to-a-listed-company-6-years-of-fun/">From a Startup to a Listed Company. 6 Years of Fun!</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2018/03/24/enriching-your-postal-addresses-with-elastic-stack-part-3/">Enriching Your Postal Addresses With Elastic Stack - Part 3</a>
       </li>
     
@@ -755,10 +773,6 @@ for my friends.</p>
     
       <li class="post">
         <a href="/blog/2018/01/10/5-years-what-a-milestone/">5 Years. What a Milestone!</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2017/01/09/4-years-at-elastic/">4 Years at Elastic!</a>
       </li>
     
   </ul>

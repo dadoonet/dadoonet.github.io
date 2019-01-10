@@ -4,7 +4,7 @@
   <title><![CDATA[-Xmx128gb -Xms128gb]]></title>
   <link href="http://david.pilato.fr/atom.xml" rel="self"/>
   <link href="http://david.pilato.fr/"/>
-  <updated>2019-01-09T11:49:40+01:00</updated>
+  <updated>2019-01-10T09:03:56+01:00</updated>
   <id>http://david.pilato.fr/</id>
   <author>
     <name><![CDATA[David Pilato]]></name>
@@ -12,6 +12,418 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[From a Startup to a Listed Company. 6 Years of Fun!]]></title>
+    <link href="http://david.pilato.fr/blog/2019/01/10/from-a-startup-to-a-listed-company-6-years-of-fun/"/>
+    <updated>2019-01-10T09:00:00+01:00</updated>
+    <id>http://david.pilato.fr/blog/2019/01/10/from-a-startup-to-a-listed-company-6-years-of-fun</id>
+    <content type="html"><![CDATA[<p>When I joined Elastic (formerly Elasticsearch) it was a startup with 10 employees + the founders. As one of those first employees I was invited (with #elkie and my wife) to the NYSE event where Elastic went listed as <code>ESTC</code> symbol.</p>
+
+<p><img src="http://david.pilato.fr/blog/images/once-upon7/nyse.jpg" title="NYSE" ></p>
+
+<blockquote><p>Some of us there (Rashid, Karel, Myself, Igor, Costin, Luca, Clinton). Yeah. You are not probably used to see us wearing a suit! :)</p></blockquote>
+
+<p>If you want to read again my story, it&rsquo;s there:</p>
+
+<ul>
+<li>January 2013: <a href="http://david.pilato.fr/blog/2013/01/15/once-upon-a-time-dot-dot-dot/">Once upon a time&hellip;</a></li>
+<li>January 2014: <a href="http://david.pilato.fr/blog/2014/01/10/once-upon-a-time-a-year-later-dot-dot-dot/">Once upon a time: a year later&hellip;</a></li>
+<li>January 2015: <a href="http://david.pilato.fr/blog/2015/01/19/once-upon-a-time-make-your-dreams-come-true/">Once upon a time: Make your dreams come true</a></li>
+<li>January 2016: <a href="http://david.pilato.fr/blog/2016/01/12/3-years-time-flies/">3 years! Time flies!</a></li>
+<li>January 2017: <a href="http://david.pilato.fr/blog/2017/01/09/4-years-at-elastic/">4 years at elastic!</a></li>
+<li>January 2018: <a href="http://david.pilato.fr/blog/2018/01/10/5-years-what-a-milestone/">5 years. What a milestone!</a></li>
+</ul>
+
+
+<p>Before speaking about what happened last year, I&rsquo;d like to modify <a href="http://david.pilato.fr/blog/2018/01/10/5-years-what-a-milestone/">the way I&rsquo;m ingesting my personal data in elasticsearch</a> by using the real city name when I&rsquo;m speaking in France. Why this? Because anytime I&rsquo;m speaking in Paris or suburbs, I&rsquo;m actually writing <code>Paris</code> in my report which is inaccurate.</p>
+
+<p>Instead, I&rsquo;d really like to have the real city name&hellip; How can I do this? Well, I do have the exact geo location points of each event (which is something I&rsquo;m writing manually for now)&hellip; If you are a frequent visitor of this blog, that should ring a bell, right?</p>
+
+<p>In 2018, I wrote some blog posts about transforming geo points to exact address:</p>
+
+<ul>
+<li><a href="http://david.pilato.fr/blog/2018/03/22/enriching-your-postal-addresses-with-elastic-stack-part-1/">Importing Bano dataset with Logstash</a></li>
+<li><a href="http://david.pilato.fr/blog/2018/03/24/enriching-your-postal-addresses-with-elastic-stack-part-2/">Using Logstash to lookup for addresses in Bano index</a></li>
+<li><a href="http://david.pilato.fr/blog/2018/03/24/enriching-your-postal-addresses-with-elastic-stack-part-3/">Using Logstash to enrich an existing dataset with Bano</a></li>
+</ul>
+
+
+<p>Let&rsquo;s use that now!</p>
+
+<!-- more -->
+
+
+<h2>Upgrading the cluster</h2>
+
+<p>As usual, let&rsquo;s start by upgrading the cluster&hellip; Well, just few clics and I&rsquo;m all set for <code>6.5.3</code>&hellip;</p>
+
+<p><img src="http://david.pilato.fr/blog/images/once-upon7/cloud.jpg" title="Upgrade to 6.5.3" ></p>
+
+<h2>Importing Bano dataset</h2>
+
+<p>I just followed the instructions in <a href="http://david.pilato.fr/blog/2018/03/22/enriching-your-postal-addresses-with-elastic-stack-part-1/">Importing Bano dataset with Logstash blog post</a> but I just modified the <code>elasticsearch</code> output to be:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">elasticsearch</span> <span class="p">{</span>
+</span><span class='line'>  <span class="s2">&quot;template_name&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;bano&quot;</span>
+</span><span class='line'>  <span class="s2">&quot;template_overwrite&quot;</span> <span class="o">=&gt;</span> <span class="kp">true</span>
+</span><span class='line'>  <span class="s2">&quot;template&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;${SOURCE_DIR}/bano.json&quot;</span>
+</span><span class='line'>  <span class="s2">&quot;index&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;.bano-${REGION}&quot;</span>
+</span><span class='line'>  <span class="s2">&quot;document_id&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;%{[id]}&quot;</span>
+</span><span class='line'>  <span class="s2">&quot;hosts&quot;</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="s2">&quot;${ELASTICSEARCH_URL}&quot;</span><span class="o">]</span>
+</span><span class='line'>  <span class="s2">&quot;user&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;elastic&quot;</span>
+</span><span class='line'>  <span class="s2">&quot;password&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;${ELASTICSEARCH_PASSWORD}&quot;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>In my shell script, I just defined:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nb">export </span><span class="nv">ELASTICSEARCH_URL</span><span class="o">=</span>https://MY-CLUSTER-ID.europe-west1.gcp.cloud.es.io:9243
+</span><span class='line'><span class="nb">export </span><span class="nv">ELASTICSEARCH_PASSWORD</span><span class="o">=</span>MY-PASSWORD
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Enriching existing data</h2>
+
+<p>We have seen in <a href="http://david.pilato.fr/blog/2018/01/10/5-years-what-a-milestone/">&ldquo;5 years. What a milestone!&rdquo; blog post</a> that we have now an index per year with documents looking like:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="nt">&quot;_index&quot;</span> <span class="p">:</span> <span class="s2">&quot;talks-2017&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nt">&quot;_type&quot;</span> <span class="p">:</span> <span class="s2">&quot;doc&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nt">&quot;_id&quot;</span> <span class="p">:</span> <span class="s2">&quot;27&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nt">&quot;_score&quot;</span> <span class="p">:</span> <span class="mf">0.7971689</span><span class="p">,</span>
+</span><span class='line'>  <span class="nt">&quot;_source&quot;</span> <span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nt">&quot;number_of_attendees&quot;</span> <span class="p">:</span> <span class="mi">8</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;country&quot;</span> <span class="p">:</span> <span class="s2">&quot;France&quot;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;distance&quot;</span> <span class="p">:</span> <span class="mi">80</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;city&quot;</span> <span class="p">:</span> <span class="s2">&quot;PARIS&quot;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;type&quot;</span> <span class="p">:</span> <span class="s2">&quot;Training&quot;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;@timestamp&quot;</span> <span class="p">:</span> <span class="s2">&quot;2017-05-15T00:00:00.000+02:00&quot;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;name&quot;</span> <span class="p">:</span> <span class="s2">&quot;ES Core OPS&quot;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;location&quot;</span> <span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nt">&quot;lon&quot;</span> <span class="p">:</span> <span class="mf">2.2489867</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;lat&quot;</span> <span class="p">:</span> <span class="mf">48.89566</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This training did not happen exactly in Paris so we need to read it again, try to get the exact city name and then update the document.</p>
+
+<h2>Using a Logstash pipeline</h2>
+
+<p>Let&rsquo;s start with a Logstash pipeline which reads all data from elasticsearch and write it back to the same cluster using another index name:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">input</span> <span class="p">{</span>
+</span><span class='line'>  <span class="n">elasticsearch</span> <span class="p">{</span>
+</span><span class='line'>    <span class="s2">&quot;hosts&quot;</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="s2">&quot;${ELASTICSEARCH_URL}&quot;</span><span class="o">]</span>
+</span><span class='line'>    <span class="s2">&quot;user&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;elastic&quot;</span>
+</span><span class='line'>    <span class="s2">&quot;password&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;${ELASTICSEARCH_PASSWORD}&quot;</span>
+</span><span class='line'>    <span class="s2">&quot;index&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;talks-*&quot;</span>
+</span><span class='line'>    <span class="s2">&quot;docinfo&quot;</span> <span class="o">=&gt;</span> <span class="kp">true</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">filter</span> <span class="p">{</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">output</span> <span class="p">{</span>
+</span><span class='line'>  <span class="n">elasticsearch</span> <span class="p">{</span>
+</span><span class='line'>    <span class="s2">&quot;hosts&quot;</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="s2">&quot;${ELASTICSEARCH_URL}&quot;</span><span class="o">]</span>
+</span><span class='line'>    <span class="s2">&quot;user&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;elastic&quot;</span>
+</span><span class='line'>    <span class="s2">&quot;password&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;${ELASTICSEARCH_PASSWORD}&quot;</span>
+</span><span class='line'>    <span class="s2">&quot;index&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;new-%{[@metadata][_index]}&quot;</span>
+</span><span class='line'>    <span class="s2">&quot;document_type&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;%{[@metadata][_type]}&quot;</span>
+</span><span class='line'>    <span class="s2">&quot;document_id&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;%{[@metadata][_id]}&quot;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  <span class="n">stdout</span> <span class="p">{</span> <span class="n">codec</span> <span class="o">=&gt;</span> <span class="n">rubydebug</span> <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I&rsquo;m starting Logstash with the following script:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c">#!/usr/bin/env bash</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">export </span><span class="nv">ELASTICSEARCH_URL</span><span class="o">=</span>https://MY-CLUSTER-ID.europe-west1.gcp.cloud.es.io:9243
+</span><span class='line'><span class="nb">export </span><span class="nv">ELASTICSEARCH_PASSWORD</span><span class="o">=</span>MY-PASSWORD
+</span><span class='line'>
+</span><span class='line'>logstash-6.5.3/bin/logstash -f update-with-bano.conf
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Doing lookups in BANO indices</h2>
+
+<p>We have seen that in <a href="http://david.pilato.fr/blog/2018/03/24/enriching-your-postal-addresses-with-elastic-stack-part-2/">Using Logstash to lookup for addresses in Bano index</a>. Let&rsquo;s do it here.</p>
+
+<p>We first create the <code>search-by-geo.json</code> file:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="nt">&quot;size&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+</span><span class='line'>  <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nt">&quot;bool&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nt">&quot;filter&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nt">&quot;geo_distance&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>          <span class="nt">&quot;distance&quot;</span><span class="p">:</span> <span class="s2">&quot;2km&quot;</span><span class="p">,</span>
+</span><span class='line'>          <span class="nt">&quot;location&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>            <span class="nt">&quot;lat&quot;</span><span class="p">:</span> <span class="err">%</span><span class="p">{</span><span class="err">[location][lat]</span><span class="p">},</span>
+</span><span class='line'>            <span class="nt">&quot;lon&quot;</span><span class="p">:</span> <span class="err">%</span><span class="p">{</span><span class="err">[location][lon]</span><span class="p">}</span>
+</span><span class='line'>          <span class="p">}</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>  <span class="p">},</span>
+</span><span class='line'>  <span class="nt">&quot;sort&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>      <span class="nt">&quot;_geo_distance&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nt">&quot;location&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>          <span class="nt">&quot;lat&quot;</span><span class="p">:</span> <span class="err">%</span><span class="p">{</span><span class="err">[location][lat]</span><span class="p">},</span>
+</span><span class='line'>          <span class="nt">&quot;lon&quot;</span><span class="p">:</span> <span class="err">%</span><span class="p">{</span><span class="err">[location][lon]</span><span class="p">}</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>  <span class="p">],</span>
+</span><span class='line'>  <span class="nt">&quot;_source&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;address.city&quot;</span><span class="p">]</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>We can use it in the filter part:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">filter</span> <span class="p">{</span>
+</span><span class='line'>  <span class="n">elasticsearch</span> <span class="p">{</span>
+</span><span class='line'>    <span class="s2">&quot;query_template&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;search-by-geo.json&quot;</span>
+</span><span class='line'>    <span class="s2">&quot;hosts&quot;</span> <span class="o">=&gt;</span> <span class="o">[</span> <span class="s2">&quot;${ELASTICSEARCH_BANO_URL}&quot;</span> <span class="o">]</span>
+</span><span class='line'>    <span class="s2">&quot;user&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;elastic&quot;</span>
+</span><span class='line'>    <span class="s2">&quot;password&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;${ELASTICSEARCH_BANO_PASSWORD}&quot;</span>
+</span><span class='line'>    <span class="s2">&quot;index&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;.bano&quot;</span>
+</span><span class='line'>    <span class="s2">&quot;fields&quot;</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span><span class='line'>      <span class="s2">&quot;[address][city]&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;city_after&quot;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">mutate</span> <span class="p">{</span>
+</span><span class='line'>    <span class="s2">&quot;remove_field&quot;</span> <span class="o">=&gt;</span> <span class="o">[</span> <span class="s2">&quot;number_of_talks&quot;</span><span class="p">,</span> <span class="s2">&quot;@version&quot;</span><span class="p">,</span> <span class="s2">&quot;host&quot;</span> <span class="o">]</span>
+</span><span class='line'>    <span class="s2">&quot;capitalize&quot;</span> <span class="o">=&gt;</span> <span class="o">[</span> <span class="s2">&quot;city&quot;</span><span class="p">,</span> <span class="s2">&quot;city_after&quot;</span> <span class="o">]</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Once everything is running fine, we can actually index within the same index we have been reading the data from and remove the debug output:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">output</span> <span class="p">{</span>
+</span><span class='line'>  <span class="n">elasticsearch</span> <span class="p">{</span>
+</span><span class='line'>    <span class="s2">&quot;hosts&quot;</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="s2">&quot;${ELASTICSEARCH_URL}&quot;</span><span class="o">]</span>
+</span><span class='line'>    <span class="s2">&quot;user&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;elastic&quot;</span>
+</span><span class='line'>    <span class="s2">&quot;password&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;${ELASTICSEARCH_PASSWORD}&quot;</span>
+</span><span class='line'>    <span class="s2">&quot;index&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;%{[@metadata][_index]}&quot;</span>
+</span><span class='line'>    <span class="s2">&quot;document_type&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;%{[@metadata][_type]}&quot;</span>
+</span><span class='line'>    <span class="s2">&quot;document_id&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;%{[@metadata][_id]}&quot;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Some Kibana checks</h2>
+
+<p>If we create a simple visualization to compare <code>city</code> and <code>city_after</code>, we can see that some transformation happened.</p>
+
+<p><img src="http://david.pilato.fr/blog/images/once-upon7/kibana-city-fix.jpg" title="Fix cities" ></p>
+
+<p>If we zoom a bit to <code>Paris</code>, we can see that actually Paris was Paris but also Saint-Cloud, Poissy&hellip;</p>
+
+<p><img src="http://david.pilato.fr/blog/images/once-upon7/kibana-city-fix-paris.jpg" title="Fix cities Paris" ></p>
+
+<p>Also <code>Carrières-sous-poissy</code>&hellip; But wait. I never spoke there!</p>
+
+<p>Visualizing data is important. I mean <strong>really important</strong>. It makes obvious when something is wrong within your dataset. And this happened here.</p>
+
+<p>Lot of geo points were wrong in my dataset meaning that after applying the transformations, some city name were absolutely not related to the places I&rsquo;ve been speaking. As I said before, I entered the geo location points manually in my report and I did some bad copy and paste&hellip;</p>
+
+<p>After some manual modifications, I ended up with this list of new cities when Paris was defined:</p>
+
+<p><img src="http://david.pilato.fr/blog/images/once-upon7/kibana-city-fix-paris-2.jpg" title="Fix cities Paris" ></p>
+
+<p>Here is a list for cities in France which are not Paris:</p>
+
+<p><img src="http://david.pilato.fr/blog/images/once-upon7/kibana-city-fix-paris-not.jpg" title="Fix cities Not Paris" ></p>
+
+<h2>Analyzing data</h2>
+
+<p>Let&rsquo;s have a final look at this 6th year of speaker activities&hellip;</p>
+
+<p><img src="http://david.pilato.fr/blog/images/once-upon7/kibana-talks-distance.jpg" title="Talks and distance" ></p>
+
+<p>I gave less talks this year but covered even more kilometers.</p>
+
+<p>This is mainly due because I went to San Francisco (US), New York (US), Montreal (CA) and  Bangalore (IN) to name a few.</p>
+
+<p><img src="http://david.pilato.fr/blog/images/once-upon7/kibana-where.jpg" title="Where is the world" ></p>
+
+<p>Note that when I&rsquo;m recording a distance, I&rsquo;m recording the real distance I made to get there and not the distance to France. For example, when I went to Montreal, because I was in San Francisco, the distance I entered in my spreadsheet is only the distance from Montreal to France and not both ways added as I was yet in USA.</p>
+
+<p><img src="http://david.pilato.fr/blog/images/once-upon7/kibana-countries-distance.jpg" title="Distance and countries" ></p>
+
+<h2>How did I feel it?</h2>
+
+<p>To be very honest, I was super exhausted at the end of this year. My manager has been telling me during the whole year that I should may be slow down a bit and that he was very concerned that I should take care of myself to avoid any start of burn out period. Which is something I really like in this company. People do care about other people. Your environment should be a safe place to work.</p>
+
+<p>It does not mean that you can&rsquo;t have any pression but it can&rsquo;t be a constant pression all year long and that you need to find the right balance between the company and your personal life.</p>
+
+<p>So I looked back at the Kibana dashboard:</p>
+
+<p><img src="http://david.pilato.fr/blog/images/once-upon7/kibana-per-week.jpg" title="Talks per week" ></p>
+
+<p>I&rsquo;ve not been travelling that much but I was like one or two days per week not sleeping at home in 2018. And while I was speaking to other speakers, I realized that this was the cause of my strain. Also, my son started saying that I was not really at home to help him&hellip;</p>
+
+<p>Travelling 2 days per week is actually like travelling a full week. You have to organize the travel, prepare the talk, check everything, travel, speak, travel back and rest then. That&rsquo;s taking almost the full week.</p>
+
+<p>In fact, when you go in another city or worse in another country, your brain has to constantly adapt itself to new environment, new rules, other language, etc&hellip; Adding to this that one important part of an evangelist is to engage with people (community or course, attendees, other speakers, conference organizers, colleagues&hellip;).</p>
+
+<p>I felt like it was not super efficient.</p>
+
+<h2>Consequences for 2019</h2>
+
+<p>I want to try another model for this year. I&rsquo;m not sure yet how this will work but here is the deal. I want to travel up to one full week per month but only the same week, not including exceptions which might always happen, but let&rsquo;s say that&rsquo;s a general rule.</p>
+
+<p>For example, here are the first weeks I&rsquo;ll be on the road (I mean &ldquo;not sleeping at home&rdquo;) in 2019:</p>
+
+<ul>
+<li>January 21st - 25th</li>
+<li>February 18th - 22nd</li>
+<li>March 11th - 15th</li>
+<li>April 8th - 12th</li>
+<li>May 13th - 17th</li>
+</ul>
+
+
+<p>This has some consequences for conferences also. I have to say &ldquo;no&rdquo; sadly unless the conference or event is happening nearby, ie. in Paris.</p>
+
+<p>This has also some good consequences. As I&rsquo;ll be at home for 3 weeks. While here, I&rsquo;ll be able to focus on new content, preparing new talks, writing more blog posts, recording more webinars and also test all the cool features our fantastic team is working on.</p>
+
+<p>Probably also with more focus on the french territory.</p>
+
+<p>I will evaluate the situation in June and adjust if needed. Stay tuned!</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Enriching Your Postal Addresses With Elastic Stack - Part 3]]></title>
@@ -15911,400 +16323,6 @@ very talented people made all that happen. That was months of preparation for th
 
 
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Understanding Zipf's Law]]></title>
-    <link href="http://david.pilato.fr/blog/2016/01/05/understanding-zipfs-law/"/>
-    <updated>2016-01-05T12:13:02+01:00</updated>
-    <id>http://david.pilato.fr/blog/2016/01/05/understanding-zipfs-law</id>
-    <content type="html"><![CDATA[<p>I just discovered a nice video which explains the <a href="https://en.wikipedia.org/wiki/Zipf%27s_law">Zipf&rsquo;s law</a>.</p>
-
-<div class="embed-video-container"><iframe src="//www.youtube.com/embed/fCn8zs912OE" allowfullscreen></iframe></div>
-
-
-<p>I&rsquo;m wondering if I can index the <a href="http://www.lexique.org/">french lexique from Université de Savoie</a> and find some funny things based on that&hellip;</p>
-
-<!-- more -->
-
-
-<h2>Download french words</h2>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>wget http://www.lexique.org/listes/liste_mots.txt
-</span><span class='line'>head -20 liste_mots.txt
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>What do we have?</p>
-
-<p>It&rsquo;s a CSV file (tabulation as separator):</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>1_graph 8_frantfreqparm
-</span><span class='line'><span class="m">0</span> 279.84
-</span><span class='line'><span class="m">1</span> 612.10
-</span><span class='line'><span class="m">2</span> 1043.90
-</span><span class='line'><span class="m">3</span> 839.32
-</span><span class='line'><span class="m">4</span> 832.23
-</span><span class='line'><span class="m">5</span> 913.87
-</span><span class='line'><span class="m">6</span> 603.42
-</span><span class='line'><span class="m">7</span> 600.61
-</span><span class='line'><span class="m">8</span> 908.03
-</span><span class='line'><span class="m">9</span> 1427.45
-</span><span class='line'>a 4294.90
-</span><span class='line'>aa  0.55
-</span><span class='line'>aaah  0.29
-</span><span class='line'>abaissa 1.45
-</span><span class='line'>abaissai  0.06
-</span><span class='line'>abaissaient 0.26
-</span><span class='line'>abaissait 1.29
-</span><span class='line'>abaissant 2.39
-</span><span class='line'>abaisse 5.39
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>The first line is the title. Other lines are really easy to understand:</p>
-
-<ul>
-<li>term</li>
-<li>frequency</li>
-</ul>
-
-
-<h2>Convert to JSON</h2>
-
-<p>I&rsquo;ll use logstash 2.1.1 for this.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>wget https://download.elastic.co/logstash/logstash/logstash-2.1.1.tar.gz
-</span><span class='line'>tar xzf logstash-2.1.1.tar.gz
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>As usual, I&rsquo;m starting from a blank logstash configuration file, <code>zipf.conf</code>:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">input</span> <span class="p">{</span> <span class="n">stdin</span> <span class="p">{}</span> <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">filter</span> <span class="p">{}</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">output</span> <span class="p">{</span> <span class="n">stdout</span> <span class="p">{</span> <span class="n">codec</span> <span class="o">=&gt;</span> <span class="n">rubydebug</span> <span class="p">}</span> <span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>I check that everything runs fine:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">head</span> <span class="o">-</span><span class="mi">20</span> <span class="n">liste_mots</span><span class="o">.</span><span class="n">txt</span> <span class="o">|</span> <span class="n">logstash</span><span class="o">-</span><span class="mi">2</span><span class="o">.</span><span class="mi">1</span><span class="o">.</span><span class="mi">1</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">logstash</span> <span class="o">-</span><span class="n">f</span> <span class="n">zipf</span><span class="o">.</span><span class="n">conf</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>It gives:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="ss">Settings</span><span class="p">:</span> <span class="no">Default</span> <span class="n">filter</span> <span class="ss">workers</span><span class="p">:</span> <span class="mi">2</span>
-</span><span class='line'><span class="no">Logstash</span> <span class="n">startup</span> <span class="n">completed</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>       <span class="s2">&quot;message&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;1_graph</span><span class="se">\t</span><span class="s2">8_frantfreqparm&quot;</span><span class="p">,</span>
-</span><span class='line'>      <span class="s2">&quot;@version&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
-</span><span class='line'>    <span class="s2">&quot;@timestamp&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;2016-01-05T11:33:16.269Z&quot;</span><span class="p">,</span>
-</span><span class='line'>          <span class="s2">&quot;host&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;MacBook-Pro.local&quot;</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'><span class="o">.</span><span class="n">.</span><span class="o">.</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>       <span class="s2">&quot;message&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;abaisse</span><span class="se">\t</span><span class="s2">5.39&quot;</span><span class="p">,</span>
-</span><span class='line'>      <span class="s2">&quot;@version&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
-</span><span class='line'>    <span class="s2">&quot;@timestamp&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;2016-01-05T11:33:16.275Z&quot;</span><span class="p">,</span>
-</span><span class='line'>          <span class="s2">&quot;host&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;MacBook-Pro.local&quot;</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'><span class="no">Logstash</span> <span class="n">shutdown</span> <span class="n">completed</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Parse CSV lines</h3>
-
-<p>We have a CSV file so we should use here the <a href="http://www.elastic.co/guide/en/logstash/current/plugins-filters-csv.html">CSV filter plugin</a>:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">csv</span> <span class="p">{</span>
-</span><span class='line'>    <span class="n">separator</span> <span class="o">=&gt;</span> <span class="s2">&quot; &quot;</span>
-</span><span class='line'>    <span class="n">columns</span> <span class="o">=&gt;</span> <span class="o">[</span> <span class="s2">&quot;term&quot;</span><span class="p">,</span> <span class="s2">&quot;frequency&quot;</span> <span class="o">]</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Note that you have to use the actual tab (ASCII character code 9) and not <code>\t</code>!</p>
-
-<p>It now gives:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="p">{</span>
-</span><span class='line'>       <span class="nt">&quot;message&quot;</span> <span class="err">=&gt;</span> <span class="s2">&quot;abaisse\t5.39&quot;</span><span class="p">,</span>
-</span><span class='line'>      <span class="nt">&quot;@version&quot;</span> <span class="err">=&gt;</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
-</span><span class='line'>    <span class="nt">&quot;@timestamp&quot;</span> <span class="err">=&gt;</span> <span class="s2">&quot;2016-01-05T13:47:52.374Z&quot;</span><span class="p">,</span>
-</span><span class='line'>          <span class="nt">&quot;host&quot;</span> <span class="err">=&gt;</span> <span class="s2">&quot;MacBook-Pro.local&quot;</span><span class="p">,</span>
-</span><span class='line'>          <span class="nt">&quot;term&quot;</span> <span class="err">=&gt;</span> <span class="s2">&quot;abaisse&quot;</span><span class="p">,</span>
-</span><span class='line'>     <span class="nt">&quot;frequency&quot;</span> <span class="err">=&gt;</span> <span class="s2">&quot;5.39&quot;</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Cleanup</h3>
-
-<p>We need to ignore the first line as it contains column names:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">if</span> <span class="o">[</span><span class="n">term</span><span class="o">]</span> <span class="o">==</span> <span class="s2">&quot;1_graph&quot;</span> <span class="p">{</span>
-</span><span class='line'>  <span class="n">drop</span> <span class="p">{}</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>And we can also mutate the <code>frequency</code> field to become actually a number and remove non needed fields:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">mutate</span> <span class="p">{</span>
-</span><span class='line'>  <span class="n">convert</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="s2">&quot;frequency&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;float&quot;</span> <span class="p">}</span>
-</span><span class='line'>  <span class="n">remove_field</span> <span class="o">=&gt;</span> <span class="o">[</span> <span class="s2">&quot;message&quot;</span><span class="p">,</span> <span class="s2">&quot;@version&quot;</span><span class="p">,</span> <span class="s2">&quot;@timestamp&quot;</span><span class="p">,</span> <span class="s2">&quot;host&quot;</span> <span class="o">]</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>We have now:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="p">{</span>
-</span><span class='line'>         <span class="nt">&quot;term&quot;</span> <span class="err">=&gt;</span> <span class="s2">&quot;abaisse&quot;</span><span class="p">,</span>
-</span><span class='line'>    <span class="nt">&quot;frequency&quot;</span> <span class="err">=&gt;</span> <span class="mf">5.39</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>We still have a format issue as the original file is not encoded with <code>UTF-8</code>.</p>
-
-<p>For example <code>accompagné</code> gives:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="nt">&quot;term&quot;</span> <span class="err">=&gt;</span> <span class="s2">&quot;accompagn\\xE9\\t15.65&quot;</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>With some logstash warnings:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="err">Received</span> <span class="err">an</span> <span class="err">event</span> <span class="err">that</span> <span class="err">has</span> <span class="err">a</span> <span class="err">different</span> <span class="err">character</span> <span class="err">encoding</span> <span class="err">than</span> <span class="err">you</span> <span class="err">configured.</span> <span class="p">{</span><span class="err">:text=&gt;</span><span class="nt">&quot;ab\\xEEm\\xE9es\\t0.42&quot;</span><span class="p">,</span> <span class="err">:expected_charset=&gt;</span><span class="nt">&quot;UTF-8&quot;</span><span class="p">,</span> <span class="err">:level=&gt;:warn</span><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Looking at what the browser detected it looks like we have &ldquo;Windows-1252&rdquo; encoding here:</p>
-
-<p><img src="http://david.pilato.fr/blog/images/zipf/chrome.png" title="Encoding" ></p>
-
-<p>So we need to tell logstash how to parse stdin:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">input</span> <span class="p">{</span>
-</span><span class='line'>  <span class="n">stdin</span> <span class="p">{</span>
-</span><span class='line'>      <span class="n">codec</span> <span class="o">=&gt;</span> <span class="n">line</span> <span class="p">{</span>
-</span><span class='line'>          <span class="s2">&quot;charset&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;Windows-1252&quot;</span>
-</span><span class='line'>      <span class="p">}</span>
-</span><span class='line'>  <span class="p">}</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>Index and analyze</h2>
-
-<p>I&rsquo;m going to use my <a href="https://found.elastic.co/#clusters/">found</a> instance here. In seconds, I have up and running my elasticsearch cluster with kibana, all with the latest versions.</p>
-
-<p>I just have to define my security settings, and configure logstash again.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">output</span> <span class="p">{</span>
-</span><span class='line'>  <span class="n">stdout</span> <span class="p">{</span> <span class="n">codec</span> <span class="o">=&gt;</span> <span class="n">dots</span> <span class="p">}</span>
-</span><span class='line'>  <span class="n">elasticsearch</span> <span class="p">{</span>
-</span><span class='line'>    <span class="n">ssl</span> <span class="o">=&gt;</span> <span class="kp">true</span>
-</span><span class='line'>    <span class="n">hosts</span> <span class="o">=&gt;</span> <span class="o">[</span> <span class="s2">&quot;MYCLUSTERONFOUND.found.io:9243&quot;</span> <span class="o">]</span>
-</span><span class='line'>    <span class="n">index</span> <span class="o">=&gt;</span> <span class="s2">&quot;zipf&quot;</span>
-</span><span class='line'>    <span class="n">document_type</span> <span class="o">=&gt;</span> <span class="s2">&quot;french&quot;</span>
-</span><span class='line'>    <span class="n">template</span> <span class="o">=&gt;</span> <span class="s2">&quot;zipf_template.json&quot;</span>
-</span><span class='line'>    <span class="n">template_name</span> <span class="o">=&gt;</span> <span class="s2">&quot;zipf&quot;</span>
-</span><span class='line'>    <span class="n">user</span> <span class="o">=&gt;</span> <span class="s2">&quot;admin&quot;</span>
-</span><span class='line'>    <span class="n">password</span> <span class="o">=&gt;</span> <span class="s2">&quot;mygeneratedpassword&quot;</span>
-</span><span class='line'>  <span class="p">}</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>We need a template here as we don&rsquo;t want to analyze our <code>term</code> field. Let&rsquo;s define <code>zipf_template.json</code>:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="p">{</span>
-</span><span class='line'>  <span class="nt">&quot;order&quot;</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-</span><span class='line'>  <span class="nt">&quot;template&quot;</span> <span class="p">:</span> <span class="s2">&quot;zipf&quot;</span><span class="p">,</span>
-</span><span class='line'>  <span class="nt">&quot;settings&quot;</span> <span class="p">:</span> <span class="p">{</span>
-</span><span class='line'>    <span class="nt">&quot;index&quot;</span> <span class="p">:</span> <span class="p">{</span>
-</span><span class='line'>      <span class="nt">&quot;refresh_interval&quot;</span> <span class="p">:</span> <span class="s2">&quot;5s&quot;</span><span class="p">,</span>
-</span><span class='line'>      <span class="nt">&quot;number_of_shards&quot;</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-</span><span class='line'>      <span class="nt">&quot;number_of_replicas&quot;</span> <span class="p">:</span> <span class="mi">0</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'>  <span class="p">},</span>
-</span><span class='line'>  <span class="nt">&quot;mappings&quot;</span> <span class="p">:</span> <span class="p">{</span>
-</span><span class='line'>    <span class="nt">&quot;french&quot;</span> <span class="p">:</span> <span class="p">{</span>
-</span><span class='line'>      <span class="nt">&quot;properties&quot;</span> <span class="p">:</span> <span class="p">{</span>
-</span><span class='line'>        <span class="nt">&quot;term&quot;</span> <span class="p">:</span> <span class="p">{</span>
-</span><span class='line'>          <span class="nt">&quot;type&quot;</span> <span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
-</span><span class='line'>          <span class="nt">&quot;index&quot;</span><span class="p">:</span> <span class="s2">&quot;not_analyzed&quot;</span>
-</span><span class='line'>        <span class="p">}</span>
-</span><span class='line'>      <span class="p">}</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'>  <span class="p">}</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>And now, run it on all the dataset and wait for its completion:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="err">cat</span> <span class="err">liste_mots.txt</span> <span class="err">|</span> <span class="err">logstash</span><span class="mf">-2.1</span><span class="err">.</span><span class="mi">1</span><span class="err">/bin/logstash</span> <span class="err">-f</span> <span class="err">zipf.conf</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>Most and less frequent french terms</h2>
-
-<p>According to this dataset, we can extract some information with Kibana:</p>
-
-<p><img src="http://david.pilato.fr/blog/images/zipf/all-terms.png" title="All french terms" ></p>
-
-<p>We can see that obviously terms like <code>de</code>, <code>la</code> and <code>et</code> are very frequent but we use rarely the terms <code>compassions</code>, <code>croulante</code> and <code>croulantes</code>.</p>
-
-<p>What? We have almost no &ldquo;compassion&rdquo; in France? Actually we do, but we use really often the singular form not the plural! Searching for <code>compassion*</code> in Kibana shows it:</p>
-
-<p><img src="http://david.pilato.fr/blog/images/zipf/compassion.png" title="compassion* terms" ></p>
-
-<p>I also looked at terms starting with <code>ch</code>. It gives:</p>
-
-<p><img src="http://david.pilato.fr/blog/images/zipf/starts-with-ch.png" title="ch* terms" ></p>
-
-<p><code>chez</code>, <code>chaque</code> and <code>chose</code> are really common terms. I don&rsquo;t know what <code>chabler</code>, <code>chaboisseaux</code> and <code>chabots</code> actually mean! :D</p>
-
-<h2>Zipf Law</h2>
-
-<p>Let&rsquo;s build a final visualization and see if we can have a curve like the one exposed in the video.</p>
-
-<p><img src="http://david.pilato.fr/blog/images/zipf/zipf.png" title="Zipf's Law" ></p>
-
-<p>I changed the graph options and used a log Y Axis scale and also increased the number of terms to 1000.</p>
-
-<p><img src="http://david.pilato.fr/blog/images/zipf/zipf-log.png" title="Zipf's Law Log Axis" ></p>
-
-<p>Well. It looks close.</p>
-
-<p>I think I should now try to index an actual french book to see how it compares with this data source&hellip;</p>
-
-<p>Stay tuned :)</p>
 ]]></content>
   </entry>
   

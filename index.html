@@ -9,9 +9,7 @@
   <meta name="author" content="David Pilato">
 
   
-  <meta name="description" content="This blog post is part of a series of 3: Importing Bano dataset with Logstash
-Using Logstash to lookup for addresses in Bano index
-Using Logstash to &hellip;">
+  <meta name="description" content="When I joined Elastic (formerly Elasticsearch) it was a startup with 10 employees + the founders. As one of those first employees I was invited (with &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -83,6 +81,74 @@ ga('send', 'pageview');
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><img src="/images/covers/new/elastic.png"/><a href="/blog/2019/01/10/from-a-startup-to-a-listed-company-6-years-of-fun/">From a Startup to a Listed Company. 6 Years of Fun!</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2019-01-10T09:00:00+01:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>10</span><span class='date-suffix'>th</span>, <span class='date-year'>2019</span></span> <span class='time'>9:00 am</span></time>
+        
+           | <a href="/blog/2019/01/10/from-a-startup-to-a-listed-company-6-years-of-fun/#disqus_thread"
+             data-disqus-identifier="http://david.pilato.fr/blog/2019/01/10/from-a-startup-to-a-listed-company-6-years-of-fun/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>When I joined Elastic (formerly Elasticsearch) it was a startup with 10 employees + the founders. As one of those first employees I was invited (with #elkie and my wife) to the NYSE event where Elastic went listed as <code>ESTC</code> symbol.</p>
+
+<p><img src="/blog/images/once-upon7/nyse.jpg" title="NYSE" ></p>
+
+<blockquote><p>Some of us there (Rashid, Karel, Myself, Igor, Costin, Luca, Clinton). Yeah. You are not probably used to see us wearing a suit! :)</p></blockquote>
+
+<p>If you want to read again my story, it&rsquo;s there:</p>
+
+<ul>
+<li>January 2013: <a href="/blog/2013/01/15/once-upon-a-time-dot-dot-dot/">Once upon a time&hellip;</a></li>
+<li>January 2014: <a href="/blog/2014/01/10/once-upon-a-time-a-year-later-dot-dot-dot/">Once upon a time: a year later&hellip;</a></li>
+<li>January 2015: <a href="/blog/2015/01/19/once-upon-a-time-make-your-dreams-come-true/">Once upon a time: Make your dreams come true</a></li>
+<li>January 2016: <a href="/blog/2016/01/12/3-years-time-flies/">3 years! Time flies!</a></li>
+<li>January 2017: <a href="/blog/2017/01/09/4-years-at-elastic/">4 years at elastic!</a></li>
+<li>January 2018: <a href="/blog/2018/01/10/5-years-what-a-milestone/">5 years. What a milestone!</a></li>
+</ul>
+
+
+<p>Before speaking about what happened last year, I&rsquo;d like to modify <a href="/blog/2018/01/10/5-years-what-a-milestone/">the way I&rsquo;m ingesting my personal data in elasticsearch</a> by using the real city name when I&rsquo;m speaking in France. Why this? Because anytime I&rsquo;m speaking in Paris or suburbs, I&rsquo;m actually writing <code>Paris</code> in my report which is inaccurate.</p>
+
+<p>Instead, I&rsquo;d really like to have the real city name&hellip; How can I do this? Well, I do have the exact geo location points of each event (which is something I&rsquo;m writing manually for now)&hellip; If you are a frequent visitor of this blog, that should ring a bell, right?</p>
+
+<p>In 2018, I wrote some blog posts about transforming geo points to exact address:</p>
+
+<ul>
+<li><a href="/blog/2018/03/22/enriching-your-postal-addresses-with-elastic-stack-part-1/">Importing Bano dataset with Logstash</a></li>
+<li><a href="/blog/2018/03/24/enriching-your-postal-addresses-with-elastic-stack-part-2/">Using Logstash to lookup for addresses in Bano index</a></li>
+<li><a href="/blog/2018/03/24/enriching-your-postal-addresses-with-elastic-stack-part-3/">Using Logstash to enrich an existing dataset with Bano</a></li>
+</ul>
+
+
+<p>Let&rsquo;s use that now!</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2019/01/10/from-a-startup-to-a-listed-company-6-years-of-fun/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -720,62 +786,6 @@ is the way to go.</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><img src="/images/covers/new/elasticsearch.png"/><a href="/blog/2016/10/17/creating-an-ingest-plugin-for-elasticsearch-updated-for-ga/">Creating an Ingest Plugin for Elasticsearch (Updated for GA)</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2016-10-17T10:55:29+02:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>17</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>10:55 am</span></time>
-        
-           | <a href="/blog/2016/10/17/creating-an-ingest-plugin-for-elasticsearch-updated-for-ga/#disqus_thread"
-             data-disqus-identifier="http://david.pilato.fr/blog/2016/10/17/creating-an-ingest-plugin-for-elasticsearch-updated-for-ga/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><strong>NOTE:</strong> This article is an updated version of <a href="/blog/2016/07/28/creating-an-ingest-plugin-for-elasticsearch/">Creating an Ingest plugin for elasticsearch</a></p>
-
-<p>This blog post is part of a series which will teach you:</p>
-
-<ul>
-<li><a href="/blog/2016/10/16/creating-a-plugin-for-elasticsearch-5-dot-0-using-maven-updated-for-ga/">How to write a plugin for elasticsearch 5.0 using Maven</a>.</li>
-<li>How to write an ingest plugin for elasticsearch 5.0 (what you are reading now).</li>
-<li>How I wrote the <code>ingest-bano</code> plugin which will be hopefully released soonish.</li>
-</ul>
-
-
-<p>Today, we will focus on writing an Ingest plugin for elasticsearch.</p>
-
-<blockquote><p>Hey! Wait! You wrote <code>Ingest</code>? What is that?</p></blockquote>
-
-<p>Ingest is a new feature coming in elasticsearch 5.0. It helps you to transform your data on the fly
-while injecting it into elasticsearch. Read more in <a href="https://www.elastic.co/blog/ingest-node-a-clients-perspective">elastic blog post</a>.</p>
-
-<p>If you know me and my work before I joined elastic, I have always been in love with data crawling and transformation as
-I wrote myself some plugins called <a href="https://www.elastic.co/blog/deprecating-rivers">rivers</a>.</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2016/10/17/creating-an-ingest-plugin-for-elasticsearch-updated-for-ga/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -796,6 +806,10 @@ I wrote myself some plugins called <a href="https://www.elastic.co/blog/deprecat
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2019/01/10/from-a-startup-to-a-listed-company-6-years-of-fun/">From a Startup to a Listed Company. 6 Years of Fun!</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2018/03/24/enriching-your-postal-addresses-with-elastic-stack-part-3/">Enriching Your Postal Addresses With Elastic Stack - Part 3</a>
       </li>
     
@@ -809,10 +823,6 @@ I wrote myself some plugins called <a href="https://www.elastic.co/blog/deprecat
     
       <li class="post">
         <a href="/blog/2018/01/10/5-years-what-a-milestone/">5 Years. What a Milestone!</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2017/01/09/4-years-at-elastic/">4 Years at Elastic!</a>
       </li>
     
   </ul>
