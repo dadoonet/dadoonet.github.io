@@ -253,7 +253,7 @@ Note that when I'm recording a distance, I'm recording the real distance I made 
 
 To be very honest, I was super exhausted at the end of this year. My manager has been telling me during the whole year that I should may be slow down a bit and that he was very concerned that I should take care of myself to avoid any start of burn out period. Which is something I really like in this company. People do care about other people. Your environment should be a safe place to work.
 
-It does not mean that you can't have any pression but it can't be a constant pression all year long and that you need to find the right balance between the company and your personal life.
+It does not mean that you can't have any pressure but it can't be a constant pressure all year long and that you need to find the right balance between the company and your personal life.
 
 So I looked back at the Kibana dashboard:
 
