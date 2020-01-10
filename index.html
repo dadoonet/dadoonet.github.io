@@ -9,7 +9,8 @@
   <meta name="author" content="David Pilato">
 
   
-  <meta name="description" content="When I joined Elastic (formerly Elasticsearch) it was a startup with 10 employees + the founders. As one of those first employees I was invited (with &hellip;">
+  <meta name="description" content="What a ride! 10 employees to around 2000 now.
+As I imagined 8 years ago, I still think that Elasticsearch (the product) and elastic (the company) are &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -81,6 +82,57 @@ ga('send', 'pageview');
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><img src="/images/covers/new/elastic.png"/><a href="/blog/2020/01/10/7-years-finding-the-right-balance/">7 Years! Finding the Right Balance</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2020-01-10T14:00:00+01:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>10</span><span class='date-suffix'>th</span>, <span class='date-year'>2020</span></span> <span class='time'>2:00 pm</span></time>
+        
+           | <a href="/blog/2020/01/10/7-years-finding-the-right-balance/#disqus_thread"
+             data-disqus-identifier="http://david.pilato.fr/blog/2020/01/10/7-years-finding-the-right-balance/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>What a ride! 10 employees to around 2000 now.
+As I imagined 8 years ago, I still think that Elasticsearch (the product) and elastic (the company) are successful.</p>
+
+<p>Becoming a public company did not change a lot my daily activities.</p>
+
+<p>I&rsquo;m still on the road meeting/building the community, specifically in France and making sure people are sharing the same love that we have internally for the products we are building.</p>
+
+<p>I&rsquo;d like this year to focus this anniversary blog post on some items:</p>
+
+<ul>
+<li>What became harder and harder?</li>
+<li>What is my feedback on the 2019 policy?</li>
+<li>Some highlights on 2019</li>
+</ul>
+
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2020/01/10/7-years-finding-the-right-balance/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -720,72 +772,6 @@ So the implementation we wrote needs to be modified a bit.</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><img src="/images/covers/new/elasticsearch.png"/><a href="/blog/2016/10/18/elasticsearch-real-integration-tests-updated-for-ga/">Elasticsearch Real Integration Tests (Updated for GA)</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2016-10-18T03:02:48+02:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>18</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>3:02 am</span></time>
-        
-           | <a href="/blog/2016/10/18/elasticsearch-real-integration-tests-updated-for-ga/#disqus_thread"
-             data-disqus-identifier="http://david.pilato.fr/blog/2016/10/18/elasticsearch-real-integration-tests-updated-for-ga/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><strong>NOTE:</strong> This article is an updated version of <a href="/blog/2016/07/29/elasticsearch-real-integration-tests/">Elasticsearch real integration tests</a></p>
-
-<p>Integration tests&hellip; How do you run them?</p>
-
-<p>Often, you are tempted to run services you want to test from JUnit for example.
-In elasticsearch, you can extend <code>ESIntegTestCase</code> class which will start a cluster of a given
-number of nodes.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">BanoPluginIntegrationTest</span> <span class="kd">extends</span> <span class="n">ESIntegTestCase</span> <span class="o">{</span>
-</span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testPluginIsLoaded</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
-</span><span class='line'>      <span class="c1">// Your code here</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>But to be honest, the test you are running does not guarantee that you will have the same
-result in production.</p>
-
-<p>Why this? Because some services might be disabled, some others might be mocked.</p>
-
-<p>Instead, running tests against a real cluster as the one you would install locally on your machine
-is the way to go.</p>
-
-<p>Let&rsquo;s see how you can do that with Maven&hellip;</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2016/10/18/elasticsearch-real-integration-tests-updated-for-ga/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -806,6 +792,10 @@ is the way to go.</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2020/01/10/7-years-finding-the-right-balance/">7 Years! Finding the Right Balance</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2019/01/10/from-a-startup-to-a-listed-company-6-years-of-fun/">From a Startup to a Listed Company. 6 Years of Fun!</a>
       </li>
     
@@ -819,10 +809,6 @@ is the way to go.</p>
     
       <li class="post">
         <a href="/blog/2018/03/22/enriching-your-postal-addresses-with-elastic-stack-part-1/">Enriching Your Postal Addresses With Elastic Stack - Part 1</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2018/01/10/5-years-what-a-milestone/">5 Years. What a Milestone!</a>
       </li>
     
   </ul>
@@ -881,7 +867,7 @@ is the way to go.</p>
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2019 - David Pilato -
+  Copyright &copy; 2020 - David Pilato -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

@@ -4,7 +4,7 @@
   <title><![CDATA[-Xmx128gb -Xms128gb]]></title>
   <link href="http://david.pilato.fr/atom.xml" rel="self"/>
   <link href="http://david.pilato.fr/"/>
-  <updated>2019-01-11T09:44:20+01:00</updated>
+  <updated>2020-01-10T17:45:40+01:00</updated>
   <id>http://david.pilato.fr/</id>
   <author>
     <name><![CDATA[David Pilato]]></name>
@@ -12,6 +12,92 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[7 Years! Finding the Right Balance]]></title>
+    <link href="http://david.pilato.fr/blog/2020/01/10/7-years-finding-the-right-balance/"/>
+    <updated>2020-01-10T14:00:00+01:00</updated>
+    <id>http://david.pilato.fr/blog/2020/01/10/7-years-finding-the-right-balance</id>
+    <content type="html"><![CDATA[<p>What a ride! 10 employees to around 2000 now.
+As I imagined 8 years ago, I still think that Elasticsearch (the product) and elastic (the company) are successful.</p>
+
+<p>Becoming a public company did not change a lot my daily activities.</p>
+
+<p>I&rsquo;m still on the road meeting/building the community, specifically in France and making sure people are sharing the same love that we have internally for the products we are building.</p>
+
+<p>I&rsquo;d like this year to focus this anniversary blog post on some items:</p>
+
+<ul>
+<li>What became harder and harder?</li>
+<li>What is my feedback on the 2019 policy?</li>
+<li>Some highlights on 2019</li>
+</ul>
+
+
+<!-- more -->
+
+
+<h2>The hard part</h2>
+
+<p>My job did not change that much. My main goals remain the same and are definitely aligned with the bottom-up company theme.</p>
+
+<p>I want to make elastic community a real thing. And to do that, I basically meet people in real life.
+It can be at meetups: I&rsquo;m organizing the <a href="https://www.meetup.com/ElasticFR">ElasticFR</a> user group and we have one meetup every 2 months. It has been so successful that we have already set all the next meetup dates and hosts until March 2021! Just fantastic&hellip; So fantastic that we decided to organize a meetup every 6 weeks from 2020 so we can add more hosts during a year.</p>
+
+<p>I want people to download our stack, play with it, ideally make a POC (Proof Of Concept project) and why not go to production with it. If they are using the free basic version of the stack, that&rsquo;s perfectly fine. Of course, if they are using the <a href="https://cloud.elastic.co/">official hosted version</a> which makes their life easier, that&rsquo;s even better! But making users becoming paid customers is not my priority or my job. I just want people be aware of the nice things you can do with the stack.</p>
+
+<p>But here comes the challenge. We have now a very big engineering team and let me tell you a secret: they are all amazing! They are constantly releasing new features, solving new use cases. And this becomes super tricky for me. I can&rsquo;t be an expert of everything. Search, Observability, Security&hellip; So many tools and solutions that you can&rsquo;t follow all the roadmaps&hellip;</p>
+
+<p>That&rsquo;s the part I dislike when I&rsquo;m meeting people and they are asking me about a feature that I did not test myself. It&rsquo;s hard to give them the appropriate answer. So more often than before my answer is &ldquo;let me find the right contact&rdquo; or &ldquo;could you ask on <a href="https://discuss.elastic.co/">discuss.elastic.co</a>?&rdquo;.</p>
+
+<h2>My 2019 travel policy</h2>
+
+<p>As <a href="http://david.pilato.fr/blog/2019/01/10/from-a-startup-to-a-listed-company-6-years-of-fun/">I wrote last year</a>:</p>
+
+<blockquote><p>I want to try another model for this year. I&rsquo;m not sure yet how this will work but here is the deal. I want to travel up to one full week per month but only the same week, not including exceptions which might always happen, but let&rsquo;s say that&rsquo;s a general rule.</p></blockquote>
+
+<p>I did that&hellip; And it went pretty well. I made some &ldquo;exceptions&rdquo; like I actually traveled 12 weeks last year but sometimes 2 weeks the same month and no travel during August.</p>
+
+<p>As a consequence, I felt less exhausted at the end of 2019 although I still meet lot of people, engaged with the community and helped building new ones.</p>
+
+<p>So I&rsquo;m going to continue that way for 2020.</p>
+
+<h2>2019 Highlights</h2>
+
+<p>The first thing that happened to me on a personal level is that I was close to pass away in January. Got a medical unexpected issue but fortunately the doctors were able to fix everything. I spent 2 weeks at the hospital, had to rest 2 weeks more at home and it took me around 2 months to entirely recover. Good thing is that we discovered some weird things in my body and I&rsquo;m on the way of doing all the needed exams to see if we can/should fix them. Nothing critical, be reassured. :)</p>
+
+<p>In 2019 I focused a bit more on the french territory and make sure we have some presence outside Paris. And I was fortunate enough to go to cities like:</p>
+
+<ul>
+<li>Orlando, US</li>
+<li>Mountain View, US</li>
+<li>Singapore, SG</li>
+<li>Moka, MU</li>
+<li>Toronto, CA</li>
+<li>Montreal, CA</li>
+<li>Moscow, RU</li>
+</ul>
+
+
+<p>I really enjoyed being in Mountain View in December as that was my very first XSchool session. <a href="https://twitter.com/LifeAtElastic/status/932736733296279552">XSchool</a> is our way to welcome new Elasticians, introduce them to the company and our culture and its related <a href="https://www.elastic.co/about/our-source-code">Source Code</a>.</p>
+
+<p>I have never been there in the past because obviously when I joined the company, we were like 15 people&hellip; No need for a &ldquo;school&rdquo; at this period of time. There I introduced what the community is about and what my team is doing and how the whole company can and should help. Our community is the key of our success.</p>
+
+<h2>2020</h2>
+
+<p>I&rsquo;m trying to play with new solutions like our <a href="https://www.elastic.co/products/enterprise-search">Enterprise Search</a>. I like this use case a lot: indexing company documents and providing a clean UI to find them whatever the source is.</p>
+
+<p>As the author of the <a href="https://fscrawler.readthedocs.io/">FSCrawler</a> project which has now more than <a href="https://github.com/dadoonet/fscrawler">700 stars on Github</a>, I want to <a href="https://github.com/dadoonet/fscrawler/issues/723">connect it to the Enterprise Search</a> product. This will need some refactoring and from time to time, I&rsquo;m working on that open source project.</p>
+
+<p>It&rsquo;s super interesting to do it by the way because it&rsquo;s a way for me to test the <a href="https://www.elastic.co/guide/en/elasticsearch/client/java-rest/current/index.html">Elasticsearch Java Client</a> and raise issues anytime I&rsquo;m having troubles updating to the latest version.</p>
+
+<p>I will still continue being on the road one week per month, still focusing on local communities and of course running the Paris meetup.</p>
+
+<p>If you are reading this post and want to know more about the elastic stack and Elasticsearch specifically, please <a href="https://twitter.com/dadoonet">contact me</a> and we can work on setting up a <a href="https://www.elastic.co/blog/free-lunch-for-open-source-engineers">BBL session</a> (aka Lunch and Learn).</p>
+
+<p>Happy 2020! Stay tuned!</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[From a Startup to a Listed Company. 6 Years of Fun!]]></title>
@@ -16175,153 +16261,6 @@ But remember that we used a <code>zoom</code> factor of <code>10x</code> for a b
 <li><a href="https://www.elastic.co/guide/en/beats/libbeat/current/new-beat.html">Beat developer guide</a></li>
 <li><a href="https://github.com/dadoonet/soundbeat">soundbeat source code</a></li>
 </ul>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[3 Years! Time Flies!]]></title>
-    <link href="http://david.pilato.fr/blog/2016/01/12/3-years-time-flies/"/>
-    <updated>2016-01-12T08:37:00+01:00</updated>
-    <id>http://david.pilato.fr/blog/2016/01/12/3-years-time-flies</id>
-    <content type="html"><![CDATA[<p>3 years! Can you imagine that? Already <a href="http://david.pilato.fr/blog/2015/01/19/once-upon-a-time-make-your-dreams-come-true/">3 years spent working at elastic</a>? Time flies!</p>
-
-<p>2015 has been an uncommon year for me.</p>
-
-<p>Not because Marty Mc Fly and Doc Emmett Brown finally arrived&hellip;</p>
-
-<div class="embed-video-container"><iframe src="//www.youtube.com/embed/Q0VGRlEJewA" allowfullscreen></iframe></div>
-
-
-<p>Not because, Han Solo, Leia and friends were finally back again&hellip;</p>
-
-<div class="embed-video-container"><iframe src="//www.youtube.com/embed/wCc2v7izk8w" allowfullscreen></iframe></div>
-
-
-<p>But for technical and also personal reasons.</p>
-
-<!-- more -->
-
-
-<p>On a personal side, I had to deal with two major issues which cause some slow down in my professional activities. I had to cancel some conferences for instance.</p>
-
-<p>And at such moments you realize how confortable it is to work for a human company. Each time the answer from my management was always the same: &ldquo;<em>Family first David! Take all the time you need and tell us if we can assist you on anything.</em>&rdquo;</p>
-
-<p>It is so helpful when you can focus on solving your issues. I&rsquo;m really thankful to the company board for this. Really. &ldquo;<strong>Family first</strong>&rdquo; are not only words. It&rsquo;s a reality at elastic.</p>
-
-<h2>The evangelist work</h2>
-
-<p>I traveled. A lot. I gave less talks but I did 2 000 kilometers more than last year. Yeah. <strong>50 000 kilometers</strong> for 2015&hellip; Still a lot if you think that most of my traveling were in France or in Europe&hellip;</p>
-
-<ul>
-<li>2 elastic events: <a href="https://www.elastic.co/elasticon/2015/sf/highlights-reel">elastic{ON}&lsquo;15</a> and <a href="https://www.elastic.co/elasticon/tour/2015/paris">elastic{ON} Tour Paris'15</a>.</li>
-</ul>
-
-
-<p><strong>Both were fantastic</strong>. When you are working on technical side you are far away
-from event organization. It was clearly a success, not by mistake, but because
-very talented people made all that happen. That was months of preparation for the team. It went super well.</p>
-
-<p>It was also time to reveal the new identity of the company and <code>elasticsearch</code> became <code>elastic</code>.</p>
-
-<p>It was my first time at San Francisco and I could enjoy visiting <a href="http://retaildesignblog.net/2015/05/30/elastic-office-by-garcia-tamjidi-architecture-design-mountain-view-california/comment-page-1/">our amazing new office in Mountain View</a> and also do some sight seeing in SFO where my wife and I finally saw the well known &ldquo;la maison bleue&rdquo;.</p>
-
-<p><img src="http://david.pilato.fr/blog/images/once-upon4/maison_bleue.jpg" title="La maison bleue" ></p>
-
-<div class="embed-video-container"><iframe src="//www.youtube.com/embed/tDtXXlD98kw" allowfullscreen></iframe></div>
-
-
-<p>Well, I guess it&rsquo;s well known only in France! :D</p>
-
-<ul>
-<li><p>1 Webinar: <a href="https://www.elastic.co/videos/advanced-search-legacy-application-french">Advanced Search for your Legacy Application (French)</a></p></li>
-<li><p>1 conference as a sponsor</p></li>
-<li><p>7 <a href="https://www.elastic.co/training">trainings</a>. Don&rsquo;t miss our <a href="http://training.elastic.co/?courseId=0&amp;city=PARIS">next sessions in Paris</a>! I&rsquo;ll give the <a href="http://training.elastic.co/class/Kibana/Paris/Feb06">Kibana 4 Workshop</a> with another colleague.</p></li>
-<li><p>5 <a href="http://www.meetup.com/elasticfr/">meetups</a>. Come and say hello for <a href="http://www.meetup.com/fr-FR/ElasticFR/events/227882863/">the next one</a>! We are now more than 1600 members!</p></li>
-<li><p>26 <a href="http://www.brownbaglunch.fr/">BBLs</a>. Still one of my favorite moment. By the way, I started adding elasticsearch on the web site. Stay tuned! :D</p></li>
-<li><p>23 talks. Lot of conferences, including <a href="http://www.devoxx.fr/">Devoxx FR</a>, <a href="http://www.codemotionworld.com/">Code Motion</a>, <a href="www.bdx.io">BDX.io</a>&hellip;</p></li>
-</ul>
-
-
-<p>I think I spoke for more than <strong>2 500 attendees</strong>! I&rsquo;m super happy on this because results are clearly visible in the company when we look for example at the requests on the web site per region or the <a href="http://www.google.fr/trends/explore?q=Elasticsearch#q=Elasticsearch&amp;geo=FR%2C%20US%2C%20GB&amp;date=1%2F2015%2012m&amp;cmpt=geo&amp;tz=Etc%2FGMT-1">Google trends</a>:</p>
-
-<p><img src="http://david.pilato.fr/blog/images/once-upon4/google-trends.png" title="Google Trends" ></p>
-
-<p>On a side note, I also helped at <a href="http://www.devoxx4kids.org/france/">Devoxx4Kids France</a>. My children really enjoyed it and they are asking me every month about the next event! Count on me Devoxx4Kids team!</p>
-
-<p><img src="http://david.pilato.fr/blog/images/once-upon4/devoxx4kids.jpg" title="Devoxx4Kids" ></p>
-
-<div class="embed-video-container"><iframe src="//www.youtube.com/embed/wzr6xXwCEKU" allowfullscreen></iframe></div>
-
-
-<p>I also wrote some <a href="https://www.elastic.co/blog/author/david-pilato">blog posts</a>, helped on translating to french some parts of our website&hellip;</p>
-
-<h2>And as a developer?</h2>
-
-<p>I worked a lot this year on splitting elasticsearch repository in many maven modules. I wrote a <a href="https://github.com/elastic/elasticsearch/commit/6024f89032c6f42c7a28211099587324abdb5858">script</a> which created a maven parent project, moved elasticsearch core code to a core module and then pulled plugins repository in plugins modules.</p>
-
-<p>It was then applied in <a href="https://github.com/elastic/elasticsearch/commits/5beed150ed0583e3bf71532bc1ff91bbc9bf042d">June the 5th</a>.</p>
-
-<p>I really enjoyed working on that because it now makes official plugins as first class citizen. They are now part of the release process, are automatically maintained as well by my co-workers.</p>
-
-<p>And to be honest, it also reduces my workload. Releasing all plugins have always been time consuming. Now I can focus more on the code itself.</p>
-
-<p>Bringing modularity in elasticsearch repo was a great thing and thanks to all my colleagues who enhanced the process. We now have a very nice release process!</p>
-
-<p>I also worked a lot on splitting the packages in their <a href="https://github.com/elastic/elasticsearch/pull/11523">own distribution modules</a>.</p>
-
-<p>I tried also to enhance the <a href="https://www.elastic.co/guide/en/elasticsearch/client/java-api/current/index.html">Java API documentation</a>. Well, step by step, I&rsquo;m trying to add some content. For example, I added recently some documentation about the <a href="https://www.elastic.co/guide/en/elasticsearch/client/java-api/master/java-admin.html">AdminClient</a>. More to come!</p>
-
-<h2>The devangelist team</h2>
-
-<p>When I started 3 years ago at elastic, there was only 10 employees including the 4 founders. Obviously we did not create an evangelist team at this moment. But it was clearly part of my job to <a href="https://www.elastic.co/blog/welcome-david">continue on advocacy work</a>.</p>
-
-<p>And now, we have a team! We hired talented people over the world, in Asia, in US and in Europe. We all are doing some code and evangelism. So we called our team the <code>devangelist</code> team.</p>
-
-<p>Well, my email signature is <code>Dev | Evangelist</code>. <code>|</code> is actually here the <a href="https://en.wikipedia.org/wiki/Pipeline_(Unix">Linux pipe character</a>), you know, when the output of one process becomes the input of the next one. That&rsquo;s exactly what we are: passionnated coders with speaker skills&hellip; :)</p>
-
-<p>We all met in Barcelona in September. Was great time!</p>
-
-<p><img src="http://david.pilato.fr/blog/images/once-upon4/devangelist.jpg" title="The devangelist team - Sept 2015" ></p>
-
-<h2>The company</h2>
-
-<p>Growing from 10 to 300 people is something I never experienced before. It&rsquo;s a super interesting moment. And it&rsquo;s not that easy when you think about a distributed company with different countries and different cultures.</p>
-
-<p>At the end <a href="https://www.glassdoor.fr/Avis/Elastic-Avis-E751551.htm?&amp;countryRedirect=true">it works pretty well</a> at elastic.</p>
-
-<p>The language barrier is still a problem even after 3 years. Of course, I can understand better my colleagues; it basically depends on their accent! :P from 30% to 100%&hellip;</p>
-
-<p>Well, as the company is also growing in France, 100% is when I&rsquo;m speaking with my french colleagues!</p>
-
-<p>So. 300 people. w00t! It&rsquo;s probably impossible to know now each person and I guess that for the coming elastic{ON}&lsquo;16, we&rsquo;ll use our employee badges a lot!</p>
-
-<h2>2016&hellip;</h2>
-
-<p>What is going to happen this year? I&rsquo;m working on new talks now as the company is growing and releasing more and more tools. For example, I really need to test out all the <a href="https://www.elastic.co/products/beats">beats family</a>.</p>
-
-<p>Also, I need to play with <a href="https://www.elastic.co/blog/timelion-timeline">TimeLion</a>. It looks a fantastic way to correlate time based data coming from different sources.</p>
-
-<p>I started playing a lot with <a href="https://www.elastic.co/found">found</a> in 2015, no need to say that I&rsquo;ll continue this year.</p>
-
-<p>I can&rsquo;t wait for elastic{ON}&lsquo;16! Super excited to meet again all my coworkers and see what is the crazy stuff they are building or thinking about!</p>
-
-<p>And of course, I will enjoy the good balance I have between work time and family time and will continue to say to myself how much lucky I am.</p>
-
-<p>I wish you fellows a very nice 2016 year and hope that 2016 will be more peaceful than 2015&hellip; But <a href="http://www.bbc.com/news/world-europe-35290760">the news today in Istanbul</a> don&rsquo;t seem to prove me right. <a href="https://voxxeddays.com/istanbul15/david-pilato-advanced-search-for-legacy-application-with-elasticsearch/">I spoke there last year</a>, visited this historical and fantastic place&hellip; I&rsquo;m so sad this is happening&hellip;</p>
-
-<p align="center">
-<img src="http://david.pilato.fr/blog/images/once-upon4/istanbul.jpg" title=":(" >
-</p>
-
-
-<p>Of course, I&rsquo;m also thinking of all people who died in 2015 in Paris and of all the wounded ones and their families.</p>
-
-<p align="center">
-<img src="http://david.pilato.fr/blog/images/once-upon4/france.jpg" title=":(" >
-</p>
-
-
 
 ]]></content>
   </entry>
