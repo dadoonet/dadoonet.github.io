@@ -1,0 +1,42 @@
+baseURL: "https://david.pilato.fr"
+title: "David Pilato"
+
+theme: eureka
+
+paginate: 20
+copyright: >
+  &copy; 2022, David Pilato, France
+enableEmoji: true
+enableGitInfo: false
+summaryLength: 75
+
+defaultContentLanguage: en
+hasCJKLanguage: false # Set `true` for Chinese/Japanese/Korean.
+defaultContentLanguageInSubdir: false
+
+# Uncomment for google analytics
+# googleAnalytics: UA-123-45
+
+markup:
+  # Do not modify markup.highlight
+  highlight:
+    codeFences: false
+    noClasses: false
+  tableOfContents:
+    startLevel: 2
+    endLevel: 6
+    ordered: false
+  goldmark:
+    renderer:
+      unsafe: true
+
+taxonomies:
+  category: categories
+  tag: tags
+  series: series
+  author: authors
+  city: cities
+  language: languages
+
+build:
+  useResourceCacheWhen: always
