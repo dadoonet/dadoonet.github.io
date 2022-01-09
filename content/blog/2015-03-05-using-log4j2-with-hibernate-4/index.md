@@ -10,7 +10,6 @@ tags:
 categories:
   - tips
 date: 2015-03-05 22:00:00 +0200
-# featuredImage: blog/2015-05-19-using-js-auth-with-found-cluster/found_byelastic_logo_512x185.png
 draft: false
 aliases:
   - /blog/2015/03/05/using-log4j2-with-hibernate-4/

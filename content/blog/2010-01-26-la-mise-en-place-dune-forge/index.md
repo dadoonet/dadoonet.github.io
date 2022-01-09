@@ -1,5 +1,5 @@
 ---
-title: Installation FusionForge 5.0 sur Redhat 5
+title: La mise en place d'une forge
 #description: 
 toc: true
 authors:

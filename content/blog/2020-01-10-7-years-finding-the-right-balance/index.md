@@ -14,7 +14,6 @@ series:
   - career at elastic
 date: '2020-01-10'
 lastmod: '2020-01-10'
-#featuredImage: assets/images/covers/new/elastic.png
 draft: false
 aliases:
   - /blog/2020/01/10/7-years-finding-the-right-balance/
