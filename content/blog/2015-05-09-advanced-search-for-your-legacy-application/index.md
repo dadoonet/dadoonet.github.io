@@ -23,7 +23,7 @@ I gave recently a [talk at Voxxed Istanbul 2015](http://sched.co/2p7l) and I'd l
 The talk was about adding a real search engine for your legacy application.
 Here "legacy" means an application which is still using SQL statements to execute search requests.
 
-<script async class="speakerdeck-embed" data-id="14b4a923983d4fdd93a2cc218f0deee7" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+{{< speakerdeck 14b4a923983d4fdd93a2cc218f0deee7 >}}
 
 <!-- more -->
 

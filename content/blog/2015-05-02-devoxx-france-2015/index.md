@@ -24,7 +24,7 @@ I gave recently a [talk at Devoxx France 2015](http://cfp.devoxx.fr/2015/talk/OM
 
 The talk was about "what my data look like?".
 
-<script async class="speakerdeck-embed" data-id="84b56957191849ff92b445078abf40aa" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+{{< speakerdeck 84b56957191849ff92b445078abf40aa >}}
 
 We said that our manager was asking us to answer some questions:
 
