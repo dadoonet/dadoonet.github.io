@@ -43,17 +43,18 @@ math:
 
 comment:
   # Options: disqus, commento, valine and utterances.
-  handler: disqus
+  handler: utterances
 
-  disqus:
-    shortname: dadoonet
+  # disqus:
+  #   shortname: dadoonet
 
-  # utterances:
-  #   # Browse https://utteranc.es/ to see the options available.
-  #   # If you want the color scheme of utterances to follow eureka's, you can set `theme: eureka`.
-  #   repo:
-  #   issue-term:
-  #   theme:
+  utterances:
+    # Browse https://utteranc.es/ to see the options available.
+    # If you want the color scheme of utterances to follow eureka's, you can set `theme: eureka`.
+    repo: dadoonet/dadoonet.github.io
+    issue-term: pathname
+    theme: eureka
+    label: 💬 comments
 
   # commento:
   #   # If self-hosting, please enter the url (e.g. https://commento.example.com) here. Otherwise leave empty.
