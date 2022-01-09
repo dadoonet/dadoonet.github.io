@@ -14,7 +14,7 @@ series:
   - bano
 date: '2018-03-24'
 lastmod: '2018-03-24'
-# featuredImage: assets/images/covers/new/logstash.png
+featuredImage: assets/images/series/bano.png
 draft: false
 aliases:
   - /blog/2018/03/24/enriching-your-postal-addresses-with-elastic-stack-part-3/
