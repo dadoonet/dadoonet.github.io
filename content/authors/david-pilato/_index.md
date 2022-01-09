@@ -30,6 +30,8 @@ Developer | Evangelist at [elastic](https://elastic.co) and creator of the [Elas
 
 I discovered Elasticsearch project in 2011. After contributed to the project and created open source plugins for it, David joined elastic the company in 2013 where he is Developer and Evangelist. He also created and still actively managing the French spoken language User Group. At elastic, he mainly worked on Elasticsearch source code, specifically on open-source plugins. In his free time, he likes talking about elasticsearch in conferences or in companies ([Brown Bag Lunches AKA BBLs](https://www.elastic.co/blog/free-lunch-for-open-source-engineers)). He is also author of [FSCrawler](https://github.com/dadoonet/fscrawler) project which helps to index your pdf, open office, whatever documents in elasticsearch using Apache Tika behind the scene.
 
-<!--
-  <p><a href="https://www.amcharts.com/visited_countries/#AD,BY,BE,BG,CZ,DK,EE,FR,DE,GR,IE,IT,LT,LU,NL,NO,PL,PT,RO,RU,ES,SE,CH,TR,UA,GB,VA,CA,DO,US,MA,SN,SC,TN,IN,IL"><img src="/blog/images/countries/2019_01-countries.png" alt="Countries I have visited so far"></a></p>
--->
+## Visited countries
+
+You can see here the countries I have visited so far. Most of them are for business purpose but who said you can not do both: business and leisure?
+
+{{< visited-countries >}}
