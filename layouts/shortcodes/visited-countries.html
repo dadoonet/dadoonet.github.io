@@ -1,3 +1,9 @@
+<p>
+    <a href="https://www.amcharts.com/visited_countries/#{{ range $.Site.Data.countries.visited.countries }}{{ .id }},{{ end }}FR">
+        {{ len $.Site.Data.countries.visited.countries }} countries visited
+    </a>
+</p>
+    
 <script src="https://www.amcharts.com/lib/3/ammap.js" type="text/javascript"></script>
 <script src="https://www.amcharts.com/lib/3/maps/js/worldHigh.js" type="text/javascript"></script>
 <script src="https://www.amcharts.com/lib/3/themes/dark.js" type="text/javascript"></script>
@@ -30,7 +36,3 @@
         }
     });
 </script>
-<p>
-<a href="https://www.amcharts.com/visited_countries/#{{ range $.Site.Data.countries.visited.countries }}{{ .id }},{{ end }}FR">
-    Powered by amcharts
-</a></p>
