@@ -1,0 +1,9 @@
+# Generated content
+public/
+resources/_gen/
+
+# Mac data
+**/.DS_STORE
+
+# Hugo build tmp files
+.hugo_build.lock
