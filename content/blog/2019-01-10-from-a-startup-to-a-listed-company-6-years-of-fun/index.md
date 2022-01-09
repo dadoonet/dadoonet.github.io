@@ -14,7 +14,6 @@ series:
   - career at elastic
 date: '2019-01-10'
 lastmod: '2019-01-10'
-featuredImage: blog/2019-01-10-from-a-startup-to-a-listed-company-6-years-of-fun/nyse.jpg
 draft: false
 aliases:
   - /blog/2019/01/10/from-a-startup-to-a-listed-company-6-years-of-fun/

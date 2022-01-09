@@ -49,7 +49,7 @@ Elasticsearch clusters scale horizontally very well. Documents are distributed w
 
 A lot of babies were born last year, and new ones are coming in 2015. That's super great. We love families and babies at Elasticsearch! We can always find a good balance between our personal life and job duties. That's an important part of our company spirit.
 
-As I wrote last year, building company core values is not hard at Elasticsearch, as we talk to each other on a daily basis and all hands company meetups happen every 6 months or so. But for the [last one, in Amsterdam](http://www.elasticsearch.org/blog/world-elasticsearch-esallhands-edition/), it was hard to fit everyone in the same room!
+As I wrote last year, building company core values is not hard at Elasticsearch, as we talk to each other on a daily basis and all hands company meetups happen every 6 months or so. But for the [last one, in Amsterdam](https://www.elastic.co/blog/world-elasticsearch-esallhands-edition/), it was hard to fit everyone in the same room!
 
 So? What is the solution? Let's create a user conference and bring all the folks there! Welcome to [elastic{ON}](http://www.elasticon.com/)!
 
