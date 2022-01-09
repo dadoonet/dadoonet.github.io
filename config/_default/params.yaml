@@ -8,7 +8,7 @@ repoEditURL: https://github.com/dadoonet/dadoonet.github.io/tree/main/
 
 dateFormat:
 
-titleSeparator:
+titleSeparator: "-"
 
 # Options: auto, light and dark. Default is auto.
 colorScheme:
