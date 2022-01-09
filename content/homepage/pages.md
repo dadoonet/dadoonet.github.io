@@ -4,7 +4,7 @@ draft: false
 # Section you want to display
 section: blog
 # Pages count
-count: 10
+count: 12
 # Options: card, plain and masonry.
 style: masonry
 
