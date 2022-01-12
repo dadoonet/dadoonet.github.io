@@ -12,7 +12,7 @@ main:
 #    url: /events/
 #    weight: 40
   - name: DJ Mixes
-    url: https://podcasts.apple.com/fr/podcast/dj-dadoo-net-mixes/id505824965
+    url: https://djdadoo.pilato.fr/
     weight: 80
   - name: About me
     url: /authors/david-pilato/
