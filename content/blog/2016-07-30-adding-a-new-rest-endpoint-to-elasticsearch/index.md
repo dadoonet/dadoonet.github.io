@@ -13,14 +13,13 @@ categories:
 series:
   - plugin for elasticsearch v5
 date: 2016-07-30 14:50:00 +0200
-lastmod: 2016-07-30 14:50:00 +0200
+lastmod: 2016-10-19 14:50:00 +0200
 # featuredImage: assets/images/covers/new/logstash.png
 draft: false
 aliases:
   - /blog/2016/07/30/adding-a-new-rest-endpoint-to-elasticsearch/
+  - /blog/2016/10/19/adding-a-new-rest-endpoint-to-elasticsearch-updated-for-ga/
 ---
-
-**NOTE:** This article is now outdated. Please read [Adding a new REST endpoint to elasticsearch (Updated for GA)]({{< ref "2016-10-19-adding-a-new-rest-endpoint-to-elasticsearch-updated-for-ga" >}}) instead!
 
 This blog post is part of a series which will teach you:
 
@@ -91,19 +90,19 @@ We are now all set to implement the REST endpoint and be able to test it with a 
 
 ### Rest Handler skeleton
 
-Basically, we will extend the `BaseRestHandler` class. Let's create a `RestHelloAction` in `src/main/java/org/elasticsearch/ingest/bano/`:
+Basically, we will extend the `BaseRestHandler` class. Let's create a `HelloRestAction` in `src/main/java/org/elasticsearch/ingest/bano/`:
 
 ```java
-public class RestHelloAction extends BaseRestHandler {
+public class HelloRestAction extends BaseRestHandler {
 
     @Inject
-    public RestHelloAction(Settings settings, RestController controller) {
+    public HelloRestAction(Settings settings, RestController controller) {
         super(settings);
         // Register your handlers here
     }
 
     @Override
-    protected void handleRequest(RestRequest request, RestChannel channel, NodeClient client) throws Exception {
+    protected RestChannelConsumer prepareRequest(RestRequest restRequest, NodeClient client) throws IOException {
         // Implement the REST logic here
     }
 }
@@ -115,7 +114,7 @@ In the constructor, we can define when this class will be called:
 
 ```java
 @Inject
-public RestHelloAction(Settings settings, RestController controller) {
+public HelloRestAction(Settings settings, RestController controller) {
     super(settings);
     controller.registerHandler(GET, "/_hello", this);
 }
@@ -130,7 +129,7 @@ We need to define the REST handler in the plugin:
 ```java
 @Override
 public List<Class<? extends RestHandler>> getRestHandlers() {
-    return Collections.singletonList(RestHelloAction.class);
+    return Collections.singletonList(HelloRestAction.class);
 }
 ```
 
@@ -156,7 +155,7 @@ public void testHelloWorld() throws Exception {
 
 ### Implement handleRequest
 
-As we did not implemented the REST logic yet, this test will obviously fail. Let's fix that in `RestHelloAction`.
+As we did not implemented the REST logic yet, this test will obviously fail. Let's fix that in `HelloRestAction`.
 
 First, we will send back a JSON object to the user. Elasticsearch provides `XContent` classes to deal
 with this.
@@ -184,15 +183,34 @@ class Message implements ToXContent {
 
 This class implements `ToXContent` so it provides a `toXContent` method where we build the actual JSON response.
 
-Then, we implement `handleRequest` method:
+Then, we implement `prepareRequest` method:
 
 ```java
 @Override
-protected void handleRequest(RestRequest request, RestChannel channel, NodeClient client) throws Exception {
-    RestToXContentListener<ToXContent> listener = new RestToXContentListener<>(channel);
-    listener.onResponse(new Message(null));
+protected RestChannelConsumer prepareRequest(RestRequest restRequest, NodeClient client) throws IOException {
+    String name = restRequest.param("name");
+    return channel -> {
+        Message message = new Message(name);
+        XContentBuilder builder = channel.newBuilder();
+        builder.startObject();
+        message.toXContent(builder, restRequest);
+        builder.endObject();
+        channel.sendResponse(new BytesRestResponse(RestStatus.OK, builder));
+    };
 }
 ```
+
+This code is usig a lambda which builds a new `Message` object.
+Then we create our JSON document. Basically `builder.startObject()` and `builder.endObject()` create a JSON object `{}`. `message.toXContent(builder, restRequest)` will fill this object with a JSON representation of the `Message` object: `"message": "Hello name!"`.
+At the end, this code will produce:
+
+```json
+{
+    "message": "Hello name!"
+}
+```
+
+Then we send the JSON response over the wire.
 
 ## Dealing with parameters
 
@@ -241,7 +259,7 @@ public void testHelloDavidWithURLParameters() throws Exception {
 ```
 
 It will send back an error `400 (Bad Request)` as this URL pattern does not exist.
-Let's add it in the `RestHelloAction` constructor by registering now:
+Let's add it in the `HelloRestAction` constructor by registering now:
 
 ```java
 controller.registerHandler(GET, "/_hello/{name}", this);
@@ -281,26 +299,33 @@ public void testHelloDavidWithPostBody() throws Exception {
 }
 ```
 
-We need in `handleRequest` to extract the name from the body:
+We need in `prepareRequest` to extract the name from the body:
 
 ```java
-public void handleRequest(RestRequest request, RestChannel channel, NodeClient client) throws Exception {
-    RestToXContentListener<ToXContent> listener = new RestToXContentListener<>(channel);
-    String name = request.param("name");
-
-    if (name == null && request.content().length() > 0) {
+@Override
+protected RestChannelConsumer prepareRequest(RestRequest restRequest, NodeClient client) throws IOException {
+    String name = restRequest.param("name");
+    if (name == null && restRequest.content().length() > 0) {
         // Let's try to find the name from the body
-        Map<String, Object> map = XContentHelper.convertToMap(request.content(), false).v2();
+        Map<String, Object> map = XContentHelper.convertToMap(restRequest.content(), false).v2();
         if (map.containsKey("name")) {
             name = (String) map.get("name");
         }
     }
 
-    listener.onResponse(new Message(name));
+    String finalName = name;
+    return channel -> {
+        Message message = new Message(finalName);
+        XContentBuilder builder = channel.newBuilder();
+        builder.startObject();
+        message.toXContent(builder, restRequest);
+        builder.endObject();
+        channel.sendResponse(new BytesRestResponse(RestStatus.OK, builder));
+    };
 }
 ```
 
-And we also need to register the `POST` request. Let's add it in the `RestHelloAction` constructor by
+And we also need to register the `POST` request. Let's add it in the `HelloRestAction` constructor by
 registering now:
 
 ```java
@@ -362,19 +387,19 @@ public void testBano() throws Exception {
 
 The test generates a random number of indices starting with `.bano` plus some other unrelated indices.
 
-Let's now create a new `RestBanoAction` as we did for `RestHelloAction`:
+Let's now create a new `BanoRestAction` as we did for `HelloRestAction`:
 
 ```java
-public class RestBanoAction extends BaseRestHandler {
+public class BanoRestAction extends BaseRestHandler {
 
     @Inject
-    public RestBanoAction(Settings settings, RestController controller) {
+    public BanoRestAction(Settings settings, RestController controller) {
         super(settings);
         controller.registerHandler(GET, "/_bano", this);
     }
 
     @Override
-    protected void handleRequest(RestRequest request, RestChannel channel, NodeClient client) throws Exception {
+    protected RestChannelConsumer prepareRequest(RestRequest restRequest, NodeClient client) throws IOException {
     }
 }
 ```
@@ -384,8 +409,8 @@ We register it in the plugin:
 ```java
 public List<Class<? extends RestHandler>> getRestHandlers() {
 return Arrays.asList(
-        RestHelloAction.class,
-        RestBanoAction.class);
+        HelloRestAction.class,
+        BanoRestAction.class);
 }
 ```
 
@@ -393,35 +418,29 @@ Let's implement the logic in `handleRequest`:
 
 ```java
 @Override
-public void handleRequest(RestRequest request, RestChannel channel, NodeClient client) throws Exception {
-    RestToXContentListener<ToXContent> listener = new RestToXContentListener<>(channel);
-
-    client.admin().indices().prepareGetIndex()
-            .setIndices(".bano*")
-            .execute(new ActionListener<GetIndexResponse>() {
-        @Override
-        public void onResponse(GetIndexResponse getIndexResponse) {
-            Indices indices = new Indices();
-            for (String index : getIndexResponse.getIndices()) {
-                indices.addIndex(index);
+protected RestChannelConsumer prepareRequest(RestRequest restRequest, NodeClient client) throws IOException {
+    return channel -> client.admin().indices().prepareGetIndex()
+        .setIndices(".bano*")
+        .execute(new RestBuilderListener<GetIndexResponse>(channel) {
+            @Override
+            public RestResponse buildResponse(GetIndexResponse getIndexResponse, XContentBuilder builder) throws Exception {
+                Indices indices = new Indices();
+                for (String index : getIndexResponse.getIndices()) {
+                    indices.addIndex(index);
+                }
+                builder.startObject();
+                indices.toXContent(builder, restRequest);
+                builder.endObject();
+                return new BytesRestResponse(RestStatus.OK, builder);
             }
-            listener.onResponse(indices);
-        }
-
-        @Override
-        public void onFailure(Exception e) {
-            listener.onFailure(e);
-        }
-    });
+        });
 }
 ```
 
-As you can see, we don't block the thread here as we are using a Listener which is called once
-the request in the cluster is over.
-This is **extremly important** in the context of elasticsearch as it frees the network socket which can
-hold other requests and is not blocked by the current one.
+As you can see, we don't block the thread here as we are using a Listener which is called once the request in the cluster is over.
+This is **extremly important** in the context of elasticsearch as it frees the network socket which can hold other requests and is not blocked by the current one.
 
-If everything goes well, `onResponse` method will be called. Otherwise we will call `onFailure`.
+If everything goes well, `buildResponse` method will be called. Otherwise any exception will be thrown and elasticsearch REST layer mechanism will send that back to the caller.
 
 `Indices` is a new class as we have seen before which will help us to serialize to JSON the response:
 
@@ -451,7 +470,6 @@ class Indices implements ToXContent {
 
 ## What's next?
 
-In a coming blog post, I'll explain how to create an ingest plugin which will helps you to transform a french postal address to geo coordinates or the other way around. We will use what we have just seen to add some administrative tasks like automatically create our datasources in elasticsearch
-(download CSV files from bano website, extract, transform to JSON and index in elasticsearch).
+In a coming blog post, I'll explain how to create an ingest plugin which will helps you to transform a french postal address to geo coordinates or the other way around. We will use what we have just seen to add some administrative tasks like automatically create our datasources in elasticsearch (download CSV files from bano website, extract, transform to JSON and index in elasticsearch).
 
 Stay tuned!

@@ -11,6 +11,7 @@ tags:
 categories:
   - tutorial
 date: 2012-02-13 21:37:12 +00:00
+lastmod: 2012-02-13 21:37:12 +00:00
 # featuredImage: blog/2012-07-20-scrutmydocs-un-moteur-de-recherche-pour-documents/scrutmydocs.png
 draft: false
 aliases:

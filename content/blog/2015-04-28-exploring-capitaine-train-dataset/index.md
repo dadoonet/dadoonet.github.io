@@ -12,6 +12,7 @@ tags:
 categories:
   - tutorial
 date: 2015-04-28 13:31:34 +0200
+lastmod: 2015-04-28 13:31:34 +0200
 # featuredImage: blog/2015-05-19-using-js-auth-with-found-cluster/found_byelastic_logo_512x185.png
 draft: false
 aliases:

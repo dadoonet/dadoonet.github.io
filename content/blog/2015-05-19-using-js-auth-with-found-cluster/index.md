@@ -11,6 +11,7 @@ tags:
 categories:
   - tutorial
 date: 2015-05-19 17:06:22 +0200
+lastmod: 2015-05-19 17:06:22 +0200
 draft: false
 aliases:
   - /blog/2015/05/19/using-js-auth-with-found-cluster/

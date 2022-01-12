@@ -11,6 +11,7 @@ tags:
 categories:
   - tutorial
 date: 2015-05-20 11:03:29 +0200
+lastmod: 2015-05-20 11:03:29 +0200
 # featuredImage: blog/2016-03-17-and-the-beats-go-on/beats.png
 draft: false
 aliases:

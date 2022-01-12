@@ -12,6 +12,7 @@ categories:
 series:
   - FusionForge
 date: 2010-01-26 22:13:47 +00:00
+lastmod: 2010-01-26 22:13:47 +00:00
 # featuredImage: blog/2010-05-11-installation-fusionforge-5-0-sur-redhat-5/maforge.png
 draft: false
 aliases:

@@ -14,6 +14,7 @@ categories:
 series:
   - elasticsearch spring factories
 date: 2012-05-25 16:45:36 +00:00
+lastmod: 2012-05-25 16:45:36 +00:00
 # featuredImage: blog/2012-07-20-scrutmydocs-un-moteur-de-recherche-pour-documents/scrutmydocs.png
 draft: false
 aliases:

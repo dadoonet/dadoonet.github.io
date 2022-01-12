@@ -187,7 +187,7 @@ We typically need to cleanup things a bit...
 
 ## Node Ingest to the rescue
 
-If you never heard about Node Ingest, you can read the introduction of my article about [writing your own ingest plugin]({{< ref "2016-10-17-creating-an-ingest-plugin-for-elasticsearch-updated-for-ga" >}}).
+If you never heard about Node Ingest, you can read the introduction of my article about [writing your own ingest plugin]({{< ref "2016-07-28-creating-an-ingest-plugin-for-elasticsearch" >}}).
 
 ### Parsing CSV with Grok
 

@@ -40,3 +40,21 @@ taxonomies:
 
 build:
   useResourceCacheWhen: always
+
+# There's a bug in the way lastmod is fetched from git.
+# It's supposed to be fetched from lastmod first
+frontmatter:
+  date:
+  - date
+  - publishDate
+  - lastmod
+  expiryDate:
+  - expiryDate
+  lastmod:
+  - lastmod
+  - :git
+  - date
+  - publishDate
+  publishDate:
+  - publishDate
+  - date

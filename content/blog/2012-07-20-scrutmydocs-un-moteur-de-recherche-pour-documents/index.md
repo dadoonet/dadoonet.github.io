@@ -12,6 +12,7 @@ tags:
 categories:
   - projects
 date: 2012-07-20 23:38:00 +0200
+lastmod: 2012-07-20 23:38:00 +0200
 featuredImage: blog/2012-07-20-scrutmydocs-un-moteur-de-recherche-pour-documents/scrutmydocs.png
 draft: false
 aliases:
