@@ -11,6 +11,7 @@ categories:
 series:
   - FusionForge
 date: 2010-05-11 22:23:27 +00:00
+lastmod: 2010-05-11 22:23:27 +00:00
 draft: false
 aliases:
   - /blog/2010/05/11/installation-fusionforge-5-0-sur-redhat-5/

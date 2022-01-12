@@ -12,6 +12,7 @@ categories:
 series:
   - Découverte Elasticsearch
 date: 2011-05-13 21:08:22 +00:00
+lastmod: 2011-05-13 21:08:22 +00:00
 # featuredImage: blog/2012-07-20-scrutmydocs-un-moteur-de-recherche-pour-documents/scrutmydocs.png
 draft: false
 aliases:

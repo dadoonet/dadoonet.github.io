@@ -13,14 +13,13 @@ categories:
 series:
   - plugin for elasticsearch v5
 date: 2016-08-01 17:33:29 +0200
-lastmod: 2016-08-01 17:33:29 +0200
+lastmod: 2016-10-20 17:33:29 +0200
 # featuredImage: assets/images/covers/new/logstash.png
 draft: false
 aliases:
   - /blog/2016/08/01/creating-elasticsearch-transport-action/
+  - /blog/2016/10/20/creating-elasticsearch-transport-action-updated-for-ga/
 ---
-
-**NOTE:** This article is now outdated. Please read [Creating Elasticsearch Transport Action (Updated for GA)]({{< ref "2016-10-20-creating-elasticsearch-transport-action-updated-for-ga" >}}) instead!
 
 This blog post is part of a series which will teach you:
 
@@ -33,10 +32,17 @@ In [the previous article]({{< ref "2016-07-30-adding-a-new-rest-endpoint-to-elas
 It was a simple implementation as in `RestHelloAction` class we wrote something like:
 
 ```java
-public void handleRequest(RestRequest request, RestChannel channel, NodeClient client) throws Exception {
-    RestToXContentListener<ToXContent> listener = new RestToXContentListener<>(channel);
-    String name = request.param("name");
-    listener.onResponse(new Message(name));
+@Override
+protected RestChannelConsumer prepareRequest(RestRequest restRequest, NodeClient client) throws IOException {
+    String name = restRequest.param("name");
+    return channel -> {
+        Message message = new Message(name);
+        XContentBuilder builder = channel.newBuilder();
+        builder.startObject();
+        message.toXContent(builder, restRequest);
+        builder.endObject();
+        channel.sendResponse(new BytesRestResponse(RestStatus.OK, builder));
+    };
 }
 ```
 
@@ -93,7 +99,7 @@ public class HelloRequest extends ActionRequest<HelloRequest> {
 ```
 
 `validate()` method is called to validate a request before it's sent to a Node.
-You could imagine here having mandatory fields or parameters for example and fail the request
+You can imagine here having mandatory fields or parameters for example and fail the request
 if not provided. For example (we won't implement that in our example):
 
 ```java
@@ -224,14 +230,14 @@ Also, this name is used in the context of [X-Pack Security](https://www.elastic.
 
 ## Transport Action
 
-This is where the actual execution really happens. Let's create here a `TransportHelloAction` class.
+This is where the actual execution really happens. Let's create here a `HelloTransportAction` class.
 It extends `HandledTransportAction` so our new action will be automatically registered in the `TransportService`.
 
 ```java
-public class TransportHelloAction extends HandledTransportAction<HelloRequest, HelloResponse> {
+public class HelloTransportAction extends HandledTransportAction<HelloRequest, HelloResponse> {
 
     @Inject
-    public TransportHelloAction(Settings settings, ThreadPool threadPool, ActionFilters actionFilters,
+    public HelloTransportAction(Settings settings, ThreadPool threadPool, ActionFilters actionFilters,
                                 IndexNameExpressionResolver resolver, TransportService transportService) {
         super(settings, HelloAction.NAME, threadPool, transportService, actionFilters, resolver, HelloRequest::new);
     }
@@ -279,8 +285,7 @@ all the logic in our `RestHelloAction` class and `Message` inner class:
 
 ```java
 @Override
-public void handleRequest(RestRequest request, RestChannel channel, NodeClient client) throws Exception {
-    RestToXContentListener<ToXContent> listener = new RestToXContentListener<>(channel);
+protected RestChannelConsumer prepareRequest(RestRequest restRequest, NodeClient client) throws IOException {
     String name = request.param("name");
 
     if (name == null && request.content().length() > 0) {
@@ -291,7 +296,14 @@ public void handleRequest(RestRequest request, RestChannel channel, NodeClient c
         }
     }
 
-    listener.onResponse(new Message(name));
+    return channel -> {
+        Message message = new Message(name);
+        XContentBuilder builder = channel.newBuilder();
+        builder.startObject();
+        message.toXContent(builder, restRequest);
+        builder.endObject();
+        channel.sendResponse(new BytesRestResponse(RestStatus.OK, builder));
+    };
 }
 
 class Message implements ToXContent {
@@ -317,7 +329,7 @@ Let's replace all that now with:
 
 ```java
 @Override
-public void handleRequest(RestRequest restRequest, RestChannel channel, NodeClient client) throws Exception {
+protected RestChannelConsumer prepareRequest(RestRequest restRequest, NodeClient client) throws IOException {
     HelloRequest request = new HelloRequest();
 
     String name = restRequest.param("name");
@@ -327,7 +339,7 @@ public void handleRequest(RestRequest restRequest, RestChannel channel, NodeClie
         request.setRestContent(restRequest.content());
     }
 
-    client.execute(HelloAction.INSTANCE, request, new RestToXContentListener<>(channel));
+    return channel -> client.execute(HelloAction.INSTANCE, request, new RestToXContentListener<>(channel));
 }
 ```
 
@@ -342,11 +354,11 @@ In `IngestBanoPlugin`, we add this method:
 ```java
 @Override
 public List<ActionHandler<? extends ActionRequest<?>, ? extends ActionResponse>> getActions() {
-    return Collections.singletonList(new ActionHandler<>(HelloAction.INSTANCE, TransportHelloAction.class));
+    return Collections.singletonList(new ActionHandler<>(HelloAction.INSTANCE, HelloTransportAction.class));
 }
 ```
 
-We are basically associating here our `HelloAction` with its `TransportHelloAction` class.
+We are basically associating here our `HelloAction` with its `HelloTransportAction` class.
 
 ## Add transport layer tests
 
@@ -433,26 +445,22 @@ Remember [it was]({{< ref "2016-07-30-adding-a-new-rest-endpoint-to-elasticsearc
 
 ```java
 @Override
-public void handleRequest(RestRequest request, RestChannel channel, NodeClient client) throws Exception {
-    RestToXContentListener<ToXContent> listener = new RestToXContentListener<>(channel);
-
-    client.admin().indices().prepareGetIndex()
+protected RestChannelConsumer prepareRequest(RestRequest restRequest, NodeClient client) throws IOException {
+    return channel -> client.admin().indices().prepareGetIndex()
             .setIndices(".bano*")
-            .execute(new ActionListener<GetIndexResponse>() {
-        @Override
-        public void onResponse(GetIndexResponse getIndexResponse) {
-            Indices indices = new Indices();
-            for (String index : getIndexResponse.getIndices()) {
-                indices.addIndex(index);
-            }
-            listener.onResponse(indices);
-        }
-
-        @Override
-        public void onFailure(Exception e) {
-            listener.onFailure(e);
-        }
-    });
+            .execute(new RestBuilderListener<GetIndexResponse>(channel) {
+                @Override
+                public RestResponse buildResponse(GetIndexResponse getIndexResponse, XContentBuilder builder) throws Exception {
+                    Indices indices = new Indices();
+                    for (String index : getIndexResponse.getIndices()) {
+                        indices.addIndex(index);
+                    }
+                    builder.startObject();
+                    indices.toXContent(builder, restRequest);
+                    builder.endObject();
+                    return new BytesRestResponse(RestStatus.OK, builder);
+                }
+            });
 }
 
 class Indices implements ToXContent {
@@ -482,7 +490,7 @@ Let's replace all that with:
 
 ```java
 @Override
-public void handleRequest(RestRequest restRequest, RestChannel channel, NodeClient client) throws Exception {
+protected RestChannelConsumer prepareRequest(RestRequest restRequest, NodeClient client) throws IOException {
     BanoRequest request = new BanoRequest();
 
     String dept = restRequest.param("dept");
@@ -490,7 +498,7 @@ public void handleRequest(RestRequest restRequest, RestChannel channel, NodeClie
         request.setDept(dept);
     }
 
-    client.execute(BanoAction.INSTANCE, request, new RestToXContentListener<>(channel));
+    return channel -> client.execute(BanoAction.INSTANCE, request, new RestToXContentListener<>(channel));
 }
 ```
 
@@ -502,20 +510,20 @@ In `IngestBanoPlugin`, we just have to register the new action with:
 @Override
 public List<ActionHandler<? extends ActionRequest<?>, ? extends ActionResponse>> getActions() {
     return Arrays.asList(
-            new ActionHandler<>(HelloAction.INSTANCE, TransportHelloAction.class),
-            new ActionHandler<>(BanoAction.INSTANCE, TransportBanoAction.class));
+        new ActionHandler<>(HelloAction.INSTANCE, HelloTransportAction.class),
+        new ActionHandler<>(BanoAction.INSTANCE, BanoTransportAction.class));
 }
 ```
 
-The TransportBanoAction is:
+The `BanoTransportAction` class is:
 
 ```java
-public class TransportBanoAction extends HandledTransportAction<BanoRequest, BanoResponse> {
+public class BanoTransportAction extends HandledTransportAction<BanoRequest, BanoResponse> {
 
     private final ClusterService clusterService;
 
     @Inject
-    public TransportBanoAction(Settings settings, ThreadPool threadPool, ActionFilters actionFilters,
+    public BanoTransportAction(Settings settings, ThreadPool threadPool, ActionFilters actionFilters,
                                IndexNameExpressionResolver resolver, TransportService transportService,
                                ClusterService clusterService) {
         super(settings, BanoAction.NAME, threadPool, transportService, actionFilters, resolver, BanoRequest::new);

@@ -10,6 +10,7 @@ tags:
 categories:
   - tips
 date: 2015-03-05 22:00:00 +0200
+lastmod: 2015-03-05 22:00:00 +0200
 draft: false
 aliases:
   - /blog/2015/03/05/using-log4j2-with-hibernate-4/

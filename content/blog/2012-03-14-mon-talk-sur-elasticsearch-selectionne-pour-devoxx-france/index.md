@@ -10,6 +10,7 @@ tags:
 categories:
   - speaker
 date: 2012-03-14 14:54:42 +00:00
+lastmod: 2012-03-14 14:54:42 +00:00
 # featuredImage: blog/2015-05-19-using-js-auth-with-found-cluster/found_byelastic_logo_512x185.png
 draft: false
 aliases:

@@ -1,6 +1,6 @@
 ---
 title: "Elasticsearch real integration tests"
-#description: 
+#description:
 toc: true
 authors:
   - David Pilato
@@ -16,14 +16,13 @@ categories:
 series:
   - plugin for elasticsearch v5
 date: 2016-07-29 03:02:48 +0200
-lastmod: 2016-07-29 03:02:48 +0200
+lastmod: 2016-10-18 03:02:48 +0200
 # featuredImage: assets/images/covers/new/logstash.png
 draft: false
 aliases:
   - /blog/2016/07/29/elasticsearch-real-integration-tests/
+  - /blog/2016/10/18/elasticsearch-real-integration-tests-updated-for-ga/
 ---
-
-**NOTE:** This article is now outdated. Please read [Elasticsearch real integration tests (Updated for GA)]({{< ref "2016-10-18-elasticsearch-real-integration-tests-updated-for-ga" >}}) instead!
 
 Integration tests... How do you run them?
 
@@ -55,7 +54,7 @@ Let's see how you can do that with Maven...
 
 Ideally, we want to:
 
-* download elasticsearch 5.0.0-alpha5 version
+* download elasticsearch 5.0.0 version
 * unzip it
 * install the plugin we are building if this is what we are doing
 * install any other plugin we could need for the tests
@@ -386,7 +385,7 @@ Define some properties first:
 
 ```xml
 <elasticsearch.groupid>org.elasticsearch.distribution.zip</elasticsearch.groupid>
-<elasticsearch.version>5.0.0-alpha5</elasticsearch.version>
+<elasticsearch.version>5.0.0</elasticsearch.version>
 <skipTests>false</skipTests>
 
 <!-- For integration tests using ANT -->
@@ -619,10 +618,24 @@ We can use it to run our tests:
 <dependency>
     <groupId>org.elasticsearch.client</groupId>
     <artifactId>rest</artifactId>
-    <version>${elasticsearch.version}</version>
+    <version>${elasticsearch.rest.version}</version>
     <scope>test</scope>
 </dependency>
 ```
+
+Note that we added a new maven property called `elasticsearch.rest.version`:
+
+```xml
+<properties>
+    <elasticsearch.rest.version>5.0.0</elasticsearch.rest.version>
+</properties>
+```
+
+Why is it another property than `${elasticsearch.version}` than the elasticsearch?
+Actually if you run your tests against a 2.x or 1.x version, the REST client
+does not exist for versions before 5.0. But it is compatible with older versions.
+So when we use a profile `es-1x` or `es-2x`, we must stick with the version 5.x of
+the REST plugin.
 
 ### Skip tests if no cluster
 
@@ -633,7 +646,7 @@ Let's build an abstract class for all our Integration tests:
 
 ```java
 public abstract class AbstractITCase extends ESTestCase {
-    protected static final ESLogger staticLogger = ESLoggerFactory.getLogger("it");
+    protected static final Logger staticLogger = ESLoggerFactory.getLogger("it");
     protected final static int HTTP_TEST_PORT = 9400;
     protected static RestClient client;
 
@@ -706,7 +719,7 @@ $ mvn install
 [INFO] Scanning for projects...
 [INFO]
 [INFO] ------------------------------------------------------------------------
-[INFO] Building Plugin: Ingest: BANO 5.0.0-alpha5-SNAPSHOT
+[INFO] Building Plugin: Ingest: BANO 5.0.0-SNAPSHOT
 [INFO] ------------------------------------------------------------------------
 [INFO]
 [INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ ingest-bano ---
@@ -737,11 +750,11 @@ Completed [1/1] in 4.18s, 1 test
 [INFO]
 [INFO] --- maven-assembly-plugin:2.6:single (default) @ ingest-bano ---
 [INFO] Reading assembly descriptor: /Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/src/main/assemblies/plugin.xml
-[INFO] Building zip: /Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/releases/ingest-bano-5.0.0-alpha5-SNAPSHOT.zip
+[INFO] Building zip: /Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/releases/ingest-bano-5.0.0-SNAPSHOT.zip
 [INFO]
 [INFO] --- maven-dependency-plugin:2.10:copy (integ-setup-dependencies) @ ingest-bano ---
-[INFO] Configured Artifact: org.elasticsearch.distribution.zip:elasticsearch:5.0.0-alpha5:zip
-[INFO] org.elasticsearch.distribution.zip:elasticsearch:5.0.0-alpha5:zip already exists in /Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/integration-tests/binaries
+[INFO] Configured Artifact: org.elasticsearch.distribution.zip:elasticsearch:5.0.0:zip
+[INFO] org.elasticsearch.distribution.zip:elasticsearch:5.0.0:zip already exists in /Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/integration-tests/binaries
 [INFO]
 [INFO] --- maven-antrun-plugin:1.8:run (integ-setup) @ ingest-bano ---
 [INFO] Executing tasks
@@ -752,7 +765,7 @@ stop-external-cluster:
 
 setup-workspace:
    [delete] Deleting directory /Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/integration-tests/run
-    [unzip] Expanding: /Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/integration-tests/binaries/elasticsearch-5.0.0-alpha5.zip into /Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/integration-tests/run
+    [unzip] Expanding: /Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/integration-tests/binaries/elasticsearch-5.0.0.zip into /Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/integration-tests/run
 
 start-external-cluster-with-plugin:
      [echo] Installing plugin ingest-bano...
@@ -760,10 +773,10 @@ start-external-cluster-with-plugin:
 <?xml version="1.0" encoding="UTF-8"?>
 <exec script="elasticsearch-plugin">
   <arg value="install" />
-  <arg value="file:/Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/releases/ingest-bano-5.0.0-alpha5.zip" />
+  <arg value="file:/Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/releases/ingest-bano-5.0.0.zip" />
 </exec>
-[elasticsearch-plugin] Plugins directory [/Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/integration-tests/run/elasticsearch-5.0.0-alpha5/plugins] does not exist. Creating...
-[elasticsearch-plugin] -> Downloading file:/Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/releases/ingest-bano-5.0.0-alpha5-SNAPSHOT.zip
+[elasticsearch-plugin] Plugins directory [/Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/integration-tests/run/elasticsearch-5.0.0/plugins] does not exist. Creating...
+[elasticsearch-plugin] -> Downloading file:/Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/releases/ingest-bano-5.0.0-SNAPSHOT.zip
 [elasticsearch-plugin]
 [elasticsearch-plugin] -> Installed ingest-bano
      [echo] Starting up external cluster...
@@ -782,7 +795,7 @@ start-external-cluster-with-plugin:
 [elasticsearch] [2016-07-29 01:54:01,526][INFO ][env                      ] [GTlhLM8] using [1] data paths, mounts [[/ (/dev/disk1)]], net usable_space [24.1gb], net total_space [464.7gb], spins? [unknown], types [hfs]
 [elasticsearch] [2016-07-29 01:54:01,526][INFO ][env                      ] [GTlhLM8] heap size [1.9gb], compressed ordinary object pointers [true]
 [elasticsearch] [2016-07-29 01:54:01,527][INFO ][node                     ] [GTlhLM8] node name [GTlhLM8] derived from node ID; set [node.name] to override
-[elasticsearch] [2016-07-29 01:54:01,528][INFO ][node                     ] [GTlhLM8] version[5.0.0-alpha5], pid[2942], build[0d2ccf0/2016-07-28T15:02:31.650Z], OS[Mac OS X/10.11.5/x86_64], JVM[Oracle Corporation/Java HotSpot(TM) 64-Bit Server VM/1.8.0_60/25.60-b23]
+[elasticsearch] [2016-07-29 01:54:01,528][INFO ][node                     ] [GTlhLM8] version[5.0.0], pid[2942], build[0d2ccf0/2016-07-28T15:02:31.650Z], OS[Mac OS X/10.11.5/x86_64], JVM[Oracle Corporation/Java HotSpot(TM) 64-Bit Server VM/1.8.0_60/25.60-b23]
 [elasticsearch] [2016-07-29 01:54:02,442][INFO ][io.netty.util.internal.PlatformDependent] Your platform does not provide complete low-level API for accessing direct buffers reliably. Unless explicitly requested, heap buffer will always be preferred to avoid potential system unstability.
 [elasticsearch] [2016-07-29 01:54:02,472][INFO ][plugins                  ] [GTlhLM8] loaded module [aggs-matrix-stats]
 [elasticsearch] [2016-07-29 01:54:02,473][INFO ][plugins                  ] [GTlhLM8] loaded module [ingest-common]
@@ -835,9 +848,9 @@ stop-external-cluster:
 [INFO] Executed tasks
 [INFO]
 [INFO] --- maven-install-plugin:2.4:install (default-install) @ ingest-bano ---
-[INFO] Installing /Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/ingest-bano-5.0.0-alpha5-SNAPSHOT.jar to /Users/dpilato/.m2/repository/fr/pilato/elasticsearch/ingest/ingest-bano/5.0.0-alpha5-SNAPSHOT/ingest-bano-5.0.0-alpha5-SNAPSHOT.jar
-[INFO] Installing /Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/pom.xml to /Users/dpilato/.m2/repository/fr/pilato/elasticsearch/ingest/ingest-bano/5.0.0-alpha5-SNAPSHOT/ingest-bano-5.0.0-alpha5-SNAPSHOT.pom
-[INFO] Installing /Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/releases/ingest-bano-5.0.0-alpha5-SNAPSHOT.zip to /Users/dpilato/.m2/repository/fr/pilato/elasticsearch/ingest/ingest-bano/5.0.0-alpha5-SNAPSHOT/ingest-bano-5.0.0-alpha5-SNAPSHOT.zip
+[INFO] Installing /Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/ingest-bano-5.0.0-SNAPSHOT.jar to /Users/dpilato/.m2/repository/fr/pilato/elasticsearch/ingest/ingest-bano/5.0.0-SNAPSHOT/ingest-bano-5.0.0-SNAPSHOT.jar
+[INFO] Installing /Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/pom.xml to /Users/dpilato/.m2/repository/fr/pilato/elasticsearch/ingest/ingest-bano/5.0.0-SNAPSHOT/ingest-bano-5.0.0-SNAPSHOT.pom
+[INFO] Installing /Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/releases/ingest-bano-5.0.0-SNAPSHOT.zip to /Users/dpilato/.m2/repository/fr/pilato/elasticsearch/ingest/ingest-bano/5.0.0-SNAPSHOT/ingest-bano-5.0.0-SNAPSHOT.zip
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
@@ -849,6 +862,8 @@ stop-external-cluster:
 
 You can see at the end the execution of integration tests from this line:
 
-`[INFO] --- junit4-maven-plugin:2.3.3:junit4 (integration-tests) @ ingest-bano ---`
+```txt
+[INFO] --- junit4-maven-plugin:2.3.3:junit4 (integration-tests) @ ingest-bano ---
+```
 
 Done!

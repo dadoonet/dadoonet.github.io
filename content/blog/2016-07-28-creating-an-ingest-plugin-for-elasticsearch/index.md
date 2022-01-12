@@ -14,14 +14,13 @@ categories:
 series:
   - plugin for elasticsearch v5
 date: 2016-07-28 10:55:29 +0200
-lastmod: 2016-07-28 10:55:29 +0200
+lastmod: 2016-10-17 10:55:29 +0200
 # featuredImage: assets/images/covers/new/logstash.png
 draft: false
 aliases:
   - /blog/2016/07/28/creating-an-ingest-plugin-for-elasticsearch/
+  - /blog/2016/10/17/creating-an-ingest-plugin-for-elasticsearch-updated-for-ga/
 ---
-
-**NOTE:** This article is now outdated. Please read [Creating an Ingest plugin for elasticsearch (Updated for GA)]({{< ref "2016-10-17-creating-an-ingest-plugin-for-elasticsearch-updated-for-ga" >}}) instead!
 
 This blog post is part of a series which will teach you:
 
@@ -92,11 +91,11 @@ actually creating a pipeline and indexing a document.
 curl -XGET "localhost:9200/_ingest/pipeline/_simulate?pretty" -d '{
   "pipeline" : {
     "processors" : [
-        {
-            "lowercase" : {
+     {
+        "lowercase" : {
             "field": "foo"
-            }
         }
+     }
     ]
   },
   "docs" : [
@@ -215,7 +214,7 @@ To do that we need to provide a factory which implements `Processor.Factory`:
 public static final class BanoFactory implements Processor.Factory {
     @Override
     public Processor create(Map<String, Processor.Factory> processorFactories, String tag, Map<String, Object> config)
-            throws Exception {
+        throws Exception {
         return new BanoProcessor(tag);
     }
 }
@@ -306,7 +305,7 @@ So if we have a document like:
 
 ```json
 {
-    "foo": "bar"
+ "foo": "bar"
 }
 ```
 
@@ -314,8 +313,8 @@ It should become:
 
 ```json
 {
-    "foo": "bar",
-    "new_foo": "bar"
+ "foo": "bar",
+ "new_foo": "bar"
 }
 ```
 
@@ -489,7 +488,7 @@ Let's add a new `remove` boolean option:
 private final Boolean removeOption;
 
 protected BanoProcessor(String tag, String sourceField, String targetField, Boolean removeOption) {
-    // ...
+  // ...
     this.removeOption = removeOption;
 }
 
@@ -507,7 +506,7 @@ public static final class BanoFactory implements Processor.Factory {
     @Override
     public Processor create(Map<String, Processor.Factory> processorFactories, String tag, Map<String, Object> config) throws
             Exception {
-        // ...
+    // ...
         Boolean remove = readBooleanProperty(NAME, tag, config, "remove", false);
 
         return new BanoProcessor(tag, source, target, remove);

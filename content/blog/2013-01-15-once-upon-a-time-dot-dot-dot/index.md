@@ -13,6 +13,7 @@ categories:
 series:
   - career at elastic
 date: 2013-01-15 20:00:00 +0200
+lastmod: 2013-01-15 20:00:00 +0200
 # featuredImage: blog/2016-03-17-and-the-beats-go-on/beats.png
 draft: false
 aliases:

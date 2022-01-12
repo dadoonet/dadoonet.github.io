@@ -11,6 +11,7 @@ tags:
 categories:
   - tutorial
 date: 2010-02-24 13:56:56 +00:00
+lastmod: 2010-02-24 13:56:56 +00:00
 # featuredImage: blog/2010-05-11-installation-fusionforge-5-0-sur-redhat-5/maforge.png
 draft: false
 aliases:

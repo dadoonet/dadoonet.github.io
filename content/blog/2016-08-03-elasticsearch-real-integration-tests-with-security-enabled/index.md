@@ -15,14 +15,13 @@ categories:
 series:
   - plugin for elasticsearch v5
 date: 2016-08-03 18:24:37 +0200
-lastmod: 2016-08-03 18:24:37 +0200
+lastmod: 2016-10-21 18:24:37 +0200
 # featuredImage: assets/images/covers/new/logstash.png
 draft: false
 aliases:
   - /blog/2016/08/03/elasticsearch-real-integration-tests-with-security-enabled/
+  - /blog/2016/10/21/elasticsearch-real-integration-tests-with-security-enabled-updated-for-ga/
 ---
-
-**NOTE:** This article is now outdated. Please read [Elasticsearch real integration tests with security enabled (Updated for GA)]({{< ref "2016-10-21-elasticsearch-real-integration-tests-with-security-enabled-updated-for-ga" >}}) instead!
 
 In a recent post we have seen [how to create real integration tests]({{< ref "2016-07-29-elasticsearch-real-integration-tests" >}}).
 Those tests launch a real elasticsearch cluster, then run some tests you write with JUnit or your favorite test framework
@@ -42,7 +41,19 @@ Let's see how you can do that with Maven and Ant again...
 
 <!-- more -->
 
-## Copy the plugins from maven central
+## Copy the plugins from elastic maven repository
+
+First, let's add elastic maven repository in our `pom.xml`.
+
+```xml
+<repositories>
+    <repository>
+        <id>elastic-releases</id>
+        <name>Elastic Maven Repository</name>
+        <url>http://artifacts.elastic.co/maven/</url>
+    </repository>
+</repositories>
+```
 
 We can add a new `execution` to the `maven-dependency-plugin` we already defined.
 The goal is to copy all plugins we need to a `target/integration-tests/plugins` directory.
@@ -249,15 +260,15 @@ It will create the plugin ZIP, copy elasticsearch to `target/integration-tests/b
 ```txt
 [INFO] --- maven-assembly-plugin:2.6:single (default) @ ingest-bano ---
 [INFO] Reading assembly descriptor: /Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/src/main/assemblies/plugin.xml
-[INFO] Building zip: /Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/releases/ingest-bano-5.0.0-alpha5.zip
+[INFO] Building zip: /Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/releases/ingest-bano-5.0.0.zip
 [INFO]
 [INFO] --- maven-dependency-plugin:2.10:copy (integ-setup-dependencies) @ ingest-bano ---
-[INFO] Configured Artifact: org.elasticsearch.distribution.zip:elasticsearch:5.0.0-alpha5:zip
-[INFO] org.elasticsearch.distribution.zip:elasticsearch:5.0.0-alpha5:zip already exists in /Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/integration-tests/binaries
+[INFO] Configured Artifact: org.elasticsearch.distribution.zip:elasticsearch:5.0.0:zip
+[INFO] org.elasticsearch.distribution.zip:elasticsearch:5.0.0:zip already exists in /Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/integration-tests/binaries
 [INFO]
 [INFO] --- maven-dependency-plugin:2.10:copy (integ-setup-dependencies-plugins) @ ingest-bano ---
-[INFO] Configured Artifact: org.elasticsearch.plugin:x-pack:5.0.0-alpha5:zip
-[INFO] org.elasticsearch.plugin:x-pack:5.0.0-alpha5:zip already exists in /Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/integration-tests/plugins
+[INFO] Configured Artifact: org.elasticsearch.plugin:x-pack:5.0.0:zip
+[INFO] org.elasticsearch.plugin:x-pack:5.0.0:zip already exists in /Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/integration-tests/plugins
 [INFO]
 ```
 
@@ -273,7 +284,7 @@ stop-external-cluster:
 
 setup-workspace:
    [delete] Deleting directory /Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/integration-tests/run
-    [unzip] Expanding: /Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/integration-tests/binaries/elasticsearch-5.0.0-alpha5.zip into /Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/integration-tests/run
+    [unzip] Expanding: /Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/integration-tests/binaries/elasticsearch-5.0.0.zip into /Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/integration-tests/run
 
 start-external-cluster-with-plugin:
      [echo] Installing plugin ingest-bano...
@@ -281,10 +292,10 @@ start-external-cluster-with-plugin:
 <?xml version="1.0" encoding="UTF-8"?>
 <exec script="elasticsearch-plugin">
   <arg value="install" />
-  <arg value="file:/Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/releases/ingest-bano-5.0.0-alpha5.zip" />
+  <arg value="file:/Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/releases/ingest-bano-5.0.0.zip" />
 </exec>
-[elasticsearch-plugin] Plugins directory [/Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/integration-tests/run/elasticsearch-5.0.0-alpha5/plugins] does not exist. Creating...
-[elasticsearch-plugin] -> Downloading file:/Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/releases/ingest-bano-5.0.0-alpha5.zip
+[elasticsearch-plugin] Plugins directory [/Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/integration-tests/run/elasticsearch-5.0.0/plugins] does not exist. Creating...
+[elasticsearch-plugin] -> Downloading file:/Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/releases/ingest-bano-5.0.0.zip
 [elasticsearch-plugin]
 [elasticsearch-plugin] -> Installed ingest-bano
      [echo] Installing plugin x-pack...
@@ -292,9 +303,9 @@ start-external-cluster-with-plugin:
 <?xml version="1.0" encoding="UTF-8"?>
 <exec script="elasticsearch-plugin">
   <arg value="install" />
-  <arg value="file:/Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/integration-tests/plugins/x-pack-5.0.0-alpha5.zip" />
+  <arg value="file:/Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/integration-tests/plugins/x-pack-5.0.0.zip" />
 </exec>
-[elasticsearch-plugin] -> Downloading file:/Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/integration-tests/plugins/x-pack-5.0.0-alpha5.zip
+[elasticsearch-plugin] -> Downloading file:/Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/integration-tests/plugins/x-pack-5.0.0.zip
 [elasticsearch-plugin]
 [elasticsearch-plugin] @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 [elasticsearch-plugin] @     WARNING: plugin requires additional permissions     @
@@ -335,9 +346,9 @@ start-external-cluster-with-plugin:
 [elasticsearch] [2016-08-03 19:36:57,570][INFO ][env                      ] [hQWaRT2] using [1] data paths, mounts [[/ (/dev/disk1)]], net usable_space [32.5gb], net total_space [464.7gb], spins? [unknown], types [hfs]
 [elasticsearch] [2016-08-03 19:36:57,570][INFO ][env                      ] [hQWaRT2] heap size [1.9gb], compressed ordinary object pointers [true]
 [elasticsearch] [2016-08-03 19:36:57,571][INFO ][node                     ] [hQWaRT2] node name [hQWaRT2] derived from node ID; set [node.name] to override
-[elasticsearch] [2016-08-03 19:36:57,572][INFO ][node                     ] [hQWaRT2] version[5.0.0-alpha5], pid[24989], build[6b7d409/2016-07-29T07:51:41.648Z], OS[Mac OS X/10.11.6/x86_64], JVM[Oracle Corporation/Java HotSpot(TM) 64-Bit Server VM/1.8.0_60/25.60-b23]
+[elasticsearch] [2016-08-03 19:36:57,572][INFO ][node                     ] [hQWaRT2] version[5.0.0], pid[24989], build[6b7d409/2016-07-29T07:51:41.648Z], OS[Mac OS X/10.11.6/x86_64], JVM[Oracle Corporation/Java HotSpot(TM) 64-Bit Server VM/1.8.0_60/25.60-b23]
 [elasticsearch] [2016-08-03 19:36:58,569][INFO ][io.netty.util.internal.PlatformDependent] Your platform does not provide complete low-level API for accessing direct buffers reliably. Unless explicitly requested, heap buffer will always be preferred to avoid potential system unstability.
-[elasticsearch] [2016-08-03 19:36:58,953][INFO ][xpack.security.crypto    ] [hQWaRT2] system key [/Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/integration-tests/run/elasticsearch-5.0.0-alpha5/config/x-pack/system_key] has been loaded
+[elasticsearch] [2016-08-03 19:36:58,953][INFO ][xpack.security.crypto    ] [hQWaRT2] system key [/Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/integration-tests/run/elasticsearch-5.0.0/config/x-pack/system_key] has been loaded
 [elasticsearch] [2016-08-03 19:36:58,970][INFO ][plugins                  ] [hQWaRT2] loaded module [aggs-matrix-stats]
 [elasticsearch] [2016-08-03 19:36:58,970][INFO ][plugins                  ] [hQWaRT2] loaded module [ingest-common]
 [elasticsearch] [2016-08-03 19:36:58,970][INFO ][plugins                  ] [hQWaRT2] loaded module [lang-expression]
@@ -352,8 +363,8 @@ start-external-cluster-with-plugin:
 [elasticsearch] [2016-08-03 19:36:58,971][INFO ][plugins                  ] [hQWaRT2] loaded plugin [x-pack]
 [elasticsearch] [2016-08-03 19:37:02,019][INFO ][node                     ] [hQWaRT2] initialized
 [elasticsearch] [2016-08-03 19:37:02,019][INFO ][node                     ] [hQWaRT2] starting ...
-[elasticsearch] [2016-08-03 19:37:02,025][WARN ][xpack.security.authc.file] [hQWaRT2] no users found in users file [/Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/integration-tests/run/elasticsearch-5.0.0-alpha5/config/x-pack/users]. use bin/x-pack/users to add users and role mappings
-[elasticsearch] [2016-08-03 19:37:02,029][WARN ][xpack.security.authc.file] [hQWaRT2] no entries found in users_roles file [/Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/integration-tests/run/elasticsearch-5.0.0-alpha5/config/x-pack/users_roles]. use bin/xpack/users to add users and role mappings
+[elasticsearch] [2016-08-03 19:37:02,025][WARN ][xpack.security.authc.file] [hQWaRT2] no users found in users file [/Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/integration-tests/run/elasticsearch-5.0.0/config/x-pack/users]. use bin/x-pack/users to add users and role mappings
+[elasticsearch] [2016-08-03 19:37:02,029][WARN ][xpack.security.authc.file] [hQWaRT2] no entries found in users_roles file [/Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/integration-tests/run/elasticsearch-5.0.0/config/x-pack/users_roles]. use bin/xpack/users to add users and role mappings
 [elasticsearch] [2016-08-03 19:37:02,296][INFO ][xpack.security.transport ] [hQWaRT2] publish_address {127.0.0.1:9500}, bound_addresses {127.0.0.1:9500}
 [elasticsearch] [2016-08-03 19:37:02,301][WARN ][bootstrap                ] [hQWaRT2] initial heap size [268435456] not equal to maximum heap size [2147483648]; this can cause resize pauses and prevents mlockall from locking the entire heap
 [elasticsearch] [2016-08-03 19:37:02,301][WARN ][bootstrap                ] [hQWaRT2] please set [discovery.zen.minimum_master_nodes] to a majority of the number of master eligible nodes in your cluster
@@ -401,9 +412,9 @@ stop-external-cluster:
 [INFO] Executed tasks
 [INFO]
 [INFO] --- maven-install-plugin:2.4:install (default-install) @ ingest-bano ---
-[INFO] Installing /Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/ingest-bano-5.0.0-alpha5.jar to /Users/dpilato/.m2/repository/fr/pilato/elasticsearch/ingest/ingest-bano/5.0.0-alpha5/ingest-bano-5.0.0-alpha5.jar
-[INFO] Installing /Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/pom.xml to /Users/dpilato/.m2/repository/fr/pilato/elasticsearch/ingest/ingest-bano/5.0.0-alpha5/ingest-bano-5.0.0-alpha5.pom
-[INFO] Installing /Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/releases/ingest-bano-5.0.0-alpha5.zip to /Users/dpilato/.m2/repository/fr/pilato/elasticsearch/ingest/ingest-bano/5.0.0-alpha5/ingest-bano-5.0.0-alpha5.zip
+[INFO] Installing /Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/ingest-bano-5.0.0.jar to /Users/dpilato/.m2/repository/fr/pilato/elasticsearch/ingest/ingest-bano/5.0.0/ingest-bano-5.0.0.jar
+[INFO] Installing /Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/pom.xml to /Users/dpilato/.m2/repository/fr/pilato/elasticsearch/ingest/ingest-bano/5.0.0/ingest-bano-5.0.0.pom
+[INFO] Installing /Users/dpilato/Documents/Elasticsearch/dev/blog-tests/ingest-bano/target/releases/ingest-bano-5.0.0.zip to /Users/dpilato/.m2/repository/fr/pilato/elasticsearch/ingest/ingest-bano/5.0.0/ingest-bano-5.0.0.zip
 ```
 
 Et voilà! :)

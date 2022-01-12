@@ -14,14 +14,13 @@ categories:
 series:
   - plugin for elasticsearch v5
 date: 2016-07-27 16:00:27 +0200
-lastmod: 2016-07-27 16:00:27 +0200
+lastmod: 2016-10-16 04:00:00 +0200
 # featuredImage: assets/images/covers/new/logstash.png
 draft: false
 aliases:
   - /blog/2016/07/27/creating-a-plugin-for-elasticsearch-5-dot-0-using-maven/
+  - /blog/2016/10/16/creating-a-plugin-for-elasticsearch-5-dot-0-using-maven-updated-for-ga/
 ---
-
-**NOTE:** This article is now outdated. Please read [Creating a plugin for elasticsearch 5.0 using Maven (Updated for GA)]({{< ref "2016-10-16-creating-a-plugin-for-elasticsearch-5-dot-0-using-maven-updated-for-ga" >}}) instead!
 
 Elasticsearch 5.0 [switched to Gradle in October 2015](https://github.com/elastic/elasticsearch/issues/13930).
 
@@ -50,9 +49,6 @@ This blog post is part of a series which will teach you:
 
 Let's get started!
 
-**Note**: this article applies to elasticsearch 5.0.0 alpha 5. It might
-be not applicable for newer versions as APIs could change.
-
 ## Create a skeleton
 
 ### Create Maven skeleton
@@ -68,7 +64,7 @@ Create in your new project directory, let say `ingest-bano`, a `pom.xml` file:
 
     <groupId>fr.pilato.elasticsearch.ingest</groupId>
     <artifactId>ingest-bano</artifactId>
-    <version>5.0.0-alpha5-SNAPSHOT</version>
+    <version>5.0.0-SNAPSHOT</version>
     <name>Plugin: Ingest: BANO</name>
     <description>BANO Ingest Plugin for elasticsearch</description>
 
@@ -77,11 +73,11 @@ Create in your new project directory, let say `ingest-bano`, a `pom.xml` file:
 
 ## Add elasticsearch core dependency
 
-Just add `org.elasticsearch:elasticsearch:5.0.0-alpha5` as a `provided` dependency:
+Just add `org.elasticsearch:elasticsearch:5.0.0` as a `provided` dependency:
 
 ```xml
 <properties>
-    <elasticsearch.version>5.0.0-alpha5</elasticsearch.version>
+    <elasticsearch.version>5.0.0</elasticsearch.version>
 </properties>
 
 <dependencies>
@@ -242,9 +238,15 @@ Let's add it to our project:
     <scope>test</scope>
 </dependency>
 <dependency>
-    <groupId>log4j</groupId>
-    <artifactId>log4j</artifactId>
-    <version>1.2.17</version>
+    <groupId>org.apache.logging.log4j</groupId>
+    <artifactId>log4j-api</artifactId>
+    <version>2.7</version>
+    <scope>test</scope>
+</dependency>
+<dependency>
+    <groupId>org.apache.logging.log4j</groupId>
+    <artifactId>log4j-core</artifactId>
+    <version>2.7</version>
     <scope>test</scope>
 </dependency>
 ```
@@ -367,10 +369,10 @@ You will get in `target/releases` the distribution file.
 
 ## Install the plugin
 
-If you have an elasticsearch 5.0.0-alpha5 version somewhere, you can install this plugin with:
+If you have an elasticsearch 5.0.0 version somewhere, you can install this plugin with:
 
 ```sh
-bin/elasticsearch-plugin install file:///path/to/target/releases/ingest-bano-5.0.0-alpha5-SNAPSHOT.zip
+bin/elasticsearch-plugin install file:///path/to/target/releases/ingest-bano-5.0.0-SNAPSHOT.zip
 ```
 
 Then you can start elasticsearch with `bin/elasticsearch`  and check in logs that the plugin is loaded.
