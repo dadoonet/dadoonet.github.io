@@ -54,7 +54,7 @@ Side note: I really enjoyed the day Shay wrote the ["Source Code"](https://www.e
 
 ## The french spoken language wide territory
 
-French is spoken by [321 millions of people](https://fr.wikipedia.org/wiki/Fran%C3%A7ais), including 93 french native speakers. Of course only a subset of them is speaking about IT, but that still represents a significant territory to cover:
+French is spoken by [321 millions of people](https://fr.wikipedia.org/wiki/Fran%C3%A7ais), including 93 millions french native speakers. Of course only a subset of them is speaking about IT, but that still represents a significant territory to cover:
 
 {{< figure src="francophone_world.png" caption="Source: <https://fr.wikipedia.org/wiki/Francophonie>" >}}
 
