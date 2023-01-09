@@ -28,7 +28,7 @@ highlight:
     #languages:
     #  - dart
     # See https://github.com/highlightjs/cdn-release/tree/master/build/styles for available styles.
-    style: solarized-light
+    style: base16/solarized-light
 
 math:
   handler: katex
