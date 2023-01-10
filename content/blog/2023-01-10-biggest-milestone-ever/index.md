@@ -10,7 +10,7 @@ categories:
   - culture
 series:
   - career at elastic
-date: 2023-01-10T08:00:00+01:00
+date: 2023-01-10T07:00:00+01:00
 featuredImage: blog/2023-01-10-biggest-milestone-ever/shay-david.png
 draft: false
 ---
