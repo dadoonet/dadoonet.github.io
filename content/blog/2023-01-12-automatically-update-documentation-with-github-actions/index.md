@@ -17,6 +17,7 @@ categories:
   - tutorial
   - tips
 date: 2023-01-12T10:47:07+01:00
+lastmod: 2023-01-27T11:30:00+01:00
 featuredImage: blog/2023-01-12-automatically-update-documentation-with-github-actions/overview.png
 draft: false
 ---
@@ -224,9 +225,21 @@ Then pass the new token to the checkout step:
     token: ${{ secrets.PAT }}
 ```
 
+<!--
 But when dependabot runs the action, it runs it under another context. So you need to create the `PAT` secret under the Dependabot context as well:
 
 {{< figure src="secrets-dependabot-pat.png" caption="Add your secret to Dependabot context" >}}
+-->
+
+Actually, when the code is running automatically from Dependabot, you can also use the `github.token` as the `secrets.PAT` is not available.
+
+```yml
+- name: Checkout code
+  uses: actions/checkout@v3
+  with:
+    ref: ${{ github.head_ref }}
+    token: ${{ secrets.PAT || github.token }}
+```
 
 Here is what happens when [dependabot creates a PR](https://github.com/dadoonet/demo-automatic-doc/pull/2).
 
@@ -258,7 +271,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           ref: ${{ github.head_ref }}
-          token: ${{ secrets.PAT }}
+          token: ${{ secrets.PAT || github.token }}
       - name: Update resources with Maven
         run: mvn -B process-resources
       - name: Update files if needed
