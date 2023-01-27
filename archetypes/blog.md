@@ -11,6 +11,7 @@ categories:
 series:
   - SERIE
 date: {{ .Date }}
+#lastmod: same date as date
 #featuredImage: blog/{{ .Name }}/image.png
 draft: true
 ---
