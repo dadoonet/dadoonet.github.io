@@ -17,7 +17,7 @@ categories:
   - tutorial
   - tips
 date: 2023-01-12T10:47:07+01:00
-lastmod: 2023-01-27T11:30:00+01:00
+lastmod: 2023-10-23T15:30:00+01:00
 featuredImage: blog/2023-01-12-automatically-update-documentation-with-github-actions/overview.png
 draft: false
 ---
@@ -98,19 +98,22 @@ So the process is now:
 
 To avoid having to locally checkout a branch that has been created in Github, run the maven command and git push the changes to the branch before it can be reviewed and merged, we can use Github Actions to update our resources automatically.
 
-Let say that we already have an action `.github/workflows/main.yml` file:
+Let say that we already have an action `.github/workflows/pr.yml` file:
 
 ```yml
-name: Build the project
-on: [push, pull_request]
+name: Build the pull request
+on:
+  pull_request:
+    branches: [ main ]
+
 jobs:
-  update-files:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Set up JDK 17 and Maven Central Repository
-        uses: actions/setup-java@v2
+        uses: actions/setup-java@v3
         with:
           java-version: '17'
           distribution: 'adopt'
@@ -125,24 +128,29 @@ This is performing the following steps:
 * Setup the JDK and Maven cache
 * Build the project
 
-We need to add the generation of the updated files just before building the project:
+We need to add the generation of the updated files. A best practice is to run this in another workflow file. So let's create `.github/workflows/update-doc.yml`:
 
 ```yml
-- name: Update resources with Maven
-  run: mvn -B process-resources
-- name: Build the project
-  run: mvn -B install
+name: Update the documentation if needed
+on: [ pull_request ]
+jobs:
+  update-files:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Update resources with Maven
+        run: mvn -B process-resources
 ```
 
-And then we need to commit our changes. For this we will use the [git-auto-commit-action](https://github.com/stefanzweifel/git-auto-commit-action):
+And then we need to commit our changes. For this we will use the [add-and-commit](https://github.com/EndBug/add-and-commit) action:
 
 ```yml
-- name: Update resources with Maven
-  run: mvn -B process-resources
 - name: Update files if needed
-  uses: stefanzweifel/git-auto-commit-action@v4
-- name: Build the project
-  run: mvn -B install
+  uses: EndBug/add-and-commit@v9
+  with:
+    default_author: github_actions
+    message: Automatically update versions
 ```
 
 But actually this will fail. Because we need to define that we want to have a write access to the repository:
@@ -155,13 +163,14 @@ permissions:
 
 In the context of a PR, the checkout is by default done using another branch name than the real branch name. When the plugin commits the changes, it does not go to the branch associated with the PR.
 
-On non-push events, such as `pull_request`, we need to specify the actual branch name of the pr as the `ref` for the checkout:
+On non-push events, such as `pull_request`, we need to specify the actual branch name of the pr as the `ref` for the checkout. We can also pass the `repository` name to the checkout action:
 
 ```yml
 - name: Checkout code
-  uses: actions/checkout@v3
+  uses: actions/checkout@v4
   with:
-    ref: ${{ github.head_ref }}
+    ref: ${{github.event.pull_request.head.ref}}
+    repository: ${{github.event.pull_request.head.repo.full_name}}
 ```
 
 ## Manually create a PR
@@ -219,25 +228,21 @@ Then pass the new token to the checkout step:
 
 ```yml
 - name: Checkout code
-  uses: actions/checkout@v3
+  uses: actions/checkout@v4
   with:
-    ref: ${{ github.head_ref }}
+    ref: ${{github.event.pull_request.head.ref}}
+    repository: ${{github.event.pull_request.head.repo.full_name}}
     token: ${{ secrets.PAT }}
 ```
-
-<!--
-But when dependabot runs the action, it runs it under another context. So you need to create the `PAT` secret under the Dependabot context as well:
-
-{{< figure src="secrets-dependabot-pat.png" caption="Add your secret to Dependabot context" >}}
--->
 
 Actually, when the code is running automatically from Dependabot, you can also use the `github.token` as the `secrets.PAT` is not available.
 
 ```yml
 - name: Checkout code
-  uses: actions/checkout@v3
+  uses: actions/checkout@v4
   with:
-    ref: ${{ github.head_ref }}
+    ref: ${{github.event.pull_request.head.ref}}
+    repository: ${{github.event.pull_request.head.repo.full_name}}
     token: ${{ secrets.PAT || github.token }}
 ```
 
@@ -253,37 +258,44 @@ And we can see the details of the commit that has been added by Github Actions o
 
 {{< figure src="dependabot-last-commit.png" caption="Automatically added commit" >}}
 
+## External Pull Requests
+
+When the pull request is created from a fork, we can not push our changes to the original repository. So we need to skip the `update-doc` workflow.
+
+We can detect this by comparing `github.event.pull_request.head.repo.full_name` and `github.event.pull_request.base.repo.full_name`:
+
+```yml
+if: github.event.pull_request.base.repo.full_name == github.event.pull_request.head.repo.full_name
+```
+
 ## The full workflow
 
 The final workflow is:
 
 ```yml
-name: Build the project
-on: [push, pull_request]
+name: Update the documentation if needed
+on: [ pull_request ]
 jobs:
-  build:
+  update-files:
+    if: github.event.pull_request.base.repo.full_name == github.event.pull_request.head.repo.full_name
     runs-on: ubuntu-latest
     permissions:
       contents: write
       packages: write
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
-          ref: ${{ github.head_ref }}
+          ref: ${{github.event.pull_request.head.ref}}
+          repository: ${{github.event.pull_request.head.repo.full_name}}
           token: ${{ secrets.PAT || github.token }}
       - name: Update resources with Maven
         run: mvn -B process-resources
       - name: Update files if needed
-        uses: stefanzweifel/git-auto-commit-action@v4
-      - name: Set up JDK 17 and Maven Central Repository
-        uses: actions/setup-java@v2
+        uses: EndBug/add-and-commit@v9
         with:
-          java-version: '17'
-          distribution: 'adopt'
-          cache: 'maven'
-      - name: Build the project
-        run: mvn -B install
+          default_author: github_actions
+          message: Automatically update versions
 ```
 
 You can see this code in the [dadoonet/demo-automatic-doc](https://github.com/dadoonet/demo-automatic-doc) demo repository.
