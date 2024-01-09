@@ -15,3 +15,21 @@ hugo new blog/YYYY-MM-DD-something-awesome-to-share/index.md
 ```sh
 git submodule update --rebase --remote
 ```
+
+## Run locally
+
+```sh
+hugo server
+```
+
+Also serve future posts:
+
+```sh
+hugo server --buildFuture
+```
+
+## Build
+
+```sh
+hugo
+```
