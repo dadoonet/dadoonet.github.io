@@ -13,7 +13,7 @@ series:
 date: 2024-01-10T07:00:00+01:00
 lastmod: 2024-01-10T07:00:00+01:00
 featuredImage: blog/2024-01-10-the-new-decade/utah.jpeg
-draft: true
+draft: false
 ---
 
 Here we go again... 2023 is yet over and it helped me to realize what I love to do.
@@ -44,7 +44,7 @@ People! Technology is great but people are the most important thing to me. At th
 
 {{< figure src="jugsummercamp.jpeg" caption="JUG Summer Camp 2023: <https://www.jugsummercamp.org/edition/14>" >}}
 
-I visited again Morocco in 2023. Everytime I notice the official photographer taking pictures of me, I'm pausing my talk and I'm posing. Two reasons for that. First, it makes the photographer and the attendees smiling while we are doing that. A way to say: "Don't be serious! We are here to learn and have fun!". And actually, there's no second reason. I just love to do that! 😅
+I visited Morocco again in 2023. Everytime I notice the official photographer taking pictures of me, I'm pausing my talk and I'm posing. Two reasons for that. First, it makes the photographer and the attendees smiling while we are doing that. A way to say: "Don't be serious! We are here to learn and have fun!". And actually, there's no second reason. I just love to do that! 😅
 
 {{< figure src="devoxxma.jpeg" caption="Devoxx MA 2023: <https://devoxx.ma/>" >}}
 
@@ -60,9 +60,9 @@ The story of "Elkie" is always a good one to share.
 
 {{< figure src="training-elkie.jpeg" caption="Training in Paris" >}}
 
-It's a good way to explain how we are working at Elastic. Lot of managers in french companies don't really understand the value of being distributed. Sharing the message within the community could answer to some of their fears. At Elastic, we are all working from home. We are all working asynchronously. We are all working in the open. We are all working with passion. We are all working with respect. We are all working with empathy. We are all working with a common goal: to make our users successful.
+It's a good way to explain how we are working at Elastic. Lot of managers in French companies don't really understand the value of being distributed. Sharing the message within the community could answer to some of their fears. At Elastic, we are all working from home. We are all working asynchronously. We are all working in the open. We are all working with passion. We are all working with respect. We are all working with empathy. We are all working with a common goal: to make our users successful.
 
-In 2023, the main event for me was not really connected to work but was connected to Elastic in a way. In 2013, I met for the very first time in Amsterdam, NL, with Aaron and Diana. Aaron joined Elastic to work on Logstash, while I was working on Elasticsearch. After some smiles, some discussions, it was obvious that we were making a friendly connection. Aaron and Diana came to Paris, France, to visit me and my family some years ago. But this year, I was super honored to be invited with 2 of my children in Salem, UT, USA to share an amazing journey. We visited so nice places (main picture of this post). But more than that I've seen my kids like never before, interacting in english with a whole family, sharing the US way of life, understanding another culture, being just happy. And I think we built string souvenirs for all of us. I'm so grateful for that.
+In 2023, the main event for me was not really connected to work but was connected to Elastic in a way. In 2013, I met for the very first time in Amsterdam, NL, with Aaron and Diana. Aaron joined Elastic to work on Logstash, while I was working on Elasticsearch. After some smiles, some discussions, it was obvious that we were making a friendly connection. Aaron and Diana came to Paris, France, to visit me and my family some years ago. But this year, I was super honored to be invited with 2 of my children in Salem, UT, USA to share an amazing journey. We visited so nice places (see main picture of this post). But more than that I've seen my kids like never before, interacting in English with a whole family, sharing the US way of life, understanding another culture, being just happy. And I think we built strong memories for all of us. I'm so grateful for that.
 
 {{< figure src="utah2.jpeg" caption="Arches national park" >}}
 
