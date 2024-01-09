@@ -86,3 +86,5 @@ For what is planned so far, I'll be in:
 * Of course some [BBLs](https://www.elastic.co/blog/free-lunch-for-open-source-engineers) and [ElasticFR Meetups](https://www.meetup.com/ElasticFR/)
 
 If you have a chance [to be nearby](https://speaker.pilato.fr/), and even if we don't know each other, please come and say hi! There will always be a smile for you!
+
+PS: if you are curious, here are [some stats](stats.png) about my 2023 year. It does not show everything but gives an idea.
