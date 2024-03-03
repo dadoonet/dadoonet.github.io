@@ -7,3 +7,6 @@ resources/_gen/
 
 # Hugo build tmp files
 .hugo_build.lock
+
+# Node Modules
+node_modules
