@@ -18,6 +18,14 @@ git submodule update --rebase --remote
 
 ## Run locally
 
+On fresh new install, before running the build, you need to install the dependencies:
+
+```sh
+[[ -f package-lock.json || -f npm-shrinkwrap.json ]] && npm ci || true
+```
+
+Then you can run hugo:
+
 ```sh
 hugo server
 ```
