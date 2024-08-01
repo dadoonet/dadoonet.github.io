@@ -264,7 +264,7 @@ What we can see is that the number of events per year is almost the same (around
 
 {{< figure src="kibana2-type.png" caption="Type of event" >}}
 
-It's super obvious that I'm spending a lot of time doing BBLs. I wrote this year [a blog post about it](https://www.elastic.co/blog/free-lunch-for-open-source-engineers). It's super time consuming, you meet a few people, but it is really worth it as you reach a part of the community you don't normally meet at conferences. Obviously, you reach much more people when you give talks at conferences.
+It's super obvious that I'm spending a lot of time doing BBLs. I wrote this year [a blog post about it]({{< ref "2024-08-01-free-lunches-for-opensource-engineers" >}}). It's super time consuming, you meet a few people, but it is really worth it as you reach a part of the community you don't normally meet at conferences. Obviously, you reach much more people when you give talks at conferences.
 
 {{< figure src="kibana2-attendees-and-type.png" caption="Distribution of attendees per type of event" >}}
 
@@ -315,7 +315,7 @@ I helped hiring some colleagues in 2017. They know now that I was telling the tr
 2018... That is going to be a super interesting year. I said that we are more than 700 people now. Which means that a lot of work, new features, new products is coming constantly...
 For example, in 2017, we joined our forces with [Swiftype](https://www.elastic.co/solutions/site-search). I can't wait to test it and eventually propose new talks about that field which is closed to my heart.
 
-We celebrated the [5th anniversary of BBLs](https://www.elastic.co/blog/free-lunch-for-open-source-engineers) at Société Générale on January 9th.
+We celebrated the [5th anniversary of BBLs]({{< ref "2024-08-01-free-lunches-for-opensource-engineers" >}}) at Société Générale on January 9th.
 And I already have booked part of my 2018 year (from January to July). I know I'll be going this year to:
 
 * Orléans

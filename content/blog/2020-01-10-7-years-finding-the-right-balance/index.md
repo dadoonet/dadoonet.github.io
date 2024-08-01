@@ -87,6 +87,6 @@ It's super interesting to do it by the way because it's a way for me to test the
 
 I will still continue being on the road one week per month, still focusing on local communities and of course running the Paris meetup.
 
-If you are reading this post and want to know more about the elastic stack and Elasticsearch specifically, please [contact me](https://twitter.com/dadoonet) and we can work on setting up a [BBL session](https://www.elastic.co/blog/free-lunch-for-open-source-engineers) (aka Lunch and Learn).
+If you are reading this post and want to know more about the elastic stack and Elasticsearch specifically, please [contact me](https://twitter.com/dadoonet) and we can work on setting up a [BBL session]({{< ref "2024-08-01-free-lunches-for-opensource-engineers" >}}) (aka Lunch and Learn).
 
 Happy 2020! Stay tuned!

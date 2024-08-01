@@ -50,7 +50,7 @@ Basically, I have a document which looks like this.
 
 {{< figure src="numbers.png" caption="Talks Trips in 2016" >}}
 
-It would be better if I can get from it some statistics, or display on a map where I'm speaking the most frequently, or may be filter by [BBL](http://www.brownbaglunch.fr/) type of event...
+It would be better if I can get from it some statistics, or display on a map where I'm speaking the most frequently, or may be filter by [BBL]({{< ref "2024-08-01-free-lunches-for-opensource-engineers" >}}) type of event...
 
 Anyone is aware of a nice project which can give me all that?
 
