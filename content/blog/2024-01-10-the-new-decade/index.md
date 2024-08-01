@@ -83,7 +83,7 @@ For what is planned so far, I'll be in:
 * Sofia, Bulgaria, for the [jPrime](https://jprime.io/) conference
 * La Rochelle, France, for the [CoTer numérique](https://coter-numerique.org/) conference
 * Montpellier, France, for the [Sunny Tech](https://sunny-tech.io/) conference
-* Of course some [BBLs](https://www.elastic.co/blog/free-lunch-for-open-source-engineers) and [ElasticFR Meetups](https://www.meetup.com/ElasticFR/)
+* Of course some [BBLs]({{< ref "2024-08-01-free-lunches-for-opensource-engineers" >}}) and [ElasticFR Meetups](https://www.meetup.com/ElasticFR/)
 
 If you have a chance [to be nearby](https://speaker.pilato.fr/), and even if we don't know each other, please come and say hi! There will always be a smile for you!
 

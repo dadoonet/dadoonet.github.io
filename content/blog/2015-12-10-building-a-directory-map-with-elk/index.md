@@ -18,7 +18,7 @@ aliases:
   - /blog/2015/12/10/building-a-directory-map-with-elk/
 ---
 
-I gave a [BBL talk](http://www.brownbaglunch.fr/) recently and while chatting with attendees, one of them told me a simple use case he covered with elasticsearch: indexing metadata files on a NAS with a simple `ls -lR` like command.
+I gave a [BBL talk]({{< ref "2024-08-01-free-lunches-for-opensource-engineers" >}}) recently and while chatting with attendees, one of them told me a simple use case he covered with elasticsearch: indexing metadata files on a NAS with a simple `ls -lR` like command.
 His need is to be able to search on a NAS for files when a user wants to restore a deleted file.
 
 As you can imagine a search engine is super helpful when you have hundreds of millions files!
