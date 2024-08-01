@@ -12,10 +12,8 @@ tags:
   - culture
 categories:
   - culture
-series:
-  - career-at-elastic
-date: 2024-07-31T19:17:27+02:00
-lastmod: 2024-07-31T19:17:27+02:00
+date: 2024-08-01T14:15:00+02:00
+lastmod: 2024-08-01T14:15:00+02:00
 featuredImage: blog/2024-08-01-free-lunches-for-opensource-engineers/bbl.png
 draft: false
 ---
@@ -91,7 +89,7 @@ I was super excited to speak there for a very personal reason. In 2004, after a 
 
 You can find a picture of Max searching for logs here!
 
-![Max searching for logs][1]
+{{< figure src="max.png" caption="Max searching for logs" >}}
 
 One of the BBL attendees was working at Meetic in 2004 so I was super thankful and it was a great pleasure to share my knowledge with the team.
 I heard later that [Meetic is now using Elasticsearch](https://event.afup.org/forumphp2017-interview-sebastien-le-gall/), which is even better!
@@ -102,10 +100,10 @@ Speaking at BBLs is a great opportunity to share your knowledge, your experience
 
 In term of evangelism activity, we have seen that the number of downloads we are getting from France is super high. This means a lot to me. All those attendees I spoke to are starting to test the open source Elastic Stack. I&apos;m calling them seeds. And as they get more successful in a few days or weeks, they surely move to production.
 
-In term of business, the presales/sales team then only has to explain how the commercial features in [X-Pack](https://www.elastic.co/products/x-pack) add value on top of the Elastic Stack.  These days, features like [machine learning](https://www.elastic.co/products/x-pack/machine-learning), [security](https://www.elastic.co/products/x-pack/security), and [Elastic Cloud Enterprise](https://www.elastic.co/cloud/enterprise) are getting a lot of traction. In a sense, the sales team has just to "harvest" all those seeds. 
+In term of business, the presales/sales team then only has to explain how the commercial features in [X-Pack](https://www.elastic.co/products/x-pack) add value on top of the Elastic Stack.  These days, features like [machine learning](https://www.elastic.co/products/x-pack/machine-learning), [security](https://www.elastic.co/products/x-pack/security), and [Elastic Cloud Enterprise](https://www.elastic.co/cloud/enterprise) are getting a lot of traction. In a sense, the sales team has just to "harvest" all those seeds.
 As a farmer, you just need to be patient as it can take months if not years before we get commercially engaged but at the end it eventually happens.
 
-## Get involved!
+## Get involved
 
 It&apos;s now your turn!
 
@@ -114,7 +112,3 @@ If you want to have an Elastic engineer speaking within your company, just [drop
 If you have an interest and want to share your knowledge, share your own open source project, or build a community, just [edit this brownbaglunch JSON document](https://github.com/brownbaglunch/bblfr_data/edit/gh-pages/baggers.js), send a pull request, and you&apos;re done!
 
 Bon app&#xE9;tit !
-
-
-  [1]: https://images.contentstack.io/v3/assets/bltefdd0b53724fa2ce/bltcee64867b1ff4c0e/659db6ade1b99e0c5d9bfa81/photo-blog-pilato-free-lunch-for-open-source-engineers.png
-
