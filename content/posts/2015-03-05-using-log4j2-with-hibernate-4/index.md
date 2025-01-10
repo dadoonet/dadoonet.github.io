@@ -1,6 +1,6 @@
 ---
 title: "Using Log4J2 with Hibernate 4"
-#description: 
+description: "How to use Log4J2 with Hibernate 4"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

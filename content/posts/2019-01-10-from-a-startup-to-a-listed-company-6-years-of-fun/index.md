@@ -1,6 +1,6 @@
 ---
 title: "From a startup to a listed company. 6 years of fun!"
-#description: 
+description: "When I joined Elastic (formerly Elasticsearch) it was a startup with 10 employees + the founders. As one of those first employees I was invited (with #elkie and my wife) to the NYSE event where Elastic went listed as ESTC symbol."
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

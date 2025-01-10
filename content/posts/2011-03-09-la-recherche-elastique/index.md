@@ -1,6 +1,6 @@
 ---
 title: La recherche élastique...
-#description: 
+description: "Elasticsearch, un projet mature en quelques mois... A suivre de très près !"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

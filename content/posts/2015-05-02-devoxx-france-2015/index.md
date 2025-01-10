@@ -1,6 +1,6 @@
 ---
 title: "Devoxx France 2015"
-#description: 
+description: "I gave recently a talk at Devoxx France 2015 about making sense of your data with Elasticsearch, Logstash and Kibana"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

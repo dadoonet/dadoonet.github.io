@@ -1,6 +1,6 @@
 ---
 title: "La potion magique pour faire avancer ta carrière"
-#description: 
+description: "Voici la transcription d'une présentation que j'ai eu le plaisir à donner lors du Camping des speakers 2022, dont il s'agissait de la première édition."
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -12,6 +12,7 @@ series:
   - career at elastic
 date: 2022-06-10 11:00:00 +01:00
 nolastmod: true
+cover: featured.jpeg
 draft: false
 aliases:
   - /blog/2022-06-10-la-potion-magique-pour-faire-avancer-ta-carriere/

@@ -1,6 +1,6 @@
 ---
 title: "Exploring Capitaine Train dataset"
-#description: 
+description: "How to explore Capitaine Train dataset with ELK stack"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

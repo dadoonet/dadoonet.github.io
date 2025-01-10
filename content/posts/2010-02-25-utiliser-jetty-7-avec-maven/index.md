@@ -1,6 +1,6 @@
 ---
 title: Utiliser Jetty 7 avec Maven
-#description: 
+description: "Jetty peut être très utile aux projets Maven, notamment dans la phase de tests d'intégration."
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

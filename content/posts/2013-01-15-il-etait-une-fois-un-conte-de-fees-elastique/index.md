@@ -1,6 +1,9 @@
 ---
 title: 'Il était une fois : un conte de fées élastique !'
-#description: 
+description: "Il y a 2 ans, je cherchais un moyen pour distribuer Hibernate search sur plusieurs noeuds. Ma première idée était de stocker les index dans une base de données partagée par les différents noeuds. Oui ! Il s'agit d'une idée stupide en terme de performances, mais j'avais envie
+d'essayer et de construire ce modèle.
+
+Après avoir cherché du code source, je suis finalement tombé sur la classe JdbcDirectory du projet Compass. Et sur la page d'accueil du projet, j'aperçois quelque chose qui parle du future de Compass et d'Elasticsearch."
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -13,7 +16,7 @@ series:
   - career at elastic
 date: 2013-01-15 19:00:13 +02:00
 nolastmod: true
-cover: featured.png
+cover: es1.png
 draft: false
 aliases:
   - /blog/2013/01/15/il-etait-une-fois-un-conte-de-fees-elastique/

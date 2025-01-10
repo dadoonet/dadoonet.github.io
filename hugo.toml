@@ -56,14 +56,23 @@ favicon = "favicon.ico"
  
 # options
 stickyNav = true
-# reorderNavItems = ["search", "rss", "posts", "categories", "tags"]
+reorderNavItems = ["search", "rss", "posts", "categories", "tags", "github", "x", "linkedin", "elastic", "podcast", "deejay"]
 # collapseNavItems = ["posts", "categories", "tags"]
 noDefaultSummaryCover = true
 showTableOfContents = true
 showSummaryCoverInPost = true
 imageZoomableInPost = true
 showPrevNextPost = true
- 
+
+[params.navItems]
+github = { href = "https://github.com/dadoonet", target = "_blank", icon = "logo-github", title = "GitHub" }
+x = { href = "https://x.com/dadoonet", target = "_blank", icon = "logo-x", title = "X" }
+linkedin = { href = "https://www.linkedin.com/in/dadoonet", target = "_blank", icon = "logo-linkedin", title = "Linkedin" }
+elastic = { href = "https://elastic.co/", target="_blank", icon = "business", title = "Elastic" }
+podcast = { href = "https://podcasts.apple.com/fr/podcast/dj-dadoo-net-mixes/id505824965", target="_blank", icon = "musical-notes", title = "Podcast" }
+deejay = { href = "https://djdadoo.pilato.fr/", target="_blank", icon = "headset", title = "DeeJay" }
+
+
 [params.advanced]
 # customCSS = ["css/custom.css"]
 # customJS = []

@@ -1,6 +1,7 @@
 ---
 title: "5 years. What a milestone!"
-#description: 
+description: "What a milestone! Can you imagine how changed the company in the last 5 years?
+From 10 employees when I joined to more than 700 now!"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

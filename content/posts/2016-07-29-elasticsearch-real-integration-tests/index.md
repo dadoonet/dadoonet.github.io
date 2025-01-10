@@ -1,6 +1,6 @@
 ---
 title: "Elasticsearch real integration tests"
-#description:
+description: "How to run real integration tests against a real cluster of Elasticsearch"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

@@ -1,6 +1,6 @@
 ---
 title: "Using JS Auth with found cluster"
-#description: 
+description: "Using Found by elastic cluster helps a lot to have a ready to use and managed elasticsearch cluster. But I ran into an issue when you secure it and use the elasticsearch javascript client."
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

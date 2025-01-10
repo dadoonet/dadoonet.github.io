@@ -1,6 +1,6 @@
 ---
 title: "ScrutMyDocs : un moteur de recherche pour documents"
-#description: 
+description: "Avec Malloum, nous venons de publier notre premier projet open-source commun: Scrut My Docs !"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

@@ -1,6 +1,6 @@
 ---
 title: "And the beats go on!"
-#description: 
+description: "Creating a new beat: soundbeat"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
