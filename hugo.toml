@@ -1,0 +1,82 @@
+baseURL = 'https://david.pilato.fr'
+title = 'David Pilato'
+
+languageCode = 'en-us'
+defaultContentLanguage = "en"
+
+theme = "dream"
+
+enableRobotsTXT = true
+
+[taxonomies]
+category = "categories"
+tag = "tags"
+series = "series"
+city = "cities"
+language = "languages"
+
+[params]
+# zenMode = true
+ 
+lightTheme = "emerald"
+darkTheme = "forest"
+ 
+# backgroundImage = "me/background.jpg"
+# backgroundImageDark = ""
+ 
+images = ["me/background.jpg"]
+ 
+author = "David Pilato"
+description = "Developer | Evangelist"
+avatar = "/about/david_pilato.png"
+headerTitle = "David Pilato"
+motto = "Developer | Evangelist"
+
+# footerBottomText = ""
+ 
+rss = true
+ 
+utterancesRepo = "dadoonet/dadoonet.github.io"
+ 
+# valine = true
+# LEANCLOUD_APP_ID = ""
+# LEANCLOUD_APP_KEY = ""
+ 
+# waline = true
+# walineServer = ""
+ 
+email = "david+blog@pilato.fr"
+ 
+siteStartYear = 2010
+ 
+favicon = "favicon.ico"
+ 
+# Syntax highlighting
+# customSyntaxHighlighting = true
+ 
+# options
+stickyNav = true
+# reorderNavItems = ["search", "rss", "posts", "categories", "tags"]
+# collapseNavItems = ["posts", "categories", "tags"]
+noDefaultSummaryCover = true
+showTableOfContents = true
+showSummaryCoverInPost = true
+imageZoomableInPost = true
+showPrevNextPost = true
+ 
+[params.advanced]
+# customCSS = ["css/custom.css"]
+# customJS = []
+ 
+[params.experimental]
+#jsDate = true
+#jsDateFormat = "yyyy/MM/dd"
+
+#[services]
+#[services.googleAnalytics]
+#ID = "UA-62381049-1"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true

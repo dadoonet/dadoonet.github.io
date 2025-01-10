@@ -36,6 +36,12 @@ Also serve future posts:
 hugo server --buildFuture
 ```
 
+And drafs with:
+
+```sh
+hugo server --buildDrafts
+```
+
 ## Build
 
 ```sh
