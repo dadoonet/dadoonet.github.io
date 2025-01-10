@@ -1,9 +1,8 @@
 ---
 title: Découverte de Google App Engine pour Java
-description: Foof
+description: "Je viens de découvrir Google App Engine pour Java. Je vais essayer de compléter cet article au fur et à mesure que je vais avancer dans son utilisation..."
 author: David Pilato
 avatar: /about/david_pilato.png
-# authorlink: /about
 tags:
   - java
   - google

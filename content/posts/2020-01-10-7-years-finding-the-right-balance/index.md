@@ -1,6 +1,11 @@
 ---
 title: "7 years! Finding the right balance"
-#description: 
+description: "What a ride! 10 employees to around 2000 now.
+As I imagined 8 years ago, I still think that Elasticsearch (the product) and elastic (the company) are successful.
+
+Becoming a public company did not change a lot my daily activities.
+
+I'm still on the road meeting/building the community, specifically in France and making sure people are sharing the same love that we have internally for the products we are building."
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

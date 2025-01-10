@@ -1,6 +1,6 @@
 ---
 title: Elasticsearch et les "facets"
-#description: 
+description: "Les facettes (facets) avec Elasticsearch"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

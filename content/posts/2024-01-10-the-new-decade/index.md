@@ -1,6 +1,6 @@
 ---
 title: "The new decade - 🎉 celebrating 11 years at Elastic"
-#description: 
+description: "2023 is yet over and it helped me to realize what I love to do."
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -9,7 +9,7 @@ categories:
   - culture
 series:
   - career at elastic
-date: 2024-01-10T07:00:00+01:00
+date: 2024-01-10
 nolastmod: true
 cover: utah.jpeg
 draft: false
@@ -18,6 +18,8 @@ aliases:
 ---
 
 Here we go again... 2023 is yet over and it helped me to realize what I love to do.
+
+<!--more-->
 
 ## 2023
 

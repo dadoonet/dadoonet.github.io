@@ -1,6 +1,9 @@
 ---
 title: "4 years at elastic!"
-#description: 
+description: "This post is starting to become a long series 😊
+
+Yeah! That's amazing! I just spent 4 years working at elastic and I'm starting
+my happy 5th year! 🎉"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

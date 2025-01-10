@@ -1,6 +1,6 @@
 ---
 title: "The biggest milestone ever - 🎉 10 years at Elastic"
-#description: 
+description: "10 years! I have been working 10 years at Elastic. I have never working so long for a company. That's my biggest work milestone ever!"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

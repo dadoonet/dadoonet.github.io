@@ -1,6 +1,6 @@
 ---
 title: "Reindex elasticsearch with Logstash"
-#description: 
+description: "How to reindex your data from one cluster to another with Logstash"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

@@ -1,6 +1,6 @@
 ---
 title: "Advanced search for your Legacy application"
-#description: 
+description: "How to add a real search engine for your legacy application"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

@@ -1,6 +1,6 @@
 ---
 title: "Index Twitter on found"
-#description: 
+description: "Index Twitter with Logstash and Elasticsearch on a Found cluster"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -29,8 +29,6 @@ I have the same need today as I want to monitor Twitter when we run the [elastic
 Well, this recipe can be really simplified and actually I don't want to waste my time anymore on building and managing elasticsearch and Kibana clusters anymore.
 
 Let's use a [Found by elastic](https://found.elastic.co/) cluster instead.
-
-{{< figure src="found_logo.png" caption="Found by elastic" >}}
 
 <!--more-->
 

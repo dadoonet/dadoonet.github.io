@@ -1,6 +1,6 @@
 ---
 title: La mise en place d'une forge
-#description: 
+description: "Description de la mise en place de la forge GForge pour les besoins de mon centre informatique."
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

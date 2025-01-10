@@ -1,6 +1,6 @@
 ---
 title: Mon talk sur Elasticsearch sélectionné pour Devoxx France
-#description: 
+description: "C'est avec une certaine émotion et fierté que j'ai appris samedi dernier la sélection de mon talk sur Elasticsearch à Devoxx France."
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -10,7 +10,7 @@ categories:
   - speaker
 date: 2012-03-14 14:54:42 +00:00
 nolastmod: true
-cover: featured.png
+cover: devoxxfr.png
 draft: false
 aliases:
   - /blog/2012/03/14/mon-talk-sur-elasticsearch-selectionne-pour-devoxx-france/

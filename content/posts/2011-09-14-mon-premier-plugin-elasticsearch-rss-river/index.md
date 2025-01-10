@@ -1,6 +1,7 @@
 ---
 title: "Mon premier plugin elasticsearch : RSS River"
-#description: 
+description: "Il existe dans elasticsearch la notion de river (rivière) qui comme son nom le laisse supposer permet de voir s'écouler des données depuis une source jusqu'à elasticsearch.
+Au fur et à mesure que les données arrivent, la rivière les transporte et les envoie à l'indexation dans elasticsearch. J'ai donc adapté le plugin CouchDB River pour créer un plugin RSS River."
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

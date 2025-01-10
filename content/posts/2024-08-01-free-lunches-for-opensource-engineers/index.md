@@ -11,7 +11,7 @@ tags:
   - culture
 categories:
   - culture
-date: 2024-08-01T14:15:00+02:00
+date: 2024-08-01
 nolastmod: true
 cover: bbl.png
 draft: false

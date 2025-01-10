@@ -1,6 +1,6 @@
 ---
 title: "Once upon a time: a year later..."
-#description: 
+description: "After the first year, I did 58 talks in 4 countries, 37 towns for about 18 000 kilometers traveled. I was pretty sure that things would continue to grow."
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

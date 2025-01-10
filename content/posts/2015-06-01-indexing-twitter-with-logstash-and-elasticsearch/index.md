@@ -1,6 +1,6 @@
 ---
 title: "Indexing Twitter with Logstash and Elasticsearch"
-#description: 
+description: "How to index Twitter with Logstash and Elasticsearch"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

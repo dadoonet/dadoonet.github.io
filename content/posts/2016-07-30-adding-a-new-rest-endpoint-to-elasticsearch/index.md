@@ -1,6 +1,6 @@
 ---
 title: "Adding a new REST endpoint to elasticsearch"
-#description: 
+description: "This blog post is part of a series which will teach you how to write a plugin for Elasticsearch 5.0 using Maven. We are covering today how to add a new REST endpoint."
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

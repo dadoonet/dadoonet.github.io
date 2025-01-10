@@ -1,6 +1,6 @@
 ---
 title: "Building a directory map with ELK"
-#description: 
+description: "How to build a directory map with Elasticsearch, Logstash and Kibana."
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

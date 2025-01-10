@@ -1,6 +1,6 @@
 ---
 title: "Next movie to watch based on recommendation"
-#description: 
+description: "This article is based on Recommender System with Mahout and Elasticsearch tutorial created by MapR."
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

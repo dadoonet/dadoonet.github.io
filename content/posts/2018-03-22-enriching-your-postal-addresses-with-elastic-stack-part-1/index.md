@@ -1,6 +1,6 @@
 ---
 title: "Enriching your postal addresses with Elastic stack - part 1"
-#description: 
+description: "In this blog post, we will see how to import Bano dataset with Logstash."
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

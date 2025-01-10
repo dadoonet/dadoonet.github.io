@@ -1,6 +1,6 @@
 ---
 title: 9 years! A whole new world.
-#description: 
+description: "I have been missing you as last year, I have not been able to publish my anniversary blog post as I'm used to do every year since I joined Elastic 9 years ago."
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

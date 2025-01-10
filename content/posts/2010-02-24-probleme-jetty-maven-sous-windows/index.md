@@ -1,6 +1,6 @@
 ---
 title: Problème Jetty / Maven sous Windows
-#description: 
+description: "Lorsqu'on souhaite lancer une WebApp avec le plugin Jetty sous Maven 2 depuis un PC sous windows on obtient une erreur référencée sous JIRA #JETTY-1063."
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

@@ -1,6 +1,6 @@
 ---
 title: "Understanding Zipf's law"
-#description: 
+description: "I just discovered a nice video which explains the Zipf's law. I'm wondering if I can index the french lexique from Université de Savoie and find some funny things based on that..."
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

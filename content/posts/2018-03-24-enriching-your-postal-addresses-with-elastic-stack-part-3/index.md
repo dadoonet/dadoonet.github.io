@@ -1,6 +1,6 @@
 ---
 title: "Enriching your postal addresses with Elastic stack - part 3"
-#description: 
+description: "In this blog post, we will see how to enrich an existing dataset with Bano."
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

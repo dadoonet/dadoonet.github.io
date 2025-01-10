@@ -1,6 +1,6 @@
 ---
 title: "Creating a plugin for elasticsearch 5.0 using Maven"
-#description: 
+description: "How to write a plugin for Elasticsearch 5.0 using Maven."
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

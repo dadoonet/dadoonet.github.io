@@ -1,6 +1,6 @@
 ---
 title: Installation FusionForge 5.0 sur Redhat 5
-#description: 
+description: "Voici la suite de l'article sur l'installation d'une forge. Finalement, le temps d'obtenir une machine sous Redhat 5 a laissé le temps à la team FusionForge de sortir une release finale de la version 5.0."
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

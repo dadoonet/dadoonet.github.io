@@ -1,6 +1,8 @@
 ---
 title: "Once upon a time..."
-#description: 
+description: "2 years ago, I was looking for a way to make Hibernate search distributed on multiple nodes. My first idea was to store indexes in a single database shared by my nodes. Yes, it’s a stupid idea in term of performances but I would like to try to build it.
+
+Digging for source code, I came to the JdbcDirectory class from the compass project. And I saw on the compass front page something talking about the future of Compass and Elasticsearch."
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -13,7 +15,7 @@ series:
   - career at elastic
 date: 2013-01-15 20:00:00 +0200
 nolastmod: true
-cover: featured.png
+cover: es1.png
 draft: false
 aliases:
   - /blog/2013/01/15/once-upon-a-time-dot-dot-dot/

@@ -1,6 +1,6 @@
 ---
 title: "3 years! Time flies!"
-#description: 
+description: "3 years! Can you imagine that? Already 3 years spent working at elastic? Time flies! 2015 has been an uncommon year for me."
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

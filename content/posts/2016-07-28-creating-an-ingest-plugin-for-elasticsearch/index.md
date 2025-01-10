@@ -1,6 +1,6 @@
 ---
 title: "Creating an Ingest plugin for elasticsearch"
-#description: 
+description: "How to write an Ingest plugin for Elasticsearch 5.0"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
