@@ -7,7 +7,7 @@ Built with [Hugo](https://gohugo.io) based on the [eureka theme](https://github.
 From the base folder (otherwise it will fail):
 
 ```sh
-hugo new blog/YYYY-MM-DD-something-awesome-to-share/index.md
+hugo new posts/YYYY-MM-DD-something-awesome-to-share/index.md
 ```
 
 ## Update the Theme
