@@ -330,7 +330,10 @@ The `settings` part is the following:
 }
 ```
 
-Here, we want one single shard per index (per department) which is more than enough. We don't want replicas as we will be running that on a single node. Note that the number of replicas can be set dynamically so after the ingestion of the bano data, we can always increase this value if we decide to have a bigger cluster.
+Here, we want one single shard per index (per department) which is more than enough. We don't want replicas as we will be running that on a single node. 
+
+> [!NOTE]
+> The number of replicas can be set dynamically so after the ingestion of the bano data, we can always increase this value if we decide to have a bigger cluster.
 
 We are then defining two analyzers. The first one, `bano_analyzer`, is a kind of a `standard` analyzer but with addition of an `asciifolding` token filter which will transform at index time and search time all the french diatrics like for example `é`, `è`, `ê` to their ascii equivalent value: `e`.
 

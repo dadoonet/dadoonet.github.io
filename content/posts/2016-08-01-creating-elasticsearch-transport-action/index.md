@@ -559,7 +559,8 @@ public class BanoTransportAction extends HandledTransportAction<BanoRequest, Ban
 }
 ```
 
-Note that we injected here the `ClusterService` as we need it to retrieve the indices.
+> [!NOTE]
+> We injected here the `ClusterService` as we need it to retrieve the indices.
 
 Cherry on the cake, we can test that with JUnit as we have seen before:
 

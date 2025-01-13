@@ -50,9 +50,10 @@ I really encourage everyone to try at least once to join a startup, ideally an i
 
 The team was mostly technical. Again, lot of very very smart people. So you can only learn. It happened to me despite the language barrier. Yeah, that has been the most painful point of this experience. Not being able to understand everything, using a lot of brain cycles to analyse what just have been said, censoring yourself because you are not able to entirely express your arguments, not joking a lot because you don't know if what you are saying could be perceived in a bad way by people coming from different cultures.
 
-Side note: I really enjoyed the day Shay wrote the ["Source Code"](https://www.elastic.co/about/our-source-code), specifically the "01.02, /FORMAT" part of it (emphasis is mine):
-
-> Our products are distributed by design, our company is distributed by intention. With many languages, perspectives, and cultures, it’s easy to lose something in translation. Over email and chat, doubly so. Until we get a perpetual empathy machine, **don’t assume malice**.
+> [!NOTE]
+> I really enjoyed the day Shay wrote the ["Source Code"](https://www.elastic.co/about/our-source-code), specifically the "01.02, /FORMAT" part of it (emphasis is mine):
+>
+> > Our products are distributed by design, our company is distributed by intention. With many languages, perspectives, and cultures, it’s easy to lose something in translation. Over email and chat, doubly so. Until we get a perpetual empathy machine, **don’t assume malice**.
 
 ## The french spoken language wide territory
 

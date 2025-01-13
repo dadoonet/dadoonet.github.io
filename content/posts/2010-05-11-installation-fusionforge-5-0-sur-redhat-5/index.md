@@ -26,7 +26,8 @@ Nous voilà donc lancés dans cette installation que je me propose de décrire i
 
 <!--more-->
 
-A noter que pour le moment la forge n'est pas totalement opérationnelle. Des évolutions dans la configuration devront être menées et j'espère pouvoir tenir à jour cet article pour les décrire.
+> [!NOTE]
+> Pour le moment la forge n'est pas totalement opérationnelle. Des évolutions dans la configuration devront être menées et j'espère pouvoir tenir à jour cet article pour les décrire.
 
 ## Préinstallation
 
@@ -50,9 +51,10 @@ proxy=http://adresseipproxy:port/
 
 Les packages à télécharger pour installer la forge sont disponibles à l'adresse : <http://fusionforge.org/frs/?group_id=6>.
 
-A noter que le document présent est basé sur la version 5.0 de la forge. Il est conseillé de prendre la version notée « allinone ».
-
-Dans la suite, on considère qu'on a téléchargé le fichier : `fusionforge-5.0-allinone.tar.bz2`
+> [!NOTE]
+> Le document présent est basé sur la version 5.0 de la forge. Il est conseillé de prendre la version notée « allinone ».
+>
+> Dans la suite, on considère qu'on a téléchargé le fichier : `fusionforge-5.0-allinone.tar.bz2`
 
 ## Processus  d'installation
 
@@ -81,15 +83,14 @@ Ce script exécute l'installation de la forge :
 
 Lors de l'installation, le script demande d'entrer le nom de l'utilisateur administrateur de la forge et son mot de passe.
 
-**Note :**
-
-Lors de l'installation, le script semble ne pas avoir complètement fonctionné correctement. Des analyses sont en cours.
-
-De ce fait, un démarrage manuel de la base postgres a dû être effectué à l'aide la commande suivante.
-
-```sh
-/etc/rc.d/init.d/postgresql start
-```
+> [!NOTE]
+> Lors de l'installation, le script semble ne pas avoir complètement fonctionné correctement. Des analyses sont en cours.
+>
+> De ce fait, un démarrage manuel de la base postgres a dû être effectué à l'aide la commande suivante :
+>
+> ```sh
+> /etc/rc.d/init.d/postgresql start
+> ```
 
 Une fois ces opérations menées, il doit être possible d'ouvrir un navigateur web à l'adresse : <http://maforge.mondomaine/>
 
@@ -173,6 +174,7 @@ Pour cela, une délégation de DNS doit être réalisée par le DNS principal du
 
 Il faut donc également installer le service BIND sur la forge et le configurer.
 
-**Note :** A compléter
-
-Voir aussi : <https://fusionforge.org/docman/view.php/6/1/gforge_manual.plain.html#id2623367>
+> [!NOTE]
+> A compléter
+>
+> Voir aussi : <https://fusionforge.org/docman/view.php/6/1/gforge_manual.plain.html#id2623367>
