@@ -142,6 +142,7 @@ organized!
   * 🇫🇷 - [Conference - Breizhcamp: Elasticsearch Query Language: ES|QL](https://www.breizhcamp.org/conference/) - 80 attendees.
   * 🇩🇪 - [Conference - Developer Week: Advanced (elastic)search for your legacy application](https://www.developer-week.de/programm/#/talk/advanced-elasticsearch-for-your-legacy-application) - 40 attendees.
   * 🇫🇷 - [Conference - SunnyTech: La recherche à l’ère de l’IA](https://sunny-tech.io/sessions/la-recherche-a-lere-de-lia) - 40 attendees.
+* July:
   * 🇫🇷 - [Conference - Riviera Dev: La recherche à l’ère de l’IA](https://rivieradev.fr/session/259) - 60 attendees.
 * September:
   * 🌍 - [Podcast - 🎹🎻🎸 Searching for similar music tracks 🎼🎶](https://speaker.pilato.fr/fZF2Ui) - not released yet.
