@@ -47,3 +47,7 @@ hugo server --buildDrafts
 ```sh
 hugo
 ```
+
+## Theme
+
+The theme used for this blog is [Dream](https://g1en.site/hugo-theme-dream/).
