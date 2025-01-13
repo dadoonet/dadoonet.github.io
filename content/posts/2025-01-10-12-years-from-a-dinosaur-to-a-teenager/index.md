@@ -128,7 +128,7 @@ organized!
   * 🌍 - [Meetup - Virtual: Elastic Extensions for Importance Ranking and Data Exploration](https://www.youtube.com/watch?v=IHaTzB77eC4) - 19 attendees online. I was just the "host" for this one.
 * May:
   * 🇫🇷 - [Meetup - AlpesJUG: La recherche à l’ère de l’IA](https://www.meetup.com/alpesjug/events/299609510/) - 20 attendees.
-  * [Meetup - GenevaJUG: La recherche à l’ère de l’IA](https://genevajug.ch/) - 50 attendees.
+  * 🇨🇭 - [Meetup - GenevaJUG: La recherche à l’ère de l’IA](https://genevajug.ch/) - 50 attendees.
   * 🇫🇷 - [Meetup - LyonJUG: La recherche à l’ère de l’IA](https://www.meetup.com/lyonjug/events/300674391/) - 32 attendees.
   * 🇫🇷 - [Meetup - TadX: Elasticsearch Query Language: ES|QL](https://www.eventbrite.fr/e/billets-tadx-elasticsearch-query-language-esql-898049850277) - 20 attendees.
   * 🇫🇷 - [BBL - Talan](https://speaker.pilato.fr/Op8xGg) - 30 attendees online.
