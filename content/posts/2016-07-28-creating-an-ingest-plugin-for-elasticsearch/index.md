@@ -41,7 +41,8 @@ I wrote myself some plugins called [rivers](https://www.elastic.co/blog/deprecat
 
 With what we saw [in the previous article]({{< ref "2016-07-27-creating-a-plugin-for-elasticsearch-5-dot-0-using-maven" >}}), we now have a Plugin skeleton ready to host our Ingest code.
 
-> **Note**: this article has been updated on July 2016, the 29th by moving tests to [real integration tests]({{< ref "2016-07-29-elasticsearch-real-integration-tests" >}}).
+> [!NOTE]
+> This article has been updated on July 2016, the 29th by moving tests to [real integration tests]({{< ref "2016-07-29-elasticsearch-real-integration-tests" >}}).
 
 But first, let's describe a bit more what `Ingest` actually is.
 
@@ -224,7 +225,8 @@ public static final class BanoFactory implements Processor.Factory {
 It can be used when you define a processor in a pipeline.
 * `config` gives you access to the configuration for the pipeline. We will cover that in a next section.
 
-Note that you can create this class as an inner class of the BanoProcessor class itself.
+> [!NOTE]
+> You can create this class as an inner class of the BanoProcessor class itself.
 
 We now need to tell the plugin that it will provide Ingest plugin features by implementing `IngestPlugin` interface and
 overriding the `getProcessors` method:
@@ -293,7 +295,8 @@ public class BanoProcessorIT extends AbstractITCase {
 This test basically sends a JSON document `{"foo":"bar"}` to the simulate pipeline method and check that we get back the same
 content as we did not transform yet anything.
 
-Note that this test was failling with elasticsearch 5.0.0-alpha5 because of [this bug](https://github.com/elastic/elasticsearch/pull/19650) I found thanks to the Randomized Testing framework! :) As we moved our tests to REST tests, it won't fail anymore.
+> [!NOTE]
+> This test was failling with elasticsearch 5.0.0-alpha5 because of [this bug](https://github.com/elastic/elasticsearch/pull/19650) I found thanks to the Randomized Testing framework! 😊 As we moved our tests to REST tests, it won't fail anymore.
 
 ## Implement the logic
 
@@ -383,7 +386,8 @@ public Processor create(Map<String, Processor.Factory> processorFactories, Strin
 }
 ```
 
-Note that `readStringProperty` method comes from `org.elasticsearch.ingest.ConfigurationUtils` class.
+> [!NOTE]
+> `readStringProperty` method comes from `org.elasticsearch.ingest.ConfigurationUtils` class.
 
 If you run the existing test, it should pass as we are using all default values.
 We can add a new test which checks that we can read from another field than `foo`, here `anotherfoo`.

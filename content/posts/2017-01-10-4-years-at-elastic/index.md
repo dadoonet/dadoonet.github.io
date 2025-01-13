@@ -139,7 +139,8 @@ output.elasticsearch:
   password: "changeme"
 ```
 
-Note that you have to modify `changeme` which is a default password for local elasticsearch instances but fortunately not on cloud! :)
+> [!NOTE]
+> You have to modify `changeme` which is a default password for local elasticsearch instances but fortunately not on cloud! 😊
 
 Let's also change the default index name. Here, I'll send all my documents to a `talks` index:
 

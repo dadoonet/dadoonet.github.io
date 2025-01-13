@@ -55,7 +55,7 @@ More than that, France is one of the top countries which downloads Elasticsearch
 
 All this success has a price, though. I'm not talking about my health, but about my second job at Elasticsearch: coding!
 
-I did not code so much in 2013. That's a bit frustrating, as I like coding very much! The other downside is that I don't learn as fast as some of my other colleagues. But besides this fact, I enjoy doing some pull requests, patches and creating or maintaining some Elasticsearch plugins. Probably, 2014 will help me to dig more and more in Elasticsearch and Lucene internals! :-D
+I did not code so much in 2013. That's a bit frustrating, as I like coding very much! The other downside is that I don't learn as fast as some of my other colleagues. But besides this fact, I enjoy doing some pull requests, patches and creating or maintaining some Elasticsearch plugins. Probably, 2014 will help me to dig more and more in Elasticsearch and Lucene internals! 😃
 
 Another important part of my job is to give **support for the community and for our customers**: [training](http://training.elasticsearch.com/), [development and production support](http://www.elasticsearch.com/support/). It's really important for us as developers to make sure everyone has a good experience with our code. We help by building a strong community and we also are very reactive and efficient when your production cluster is down for any reason. Production support is very well organized and I can feel our excellent team spirit in operation when we work on support cases. Even if you the dedicated support contact for a given customer, you are always getting help from your co-workers on a trouble ticket when you haven't seen this type of problem before or when you are not available.
 

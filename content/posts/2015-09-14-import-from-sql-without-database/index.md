@@ -319,7 +319,8 @@ output {
 }
 ```
 
-Note that we send documents grouped by year in an index named `persons-YEAR4DIGITS`, using type `person` and with the original `id` as the document `_id`.
+> [!NOTE]
+> We send documents grouped by year in an index named `persons-YEAR4DIGITS`, using type `person` and with the original `id` as the document `_id`.
 
 `person.json` file contains our template. We define that we use 1 single shard, that we don't need `_all` field and some other settings:
 

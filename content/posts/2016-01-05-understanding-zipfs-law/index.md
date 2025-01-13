@@ -122,7 +122,8 @@ csv {
 }
 ```
 
-Note that you have to use the actual tab (ASCII character code 9) and not `\t`!
+> [!NOTE]
+> You have to use the actual tab (ASCII character code 9) and not `\t`!
 
 It now gives:
 
