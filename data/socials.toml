@@ -5,6 +5,6 @@ socials = [
   { href = "https://www.linkedin.com/in/dadoonet", target="_blank", icon = "logo-linkedin", title = "Linkedin" },
   { href = "https://stackoverflow.com/users/1432281/dadoonet", target="_blank", icon = "logo-stackoverflow", title = "stack overflow" },
   { href = "https://elastic.co/", target="_blank", icon = "business", title = "Elastic" },
-  { href = "https://podcasts.apple.com/fr/podcast/dj-dadoo-net-mixes/id505824965", target="_blank", icon = "musical-notes", title = "Podcast" },
-  { href = "https://djdadoo.pilato.fr/", target="_blank", icon = "headset", title = "DeeJay" },
+  { href = "https://podcasts.apple.com/fr/podcast/dj-elky-mixes/id959495351", target="_blank", icon = "musical-notes", title = "Podcast" },
+  { href = "https://www.instagram.com/dj_elky", target="_blank", icon = "logo-instagram", title = "DJ Elky" },
 ]
