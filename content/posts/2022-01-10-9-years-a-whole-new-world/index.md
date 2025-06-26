@@ -74,9 +74,9 @@ As I was not travelling, I had more time to code on different things:
 
 This is still true. Although I have been able to meet again some of you...
 
-{{< tweet user="dadoonet" id="1436284686796529666" >}}
+{{< x user="dadoonet" id="1436284686796529666" >}}
 
-{{< tweet user="dadoonet" id="1443251847515578370" >}}
+{{< x user="dadoonet" id="1443251847515578370" >}}
 
 ...I'm still mising a lot our interactions.
 

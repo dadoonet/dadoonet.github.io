@@ -87,7 +87,7 @@ I was fortunate enough to go again to Devoxx MA. I remembered [the first time I 
 
 ...Or just have a break, relax and enjoy! 😂
 
-{{< tweet user="dadoonet" id="1577723056893693985" >}}
+{{< x user="dadoonet" id="1577723056893693985" >}}
 
 An opportunity to meet smart alumni. On the following picture, we have exactly 20 years of [ENIB](https://www.enib.fr/) history (1994 for me, [Alexandre](https://twitter.com/AlexGallice) 2005, [Noëmie](https://twitter.com/NoemieDelrue) 2016). Was funny to realize that we had some common teachers!
 

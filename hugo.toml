@@ -69,8 +69,8 @@ github = { href = "https://github.com/dadoonet", target = "_blank", icon = "logo
 x = { href = "https://x.com/dadoonet", target = "_blank", icon = "logo-x", title = "X" }
 linkedin = { href = "https://www.linkedin.com/in/dadoonet", target = "_blank", icon = "logo-linkedin", title = "Linkedin" }
 elastic = { href = "https://elastic.co/", target="_blank", icon = "business", title = "Elastic" }
-podcast = { href = "https://podcasts.apple.com/fr/podcast/dj-dadoo-net-mixes/id505824965", target="_blank", icon = "musical-notes", title = "Podcast" }
-deejay = { href = "https://djdadoo.pilato.fr/", target="_blank", icon = "headset", title = "DeeJay" }
+podcast = { href = "https://podcasts.apple.com/fr/podcast/dj-elky-mixes/id959495351", target="_blank", icon = "musical-notes", title = "Podcast DJ Elky" }
+instagram = { href = "https://www.instagram.com/dj_elky/", target="_blank", icon = "logo-instagram", title = "DJ Elky" }
 
 
 [params.advanced]

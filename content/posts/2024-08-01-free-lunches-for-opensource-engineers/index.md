@@ -47,11 +47,11 @@ I found that idea brilliant as it would exactly fill my needs in term of:
 
 So I started a day after with a Tweet saying that I'd love to steal David's idea and run a BBL session in Paris:
 
-{{< tweet user="dadoonet" id="275486949924548609" >}}
+{{< x user="dadoonet" id="275486949924548609" >}}
 
 And [Romain Linsolas](https://github.com/linsolas) answered me that [he would be ok hosting a session about Elasticsearch!](https://twitter.com/romaintaz/status/275502151487332353).
 
-{{< tweet user="romaintaz" id="275502151487332353" >}}
+{{< x user="romaintaz" id="275502151487332353" >}}
 
 Deal!
 

@@ -147,7 +147,7 @@ nohup bin/logstash -f dotscale.conf &
 
 If you send some tweets, you should be able to see them indexed in elasticsearch:
 
-{{< tweet user="dadoonetest" id="605370839328915456" >}}
+{{< x user="dadoonetest" id="605370839328915456" >}}
 
 ```json
 GET twitter/_search

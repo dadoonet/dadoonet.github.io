@@ -64,18 +64,18 @@ as Krytek:
 I proposed him to play together at the Riviera Dev conference and he accepted. We had a great time together
 doing a B2B set, and we met then ([Nikita Rousseau](https://x.com/nirousseau)) who also joined us and ran the warmup.
 
-{{< tweet user="dadoonet" id="1810789579277939164" >}}
+{{< x user="dadoonet" id="1810789579277939164" >}}
 
 I loved it at it's another way to share passion and knowledge with people.
 
 At Elastic, we can spend up to 5 days for non profit activities. This year, I played for the Lisa Forever
 association which is helping kids with cancer. It was a great honor to be part of this event.
 
-{{< tweet user="dadoonet" id="1794775346958701019" >}}
+{{< x user="dadoonet" id="1794775346958701019" >}}
 
 For the December Fest event, at Elastic office I was also invited to play some music for my colleagues.
 
-{{< tweet user="dadoonet" id="1865468090416353572" >}}
+{{< x user="dadoonet" id="1865468090416353572" >}}
 
 It was one of my best DeeJay set ever which you can listen from [here](https://podcasts.apple.com/fr/podcast/davids-mix-2024-12-05-elastic-decemberfest-2024/id505824965?i=1000679503377).
 
@@ -92,20 +92,20 @@ was in 2024, you can have a look at the [Elkie's 2024 posts](https://x.com/searc
 Sometimes, I'm very lucky because I can come with my daughter to some events. Like for the JPrime
 conference in Sofia, Bulgaria:
 
-{{< tweet user="dadoonet" id="1795789710012436563" >}}
+{{< x user="dadoonet" id="1795789710012436563" >}}
 
 Elkie was also with my family and I in South Korea. 
 
-{{< tweet user="dadoonet" id="1802782743157420067" >}}
+{{< x user="dadoonet" id="1802782743157420067" >}}
 
 It was a great time for me as I could meet again with Jong Min Kim!
 
-{{< tweet user="dadoonet" id="1803655458231861562" >}}
+{{< x user="dadoonet" id="1803655458231861562" >}}
 
 Elkie was also at the Olympic Games in Paris, France which was a really great event, very well 
 organized!
 
-{{< tweet user="dadoonet" id="1817168715865010392" >}}
+{{< x user="dadoonet" id="1817168715865010392" >}}
 
 ## 2024 in numbers
 
