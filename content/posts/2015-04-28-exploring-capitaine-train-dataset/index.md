@@ -21,7 +21,7 @@ aliases:
 
 Recently I saw a tweet where [Capitaine Train](https://www.capitainetrain.com/) team started to open data they have collected and enriched or corrected.
 
-{{< tweet user="capitainetrain" id="591184013034938368" >}}
+{{< x user="capitainetrain" id="591184013034938368" >}}
 
 I decided to play a bit with [ELK stack](https://www.elastic.co/products) and create a simple recipe which can be used with any other `CSV` like data.
 

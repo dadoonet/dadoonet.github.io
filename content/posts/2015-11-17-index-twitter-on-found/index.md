@@ -243,7 +243,7 @@ Then, just launch logstash:
 
 Tweet!
 
-{{< tweet user="dadoonet" id="666600269246038016" >}}
+{{< x user="dadoonet" id="666600269246038016" >}}
 
 ## Understand your data
 
