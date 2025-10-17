@@ -1,3 +1,21 @@
+<!-- QueryBox Search Integration -->
+<script>
+  const querybox = new QueryBox({
+    apiEndpoint: 'https://api.querybox.dev/david.pilato.fr/v1',
+    theme: 'auto',
+    primaryColor: '#000000',
+    title: 'Search my pages'
+  });
+
+  // Add keyboard shortcut (Cmd+K / Ctrl+K)
+  document.addEventListener('keydown', (e) => {
+    if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+      e.preventDefault();
+      querybox.search();
+    }
+  });
+</script>
+
 <div>
   {{ if site.Params.siteStartYear }}
   <p>
@@ -12,12 +30,23 @@
   <p>{{ site.Params.footerBottomText | safeHTML }}</p>
   {{ else }}
   <p class="text-sm">
+    🔍
+    <span class="text-base-content/60">
+      Search is powered by <a href="https://querybox.dev" target="_blank">QueryBox</a>. Just hit CTRL+K or CMD+K to start searching.
+    </span>
+  </p>
+  <p class="text-sm">
+    ⚙️
+    <span class="text-base-content/60">
+      Generated from 🇫🇷 with ❤️ on {{ now.Format "Mon Jan 2, 2006 at 15:04:05 MST" }}
+    </span>
+  </p>
+  <p class="text-sm">
     🌱
     <span class="text-base-content/60">
-      Generated from 🇫🇷 with ❤️ on {{ now.Format "Mon Jan 2, 2006 at 15:04:05 MST" }} <br/>
       Powered by <a class="hover:underline" href="https://gohugo.io/" target="_blank">Hugo</a> with theme
-      <a class="hover:underline" href="https://github.com/g1eny0ung/hugo-theme-dream" target="_blank">Dream</a>.</span
-    >
+      <a class="hover:underline" href="https://github.com/g1eny0ung/hugo-theme-dream" target="_blank">Dream</a>.
+    </span>
   </p>
   {{ end }}
 </div>
