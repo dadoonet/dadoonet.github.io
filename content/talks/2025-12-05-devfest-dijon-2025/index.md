@@ -1,10 +1,12 @@
 ---
 title: "Envie de booster ta carrière ? Open source-toi !"
 # description: ""
-conference: "Devfest Dijon 2025"
-conference_url: "https://devfest.dijon.fr/"
-city: "Dijon"
-country: "fr"
+conference: 
+  name: "Devfest Dijon 2025"
+  url: "https://devfest.dijon.fr/"
+  city: "Dijon"
+  country: "France"
+  country_code: "fr"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

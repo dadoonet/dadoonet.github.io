@@ -1,10 +1,12 @@
 ---
 title: "Le hasard fait bien les tests"
 description: ""
-conference: "Devfest Toulouse 2025"
-conference_url: "https://devfest.gdgtoulouse.com/"
-city: "Toulouse"
-country: "fr"
+conference: 
+  name: "Devfest Toulouse 2025"
+  url: "https://devfest.gdgtoulouse.com/"
+  city: "Toulouse"
+  country: "France"
+  country_code: "fr"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

@@ -14,10 +14,11 @@ draft: true
 
 # Speaker specific fields
 youtube: ""      # ID de la vidéo YouTube (ex: dQw4w9WgXcQ)
-conference_url: ""
-conference: ""
-city: ""
-country: "" # online, fr, us, etc.
+conference: 
+  name: ""
+  url: ""
+  city: ""
+  country: "" # online, fr, us, etc.
 
 cover: image.png
 covercaption: "Description de la couverture"

@@ -1,10 +1,12 @@
 ---
 title: "Elasticsearch : moteur de recherche taillé pour le cloud"
 description: ""
-conference: "Devoxx France 2012"
-conference_url: "https://devoxx.fr/"
-city: "Paris"
-country: "fr"
+conference: 
+  name: "Devoxx France 2012"
+  url: "https://devoxx.fr/"
+  city: "Paris"
+  country: "France"
+  country_code: "fr"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
