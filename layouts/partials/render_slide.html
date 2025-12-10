@@ -1,0 +1,144 @@
+{{ $script := resources.Get "js/pdf.mjs" | fingerprint -}}
+<script type="module" src="{{ $script.RelPermalink }}" {{ printf "integrity=%q" $script.Data.Integrity | safeHTMLAttr }}></script>
+
+<script type="module">
+var pdfDoc = null,
+    pageNum = 1,
+    pageRendering = false,
+    pageNumPending = null,
+    scale = 3.0,
+    canvas = document.getElementById('talks-pdf'),
+    ctx = canvas.getContext('2d');
+    ctx.fillStyle = "white";
+    ctx.textAlign = "center";
+    ctx.scale(2, 2);
+    ctx.fillText("Loading...", canvas.width/4, canvas.height/4);
+
+/**
+ * Get page info from document, resize canvas accordingly, and render page.
+ * @param num Page number.
+ */
+function renderPage(num) {
+  pageRendering = true;
+  // Using promise to fetch the page
+  pdfDoc.getPage(num).then(function(page) {
+    var viewport = page.getViewport({scale: scale});
+    canvas.height = viewport.height;
+    canvas.width = viewport.width;
+
+    // Render PDF page into canvas context
+    var renderContext = {
+      canvasContext: ctx,
+      viewport: viewport
+    };
+    var renderTask = page.render(renderContext);
+
+    // Wait for rendering to finish
+    renderTask.promise.then(function() {
+      pageRendering = false;
+      if (pageNumPending !== null) {
+        // New page rendering is pending
+        renderPage(pageNumPending);
+        pageNumPending = null;
+      }
+    });
+  });
+
+  // Update page counters
+  document.getElementById('page_num').textContent = num;
+}
+
+/**
+ * If another page rendering in progress, waits until the rendering is
+ * finished. Otherwise, executes rendering immediately.
+ */
+function queueRenderPage(num) {
+  if (pageRendering) {
+    pageNumPending = num;
+  } else {
+    renderPage(num);
+  }
+}
+
+/**
+ * Displays previous page.
+ */
+function onPrevPage() {
+  if (pageNum <= 1) {
+    return;
+  }
+  pageNum--;
+  queueRenderPage(pageNum);
+}
+document.getElementById('prev').addEventListener('click', onPrevPage);
+
+/**
+ * Displays next page.
+ */
+function onNextPage() {
+  if (pageNum >= pdfDoc.numPages) {
+    return;
+  }
+  pageNum++;
+  queueRenderPage(pageNum);
+}
+document.getElementById('next').addEventListener('click', onNextPage);
+document.getElementById('talks-pdf').addEventListener('click', onNextPage);
+
+/**
+ * Add keyboard navigation.
+ */
+document.addEventListener("keydown", function(event) {
+  const key = event.key;
+  switch (key) {
+    case "ArrowLeft":
+    case "ArrowUp":
+      event.preventDefault();
+      onPrevPage();
+      break;
+    case "ArrowRight":
+    case "ArrowDown":
+      event.preventDefault();
+      onNextPage();
+      break;
+  }
+});
+
+// If absolute URL from the remote server is provided, configure the CORS header on that server.
+{{ $pdf := .Resources.GetMatch "*.pdf" }}
+var url = '{{ $pdf.RelPermalink }}';
+
+// The workerSrc property shall be specified.
+{{ $script := resources.Get "js/pdf.worker.mjs" | fingerprint -}}
+var { pdfjsLib } = globalThis;
+if(pdfjsLib === undefined){ // Fallback for older browsers and a Safari bug
+  (function() { // Polyfill
+    if (typeof globalThis === 'object') return;
+    Object.defineProperty(Object.prototype, '__magic__', {
+      get: function() {
+        return this;
+      },
+      configurable: true
+    });
+    __magic__.globalThis = __magic__;
+    delete Object.prototype.__magic__;
+  }());
+  var { pdfjsLib } = globalThis;
+  if(pdfjsLib === undefined){
+    var { pdfjsLib } = window;
+    if(pdfjsLib === undefined){
+      window.location.reload(); // This is an act of desperation
+    }
+  }
+}
+pdfjsLib.GlobalWorkerOptions.workerSrc = '{{ $script.RelPermalink }}';
+
+// Asynchronously downloads PDF.
+pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
+  pdfDoc = pdfDoc_;
+  document.getElementById('page_count').textContent = pdfDoc.numPages;
+
+  // Initial/first page rendering
+  renderPage(pageNum);
+});
+</script>
