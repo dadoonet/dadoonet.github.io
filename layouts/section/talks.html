@@ -44,6 +44,11 @@
               </figure>
               {{ end }}
               <div class="flex flex-wrap gap-2 mt-2">
+                {{ if .Params.country }}
+                <span class="badge badge-outline badge-sm">
+                  {{ partial "countryFlag.html" .Params.country }}
+                </span>
+                {{ end }}
                 {{ $pdf := .Resources.GetMatch "*.pdf" }}
                 {{ if $pdf }}
                 <span class="badge badge-outline badge-sm">
@@ -60,7 +65,10 @@
               </div>
               <div class="card-actions justify-between items-center mt-4">
                 <span class="text-xs text-base-content/50">{{ .Params.conference }}</span>
-                <span class="text-xs text-base-content/50">{{ .Date | time.Format "Jan 2, 2006" }}</span>
+                <span class="text-xs text-base-content/50">
+                  {{ .Params.city }}
+                  {{ .Date | time.Format "Jan 2, 2006" }}
+                </span>
                 <a href="{{ .RelPermalink }}" class="btn btn-primary btn-sm">
                   Read
                   <ion-icon name="arrow-forward"></ion-icon>
@@ -79,6 +87,3 @@
 </div>
 
 {{ end }}
-
-
-
