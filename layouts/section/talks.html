@@ -32,25 +32,20 @@
 
           {{ range .Pages.ByDate.Reverse }}
           <article class="card bg-base-200 shadow-xl hover:shadow-2xl transition-shadow duration-300">
-            {{ if .Params.Cover }}
-            <figure class="relative overflow-hidden">
-              <img src="{{ .Params.Cover }}" alt="{{ .Title }}" class="w-full h-48 object-cover hover:scale-105 transition-transform duration-300" />
-              {{ if .Params.youtube }}
-              <div class="absolute inset-0 flex items-center justify-center bg-black/30">
-                <ion-icon name="play-circle" class="text-6xl text-white/90"></ion-icon>
-              </div>
-              {{ end }}
-            </figure>
-            {{ end }}
             <div class="card-body">
-              <h2 class="card-title text-lg">
-                <a href="{{ .RelPermalink }}" class="hover:text-primary transition-colors">
-                  {{ .Title }}
-                </a>
-              </h2>
+              <h2 class="card-title text-lg">{{ .Title }}</h2>
+              {{ if .Description }}
               <p class="text-sm text-base-content/70 line-clamp-3">{{ .Description }}</p>
+              {{ end }}
+              {{ $cover := .Resources.GetMatch .Params.cover }}
+              {{ if $cover }}
+              <figure class="relative overflow-hidden">
+                <img src="{{ $cover.RelPermalink }}" alt="{{ .Title }}" class="w-full h-48 object-cover hover:scale-105 transition-transform duration-300" />
+              </figure>
+              {{ end }}
               <div class="flex flex-wrap gap-2 mt-2">
-                {{ if .Params.speakerdeck }}
+                {{ $pdf := .Resources.GetMatch "*.pdf" }}
+                {{ if $pdf }}
                 <span class="badge badge-outline badge-sm">
                   <ion-icon name="easel" class="mr-1"></ion-icon>
                   Slides
@@ -62,19 +57,12 @@
                   Video
                 </span>
                 {{ end }}
-                {{ if .Params.social_posts }}
-                <span class="badge badge-outline badge-sm">
-                  <ion-icon name="chatbubbles" class="mr-1"></ion-icon>
-                  {{ len .Params.social_posts }} posts
-                </span>
-                {{ end }}
               </div>
               <div class="card-actions justify-between items-center mt-4">
-                <span class="text-xs text-base-content/50">
-                  {{ .Date | time.Format "Jan 2, 2006" }}
-                </span>
+                <span class="text-xs text-base-content/50">{{ .Params.conference }}</span>
+                <span class="text-xs text-base-content/50">{{ .Date | time.Format "Jan 2, 2006" }}</span>
                 <a href="{{ .RelPermalink }}" class="btn btn-primary btn-sm">
-                  Voir le talk
+                  Read
                   <ion-icon name="arrow-forward"></ion-icon>
                 </a>
               </div>
@@ -90,15 +78,6 @@
   </div>
 </div>
 
-
-
-
-<div class="mt-8 lg:mt-12 px-4">
-  <div class="max-w-4xl mx-auto mt-8 lg:mt-12">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-    </div>
-  </div>
-</div>
 {{ end }}
 
 

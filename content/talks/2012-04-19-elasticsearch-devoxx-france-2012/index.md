@@ -1,6 +1,9 @@
 ---
 title: "Elasticsearch : moteur de recherche taillé pour le cloud"
-description: "DevoxxFR 2012 - Elasticsearch : moteur de recherche taillé pour le cloud"
+description: ""
+conference: "Devoxx France 2012"
+conference_url: "https://devoxx.fr/"
+lang: "fr"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

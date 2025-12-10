@@ -45,24 +45,15 @@
 
       <header>
         <h1 itemprop="headline">{{ .Title }}</h1>
-        <p class="text-sm">
-          {{ if site.Params.Experimental.jsDate }}
-            <span data-format="luxon">{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}</span>
-          {{ else }}
-            {{ .Date | time.Format "Monday, Jan 2, 2006" }}
-          {{ end }}
-
-          | <span>{{ .ReadingTime }}{{ T "minuteRead" .ReadingTime }}</span>
-
-          {{ if ne .Params.nolastmod true }}
-          | <span>{{ T "updatedAt" }}
-            {{ if site.Params.Experimental.jsDate }}
-              <span data-format="luxon">{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}</span>
-            {{ else }}
-              {{ .Lastmod | time.Format "Monday, Jan 2, 2006" }}
-            {{ end }}</span>
-          {{ end }}
-        </p>
+          <p class="text-lg font-semibold text-primary">
+            A presentation at 
+            <a href="{{ .Params.conference_url }}" target="_blank">{{ .Params.conference }}</a>
+            {{ $hasLocation := or .Params.conference_city .Params.conference_country }}
+            {{ if $hasLocation }}
+            in {{ .Params.conference_city }}, {{ .Params.conference_country }}
+            {{ end }}
+            in {{ .Date | time.Format "January 2006" }}
+          </p>
 
         {{ $hasAuthor := or .Params.author site.Params.author }}
         <div class="flex justify-between">
@@ -98,6 +89,15 @@
             </li>
             {{ partial "render_slide.html" . }}
           </ul>
+        {{ else }}
+          {{ if and .Params.Cover site.Params.showSummaryCoverInPost }}
+            <figure>
+              <img class="z-30" src="{{ .Params.Cover }}" alt="{{ .Title }}" />
+              {{ with .Params.covercaption }}
+                <figcaption class="text-sm italic text-center mt-2">{{ . }}</figcaption>
+              {{ end }}
+            </figure>
+          {{ end }}
         {{ end }}
         {{ .Content | emojify }}
 
