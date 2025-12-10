@@ -72,6 +72,8 @@ elastic = { href = "https://elastic.co/", target="_blank", icon = "business", ti
 podcast = { href = "https://podcasts.apple.com/fr/podcast/dj-elky-mixes/id959495351", target="_blank", icon = "musical-notes", title = "Podcast DJ Elky" }
 instagram = { href = "https://www.instagram.com/dj_elky/", target="_blank", icon = "logo-instagram", title = "DJ Elky" }
 
+[params.icons]
+online = "🌎"
 
 [params.advanced]
 # customCSS = ["css/custom.css"]
