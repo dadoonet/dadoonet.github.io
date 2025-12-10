@@ -45,14 +45,13 @@
 
       <header>
         <h1 itemprop="headline">{{ .Title }}</h1>
-          <p class="text-lg font-semibold text-primary">
-            A presentation at 
+          <p> 
             <a href="{{ .Params.conference_url }}" target="_blank">{{ .Params.conference }}</a>
             {{ $hasLocation := or .Params.conference_city .Params.conference_country }}
             {{ if $hasLocation }}
-            in {{ .Params.conference_city }}, {{ .Params.conference_country }}
+            – {{ .Params.conference_city }}, {{ .Params.conference_country }}
             {{ end }}
-            in {{ .Date | time.Format "January 2006" }}
+            – {{ .Date | time.Format "Jan. 2006" }}
           </p>
 
         {{ $hasAuthor := or .Params.author site.Params.author }}
@@ -65,40 +64,10 @@
         </div>
       </header>
 
-      <div class="post-content">
-        {{ $pdf := .Resources.GetMatch "*.pdf" }}
-        {{ if $pdf }}
-          <ul class="posts-list">
-            <li class="posts-list-item">
-              <span class="posts-list-item-description">
-                <span class="talks">
-                  <span><a href="#" onclick="return false;" id="prev">{{ partial "icon.html" (dict "ctx" $ "name" "skip-back") }}&nbsp;Previous</a></span>
-                  <span><ins id="page_num"></ins>&#8239;/&#8239;<ins id="page_count"></ins></span>
-                  <span><a href="#" onclick="return false;" id="next">Next&nbsp;{{ partial "icon.html" (dict "ctx" $ "name" "skip-forward") }}</a></span>
-                </span>
-                <span class="talks-download">
-                  <a href="{{ $pdf.RelPermalink }}" title="PDF download" download>{{ partial "icon.html" (dict "ctx" $ "name" "download-cloud") }}&nbsp;Download&nbsp;({{ $stat := os.Stat $pdf.RelPermalink }}{{ if lt $stat.Size 1048576}}1{{ else }}{{ math.Ceil (div $stat.Size 1048576) }}{{ end }}&#8239;MB)</a>
-                </span>
-              </span>
-              <canvas id="talks-pdf"></canvas>
-              <noscript><p>It looks like you have disabled JavaScript, so the slides won't load. Please enable it or <a href="{{ $pdf.RelPermalink }}" download>download the PDF directly</a>.</p></noscript>
-              <span class="posts-list-item-description">
-                {{ partial "tags.html" . }}
-                <span class="talks-update">{{ partial "icon.html" (dict "ctx" $ "name" "refresh-cw") }}&nbsp;<time datetime="{{ .Lastmod.Format "2006-01-02" }}">{{ .Lastmod.Format "2006-01-02" }}</time></span>
-              </span>
-            </li>
-            {{ partial "render_slide.html" . }}
-          </ul>
-        {{ else }}
-          {{ if and .Params.Cover site.Params.showSummaryCoverInPost }}
-            <figure>
-              <img class="z-30" src="{{ .Params.Cover }}" alt="{{ .Title }}" />
-              {{ with .Params.covercaption }}
-                <figcaption class="text-sm italic text-center mt-2">{{ . }}</figcaption>
-              {{ end }}
-            </figure>
-          {{ end }}
-        {{ end }}
+        <!-- {{ partial "pdf.html" . }} -->
+
+        <div class="post-content">
+
         {{ .Content | emojify }}
 
         {{- with .Params.x -}}
