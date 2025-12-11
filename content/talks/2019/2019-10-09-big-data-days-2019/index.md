@@ -26,6 +26,12 @@ cover: cover.jpg
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/Diz4Uz"
+
+x:
+  - user: "dadoonet"
+    id: "1181525167568232449"
+  - user: "dadoonet"
+    id: "1181841539808550912"
 ---
 
 How do you mix SQL and NoSQL worlds without starting a messy revolution?

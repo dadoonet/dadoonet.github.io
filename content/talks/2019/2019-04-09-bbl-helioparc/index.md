@@ -26,6 +26,18 @@ cover: cover.png
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/YYb9Vd"
+
+x:
+  - user: "ElasticFR"
+    id: "1112642239656808448"
+  - user: "dadoonet"
+    id: "1113127769590894594"
+  - user: "dadoonet"
+    id: "1115523935410511873"
+  - user: "dadoonet"
+    id: "1115545496611971072"
+  - user: "dadoonet"
+    id: "1115549903583891456"
 ---
 
 Vous utilisez encore des requêtes SQL pour faire des recherches ? Vos utilisateurs vous reprochent de ne pas pouvoir chercher sur toutes les rubriques ? Votre temps de réponse moyen est supérieur à la demi-seconde avec seulement quelques millions de documents ? Il vous faut 3 jours pour produire des statistiques sur vos données ? Vous rêvez d’offrir une recherche “à la google” sur les données de votre SI ?

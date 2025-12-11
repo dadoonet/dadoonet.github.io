@@ -24,8 +24,18 @@ draft: false
 cover: cover.jpg
 
 # Speaker specific fields
-#youtube: ""
+youtube: "0Zsuae0LWas"
 notist: "dadoonet/AsJxO2"
+
+x:
+  - user: "SunnyTech_MTP"
+    id: "1144159745894486016"
+  - user: "seb_express"
+    id: "1144158720290689031"
+  - user: "dadoonet"
+    id: "1144142488812302340"
+  - user: "dadoonet"
+    id: "1144177838888771586"
 ---
 
 Comment mixer SQL et NoSQL sans faire la révolution ?

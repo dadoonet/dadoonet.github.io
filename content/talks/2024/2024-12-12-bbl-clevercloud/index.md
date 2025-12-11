@@ -26,6 +26,12 @@ cover: cover.jpg
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/MFODhX"
+
+x:
+  - user: "clever_cloudFR"
+    id: "1866152629719703633"
+  - user: "dadoonet"
+    id: "1866153339307630987"
 ---
 
 Dans cette session sans slides, nous découvrirons par la pratique ce qu’apporte le nouveau language ES|QL pour aller fouiller dans nos données indexées dans Elasticsearch et ce, de façon interactive et visuelle.

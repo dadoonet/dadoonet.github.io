@@ -24,8 +24,16 @@ draft: false
 cover: cover.jpg
 
 # Speaker specific fields
-#youtube: ""
+youtube: "ex2jS3GTUfk"
 notist: "dadoonet/L5rDwO"
+
+x:
+  - user: "dadoonet"
+    id: "1139509930002735106"
+  - user: "fdelbrayelle"
+    id: "1139544412952940544"
+  - user: "mattmasztalir"
+    id: "1139544445039370246"
 ---
 
 Les tests d’intégration peuvent devenir un cauchemar lorsqu’ils sont lancés depuis la même JVM que votre code:

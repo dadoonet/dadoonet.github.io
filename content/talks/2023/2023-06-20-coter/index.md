@@ -26,6 +26,12 @@ cover: cover.jpg
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/StaCjL"
+
+x:
+  - user: "dadoonet"
+    id: "1671185836690341888"
+  - user: "dadoonet"
+    id: "1671103754186227716"
 ---
 
 Elasticsearch, vous savez, pour faire des recherches ! Mais saviez-vous qu’on peut également l’utiliser pour comprendre ses données et leur donner du sens, le tout en temps-réel ?

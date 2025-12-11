@@ -26,6 +26,10 @@ cover: cover.jpg
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/0rheh6"
+
+x:
+  - user: "dadoonet"
+    id: "1883838115988509071"
 ---
 
 In this session, we will use the principles of vector search to find pieces of music that are (maybe) similar to others.

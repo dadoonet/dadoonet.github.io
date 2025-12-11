@@ -26,6 +26,12 @@ cover: cover.jpg
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/45pZO2"
+
+x:
+  - user: "SunnyTech_MTP"
+    id: "1805515034094612948"
+  - user: "dadoonet"
+    id: "1809193818660778077"
 ---
 
 La recherche ne se contente plus de l’approche maintenant traditionnelle basée sur la fréquence des termes (TF/IDF ou BM25) mais plus sur la tendance actuelle du machine learning où les nouveaux modèles ont ouvert une nouvelle dimension pour la recherche.

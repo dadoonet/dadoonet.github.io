@@ -26,6 +26,14 @@ cover: cover.jpg
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/NizzH6"
+
+x:
+  - user: "dadoonet"
+    id: "1795423218313912325"
+  - user: "piotrprz"
+    id: "1795743726465355921"
+  - user: "jPrimeConf"
+    id: "1759498858676056236"
 ---
 
 Search is not just traditional TF/IDF any more but the current trend of machine learning and models has opened another dimension for search.

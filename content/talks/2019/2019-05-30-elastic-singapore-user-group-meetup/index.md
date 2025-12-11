@@ -26,6 +26,10 @@ cover: cover.png
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/uxryJf"
+
+x:
+  - user: "dadoonet"
+    id: "1134113250939789312"
 ---
 
 Come and learn how you can enrich your existing data with normalized postal addresses with geo location points thanks to open data and BANO project.

@@ -26,6 +26,10 @@ cover: cover.jpg
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/7bwbwj"
+
+x:
+  - user: "dadoonet"
+    id: "1862255418023493771"
 ---
 
 Search is not just traditional TF/IDF any more but the current trend of machine learning and models has opened another dimension for search.

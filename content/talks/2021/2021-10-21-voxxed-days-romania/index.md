@@ -26,6 +26,14 @@ cover: cover.png
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/zWe0zu"
+
+x:
+  - user: "dadoonet"
+    id: "1450094653022289928"
+  - user: "VoxxedBucharest"
+    id: "1450464014929178641"
+  - user: "dadoonet"
+    id: "1451520492104523779"
 ---
 
 You are a security analyst for your company. The IT Team has deployed Elastic agents on your infrastructure, including endpoints, firewalls… those agents are collecting logs, metrics and security related data for months.

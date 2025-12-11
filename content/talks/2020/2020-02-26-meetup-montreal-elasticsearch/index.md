@@ -26,6 +26,12 @@ cover: cover.png
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/W6DrOR"
+
+x:
+  - user: "dadoonet"
+    id: "1230526309102706689"
+  - user: "dadoonet"
+    id: "1230829244646903808"
 ---
 
 Souvent, les adresses postales de nos clients ou utilisateurs sont très mal formatées dans nos systèmes d’information. De fait, si on est un service client, un call center et que l’on souhaite retrouver un client par son adresse, cela devient assez compliqué. De même, comment répondre au service commercial qui souhaiterait présenter sur une carte où sont physiquement localisés les clients, où peut-on ouvrir une nouvelle boutique, …

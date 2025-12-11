@@ -24,8 +24,18 @@ draft: false
 cover: cover.jpg
 
 # Speaker specific fields
-#youtube: ""
+youtube: "ctQki1Qdrvk"
 notist: "dadoonet/UyKuSq"
+
+x:
+  - user: "dadoonet"
+    id: "1234707940633989121"
+  - user: "dadoonet"
+    id: "1234722433493585920"
+  - user: "dadoonet"
+    id: "1234814423979765762"
+  - user: "dadoonet"
+    id: "1234887306177327108"
 ---
 
 Vous utilisez encore des requêtes SQL pour faire des recherches ? Vos utilisateurs vous reprochent de ne pas pouvoir chercher sur toutes les rubriques ? Votre temps de réponse moyen est supérieur à la demi-seconde avec seulement quelques millions de documents ? Il vous faut 3 jours pour produire des statistiques sur vos données ? Vous rêvez d’offrir une recherche “à la google” sur les données de votre SI ?

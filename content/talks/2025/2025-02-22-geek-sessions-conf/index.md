@@ -24,8 +24,16 @@ draft: false
 cover: cover.jpg
 
 # Speaker specific fields
-#youtube: ""
+youtube: "q6CA6NWNZ0o"
 notist: "dadoonet/BLjn5N"
+
+x:
+  - user: "dadoonet"
+    id: "1891448264798478694"
+  - user: "dadoonet"
+    id: "1893288840732737667"
+  - user: "GeekSessionsFAO"
+    id: "1894292854324781545"
 ---
 
 In this session, we will use the principles of vector search to find pieces of music that are (maybe) similar to others. To do this, we will review the principles of generating embeddings to represent any type of data, whether textual or binary.

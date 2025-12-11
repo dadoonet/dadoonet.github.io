@@ -26,6 +26,14 @@ cover: cover.jpg
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/pSNxdE"
+
+x:
+  - user: "dadoonet"
+    id: "1805508048858849526"
+  - user: "dadoonet"
+    id: "1806589600355549534"
+  - user: "dadoonet"
+    id: "1806688935277404408"
 ---
 
 Elasticsearch et Kibana apportent un tout nouveau langage, ES|QL, avec une nouvelle API (_query) et une syntaxe simplifiée. Cela vous permet d’affiner vos résultats, étape par étape et ajouter de nouvelles fonctionnalités comme par exemple l’enrichissement de données et la transformation à la volée, directement dans votre requête. Et vous pouvez l’utiliser sur toute la plateforme Elastic — depuis les API Elasticsearch jusqu’aux fonctions de “Discover” et d‘“Alerting” de Kibana. Mais le changement principal n’est pas celui que vous verrez : les ingénieurs ont développé un tout nouveau moteur de calcul, construit avec la performance comme guide.

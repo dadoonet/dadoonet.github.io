@@ -24,8 +24,16 @@ draft: false
 cover: cover.jpg
 
 # Speaker specific fields
-#youtube: ""
+youtube: "iD9k9pnUwYY"
 notist: "dadoonet/95o6QT"
+
+x:
+  - user: "dadoonet"
+    id: "1503711055608004608"
+  - user: "DevoxxUK"
+    id: "1507331474135076865"
+  - user: "DevoxxUK"
+    id: "1541738182714220544"
 ---
 
 You have plenty of Open Office, Microsoft Office, PDF, images… documents and you may want to be able to search for their metadata and content. How can you do that?

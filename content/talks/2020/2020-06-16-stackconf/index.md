@@ -24,8 +24,16 @@ draft: false
 cover: cover.png
 
 # Speaker specific fields
-#youtube: ""
+youtube: "BGVPV8CcLEg"
 notist: "dadoonet/oBt281"
+
+x:
+  - user: "NetwaysEvents"
+    id: "1229687755699040256"
+  - user: "NetwaysEvents"
+    id: "1226084515854024704"
+  - user: "dadoonet"
+    id: "1272806273826856960"
 ---
 
 Knowing what is going on in your environment is an important part of staying on top of security issues. But how do you capture relevant metrics and visualize them? One widely-used tool for that job is the Elastic Stack, formerly known as the ELK stack. This talk shows how to ingest relevant metrics from your network and hosts as well as how to easily visualize them to find suspicious patterns and behaviors. We will be also using the latest tool named SIEM.

@@ -26,6 +26,16 @@ cover: cover.jpg
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/jYxmxg"
+
+x:
+  - user: "glaforge"
+    id: "1197143672556597249"
+  - user: "Julien_iZiWEB"
+    id: "1197141827071217670"
+  - user: "VenziaIT"
+    id: "1197087109607305217"
+  - user: "dadoonet"
+    id: "1197159764800802818"
 ---
 
 To deploy elastic stack on Google Compute Platform (GCP), you have several options:

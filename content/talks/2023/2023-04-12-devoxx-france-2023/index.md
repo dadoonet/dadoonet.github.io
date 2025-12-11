@@ -26,6 +26,12 @@ cover: cover.jpg
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/dnEdLV"
+
+x:
+  - user: "dadoonet"
+    id: "1626194106346094592"
+  - user: "dadoonet"
+    id: "1621486584032907265"
 ---
 
 Lors de cet atelier, nous allons expliquer comment mettre en place un moteur de recherche pour les données de notre entreprise.

@@ -24,8 +24,18 @@ draft: false
 cover: cover.jpg
 
 # Speaker specific fields
-#youtube: ""
+youtube: "UW2ajjz3u9E"
 notist: "dadoonet/mQrRCI"
+
+x:
+  - user: "dadoonet"
+    id: "1803800821144097219"
+  - user: "dadoonet"
+    id: "1847174036712812915"
+  - user: "dadoonet"
+    id: "1851676231617634419"
+  - user: "dadoonet"
+    id: "1843247405610963165"
 ---
 
 L’arrivée des LLMs (Large Language Models) tels que ChatGPT ont fait couler beaucoup d’encre en annonçant l’extinction à venir des moteurs de recherche.

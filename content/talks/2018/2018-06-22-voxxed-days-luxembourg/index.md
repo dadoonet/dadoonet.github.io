@@ -26,6 +26,22 @@ cover: cover.jpg
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/NscrTQ"
+
+x:
+  - user: "voxxed_lu"
+    id: "1010075039000072192"
+  - user: "dadoonet"
+    id: "1010108423697059841"
+  - user: "LaffezAntoine"
+    id: "1010087668825370625"
+  - user: "dadoonet"
+    id: "1011848627243929600"
+  - user: "dadoonet"
+    id: "1009741910154543105"
+  - user: "yoseihana"
+    id: "1009742797216321536"
+  - user: "voxxed_lu"
+    id: "1010050188323540992"
 ---
 
 Surveiller une application complexe n’est pas une tâche aisée, mais avec les bons outils, ce n’est pas si sorcier. Néanmoins, des périodes fortes telles que les opérations de type “Black Friday” (Vendredi noir) ou période de Noël peuvent pousser votre application aux limites de ce qu’elle peut supporter, ou pire, la faire crasher. Parce que le système est fortement sollicité, il génère encore davantage de logs qui peuvent également mettre à mal votre système de supervision.

@@ -24,8 +24,12 @@ draft: false
 cover: cover.jpg
 
 # Speaker specific fields
-#youtube: ""
+youtube: "DM-urSmsdbc"
 notist: "dadoonet/gPYNGR"
+
+x:
+  - user: "RivieraDEV"
+    id: "1805137532293616010"
 ---
 
 La recherche ne se contente plus de l’approche maintenant traditionnelle basée sur la fréquence des termes (TF/IDF ou BM25) mais plus sur la tendance actuelle du machine learning où les nouveaux modèles ont ouvert une nouvelle dimension pour la recherche.

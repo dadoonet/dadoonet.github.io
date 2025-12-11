@@ -26,6 +26,20 @@ cover: cover.jpg
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/tlQJC5"
+
+x:
+  - user: "_abarbare"
+    id: "941364493396914176"
+  - user: "LudovicBorie"
+    id: "940857659351359488"
+  - user: "dadoonet"
+    id: "941416788730023938"
+  - user: "dadoonet"
+    id: "941416363456974849"
+  - user: "dadoonet"
+    id: "941374288535392256"
+  - user: "gui_gillon"
+    id: "941377671740710912"
 ---
 
 Pour déployer elasticsearch sur Google Compute Platform, plusieurs options s’offrent à vous :

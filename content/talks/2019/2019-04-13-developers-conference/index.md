@@ -26,6 +26,18 @@ cover: cover.png
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/5Hhw01"
+
+x:
+  - user: "dadoonet"
+    id: "1116986432223088642"
+  - user: "OssAnna16"
+    id: "1116979424585506817"
+  - user: "dadoonet"
+    id: "1116978098531074048"
+  - user: "dadoonet"
+    id: "1116959232115580928"
+  - user: "dadoonet"
+    id: "1116341860606328833"
 ---
 
 Comment mixer SQL et NoSQL sans faire la révolution ?

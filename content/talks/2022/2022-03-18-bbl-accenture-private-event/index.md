@@ -26,6 +26,14 @@ cover: cover.png
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/OjlDev"
+
+x:
+  - user: "dadoonet"
+    id: "1504474921715466259"
+  - user: "dadoonet"
+    id: "1504770694818963458"
+  - user: "dadoonet"
+    id: "1504799847735562241"
 ---
 
 Do you still use SQL queries to search? Your users blame you for not being able to search any and all data? Your average response time is greater than half a second with only a few million documents? Do you need 3 days to produce statistics on your data? Do you dream of offering a “google search” on your IS data?

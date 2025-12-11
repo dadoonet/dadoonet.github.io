@@ -24,8 +24,22 @@ draft: false
 cover: cover.jpg
 
 # Speaker specific fields
-#youtube: ""
+youtube: "Uwf2fe20ILo"
 notist: "dadoonet/UuLUmS"
+
+x:
+  - user: "dadoonet"
+    id: "1896926491528552938"
+  - user: "dadoonet"
+    id: "1888073441225429268"
+  - user: "tourainetech"
+    id: "1887806922948030878"
+  - user: "ju_hnny5"
+    id: "1887793742049927352"
+  - user: "dadoonet"
+    id: "1886790251462459646"
+  - user: "tourainetech"
+    id: "1874138596074021243"
 ---
 
 Dans cette session sans slides, nous découvrirons par la pratique ce qu’apporte le nouveau language ES|QL pour aller fouiller dans nos données indexées dans Elasticsearch et ce, de façon interactive et visuelle.

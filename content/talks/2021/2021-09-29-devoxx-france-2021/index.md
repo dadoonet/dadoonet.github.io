@@ -24,8 +24,16 @@ draft: false
 cover: cover.png
 
 # Speaker specific fields
-#youtube: ""
+youtube: "4tQDLAs5HpM"
 notist: "dadoonet/h0HniU"
+
+x:
+  - user: "dadoonet"
+    id: "1434789692684263428"
+  - user: "dadoonet"
+    id: "1440246734047776768"
+  - user: "dadoonet"
+    id: "1443222996131401729"
 ---
 
 Savoir ce qui se passe dans votre environnement est une part importante pour être informé de problèmes de sécurité.

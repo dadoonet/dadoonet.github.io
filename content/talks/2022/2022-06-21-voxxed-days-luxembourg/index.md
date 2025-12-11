@@ -24,8 +24,16 @@ draft: false
 cover: cover.jpg
 
 # Speaker specific fields
-#youtube: ""
+youtube: "ozMF8ddY75g"
 notist: "dadoonet/MKrtPl"
+
+x:
+  - user: "voxxed_lu"
+    id: "1538172189047934977"
+  - user: "dadoonet"
+    id: "1539211376526254081"
+  - user: "dadoonet"
+    id: "1539210577121255425"
 ---
 
 Vous avez sous la main des tonnes de documents Open Office, Microsoft Office, PDF voire des images… Et vous aimeriez être capable de chercher dans leurs meta-données et dans le contenu lui-même.
