@@ -1,30 +1,58 @@
+<style>
+  .talks-controls .icon,
+  .talks-controls svg {
+    width: 1rem;
+    height: 1rem;
+  }
+</style>
 <div class="post-content">
   {{ $pdf := .Resources.GetMatch "*.pdf" }}
   {{ if $pdf }}
 
-  <div class="flex flex-col md:flex-row justify-between gap-4 py-4">
-    <span class="">
-      <span class="talks">
-        <span><a href="#" onclick="return false;" id="prev">{{ partial "icon.html" (dict "ctx" $ "name" "skip-back") }}&nbsp;Previous</a></span>
-        <span><ins id="page_num"></ins>&#8239;/&#8239;<ins id="page_count"></ins></span>
-        <span><a href="#" onclick="return false;" id="next">Next&nbsp;{{ partial "icon.html" (dict "ctx" $ "name" "skip-forward") }}</a></span>
-      </span>
-      <span class="talks-download">
-        <a href="{{ $pdf.RelPermalink }}" title="PDF download" download>{{ partial "icon.html" (dict "ctx" $ "name" "download-cloud") }}&nbsp;Download&nbsp;({{ $stat := os.Stat $pdf.RelPermalink }}{{ if lt $stat.Size 1048576}}1{{ else }}{{ math.Ceil (div $stat.Size 1048576) }}{{ end }}&#8239;MB)</a>
-      </span>
-    </span>
+  <div class="flex flex-col gap-3 py-4">
+    <!-- PDF slides - Full width canvas -->
+    <div class="w-full">
+      <canvas class="w-full max-w-full cursor-pointer rounded-lg shadow-md" id="talks-pdf"></canvas>
+      <noscript><p class="text-center text-sm text-base-content/70 mt-2">It looks like you have disabled JavaScript, so the slides won't load. Please enable it or <a href="{{ $pdf.RelPermalink }}" class="link link-primary" download>download the PDF directly</a>.</p></noscript>
+    </div>
 
-    <!-- PDF slides -->
-    <canvas class="w-full" id="talks-pdf"></canvas>
-    <noscript><p>It looks like you have disabled JavaScript, so the slides won't load. Please enable it or <a href="{{ $pdf.RelPermalink }}" download>download the PDF directly</a>.</p></noscript>
-    
-    <span class="">
-      {{ partial "tags.html" . }}
-      <span class="talks-update">{{ partial "icon.html" (dict "ctx" $ "name" "refresh-cw") }}&nbsp;<time datetime="{{ .Lastmod.Format "2006-01-02" }}">{{ .Lastmod.Format "2006-01-02" }}</time></span>
-    </span>
+    <!-- Controls bar below the canvas -->
+    <div class="talks-controls flex flex-wrap items-center justify-between gap-2 text-sm">
+      <!-- Left: Navigation controls -->
+      <div class="flex items-center gap-3">
+        <a href="#" onclick="return false;" id="prev" class="flex items-center gap-1 hover:text-primary transition-colors" title="Previous slide">
+          <span class="w-4 h-4">{{ partial "icon.html" (dict "ctx" $ "name" "skip-back") }}</span>
+          <span class="hidden sm:inline">Previous</span>
+        </a>
+        <span class="text-base-content/60 tabular-nums">
+          <ins id="page_num" class="no-underline"></ins>&#8239;/&#8239;<ins id="page_count" class="no-underline"></ins>
+        </span>
+        <a href="#" onclick="return false;" id="next" class="flex items-center gap-1 hover:text-primary transition-colors" title="Next slide">
+          <span class="hidden sm:inline">Next</span>
+          <span class="w-4 h-4">{{ partial "icon.html" (dict "ctx" $ "name" "skip-forward") }}</span>
+        </a>
+      </div>
+
+      <!-- Center: Download -->
+      <div class="flex items-center">
+        <a href="{{ $pdf.RelPermalink }}" title="Download PDF" download class="flex items-center gap-1 hover:text-primary transition-colors">
+          <span class="w-4 h-4">{{ partial "icon.html" (dict "ctx" $ "name" "download-cloud") }}</span>
+          <span class="hidden sm:inline">Download</span>
+          <span class="text-base-content/60">({{ $stat := os.Stat $pdf.RelPermalink }}{{ if lt $stat.Size 1048576}}1{{ else }}{{ math.Ceil (div $stat.Size 1048576) }}{{ end }}&#8239;MB)</span>
+        </a>
+      </div>
+
+      <!-- Right: Tags and update date -->
+      <div class="flex items-center gap-3">
+        {{ partial "tags.html" . }}
+        <span class="flex items-center gap-1 text-base-content/60" title="Last updated">
+          <span class="w-4 h-4">{{ partial "icon.html" (dict "ctx" $ "name" "refresh-cw") }}</span>
+          <time datetime="{{ .Lastmod.Format "2006-01-02" }}">{{ .Lastmod.Format "2006-01-02" }}</time>
+        </span>
+      </div>
+    </div>
 
     {{ partial "render_slide.html" . }}
-  
   </div>
 
   {{ else }}
