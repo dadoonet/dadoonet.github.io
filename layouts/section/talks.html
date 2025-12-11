@@ -66,8 +66,10 @@
           {{ $cover := .Resources.GetMatch .Params.cover }}
           {{ if $cover }}
           <figure class="relative overflow-hidden h-40">
-            <img src="{{ $cover.RelPermalink }}" alt="{{ .Title }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
-            <div class="absolute inset-0 bg-gradient-to-t from-base-200/80 to-transparent"></div>
+            <a href="{{ .RelPermalink }}">
+              <img src="{{ $cover.RelPermalink }}" alt="{{ .Title }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+              <div class="absolute inset-0 bg-gradient-to-t from-base-200/80 to-transparent"></div>
+            </a>
           </figure>
           {{ end }}
           <div class="card-body p-4">
@@ -87,19 +89,17 @@
               </span>
               {{ end }}
             </div>
-            <h2 class="card-title text-base leading-tight line-clamp-2 min-h-[2.5rem]">{{ .Title }}</h2>
+            <h2 class="card-title text-base leading-tight line-clamp-2 min-h-[2.5rem]">
+              <a href="{{ .RelPermalink }}" class="hover:text-primary transition-colors">{{ .Title }}</a>
+            </h2>
             {{ if .Description }}
             <p class="text-xs text-base-content/60 line-clamp-2 mt-1">{{ .Description }}</p>
             {{ end }}
             <div class="mt-auto pt-3 border-t border-base-content/10">
-              <div class="flex items-center justify-between text-xs text-base-content/50 mb-3">
+              <div class="flex items-center justify-between text-xs text-base-content/50">
                 <span class="truncate max-w-[60%]" title="{{ .Params.conference.name }}">{{ .Params.conference.name }}</span>
                 <span>{{ .Date | time.Format "Jan 2" }}</span>
               </div>
-              <a href="{{ .RelPermalink }}" class="btn btn-primary btn-sm w-full gap-2">
-                Read
-                <ion-icon name="arrow-forward"></ion-icon>
-              </a>
             </div>
           </div>
         </article>
