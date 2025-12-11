@@ -21,7 +21,7 @@ series:
 date: 2012-04-19
 nolastmod: true
 draft: false
-cover: cover.png
+cover: cover.jpg
 
 # Speaker specific fields
 youtube: "sxWTPruEWRU"
