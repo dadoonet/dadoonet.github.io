@@ -41,15 +41,6 @@
           <span class="text-base-content/60">({{ $stat := os.Stat $pdf.RelPermalink }}{{ if lt $stat.Size 1048576}}1{{ else }}{{ math.Ceil (div $stat.Size 1048576) }}{{ end }}&#8239;MB)</span>
         </a>
       </div>
-
-      <!-- Right: Tags and update date -->
-      <div class="flex items-center gap-3">
-        {{ partial "tags.html" . }}
-        <span class="flex items-center gap-1 text-base-content/60" title="Last updated">
-          <span class="w-4 h-4">{{ partial "icon.html" (dict "ctx" $ "name" "refresh-cw") }}</span>
-          <time datetime="{{ .Lastmod.Format "2006-01-02" }}">{{ .Lastmod.Format "2006-01-02" }}</time>
-        </span>
-      </div>
     </div>
 
     {{ partial "render_slide.html" . }}
