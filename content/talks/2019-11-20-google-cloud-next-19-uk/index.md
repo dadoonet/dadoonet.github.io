@@ -1,0 +1,38 @@
+---
+title: "Deploying and Monitoring Elastic Stack on GCP"
+description: ""
+conference: 
+  name: "Google Cloud Next ’19 UK"
+  url: ""
+  city: "London"
+  country: "United Kingdom"
+  country_code: "gb"
+author: David Pilato
+avatar: /about/david_pilato.png
+tags:
+  - elasticsearch
+  - conference
+  - java
+  - cloud
+categories:
+  - speaker
+series:
+  - conferences
+date: 2019-11-20
+nolastmod: true
+draft: false
+cover: cover.jpg
+
+# Speaker specific fields
+#youtube: ""
+notist: "dadoonet/jYxmxg"
+---
+
+To deploy elastic stack on Google Compute Platform (GCP), you have several options:
+
+Start GCE instances, install and configure elasticsearch nodes discovery, SSL and security
+Do the same but install discovery-gce plugin to simplify nodes discovery
+Use Elastic Cloud Enterprise and deploy it on GCE instances
+Use Elastic Cloud Kubernetes operator on GKE
+
+Or, you can let Elastic, the company behind elastic stack, deploy and manage it for you with cloud.elastic.co

@@ -69,16 +69,19 @@
         </div>
       </header>
 
-        <!-- {{ partial "pdf.html" . }} -->
+      {{ partial "pdf.html" . }}
 
-        <div class="post-content">
+      <div class="divider"></div>
 
-        {{ .Content | emojify }}
+      {{ .Content | emojify }}
+
+      <div class="post-content">
 
         {{- with .Params.x -}}
         <div class="x-embeds">
           <h2>Buzz et feedback</h2>
           {{- range . -}}
+            {{/* {{- template "_shortcodes/x.html" . -}} */}}
             {{ .user }} - {{ .id }}
           {{- end -}}
         </div>
