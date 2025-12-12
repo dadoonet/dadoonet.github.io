@@ -7,7 +7,6 @@
 </style>
 <div class="post-content">
   {{ $pdf := .Resources.GetMatch "*.pdf" }}
-  {{ if $pdf }}
 
   <div class="flex flex-col gap-3 py-4">
     <!-- PDF slides - Full width canvas -->
@@ -45,15 +44,4 @@
 
     {{ partial "render_slide.html" . }}
   </div>
-
-  {{ else }}
-    {{ if and .Params.Cover site.Params.showSummaryCoverInPost }}
-      <figure>
-        <img class="z-30" src="{{ .Params.Cover }}" alt="{{ .Title }}" />
-        {{ with .Params.covercaption }}
-          <figcaption class="text-sm italic text-center mt-2">{{ . }}</figcaption>
-        {{ end }}
-      </figure>
-    {{ end }}
-  {{ end }}
-  </div>
+</div>
