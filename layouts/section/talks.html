@@ -35,9 +35,65 @@
     height: 1px;
     background: linear-gradient(90deg, oklch(var(--p) / 0.5) 0%, transparent 100%);
   }
+  .year-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+  }
+  .decade-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .decade-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: oklch(var(--bc) / 0.5);
+    min-width: 3.5rem;
+    text-align: right;
+    padding-right: 0.5rem;
+  }
+  .year-nav a {
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    background: oklch(var(--b2));
+    color: oklch(var(--bc));
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border: 2px solid transparent;
+  }
+  .year-nav a:hover {
+    background: linear-gradient(135deg, oklch(var(--p)) 0%, oklch(var(--s)) 100%);
+    color: oklch(var(--pc));
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+  .back-to-top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background: oklch(var(--b2));
+    color: oklch(var(--bc) / 0.6);
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+  .back-to-top:hover {
+    background: oklch(var(--p));
+    color: oklch(var(--pc));
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
 </style>
 
-<div class="mt-8 px-4" style="padding-left: 2rem; padding-right: 2rem;">
+<div id="top" class="mt-8 px-4" style="padding-left: 2rem; padding-right: 2rem;">
   <div style="max-width: 1600px; margin: 0 auto;">
     <div class="text-center mb-12">
       <h1 class="text-4xl font-bold tracking-tight">
@@ -47,14 +103,44 @@
       {{ if .Content }}
       <p class="text-base-content/70 mt-4 max-w-2xl mx-auto">{{ .Content }}</p>
       {{ end }}
+
+      {{/* Year navigation grouped by decade */}}
+      {{ $groupLayout := default "2006" .Params.groupLayout }}
+      {{ $groups := .Pages.GroupByDate $groupLayout }}
+      {{/* Get unique decades using scratch */}}
+      {{ $scratch := newScratch }}
+      {{ $scratch.Set "decades" slice }}
+      {{ range $groups }}
+        {{ $decade := div (int .Key) 10 | mul 10 }}
+        {{ $existing := $scratch.Get "decades" }}
+        {{ if not (in $existing $decade) }}
+          {{ $scratch.Add "decades" (slice $decade) }}
+        {{ end }}
+      {{ end }}
+      {{ $decades := sort ($scratch.Get "decades") "value" "desc" }}
+      <nav class="year-nav" aria-label="Navigation par année">
+        {{ range $decades }}
+          {{ $currentDecade := . }}
+          <div class="decade-row">
+            {{ range $groups }}
+              {{ $yearDecade := div (int .Key) 10 | mul 10 }}
+              {{ if eq $yearDecade $currentDecade }}
+              <a href="#year-{{ .Key }}">{{ .Key }}</a>
+              {{ end }}
+            {{ end }}
+          </div>
+        {{ end }}
+      </nav>
     </div>
 
-    {{ $groupLayout := default "2006" .Params.groupLayout }}
-    {{ range .Pages.GroupByDate $groupLayout }}
-    <section class="mb-16">
+    {{ range $groups }}
+    <section id="year-{{ .Key }}" class="mb-16 scroll-mt-24">
       <div class="flex items-center gap-4 mb-8">
         <div class="year-badge">
           <span class="text-2xl font-black">{{ .Key }}</span>
+          <a href="#top" class="back-to-top" title="Back to top">
+            <ion-icon name="chevron-up"></ion-icon>
+          </a>
         </div>
         <div class="year-line"></div>
         <span class="badge badge-lg badge-ghost">{{ len .Pages }} talks</span>
