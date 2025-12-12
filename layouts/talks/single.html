@@ -80,6 +80,7 @@
         {{- with .Params.x -}}
         <div class="x-embeds">
           <h2>Buzz et feedback</h2>
+          <p>Here’s what was said about this presentation on social media.</p>
           {{- range . -}}
             {{/* {{- template "_shortcodes/x.html" . -}} */}}
             {{ .user }} - {{ .id }}
