@@ -73,6 +73,26 @@
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   }
+  .year-nav a:hover .year-pill {
+    background: #fff;
+    color: #007bff;
+  }
+  .year-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.25rem;
+    height: 1.25rem;
+    padding: 0 0.4rem;
+    margin-left: 0.4rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    line-height: 1;
+    border-radius: 9999px;
+    background: #007bff;
+    color: #fff;
+    transition: all 0.2s ease;
+  }
   .back-to-top {
     display: flex;
     align-items: center;
@@ -125,7 +145,7 @@
             {{ range $groups }}
               {{ $yearDecade := div (int .Key) 10 | mul 10 }}
               {{ if eq $yearDecade $currentDecade }}
-              <a href="#year-{{ .Key }}">{{ .Key }}</a>
+              <a href="#year-{{ .Key }}">{{ .Key }}<span class="year-pill">{{ len .Pages }}</span></a>
               {{ end }}
             {{ end }}
           </div>
@@ -143,7 +163,7 @@
           </a>
         </div>
         <div class="year-line"></div>
-        <span class="badge badge-lg badge-ghost">{{ len .Pages }} talks</span>
+        <span class="badge badge-lg badge-ghost year-pill">{{ len .Pages }} talks</span>
       </div>
 
       <div class="talks-grid">

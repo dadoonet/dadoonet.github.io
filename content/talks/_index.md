@@ -1,5 +1,3 @@
 ---
-title: Talks
+title: "All talks over the years"
 ---
-
-Retrouvez ici l'ensemble de mes talks et présentations données lors de conférences.
