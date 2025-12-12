@@ -1,3 +1,13 @@
+{{- /*
+Renders a PDF file.
+
+@param {dict} ctx The context.
+@param {string} pdf The PDF file.
+
+@returns {template.HTML}
+
+@example {{< pdf (dict "ctx" $ "pdf" $pdf) >}}
+*/}}
 <style>
   .talks-controls .icon,
   .talks-controls svg {
@@ -6,13 +16,11 @@
   }
 </style>
 <div class="post-content">
-  {{ $pdf := .Resources.GetMatch "*.pdf" }}
-
   <div class="flex flex-col gap-3 py-4">
     <!-- PDF slides - Full width canvas -->
     <div class="w-full">
       <canvas class="w-full max-w-full cursor-pointer rounded-lg shadow-md" id="talks-pdf"></canvas>
-      <noscript><p class="text-center text-sm text-base-content/70 mt-2">It looks like you have disabled JavaScript, so the slides won't load. Please enable it or <a href="{{ $pdf.RelPermalink }}" class="link link-primary" download>download the PDF directly</a>.</p></noscript>
+      <noscript><p class="text-center text-sm text-base-content/70 mt-2">It looks like you have disabled JavaScript, so the slides won't load. Please enable it or <a href="{{ .pdf.RelPermalink }}" class="link link-primary" download>download the PDF directly</a>.</p></noscript>
     </div>
 
     <!-- Controls bar below the canvas -->
@@ -20,7 +28,7 @@
       <!-- Left: Navigation controls -->
       <div class="flex items-center gap-3">
         <a href="#" onclick="return false;" id="prev" class="flex items-center gap-1 hover:text-primary transition-colors" title="Previous slide">
-          <span class="w-4 h-4">{{ partial "icon.html" (dict "ctx" $ "name" "skip-back") }}</span>
+          <span class="w-4 h-4">{{ partial "icon.html" (dict "ctx" .ctx "name" "skip-back") }}</span>
           <span class="hidden sm:inline">Previous</span>
         </a>
         <span class="text-base-content/60 tabular-nums">
@@ -28,20 +36,20 @@
         </span>
         <a href="#" onclick="return false;" id="next" class="flex items-center gap-1 hover:text-primary transition-colors" title="Next slide">
           <span class="hidden sm:inline">Next</span>
-          <span class="w-4 h-4">{{ partial "icon.html" (dict "ctx" $ "name" "skip-forward") }}</span>
+          <span class="w-4 h-4">{{ partial "icon.html" (dict "ctx" .ctx "name" "skip-forward") }}</span>
         </a>
       </div>
 
       <!-- Center: Download -->
       <div class="flex items-center">
-        <a href="{{ $pdf.RelPermalink }}" title="Download PDF" download class="flex items-center gap-1 hover:text-primary transition-colors">
-          <span class="w-4 h-4">{{ partial "icon.html" (dict "ctx" $ "name" "download-cloud") }}</span>
+        <a href="{{ .pdf.RelPermalink }}" title="Download PDF" download class="flex items-center gap-1 hover:text-primary transition-colors">
+          <span class="w-4 h-4">{{ partial "icon.html" (dict "ctx" .ctx "name" "download-cloud") }}</span>
           <span class="hidden sm:inline">Download</span>
-          <span class="text-base-content/60">({{ $stat := os.Stat $pdf.RelPermalink }}{{ if lt $stat.Size 1048576}}1{{ else }}{{ math.Ceil (div $stat.Size 1048576) }}{{ end }}&#8239;MB)</span>
+          <span class="text-base-content/60">({{ $stat := os.Stat .pdf.RelPermalink }}{{ if lt $stat.Size 1048576}}1{{ else }}{{ math.Ceil (div $stat.Size 1048576) }}{{ end }}&#8239;MB)</span>
         </a>
       </div>
     </div>
 
-    {{ partial "render_slide.html" . }}
+    {{ partial "render_slide.html" .pdf }}
   </div>
 </div>

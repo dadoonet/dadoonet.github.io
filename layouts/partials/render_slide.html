@@ -1,3 +1,12 @@
+{{- /*
+Renders an embedded PDF file.
+
+@param {string} [pdf] The PDF file.
+
+@returns {template.HTML}
+
+@example {{< render_slide $pdf >}}
+*/}}
 {{ $script := resources.Get "js/pdf.mjs" | fingerprint -}}
 <script type="module" src="{{ $script.RelPermalink }}" {{ printf "integrity=%q" $script.Data.Integrity | safeHTMLAttr }}></script>
 
@@ -105,8 +114,7 @@ document.addEventListener("keydown", function(event) {
 });
 
 // If absolute URL from the remote server is provided, configure the CORS header on that server.
-{{ $pdf := .Resources.GetMatch "*.pdf" }}
-var url = '{{ $pdf.RelPermalink }}';
+var url = '{{ .RelPermalink }}';
 
 // The workerSrc property shall be specified.
 {{ $script := resources.Get "js/pdf.worker.mjs" | fingerprint -}}

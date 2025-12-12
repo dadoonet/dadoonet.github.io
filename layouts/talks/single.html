@@ -73,7 +73,7 @@
       {{ if $pdf }}
       <div class="divider"></div>
         <h2>Slides</h2>
-        {{ partial "pdf.html" . }}
+        {{ partial "pdf.html" (dict "ctx" $ "pdf" $pdf) }}
       {{ else }}
         {{ if and .Params.Cover site.Params.showSummaryCoverInPost }}
         <figure>
