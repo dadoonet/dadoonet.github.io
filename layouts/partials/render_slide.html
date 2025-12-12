@@ -15,13 +15,44 @@ var pdfDoc = null,
     pageNum = 1,
     pageRendering = false,
     pageNumPending = null,
-    scale = 3.0,
     canvas = document.getElementById('talks-pdf'),
     ctx = canvas.getContext('2d');
     ctx.fillStyle = "white";
     ctx.textAlign = "center";
     ctx.scale(2, 2);
     ctx.fillText("Loading...", canvas.width/4, canvas.height/4);
+
+/**
+ * Calculate optimal scale to fit the viewport
+ * @param page PDF page object
+ */
+function calculateOptimalScale(page) {
+  // Get available height: viewport height minus space for header, title, controls
+  var availableHeight = window.innerHeight - 280;
+  // Get available width from container
+  var container = canvas.parentElement;
+  var availableWidth = container ? container.clientWidth : window.innerWidth - 64;
+  
+  // Get the page dimensions at scale 1
+  var viewport = page.getViewport({scale: 1});
+  
+  // Calculate scale to fit both dimensions
+  var scaleWidth = availableWidth / viewport.width;
+  var scaleHeight = availableHeight / viewport.height;
+  
+  // Use the smaller scale to ensure it fits, with a minimum of 1 for quality
+  return Math.max(1, Math.min(scaleWidth, scaleHeight));
+}
+
+/**
+ * Sync content width with canvas width
+ */
+function syncContentWidth() {
+  var contentContainer = document.getElementById('talk-content-container');
+  if (contentContainer && canvas.width > 0) {
+    contentContainer.style.maxWidth = canvas.width + 'px';
+  }
+}
 
 /**
  * Get page info from document, resize canvas accordingly, and render page.
@@ -31,6 +62,7 @@ function renderPage(num) {
   pageRendering = true;
   // Using promise to fetch the page
   pdfDoc.getPage(num).then(function(page) {
+    var scale = calculateOptimalScale(page);
     var viewport = page.getViewport({scale: scale});
     canvas.height = viewport.height;
     canvas.width = viewport.width;
@@ -45,6 +77,7 @@ function renderPage(num) {
     // Wait for rendering to finish
     renderTask.promise.then(function() {
       pageRendering = false;
+      syncContentWidth();
       if (pageNumPending !== null) {
         // New page rendering is pending
         renderPage(pageNumPending);

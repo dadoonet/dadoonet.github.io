@@ -30,140 +30,134 @@
 {{ end }}
 
 {{ define "main" }}
-<div class="lg:grid lg:grid-cols-4 gap-4 mt-4 px-4">
-  <div class="hidden lg:block">
-    {{ if fileExists "layouts/partials/adsense.html" }}
-      <div class="dream-adsense w-2/3">
-        {{ partialCached "adsense.html" . }}
-      </div>
-    {{ end }}
-  </div>
-
-  <div class="lg:col-span-2">
-    <article class="mx-auto prose prose-quoteless dark:prose-invert" id="dream-single-post-main" itemscope itemtype="http://schema.org/Article">
+<div class="mt-4 px-4 lg:px-8">
+  <div class="flex flex-col items-center">
+    <article class="prose prose-quoteless dark:prose-invert max-w-none w-full" id="dream-single-post-main" itemscope itemtype="http://schema.org/Article">
       {{ template "_internal/schema.html" . }}
 
-      <header>
-        <h1 itemprop="headline">{{ .Title }}</h1>
-          <p> 
-            <a href="{{ .Params.conference.url }}" target="_blank">{{ .Params.conference.name }}</a>
-            {{ $hasLocation := or .Params.conference.city .Params.conference.country }}
-            {{ if $hasLocation }}
-            – 
-            {{ .Params.conference.city }}
-              {{ if and .Params.conference.city .Params.conference.country }}
-              ,
+      <div id="talk-content-container" class="mx-auto">
+        <header>
+          <h1 itemprop="headline">{{ .Title }}</h1>
+            <p> 
+              <a href="{{ .Params.conference.url }}" target="_blank">{{ .Params.conference.name }}</a>
+              {{ $hasLocation := or .Params.conference.city .Params.conference.country }}
+              {{ if $hasLocation }}
+              – 
+              {{ .Params.conference.city }}
+                {{ if and .Params.conference.city .Params.conference.country }}
+                ,
+                {{ end }}
+              {{ partial "countryFlag.html" .Params.conference }}
               {{ end }}
-            {{ partial "countryFlag.html" .Params.conference }}
+              – {{ .Date | time.Format "Jan. 2006" }}
+            </p>
+
+          {{ $hasAuthor := or .Params.author site.Params.author }}
+          <div class="flex justify-between">
+            {{ if $hasAuthor }}
+              {{ partial "author.html" (dict "Params" .Params "template" "single") }}
             {{ end }}
-            – {{ .Date | time.Format "Jan. 2006" }}
-          </p>
 
-        {{ $hasAuthor := or .Params.author site.Params.author }}
-        <div class="flex justify-between">
-          {{ if $hasAuthor }}
-            {{ partial "author.html" (dict "Params" .Params "template" "single") }}
+            {{ partial "share.html" . }}
+          </div>
+        </header>
+
+        {{ $pdf := .Resources.GetMatch "*.pdf" }}
+        {{ if $pdf }}
+        <div class="divider"></div>
+          <h2>Slides</h2>
+          {{ partial "pdf.html" (dict "ctx" $ "pdf" $pdf) }}
+        {{ else }}
+          {{ if and .Params.Cover site.Params.showSummaryCoverInPost }}
+          <figure>
+            <img class="z-30" src="{{ .Params.Cover }}" alt="{{ .Title }}" />
+            {{ with .Params.covercaption }}
+              <figcaption class="text-sm italic text-center mt-2">{{ . }}</figcaption>
+            {{ end }}
+          </figure>
           {{ end }}
-
-          {{ partial "share.html" . }}
-        </div>
-      </header>
-
-      {{ $pdf := .Resources.GetMatch "*.pdf" }}
-      {{ if $pdf }}
-      <div class="divider"></div>
-        <h2>Slides</h2>
-        {{ partial "pdf.html" (dict "ctx" $ "pdf" $pdf) }}
-      {{ else }}
-        {{ if and .Params.Cover site.Params.showSummaryCoverInPost }}
-        <figure>
-          <img class="z-30" src="{{ .Params.Cover }}" alt="{{ .Title }}" />
-          {{ with .Params.covercaption }}
-            <figcaption class="text-sm italic text-center mt-2">{{ . }}</figcaption>
-          {{ end }}
-        </figure>
         {{ end }}
-      {{ end }}
-
-      <div class="divider"></div>
-      <h2>Abstract</h2>
-      {{ .Content | emojify }}
+        <div class="divider"></div>
+        <h2>Abstract</h2>
+        {{ .Content | emojify }}
 
 
-      {{ with .Params.youtube }}
-      <div class="divider"></div>
-      <h2 id="video">Video</h2>
+        {{ with .Params.youtube }}
+        <div class="divider"></div>
+        <h2 id="video">Video</h2>
 
-      <div class="youtube-embed my-4" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-        <iframe 
-          src="https://www.youtube.com/embed/{{ . }}" 
-          style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" 
-          allowfullscreen 
-          title="YouTube Video">
-        </iframe>
-      </div>
-      {{ end }}
+        <div class="youtube-embed my-4" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+          <iframe 
+            src="https://www.youtube.com/embed/{{ . }}" 
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" 
+            allowfullscreen 
+            title="YouTube Video">
+          </iframe>
+        </div>
+        {{ end }}
 
-      <div class="post-content">
+        <div class="post-content">
 
-        {{- with .Params.x -}}
-        <div class="x-embeds">
-          <h2>Buzz et feedback</h2>
-          <p>Here’s what was said about this presentation on social media.</p>
-          {{- range . -}}
-            {{/* {{- template "_shortcodes/x.html" . -}} */}}
-            {{ .user }} - {{ .id }}
+          {{- with .Params.x -}}
+          <div class="x-embeds">
+            <h2>Buzz et feedback</h2>
+            <p>Here's what was said about this presentation on social media.</p>
+            {{- range . -}}
+              {{/* {{- template "_shortcodes/x.html" . -}} */}}
+              {{ .user }} - {{ .id }}
+            {{- end -}}
+          </div>
           {{- end -}}
         </div>
-        {{- end -}}
-      </div>
-      
-      {{ if site.Params.showPrevNextPost }}
-      <div class="divider"></div>
-      <div class="flex flex-col md:flex-row justify-between gap-4 py-4">
-        {{ with .NextInSection }}
-        <a role="button" class="btn btn-outline h-12" href="{{ .RelPermalink }}" title="{{ .Title }}">
-          <ion-icon name="chevron-back"></ion-icon>
-          <div class="inline-flex flex-col items-start">
-            <span class="text-base-content/60 text-xs font-normal">{{ T "prevPage" }}</span>
-            <span class="max-w-48 truncate">{{ .LinkTitle }}</span>
-          </div>
-        </a>
-        {{ else }}
-        <div></div>
+        
+        {{ if site.Params.showPrevNextPost }}
+        <div class="divider"></div>
+        <div class="flex flex-col md:flex-row justify-between gap-4 py-4">
+          {{ with .NextInSection }}
+          <a role="button" class="btn btn-outline h-12" href="{{ .RelPermalink }}" title="{{ .Title }}">
+            <ion-icon name="chevron-back"></ion-icon>
+            <div class="inline-flex flex-col items-start">
+              <span class="text-base-content/60 text-xs font-normal">{{ T "prevPage" }}</span>
+              <span class="max-w-48 truncate">{{ .LinkTitle }}</span>
+            </div>
+          </a>
+          {{ else }}
+          <div></div>
+          {{ end }}
+
+          {{ with .PrevInSection }}
+          <a role="button" class="btn btn-outline h-12" href="{{ .RelPermalink }}" title="{{ .Title }}">
+            <div class="inline-flex flex-col items-end">
+              <span class="text-base-content/60 text-xs font-normal">{{ T "nextPage" }}</span>
+              <span class="max-w-48 truncate">{{ .LinkTitle }}</span>
+            </div>
+            <ion-icon name="chevron-forward"></ion-icon>
+          </a>
+          {{ else }}
+          <div></div>
+          {{ end }}
+        </div>
         {{ end }}
 
-        {{ with .PrevInSection }}
-        <a role="button" class="btn btn-outline h-12" href="{{ .RelPermalink }}" title="{{ .Title }}">
-          <div class="inline-flex flex-col items-end">
-            <span class="text-base-content/60 text-xs font-normal">{{ T "nextPage" }}</span>
-            <span class="max-w-48 truncate">{{ .LinkTitle }}</span>
-          </div>
-          <ion-icon name="chevron-forward"></ion-icon>
-        </a>
-        {{ else }}
-        <div></div>
+        {{ if or site.Config.Services.Disqus.Shortname site.Params.utterancesRepo site.Params.valine site.Params.waline site.Params.twikoo.enabled }}
+        <div class="divider"></div>
+
+        <section class="space-y-4">
+          {{ partialCached "commentSystems.html" . .RelPermalink }}
+        </section>
         {{ end }}
       </div>
-      {{ end }}
-
-      {{ if or site.Config.Services.Disqus.Shortname site.Params.utterancesRepo site.Params.valine site.Params.waline site.Params.twikoo.enabled }}
-      <div class="divider"></div>
-
-      <section class="space-y-4">
-        {{ partialCached "commentSystems.html" . .RelPermalink }}
-      </section>
-      {{ end }}
     </article>
-  </div>
 
-  <div
-    x-data="tocHighlighter()"
-    @scroll.window="debouncedScroll"
-    class="hidden lg:flex lg:flex-col lg:items-end"
-  >
+    {{/* Table of Contents - shown on the side for xl screens */}}
     {{ if site.Params.showTableOfContents }}
+    <div
+      x-data="tocHighlighter()"
+      @scroll.window="debouncedScroll"
+      class="hidden xl:block fixed right-8 top-32 max-w-xs"
+    >
       {{ .TableOfContents }}
+    </div>
     {{ end }}
   </div>
 </div>
