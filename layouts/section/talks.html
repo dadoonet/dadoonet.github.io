@@ -226,27 +226,6 @@
     justify-content: flex-end;
     padding: 0.75rem;
   }
-  .video-play-icon {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 3rem;
-    height: 3rem;
-    background: rgba(255,0,0,0.9);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 1.25rem;
-    opacity: 0.9;
-    transition: all 0.3s ease;
-  }
-  .video-card:hover .video-play-icon {
-    transform: translate(-50%, -50%) scale(1.1);
-    opacity: 1;
-  }
   .video-title {
     color: #fff;
     font-size: 0.8rem;
@@ -427,7 +406,7 @@
     <section class="mb-12">
       <div class="video-grid">
         {{ range $recentVideos }}
-        <a href="{{ .RelPermalink }}" class="video-card">
+        <a href="{{ .RelPermalink }}#video" class="video-card">
           {{/* Try to get YouTube thumbnail */}}
           {{ $youtubeId := .Params.youtube }}
           {{ $cover := .Resources.GetMatch .Params.cover }}
@@ -436,15 +415,19 @@
           {{ else if $cover }}
           <img src="{{ $cover.RelPermalink }}" alt="{{ .Title }}" loading="lazy" />
           {{ end }}
-          <div class="video-play-icon">
-            <ion-icon name="play"></ion-icon>
-          </div>
           <div class="video-overlay">
             <div class="video-title">{{ .Title }}</div>
             <div class="video-date">{{ .Date | time.Format "January 2006" }}</div>
           </div>
         </a>
         {{ end }}
+      </div>
+      
+      <div class="more-button-container">
+        <a href="/talks/videos/" class="more-button">
+          More videos
+          <ion-icon name="arrow-forward"></ion-icon>
+        </a>
       </div>
     </section>
     {{ end }}
