@@ -65,7 +65,7 @@ imageZoomableInPost = true
 showPrevNextPost = true
 
 [params.navItems]
-talks = { href = "/talks", icon = "megaphone", title = "Talks" }
+talks = { href = "/talks", icon = "mic", title = "Talks" }
 github = { href = "https://github.com/dadoonet", target = "_blank", icon = "logo-github", title = "GitHub" }
 x = { href = "https://x.com/dadoonet", target = "_blank", icon = "logo-x", title = "X" }
 bluesky = { href = "https://bsky.app/profile/pilato.fr", target = "_blank", icon = "logo-twitter", title = "BlueSky" }
