@@ -280,19 +280,13 @@
 <div class="mt-8 px-4" style="padding-left: 2rem; padding-right: 2rem;">
   <div style="max-width: 1200px; margin: 0 auto;">
     
-    {{/* Header */}}
-    <div class="text-center mb-12">
-      <h1 class="text-4xl font-bold tracking-tight mb-2">
-        <ion-icon name="mic" class="text-primary align-middle"></ion-icon>
-        Presentations
-      </h1>
-      <p class="text-base-content/70 max-w-2xl mx-auto">Developer and Evangelist sharing knowledge about Elasticsearch and open source</p>
-    </div>
-
     {{/* Recent Presentations - Featured Cards */}}
     {{ if $recentTalks }}
+    <div class="section-divider">
+      <span class="section-title">🎤 Recent Presentations</span>
+    </div>
+    
     <section class="mb-8">
-      <h2 class="text-xl font-bold mb-6 text-base-content/80">Recent Presentations</h2>
       <div class="featured-grid">
         {{ range $index, $talk := $recentTalks }}
         <a href="{{ $talk.RelPermalink }}" class="featured-card{{ if eq $index 0 }} featured-main{{ end }}">
