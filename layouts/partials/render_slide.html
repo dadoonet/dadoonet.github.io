@@ -103,6 +103,18 @@ function queueRenderPage(num) {
 }
 
 /**
+ * Displays first page.
+ */
+function onFirstPage() {
+  if (pageNum === 1) {
+    return;
+  }
+  pageNum = 1;
+  queueRenderPage(pageNum);
+}
+document.getElementById('first').addEventListener('click', onFirstPage);
+
+/**
  * Displays previous page.
  */
 function onPrevPage() {
@@ -128,6 +140,18 @@ document.getElementById('next').addEventListener('click', onNextPage);
 document.getElementById('talks-pdf').addEventListener('click', onNextPage);
 
 /**
+ * Displays last page.
+ */
+function onLastPage() {
+  if (pageNum === pdfDoc.numPages) {
+    return;
+  }
+  pageNum = pdfDoc.numPages;
+  queueRenderPage(pageNum);
+}
+document.getElementById('last').addEventListener('click', onLastPage);
+
+/**
  * Add keyboard navigation.
  */
 document.addEventListener("keydown", function(event) {
@@ -142,6 +166,14 @@ document.addEventListener("keydown", function(event) {
     case "ArrowDown":
       event.preventDefault();
       onNextPage();
+      break;
+    case "Home":
+      event.preventDefault();
+      onFirstPage();
+      break;
+    case "End":
+      event.preventDefault();
+      onLastPage();
       break;
   }
 });

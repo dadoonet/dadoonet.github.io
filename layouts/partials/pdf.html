@@ -27,8 +27,12 @@ Renders a PDF file.
     <div class="talks-controls flex flex-wrap items-center justify-between gap-2 text-sm">
       <!-- Left: Navigation controls -->
       <div class="flex items-center gap-3">
-        <a href="#" onclick="return false;" id="prev" class="flex items-center gap-1 hover:text-primary transition-colors" title="Previous slide">
+        <a href="#" onclick="return false;" id="first" class="flex items-center gap-1 hover:text-primary transition-colors" title="First slide">
           <span class="w-4 h-4">{{ partial "icon.html" (dict "ctx" .ctx "name" "skip-back") }}</span>
+          <span class="hidden sm:inline">First</span>
+        </a>
+        <a href="#" onclick="return false;" id="prev" class="flex items-center gap-1 hover:text-primary transition-colors" title="Previous slide">
+          <span class="w-4 h-4">{{ partial "icon.html" (dict "ctx" .ctx "name" "chevrons-left") }}</span>
           <span class="hidden sm:inline">Previous</span>
         </a>
         <span class="text-base-content/60 tabular-nums">
@@ -36,6 +40,10 @@ Renders a PDF file.
         </span>
         <a href="#" onclick="return false;" id="next" class="flex items-center gap-1 hover:text-primary transition-colors" title="Next slide">
           <span class="hidden sm:inline">Next</span>
+          <span class="w-4 h-4">{{ partial "icon.html" (dict "ctx" .ctx "name" "chevrons-right") }}</span>
+        </a>
+        <a href="#" onclick="return false;" id="last" class="flex items-center gap-1 hover:text-primary transition-colors" title="Last slide">
+          <span class="hidden sm:inline">Last</span>
           <span class="w-4 h-4">{{ partial "icon.html" (dict "ctx" .ctx "name" "skip-forward") }}</span>
         </a>
       </div>
@@ -43,9 +51,8 @@ Renders a PDF file.
       <!-- Center: Download -->
       <div class="flex items-center">
         <a href="{{ .pdf.RelPermalink }}" title="Download PDF" download class="flex items-center gap-1 hover:text-primary transition-colors">
-          <span class="w-4 h-4">{{ partial "icon.html" (dict "ctx" .ctx "name" "download-cloud") }}</span>
-          <span class="hidden sm:inline">Download</span>
-          <span class="text-base-content/60">({{ $stat := os.Stat .pdf.RelPermalink }}{{ if lt $stat.Size 1048576}}1{{ else }}{{ math.Ceil (div $stat.Size 1048576) }}{{ end }}&#8239;MB)</span>
+          <span class="w-4 h-4 mr-1">{{ partial "icon.html" (dict "ctx" .ctx "name" "download-cloud") }}</span>
+          <span class="text-base-content/60">{{ $stat := os.Stat .pdf.RelPermalink }}{{ if lt $stat.Size 1048576}}1{{ else }}{{ math.Ceil (div $stat.Size 1048576) }}{{ end }}&#8239;MB</span>
         </a>
       </div>
     </div>
