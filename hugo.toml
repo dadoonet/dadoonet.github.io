@@ -65,6 +65,7 @@ imageZoomableInPost = true
 showPrevNextPost = true
 
 [params.navItems]
+talks = { href = "/talks", icon = "megaphone", title = "Talks" }
 github = { href = "https://github.com/dadoonet", target = "_blank", icon = "logo-github", title = "GitHub" }
 x = { href = "https://x.com/dadoonet", target = "_blank", icon = "logo-x", title = "X" }
 linkedin = { href = "https://www.linkedin.com/in/dadoonet", target = "_blank", icon = "logo-linkedin", title = "Linkedin" }
