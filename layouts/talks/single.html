@@ -96,6 +96,24 @@
         </div>
         {{ end }}
 
+        {{- with .Params.links -}}
+        <div class="divider"></div>
+        <h2 id="resources">Resources</h2>
+        <p>The following resources were mentioned during the presentation or are useful additional information.</p>
+        <div class="grid grid-cols-2 lg:grid-cols-3 gap-2 my-4">
+          {{- range . -}}
+          <a href="{{ .url }}" target="_blank" rel="noopener noreferrer" class="card bg-base-200 hover:bg-base-300 transition-colors no-underline">
+            <div class="card-body p-2">
+              <h3 class="card-title m-0">{{ .title }} <ion-icon name="open-outline" class="text-sm"></ion-icon></h3>
+              {{- with .details -}}
+              <p class="text-base-content/70 m-0">{{ . }}</p>
+              {{- end -}}
+            </div>
+          </a>
+          {{- end -}}
+        </div>
+        {{- end -}}
+
         <div class="post-content">
 
           {{- with .Params.x -}}
