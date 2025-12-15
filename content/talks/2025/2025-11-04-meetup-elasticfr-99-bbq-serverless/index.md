@@ -26,6 +26,14 @@ cover: cover.jpg
 # Speaker specific fields
 youtube: "Iz_KLhYB9to"
 notist: "dadoonet/DsQ4UN"
+
+links:
+  - title: "Meetup Website"
+    url: "https://www.meetup.com/elasticfr/events/310730914"
+  - title: "Elastic Serverless documentation"
+    url: "https://www.elastic.co/docs/deploy-manage/deploy/elastic-cloud/serverless"
+  - title: "Elasticsearch Serverless API"
+    url: "https://www.elastic.co/docs/api/doc/elasticsearch-serverless/"
 ---
 Comment feriez-vous pour créer Elasticsearch si vous commenciez ce projet en 2025 ?
 
