@@ -27,6 +27,12 @@ cover: cover.jpg
 #youtube: ""
 notist: "dadoonet/NscrTQ"
 
+links:
+  - title: "VoxxedDays Luxembourg"
+    url: "https://voxxeddays.com/luxembourg/"
+  - title: "Résumé de la conférence par Nicolas Martignole"
+    url: "http://www.touilleur-express.fr/2018/06/25/voxxed-luxembourg-2018/"
+
 x:
   - user: "voxxed_lu"
     id: "1010075039000072192"

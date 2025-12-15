@@ -27,6 +27,20 @@ cover: cover.jpg
 #youtube: ""
 notist: "dadoonet/lYu3b1"
 
+links:
+  - title: "Quantitative Cluster Sizing"
+    url: "https://www.elastic.co/fr/elasticon/conf/2016/sf/quantitative-cluster-sizing"
+  - title: "Rollover API"
+    url: "https://www.elastic.co/guide/en/elasticsearch/reference/6.6/indices-rollover-index.html"
+  - title: "Shrink Index API"
+    url: "https://www.elastic.co/guide/en/elasticsearch/reference/6.6/indices-shrink-index.html"
+  - title: "Split Index API"
+    url: "https://www.elastic.co/guide/en/elasticsearch/reference/6.6/indices-split-index.html"
+  - title: "Talk video from a past session"
+    url: "https://www.youtube.com/watch?v=h7R79ypXJsI"
+  - title: "Official photos from DevopsDays Geneva"
+    url: "https://photos.app.goo.gl/Y4yUQbPbCrdG9DpNA"
+
 x:
   - user: "DevopsdaysGe"
     id: "1098905223337250817"

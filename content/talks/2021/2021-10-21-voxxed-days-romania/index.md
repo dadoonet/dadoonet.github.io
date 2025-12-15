@@ -27,6 +27,12 @@ cover: cover.png
 #youtube: ""
 notist: "dadoonet/zWe0zu"
 
+links:
+  - title: "Voxxed Days Romania"
+    url: "https://romania.voxxeddays.com/talk/?id=5852"
+  - title: "Elastic Security Solution"
+    url: "https://www.elastic.co/security"
+
 x:
   - user: "dadoonet"
     id: "1450094653022289928"

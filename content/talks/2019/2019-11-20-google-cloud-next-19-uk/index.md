@@ -27,6 +27,16 @@ cover: cover.jpg
 #youtube: ""
 notist: "dadoonet/jYxmxg"
 
+links:
+  - title: "Google Cloud Next'19 Session"
+    url: "https://cloud.withgoogle.com/next/uk/speakers?session=DZ105"
+  - title: "Elastic Cloud on Kubernetes (ECK) documentation"
+    url: "https://www.elastic.co/guide/en/cloud-on-k8s/current/index.html"
+  - title: "Kibana Documentation"
+    url: "https://www.elastic.co/guide/en/kibana/current/introduction.html"
+  - title: "Elasticsearch Documentation"
+    url: "https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html"
+
 x:
   - user: "glaforge"
     id: "1197143672556597249"

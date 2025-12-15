@@ -3,7 +3,7 @@ title: "Déployer et monitorer la suite Elastic sur Google Cloud Platform"
 description: ""
 conference: 
   name: "GDG Lille"
-  url: ""
+  url: "https://www.meetup.com/GDG-Lille/events/245130596/"
   city: "Lille"
   country: "France"
   country_code: "fr"

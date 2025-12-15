@@ -27,6 +27,12 @@ cover: cover.png
 youtube: "4tQDLAs5HpM"
 notist: "dadoonet/h0HniU"
 
+links:
+  - title: "Devoxx France"
+    url: "https://cfp.devoxx.fr/2021/talk/SQR-3658/Identifier_les_menaces_avec_Elastic_SIEM"
+  - title: "Elastic Security Solution"
+    url: "https://www.elastic.co/fr/security"
+
 x:
   - user: "dadoonet"
     id: "1434789692684263428"
