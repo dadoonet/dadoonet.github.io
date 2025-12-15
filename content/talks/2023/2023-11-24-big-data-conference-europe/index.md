@@ -32,8 +32,12 @@ x:
     id: "1724109443783082295"
   - user: "dadoonet"
     id: "1727277492808085806"
----
 
+links:
+  - title: "dadoonet/bano-elastic"
+    url: "https://github.com/dadoonet/bano-elastic"
+
+---
 Come and learn how you can enrich your existing data with normalized postal addresses with geo location points thanks to open data and BANO project.
 
 Most of the time postal addresses from our customers or users are not very well formatted or defined in our information systems. And it can become a nightmare if you are a call center employee for example and want to find a customer by its address.

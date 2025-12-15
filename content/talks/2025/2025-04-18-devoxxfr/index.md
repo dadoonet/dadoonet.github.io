@@ -27,5 +27,4 @@ cover: cover.jpg
 #youtube: ""
 notist: "dadoonet/gE1jKO"
 ---
-
 Viens découvrir à travers une histoire vraie, comment une simple petite réponse dans un forum de discussion sur un projet méconnu peut complètement changer et accélérer ta carrière.

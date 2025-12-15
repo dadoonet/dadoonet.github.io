@@ -34,6 +34,10 @@ x:
     id: "1893288840732737667"
   - user: "GeekSessionsFAO"
     id: "1894292854324781545"
----
 
+links:
+  - title: "dadoonet/music-search"
+    url: "https://github.com/dadoonet/music-search"
+
+---
 In this session, we will use the principles of vector search to find pieces of music that are (maybe) similar to others. To do this, we will review the principles of generating embeddings to represent any type of data, whether textual or binary.

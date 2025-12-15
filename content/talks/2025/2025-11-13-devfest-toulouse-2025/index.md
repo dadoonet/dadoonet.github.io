@@ -27,7 +27,6 @@ cover: cover.jpg
 #youtube: "sxWTPruEWRU"
 #notist: "dadoonet/ubjdxo"
 ---
-
 > Le hasard fait bien les choses.
 
 Si on applique cette idée aux tests unitaires ou aux tests d'intégration, on peut rendre nos tests beaucoup plus imprévisibles et du coup trouver des problèmes que notre esprit n'aurait jamais osé imaginer ! Par exemple, récemment, j'ai découvert dans une bibliothèque de gestion de configuration, [un bug](https://github.com/gestalt-config/gestalt/issues/242) qui se produit lorsque la `Locale` est configuré en `AZ`. 🤦🏼‍♂️

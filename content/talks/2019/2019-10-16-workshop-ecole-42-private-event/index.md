@@ -26,8 +26,12 @@ cover: cover.jpg
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/BtuDBd"
----
 
+links:
+  - title: "Demo code"
+    url: "https://gist.github.com/dadoonet/f3c67bebf2cf604df02f78ac2cb2fbde"
+
+---
 Vous cherchez toujours dans vos données avec des SELECT * FROM person WHERE name like '%david%pilato%" ?
 Au delà des performances obtenues, êtes-vous certain de renvoyer les résultats les plus pertinents pour vos utilisateurs d’abord ?
 Venez découvrir comment un moteur de recherche vous aidera à répondre aux questions posées par vos utilisateurs, de manière pertinente et efficace, tout en apportant des fonctionnalités d’analyse des résultats et ce, quelque soit le volume…

@@ -27,7 +27,6 @@ cover: cover.png
 #youtube: ""
 notist: "dadoonet/r9W4z2"
 ---
-
 How do you mix SQL and NoSQL worlds without starting a messy revolution?
 This live coding talk will show you how to add Elasticsearch to your legacy application without changing all your current development habits. Your application will have suddenly have advanced search features, all without the need to write complex SQL code!
 David will start from a Spring Boot/Postgresql/MySQL based application and will add a complete integration of Elasticsearch, all live from the stage during his presentation.

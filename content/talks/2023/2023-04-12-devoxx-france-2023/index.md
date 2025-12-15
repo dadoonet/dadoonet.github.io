@@ -32,8 +32,14 @@ x:
     id: "1626194106346094592"
   - user: "dadoonet"
     id: "1621486584032907265"
----
 
+links:
+  - title: "dadoonet/DevoxxFR-2023"
+    url: "https://github.com/dadoonet/DevoxxFR-2023"
+  - title: "dadoonet/fscrawler"
+    url: "https://github.com/dadoonet/fscrawler"
+
+---
 Lors de cet atelier, nous allons expliquer comment mettre en place un moteur de recherche pour les données de notre entreprise.
 Afin d’éviter le côté trop “magique” parfois des solutions sur étagère, nous verrons d’abord :
 

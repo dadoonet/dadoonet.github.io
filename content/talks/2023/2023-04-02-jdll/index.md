@@ -30,8 +30,16 @@ notist: "dadoonet/D5Qumy"
 x:
   - user: "dadoonet"
     id: "1638567651847929861"
----
 
+links:
+  - title: "dadoonet/JDLL"
+    url: "https://github.com/dadoonet/JDLL"
+  - title: "elastic/enterprise-search-network-drives-connector"
+    url: "https://github.com/elastic/enterprise-search-network-drives-connector"
+  - title: "dadoonet/fscrawler"
+    url: "https://github.com/dadoonet/fscrawler"
+
+---
 Lors de cet atelier, nous allons expliquer comment mettre en place un moteur de recherche pour les données de notre entreprise.
 Afin d’éviter le côté trop “magique” parfois des solutions sur étagère, nous verrons d’abord :
 

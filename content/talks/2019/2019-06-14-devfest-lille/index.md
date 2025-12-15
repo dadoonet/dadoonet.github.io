@@ -34,8 +34,14 @@ x:
     id: "1139544412952940544"
   - user: "mattmasztalir"
     id: "1139544445039370246"
----
 
+links:
+  - title: "dadoonet/elasticsearch-integration-tests"
+    url: "https://github.com/dadoonet/elasticsearch-integration-tests"
+  - title: "testcontainers/testcontainers-java"
+    url: "https://github.com/testcontainers/testcontainers-java/tree/master/modules/elasticsearch"
+
+---
 Les tests d’intégration peuvent devenir un cauchemar lorsqu’ils sont lancés depuis la même JVM que votre code:
 
 Conflit de JARs (JAR Hell)

@@ -41,7 +41,6 @@ x:
   - user: "gui_gillon"
     id: "941377671740710912"
 ---
-
 Pour déployer elasticsearch sur Google Compute Platform, plusieurs options s’offrent à vous :
 
 Démarrer des instances GCE, installer et configurer elasticsearch pour le discovery

@@ -55,7 +55,6 @@ x:
   - user: "dadoonet"
     id: "1669788001876975625"
 ---
-
 Dans cet atelier, nous allons découvrir quelques techniques utilisées par les DeeJays pour vous faire bouger toute une soirée :
 
 L’ajustement des BPM (Battements Par Minute)

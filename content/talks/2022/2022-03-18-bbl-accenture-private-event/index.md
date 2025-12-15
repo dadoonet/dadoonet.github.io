@@ -34,8 +34,12 @@ x:
     id: "1504770694818963458"
   - user: "dadoonet"
     id: "1504799847735562241"
----
 
+links:
+  - title: "Kibana Demo Script"
+    url: "https://gist.github.com/dadoonet/f911291c4dd19b0802031db3064c648f"
+
+---
 Do you still use SQL queries to search? Your users blame you for not being able to search any and all data? Your average response time is greater than half a second with only a few million documents? Do you need 3 days to produce statistics on your data? Do you dream of offering a “google search” on your IS data?
 Enter Elasticsearch: A simple-to-setup and simple-to-use search service. You simply feed it the information you want to be searchable using its index APIs and use its simple-yet-powerful search APIs to let users search for this information in milliseconds.
 Elasticsearch is an open source horizontally-scalable, distributed search and analytics engine based on Apache Lucene. Elasticsearch is one of the most popular projects on Github with 1100+ contributors, 12,000+ forks and 43,000+ commits. Organizations around the world, from startups to governments to large corporations, are using Elasticsearch for numerous use cases to gain real-time insights from large volumes of data.

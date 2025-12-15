@@ -45,5 +45,4 @@ x:
   - user: "oriannetisseuil"
     id: "1172415384462319616"
 ---
-
 Rétrospective sur 10 ans de Jug Summer Camp sur à la fois les aspects technologiques mais surtout humains.

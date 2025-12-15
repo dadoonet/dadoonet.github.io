@@ -34,8 +34,16 @@ x:
     id: "1539211376526254081"
   - user: "dadoonet"
     id: "1539210577121255425"
----
 
+links:
+  - title: "spinscale/elasticsearch-ingest-langdetect)"
+    url: "https://github.com/spinscale/elasticsearch-ingest-langdetect)"
+  - title: "elastic/enterprise-search-network-drives-connector"
+    url: "https://github.com/elastic/enterprise-search-network-drives-connector"
+  - title: "dadoonet/fscrawler"
+    url: "https://github.com/dadoonet/fscrawler"
+
+---
 Vous avez sous la main des tonnes de documents Open Office, Microsoft Office, PDF voire des images… Et vous aimeriez être capable de chercher dans leurs meta-données et dans le contenu lui-même.
 Comment faire ? Surtout depuis l’annonce de la fin de Google Search Appliance.
 Dans cette session, David expliquera comment Apache Tika peut fournir ce service et comment combiner cette fantastique librairie avec elasticsearch :

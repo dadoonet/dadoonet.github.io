@@ -38,8 +38,7 @@ links:
     details: "The Jupyter notebook"
     url: "https://github.com/dadoonet/music-search/"
   - title: "Podcast"
-    details: This space is where I’m publishing my DJ sets"
+    details: "This space is where I'm publishing my DJ sets"
     url: "https://djdadoo.pilato.fr/"
 ---
-
 In this session, we will use the principles of vector search to find pieces of music that are (maybe) similar to others.

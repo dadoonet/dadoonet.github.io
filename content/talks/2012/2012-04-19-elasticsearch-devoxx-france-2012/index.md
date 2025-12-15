@@ -46,8 +46,12 @@ x:
     id: "192919891999858690"
   - user: "descampsf"
     id: "192916118682345472"
----
 
+links:
+  - title: "dadoonet/talks"
+    url: "https://github.com/dadoonet/talks"
+
+---
 * Un moteur de recherche ? Pourquoi faire ?
 * Elasticsearch : une solution simple, complète, performante.
 * Et si on indexait Twitter ?

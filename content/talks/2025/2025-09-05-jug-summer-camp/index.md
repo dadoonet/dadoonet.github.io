@@ -27,7 +27,6 @@ cover: cover.jpg
 youtube: "96lYAIDzX50"
 notist: "dadoonet/WA1Ort"
 ---
-
 Comment feriez-vous pour créer Elasticsearch si vous commenciez ce projet en 2025 ?
 
 Découpler le calcul (compute) du stockage (storage)

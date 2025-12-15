@@ -36,8 +36,14 @@ x:
     id: "1790443359175102919"
   - user: "shacharmirkin"
     id: "1790474993119137813"
----
 
+links:
+  - title: "erikbern/ann-benchmarks"
+    url: "https://github.com/erikbern/ann-benchmarks"
+  - title: "dadoonet/music-search"
+    url: "https://github.com/dadoonet/music-search"
+
+---
 La recherche ne se contente plus de l’approche maintenant traditionnelle basée sur la fréquence des termes (TF/IDF ou BM25) mais plus sur la tendance actuelle du machine learning où les nouveaux modèles ont ouvert une nouvelle dimension pour la recherche.
 Cette conférence donne un aperçu de :
 

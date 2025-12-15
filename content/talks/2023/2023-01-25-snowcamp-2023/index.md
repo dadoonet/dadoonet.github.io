@@ -42,8 +42,30 @@ x:
     id: "1611365091995275266"
   - user: "dadoonet"
     id: "1618564206521110529"
----
 
+links:
+  - title: "elastic/enterprise-search-network-drives-connector"
+    url: "https://github.com/elastic/enterprise-search-network-drives-connector"
+  - title: "dadoonet/fscrawler"
+    url: "https://github.com/dadoonet/fscrawler/issues/857"
+  - title: "dadoonet/fscrawler"
+    url: "https://github.com/dadoonet/fscrawler/issues/1114"
+  - title: "dadoonet/fscrawler"
+    url: "https://github.com/dadoonet/fscrawler/issues/377"
+  - title: "dadoonet/fscrawler"
+    url: "https://github.com/dadoonet/fscrawler/issues/264"
+  - title: "dadoonet/fscrawler"
+    url: "https://github.com/dadoonet/fscrawler/issues/682"
+  - title: "dadoonet/fscrawler"
+    url: "https://github.com/dadoonet/fscrawler/issues/1549"
+  - title: "dadoonet/fscrawler"
+    url: "https://github.com/dadoonet/fscrawler/issues/1247"
+  - title: "dadoonet/fscrawler"
+    url: "https://github.com/dadoonet/fscrawler"
+  - title: "dadoonet/demo-fscrawler"
+    url: "https://github.com/dadoonet/demo-fscrawler"
+
+---
 Vous avez sous la main des tonnes de documents Open Office, Microsoft Office, PDF voire des images… Et vous aimeriez être capable de chercher dans leurs meta-données et dans le contenu lui-même.
 Comment faire ? Surtout depuis l’annonce de la fin de Google Search Appliance.
 Dans cette session, David expliquera comment Apache Tika peut fournir ce service et comment combiner cette fantastique librairie avec elasticsearch :

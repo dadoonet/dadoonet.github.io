@@ -26,6 +26,10 @@ cover: cover.jpg
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/bwPn68"
----
 
+links:
+  - title: "GitHub Repository"
+    url: "https://github.com/elastic"
+
+---
 Let’s explore what means community at Elastic and how it plays an important role for our projects.

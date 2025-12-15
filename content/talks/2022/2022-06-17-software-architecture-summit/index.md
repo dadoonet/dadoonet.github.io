@@ -38,8 +38,16 @@ x:
     id: "1537791722989707264"
   - user: "dadoonet"
     id: "1543972927116296194"
----
 
+links:
+  - title: "spinscale/elasticsearch-ingest-langdetect)"
+    url: "https://github.com/spinscale/elasticsearch-ingest-langdetect)"
+  - title: "elastic/enterprise-search-network-drives-connector"
+    url: "https://github.com/elastic/enterprise-search-network-drives-connector"
+  - title: "dadoonet/fscrawler"
+    url: "https://github.com/dadoonet/fscrawler"
+
+---
 You have plenty of Open Office, Microsoft Office, PDF, images… documents and you may want to be able to search for their metadata and content. How can you do that?
 In this talk, David will explain how Apache Tika can be used for that and how to combine this fantastic library with Elastic Stack:
 

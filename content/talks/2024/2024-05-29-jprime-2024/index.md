@@ -34,8 +34,14 @@ x:
     id: "1795743726465355921"
   - user: "jPrimeConf"
     id: "1759498858676056236"
----
 
+links:
+  - title: "erikbern/ann-benchmarks"
+    url: "https://github.com/erikbern/ann-benchmarks"
+  - title: "dadoonet/music-search"
+    url: "https://github.com/dadoonet/music-search"
+
+---
 Search is not just traditional TF/IDF any more but the current trend of machine learning and models has opened another dimension for search.
 This talk gives an overview of:
 

@@ -26,8 +26,12 @@ cover: cover.png
 # Speaker specific fields
 youtube: "fTxabQd83TM"
 notist: "dadoonet/XHamC4"
----
 
+links:
+  - title: "xeraa/microservice-monitoring"
+    url: "https://github.com/xeraa/microservice-monitoring"
+
+---
 “With microservices every outage is like a murder mystery” is a common complaint. But it doesn’t have to be!
 This talk gives an overview on how to monitor distributed applications. We dive into:
 

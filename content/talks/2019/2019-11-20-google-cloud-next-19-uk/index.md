@@ -37,7 +37,6 @@ x:
   - user: "dadoonet"
     id: "1197159764800802818"
 ---
-
 To deploy elastic stack on Google Compute Platform (GCP), you have several options:
 
 Start GCE instances, install and configure elasticsearch nodes discovery, SSL and security

@@ -26,8 +26,14 @@ cover: cover.jpg
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/G8rCxd"
----
 
+links:
+  - title: "dadoonet/fscrawler"
+    url: "https://github.com/dadoonet/fscrawler/actions/runs/14357866984/job/40251514398#step:4:296"
+  - title: "gestalt-config/gestalt"
+    url: "https://github.com/gestalt-config/gestalt/issues/242"
+
+---
 Chance does things well.
 
 If we apply this idea to unit tests or integration tests, we can make our tests much more unpredictable — and as a result, uncover issues that our minds would never have dared to imagine! For example, I recently discovered a bug in a configuration management library that occurs when the Locale is set to AZ. 🤦🏼‍♂️

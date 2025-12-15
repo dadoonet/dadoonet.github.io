@@ -36,8 +36,14 @@ x:
     id: "1851676231617634419"
   - user: "dadoonet"
     id: "1843247405610963165"
----
 
+links:
+  - title: "dadoonet/music-search"
+    url: "https://github.com/dadoonet/music-search"
+  - title: "elastic/crawler"
+    url: "https://github.com/elastic/crawler"
+
+---
 L’arrivée des LLMs (Large Language Models) tels que ChatGPT ont fait couler beaucoup d’encre en annonçant l’extinction à venir des moteurs de recherche.
 Au cours de cette session, je vous démontrerai que c’est bien l’inverse qui se joue. La grosse conséquence de la “révolution” GPT est, selon moi, le retour en grâce de cette question fondamentale :
 

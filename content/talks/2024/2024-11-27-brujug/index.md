@@ -26,8 +26,12 @@ cover: cover.jpg
 # Speaker specific fields
 youtube: "mjC2aACw4xw"
 notist: "dadoonet/afovUS"
----
 
+links:
+  - title: "dadoonet/music-search"
+    url: "https://github.com/dadoonet/music-search"
+
+---
 Search is not just traditional TF/IDF any more but the current trend of machine learning and models has opened another dimension for search.
 This talk gives an overview of:
 
