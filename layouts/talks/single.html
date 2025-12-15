@@ -121,8 +121,7 @@
             <h2>Buzz et feedback</h2>
             <p>Here's what was said about this presentation on social media.</p>
             {{- range . -}}
-              {{/* {{- template "_shortcodes/x.html" . -}} */}}
-              {{ .user }} - {{ .id }}
+              {{- partial "x-embed.html" (dict "id" .id "user" .user) -}}
             {{- end -}}
           </div>
           {{- end -}}
