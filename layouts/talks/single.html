@@ -52,6 +52,15 @@
               – {{ .Date | time.Format "Jan. 2006" }}
             </p>
 
+          {{ with .Params.notist }}
+            <p class="text-sm">
+              <a href="https://noti.st/{{ . }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-base-content/70 hover:text-base-content transition-colors">
+                <ion-icon name="link-outline"></ion-icon>
+                View on noti.st
+              </a>
+            </p>
+          {{ end }}
+
           {{ $hasAuthor := or .Params.author site.Params.author }}
           <div class="flex justify-between">
             {{ if $hasAuthor }}
