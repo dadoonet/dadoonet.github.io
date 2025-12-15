@@ -16,6 +16,14 @@ hugo new posts/YYYY-MM-DD-something-awesome-to-share/index.md
 git submodule update --rebase --remote
 ```
 
+## Pull the binary files
+
+If the PDF documents for the talks are not present in the repository, you need to pull them from the remote repository:
+
+```sh
+git lfs pull
+```
+
 ## Run locally
 
 On fresh new install, before running the build, you need to install the dependencies:
