@@ -40,8 +40,9 @@ function calculateOptimalScale(page) {
   var scaleWidth = availableWidth / viewport.width;
   var scaleHeight = availableHeight / viewport.height;
   
-  // Use the smaller scale to ensure it fits, with a minimum of 1 for quality
-  return Math.max(1, Math.min(scaleWidth, scaleHeight));
+  // Use the smaller scale to ensure it fits within the viewport
+  // Allow scaling down for wide PDFs, with a minimum of 0.5 for readability
+  return Math.max(0.5, Math.min(scaleWidth, scaleHeight));
 }
 
 /**
