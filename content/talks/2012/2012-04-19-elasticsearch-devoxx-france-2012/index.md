@@ -48,18 +48,7 @@ x:
     id: "192916118682345472"
 ---
 
-## Abstract
-
 * Un moteur de recherche ? Pourquoi faire ?
 * Elasticsearch : une solution simple, complète, performante.
 * Et si on indexait Twitter ?
 * Faites du bruit sur `@DevoxxFR` avec le hashtag `#elasticsearch` !
-
-## Video
-
-{{< youtube sxWTPruEWRU >}}
-
-## Ressources
-
-* [Sources du talk sur GitHub](https://github.com/dadoonet/talks)
-* [Présentation sur Notist](https://speaker.pilato.fr/ubjdxo)
