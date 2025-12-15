@@ -27,6 +27,12 @@ cover: cover.jpg
 #youtube: ""
 notist: "dadoonet/0MI79Z"
 
+links:
+  - title: "Le blog à propos de cette session"
+    url: "https://david.pilato.fr/blog/2022-06-10-la-potion-magique-pour-faire-avancer-ta-carriere/"
+  - title: "Camping des speakers"
+    url: "https://camping-speakers.fr/"
+
 x:
   - user: "alexislozano__"
     id: "1535628474660147201"

@@ -26,6 +26,10 @@ cover: cover.jpg
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/A78dJt"
+
+links:
+  - title: "Podcast"
+    url: "https://podcasts.apple.com/fr/podcast/david-pilato-mixes/id505824965"
 ---
 Dans cet atelier, nous allons découvrir quelques techniques utilisées par les DeeJays pour vous faire bouger toute une soirée :
 

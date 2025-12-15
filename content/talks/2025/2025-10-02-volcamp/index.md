@@ -26,6 +26,10 @@ cover: cover.jpg
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/Ss00b2"
+
+links:
+  - title: "Podcast DJ Elky"
+    url: "https://podcasts.apple.com/fr/podcast/dj-elky-mixes/id959495351"
 ---
 Dans cet atelier, nous allons découvrir quelques techniques utilisées par les DeeJays pour vous faire bouger toute une soirée :
 

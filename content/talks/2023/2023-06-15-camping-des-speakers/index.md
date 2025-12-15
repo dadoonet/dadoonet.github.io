@@ -27,6 +27,14 @@ cover: cover.jpg
 #youtube: ""
 notist: "dadoonet/qZrOqw"
 
+links:
+  - title: "Conference"
+    url: "https://camping-speakers.fr/sessions/l_art_du_DeeJaying_par_la_pratique/"
+  - title: "DJ David Pilato Podcast"
+    url: "https://podcasts.apple.com/fr/podcast/david-pilato-mixes/id959495351"
+  - title: "Set Camping Des Speakers"
+    url: "https://podcasts.apple.com/fr/podcast/dj-dadoo-net-mixes/id505824965?i=1000617303592"
+
 x:
   - user: "dadoonet"
     id: "1636757833663299585"

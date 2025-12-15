@@ -26,6 +26,14 @@ cover: cover.jpg
 # Speaker specific fields
 youtube: "96lYAIDzX50"
 notist: "dadoonet/WA1Ort"
+
+links:
+  - title: "Conference Website"
+    url: "https://www.jugsummercamp.org/"
+  - title: "Elastic Serverless documentation"
+    url: "https://www.elastic.co/docs/deploy-manage/deploy/elastic-cloud/serverless"
+  - title: "Elasticsearch Serverless API"
+    url: "https://www.elastic.co/docs/api/doc/elasticsearch-serverless/"
 ---
 Comment feriez-vous pour créer Elasticsearch si vous commenciez ce projet en 2025 ?
 

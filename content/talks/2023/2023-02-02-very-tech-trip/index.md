@@ -27,6 +27,10 @@ cover: cover.jpg
 #youtube: ""
 notist: "dadoonet/MyZpvU"
 
+links:
+  - title: "Very Tech Trip"
+    url: "https://verytechtrip.com/"
+
 x:
   - user: "dadoonet"
     id: "1611244392907522048"
