@@ -18,8 +18,8 @@ Renders a PDF file.
 <div class="post-content">
   <div class="flex flex-col gap-2 py-1">
     <!-- PDF slides - Size calculated by JavaScript to fit viewport -->
-    <div class="w-full flex justify-center">
-      <canvas class="cursor-pointer rounded-lg shadow-md" id="talks-pdf"></canvas>
+    <div class="w-full flex justify-center overflow-hidden">
+      <canvas class="cursor-pointer rounded-lg shadow-md max-w-full" id="talks-pdf"></canvas>
       <noscript><p class="text-center text-sm text-base-content/70 mt-2">It looks like you have disabled JavaScript, so the slides won't load. Please enable it or <a href="{{ .pdf.RelPermalink }}" class="link link-primary" download>download the PDF directly</a>.</p></noscript>
     </div>
 
