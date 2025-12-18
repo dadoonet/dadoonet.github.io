@@ -1,0 +1,81 @@
+{
+  "data": [
+    {
+      "type": "presentations",
+      "id": "pr_fZF2Ui",
+      "attributes": {
+        "title": "🎹🎻🎸 Searching for similar music tracks 🎼🎶",
+        "slug": "searching-for-similar-music-tracks",
+        "blurb": {
+          "html": "<p>In this session, we will use the principles of vector search to find pieces of music that are (maybe) similar to others.</p>\n"
+        },
+        "slidedeck": {
+          "data": [
+            {
+              "id": "sd_13336",
+              "type": "images",
+              "slides": [
+                {
+                  "id": "sl_IaWChu",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": null
+                  },
+                  "image": "https://on.notist.cloud/slides/deck13336/large-d2a834d32330a199.jpeg",
+                  "html": null
+                }
+              ]
+            }
+          ]
+        },
+        "download": "/placeholder-d2a834d32330a199.jpeg",
+        "resources": {
+          "data": [
+            {
+              "title": "Event page",
+              "url": "https://open.spotify.com/show/6DLhSV2P7aBQemyUcTVZKE?si=b86a4ef21c234602",
+              "desc": {
+                "html": ""
+              }
+            },
+            {
+              "title": "Demo code",
+              "url": "https://github.com/dadoonet/music-search",
+              "desc": {
+                "html": ""
+              }
+            }
+          ]
+        }
+      },
+      "relationships": {
+        "data": [
+          {
+            "type": "events",
+            "id": "ev_BSID7Y",
+            "attributes": {
+              "title": "You know, for search, an Elastic podcast",
+              "slug": "you-know-for-search-an-elastic-podcast",
+              "starts_on": "2024-08-21 08:00:00",
+              "ends_on": "2024-08-21 18:00:00",
+              "timezone": "GMT",
+              "address": "Virtual",
+              "latitude": null,
+              "longitude": null,
+              "country_code": null,
+              "url": null
+            },
+            "links": {
+              "self": "https://noti.st/events/BSID7Y/you-know-for-search-an-elastic-podcast",
+              "related": "https://noti.st/events/BSID7Y.json"
+            }
+          }
+        ]
+      },
+      "links": {
+        "self": "https://speaker.pilato.fr/fZF2Ui/searching-for-similar-music-tracks"
+      }
+    }
+  ]
+}

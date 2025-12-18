@@ -1,0 +1,81 @@
+{
+  "data": [
+    {
+      "type": "presentations",
+      "id": "pr_jAQF3k",
+      "attributes": {
+        "title": "Index Split, Shrink and Rollover",
+        "slug": "index-split-shrink-and-rollover",
+        "blurb": {
+          "html": "<p>Index Split, Shrink and Rollover features are handy to keep the shard size as optimal as possible. This session will go through practical examples.</p>\n"
+        },
+        "slidedeck": {
+          "data": [
+            {
+              "id": "sd_6416",
+              "type": "images",
+              "slides": [
+                {
+                  "id": "sl_gnEA6x",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": null
+                  },
+                  "image": "https://on.notist.cloud/slides/deck6416/large-6b24a4274d1e2367.png",
+                  "html": null
+                }
+              ]
+            }
+          ]
+        },
+        "download": "/placeholder-6b24a4274d1e2367.png",
+        "resources": {
+          "data": [
+            {
+              "title": "Event Page",
+              "url": "https://community.elastic.co/events/details/elastic-emea-virtual-presents-elastic-bytes-bite-sized-elastic-stack-sessions-515/#/",
+              "desc": {
+                "html": ""
+              }
+            },
+            {
+              "title": "Repository Demo",
+              "url": "https://github.com/dadoonet/demo-index-split-shrink-rollover",
+              "desc": {
+                "html": ""
+              }
+            }
+          ]
+        }
+      },
+      "relationships": {
+        "data": [
+          {
+            "type": "events",
+            "id": "ev_04IzHo",
+            "attributes": {
+              "title": "Elastic B(y|i)te",
+              "slug": "elastic-b-y-i-te",
+              "starts_on": "2021-03-08 08:00:00",
+              "ends_on": "2021-03-26 18:00:00",
+              "timezone": "GMT",
+              "address": "Virtual",
+              "latitude": null,
+              "longitude": null,
+              "country_code": null,
+              "url": "https://community.elastic.co/emea-virtual/"
+            },
+            "links": {
+              "self": "https://noti.st/events/04IzHo/elastic-b-y-i-te",
+              "related": "https://noti.st/events/04IzHo.json"
+            }
+          }
+        ]
+      },
+      "links": {
+        "self": "https://speaker.pilato.fr/jAQF3k/index-split-shrink-and-rollover"
+      }
+    }
+  ]
+}

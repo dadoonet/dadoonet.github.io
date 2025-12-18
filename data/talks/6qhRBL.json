@@ -1,0 +1,254 @@
+{
+  "data": [
+    {
+      "type": "presentations",
+      "id": "pr_6qhRBL",
+      "attributes": {
+        "title": "FSCrawler! You know, for files!",
+        "slug": "fscrawler-you-know-for-files",
+        "blurb": {
+          "html": "<p>Avez-vous déjà rêvé de pouvoir indexer vos fichiers locaux, genre PDF, OpenOffice, images et autres dans la suite Elastic pour pouvoir en rechercher facilement le contenu ou les meta-données ? C’est toute la promesse du projet open-source <a href=\"https://fscrawler.readthedocs.io/\" target=\"_blank\" rel=\"noopener\">FSCrawler</a>.</p>\n<p>Au cours de cette session, vous découvrirez les possibilités de ce projet et ce qu’il apporte par rapport au plugin <a href=\"https://www.elastic.co/guide/en/elasticsearch/plugins/current/ingest-attachment.html\" target=\"_blank\" rel=\"noopener\">ingest-attachment processor</a> d’Elasticsearch ainsi qu’une implémentation concrète.</p>\n"
+        },
+        "slidedeck": {
+          "data": [
+            {
+              "id": "sd_6471",
+              "type": "images",
+              "slides": [
+                {
+                  "id": "sl_efuS1f",
+                  "type": "image",
+                  "title": "FSCrawler: you know, for files!",
+                  "desc": {
+                    "html": "<p>Laetitia Richard</p>\n<p>David Pilato</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck6471/large-0.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_GzdFu4",
+                  "type": "image",
+                  "title": "",
+                  "desc": {
+                    "html": ""
+                  },
+                  "image": "https://on.notist.cloud/slides/deck6471/large-1.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_tJM3mT",
+                  "type": "image",
+                  "title": "Disclaimer",
+                  "desc": {
+                    "html": "<p>This project is a community project. It is not officially supported by Elastic. Support is only provided by FSCrawler community on <a href=\"http://discuss.elastic.co/\" target=\"_blank\" rel=\"noopener\">discuss</a> and <a href=\"https://stackoverflow.com/questions/tagged/fscrawler\" target=\"_blank\" rel=\"noopener\">stackoverflow</a>.</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck6471/large-2.png",
+                  "html": null
+                },
+                {
+                  "id": "sl_Vd4res",
+                  "type": "image",
+                  "title": "FSCrawler Architecture",
+                  "desc": {
+                    "html": "<ul>\n<li>Inputs:\n<ul>\n<li>Local Dir</li>\n<li>Mount Point</li>\n<li>SSH / SCP</li>\n<li>HTTP Rest</li>\n</ul>\n</li>\n<li>Filters\n<ul>\n<li>JSON (noop)</li>\n<li>XML</li>\n<li>Apache Tika</li>\n</ul>\n</li>\n<li>Outputs\n<ul>\n<li>ES6</li>\n<li>ES7</li>\n</ul>\n</li>\n</ul>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck6471/large-3.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_7wnfXH",
+                  "type": "image",
+                  "title": "FSCrawler Key Features",
+                  "desc": {
+                    "html": "<ul>\n<li>Much more formats than ingest attachment plugin</li>\n<li>OCR (Tesseract)</li>\n<li>Much more metadata than ingest attachment plugin (See <a href=\"https://fscrawler.readthedocs.io/en/latest/admin/fs/elasticsearch.html#generated-fields\" target=\"_blank\" rel=\"noopener\">Generated Fields</a>)</li>\n<li>Language detection</li>\n</ul>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck6471/large-4.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_kGWTPg",
+                  "type": "image",
+                  "title": "Documentation",
+                  "desc": {
+                    "html": "<p>Documentation</p>\n<ul>\n<li>\n<a href=\"https://fscrawler.readthedocs.io/\" target=\"_blank\" rel=\"noopener\">Documentation</a>\n</li>\n<li>\n<a href=\"https://fscrawler.readthedocs.io/en/latest/user/tutorial.html\" target=\"_blank\" rel=\"noopener\">Tutorial</a>\n</li>\n<li>\n<a href=\"https://fscrawler.readthedocs.io/en/latest/user/formats.html\" target=\"_blank\" rel=\"noopener\">Supported formats</a>\n</li>\n<li>\n<a href=\"https://fscrawler.readthedocs.io/en/latest/admin/fs/index.html\" target=\"_blank\" rel=\"noopener\">Input settings</a>\n</li>\n</ul>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck6471/large-5.png",
+                  "html": null
+                },
+                {
+                  "id": "sl_MaFHI5",
+                  "type": "image",
+                  "title": "FSCrawler Workplace Search integration",
+                  "desc": {
+                    "html": ""
+                  },
+                  "image": "https://on.notist.cloud/slides/deck6471/large-6.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_yty5AU",
+                  "type": "image",
+                  "title": "FSCrawler Architecture",
+                  "desc": {
+                    "html": "<p>It now adds Workplace Search 7</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck6471/large-7.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_bDgt2t",
+                  "type": "image",
+                  "title": "",
+                  "desc": {
+                    "html": ""
+                  },
+                  "image": "https://on.notist.cloud/slides/deck6471/large-8.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_DXPgvI",
+                  "type": "image",
+                  "title": "",
+                  "desc": {
+                    "html": ""
+                  },
+                  "image": "https://on.notist.cloud/slides/deck6471/large-9.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_pr8Unh",
+                  "type": "image",
+                  "title": "",
+                  "desc": {
+                    "html": ""
+                  },
+                  "image": "https://on.notist.cloud/slides/deck6471/large-10.png",
+                  "html": null
+                },
+                {
+                  "id": "sl_SArIg6",
+                  "type": "image",
+                  "title": "Need to enrich your data?",
+                  "desc": {
+                    "html": ""
+                  },
+                  "image": "https://on.notist.cloud/slides/deck6471/large-11.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_4Ua6YV",
+                  "type": "image",
+                  "title": "",
+                  "desc": {
+                    "html": ""
+                  },
+                  "image": "https://on.notist.cloud/slides/deck6471/large-12.png",
+                  "html": null
+                },
+                {
+                  "id": "sl_goIuQu",
+                  "type": "image",
+                  "title": "Need to analyze your data?",
+                  "desc": {
+                    "html": ""
+                  },
+                  "image": "https://on.notist.cloud/slides/deck6471/large-13.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_J81iJJ",
+                  "type": "image",
+                  "title": "Observe and analyze your data",
+                  "desc": {
+                    "html": ""
+                  },
+                  "image": "https://on.notist.cloud/slides/deck6471/large-14.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_vRkWBi",
+                  "type": "image",
+                  "title": "Beware of the settings",
+                  "desc": {
+                    "html": "<ul>\n<li>FSCrawler with Workplace Search output is not in watch mode (you can use systemd)</li>\n<li>To transform your Workplace Search index you will have to set dynamic mapping to true first (default is strict)</li>\n<li>If you have other standard Workplace Search connectors, you will have to transform your data in another index because the full sync refresh the content source from scratch</li>\n</ul>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck6471/large-15.png",
+                  "html": null
+                },
+                {
+                  "id": "sl_XlTK47",
+                  "type": "image",
+                  "title": "Needs to be done (Help Wanted!)",
+                  "desc": {
+                    "html": "<ul>\n<li>New local file crawling implementation (WatchService): <a href=\"https://github.com/dadoonet/fscrawler/issues/399\" target=\"_blank\" rel=\"noopener\">#399</a>\n</li>\n<li>Docker image: <a href=\"https://github.com/dadoonet/fscrawler/issues/820\" target=\"_blank\" rel=\"noopener\">#820</a>\n</li>\n<li>Store jobs, configurations, status in Elasticsearch: <a href=\"https://github.com/dadoonet/fscrawler/issues/717\" target=\"_blank\" rel=\"noopener\">#717</a>\n</li>\n<li>Support for plugins (inputs, filters and outputs):\n<ul>\n<li>refactor with pf4j framework: <a href=\"https://github.com/dadoonet/fscrawler/issues/1114\" target=\"_blank\" rel=\"noopener\">#1114</a>\n</li>\n<li>rsync input: <a href=\"https://github.com/dadoonet/fscrawler/issues/377\" target=\"_blank\" rel=\"noopener\">#377</a>\n</li>\n<li>Dropbox input: <a href=\"https://github.com/dadoonet/fscrawler/issues/264\" target=\"_blank\" rel=\"noopener\">#264</a>\n</li>\n<li>S3 input: <a href=\"https://github.com/dadoonet/fscrawler/issues/263\" target=\"_blank\" rel=\"noopener\">#263</a>\n</li>\n<li>Beats output: <a href=\"https://github.com/dadoonet/fscrawler/issues/682\" target=\"_blank\" rel=\"noopener\">#682</a>\n</li>\n</ul>\n</li>\n<li>Switch to ECS format for the most common fields: <a href=\"https://github.com/dadoonet/fscrawler/issues/677\" target=\"_blank\" rel=\"noopener\">#677</a>\n</li>\n<li>Extract ACL informations: <a href=\"https://github.com/dadoonet/fscrawler/issues/464\" target=\"_blank\" rel=\"noopener\">#464</a>\n</li>\n</ul>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck6471/large-16.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_A5C7wW",
+                  "type": "image",
+                  "title": "",
+                  "desc": {
+                    "html": ""
+                  },
+                  "image": "https://on.notist.cloud/slides/deck6471/large-17.jpg",
+                  "html": null
+                }
+              ]
+            }
+          ]
+        },
+        "download": "https://on.notist.cloud/pdf/deck-fe518cb155f63edc.pdf",
+        "resources": {
+          "data": [
+            {
+              "title": "FSCrawler",
+              "url": "https://fscrawler.readthedocs.io/",
+              "desc": {
+                "html": ""
+              }
+            },
+            {
+              "title": "Event page",
+              "url": "https://community.elastic.co/e/mwydqr/",
+              "desc": {
+                "html": ""
+              }
+            }
+          ]
+        },
+        "codeblocks": {
+          "data": []
+        }
+      },
+      "relationships": {
+        "data": [
+          {
+            "type": "events",
+            "id": "ev_2ChRh3",
+            "attributes": {
+              "title": "Meetup ElasticFR #59 - FSCrawler! You know, for files!",
+              "slug": "meetup-elasticfr-59-fscrawler-you-know-for-files",
+              "starts_on": "2021-03-25 08:00:00",
+              "ends_on": "2021-03-25 18:00:00",
+              "timezone": "GMT",
+              "address": "Virtual",
+              "latitude": null,
+              "longitude": null,
+              "country_code": null,
+              "url": null
+            },
+            "links": {
+              "self": "https://noti.st/events/2ChRh3/meetup-elasticfr-59-fscrawler-you-know-for-files",
+              "related": "https://noti.st/events/2ChRh3.json"
+            }
+          }
+        ]
+      },
+      "links": {
+        "self": "https://speaker.pilato.fr/6qhRBL/fscrawler-you-know-for-files"
+      }
+    }
+  ]
+}

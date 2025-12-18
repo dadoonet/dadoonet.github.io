@@ -1,0 +1,81 @@
+{
+  "data": [
+    {
+      "type": "presentations",
+      "id": "pr_rQpyEj",
+      "attributes": {
+        "title": "Custom snapshot repository - Daily Elastic Byte S04E06",
+        "slug": "custom-snapshot-repository-daily-elastic-byte-s04e06",
+        "blurb": {
+          "html": "<p>For three weeks we will dive into a different topic of Elastic Cloud every day before lunch in the CEST/EST timezone!</p>\n<p>All you need to do is to be ready and tune in at 11:45 CEST/EST.</p>\n<p>Questions? Ask us on https://discuss.elastic.co</p>\n<p>Connect with us in our Slack workspace: https://ela.st/slack</p>\n"
+        },
+        "slidedeck": {
+          "data": [
+            {
+              "id": "sd_8244",
+              "type": "images",
+              "slides": [
+                {
+                  "id": "sl_4owMZ7",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": null
+                  },
+                  "image": "https://on.notist.cloud/slides/deck8242/large-fab9a59c0a64502e.png",
+                  "html": null
+                }
+              ]
+            }
+          ]
+        },
+        "download": "/placeholder-fab9a59c0a64502e.png",
+        "resources": {
+          "data": [
+            {
+              "title": "Elastic Community event",
+              "url": "https://community.elastic.co/e/mr3qju/",
+              "desc": {
+                "html": ""
+              }
+            },
+            {
+              "title": "Script of the talk",
+              "url": "https://github.com/dadoonet/s04e06-snapshots",
+              "desc": {
+                "html": ""
+              }
+            }
+          ]
+        }
+      },
+      "relationships": {
+        "data": [
+          {
+            "type": "events",
+            "id": "ev_bwfW0J",
+            "attributes": {
+              "title": "Elastic Daily Bytes S04",
+              "slug": "elastic-daily-bytes-s04",
+              "starts_on": "2022-04-25 08:00:00",
+              "ends_on": "2022-05-13 18:00:00",
+              "timezone": "GMT",
+              "address": "Virtual",
+              "latitude": null,
+              "longitude": null,
+              "country_code": null,
+              "url": null
+            },
+            "links": {
+              "self": "https://noti.st/events/bwfW0J/elastic-daily-bytes-s04",
+              "related": "https://noti.st/events/bwfW0J.json"
+            }
+          }
+        ]
+      },
+      "links": {
+        "self": "https://speaker.pilato.fr/rQpyEj/custom-snapshot-repository-daily-elastic-byte-s04e06"
+      }
+    }
+  ]
+}

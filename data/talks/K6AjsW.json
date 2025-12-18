@@ -1,0 +1,391 @@
+{
+  "data": [
+    {
+      "type": "presentations",
+      "id": "pr_K6AjsW",
+      "attributes": {
+        "title": "Indexing your office documents with Elastic stack and FSCrawler",
+        "slug": "indexing-your-office-documents-with-elastic-stack-and-fscrawler",
+        "blurb": {
+          "html": "<p>You have plenty of Open Office, Microsoft Office, PDF, images… documents and you may want to be able to search for their metadata and content. How can you do that?</p>\n<p>In this talk, David will explain how Apache Tika can be used for that and how to combine this fantastic library with Elastic Stack:</p>\n<ul>\n<li>\n<p>Elasticsearch <a href=\"https://www.elastic.co/guide/en/elasticsearch/plugins/current/ingest-attachment.html\" target=\"_blank\" rel=\"noopener\">ingest-attachment plugin</a></p>\n</li>\n<li>\n<p><a href=\"https://github.com/dadoonet/fscrawler\" target=\"_blank\" rel=\"noopener\">FSCrawler</a></p>\n</li>\n<li>\n<p><a href=\"https://www.elastic.co/workplace-search\" target=\"_blank\" rel=\"noopener\">Workplace Search</a> connector for FSCrawler to have a ready to use and powerful user interface for your documents.</p>\n</li>\n</ul>\n"
+        },
+        "slidedeck": {
+          "data": [
+            {
+              "id": "sd_9267",
+              "type": "images",
+              "slides": [
+                {
+                  "id": "sl_hBXkOj",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>Indexing your office documents with Elastic and FSCrawler David Pilato Developer | Evangelist, Community @dadoonet</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck9267/large-0.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_JVGYH8",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>The Elastic Search Platform\nEnterprise Search\nObservability\nSecurity\nKibana\nExplore, Visualize, Engage\nElasticsearch\nStore, Search, Analyze\nIntegrations\nConnect, Collect, Alert\nPublic cloud\nHybrid\nOn-premises</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck9267/large-1.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_vozM9X",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": ""
+                  },
+                  "image": "https://on.notist.cloud/slides/deck9267/large-2.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_Y8iA1w",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": ""
+                  },
+                  "image": "https://on.notist.cloud/slides/deck9267/large-3.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_ASQxuL",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>Parsing a stream and getting content and metadata\nstatic void extractTextAndMetadata(InputStream stream) throws Exception { BodyContentHandler handler = new BodyContentHandler(); Metadata metadata = new Metadata(); try (stream) { new DefaultParser().parse(stream, handler, metadata, new ParseContext()); String extractedText = handler.toString(); String title = metadata.get(TikaCoreProperties.TITLE); String keywords = metadata.get(TikaCoreProperties.KEYWORDS); String author = metadata.get(TikaCoreProperties.CREATOR); } }</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck9267/large-4.png",
+                  "html": null
+                },
+                {
+                  "id": "sl_mm9lmk",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>ingest-attachment plugin extracting from BASE64 or CBOR\n6</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck9267/large-5.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_P5sZf9",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>An ingest pipeline</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck9267/large-6.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_1PbNXY",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>ingest-attachment processor plugin using Tika behind the scene</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck9267/large-7.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_djKBPx",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>Demo\nhttps://cloud.elastic.co 9</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck9267/large-8.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_G32zIM",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>FSCrawler You know, for files…\n10</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck9267/large-9.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_sMlnAl",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": ""
+                  },
+                  "image": "https://on.notist.cloud/slides/deck9267/large-10.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_UgUb3A",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>Disclaimer This project is a community project. It is not officially supported by Elastic. Support is only provided by FSCrawler community on discuss and stackoverflow. http://discuss.elastic.co/ https://stackoverflow.com/questions/tagged/fscrawler</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck9267/large-11.png",
+                  "html": null
+                },
+                {
+                  "id": "sl_70DOvZ",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>FSCrawler Architecture\nFSCrawler Local Dir\nJSON (noop)\nMount Point\nXML\nSSH / SCP / FTP\nApache Tika\nES 6/7/8\nHTTP Rest Inputs\nFilters\nOutputs</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck9267/large-12.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_jJwCny",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>FSCrawler Key Features\n• • •\nMuch more formats than ingest attachment plugin OCR (Tesseract) Much more metadata than ingest attachment plugin (See https://fscrawler.readthedocs.io/en/latest/admin/fs/elasticsearch.html#generated-fields)\n•\nExtraction of non standard metadata</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck9267/large-13.png",
+                  "html": null
+                },
+                {
+                  "id": "sl_Ldf0gN",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>Documentation • • • •\nhttps://fscrawler.readthedocs.io/ https://fscrawler.readthedocs.io/en/latest/user/tutorial.html https://fscrawler.readthedocs.io/en/latest/user/formats.html https://fscrawler.readthedocs.io/en/latest/admin/fs/index.html\nhttps://fscrawler.readthedocs.io/en/latest/</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck9267/large-14.png",
+                  "html": null
+                },
+                {
+                  "id": "sl_xxNoYm",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>Demo\nhttps://cloud.elastic.co 16</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck9267/large-15.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_aH6cRB",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>FSCrawler even better with a UI\n17</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck9267/large-16.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_CapQJa",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>FSCrawler Architecture\nFSCrawler Local Dir\nJSON (noop)\nMount Point\nXML\nSSH / SCP / FTP\nApache Tika\nWP 7/8\nFilters\nOutputs\nES 6/7/8\nHTTP Rest Inputs</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck9267/large-17.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_ouYEBz",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>Demo\nhttps://cloud.elastic.co 19</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck9267/large-18.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_REH24O",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>Be t 8. a 2\nNetwork drives connector package for Enterprise Search\nhttps://github.com/elastic/enterprise-search-network-drives-connector/</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck9267/large-19.png",
+                  "html": null
+                },
+                {
+                  "id": "sl_3Xzpwn",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>FSCrawler v3 Roadmap (“It depends”)\n21</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck9267/large-20.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_fridpC",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>Extended CLI parameters https://github.com/dadoonet/fscrawler/issues/857 $ bin/fscrawler —input.fs.dir=/path/to/files \\ —filter.tika.indexed_chars=100% \\ —output.elasticsearch=https://localhost:9200 $ bin/fscrawler —input.fs.dir=/path/to/files \\ —filter.tika.lang_detect=true \\ —output.wpsearch=https://localhost:3002</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck9267/large-21.png",
+                  "html": null
+                },
+                {
+                  "id": "sl_IBRRhb",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>Add support for plugins (inputs, filters and outputs) with pf4j https://github.com/dadoonet/fscrawler/issues/1114</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck9267/large-22.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_uVAFa0",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>Add rsync input https://github.com/dadoonet/fscrawler/issues/377 $ bin/fscrawler —input.rsync.port=14415 $ rsync —port=14415 -r example localhost::Uploads</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck9267/large-23.png",
+                  "html": null
+                },
+                {
+                  "id": "sl_Wot3SP",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>Add S3 input https://github.com/dadoonet/fscrawler/issues/377 $ bin/fscrawler —input.s3.object=s3://foo/bar.txt $ bin/fscrawler —input.s3.bucket=s3://foo</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck9267/large-24.png",
+                  "html": null
+                },
+                {
+                  "id": "sl_98brKo",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>Add Dropbox input https://github.com/dadoonet/fscrawler/issues/264 $ bin/fscrawler —input.dropbox.access_token=XYZ \\ —input.dropbox.dir=/path/to/files</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck9267/large-25.png",
+                  "html": null
+                },
+                {
+                  "id": "sl_lSKfDD",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>Add Beats output https://github.com/dadoonet/fscrawler/issues/682\nFSCrawler Local Dir\nJSON (noop)\nMount Point\nXML\nSSH / SCP / FTP\nApache Tika\nHTTP Rest Inputs\nES 6/7/8\nWP 7/8 Beats\nFilters\nOutputs</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck9267/large-26.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_Nm3T5c",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>Add Beats output https://github.com/dadoonet/fscrawler/issues/682 $ bin/logstash -e ’ input { beats { port =&gt; 5044 } } output { elasticsearch { hosts =&gt; [“https://localhost:9200”] } }’ $ bin/fscrawler —output.beats.url=https://localhost:5044</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck9267/large-27.png",
+                  "html": null
+                },
+                {
+                  "id": "sl_05mGy1",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>Manage jobs from the REST Service https://github.com/dadoonet/fscrawler/issues/1549 # Create curl -XPUT http://127.0.0.1:8080/_jobs/my_job -d ‘{ “type”: “fs”, “fs”: { “url”: “file://foo/bar.txt” } } # Start / Stop curl -XPOST http://127.0.0.1:8080/_jobs/my_job/_start curl -XPOST http://127.0.0.1:8080/_jobs/my_job/_stop # Job info and status curl -XGET http://127.0.0.1:8080/_jobs/my_job # Remove the job curl -XDELETE http://127.0.0.1:8080/_jobs/my_job</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck9267/large-28.png",
+                  "html": null
+                },
+                {
+                  "id": "sl_cPV4qQ",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>Read from any FS Provider using the REST Service https://github.com/dadoonet/fscrawler/issues/1247 curl -XPOST http://127.0.0.1:8080/_upload -d ‘{ “type”: “fs”, “fs”: { “url”: “file://foo/bar.txt” } } curl -XPOST http://127.0.0.1:8080/_upload -d ‘{ “type”: “s3”, “s3”: { “url”: “s3://foo/bar.txt” } }</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck9267/large-29.png",
+                  "html": null
+                },
+                {
+                  "id": "sl_EjDsip",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>Other ideas • • • •\nNew local file crawling implementation (WatchService): #399 Store jobs, configurations, status in Elasticsearch: #717 Switch to ECS format for the most common fields: #677 Extract ACL informations: #464\nhttps://fscrawler.readthedocs.io/en/latest/</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck9267/large-30.png",
+                  "html": null
+                },
+                {
+                  "id": "sl_r2wgbE",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>Thanks! PR are warmly welcomed!\nhttps://github.com/dadoonet/fscrawler</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck9267/large-31.jpg",
+                  "html": null
+                }
+              ]
+            }
+          ]
+        },
+        "download": "https://on.notist.cloud/pdf/deck-eace4826fcff4003.pdf",
+        "resources": {
+          "data": [
+            {
+              "title": "Event page",
+              "url": "https://www.techweek.ro/software-architecture-summit",
+              "desc": {
+                "html": ""
+              }
+            },
+            {
+              "title": "FSCrawler",
+              "url": "https://fscrawler.readthedocs.io/",
+              "desc": {
+                "html": ""
+              }
+            }
+          ]
+        }
+      },
+      "relationships": {
+        "data": [
+          {
+            "type": "events",
+            "id": "ev_G3jCG3",
+            "attributes": {
+              "title": "JCon 2022",
+              "slug": "jcon-2022",
+              "starts_on": "2022-11-24 08:00:00",
+              "ends_on": "2022-11-24 18:00:00",
+              "timezone": "GMT",
+              "address": "Virtual",
+              "latitude": null,
+              "longitude": null,
+              "country_code": null,
+              "url": null
+            },
+            "links": {
+              "self": "https://noti.st/events/G3jCG3/jcon-2022",
+              "related": "https://noti.st/events/G3jCG3.json"
+            }
+          }
+        ]
+      },
+      "links": {
+        "self": "https://speaker.pilato.fr/K6AjsW/indexing-your-office-documents-with-elastic-stack-and-fscrawler"
+      }
+    }
+  ]
+}

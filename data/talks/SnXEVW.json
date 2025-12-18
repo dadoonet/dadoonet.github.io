@@ -1,0 +1,42 @@
+{
+  "data": [
+    {
+      "type": "presentations",
+      "id": "pr_SnXEVW",
+      "attributes": {
+        "title": "S03E15: Observability - Wrap Up",
+        "slug": "s03e15-observability-wrap-up",
+        "blurb": {
+          "html": "<p>For three weeks we will dive into a different topic of Observability using Elastic Stack every day before lunch in the CEST/EST timezone!\nAll you need to do is to be ready at 11:45 CEST/EST.</p>\n"
+        }
+      },
+      "relationships": {
+        "data": [
+          {
+            "type": "events",
+            "id": "ev_UwavWp",
+            "attributes": {
+              "title": "Elastic Daily B(y|i)te - S03",
+              "slug": "elastic-daily-b-y-i-te-s03",
+              "starts_on": "2021-10-18 08:00:00",
+              "ends_on": "2021-11-05 18:00:00",
+              "timezone": "GMT",
+              "address": "Virtual",
+              "latitude": null,
+              "longitude": null,
+              "country_code": null,
+              "url": null
+            },
+            "links": {
+              "self": "https://noti.st/events/UwavWp/elastic-daily-b-y-i-te-s03",
+              "related": "https://noti.st/events/UwavWp.json"
+            }
+          }
+        ]
+      },
+      "links": {
+        "self": "https://speaker.pilato.fr/SnXEVW/s03e15-observability-wrap-up"
+      }
+    }
+  ]
+}

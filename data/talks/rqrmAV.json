@@ -1,0 +1,95 @@
+{
+  "data": [
+    {
+      "type": "presentations",
+      "id": "pr_rqrmAV",
+      "attributes": {
+        "title": "Advanced (elastic)search for your legacy application",
+        "slug": "advanced-elastic-search-for-your-legacy-application",
+        "blurb": {
+          "html": "<p>How do you mix SQL and NoSQL worlds without starting a messy revolution?</p>\n<p>This live coding talk will show you how to add Elasticsearch to your legacy application without changing all your current development habits. Your application will have suddenly have advanced search features, all without the need to write complex SQL code!</p>\n<p>David will start from a Spring Boot/MySQL based application and will add a complete integration of Elasticsearch, all live from the stage during his presentation.</p>\n"
+        },
+        "slidedeck": {
+          "data": [
+            {
+              "id": "sd_10128",
+              "type": "images",
+              "slides": [
+                {
+                  "id": "sl_MU88Fo",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": null
+                  },
+                  "image": "https://on.notist.cloud/slides/deck3792/large-2a0ac66c6e108a71.jpg",
+                  "html": null
+                }
+              ]
+            }
+          ]
+        },
+        "download": "/placeholder-2a0ac66c6e108a71.jpg",
+        "resources": {
+          "data": [
+            {
+              "title": "Conference website",
+              "url": "https://jdll.org/",
+              "desc": {
+                "html": ""
+              }
+            },
+            {
+              "title": "Live coding",
+              "url": "https://www.elastic.co/blog/how-to-add-powerful-search-existing-sql-applications-elasticsearch-video-tutorial",
+              "desc": {
+                "html": "<p>Those videos are recorded from a live coding session.</p>\n"
+              }
+            },
+            {
+              "title": "Code used for the demo",
+              "url": "https://github.com/dadoonet/legacy-search",
+              "desc": {
+                "html": "<p>All the live coding session will start from this repository <code>00-legacy</code> branch. You can switch to other branches which are the major steps I’m performing while coding.\nJust follow the README in every branch to understand what you have to do.\nCompare one branch to the next one to see again the code I’m writing live.</p>\n"
+              }
+            },
+            {
+              "title": "Blog Post (2015)",
+              "url": "http://david.pilato.fr/blog/2015/05/09/advanced-search-for-your-legacy-application/",
+              "desc": {
+                "html": "<p>This blog post describes the major steps I’m doing while on stage. It has not been updated though so it’s better to check out the real code on github.</p>\n"
+              }
+            }
+          ]
+        }
+      },
+      "relationships": {
+        "data": [
+          {
+            "type": "events",
+            "id": "ev_TqrTF8",
+            "attributes": {
+              "title": "JDLL",
+              "slug": "jdll",
+              "starts_on": "2023-04-01 08:00:00",
+              "ends_on": "2023-04-02 18:00:00",
+              "timezone": "Europe/Paris",
+              "address": "Lyon, France",
+              "latitude": "45.764043",
+              "longitude": "4.835659",
+              "country_code": "FR",
+              "url": null
+            },
+            "links": {
+              "self": "https://noti.st/events/TqrTF8/jdll",
+              "related": "https://noti.st/events/TqrTF8.json"
+            }
+          }
+        ]
+      },
+      "links": {
+        "self": "https://speaker.pilato.fr/rqrmAV/advanced-elastic-search-for-your-legacy-application"
+      }
+    }
+  ]
+}

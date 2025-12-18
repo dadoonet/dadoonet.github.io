@@ -1,0 +1,272 @@
+{
+  "data": [
+    {
+      "type": "presentations",
+      "id": "pr_dTVWXj",
+      "attributes": {
+        "title": "Indexer ses documents bureautique avec la suite Elastic et FSCrawler",
+        "slug": "indexer-ses-documents-bureautique-avec-la-suite-elastic-et-fscrawler",
+        "blurb": {
+          "html": "<p>Vous avez sous la main des tonnes de documents Open Office, Microsoft Office, PDF voire des images… Et vous aimeriez être capable de chercher dans leurs meta-données et dans le contenu lui-même.</p>\n<p>Comment faire ? Surtout depuis l’annonce de la fin de Google Search Appliance.</p>\n<p>Dans cette session, David expliquera comment Apache Tika peut fournir ce service et comment combiner cette fantastique librairie avec elasticsearch :</p>\n<ul>\n<li>Elasticsearch <a href=\"https://www.elastic.co/guide/en/elasticsearch/plugins/current/ingest-attachment.html\" target=\"_blank\" rel=\"noopener\">ingest-attachment plugin</a>\n</li>\n<li>\n<a href=\"https://github.com/dadoonet/fscrawler\" target=\"_blank\" rel=\"noopener\">FSCrawler</a>\n</li>\n<li>Connecteur <a href=\"https://www.elastic.co/workplace-search\" target=\"_blank\" rel=\"noopener\">Workplace Search</a> pour FSCrawler afin de disposer sur étagère d’une interface utilisateur puissante pour vos documents</li>\n</ul>\n"
+        },
+        "slidedeck": {
+          "data": [
+            {
+              "id": "sd_7575",
+              "type": "images",
+              "slides": [
+                {
+                  "id": "sl_e9O4kx",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>Indexing your office documents with Elastic and FSCrawler\ny\no\nDavid Pilat Developer | Evangelist, Communit @dadoonet</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck7575/large-0.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_GT6sdM",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": ""
+                  },
+                  "image": "https://on.notist.cloud/slides/deck7575/large-1.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_smpgVl",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": ""
+                  },
+                  "image": "https://on.notist.cloud/slides/deck7575/large-2.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_V6YUOA",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>and getting content and metadata\n;\n{\n;\n;\n;\n;\n;\n;\n{\nstatic void extractTextAndMetadata(InputStream stream) throws Exception BodyContentHandler handler = new BodyContentHandler() Metadata metadata = new Metadata() try (stream) new DefaultParser().parse(stream, handler, metadata, new ParseContext()) String extractedText = handler.toString() String title = metadata.get(TikaCoreProperties.TITLE) String keywords = metadata.get(TikaCoreProperties.KEYWORDS) String author = metadata.get(TikaCoreProperties.CREATOR)\n}\n}\nParsing a stream</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck7575/large-3.png",
+                  "html": null
+                },
+                {
+                  "id": "sl_7QHIGZ",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>n</p>\n<p>ingest-attachment plugi extracting from BASE64 or CBOR</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck7575/large-4.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_jk068y",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>An ingest pipeline</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck7575/large-5.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_M3iu1N",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>ingest-attachment processor plugin using Tika behind the scene</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck7575/large-6.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_yNRhtm",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>Demo\nhttps://cloud.elastic.co</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck7575/large-7.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_ahAVmB",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>r\nFSCrawle You know, for files…</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck7575/large-8.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_D0tJea",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": ""
+                  },
+                  "image": "https://on.notist.cloud/slides/deck7575/large-9.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_pKc7Wz",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>Disclaime This project is a community project. It is not officially supported by Elastic. Support is only provided by FSCrawler community on discuss and stackoverflow.</p>\n<p>r\nhttp://discuss.elastic.co/ https://stackoverflow.com/questions/tagged/fscrawler</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck7575/large-10.png",
+                  "html": null
+                },
+                {
+                  "id": "sl_ReKvPO",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>FSCrawle Architecture\nFSCrawler Local Dir\nJSON (noop)\nES6\nMount Point\nXML\nES7\nSSH / SCP\nApache Tika\nHTTP Rest\nr\nInputs\nFilters\nOutputs</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck7575/large-11.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_3y3jHn",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>FSCrawle Key Features\n• • •\nMuch more formats than ingest attachment plugi OCR (Tesseract Much more metadata than ingest attachment plugin (See https://fscrawler.readthedocs.io/en/latest/admin/fs/elasticsearch.html#generated-fields)\nn\nr\nLanguage detection\n)\n•</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck7575/large-12.png",
+                  "html": null
+                },
+                {
+                  "id": "sl_gHmXAC",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>Documentation • • • •\nhttps://fscrawler.readthedocs.io/ https://fscrawler.readthedocs.io/en/latest/user/tutorial.html https://fscrawler.readthedocs.io/en/latest/user/formats.html https://fscrawler.readthedocs.io/en/latest/admin/fs/index.html\nhttps://fscrawler.readthedocs.io/en/latest/</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck7575/large-13.png",
+                  "html": null
+                },
+                {
+                  "id": "sl_IbVL2b",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>r\nFSCrawle even better with a UI</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck7575/large-14.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_uvE8v0",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>FSCrawle\nr\nWorkplace Search integration</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck7575/large-15.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_XEwwnP",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>FSCrawle Architecture\nFSCrawler Local Dir\nJSON (noop)\nES6\nMount Point\nXML\nES7\nSSH / SCP\nApache Tika\nWP7\nFilters\nOutputs\nHTTP Rest\nr\nInputs</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck7575/large-16.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_9Yfkfo",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>Demo\n18\nhttps://cloud.elastic.co</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck7575/large-17.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_lsOYYD",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>Thanks PR are warmly welcomed!\n!\nhttps://github.com/dadoonet/fscrawler</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck7575/large-18.jpg",
+                  "html": null
+                }
+              ]
+            }
+          ]
+        },
+        "download": "https://on.notist.cloud/pdf/deck-d793661395d38c18.pdf",
+        "resources": {
+          "data": [
+            {
+              "title": "Event page",
+              "url": "https://app.livestorm.co/sedona-1/decouvrez-comment-ameliorer-la-pertinence-de-vos-resultats-avec-elasticsearch",
+              "desc": {
+                "html": ""
+              }
+            },
+            {
+              "title": "FSCrawler",
+              "url": "https://fscrawler.readthedocs.io/",
+              "desc": {
+                "html": ""
+              }
+            }
+          ]
+        },
+        "codeblocks": {
+          "data": [
+            {
+              "title": "FSCrawler",
+              "url": "https://fscrawler.readthedocs.io/",
+              "desc": {
+                "html": ""
+              }
+            }
+          ]
+        }
+      },
+      "relationships": {
+        "data": [
+          {
+            "type": "events",
+            "id": "ev_SIwiNl",
+            "attributes": {
+              "title": "Webinaire Sedona",
+              "slug": "webinaire-sedona",
+              "starts_on": "2021-11-18 08:00:00",
+              "ends_on": "2021-11-18 18:00:00",
+              "timezone": "GMT",
+              "address": "Virtual",
+              "latitude": null,
+              "longitude": null,
+              "country_code": null,
+              "url": null
+            },
+            "links": {
+              "self": "https://noti.st/events/SIwiNl/webinaire-sedona",
+              "related": "https://noti.st/events/SIwiNl.json"
+            }
+          }
+        ]
+      },
+      "links": {
+        "self": "https://speaker.pilato.fr/dTVWXj/indexer-ses-documents-bureautique-avec-la-suite-elastic-et-fscrawler"
+      }
+    }
+  ]
+}

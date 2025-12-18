@@ -1,0 +1,81 @@
+{
+  "data": [
+    {
+      "type": "presentations",
+      "id": "pr_8z5taa",
+      "attributes": {
+        "title": "Reindex and aliases",
+        "slug": "reindex-and-aliases",
+        "blurb": {
+          "html": "<p>You should always use aliases in Elasticsearch. This talk will explain why and how you can use this API.</p>\n<p>The Reindex API helps you to reindex a dataset into another index. We will cover this with some practical examples.</p>\n"
+        },
+        "slidedeck": {
+          "data": [
+            {
+              "id": "sd_6430",
+              "type": "images",
+              "slides": [
+                {
+                  "id": "sl_AcBrcM",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": null
+                  },
+                  "image": "https://on.notist.cloud/slides/deck6430/large-739660241b72249c.png",
+                  "html": null
+                }
+              ]
+            }
+          ]
+        },
+        "download": null,
+        "resources": {
+          "data": [
+            {
+              "title": "Event Page",
+              "url": "https://community.elastic.co/e/m5y8wn/",
+              "desc": {
+                "html": ""
+              }
+            },
+            {
+              "title": "Repository Demo",
+              "url": "https://github.com/dadoonet/demo-reindex-aliases",
+              "desc": {
+                "html": ""
+              }
+            }
+          ]
+        }
+      },
+      "relationships": {
+        "data": [
+          {
+            "type": "events",
+            "id": "ev_04IzHo",
+            "attributes": {
+              "title": "Elastic B(y|i)te",
+              "slug": "elastic-b-y-i-te",
+              "starts_on": "2021-03-08 08:00:00",
+              "ends_on": "2021-03-26 18:00:00",
+              "timezone": "GMT",
+              "address": "Virtual",
+              "latitude": null,
+              "longitude": null,
+              "country_code": null,
+              "url": "https://community.elastic.co/emea-virtual/"
+            },
+            "links": {
+              "self": "https://noti.st/events/04IzHo/elastic-b-y-i-te",
+              "related": "https://noti.st/events/04IzHo.json"
+            }
+          }
+        ]
+      },
+      "links": {
+        "self": "https://speaker.pilato.fr/8z5taa/reindex-and-aliases"
+      }
+    }
+  ]
+}

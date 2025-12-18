@@ -1,0 +1,341 @@
+{
+  "data": [
+    {
+      "type": "presentations",
+      "id": "pr_EG8ayX",
+      "attributes": {
+        "title": "Elasticsearch",
+        "slug": "elasticsearch",
+        "blurb": {
+          "html": "<p>Do you still use SQL queries to search? Your users blame you for not being able to search any and all data? Your average response time is greater than half a second with only a few million documents? Do you need 3 days to produce statistics on your data? Do you dream of offering a “google search” on your IS data?</p>\n<p>Enter Elasticsearch: A simple-to-setup and simple-to-use search service. You simply feed it the information you want to be searchable using its index APIs and use its simple-yet-powerful search APIs to let users search for this information in milliseconds.</p>\n<p>Elasticsearch is an open source horizontally-scalable, distributed search and analytics engine based on Apache Lucene. Elasticsearch is one of the most popular projects on Github with 1100+ contributors, 12,000+ forks and 43,000+ commits. Organizations around the world, from startups to governments to large corporations, are using Elasticsearch for numerous use cases to gain real-time insights from large volumes of data.</p>\n<p>This talk will introduce you to Elasticsearch in a conceptual and hands-on, practical way. We will talk about documents, indices, search, aggregations and language analysis. But we will also see each of these concepts in action via live demos. We will feed actual information into the Elasticsearch service and later retrieve it by searching for it! At the end of this talk you will be comfortable spinning up your very own Elasticsearch service for your very own application!</p>\n"
+        },
+        "slidedeck": {
+          "data": [
+            {
+              "id": "sd_10597",
+              "type": "images",
+              "slides": [
+                {
+                  "id": "sl_6dz8TF",
+                  "type": "image",
+                  "title": "",
+                  "desc": {
+                    "html": "<p>Elastic Stack Overview Search. Observe. Protect.</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck10597/large-0.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_ixhwLe",
+                  "type": "image",
+                  "title": "",
+                  "desc": {
+                    "html": "<p>Who? $ curl http://localhost:9200/speaker/_doc/dpilato { “name” : “David Pilato”, “jobs” : [ { “name” : “SRA Europe (SSII)”, “date” : “1995” }, { “name” : “SFR”, “date” : “1997” }, { “name” : “e-Brands / Vivendi”, “date”: “2000” }, { “name” : “DGDDI (douane)”, “date” : “2005” }, { “name” : “elastic”, “date” : “2013” } ], “motivations” : [ “family”, “job”, “deejay” ], “blog” : “https://david.pilato.fr/”, “twitter” : [ “@dadoonet”, “@elasticfr” ], “email” : “david@pilato.fr” }\n2</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck10597/large-1.png",
+                  "html": null
+                },
+                {
+                  "id": "sl_LHQkE3",
+                  "type": "image",
+                  "title": "",
+                  "desc": {
+                    "html": "<p>The Elastic Search Platform Out of the Box Solutions\nObservability Logs, APM, Tracing, Metrics, Synthetics, Profiling, RUM\nBuild Your Own\nSecurity SIEM, Endpoint, Cloud\nKibana\nExplore, Visualize, Engage\nElasticsearch\nStore, Search, Analyze\nIntegrations\nConnect, Collect, Alert\nSearch Product Search, Workplace Search, Business Analytics, Custom Search Apps</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck10597/large-2.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_xb9Y6S",
+                  "type": "image",
+                  "title": "",
+                  "desc": {
+                    "html": ""
+                  },
+                  "image": "https://on.notist.cloud/slides/deck10597/large-3.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_ZusLyr",
+                  "type": "image",
+                  "title": "",
+                  "desc": {
+                    "html": "<p>A typical search implementation… CREATE TABLE user ( name VARCHAR(100), comments VARCHAR(1000) ); INSERT INTO user VALUES (‘David Pilato’, ‘Developer at elastic’); INSERT INTO user VALUES (‘Malloum Laya’, ‘Worked with David at french customs service’); INSERT INTO user VALUES (‘David Gageot’, ‘Engineer at Doctolib’); INSERT INTO user VALUES (‘David David’, ‘Who is that guy?’);\nDavid 5</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck10597/large-4.png",
+                  "html": null
+                },
+                {
+                  "id": "sl_CEb9rG",
+                  "type": "image",
+                  "title": "",
+                  "desc": {
+                    "html": "<p>Search on term INSERT INSERT french INSERT INSERT\nINTO user VALUES (‘David Pilato’, ‘Developer at elastic’); INTO user VALUES (‘Malloum Laya’, ‘Worked with David at customs service’); INTO user VALUES (‘David Gageot’, ‘Engineer at Doctolib’); INTO user VALUES (‘David David’, ‘Who is that guy?’);\nSELECT * FROM user WHERE name=”David”; Empty set (0,00 sec)\nDavid 6</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck10597/large-5.png",
+                  "html": null
+                },
+                {
+                  "id": "sl_oYJxjf",
+                  "type": "image",
+                  "title": "",
+                  "desc": {
+                    "html": "<p>Search like INSERT INSERT french INSERT INSERT\nINTO user VALUES (‘David Pilato’, ‘Developer at elastic’); INTO user VALUES (‘Malloum Laya’, ‘Worked with David at customs service’); INTO user VALUES (‘David Gageot’, ‘Engineer at Doctolib’); INTO user VALUES (‘David David’, ‘Who is that guy?’);\nSELECT * FROM user WHERE name LIKE “%David%”; +———————+———————————+ | name | comments | +———————+———————————+ | David Pilato | Developer at elastic | | David Gageot | Engineer at Doctolib | | David David | Who is that guy? | +———————+———————————+\nDavid 7</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck10597/large-6.png",
+                  "html": null
+                },
+                {
+                  "id": "sl_Qs2lc4",
+                  "type": "image",
+                  "title": "",
+                  "desc": {
+                    "html": "<p>Search for terms INSERT INSERT french INSERT INSERT\nINTO user VALUES (‘David Pilato’, ‘Developer at elastic’); INTO user VALUES (‘Malloum Laya’, ‘Worked with David at customs service’); INTO user VALUES (‘David Gageot’, ‘Engineer at Doctolib’); INTO user VALUES (‘David David’, ‘Who is that guy?’);\nSELECT * FROM user WHERE name LIKE “%David Pilato%”; +———————+———————————+ | name | comments | +———————+———————————+ | David Pilato | Developer at elastic | +———————+———————————+\nDavid Pilato 8</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck10597/large-7.png",
+                  "html": null
+                },
+                {
+                  "id": "sl_3BlZUT",
+                  "type": "image",
+                  "title": "",
+                  "desc": {
+                    "html": "<p>Search with inverted terms INSERT INSERT french INSERT INSERT\nINTO user VALUES (‘David Pilato’, ‘Developer at elastic’); INTO user VALUES (‘Malloum Laya’, ‘Worked with David at customs service’); INTO user VALUES (‘David Gageot’, ‘Engineer at Doctolib’); INTO user VALUES (‘David David’, ‘Who is that guy?’);\nSELECT * FROM user WHERE name LIKE “%Pilato David%”; Empty set (0,00 sec) SELECT * FROM user WHERE name LIKE “%Pilato%David%”; Empty set (0,00 sec)\nPilato David 9</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck10597/large-8.png",
+                  "html": null
+                },
+                {
+                  "id": "sl_fVUNMs",
+                  "type": "image",
+                  "title": "",
+                  "desc": {
+                    "html": "<p>Search for terms INSERT INSERT french INSERT INSERT\nINTO user VALUES (‘David Pilato’, ‘Developer at elastic’); INTO user VALUES (‘Malloum Laya’, ‘Worked with David at customs service’); INTO user VALUES (‘David Gageot’, ‘Engineer at Doctolib’); INTO user VALUES (‘David David’, ‘Who is that guy?’);\nSELECT * FROM user WHERE name LIKE “%David%” AND name LIKE “%Pilato%”; +———————+———————————+ | name | comments | +———————+———————————+ | David Pilato | Developer at elastic | +———————+———————————+\nPilato David 10</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck10597/large-9.png",
+                  "html": null
+                },
+                {
+                  "id": "sl_HpDBFH",
+                  "type": "image",
+                  "title": "",
+                  "desc": {
+                    "html": "<p>Search in two fields INSERT INSERT french INSERT INSERT\nINTO user VALUES (‘David Pilato’, ‘Developer at elastic’); INTO user VALUES (‘Malloum Laya’, ‘Worked with David at customs service’); INTO user VALUES (‘David Gageot’, ‘Engineer at Doctolib’); INTO user VALUES (‘David David’, ‘Who is that guy?’);\nSELECT * FROM user WHERE name LIKE “%David%” OR comments LIKE “%David%”; +———————+——————————————————————-+ | name | comments | +———————+——————————————————————-+ | David Pilato | Developer at elastic | | Malloum Laya | Worked with David at french customs service | | David Gageot | Engineer at Doctolib | | David David | Who is that guy? | +———————+——————————————————————-+ David 11</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck10597/large-10.png",
+                  "html": null
+                },
+                {
+                  "id": "sl_u8vz7g",
+                  "type": "image",
+                  "title": "",
+                  "desc": {
+                    "html": ""
+                  },
+                  "image": "https://on.notist.cloud/slides/deck10597/large-11.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_WSen05",
+                  "type": "image",
+                  "title": "",
+                  "desc": {
+                    "html": "<p>Search with typos INSERT INSERT french INSERT INSERT\nINTO user VALUES (‘David Pilato’, ‘Developer at elastic’); INTO user VALUES (‘Malloum Laya’, ‘Worked with David at customs service’); INTO user VALUES (‘David Gageot’, ‘Engineer at Doctolib’); INTO user VALUES (‘David David’, ‘Who is that guy?’);\nSELECT * FROM user WHERE name LIKE “%Dadid%”; Empty set (0,00 sec)\nDadid 13</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck10597/large-12.png",
+                  "html": null
+                },
+                {
+                  "id": "sl_8mNasU",
+                  "type": "image",
+                  "title": "",
+                  "desc": {
+                    "html": "<p>Search with typos INSERT INSERT french INSERT INSERT\nINTO user VALUES (‘David Pilato’, ‘Developer at elastic’); INTO user VALUES (‘Malloum Laya’, ‘Worked with David at customs service’); INTO user VALUES (‘David Gageot’, ‘Engineer at Doctolib’); INTO user VALUES (‘David David’, ‘Who is that guy?’);\nSELECT * FROM user WHERE name LIKE “%<em>adid%” OR name LIKE “%D_did%” OR name LIKE “%Da_id%” OR name LIKE “%Dad_d%” OR name LIKE “%Dadi</em>%”; +———————+———————————+ | name | comments | +———————+———————————+ | David Pilato | Developer at elastic | | David Gageot | Engineer at Doctolib | | David David | Who is that guy? | +———————+———————————+ 14</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck10597/large-13.png",
+                  "html": null
+                },
+                {
+                  "id": "sl_l66Okt",
+                  "type": "image",
+                  "title": "",
+                  "desc": {
+                    "html": ""
+                  },
+                  "image": "https://on.notist.cloud/slides/deck10597/large-14.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_NPpCdI",
+                  "type": "image",
+                  "title": "",
+                  "desc": {
+                    "html": "<p>User Interface\n16</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck10597/large-15.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_zjY0Vh",
+                  "type": "image",
+                  "title": "",
+                  "desc": {
+                    "html": "<p>What is a search engine? Index engine (indexing documents)\nSearch engine (within the created indices) 17</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck10597/large-16.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_c3GoO6",
+                  "type": "image",
+                  "title": "",
+                  "desc": {
+                    "html": "<p>Demo time!</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck10597/large-17.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_EMzcGV",
+                  "type": "image",
+                  "title": "",
+                  "desc": {
+                    "html": "<p>The Elastic Search Platform Out of the Box Solutions\nObservability Logs, APM, Tracing, Metrics, Synthetics, Profiling, RUM\nBuild Your Own\nSecurity SIEM, Endpoint, Cloud\nKibana\nExplore, Visualize, Engage\nElasticsearch\nStore, Search, Analyze\nIntegrations\nConnect, Collect, Alert\nSearch Product Search, Workplace Search, Business Analytics, Custom Search Apps</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck10597/large-18.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_qgiQ8u",
+                  "type": "image",
+                  "title": "",
+                  "desc": {
+                    "html": "<p>ELASTIC ENTERPRISE SEARCH\nSearch everything, anywhere Easily implement powerful, modern search experiences across your website, app, or digital workplace. Search it all, simply.</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck10597/large-19.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_T0RE1J",
+                  "type": "image",
+                  "title": "",
+                  "desc": {
+                    "html": "<p>ELASTIC OBSERVABILITY\nUnified visibility across your entire ecosystem Bring your logs, metrics, and traces together into a single stack so you can monitor, detect, and react to events with speed.</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck10597/large-20.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_5KA1ti",
+                  "type": "image",
+                  "title": "",
+                  "desc": {
+                    "html": "<p>ELASTIC SECURITY\nSecurity how it should be: open Elastic Security integrates endpoint security and SIEM to give you prevention, collection, detection, and response capabilities for unified protection across your infrastructure.</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck10597/large-21.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_hdspm7",
+                  "type": "image",
+                  "title": "",
+                  "desc": {
+                    "html": ""
+                  },
+                  "image": "https://on.notist.cloud/slides/deck10597/large-22.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_JxbdeW",
+                  "type": "image",
+                  "title": "",
+                  "desc": {
+                    "html": "<p>Searching for Rides</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck10597/large-23.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_wHKRWv",
+                  "type": "image",
+                  "title": "",
+                  "desc": {
+                    "html": "<p>Searching for Restaurants</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck10597/large-24.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_Yb3FPK",
+                  "type": "image",
+                  "title": "",
+                  "desc": {
+                    "html": "<p>Searching for Love</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck10597/large-25.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_nEUrA8",
+                  "type": "image",
+                  "title": "",
+                  "desc": {
+                    "html": "<p>Elastic France https://community.elastic.co/france/\n@elasticfr\ndiscuss.elastic.co</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck10597/large-393368-90dd217df8453a7d.png",
+                  "html": null
+                }
+              ]
+            }
+          ]
+        },
+        "download": "https://on.notist.cloud/pdf/deck-156e31f33ca699a3.pdf",
+        "resources": {
+          "data": [
+            {
+              "title": "dev.pro",
+              "url": "https://dev.pro/",
+              "desc": {
+                "html": ""
+              }
+            },
+            {
+              "title": "Kibana Demo Script",
+              "url": "https://gist.github.com/dadoonet/f911291c4dd19b0802031db3064c648f",
+              "desc": {
+                "html": "<p>This is the Kibana script I’m starting from when doing the talk</p>\n"
+              }
+            }
+          ]
+        }
+      },
+      "relationships": {
+        "data": [
+          {
+            "type": "events",
+            "id": "ev_gtz6aU",
+            "attributes": {
+              "title": "BBL dev.pro (Private Event)",
+              "slug": "bbl-dev-pro-private-event",
+              "starts_on": "2023-06-08 08:00:00",
+              "ends_on": "2023-06-08 18:00:00",
+              "timezone": "GMT",
+              "address": "Virtual",
+              "latitude": null,
+              "longitude": null,
+              "country_code": null,
+              "url": null
+            },
+            "links": {
+              "self": "https://noti.st/events/gtz6aU/bbl-dev-pro-private-event",
+              "related": "https://noti.st/events/gtz6aU.json"
+            }
+          }
+        ]
+      },
+      "links": {
+        "self": "https://speaker.pilato.fr/EG8ayX/elasticsearch"
+      }
+    }
+  ]
+}

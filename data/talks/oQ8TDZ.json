@@ -1,0 +1,172 @@
+{
+  "data": [
+    {
+      "type": "presentations",
+      "id": "pr_oQ8TDZ",
+      "attributes": {
+        "title": "Elasticsearch Query Language: ES|QL",
+        "slug": "elasticsearch-query-language-es-ql",
+        "blurb": {
+          "html": "<p>Dans cette session sans slides, nous découvrirons par la pratique ce qu’apporte le nouveau language <code>ES|QL</code> pour aller fouiller dans nos données indexées dans Elasticsearch et ce, de façon interactive et visuelle.</p>\n<p><code>ES|QL</code> et surtout le nouveau moteur derrière l’API <code>_query</code> apportent à la fois une syntaxe simplifiée permettant d’affiner vos résultats, étape par étape et ajouter de nouvelles fonctionnalités comme par exemple l’enrichissement de données et la transformation à la volée, directement dans votre requête, mais également des performances inégalées.</p>\n"
+        },
+        "slidedeck": {
+          "data": [
+            {
+              "id": "sd_13438",
+              "type": "images",
+              "slides": [
+                {
+                  "id": "sl_jw1rmA",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>Elasticsearch Query Language ES|QL\no\ns\ne d li\nDavid Pilato - @dadoonet Developer | Evangelist\n&amp; s\nm e d</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck13438/large-0.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_MFkfeZ",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>A brief history of Elasticsearch’s analytical capabilities\n2010\n2013\n2014\n2015\n2023\nElasticsearch 0.9\nElasticsearch &lt; 0.90\nElasticsearch 1.0\nElasticsearch 2.0\nElasticsearch 8.11\nFacets\nFacet terms-stats\nAggregations\nPipeline aggregations\nES|QL</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck13438/large-1.png",
+                  "html": null
+                },
+                {
+                  "id": "sl_yZTTWy",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>ES|QL\n• Language • Engine • Visualization</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck13438/large-2.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_atCHPN",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>o\ne d li\nES|QL in action https://github.com/dadoonet/esql-demo\ns\n&amp; s\nm e d</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck13438/large-3.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_DCv5Hm",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>PROJECTIONS\nEach language client will offer a selection of projections relevant to that language ecosystem.\nRESULT DATA\nWays to consume ES|QL results\nUsers can consume raw data directly from the server output in one of several formats.\nDataFrame\nObject / Dict\nCursor\nFor mapping domain objects within a client application\nFor incremental consumption of results, with implicit pagination\nFor data science and analytics; integration with frameworks like Pandas\nText\nCSV\nJSON\nHuman-readable format ideal for interactive work, CLIs, etc\nRaw CSV data to load directly into spreadsheets and ETL processes\nStructured response containing metadata and data in a 2D value array\nBring your own Custom projections built atop raw server output\nApache Arrow Dataframe IPC format</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck13438/large-4.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_pWdtAB",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>Object API https://github.com/dadoonet/elasticsearch-java-client-demo String query = “”” FROM persons | WHERE name == “David” | KEEP name | LIMIT 1 “”“; Iterable&lt;Person&gt; persons = client.esql() .query(ObjectsEsqlAdapter.of(Person.class), query); for (Person person : persons) { assertNull(person.getId()); assertNotNull(person.getName()); }</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck13438/large-5.png",
+                  "html": null
+                },
+                {
+                  "id": "sl_RqMh2a",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>ResultSet JDBC API https://github.com/dadoonet/elasticsearch-java-client-demo String query = “”” FROM persons | WHERE name == “David” | KEEP name | LIMIT 1 “”“; try (ResultSet resultSet = client.esql() .query(ResultSetEsqlAdapter.INSTANCE, query)) { assertTrue(resultSet.next()); assertEquals(“David”, resultSet.getString(1)); }</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck13438/large-6.png",
+                  "html": null
+                },
+                {
+                  "id": "sl_4A5Uuz",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>Elasticsearch Query Language ES|QL\no\ns\ne d li\nDavid Pilato - @dadoonet Developer | Evangelist\n&amp; s\nm e d</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck13438/large-7.jpg",
+                  "html": null
+                }
+              ]
+            }
+          ]
+        },
+        "download": "https://on.notist.cloud/pdf/deck-1dce514031c64f2f.pdf",
+        "resources": {
+          "data": [
+            {
+              "title": "Event page",
+              "url": "https://yajug.lu/session/la-recherche-a-lere-de-l-ia/",
+              "desc": {
+                "html": ""
+              }
+            },
+            {
+              "title": "Demo code",
+              "url": "https://github.com/dadoonet/esql-demo",
+              "desc": {
+                "html": "<p>The code played during the demo</p>\n"
+              }
+            },
+            {
+              "title": "Playground page",
+              "url": "https://esql.demo.elastic.co",
+              "desc": {
+                "html": "<p>If you want to try ES|QL, there’s an open instance with some data.</p>\n"
+              }
+            },
+            {
+              "title": "ES|QL Guide",
+              "url": "https://www.elastic.co/guide/en/elasticsearch/reference/current/esql.html",
+              "desc": {
+                "html": "<p>The official guide</p>\n"
+              }
+            },
+            {
+              "title": "Java Demo code",
+              "url": "https://github.com/dadoonet/elasticsearch-java-client-demo",
+              "desc": {
+                "html": "<p>The Java demo for ES|QL</p>\n"
+              }
+            }
+          ]
+        }
+      },
+      "relationships": {
+        "data": [
+          {
+            "type": "events",
+            "id": "ev_XC76Tq",
+            "attributes": {
+              "title": "YaJUG",
+              "slug": "yajug",
+              "starts_on": "2024-09-17 08:00:00",
+              "ends_on": "2024-09-17 18:00:00",
+              "timezone": "Europe/Luxembourg",
+              "address": "Luxembourg",
+              "latitude": "49.815273",
+              "longitude": "6.129583",
+              "country_code": "LU",
+              "url": null
+            },
+            "links": {
+              "self": "https://noti.st/events/XC76Tq/yajug",
+              "related": "https://noti.st/events/XC76Tq.json"
+            }
+          }
+        ]
+      },
+      "links": {
+        "self": "https://speaker.pilato.fr/oQ8TDZ/elasticsearch-query-language-es-ql"
+      }
+    }
+  ]
+}

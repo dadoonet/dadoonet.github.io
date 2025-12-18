@@ -1,0 +1,53 @@
+{
+  "data": [
+    {
+      "type": "presentations",
+      "id": "pr_UWydIw",
+      "attributes": {
+        "title": "DevNation: The Show with David from Elastic",
+        "slug": "devnation-the-show-with-david-from-elastic",
+        "blurb": {
+          "html": "<p>Join us as we discuss today’s hottest technologies impacting developers and architects — and have a lot of fun</p>\n<p>Join the DevNation every other Thursday (alternating with <a href=\"https://developers.redhat.com/devnation/tech-talks\" target=\"_blank\" rel=\"noopener\">Tech Talks</a>) for an hour-long live chat show for all things Kubernetes, Java, and Linux. We will deliver the latest developer news you need and interview guests with specialized tech expertise. We will also feature ways for you to be involved, like live Q&amp;A and special quizzes, polls, and contests.</p>\n<p>Tune in every other Thursday at 17:00 UTC / 12:00 ET, and watch previous editions of <a href=\"https://www.youtube.com/playlist?list=PLf3vm0UK6HKpbZvVaYjOmnvnVXBkHPvms\" target=\"_blank\" rel=\"noopener\">DevNation: The Show on-demand</a>!</p>\n"
+        },
+        "resources": {
+          "data": [
+            {
+              "title": "Event page",
+              "url": "https://developers.redhat.com/devnation/the-show",
+              "desc": {
+                "html": "<p>Join us as we discuss today’s hottest technologies impacting developers and architects — and have a lot of fun</p>\n<p>Join the DevNation every other Thursday (alternating with Tech Talks) for an hour-long live chat show for all things Kubernetes, Java, and Linux. We will deliver the latest developer news you need and interview guests with specialized tech expertise. We will also feature ways for you to be involved, like live Q&amp;A and special quizzes, polls, and contests.</p>\n<p>Tune in every other Thursday at 17:00 UTC / 12:00 ET</p>\n"
+              }
+            }
+          ]
+        }
+      },
+      "relationships": {
+        "data": [
+          {
+            "type": "events",
+            "id": "ev_Psydoe",
+            "attributes": {
+              "title": "DevNation Show",
+              "slug": "devnation-show",
+              "starts_on": "2021-03-11 08:00:00",
+              "ends_on": "2021-03-11 18:00:00",
+              "timezone": "GMT",
+              "address": "Virtual",
+              "latitude": null,
+              "longitude": null,
+              "country_code": null,
+              "url": null
+            },
+            "links": {
+              "self": "https://noti.st/events/Psydoe/devnation-show",
+              "related": "https://noti.st/events/Psydoe.json"
+            }
+          }
+        ]
+      },
+      "links": {
+        "self": "https://speaker.pilato.fr/UWydIw/devnation-the-show-with-david-from-elastic"
+      }
+    }
+  ]
+}

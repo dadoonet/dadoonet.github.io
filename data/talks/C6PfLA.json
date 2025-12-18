@@ -1,0 +1,761 @@
+{
+  "data": [
+    {
+      "type": "presentations",
+      "id": "pr_C6PfLA",
+      "attributes": {
+        "title": "La recherche à l’ère de l’IA",
+        "slug": "la-recherche-a-lere-de-lia",
+        "blurb": {
+          "html": "<p>La recherche ne se contente plus de l’approche maintenant traditionnelle basée sur la fréquence des termes (TF/IDF ou BM25) mais plus sur la tendance actuelle du machine learning où les nouveaux modèles ont ouvert une nouvelle dimension pour la recherche.</p>\n<p>Cette conférence donne un aperçu de :</p>\n<ul>\n<li>La recherche “Classique” et ses limitations</li>\n<li>Qu’est qu’un modèle de machine learning et comment vous pouvez l’utiliser</li>\n<li>Comment utiliser la recherche vectorielle ou la recherche hybride dans Elasticsearch</li>\n<li>Comment ChatGPT d’OpenAI ou les “large language models” (LLMs) similaires viennent jouer naturellement avec Elastic</li>\n</ul>\n<p>La démo principale montre comment générer des embeddings à partir de musiques puis comment trouver la musique qui s’approche le plus d’une musique que nous fredonnons 🎶🎸🎻.</p>\n"
+        },
+        "slidedeck": {
+          "data": [
+            {
+              "id": "sd_13435",
+              "type": "images",
+              "slides": [
+                {
+                  "id": "sl_b58R3J",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>Search &amp; AI a new era David Pilato | @dadoonet</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck13435/large-0.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_DOrEvi",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>Agenda ● ● ● ●\n“Classic” search and its limitations ML model and usage Vector search or hybrid search in Elasticsearch OpenAI’s ChatGPT or LLMs with Elasticsearch</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck13435/large-1.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_pia2o7",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>Elasticsearch You Know, for Search</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck13435/large-2.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_S2IqgW",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": ""
+                  },
+                  "image": "https://on.notist.cloud/slides/deck13435/large-3.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_4M1eYv",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": ""
+                  },
+                  "image": "https://on.notist.cloud/slides/deck13435/large-4.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_gfkSRK",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>These are not the droids you are looking for.</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck13435/large-5.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_IzTGJj",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>GET /_analyze { “char_filter”: [ “html_strip” ], “tokenizer”: “standard”, “filter”: [ “lowercase”, “stop”, “snowball” ], “text”: “These are &lt;em&gt;not&lt;/em&gt; the droids you are looking for.” }</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck13435/large-6.png",
+                  "html": null
+                },
+                {
+                  "id": "sl_vJC4C8",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>These are &lt;em&gt;not&lt;/em&gt; the droids you are looking for. { “tokens”: [{ “token”: “droid”, “start_offset”: 27, “end_offset”: 33, “type”: “&lt;ALPHANUM&gt;”, “position”: 4 },{ “token”: “you”, “start_offset”: 34, “end_offset”: 37, “type”: “&lt;ALPHANUM&gt;”, “position”: 5 }, { “token”: “look”, “start_offset”: 42, “end_offset”: 49, “type”: “&lt;ALPHANUM&gt;”, “position”: 7 }]}</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck13435/large-7.png",
+                  "html": null
+                },
+                {
+                  "id": "sl_Xcus4X",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>Semantic search ≠ Literal matches</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck13435/large-8.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_9wdfww",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>TODAY\nX-wing starfighter squadron\nTOMORROW\nWhat ships and crews do I need to destroy an almost finished death star? Or is there a secret weakness?</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck13435/large-9.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_mGMTpL",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>Elasticsearch You Know, for Vector Search</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck13435/large-10.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_Oa5Hhk",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>What is a Vector ?</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck13435/large-11.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_0to5a9",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>Embeddings represent your data Example: 1-dimensional vector\nCharacter\nVector\n[ 1  Realistic\nCartoon\n1</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck13435/large-12.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_dDWtSY",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>Multiple dimensions\nrepresent different data aspects Human\nCharacter\nVector\n[ 1, 1  Realistic\nCartoon\nMachine\n 1, 0 </p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck13435/large-13.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_FXFhKx",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>Similar data\nis grouped together Human Character\nVector\n[ 1.0, 1.0   1.0, 0.0  Realistic\nCartoon\n[ 1.0, 0.8   1.0, 1.0  [ 1.0, 1.0 \nMachine</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck13435/large-14.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_rqyVDM",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>Vector search ranks objects\nby similarity (~relevance) to the query Human\nRank\nQuery 1 Realistic\nCartoon\n2 3 4 5\nMachine\nResult</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck13435/large-15.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_UAhJ5l",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>Choice of Embedding Model Start with Off-the Shelf Models\nExtend to Higher Relevance\n●Text data: Hugging Face (like Microsoft’s E5\n●Apply hybrid scoring\n●Images: OpenAI’s CLIP\n●Bring Your Own Model: requires expertise + labeled data</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck13435/large-16.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_6UQ6yA",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>Problem\ntraining vs actual use-case</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck13435/large-17.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_io8uqZ",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>Architecture of Vector Search</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck13435/large-18.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_L7riiy",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>How do you index vectors ?</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck13435/large-19.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_xRaWbN",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>Data Ingestion and Embedding Generation POST /_doc\n{\n}\nSource data\n“_id”:”product-1234”, “product_name”:”Summer Dress”, “description”:”Our best-selling…”, “Price”: 118, “color”:”blue”, “fabric”:”cotton”</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck13435/large-20.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_ZlJKTm",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>Data Ingestion and Embedding Generation {\n}\nSource data\nPOST /_doc\n“_id”:”product-1234”, “product_name”:”Summer Dress”, “description”:”Our best-selling…”, “Price”: 118, “color”:”blue”, “fabric”:”cotton”, “desc_embedding”:[0.452,0.3242,…], “img_embedding”:[0.012,0.0,…]</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck13435/large-21.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_C528MB",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>Co m m er ci\nWith Elastic ML\nal\n{\n}\nSource data\nPOST /_doc\n“_id”:”product-1234”, “product_name”:”Summer Dress”, “description”:”Our best-selling…”, “Price”: 118, “color”:”blue”, “fabric”:”cotton”, “desc_embedding”:[0.452,0.3242,…]</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck13435/large-22.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_oOkwEa",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>Eland Imports PyTorch Models\nCo m m er ci\nal\n$ eland_import_hub_model —url https://cluster_URL —hubmodel-id BERT-MiniLM-L6 —tasktype text_embedding —start\nBERT-MiniLM-L6\nSelect the appropriate model\nLoad it\nManage models</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck13435/large-23.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_QiTk6z",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>Elastic’s range of supported NLP models\nCo m m er ci\n● Fill mask model Mask some of the words in a sentence and predict words that replace masks ● Named entity recognition model NLP method that extracts information from text ● Text embedding model Represent individual words as numerical vectors in a predefined vector space ● Text classification model Assign a set of predefined categories to open-ended text ● Question answering model Model that can answer questions given some or no context ● Zero-shot text classification model Model trained on a set of labeled examples, that is able to classify previously unseen examples\nFull list at: ela.st/nlp-supported-models\nal</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck13435/large-24.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_32CXzO",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>How do you search vectors ?</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck13435/large-25.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_fLvLrn",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>Vector Query\nGET product-catalog/_search { “query” : { “bool”: { “must”: [{ “knn”: { “field”: “desc_embbeding”, “num_candidates”: 50, “query_vector”: [0.123, 0.244,…]\n} }], “filter”: { “term”: { “department”: “women” } }\n}\n} }, “size”: 10</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck13435/large-26.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_Hfe9kC",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>Vector Query\nTransformer model\nCo m m er ci\nal\nGET product-catalog/_search { “query” : { “bool”: { “must”: [{ “knn”: { “field”: “desc_embbeding”, “num_candidates”: 50, “query_vector_builder”: { “text_embedding”: { “model_text”: “summer clothes”, “model_id”: &lt;text-embedding-model&gt; } } } }], “filter”: { “term”: { “department”: “women” } } } }, “size”: 10 }</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck13435/large-27.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_tzMxcb",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>Vector Search components\nSearch\nIndex\nGenerate\nQuery\nMapping\nEmbedding\ndense_vector\nText embedding model\nkNN\n3rd party, local, in Elasticsearch)</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck13435/large-28.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_WJ5lV0",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>But how does it really work?</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck13435/large-29.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_8coZNP",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>Similarity: cosine (cosine)\nHuman\nq\ncos(θ) =\nd1 d2 Realistic\nθ\nq⃗ × d ⃗\n| q⃗ | × | d |⃗\n_score =\n1 + cos(θ) 2</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck13435/large-30.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_kwXNFo",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>Similarity: cosine (cosine)\n1+1 _score = =1 2\n1+0 _score = = 0.5 2\n1−1 _score = =0 2</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck13435/large-31.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_NGGB8D",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>Similarity: Dot Product (dot_product)\nq\nd\nq⃗ × d ⃗ = | q⃗ | × cos(θ) × | d |⃗\nθ | q⃗ |\n× co\ns (θ )\n1 + dot_ product(q, d) <em>scorefloat = 2 0.5 + dot</em> product(q, d) _scorebyte = 32768 × dims</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck13435/large-32.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_zZyz0c",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>Similarity: Euclidean distance (l2_norm) y\n2\nn\ni (x ∑ 1 i=\n−\ny i)\nq\nl2_normq,d =\ny1\nd\nx1\ny2\nx2\nn\n∑ i=1\n(xi − yi)\n1 _score = 1 + (l2_normq,d )2 x\n2</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck13435/large-33.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_bthmt1",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>Brute Force</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck13435/large-34.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_EDQalQ",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>Hierarchical Navigable Small Worlds (HNSW One popular approach\nHNSW: a layered approach that simplifies access to the nearest neighbor Tiered: from coarse to fine approximation over a few steps Balance: Bartering a little accuracy for a lot of scalability Speed: Excellent query latency on large scale indices</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck13435/large-35.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_qX9Odp",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>Filtering KNN Vector Similarity\nAutomatically choose between brute force and HNSW\nBrute force (not real numbers; used only to demonstrate the linearity)\nHNSW\nBound worst case to 2*(brute force) • Brute force scales O(n) of filtered • HNSW scales ~O(log(n)) of all docs</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck13435/large-36.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_SqsCWE",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>Elasticsearch + Lucene = fast progress ❤</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck13435/large-37.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_5Ab0Od",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>Scaling Vector Search Vector search\nBest practices</p>\n<ol>\n<li>Needs lots of memory</li>\n<li>Avoid searches during indexing</li>\n<li>Indexing is slower</li>\n<li>Exclude vectors from _source</li>\n<li>Merging is slow</li>\n<li>Reduce vector dimensionality 4. Use byte rather than float</li>\n</ol>\n<ul>\n<li>Continuous improvements in Lucene + Elasticsearch</li>\n</ul>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck13435/large-38.png",
+                  "html": null
+                },
+                {
+                  "id": "sl_hUJoH2",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>Reduce Required Memory\n2. Reduce of number of dimensions per vector</p>\n<ol>\n<li>Vector element size reduction (“quantize”)</li>\n</ol>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck13435/large-39.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_Jo2c9R",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>Benchmarketing</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck13435/large-40.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_w7lQ1q",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>https://github.com/erikbern/ann-benchmarks</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck13435/large-41.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_YRUDuF",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>Elasticsearch You Know, for Hybrid Search</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck13435/large-42.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_AlD1me",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>Hybrid scoring Term-based score\nLinear Combination manual boosting\nVector similarity score\nCombine</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck13435/large-43.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_n4vpf3",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>GET product-catalog/_search { “query” : { “bool” : { “must” : [{ “match”: { “description”: { “query”: “summer clothes”, “boost”: 0.1 } } },{ “knn”: { “field”: “desc_embbeding”, “query_vector”: [0.123, 0.244,…], “num_candidates”: 50, “boost”: 2.0, “filter”: { “term”: { “department”: “women” } } } }], “filter” : { “range” : { “price”: { “lte”: 30 } } } } } }\nsummer clothes\npre-filter\npost-filter</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck13435/large-44.png",
+                  "html": null
+                },
+                {
+                  "id": "sl_POedXS",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>GET product-catalog/_search { “query” : { “bool” : { “must” : [{ “match”: { “description”: { “query”: “summer clothes”, “boost”: 0.1 } } },{ “knn”: { “field”: “image-vector”, “query_vector”: [54, 10, -2], “num_candidates”: 50, “boost”: 1.0 } },{ “knn”: { “field”: “title-vector”, “query_vector”: [1, 20, -52, 23, 10], “num_candidates”: 10, “boost”: 2.0 } }] } } }</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck13435/large-45.png",
+                  "html": null
+                },
+                {
+                  "id": "sl_1iNRPr",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>ELSER\nElastic Learned Sparse EncodER\ntext_expansion Not BM25 or (dense) vector Sparse vector like BM25 Stored as inverted index\nCo m m er ci\nal</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck13435/large-46.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_e26FIG",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>Co m m er ci\nInference within Elasticsearch PUT /_inference/&lt;task_type&gt;/&lt;inference_id&gt; { “service”: “&lt;service&gt;”, “service_settings”: {}, “task_settings”: {} } • Amazon Bedrock • Anthropic • Azure AI Studio • Azure OpenAI • Cohere • Elasticsearch • ELSER • Google AI Studio • Google Vertex AI • Hugging Face • Mistral • OpenAI\nal\n• • • •\ntext_embedding completion rerank sparse_embedding</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck13435/large-47.png",
+                  "html": null
+                },
+                {
+                  "id": "sl_GLp3Af",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>PUT /_inference/completion/openai_completion { “service”: “openai”, “service_settings”: { “api_key”: “&lt;api_key&gt;”, “model_id”: “gpt-3.5-turbo” } } PUT /_inference/text_embedding/hugging_face_embeddings { “service”: “hugging_face”, “service_settings”: { “api_key”: “&lt;access_token&gt;”, “url”: “&lt;url_endpoint&gt;” } }\nPUT /_inference/sparse_embedding/my_elser_model { “service”: “elser”, “service_settings”: { “num_allocations”: 1, “num_threads”: 1 } }\nCo m m er ci\nal</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck13435/large-48.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_sfXr34",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>POST /_inference/sparse_embedding/my_elser_model { “input”: [ “These are not the droids you are looking for.”,\n}\n]\n“Obi-Wan never told you what happened to your father.”\n{ “sparse_embedding”: [{ “lucas”: 0.50047517, “ship”: 0.29860738, “dragon”: 0.5300422, “quest”: 0.5974301, “dr”: 2.1055143, “space”: 0.49377063, “robot”: 0.40398192, …\nCo m m er ci\nal</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck13435/large-49.png",
+                  "html": null
+                },
+                {
+                  "id": "sl_UzGevT",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>Hybrid ranking Term-based score\nDense vector score\nReciprocal Rank Fusion (RRF blend multiple ranking methods\nCombine\nSparse vector score</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck13435/large-50.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_7IzSns",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>Reciprocal Rank Fusion (RRF D  set of docs R  set of rankings as permutation on 1..|D| k - typically set to 60 by default\nRanking Algorithm 1 Doc\nRanking Algorithm 2\nScore\nr(d)\nk+r(d)\nA\n1\n1\nB\n0.7\nC D E\nDoc\nScore\nr(d)\nk+r(d)\n61\nC\n1,341\n1\n61\n2\n62\nA\n739\n2\n62\n0.5\n3\n63\nF\n732\n3\n63\n0.2\n4\n64\nG\n192\n4\n64\n0.01\n5\n65\nH\n183\n5\n65\nDoc\nRRF Score\nA\n1/61  1/62  0,0325\nC\n1/63  1/61  0,0323\nB\n1/62  0,0161\nF\n1/63  0,0159\nD\n1/64  0,0156</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck13435/large-51.png",
+                  "html": null
+                },
+                {
+                  "id": "sl_jciGgH",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>GET index/_search { “retriever”: { “rrf”: { “retrievers”: [{ “standard” { “query”: { “match”: {…} } } },{ “standard” { “query”: { “text_expansion”: {…} } } },{ “knn”: { … } } ] } } }\nHybrid Ranking\nBM25f +\nELSER + Vector</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck13435/large-52.png",
+                  "html": null
+                },
+                {
+                  "id": "sl_LwR4Yg",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>https://djdadoo.pilato.fr/</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck13435/large-53.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_yG9sR5",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>https://github.com/dadoonet/music-search/</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck13435/large-54.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_aZsgJU",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>ChatGPT Elastic and LLM</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck13435/large-55.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_CtbUBt",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>Gen AI\nSearch engines</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck13435/large-56.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_pDKI4I",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>LLM opportunities and limits your question\none answer\nyour question\nGAI / LLM\npublic internet data</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck13435/large-57.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_RX35wh",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": ""
+                  },
+                  "image": "https://on.notist.cloud/slides/deck13435/large-58.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_3qltp6",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>Retrieval Augmented Generation your question\nthe right answer\nyour question\n+\ncontext window\nGAI / LLM\npublic internet data\nyour business data\ndocuments\nimages\naudio</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck13435/large-59.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_gAUhhV",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>Demo Elastic Playground</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck13435/large-60.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_IUDVZu",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": ""
+                  },
+                  "image": "https://on.notist.cloud/slides/deck13435/large-61.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_unwJSJ",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>Conclusion</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck13435/large-62.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_X7f7Ki",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>Making it easier PUT /_inference/text_embedding/e5-small-multilingual { “service”: “elasticsearch”, “service_settings”: { “num_allocations”: 1, “num_threads”: 1, “model_id”: “.multilingual-e5-small_linux-x86_64” } }\n8. 14</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck13435/large-63.png",
+                  "html": null
+                },
+                {
+                  "id": "sl_9RNvD7",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<ol start=\"8\">\n<li>14\nMaking it easier PUT semantic-starwars { “mappings”: { “properties”: { “quote”: { “type”: “text”, “analyzer”: “my_analyzer” }, “quote_e5” : { “type” : “dense_vector” }}}}\nPOST semantic-starwars/_doc { “quote”: “These are &lt;em&gt;not&lt;/em&gt; the droids you are looking for.”, “quote_e5”: [ 0.5, 10, 6, …] }\nGET semantic-starwars/_search { “query”: { “knn”: { “field”: “quote_e5” “k” : 10, “num_candidates”: 100, “query_vector_builder”: { “text_embedding”: { “model_id”: “e5-small-multilingual”, “model_text”: “search for an android” }}}}}</li>\n</ol>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck13435/large-64.png",
+                  "html": null
+                },
+                {
+                  "id": "sl_ll6j5W",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>semantic_text field type\nne w\nPUT semantic-starwars POST semantic-starwars/_doc { { “mappings”: { “quote”: “These are &lt;em&gt;not&lt;/em&gt; the “properties”: { droids you are looking for.” “quote”: { } “type”: “text”, “copy_to”: [ “quote_e5” ] }, “quote_e5” : { “type” : “semantic_text”, “inference_id”: “e5-small-multilingual” }}}}\nGET semantic-starwars/_search { “query”: { “semantic”: { “field”: “quote_e5” “query” : “search for an android” }}}\nin\n8. 15</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck13435/large-65.png",
+                  "html": null
+                },
+                {
+                  "id": "sl_O4pWxv",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>Vector Database\nVector Database + ML\nSemantic) Search Engine\nHybrid Search (text + vector) Store &amp; Search Vector Embeddings\nChoice &amp; Flexibility of embedding models Filtering &amp; Faceting\nCreate Vector Embeddings\nAggregations Autocomplete Search Analytics\nTrained model outof-the-box Document-level Security\nOptimized for text, geo, &amp; other data\nIngest Tools (web crawler, connectors, Beats, Agent, API framework)\nOn-prem / Cloud / Hybrid</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck13435/large-66.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_0OYKqK",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>Elasticsearch You Know, for Semantic Search</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck13435/large-67.jpg",
+                  "html": null
+                },
+                {
+                  "id": "sl_ciH8ij",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": "<p>Search &amp; AI a new era David Pilato | @dadoonet</p>\n"
+                  },
+                  "image": "https://on.notist.cloud/slides/deck13435/large-68.jpg",
+                  "html": null
+                }
+              ]
+            }
+          ]
+        },
+        "download": "https://on.notist.cloud/pdf/deck-86b810a1f97904f1.pdf",
+        "resources": {
+          "data": [
+            {
+              "title": "Page de l’évènement",
+              "url": "https://www.meetup.com/chtijug/events/303211426/",
+              "desc": {
+                "html": ""
+              }
+            },
+            {
+              "title": "Notebook demo Hummingsearch",
+              "url": "https://github.com/dadoonet/music-search",
+              "desc": {
+                "html": ""
+              }
+            }
+          ]
+        }
+      },
+      "relationships": {
+        "data": [
+          {
+            "type": "events",
+            "id": "ev_zGYers",
+            "attributes": {
+              "title": "Ch’ti JUG",
+              "slug": "chti-jug",
+              "starts_on": "2024-09-12 08:00:00",
+              "ends_on": "2024-09-12 18:00:00",
+              "timezone": "Europe/Paris",
+              "address": "Lille, France",
+              "latitude": "50.629250",
+              "longitude": "3.057256",
+              "country_code": "FR",
+              "url": null
+            },
+            "links": {
+              "self": "https://noti.st/events/zGYers/chti-jug",
+              "related": "https://noti.st/events/zGYers.json"
+            }
+          }
+        ]
+      },
+      "links": {
+        "self": "https://speaker.pilato.fr/C6PfLA/la-recherche-a-lere-de-lia"
+      }
+    }
+  ]
+}

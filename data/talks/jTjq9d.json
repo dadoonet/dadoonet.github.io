@@ -1,0 +1,81 @@
+{
+  "data": [
+    {
+      "type": "presentations",
+      "id": "pr_jTjq9d",
+      "attributes": {
+        "title": "(Searchable) Snapshots",
+        "slug": "searchable-snapshots",
+        "blurb": {
+          "html": "<p>Snapshots are a way to backup your data. But do you know that you can search in your snapshots nowadays?\nAnd more than that, with the coming 7.12 version, you don’t even have to recover them to make them searchable.</p>\n"
+        },
+        "slidedeck": {
+          "data": [
+            {
+              "id": "sd_6461",
+              "type": "images",
+              "slides": [
+                {
+                  "id": "sl_djxek0",
+                  "type": "image",
+                  "title": null,
+                  "desc": {
+                    "html": null
+                  },
+                  "image": "https://on.notist.cloud/slides/deck6461/large-2b0440c598649e0d.png",
+                  "html": null
+                }
+              ]
+            }
+          ]
+        },
+        "download": null,
+        "resources": {
+          "data": [
+            {
+              "title": "Event Page",
+              "url": "https://community.elastic.co/e/mvg35x/",
+              "desc": {
+                "html": ""
+              }
+            },
+            {
+              "title": "Repository Demo",
+              "url": "https://github.com/dadoonet/demo-searchable-snapshots",
+              "desc": {
+                "html": ""
+              }
+            }
+          ]
+        }
+      },
+      "relationships": {
+        "data": [
+          {
+            "type": "events",
+            "id": "ev_04IzHo",
+            "attributes": {
+              "title": "Elastic B(y|i)te",
+              "slug": "elastic-b-y-i-te",
+              "starts_on": "2021-03-08 08:00:00",
+              "ends_on": "2021-03-26 18:00:00",
+              "timezone": "GMT",
+              "address": "Virtual",
+              "latitude": null,
+              "longitude": null,
+              "country_code": null,
+              "url": "https://community.elastic.co/emea-virtual/"
+            },
+            "links": {
+              "self": "https://noti.st/events/04IzHo/elastic-b-y-i-te",
+              "related": "https://noti.st/events/04IzHo.json"
+            }
+          }
+        ]
+      },
+      "links": {
+        "self": "https://speaker.pilato.fr/jTjq9d/searchable-snapshots"
+      }
+    }
+  ]
+}
