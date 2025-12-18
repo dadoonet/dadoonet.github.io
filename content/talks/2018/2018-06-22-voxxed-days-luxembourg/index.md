@@ -45,8 +45,9 @@ x:
     id: "1010050188323540992"
 
 links:
-  - title: "Résumé de la conférence par Nicolas Martignole"
+  - title: "Blog: Le Touilleur Express - Voxxed Days Luxembourg 2018"
     url: "http://www.touilleur-express.fr/2018/06/25/voxxed-luxembourg-2018/"
+    description: "Résumé de la conférence par Nicolas Martignole"
 
 aliases:
   - /NscrTQ

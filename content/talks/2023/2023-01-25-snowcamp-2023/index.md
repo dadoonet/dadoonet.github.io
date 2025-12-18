@@ -45,11 +45,12 @@ x:
     id: "1618564206521110529"
 
 links:
-  - title: "Demo"
+  - title: "Demo: FSCrawler"
     url: "https://github.com/dadoonet/demo-fscrawler"
-    description: "Source code for the demos"
+    description: "This demo shows how you can use FSCrawler to index your documents"
   - title: "FSCrawler"
     url: "https://fscrawler.readthedocs.io/"
+    description: "The official FSCrawler documentation"
 
 aliases:
   - /UGtHAu

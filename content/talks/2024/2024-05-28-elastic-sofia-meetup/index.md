@@ -33,8 +33,10 @@ x:
     id: "1795528472749838482"
 
 links:
-  - title: "Demo code"
+  - title: "Demo: Humming search"
     url: "https://github.com/dadoonet/music-search"
+    description: "This demo shows how you can search for similar music tracks, using another music track as an input."
+
 aliases:
   - /D8f9kp
 ---

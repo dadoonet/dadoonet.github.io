@@ -33,7 +33,7 @@ x:
     id: "1899853405696217567"
 
 links:
-  - title: "Demo code"
+  - title: "Demo: ES|QL"
     url: "https://github.com/dadoonet/esql-demo"
     description: "The code played during the demo"
   - title: "Playground page"
@@ -41,10 +41,10 @@ links:
     description: "If you want to try ES|QL, there’s an open instance with some data."
   - title: "ES|QL Guide"
     url: "https://www.elastic.co/guide/en/elasticsearch/reference/current/esql.html"
-    description: "The official guide"
-  - title: "Java Demo code"
+    description: "The official ES|QL guide"
+  - title: "Demo: Java client with ES|QL"
     url: "https://github.com/dadoonet/elasticsearch-java-client-demo"
-    description: "The Java demo for ES|QL"
+    description: "This demo shows how you can use the Java client to interact with ES|QL"
 
 aliases:
   - /NXTLL3

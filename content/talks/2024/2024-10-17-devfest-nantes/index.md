@@ -39,8 +39,9 @@ x:
     id: "1843247405610963165"
 
 links:
-  - title: "Notebook demo Hummingsearch"
+  - title: "Demo: Humming search"
     url: "https://github.com/dadoonet/music-search"
+    description: "This demo shows how you can search for similar music tracks, using another music track as an input."
   - title: "Elastic Open Web Crawler"
     url: "https://github.com/elastic/crawler"
   - title: "Elastic Playground"

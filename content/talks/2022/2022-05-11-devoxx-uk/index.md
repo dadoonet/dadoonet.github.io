@@ -39,6 +39,7 @@ x:
 links:
   - title: "FSCrawler"
     url: "https://fscrawler.readthedocs.io/"
+    description: "The official FSCrawler documentation"
 
 aliases:
   - /95o6QT

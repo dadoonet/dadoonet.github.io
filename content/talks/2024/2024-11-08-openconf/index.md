@@ -29,10 +29,11 @@ youtube: "Gwx0kW0EOlQ"
 notist: "dadoonet/RnBVpa"
 
 links:
-  - title: "Demo source code"
-    url: "https://github.com/dadoonet/music-search/"
-    description: "The Jupyter notebook"
-  - title: "Podcast"
+  - title: "Demo: Humming search"
+    url: "https://github.com/dadoonet/music-search"
+    description: "This demo shows how you can search for similar music tracks, using another music track as an input."
+
+  - title: "Podcast: DJ Elky"
     url: "https://djdadoo.pilato.fr/"
     description: "This space is where I’m publishing my DJ sets"
 

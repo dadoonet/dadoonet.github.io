@@ -35,13 +35,13 @@ x:
     id: "1230829244646903808"
 
 links:
-  - title: "Blog post part 1"
+  - title: "Blog: Enrichir ses adresses postales avec la suite Elastic - Part 1"
     url: "https://www.elastic.co/blog/enriching-your-postal-addresses-with-the-elastic-stack-part-1"
-  - title: "Blog post part 2"
+  - title: "Blog: Enrichir ses adresses postales avec la suite Elastic - Part 2"
     url: "https://www.elastic.co/blog/enriching-your-postal-addresses-with-the-elastic-stack-part-1"
-  - title: "Blog post part 3"
+  - title: "Blog: Enrichir ses adresses postales avec la suite Elastic - Part 3"
     url: "https://www.elastic.co/blog/enriching-your-postal-addresses-with-the-elastic-stack-part-3"
-  - title: "Repository used for the demo"
+  - title: "Code: bano-elastic"
     url: "https://github.com/dadoonet/bano-elastic/"
 
 aliases:

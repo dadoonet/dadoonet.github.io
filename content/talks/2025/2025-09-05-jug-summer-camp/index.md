@@ -31,8 +31,10 @@ notist: "dadoonet/WA1Ort"
 links:
   - title: "Elastic Serverless documentation"
     url: "https://www.elastic.co/docs/deploy-manage/deploy/elastic-cloud/serverless"
+    description: "The official Elastic Serverless documentation"
   - title: "Elasticsearch Serverless API"
     url: "https://www.elastic.co/docs/api/doc/elasticsearch-serverless/"
+    description: "The official Elasticsearch Serverless API documentation"
 
 aliases:
   - /WA1Ort
