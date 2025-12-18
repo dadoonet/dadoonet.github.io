@@ -1,9 +1,7 @@
 ---
 title: "L’art du DeeJaying par la pratique"
-description: ""
 conference: 
   name: "Riviera Dev"
-  url: ""
   city: "Nice"
   country: "France"
   country_code: "fr"
@@ -30,6 +28,7 @@ notist: "dadoonet/A78dJt"
 links:
   - title: "Podcast"
     url: "https://podcasts.apple.com/fr/podcast/david-pilato-mixes/id505824965"
+
 aliases:
   - /A78dJt
 ---

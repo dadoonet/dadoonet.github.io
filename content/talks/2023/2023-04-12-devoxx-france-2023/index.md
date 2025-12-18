@@ -1,9 +1,7 @@
 ---
 title: "Un moteur de recherche de documents d’entreprise"
-description: ""
 conference: 
   name: "Devoxx France 2023"
-  url: ""
   city: "Paris"
   country: "France"
   country_code: "fr"
@@ -34,10 +32,14 @@ x:
     id: "1621486584032907265"
 
 links:
-  - title: "dadoonet/DevoxxFR-2023"
+  - title: "Conference Page"
+    url: "https://cfp.devoxx.fr/2023/talk/SPD-7040/Un_moteur_de_recherche_de_documents_d'entreprise"
+  - title: "Workshop instructions"
     url: "https://github.com/dadoonet/DevoxxFR-2023"
-  - title: "dadoonet/fscrawler"
-    url: "https://github.com/dadoonet/fscrawler"
+  - title: "Ingest Attachment Processor"
+    url: "https://www.elastic.co/guide/en/elasticsearch/reference/current/attachment.html"
+  - title: "FSCrawler"
+    url: "https://fscrawler.readthedocs.io/"
 
 aliases:
   - /dnEdLV

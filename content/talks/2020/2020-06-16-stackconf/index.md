@@ -1,9 +1,7 @@
 ---
 title: "Visualize Your Threats with Elastic SIEM"
-description: ""
 conference: 
   name: "stackconf"
-  url: ""
   city: "Berlin"
   country: "Germany"
   country_code: "de"
@@ -36,15 +34,10 @@ x:
     id: "1272806273826856960"
 
 links:
-  - title: "GitHub Repository"
-    url: "https://github.com/linux-audit"
-  - title: "elastic/ecs"
-    url: "https://github.com/elastic/ecs"
-  - title: "GitHub Repository"
-    url: "https://github.com/xeraa"
-  - title: "linux-audit/audit-userspace"
+  - title: "AuditD Rules"
     url: "https://github.com/linux-audit/audit-userspace/tree/master/rules"
-  - title: "xeraa/auditbeat-in-action"
+    description: "Templates for common auditD rules"
+  - title: "Demo repository"
     url: "https://github.com/xeraa/auditbeat-in-action"
 
 aliases:

@@ -1,9 +1,7 @@
 ---
 title: "Workshop Elasticsearch / Kibana 7.4"
-description: ""
 conference: 
   name: "Workshop Ecole 42 (private event)"
-  url: ""
   city: "Paris"
   country: "France"
   country_code: "fr"

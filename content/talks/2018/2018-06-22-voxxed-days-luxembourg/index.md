@@ -1,9 +1,7 @@
 ---
 title: "Les Vendredis noirs : même pas peur !"
-description: ""
 conference: 
   name: "VOXXED Days Luxembourg"
-  url: ""
   city: "Luxembourg City"
   country: "Luxembourg"
   country_code: "lu"
@@ -27,12 +25,6 @@ cover: cover.jpg
 #youtube: ""
 notist: "dadoonet/NscrTQ"
 
-links:
-  - title: "VoxxedDays Luxembourg"
-    url: "https://voxxeddays.com/luxembourg/"
-  - title: "Résumé de la conférence par Nicolas Martignole"
-    url: "http://www.touilleur-express.fr/2018/06/25/voxxed-luxembourg-2018/"
-
 x:
   - user: "voxxed_lu"
     id: "1010075039000072192"
@@ -48,6 +40,13 @@ x:
     id: "1009742797216321536"
   - user: "voxxed_lu"
     id: "1010050188323540992"
+
+links:
+  - title: "VoxxedDays Luxembourg"
+    url: "https://voxxeddays.com/luxembourg/"
+  - title: "Résumé de la conférence par Nicolas Martignole"
+    url: "http://www.touilleur-express.fr/2018/06/25/voxxed-luxembourg-2018/"
+
 aliases:
   - /NscrTQ
 ---

@@ -1,9 +1,7 @@
 ---
 title: "Elasticsearch"
-description: ""
 conference: 
   name: "Vitrine Technologique du Gouvernement du Québec (private event)"
-  url: ""
   city: "Quebec City"
   country: "Canada"
   country_code: "ca"
@@ -34,7 +32,11 @@ x:
     id: "1106531287328849920"
 
 links:
-  - title: "Demo script"
+  - title: "Vitrine Technologique"
+    url: "https://www.vitrine-technologique.gouv.qc.ca/vitrine%20technologique.nsf/Activit%C3%A9s/A40C2E69E95370178525839000558DA7?OpenDocument&SessionID=undefined"
+  - title: "Une ancienne vidéo (2015) sur le même sujet"
+    url: "https://vimeo.com/129781775"
+  - title: "Kibana Demo Script"
     url: "https://gist.github.com/dadoonet/f911291c4dd19b0802031db3064c648f"
 
 aliases:

@@ -1,9 +1,7 @@
 ---
 title: "Elasticsearch Query Language: ES|QL"
-description: ""
 conference: 
   name: "Bordeaux JUG"
-  url: ""
   city: "Bordeaux"
   country: "France"
   country_code: "fr"
@@ -32,10 +30,20 @@ x:
     id: "1899491715959992658"
 
 links:
-  - title: "dadoonet/esql-demo"
+  - title: "Event page"
+    url: "http://www.bordeauxjug.org/meetings/20250320-elasticsearch_query_language:_es_ql"
+  - title: "Demo code"
     url: "https://github.com/dadoonet/esql-demo"
-  - title: "dadoonet/elasticsearch-java-client-demo"
+    description: "The code played during the demo"
+  - title: "Playground page"
+    url: "https://esql.demo.elastic.co"
+    description: "If you want to try ES|QL, there’s an open instance with some data."
+  - title: "ES|QL Guide"
+    url: "https://www.elastic.co/guide/en/elasticsearch/reference/current/esql.html"
+    description: "The official guide"
+  - title: "Java Demo code"
     url: "https://github.com/dadoonet/elasticsearch-java-client-demo"
+    description: "The Java demo for ES|QL"
 
 aliases:
   - /ASbj3g

@@ -1,9 +1,7 @@
 ---
 title: "La recherche à l’ère de l’IA"
-description: ""
 conference: 
   name: "NantesJUG"
-  url: ""
   city: "Nantes"
   country: "France"
   country_code: "fr"
@@ -44,9 +42,9 @@ x:
     id: "1841770165219754335"
 
 links:
-  - title: "erikbern/ann-benchmarks"
-    url: "https://github.com/erikbern/ann-benchmarks"
-  - title: "dadoonet/music-search"
+  - title: "Page de l’évènement"
+    url: "https://nantesjug.org/#/events/2024_10_02"
+  - title: "Notebook demo Hummingsearch"
     url: "https://github.com/dadoonet/music-search"
 
 aliases:

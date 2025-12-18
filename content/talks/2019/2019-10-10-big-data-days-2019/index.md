@@ -1,9 +1,7 @@
 ---
 title: "Managing your black Friday logs"
-description: ""
 conference: 
   name: "Big Data Days 2019"
-  url: ""
   city: "Moscow"
   country: "RU"
   country_code: "ru"

@@ -1,9 +1,7 @@
 ---
 title: "La recherche à l’ère de l’IA"
-description: ""
 conference: 
   name: "YaJUG"
-  url: ""
   city: "Luxembourg"
   country: "Luxembourg"
   country_code: "lu"
@@ -32,9 +30,9 @@ x:
     id: "1833445549715923127"
 
 links:
-  - title: "erikbern/ann-benchmarks"
-    url: "https://github.com/erikbern/ann-benchmarks"
-  - title: "dadoonet/music-search"
+  - title: "Page de l’évènement"
+    url: "https://yajug.lu/session/la-recherche-a-lere-de-l-ia/"
+  - title: "Notebook demo Hummingsearch"
     url: "https://github.com/dadoonet/music-search"
 
 aliases:

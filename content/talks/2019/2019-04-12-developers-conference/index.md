@@ -1,9 +1,7 @@
 ---
 title: "Enrichir ses adresses postales avec la suite Elastic"
-description: ""
 conference: 
   name: "Developers Conference"
-  url: ""
   city: "Moka"
   country: "Mauritius"
   country_code: "mu"
@@ -48,8 +46,16 @@ x:
     id: "1116676391184080896"
 
 links:
-  - title: "dadoonet/bano-elastic"
-    url: "https://github.com/dadoonet/bano-elastic"
+  - title: "Session Link"
+    url: "https://conference.mscc.mu/session/76180"
+  - title: "Blog post part 1"
+    url: "https://www.elastic.co/blog/enriching-your-postal-addresses-with-the-elastic-stack-part-1"
+  - title: "Blog post part 2"
+    url: "https://www.elastic.co/blog/enriching-your-postal-addresses-with-the-elastic-stack-part-1"
+  - title: "Blog post part 3"
+    url: "https://www.elastic.co/blog/enriching-your-postal-addresses-with-the-elastic-stack-part-3"
+  - title: "Repository used for the demo"
+    url: "https://github.com/dadoonet/bano-elastic/"
 
 aliases:
   - /tibZw7

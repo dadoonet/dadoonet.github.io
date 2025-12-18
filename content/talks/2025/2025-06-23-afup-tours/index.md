@@ -1,9 +1,7 @@
 ---
 title: "Elasticsearch Query Language: ES|QL"
-description: ""
 conference: 
   name: "AFUP Tours"
-  url: ""
   city: "Tours"
   country: "France"
   country_code: "fr"
@@ -28,10 +26,20 @@ cover: cover.jpg
 notist: "dadoonet/ddCFRI"
 
 links:
-  - title: "dadoonet/esql-demo"
+  - title: "Event page"
+    url: "https://www.meetup.com/afup-tours-php/events/307931669/"
+  - title: "Demo code"
     url: "https://github.com/dadoonet/esql-demo"
+    description: "The code played during the demo"
+  - title: "Playground page"
+    url: "https://esql.demo.elastic.co"
+    description: "If you want to try ES|QL, there’s an open instance with some data."
+  - title: "ES|QL Guide"
+    url: "https://www.elastic.co/guide/en/elasticsearch/reference/current/esql.html"
+    description: "The official guide"
   - title: "PHP Demo code"
     url: "https://www.elastic.co/docs/reference/elasticsearch/clients/php/esql"
+    description: "PHP Example for ES|QL"
 
 aliases:
   - /ddCFRI

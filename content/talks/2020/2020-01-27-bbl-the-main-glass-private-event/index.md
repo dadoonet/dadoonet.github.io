@@ -1,9 +1,7 @@
 ---
 title: "Elasticsearch"
-description: ""
 conference: 
   name: "BBL The Main Glass (Private Event)"
-  url: ""
   city: "Niort"
   country: "France"
   country_code: "fr"
@@ -36,6 +34,9 @@ x:
 links:
   - title: "Kibana Demo Script"
     url: "https://gist.github.com/dadoonet/f911291c4dd19b0802031db3064c648f"
+    description: "This is the Kibana script I’m starting from when doing the talk"
+  - title: "Une ancienne vidéo (2015) sur le même sujet"
+    url: "https://vimeo.com/129781775"
 
 aliases:
   - /nZFpwF

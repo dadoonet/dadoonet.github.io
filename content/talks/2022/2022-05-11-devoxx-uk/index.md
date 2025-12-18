@@ -1,9 +1,7 @@
 ---
 title: "Indexing your office documents with Elastic stack and FSCrawler"
-description: ""
 conference: 
   name: "Devoxx UK"
-  url: ""
   city: "London"
   country: "United Kingdom"
   country_code: "gb"
@@ -36,8 +34,10 @@ x:
     id: "1541738182714220544"
 
 links:
-  - title: "dadoonet/fscrawler"
-    url: "https://github.com/dadoonet/fscrawler"
+  - title: "Event page"
+    url: "https://www.devoxx.co.uk/"
+  - title: "FSCrawler"
+    url: "https://fscrawler.readthedocs.io/"
 
 aliases:
   - /95o6QT

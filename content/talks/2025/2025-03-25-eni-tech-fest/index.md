@@ -1,9 +1,7 @@
 ---
 title: "🎹🎻🎸 Et si nous cherchions des morceaux de musique 🎼🎶 ?"
-description: ""
 conference: 
   name: "ENI Tech Fest"
-  url: ""
   city: "Nantes"
   country: "France"
   country_code: "fr"
@@ -28,8 +26,14 @@ cover: cover.jpg
 notist: "dadoonet/bAPRcD"
 
 links:
-  - title: "dadoonet/music-search"
+  - title: "Event page"
+    url: "https://www.eni-service.fr/eni-tech-fest-levenement-incontournable-pour-les-professionnels-du-numerique/"
+  - title: "Notebook demo Hummingsearch"
     url: "https://github.com/dadoonet/music-search"
+  - title: "Une vidéo sur le même sujet"
+    url: "https://youtu.be/h8XIj55jPPY"
+  - title: "A longer version in English"
+    url: "https://youtu.be/RbdIdSnXbA4"
 
 aliases:
   - /bAPRcD

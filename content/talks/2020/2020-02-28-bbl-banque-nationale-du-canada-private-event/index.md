@@ -1,9 +1,7 @@
 ---
 title: "Elasticsearch"
-description: ""
 conference: 
   name: "BBL Banque Nationale du Canada (Private Event)"
-  url: ""
   city: "Montreal"
   country: "Canada"
   country_code: "ca"
@@ -36,7 +34,10 @@ x:
     id: "1233388201437515784"
 
 links:
-  - title: "Demo script"
+  - title: "One Million Tweet Map project"
+    url: "https://onemilliontweetmap.com/"
+    description: "The Tweet Map project"
+  - title: "Demo script for BBL"
     url: "https://gist.github.com/dadoonet/f911291c4dd19b0802031db3064c648f"
 
 aliases:

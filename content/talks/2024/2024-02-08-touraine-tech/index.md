@@ -1,9 +1,7 @@
 ---
 title: "La recherche à l’ère de l’IA"
-description: ""
 conference: 
   name: "Touraine Tech"
-  url: ""
   city: "Tours"
   country: "France"
   country_code: "fr"
@@ -32,9 +30,9 @@ x:
     id: "1745717440724586899"
 
 links:
-  - title: "erikbern/ann-benchmarks"
-    url: "https://github.com/erikbern/ann-benchmarks"
-  - title: "dadoonet/music-search"
+  - title: "Page de l’évènement"
+    url: "https://touraine.tech/talk/oVFqGQVuSwZBRIfpXwVd/"
+  - title: "Notebook demo Hummingsearch"
     url: "https://github.com/dadoonet/music-search"
 
 aliases:

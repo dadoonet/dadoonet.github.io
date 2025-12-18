@@ -1,9 +1,7 @@
 ---
 title: "Donnez du sens à (toutes) vos données"
-description: ""
 conference: 
   name: "coTer"
-  url: ""
   city: "Deauville"
   country: "France"
   country_code: "fr"

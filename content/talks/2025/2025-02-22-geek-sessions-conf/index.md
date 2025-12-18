@@ -1,9 +1,7 @@
 ---
 title: "🎹🎻🎸 Searching for similar music tracks 🎼🎶"
-description: ""
 conference: 
   name: "Geek Sessions Conf"
-  url: ""
   city: "Faro"
   country: "Portugal"
   country_code: "pt"
@@ -36,8 +34,14 @@ x:
     id: "1894292854324781545"
 
 links:
-  - title: "dadoonet/music-search"
-    url: "https://github.com/dadoonet/music-search"
+  - title: "Event page"
+    url: "https://geeksessionsconf.pt/"
+  - title: "Demo source code"
+    url: "https://github.com/dadoonet/music-search/"
+    description: "The Jupyter notebook"
+  - title: "Podcast"
+    url: "https://djdadoo.pilato.fr/"
+    description: "This space is where I’m publishing my DJ sets"
 
 aliases:
   - /BLjn5N

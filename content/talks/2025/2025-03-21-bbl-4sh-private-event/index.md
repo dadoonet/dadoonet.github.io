@@ -1,9 +1,7 @@
 ---
 title: "Elasticsearch, you know for (AI) Search"
-description: ""
 conference: 
   name: "BBL 4SH (private event)"
-  url: ""
   city: "Bordeaux"
   country: "France"
   country_code: "fr"
@@ -28,12 +26,18 @@ cover: cover.jpg
 notist: "dadoonet/Zm1cqh"
 
 links:
-  - title: "dadoonet/music-search"
-    url: "https://github.com/dadoonet/music-search"
-  - title: "dadoonet/injector"
+  - title: "Page de l’évènement"
+    url: "https://www.4sh.fr/"
+    description: "Thank you for hosting me!"
+  - title: "Person dataset injector"
     url: "https://github.com/dadoonet/injector"
+    description: "The Person injector code"
   - title: "Dev Console demo"
     url: "https://gist.github.com/dadoonet/f911291c4dd19b0802031db3064c648f"
+    description: "You can copy/paste this in the Kibana Dev Console."
+  - title: "Music Search demo"
+    url: "https://github.com/dadoonet/music-search"
+    description: "Seaching for sounds using Vector search"
 
 aliases:
   - /Zm1cqh

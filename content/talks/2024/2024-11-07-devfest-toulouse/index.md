@@ -1,9 +1,7 @@
 ---
 title: "La recherche à l’ère de l’IA"
-description: ""
 conference: 
   name: "DevFest Toulouse"
-  url: ""
   city: "Toulouse"
   country: "France"
   country_code: "fr"
@@ -34,7 +32,9 @@ x:
     id: "1853821935882211798"
 
 links:
-  - title: "dadoonet/music-search"
+  - title: "Page de l’évènement"
+    url: "https://devfesttoulouse.fr/"
+  - title: "Notebook demo Hummingsearch"
     url: "https://github.com/dadoonet/music-search"
 
 aliases:

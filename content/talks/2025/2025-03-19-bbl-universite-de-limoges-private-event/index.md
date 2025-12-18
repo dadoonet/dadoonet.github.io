@@ -1,9 +1,7 @@
 ---
 title: "Elasticsearch"
-description: ""
 conference: 
   name: "BBL Université de Limoges (private event)"
-  url: ""
   city: "Limoges"
   country: "France"
   country_code: "fr"
@@ -28,10 +26,13 @@ cover: cover.jpg
 notist: "dadoonet/jK6xxJ"
 
 links:
-  - title: "dadoonet/injector"
+  - title: "Université de Limoges"
+    url: "https://www.unilim.fr/"
+  - title: "Person dataset injector"
     url: "https://github.com/dadoonet/injector"
   - title: "Dev Console demo"
     url: "https://gist.github.com/dadoonet/f911291c4dd19b0802031db3064c648f"
+    description: "You can copy/paste this in the Kibana Dev Console."
 
 aliases:
   - /jK6xxJ

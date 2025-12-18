@@ -1,9 +1,7 @@
 ---
 title: "Elasticsearch"
-description: ""
 conference: 
   name: "BBL Université Paris 1 Pantheon-Sorbonne (Private Event)"
-  url: ""
   city: "Paris"
   country: "France"
   country_code: "fr"
@@ -29,6 +27,14 @@ notist: "dadoonet/yFE7yS"
 
 links:
   - title: "Kibana Demo Script"
+    url: "https://gist.github.com/dadoonet/f911291c4dd19b0802031db3064c648f"
+    description: "This is the Kibana script I’m starting from when doing the talk"
+  - title: "Une ancienne vidéo (2015) sur le même sujet"
+    url: "https://vimeo.com/129781775"
+  - title: "Kibana Demo Script"
+    url: "https://gist.github.com/dadoonet/f911291c4dd19b0802031db3064c648f"
+    description: "This is the Kibana script I’m starting from when doing the talk"
+  - title: "Demo script for BBL"
     url: "https://gist.github.com/dadoonet/f911291c4dd19b0802031db3064c648f"
 
 aliases:

@@ -1,9 +1,7 @@
 ---
 title: "La recherche à l’ère de l’IA"
-description: ""
 conference: 
   name: "Malt Tech Days"
-  url: ""
   city: "Paris"
   country: "France"
   country_code: "fr"
@@ -28,7 +26,9 @@ cover: cover.jpg
 notist: "dadoonet/VCzrGH"
 
 links:
-  - title: "dadoonet/music-search"
+  - title: "Page de l’évènement"
+    url: "https://malt.fr/"
+  - title: "Notebook demo Hummingsearch"
     url: "https://github.com/dadoonet/music-search"
 
 aliases:

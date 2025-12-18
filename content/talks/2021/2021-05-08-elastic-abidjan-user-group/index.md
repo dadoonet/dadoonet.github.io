@@ -1,9 +1,7 @@
 ---
 title: "Introduction à Elasticsearch"
-description: ""
 conference: 
   name: "Elastic Abidjan User Group"
-  url: ""
   city: "Abidjan"
   country: "CI"
   country_code: "ci"

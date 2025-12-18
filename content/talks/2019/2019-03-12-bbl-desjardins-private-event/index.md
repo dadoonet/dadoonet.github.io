@@ -1,9 +1,7 @@
 ---
 title: "Elasticsearch"
-description: ""
 conference: 
   name: "BBL Desjardins (private event)"
-  url: ""
   city: "Montreal"
   country: "Canada"
   country_code: "ca"
@@ -34,7 +32,9 @@ x:
     id: "1105497514919239680"
 
 links:
-  - title: "Demo script"
+  - title: "Une ancienne vidéo (2015) sur le même sujet"
+    url: "https://vimeo.com/129781775"
+  - title: "Kibana Demo Script"
     url: "https://gist.github.com/dadoonet/f911291c4dd19b0802031db3064c648f"
 
 aliases:

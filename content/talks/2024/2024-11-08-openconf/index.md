@@ -1,9 +1,7 @@
 ---
 title: "🎹🎻🎸 Searching for similar music tracks 🎼🎶"
-description: ""
 conference: 
   name: "OpenConf"
-  url: ""
   city: "Athens"
   country: "GR"
   country_code: "gr"
@@ -28,8 +26,14 @@ youtube: "Gwx0kW0EOlQ"
 notist: "dadoonet/RnBVpa"
 
 links:
-  - title: "dadoonet/music-search"
-    url: "https://github.com/dadoonet/music-search"
+  - title: "Event page"
+    url: "https://www.open-conf.gr/"
+  - title: "Demo source code"
+    url: "https://github.com/dadoonet/music-search/"
+    description: "The Jupyter notebook"
+  - title: "Podcast"
+    url: "https://djdadoo.pilato.fr/"
+    description: "This space is where I’m publishing my DJ sets"
 
 aliases:
   - /RnBVpa

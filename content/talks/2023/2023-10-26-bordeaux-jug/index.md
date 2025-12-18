@@ -1,9 +1,7 @@
 ---
 title: "La recherche à l’ère de l’IA"
-description: ""
 conference: 
   name: "Bordeaux JUG"
-  url: ""
   city: "Bordeaux"
   country: "France"
   country_code: "fr"
@@ -40,8 +38,8 @@ x:
     id: "1717609539300991328"
 
 links:
-  - title: "dadoonet/music-search"
-    url: "https://github.com/dadoonet/music-search"
+  - title: "Page de l’évènement"
+    url: "https://www.meetup.com/fr-FR/BordeauxJUG/events/296632690"
   - title: "Notebook demo Hummingsearch"
     url: "https://colab.research.google.com/github/dadoonet/music-search/blob/main/elastic_music_search.ipynb"
 

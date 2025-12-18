@@ -1,9 +1,7 @@
 ---
 title: "Elasticsearch"
-description: ""
 conference: 
   name: "ISEN (private event)"
-  url: ""
   city: "Lille"
   country: "France"
   country_code: "fr"
@@ -34,8 +32,14 @@ x:
 links:
   - title: "Kibana Demo Script"
     url: "https://gist.github.com/dadoonet/f911291c4dd19b0802031db3064c648f"
+    description: "This is the Kibana script I’m starting from when doing the talk"
+  - title: "Une ancienne vidéo (2015) sur le même sujet"
+    url: "https://vimeo.com/129781775"
   - title: "One Million Tweet Map demo"
     url: "https://onemilliontweetmap.com"
+  - title: "Kibana Demo Script"
+    url: "https://gist.github.com/dadoonet/f911291c4dd19b0802031db3064c648f"
+    description: "This is the Kibana script I’m starting from when doing the talk"
 
 aliases:
   - /1dYDNJ

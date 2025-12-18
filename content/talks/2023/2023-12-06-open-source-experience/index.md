@@ -1,9 +1,7 @@
 ---
 title: "La potion magique pour faire progresser ta carrière"
-description: ""
 conference: 
   name: "Open Source Experience"
-  url: ""
   city: "Paris"
   country: "France"
   country_code: "fr"
@@ -32,8 +30,12 @@ x:
     id: "1730605321364640036"
 
 links:
+  - title: "Blog post"
+    url: "https://david.pilato.fr/blog/2022-06-10-la-potion-magique-pour-faire-avancer-ta-carriere/"
+    description: "Un article de blog avec les points abordés pendant ce talk."
   - title: "Open Source Experience"
-    url: "https://www.opensource-experience.com"
+    url: "https://www.opensource-experience.com/"
+    description: "Site de la conférence"
 
 aliases:
   - /5gomPY

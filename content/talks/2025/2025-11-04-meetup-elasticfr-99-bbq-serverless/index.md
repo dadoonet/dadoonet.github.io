@@ -1,9 +1,7 @@
 ---
 title: "do MORE with stateLESS Elasticsearch"
-description: ""
 conference: 
   name: "Meetup ElasticFR #99 - BBQ & Serverless"
-  url: "https://www.meetup.com/fr-FR/elasticfr/events/310730914/"
   city: "Paris"
   country: "France"
   country_code: "fr"
@@ -34,6 +32,7 @@ links:
     url: "https://www.elastic.co/docs/deploy-manage/deploy/elastic-cloud/serverless"
   - title: "Elasticsearch Serverless API"
     url: "https://www.elastic.co/docs/api/doc/elasticsearch-serverless/"
+
 aliases:
   - /DsQ4UN
 ---

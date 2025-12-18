@@ -1,9 +1,7 @@
 ---
 title: "Community at Elastic"
-description: ""
 conference: 
   name: "L’Oréal (Private Event)"
-  url: ""
   city: "Puteaux"
   country: "France"
   country_code: "fr"
@@ -26,10 +24,6 @@ cover: cover.jpg
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/bwPn68"
-
-links:
-  - title: "GitHub Repository"
-    url: "https://github.com/elastic"
 
 aliases:
   - /bwPn68

@@ -1,9 +1,7 @@
 ---
 title: "Elasticsearch"
-description: ""
 conference: 
   name: "BBL Yves Rocher (private event)"
-  url: ""
   city: "Issy-les-Moulineaux"
   country: "France"
   country_code: "fr"
@@ -28,7 +26,9 @@ cover: cover.jpg
 notist: "dadoonet/ComG9L"
 
 links:
-  - title: "Demo script"
+  - title: "Une ancienne vidéo (2015) sur le même sujet"
+    url: "https://vimeo.com/129781775"
+  - title: "Kibana Demo Script"
     url: "https://gist.github.com/dadoonet/f911291c4dd19b0802031db3064c648f"
 
 aliases:

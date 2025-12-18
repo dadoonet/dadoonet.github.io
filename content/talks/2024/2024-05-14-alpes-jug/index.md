@@ -1,9 +1,7 @@
 ---
 title: "La recherche à l’ère de l’IA"
-description: ""
 conference: 
   name: "Alpes JUG"
-  url: "https://alpesjug.org/"
   city: "Grenoble"
   country: "France"
   country_code: "fr"
@@ -38,9 +36,9 @@ x:
     id: "1790474993119137813"
 
 links:
-  - title: "erikbern/ann-benchmarks"
-    url: "https://github.com/erikbern/ann-benchmarks"
-  - title: "dadoonet/music-search"
+  - title: "Page de l’évènement"
+    url: "https://www.meetup.com/fr-FR/alpesjug/events/299609510/"
+  - title: "Notebook demo Hummingsearch"
     url: "https://github.com/dadoonet/music-search"
 
 aliases:

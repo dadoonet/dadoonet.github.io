@@ -1,9 +1,7 @@
 ---
 title: "Indexer ses documents bureautique avec la suite Elastic et FSCrawler"
-description: ""
 conference: 
   name: "Opensource Experience"
-  url: ""
   city: "Paris"
   country: "France"
   country_code: "fr"
@@ -34,8 +32,10 @@ x:
     id: "1458424405139279879"
 
 links:
-  - title: "dadoonet/fscrawler"
-    url: "https://github.com/dadoonet/fscrawler"
+  - title: "Event page"
+    url: "https://www.sido-osxp.com/fr/session/e55fd218-1e28-ec11-ae72-a04a5e7d345e"
+  - title: "FSCrawler"
+    url: "https://fscrawler.readthedocs.io/"
 
 aliases:
   - /57G2Nv

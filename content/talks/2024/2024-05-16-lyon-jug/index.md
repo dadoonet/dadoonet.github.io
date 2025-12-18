@@ -1,9 +1,7 @@
 ---
 title: "La recherche à l’ère de l’IA"
-description: ""
 conference: 
   name: "Lyon JUG"
-  url: ""
   city: "Lyon"
   country: "France"
   country_code: "fr"
@@ -40,9 +38,9 @@ x:
     id: "1791149498963804593"
 
 links:
-  - title: "erikbern/ann-benchmarks"
-    url: "https://github.com/erikbern/ann-benchmarks"
-  - title: "dadoonet/music-search"
+  - title: "Page de l’évènement"
+    url: "https://lyonjug.org/2024/05/16/la-recherche-a-lheure-de-l-ia.html"
+  - title: "Notebook demo Hummingsearch"
     url: "https://github.com/dadoonet/music-search"
 
 aliases:

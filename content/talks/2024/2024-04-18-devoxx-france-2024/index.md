@@ -1,9 +1,7 @@
 ---
 title: "La recherche à l’ère de l’IA"
-description: ""
 conference: 
   name: "Devoxx France 2024"
-  url: ""
   city: "Paris"
   country: "France"
   country_code: "fr"
@@ -38,7 +36,9 @@ x:
     id: "1780905823620714719"
 
 links:
-  - title: "dadoonet/music-search"
+  - title: "Page de l’évènement"
+    url: "https://mobile.devoxx.com/events/devoxxfr2024/talks/4178/details"
+  - title: "Notebook demo Hummingsearch"
     url: "https://github.com/dadoonet/music-search"
 
 aliases:

@@ -1,9 +1,7 @@
 ---
 title: "Identifier les menaces avec Elastic SIEM"
-description: ""
 conference: 
   name: "Blend Web Mix 2019"
-  url: ""
   city: "Lyon"
   country: "France"
   country_code: "fr"
@@ -54,17 +52,10 @@ x:
     id: "1194893501957378048"
 
 links:
-  - title: "GitHub Repository"
-    url: "https://github.com/linux-audit"
-  - title: "elastic/beats"
-    url: "https://github.com/elastic/beats/tree/master/deploy/kubernetes"
-  - title: "elastic/ecs"
-    url: "https://github.com/elastic/ecs"
-  - title: "GitHub Repository"
-    url: "https://github.com/xeraa"
-  - title: "linux-audit/audit-userspace"
+  - title: "AuditD Rules"
     url: "https://github.com/linux-audit/audit-userspace/tree/master/rules"
-  - title: "xeraa/auditbeat-in-action"
+    description: "Templates for common auditD rules"
+  - title: "Demo repository"
     url: "https://github.com/xeraa/auditbeat-in-action"
 
 aliases:

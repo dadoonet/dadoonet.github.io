@@ -1,9 +1,7 @@
 ---
 title: "Elasticsearch"
-description: ""
 conference: 
   name: "BBL Parrot (private event)"
-  url: ""
   city: "Paris"
   country: "France"
   country_code: "fr"
@@ -32,8 +30,13 @@ x:
     id: "1583399558796623873"
 
 links:
+  - title: "Parrot"
+    url: "https://www.parrot.com/fr"
   - title: "Kibana Demo Script"
     url: "https://gist.github.com/dadoonet/f911291c4dd19b0802031db3064c648f"
+    description: "This is the Kibana script I’m starting from when doing the talk"
+  - title: "A video (in french) on the same topic"
+    url: "https://youtu.be/7yr2CC_ZlHs"
 
 aliases:
   - /5xysrX

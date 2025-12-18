@@ -1,9 +1,7 @@
 ---
 title: "Elasticsearch"
-description: ""
 conference: 
   name: "BBL Talan (Private Event)"
-  url: ""
   city: "Amiens"
   country: "France"
   country_code: "fr"
@@ -28,8 +26,8 @@ cover: cover.jpg
 notist: "dadoonet/Op8xGg"
 
 links:
-  - title: "dadoonet/music-search"
-    url: "https://github.com/dadoonet/music-search"
+  - title: "Talan"
+    url: "https://talan.com/"
 
 aliases:
   - /Op8xGg

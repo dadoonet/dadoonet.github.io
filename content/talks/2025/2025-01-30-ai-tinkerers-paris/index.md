@@ -1,9 +1,7 @@
 ---
 title: "🎹🎻🎸 Searching for similar music tracks 🎼🎶"
-description: ""
 conference: 
   name: "AI Tinkerers Paris"
-  url: ""
   city: "Paris"
   country: "France"
   country_code: "fr"
@@ -35,11 +33,12 @@ links:
   - title: "Event page"
     url: "https://paris.aitinkerers.org/p/ai-tinkerers-paris-meetup-on-january-30th"
   - title: "Demo source code"
-    details: "The Jupyter notebook"
     url: "https://github.com/dadoonet/music-search/"
+    description: "The Jupyter notebook"
   - title: "Podcast"
-    details: "This space is where I'm publishing my DJ sets"
     url: "https://djdadoo.pilato.fr/"
+    description: "This space is where I’m publishing my DJ sets"
+
 aliases:
   - /0rheh6
 ---

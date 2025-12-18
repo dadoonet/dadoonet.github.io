@@ -1,9 +1,7 @@
 ---
 title: "Enriching postal addresses with Elastic stack"
-description: ""
 conference: 
   name: "Elastic Singapore User Group Meetup"
-  url: ""
   city: "Singapore"
   country: "Singapore"
   country_code: "sg"
@@ -32,8 +30,16 @@ x:
     id: "1134113250939789312"
 
 links:
-  - title: "dadoonet/bano-elastic"
-    url: "https://github.com/dadoonet/bano-elastic"
+  - title: "Elastic Singapore User Group"
+    url: "https://www.meetup.com/Singapore-Elastic-Fantastics/events/261221284/"
+  - title: "Blog post part 1"
+    url: "https://www.elastic.co/blog/enriching-your-postal-addresses-with-the-elastic-stack-part-1"
+  - title: "Blog post part 2"
+    url: "https://www.elastic.co/blog/enriching-your-postal-addresses-with-the-elastic-stack-part-1"
+  - title: "Blog post part 3"
+    url: "https://www.elastic.co/blog/enriching-your-postal-addresses-with-the-elastic-stack-part-3"
+  - title: "Repository used for the demo"
+    url: "https://github.com/dadoonet/bano-elastic/"
 
 aliases:
   - /uxryJf

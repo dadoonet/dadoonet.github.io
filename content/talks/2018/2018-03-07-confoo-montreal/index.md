@@ -1,9 +1,7 @@
 ---
 title: "Ingest node: enriching documents within Elasticsearch"
-description: ""
 conference: 
   name: "ConFoo Montreal"
-  url: ""
   city: "Montreal"
   country: "Canada"
   country_code: "ca"

@@ -1,9 +1,7 @@
 ---
 title: "Identifier les menaces avec Elastic SIEM"
-description: ""
 conference: 
   name: "JUG Summer Camp"
-  url: ""
   city: "La Rochelle"
   country: "France"
   country_code: "fr"
@@ -28,16 +26,13 @@ youtube: "nvCERPGuUFo"
 notist: "dadoonet/FIdoIN"
 
 links:
-  - title: "GitHub Repository"
-    url: "https://github.com/linux-audit"
-  - title: "elastic/ecs"
-    url: "https://github.com/elastic/ecs"
-  - title: "GitHub Repository"
-    url: "https://github.com/xeraa"
-  - title: "linux-audit/audit-userspace"
+  - title: "AuditD Rules"
     url: "https://github.com/linux-audit/audit-userspace/tree/master/rules"
-  - title: "xeraa/auditbeat-in-action"
+    description: "Templates for common auditD rules"
+  - title: "Demo repository"
     url: "https://github.com/xeraa/auditbeat-in-action"
+  - title: "JUG Summer Camp"
+    url: "https://www.jugsummercamp.org/edition/11/presentations/si4HEEvfcNOR3P36Npy0"
 
 aliases:
   - /FIdoIN

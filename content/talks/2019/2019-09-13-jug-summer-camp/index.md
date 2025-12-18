@@ -1,9 +1,7 @@
 ---
 title: "Keynote: Jug Summer Camp v10.0"
-description: ""
 conference: 
   name: "JUG Summer Camp"
-  url: ""
   city: "La Rochelle"
   country: "France"
   country_code: "fr"

@@ -1,9 +1,7 @@
 ---
 title: "Identifier (et bloquer !) les menaces avec Elastic Security"
-description: ""
 conference: 
   name: "Devoxx France 2021"
-  url: ""
   city: "Paris"
   country: "France"
   country_code: "fr"
@@ -27,12 +25,6 @@ cover: cover.png
 youtube: "4tQDLAs5HpM"
 notist: "dadoonet/h0HniU"
 
-links:
-  - title: "Devoxx France"
-    url: "https://cfp.devoxx.fr/2021/talk/SQR-3658/Identifier_les_menaces_avec_Elastic_SIEM"
-  - title: "Elastic Security Solution"
-    url: "https://www.elastic.co/fr/security"
-
 x:
   - user: "dadoonet"
     id: "1434789692684263428"
@@ -40,6 +32,13 @@ x:
     id: "1440246734047776768"
   - user: "dadoonet"
     id: "1443222996131401729"
+
+links:
+  - title: "Devoxx France"
+    url: "https://cfp.devoxx.fr/2021/talk/SQR-3658/Identifier_les_menaces_avec_Elastic_SIEM"
+  - title: "Elastic Security Solution"
+    url: "https://www.elastic.co/fr/security"
+
 aliases:
   - /h0HniU
 ---

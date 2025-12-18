@@ -1,9 +1,7 @@
 ---
 title: "Elasticsearch"
-description: ""
 conference: 
   name: "BBL Accenture (Private Event)"
-  url: ""
   city: "Amsterdam"
   country: "Netherlands"
   country_code: "nl"
@@ -38,6 +36,9 @@ x:
 links:
   - title: "Kibana Demo Script"
     url: "https://gist.github.com/dadoonet/f911291c4dd19b0802031db3064c648f"
+    description: "This is the Kibana script I’m starting from when doing the talk"
+  - title: "Accenture"
+    url: "https://www.accenture.com/nl-en"
 
 aliases:
   - /OjlDev

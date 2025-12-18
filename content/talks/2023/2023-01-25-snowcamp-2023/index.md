@@ -1,9 +1,7 @@
 ---
 title: "Indexer ses documents bureautique avec la suite Elastic et FSCrawler"
-description: ""
 conference: 
   name: "Snowcamp 2023"
-  url: ""
   city: "Grenoble"
   country: "France"
   country_code: "fr"
@@ -44,26 +42,13 @@ x:
     id: "1618564206521110529"
 
 links:
-  - title: "elastic/enterprise-search-network-drives-connector"
-    url: "https://github.com/elastic/enterprise-search-network-drives-connector"
-  - title: "dadoonet/fscrawler"
-    url: "https://github.com/dadoonet/fscrawler/issues/857"
-  - title: "dadoonet/fscrawler"
-    url: "https://github.com/dadoonet/fscrawler/issues/1114"
-  - title: "dadoonet/fscrawler"
-    url: "https://github.com/dadoonet/fscrawler/issues/377"
-  - title: "dadoonet/fscrawler"
-    url: "https://github.com/dadoonet/fscrawler/issues/264"
-  - title: "dadoonet/fscrawler"
-    url: "https://github.com/dadoonet/fscrawler/issues/682"
-  - title: "dadoonet/fscrawler"
-    url: "https://github.com/dadoonet/fscrawler/issues/1549"
-  - title: "dadoonet/fscrawler"
-    url: "https://github.com/dadoonet/fscrawler/issues/1247"
-  - title: "dadoonet/fscrawler"
-    url: "https://github.com/dadoonet/fscrawler"
-  - title: "dadoonet/demo-fscrawler"
+  - title: "Demo"
     url: "https://github.com/dadoonet/demo-fscrawler"
+    description: "Source code for the demos"
+  - title: "Event page"
+    url: "https://snowcamp.io/fr/"
+  - title: "FSCrawler"
+    url: "https://fscrawler.readthedocs.io/"
 
 aliases:
   - /UGtHAu

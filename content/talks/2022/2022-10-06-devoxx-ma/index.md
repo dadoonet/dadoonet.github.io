@@ -1,9 +1,7 @@
 ---
 title: "Indexer ses documents bureautique avec la suite Elastic et FSCrawler"
-description: ""
 conference: 
   name: "Devoxx MA"
-  url: ""
   city: "Agadir 80000"
   country: "Morocco"
   country_code: "ma"
@@ -28,10 +26,10 @@ cover: cover.jpg
 notist: "dadoonet/FtwXG1"
 
 links:
-  - title: "elastic/enterprise-search-network-drives-connector"
-    url: "https://github.com/elastic/enterprise-search-network-drives-connector"
-  - title: "dadoonet/fscrawler"
-    url: "https://github.com/dadoonet/fscrawler"
+  - title: "Event page"
+    url: "https://devoxx.ma/"
+  - title: "FSCrawler"
+    url: "https://fscrawler.readthedocs.io/"
 
 aliases:
   - /FtwXG1

@@ -1,9 +1,7 @@
 ---
 title: "Randomized testing: Gotta Catch ‘Em All"
-description: ""
 conference: 
   name: "Elastic EAH (private event)"
-  url: ""
   city: "Las Vegas"
   country: "United States"
   country_code: "us"
@@ -26,12 +24,6 @@ cover: cover.jpg
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/G8rCxd"
-
-links:
-  - title: "dadoonet/fscrawler"
-    url: "https://github.com/dadoonet/fscrawler/actions/runs/14357866984/job/40251514398#step:4:296"
-  - title: "gestalt-config/gestalt"
-    url: "https://github.com/gestalt-config/gestalt/issues/242"
 
 aliases:
   - /G8rCxd

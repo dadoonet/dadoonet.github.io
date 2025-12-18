@@ -1,9 +1,7 @@
 ---
 title: "Recherche avancée pour votre application “legacy”"
-description: ""
 conference: 
   name: "Meetup Live Coding avec Elasticsearch et Inside Group"
-  url: ""
   city: "Bordeaux"
   country: "France"
   country_code: "fr"
@@ -34,8 +32,19 @@ x:
     id: "1171179860737368064"
 
 links:
-  - title: "dadoonet/legacy-search"
+  - title: "Vidéo analogue"
+    url: "https://speaker.pilato.fr/AsJxO2/recherche-avancee-pour-votre-application-legacy"
+    description: "Voici une vidéo enregistrée quelques mois plus tôt avec le même type de contenu."
+  - title: "Meetup Sign Up page"
+    url: "https://www.meetup.com/fr-FR/Meetup-IT-Inside-Bordeaux/events/263861965/"
+  - title: "Code used for the demo"
     url: "https://github.com/dadoonet/legacy-search"
+    description: "All the live coding session will start from this repository 00-legacy branch. You can switch to other branches which are the major steps I’m performing while coding.
+Just follow the README in every branch to understand what you have to do.
+Compare one branch to the next one to see again the code I’m writing live."
+  - title: "Blog Post (2015)"
+    url: "http://david.pilato.fr/blog/2015/05/09/advanced-search-for-your-legacy-application/"
+    description: "This blog post describes the major steps I’m doing while on stage. It has not been updated though so it’s better to check out the real code on github."
 
 aliases:
   - /xeKuih

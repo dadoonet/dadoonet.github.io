@@ -1,9 +1,7 @@
 ---
 title: "Hunting (and stopping!) threats with Elastic Security"
-description: ""
 conference: 
   name: "DevopsDays Geneva"
-  url: ""
   city: "Geneva"
   country: "Switzerland"
   country_code: "ch"
@@ -32,6 +30,7 @@ links:
     url: "https://devopsdays.org/events/2022-geneva/"
   - title: "Elastic Security Solution"
     url: "https://www.elastic.co/security"
+
 aliases:
   - /cg0v1y
 ---

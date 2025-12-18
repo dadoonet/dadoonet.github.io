@@ -1,9 +1,7 @@
 ---
 title: "La recherche à l’ère de l’IA"
-description: ""
 conference: 
   name: "IA & Data Day"
-  url: ""
   city: "Strasbourg"
   country: "France"
   country_code: "fr"
@@ -34,9 +32,9 @@ x:
     id: "1767507163696484432"
 
 links:
-  - title: "erikbern/ann-benchmarks"
-    url: "https://github.com/erikbern/ann-benchmarks"
-  - title: "dadoonet/music-search"
+  - title: "Page de l’évènement"
+    url: "https://dev.events/conferences/ia-and-data-day-strasbourg-a3ea8lsm"
+  - title: "Notebook demo Hummingsearch"
     url: "https://github.com/dadoonet/music-search"
 
 aliases:

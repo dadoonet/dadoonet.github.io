@@ -1,9 +1,7 @@
 ---
 title: "Indexing your office documents with Elastic stack and FSCrawler"
-description: ""
 conference: 
   name: "Software Architecture Summit"
-  url: ""
   city: "Bucharest"
   country: "RO"
   country_code: "ro"
@@ -40,12 +38,10 @@ x:
     id: "1543972927116296194"
 
 links:
-  - title: "spinscale/elasticsearch-ingest-langdetect)"
-    url: "https://github.com/spinscale/elasticsearch-ingest-langdetect)"
-  - title: "elastic/enterprise-search-network-drives-connector"
-    url: "https://github.com/elastic/enterprise-search-network-drives-connector"
-  - title: "dadoonet/fscrawler"
-    url: "https://github.com/dadoonet/fscrawler"
+  - title: "Event page"
+    url: "https://www.techweek.ro/software-architecture-summit"
+  - title: "FSCrawler"
+    url: "https://fscrawler.readthedocs.io/"
 
 aliases:
   - /64HZzX

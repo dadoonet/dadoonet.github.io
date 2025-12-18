@@ -1,9 +1,7 @@
 ---
 title: "Elasticsearch"
-description: ""
 conference: 
   name: "BBL HélioParc"
-  url: ""
   city: "Pau"
   country: "France"
   country_code: "fr"
@@ -40,10 +38,16 @@ x:
     id: "1115549903583891456"
 
 links:
+  - title: "Page Meetup.com"
+    url: "https://www.meetup.com/fr-FR/ElasticFR/events/260241960/"
+  - title: "Une ancienne vidéo (2015) sur le même sujet"
+    url: "https://vimeo.com/129781775"
   - title: "One Million Tweet Map demo"
-    url: "https://onemilliontweetmap.com"
-  - title: "Demo script"
+    url: "https://onemilliontweetmap.com/"
+    description: "This demo web site is used during the session"
+  - title: "Kibana Demo Script"
     url: "https://gist.github.com/dadoonet/f911291c4dd19b0802031db3064c648f"
+    description: "This is the Kibana script I’m starting from when doing the talk"
 
 aliases:
   - /YYb9Vd

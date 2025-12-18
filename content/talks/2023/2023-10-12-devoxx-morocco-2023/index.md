@@ -1,9 +1,7 @@
 ---
 title: "La recherche à l’ère de l’IA"
-description: ""
 conference: 
   name: "Devoxx Morocco 2023"
-  url: ""
   city: "Agadir 80000"
   country: "Morocco"
   country_code: "ma"
@@ -36,8 +34,14 @@ x:
     id: "1712470259595379174"
 
 links:
-  - title: "dadoonet/music-search"
-    url: "https://github.com/dadoonet/music-search"
+  - title: "Conference page"
+    url: "https://devoxx.ma/talk/?id=1608"
+  - title: "Blog: ChatGPT and Elasticsearch: OpenAI meets private data"
+    url: "https://www.elastic.co/fr/blog/chatgpt-elasticsearch-openai-meets-private-data"
+    description: "Combine Elasticsearch’s search relevance with OpenAI’s ChatGPT’s question-answering capabilities to query your data. In this blog, you’ll learn how to connect ChatGPT to proprietary data stores using Elasticsearch and build question/answer capabilities for your data."
+  - title: "Demo: Humming search"
+    url: "https://github.com/dadoonet/music-search/"
+    description: "This demo shows how you can search for similar wav files, using another wav file as an input."
 
 aliases:
   - /r3NAek

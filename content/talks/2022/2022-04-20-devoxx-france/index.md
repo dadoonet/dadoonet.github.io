@@ -1,9 +1,7 @@
 ---
 title: "Ajouter de A à Z une barre de recherche dans son application"
-description: ""
 conference: 
   name: "Devoxx France"
-  url: ""
   city: "Paris"
   country: "France"
   country_code: "fr"
@@ -28,7 +26,9 @@ cover: cover.jpg
 notist: "dadoonet/O2ZJHA"
 
 links:
-  - title: "GoogleCloudPlatform/serverless-photosharing-workshop"
+  - title: "Devoxx France"
+    url: "https://cfp.devoxx.fr/2022/talk/AEC-5516/Ajouter_de_A_a_Z_une_barre_de_recherche_dans_son_application"
+  - title: "GitHub Repository"
     url: "https://github.com/GoogleCloudPlatform/serverless-photosharing-workshop"
 
 aliases:

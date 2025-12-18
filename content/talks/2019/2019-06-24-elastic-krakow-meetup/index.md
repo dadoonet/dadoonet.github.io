@@ -1,9 +1,7 @@
 ---
 title: "Enriching postal addresses with Elastic stack"
-description: ""
 conference: 
   name: "Elastic Krakow Meetup"
-  url: ""
   city: "Kraków"
   country: "Poland"
   country_code: "pl"
@@ -32,8 +30,16 @@ x:
     id: "1139124121546235904"
 
 links:
-  - title: "dadoonet/bano-elastic"
-    url: "https://github.com/dadoonet/bano-elastic"
+  - title: "Elastic Krakow User Group"
+    url: "https://www.meetup.com/fr-FR/Elastic-Krakow/events/262282793/"
+  - title: "Blog post part 1"
+    url: "https://www.elastic.co/blog/enriching-your-postal-addresses-with-the-elastic-stack-part-1"
+  - title: "Blog post part 2"
+    url: "https://www.elastic.co/blog/enriching-your-postal-addresses-with-the-elastic-stack-part-1"
+  - title: "Blog post part 3"
+    url: "https://www.elastic.co/blog/enriching-your-postal-addresses-with-the-elastic-stack-part-3"
+  - title: "Repository used for the demo"
+    url: "https://github.com/dadoonet/bano-elastic/"
 
 aliases:
   - /im8Q3z

@@ -1,9 +1,7 @@
 ---
 title: "Indexer ses documents bureautique avec la suite Elastic et FSCrawler"
-description: ""
 conference: 
   name: "Capitole du Libre"
-  url: ""
   city: "Toulouse"
   country: "France"
   country_code: "fr"
@@ -28,10 +26,10 @@ cover: cover.jpg
 notist: "dadoonet/hmRw07"
 
 links:
-  - title: "elastic/enterprise-search-network-drives-connector"
-    url: "https://github.com/elastic/enterprise-search-network-drives-connector"
-  - title: "dadoonet/fscrawler"
-    url: "https://github.com/dadoonet/fscrawler"
+  - title: "Event page"
+    url: "https://cfp.capitoledulibre.org/cdl-2022/talk/SAGLQM/"
+  - title: "FSCrawler"
+    url: "https://fscrawler.readthedocs.io/"
 
 aliases:
   - /hmRw07

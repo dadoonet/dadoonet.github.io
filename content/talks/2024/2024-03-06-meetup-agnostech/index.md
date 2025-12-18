@@ -1,9 +1,7 @@
 ---
 title: "La recherche à l’ère de l’IA"
-description: ""
 conference: 
   name: "Meetup AgnosTech"
-  url: ""
   city: "Pau"
   country: "France"
   country_code: "fr"
@@ -28,9 +26,9 @@ cover: cover.jpg
 notist: "dadoonet/lPHBOh"
 
 links:
-  - title: "erikbern/ann-benchmarks"
-    url: "https://github.com/erikbern/ann-benchmarks"
-  - title: "dadoonet/music-search"
+  - title: "Page de l’évènement"
+    url: "https://www.meetup.com/agnostech-pau/events/299096165"
+  - title: "Notebook demo Hummingsearch"
     url: "https://github.com/dadoonet/music-search"
 
 aliases:

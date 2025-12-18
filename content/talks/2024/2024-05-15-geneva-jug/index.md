@@ -1,9 +1,7 @@
 ---
 title: "La recherche à l’ère de l’IA"
-description: ""
 conference: 
   name: "Geneva JUG"
-  url: ""
   city: "Geneva"
   country: "Switzerland"
   country_code: "ch"
@@ -38,9 +36,9 @@ x:
     id: "1790871185216929808"
 
 links:
-  - title: "erikbern/ann-benchmarks"
-    url: "https://github.com/erikbern/ann-benchmarks"
-  - title: "dadoonet/music-search"
+  - title: "Page de l’évènement"
+    url: "https://www.meetup.com/fr-FR/alpesjug/events/299609510/"
+  - title: "Notebook demo Hummingsearch"
     url: "https://github.com/dadoonet/music-search"
 
 aliases:

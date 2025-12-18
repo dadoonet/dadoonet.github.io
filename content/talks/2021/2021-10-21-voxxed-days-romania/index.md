@@ -1,9 +1,7 @@
 ---
 title: "Hunting (and stopping!) threats with Elastic Security"
-description: ""
 conference: 
   name: "Voxxed Days Romania"
-  url: ""
   city: "Bucharest"
   country: "RO"
   country_code: "ro"
@@ -27,12 +25,6 @@ cover: cover.png
 #youtube: ""
 notist: "dadoonet/zWe0zu"
 
-links:
-  - title: "Voxxed Days Romania"
-    url: "https://romania.voxxeddays.com/talk/?id=5852"
-  - title: "Elastic Security Solution"
-    url: "https://www.elastic.co/security"
-
 x:
   - user: "dadoonet"
     id: "1450094653022289928"
@@ -40,6 +32,13 @@ x:
     id: "1450464014929178641"
   - user: "dadoonet"
     id: "1451520492104523779"
+
+links:
+  - title: "Voxxed Days Romania"
+    url: "https://romania.voxxeddays.com/talk/?id=5852"
+  - title: "Elastic Security Solution"
+    url: "https://www.elastic.co/security"
+
 aliases:
   - /zWe0zu
 ---

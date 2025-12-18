@@ -1,9 +1,7 @@
 ---
 title: "Search, Observability, Security: a new era"
-description: ""
 conference: 
   name: "Azure Day with Kubernetes"
-  url: ""
   city: "Paris"
   country: "France"
   country_code: "fr"
@@ -34,7 +32,9 @@ x:
     id: "1770114563440103875"
 
 links:
-  - title: "dadoonet/music-search"
+  - title: "Event page"
+    url: "https://azureday.eventbuilder.com/event/81082"
+  - title: "Notebook demo Hummingsearch"
     url: "https://github.com/dadoonet/music-search"
 
 aliases:

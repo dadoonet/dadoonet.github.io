@@ -1,9 +1,7 @@
 ---
 title: "Identifier les menaces avec Elastic SIEM"
-description: ""
 conference: 
   name: "Meetup Big Data and Machine Learning Lille"
-  url: ""
   city: "Lille"
   country: "France"
   country_code: "fr"
@@ -36,15 +34,10 @@ x:
     id: "1220645207928078337"
 
 links:
-  - title: "GitHub Repository"
-    url: "https://github.com/linux-audit"
-  - title: "elastic/ecs"
-    url: "https://github.com/elastic/ecs"
-  - title: "GitHub Repository"
-    url: "https://github.com/xeraa"
-  - title: "linux-audit/audit-userspace"
+  - title: "AuditD Rules"
     url: "https://github.com/linux-audit/audit-userspace/tree/master/rules"
-  - title: "xeraa/auditbeat-in-action"
+    description: "Templates for common auditD rules"
+  - title: "Demo repository"
     url: "https://github.com/xeraa/auditbeat-in-action"
 
 aliases:

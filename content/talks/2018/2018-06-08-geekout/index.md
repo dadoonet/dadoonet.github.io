@@ -1,9 +1,7 @@
 ---
 title: "Advanced (elastic)search for your legacy application"
-description: ""
 conference: 
   name: "GeekOut"
-  url: ""
   city: "Tallinn"
   country: "EE"
   country_code: "ee"

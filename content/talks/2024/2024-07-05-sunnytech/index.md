@@ -1,9 +1,7 @@
 ---
 title: "La recherche à l’ère de l’IA"
-description: ""
 conference: 
   name: "SunnyTech"
-  url: ""
   city: "Montpellier"
   country: "France"
   country_code: "fr"
@@ -34,7 +32,9 @@ x:
     id: "1809193818660778077"
 
 links:
-  - title: "dadoonet/music-search"
+  - title: "Page de l’évènement"
+    url: "https://sunny-tech.io/"
+  - title: "Notebook demo Hummingsearch"
     url: "https://github.com/dadoonet/music-search"
 
 aliases:

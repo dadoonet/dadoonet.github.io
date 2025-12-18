@@ -114,8 +114,9 @@
           <a href="{{ .url }}" target="_blank" rel="noopener noreferrer" class="card bg-base-200 hover:bg-base-300 transition-colors no-underline">
             <div class="card-body p-2">
               <h3 class="card-title m-0">{{ .title }} <ion-icon name="open-outline" class="text-sm"></ion-icon></h3>
-              {{- with .details -}}
-              <p class="text-base-content/70 m-0">{{ . }}</p>
+              {{- $desc := or .description .details -}}
+              {{- with $desc -}}
+              <blockquote class="m-0 py-1 text-sm">{{ . | emojify | markdownify }}</blockquote>
               {{- end -}}
             </div>
           </a>

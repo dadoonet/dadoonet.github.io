@@ -1,9 +1,7 @@
 ---
 title: "La recherche à l’ère de l’IA"
-description: ""
 conference: 
   name: "DevQuest"
-  url: "https://www.devquest.fr/"
   city: "Niort"
   country: "France"
   country_code: "fr"
@@ -28,8 +26,13 @@ youtube: "R_4JmvrIaX0"
 notist: "dadoonet/rlO6SH"
 
 links:
-  - title: "dadoonet/music-search"
+  - title: "Page de l’évènement"
+    url: "https://www.devquest.fr/sessions/la-recherche-a-lere-de-lia"
+  - title: "Notebook demo Hummingsearch"
     url: "https://github.com/dadoonet/music-search"
+  - title: "Podcast DJ"
+    url: "https://djdadoo.pilato.fr/"
+    description: "Envie d’écouter des sets en mixant ?"
 
 aliases:
   - /rlO6SH

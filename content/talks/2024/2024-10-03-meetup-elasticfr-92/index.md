@@ -1,9 +1,7 @@
 ---
 title: "Elasticsearch Query Language: ES|QL"
-description: ""
 conference: 
   name: "Meetup ElasticFR #92"
-  url: "https://www.meetup.com/elasticfr/events/303048962"
   city: "Paris"
   country: "France"
   country_code: "fr"
@@ -40,10 +38,20 @@ x:
     id: "1843207134567440484"
 
 links:
-  - title: "dadoonet/esql-demo"
+  - title: "Event page"
+    url: "https://www.meetup.com/elasticfr/events/303048962"
+  - title: "Demo code"
     url: "https://github.com/dadoonet/esql-demo"
-  - title: "dadoonet/elasticsearch-java-client-demo"
+    description: "The code played during the demo"
+  - title: "Playground page"
+    url: "https://esql.demo.elastic.co"
+    description: "If you want to try ES|QL, there’s an open instance with some data."
+  - title: "ES|QL Guide"
+    url: "https://www.elastic.co/guide/en/elasticsearch/reference/current/esql.html"
+    description: "The official guide"
+  - title: "Java Demo code"
     url: "https://github.com/dadoonet/elasticsearch-java-client-demo"
+    description: "The Java demo for ES|QL"
 
 aliases:
   - /wlm9Cb

@@ -1,9 +1,7 @@
 ---
 title: "Elasticsearch"
-description: ""
 conference: 
   name: "BBL Crédit Agricole Technologies et Services (Private Event)"
-  url: ""
   city: "Montpellier"
   country: "France"
   country_code: "fr"
@@ -39,8 +37,8 @@ x:
 
 links:
   - title: "One Million Tweet Map demo project"
-    url: "https://onemilliontweetmap.com"
-  - title: "Demo script"
+    url: "https://onemilliontweetmap.com/"
+  - title: "Demo script for BBL"
     url: "https://gist.github.com/dadoonet/f911291c4dd19b0802031db3064c648f"
 
 aliases:

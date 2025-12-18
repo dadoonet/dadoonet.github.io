@@ -1,9 +1,7 @@
 ---
 title: "L’art du DeeJaying par la pratique"
-description: ""
 conference: 
   name: "Camping des Speakers"
-  url: ""
   city: "Baden"
   country: "France"
   country_code: "fr"
@@ -26,14 +24,6 @@ cover: cover.jpg
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/qZrOqw"
-
-links:
-  - title: "Conference"
-    url: "https://camping-speakers.fr/sessions/l_art_du_DeeJaying_par_la_pratique/"
-  - title: "DJ David Pilato Podcast"
-    url: "https://podcasts.apple.com/fr/podcast/david-pilato-mixes/id959495351"
-  - title: "Set Camping Des Speakers"
-    url: "https://podcasts.apple.com/fr/podcast/dj-dadoo-net-mixes/id505824965?i=1000617303592"
 
 x:
   - user: "dadoonet"
@@ -62,6 +52,15 @@ x:
     id: "1669791464316870660"
   - user: "dadoonet"
     id: "1669788001876975625"
+
+links:
+  - title: "Conference"
+    url: "https://camping-speakers.fr/sessions/l_art_du_DeeJaying_par_la_pratique/"
+  - title: "DJ David Pilato Podcast"
+    url: "https://podcasts.apple.com/fr/podcast/david-pilato-mixes/id959495351"
+  - title: "Set Camping Des Speakers"
+    url: "https://podcasts.apple.com/fr/podcast/dj-dadoo-net-mixes/id505824965?i=1000617303592"
+
 aliases:
   - /qZrOqw
 ---

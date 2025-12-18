@@ -1,9 +1,7 @@
 ---
 title: "Elasticsearch Query Language: ES|QL"
-description: ""
 conference: 
   name: "BBL Fortis (private event)"
-  url: ""
   city: "Brussels"
   country: "Belgium"
   country_code: "be"
@@ -28,10 +26,20 @@ cover: cover.jpg
 notist: "dadoonet/PhbmgJ"
 
 links:
-  - title: "dadoonet/esql-demo"
+  - title: "Fortis"
+    url: "https://www.bnpparibasfortis.be/"
+  - title: "Demo code"
     url: "https://github.com/dadoonet/esql-demo"
-  - title: "dadoonet/elasticsearch-java-client-demo"
+    description: "The code played during the demo"
+  - title: "Playground page"
+    url: "https://esql.demo.elastic.co"
+    description: "If you want to try ES|QL, there’s an open instance with some data."
+  - title: "ES|QL Guide"
+    url: "https://www.elastic.co/guide/en/elasticsearch/reference/current/esql.html"
+    description: "The official guide"
+  - title: "Java Demo code"
     url: "https://github.com/dadoonet/elasticsearch-java-client-demo"
+    description: "The Java demo for ES|QL"
 
 aliases:
   - /PhbmgJ

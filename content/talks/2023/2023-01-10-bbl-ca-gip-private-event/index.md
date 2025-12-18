@@ -1,9 +1,7 @@
 ---
 title: "Elasticsearch"
-description: ""
 conference: 
   name: "BBL CA-GIP (Private event)"
-  url: ""
   city: "Guyancourt"
   country: "France"
   country_code: "fr"
@@ -36,8 +34,13 @@ x:
     id: "1612803234267029504"
 
 links:
+  - title: "Credit Agricole"
+    url: "https://www.credit-agricole.com/"
   - title: "Kibana Demo Script"
     url: "https://gist.github.com/dadoonet/f911291c4dd19b0802031db3064c648f"
+    description: "This is the Kibana script I’m starting from when doing the talk"
+  - title: "A video (in french) on the same topic"
+    url: "https://youtu.be/7yr2CC_ZlHs"
 
 aliases:
   - /gVRYgY

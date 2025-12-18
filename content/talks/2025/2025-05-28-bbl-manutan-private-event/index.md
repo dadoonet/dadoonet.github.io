@@ -1,9 +1,7 @@
 ---
 title: "Elasticsearch"
-description: ""
 conference: 
   name: "BBL Manutan (private event)"
-  url: ""
   city: "Gonesse"
   country: "France"
   country_code: "fr"
@@ -28,12 +26,15 @@ cover: cover.png
 notist: "dadoonet/1JTRYt"
 
 links:
-  - title: "dadoonet/music-search"
-    url: "https://github.com/dadoonet/music-search"
-  - title: "dadoonet/injector"
+  - title: "Manutan"
+    url: "https://www.manutan.fr/"
+  - title: "Person dataset injector"
     url: "https://github.com/dadoonet/injector"
   - title: "Dev Console demo"
     url: "https://gist.github.com/dadoonet/f911291c4dd19b0802031db3064c648f"
+    description: "You can copy/paste this in the Kibana Dev Console."
+  - title: "Music Search demo"
+    url: "https://github.com/dadoonet/music-search"
 
 aliases:
   - /1JTRYt

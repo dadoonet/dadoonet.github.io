@@ -1,9 +1,7 @@
 ---
 title: "do MORE with stateLESS Elasticsearch"
-description: ""
 conference: 
   name: "JUG Summer Camp"
-  url: "https://www.jugsummercamp.org/"
   city: "La Rochelle"
   country: "France"
   country_code: "fr"
@@ -34,6 +32,7 @@ links:
     url: "https://www.elastic.co/docs/deploy-manage/deploy/elastic-cloud/serverless"
   - title: "Elasticsearch Serverless API"
     url: "https://www.elastic.co/docs/api/doc/elasticsearch-serverless/"
+
 aliases:
   - /WA1Ort
 ---

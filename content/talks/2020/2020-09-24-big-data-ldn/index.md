@@ -1,9 +1,7 @@
 ---
 title: "Enriching postal addresses with Elastic stack"
-description: ""
 conference: 
   name: "Big Data LDN"
-  url: ""
   city: "London"
   country: "United Kingdom"
   country_code: "gb"
@@ -28,8 +26,17 @@ cover: cover.png
 notist: "dadoonet/PA2kUs"
 
 links:
-  - title: "dadoonet/bano-elastic"
-    url: "https://github.com/dadoonet/bano-elastic"
+  - title: "Big Data London"
+    url: "https://bigdataldn.com/speakers/"
+    description: "Search for PILATO in the search box :)"
+  - title: "Blog post part 1"
+    url: "https://www.elastic.co/blog/enriching-your-postal-addresses-with-the-elastic-stack-part-1"
+  - title: "Blog post part 2"
+    url: "https://www.elastic.co/blog/enriching-your-postal-addresses-with-the-elastic-stack-part-1"
+  - title: "Blog post part 3"
+    url: "https://www.elastic.co/blog/enriching-your-postal-addresses-with-the-elastic-stack-part-3"
+  - title: "Repository used for the demo"
+    url: "https://github.com/dadoonet/bano-elastic/"
 
 aliases:
   - /PA2kUs

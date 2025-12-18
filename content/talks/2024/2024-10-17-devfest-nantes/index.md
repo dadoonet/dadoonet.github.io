@@ -1,9 +1,7 @@
 ---
 title: "La météorite GPT annonce t’elle la disparition des dinosaures “moteur de recherche” ?"
-description: ""
 conference: 
   name: "DevFest Nantes"
-  url: ""
   city: "Nantes"
   country: "France"
   country_code: "fr"
@@ -38,10 +36,14 @@ x:
     id: "1843247405610963165"
 
 links:
-  - title: "dadoonet/music-search"
+  - title: "Page de l’évènement"
+    url: "https://devfest2024.gdgnantes.com/"
+  - title: "Notebook demo Hummingsearch"
     url: "https://github.com/dadoonet/music-search"
-  - title: "elastic/crawler"
+  - title: "Elastic Open Web Crawler"
     url: "https://github.com/elastic/crawler"
+  - title: "Elastic Playground"
+    url: "https://www.elastic.co/guide/en/kibana/current/playground.html"
 
 aliases:
   - /mQrRCI

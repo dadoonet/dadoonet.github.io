@@ -1,9 +1,7 @@
 ---
 title: "🎹🎻🎸 Et si nous cherchions des morceaux de musique 🎼🎶 ?"
-description: ""
 conference: 
   name: "Montreal JUG"
-  url: ""
   city: "Montreal"
   country: "Canada"
   country_code: "ca"
@@ -34,8 +32,18 @@ x:
     id: "1759599463780294975"
 
 links:
-  - title: "dadoonet/music-search"
+  - title: "Event page"
+    url: "https://www.meetup.com/montreal-jug/events/298437494"
+  - title: "Notebook demo Hummingsearch"
     url: "https://github.com/dadoonet/music-search"
+  - title: "Une vidéo sur le même sujet"
+    url: "https://youtu.be/h8XIj55jPPY"
+  - title: "A longer version in English"
+    url: "https://youtu.be/RbdIdSnXbA4"
+  - title: "Meetup Elastic Montréal"
+    url: "https://meetu.ps/c/1bLhz/5BwLl/a"
+  - title: "Meetup Elastic Montréal"
+    url: "https://meetu.ps/c/1bLhz/5BwLl/a"
 
 aliases:
   - /95YNWI

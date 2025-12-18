@@ -1,9 +1,7 @@
 ---
 title: "Enrichir ses adresses postales avec la suite Elastic"
-description: ""
 conference: 
   name: "Meetup Montreal Elasticsearch"
-  url: ""
   city: "Montreal"
   country: "Canada"
   country_code: "ca"
@@ -34,8 +32,16 @@ x:
     id: "1230829244646903808"
 
 links:
-  - title: "dadoonet/bano-elastic"
-    url: "https://github.com/dadoonet/bano-elastic"
+  - title: "Meetup Elasticsearch-Montreal"
+    url: "https://www.meetup.com/fr-FR/Elasticsearch-Montreal/events/268675767/"
+  - title: "Blog post part 1"
+    url: "https://www.elastic.co/blog/enriching-your-postal-addresses-with-the-elastic-stack-part-1"
+  - title: "Blog post part 2"
+    url: "https://www.elastic.co/blog/enriching-your-postal-addresses-with-the-elastic-stack-part-1"
+  - title: "Blog post part 3"
+    url: "https://www.elastic.co/blog/enriching-your-postal-addresses-with-the-elastic-stack-part-3"
+  - title: "Repository used for the demo"
+    url: "https://github.com/dadoonet/bano-elastic/"
 
 aliases:
   - /W6DrOR

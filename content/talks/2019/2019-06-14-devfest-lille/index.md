@@ -1,9 +1,7 @@
 ---
 title: "Testcontainers pour de vrais tests d’intégration d’Elasticsearch"
-description: ""
 conference: 
   name: "Devfest Lille"
-  url: ""
   city: "Lille"
   country: "France"
   country_code: "fr"
@@ -36,10 +34,12 @@ x:
     id: "1139544445039370246"
 
 links:
-  - title: "dadoonet/elasticsearch-integration-tests"
+  - title: "elasticsearch-integration-tests demo repository"
     url: "https://github.com/dadoonet/elasticsearch-integration-tests"
-  - title: "testcontainers/testcontainers-java"
+  - title: "Elasticsearch Module for TestContainers"
     url: "https://github.com/testcontainers/testcontainers-java/tree/master/modules/elasticsearch"
+  - title: "Elasticsearch TestContainers module documentation"
+    url: "https://www.testcontainers.org/modules/elasticsearch/"
 
 aliases:
   - /L5rDwO

@@ -1,9 +1,7 @@
 ---
 title: "Indexer ses documents bureautique avec la suite Elastic et FSCrawler"
-description: ""
 conference: 
   name: "Voxxed Days Luxembourg"
-  url: ""
   city: "Luxembourg"
   country: "Luxembourg"
   country_code: "lu"
@@ -36,12 +34,10 @@ x:
     id: "1539210577121255425"
 
 links:
-  - title: "spinscale/elasticsearch-ingest-langdetect)"
-    url: "https://github.com/spinscale/elasticsearch-ingest-langdetect)"
-  - title: "elastic/enterprise-search-network-drives-connector"
-    url: "https://github.com/elastic/enterprise-search-network-drives-connector"
-  - title: "dadoonet/fscrawler"
-    url: "https://github.com/dadoonet/fscrawler"
+  - title: "Event page"
+    url: "https://luxembourg.voxxeddays.com/"
+  - title: "FSCrawler"
+    url: "https://fscrawler.readthedocs.io/"
 
 aliases:
   - /MKrtPl

@@ -1,9 +1,7 @@
 ---
 title: "Monitor Your Java Applications with the Elastic Stack: Logs, Metrics, Pings, and Traces"
-description: ""
 conference: 
   name: "Voxxed Days Singapore"
-  url: ""
   city: "Singapore"
   country: "Singapore"
   country_code: "sg"
@@ -28,7 +26,7 @@ youtube: "fTxabQd83TM"
 notist: "dadoonet/XHamC4"
 
 links:
-  - title: "xeraa/microservice-monitoring"
+  - title: "Github demo repository"
     url: "https://github.com/xeraa/microservice-monitoring"
 
 aliases:

@@ -1,9 +1,7 @@
 ---
 title: "Managing your black Friday logs"
-description: ""
 conference: 
   name: "CloudConf.IT"
-  url: ""
   city: "Turin"
   country: "Italy"
   country_code: "it"

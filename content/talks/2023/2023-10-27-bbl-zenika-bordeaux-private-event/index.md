@@ -1,9 +1,7 @@
 ---
 title: "Elasticsearch"
-description: ""
 conference: 
   name: "BBL Zenika Bordeaux (Private Event)"
-  url: ""
   city: "Bordeaux"
   country: "France"
   country_code: "fr"
@@ -32,8 +30,11 @@ x:
     id: "1717846511076188651"
 
 links:
+  - title: "Zenika"
+    url: "https://www.zenika.fr"
   - title: "Kibana Demo Script"
     url: "https://gist.github.com/dadoonet/f911291c4dd19b0802031db3064c648f"
+    description: "This is the Kibana script I’m starting from when doing the talk"
 
 aliases:
   - /vMyojC

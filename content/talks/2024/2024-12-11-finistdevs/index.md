@@ -1,9 +1,7 @@
 ---
 title: "La recherche à l’ère de l’IA"
-description: ""
 conference: 
   name: "FinistDevs"
-  url: ""
   city: "Brest"
   country: "France"
   country_code: "fr"
@@ -34,7 +32,9 @@ x:
     id: "1866958763883630617"
 
 links:
-  - title: "dadoonet/music-search"
+  - title: "Page de l’évènement"
+    url: "https://finistdevs.org/"
+  - title: "Notebook demo Hummingsearch"
     url: "https://github.com/dadoonet/music-search"
 
 aliases:

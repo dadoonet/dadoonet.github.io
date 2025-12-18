@@ -1,9 +1,7 @@
 ---
 title: "Elasticsearch"
-description: ""
 conference: 
   name: "Duchess Lunch"
-  url: ""
   city: "Paris"
   country: "France"
   country_code: "fr"
@@ -38,8 +36,13 @@ x:
     id: "1100349635305050112"
 
 links:
-  - title: "Demo script"
+  - title: "Duchess-France-Meetup"
+    url: "https://www.meetup.com/Duchess-France-Meetup/events/259185974/"
+  - title: "Une ancienne vidéo (2015) sur le même sujet"
+    url: "https://vimeo.com/129781775"
+  - title: "Kibana Demo Script"
     url: "https://gist.github.com/dadoonet/f911291c4dd19b0802031db3064c648f"
+    description: "This is the Kibana script I’m starting from when doing the talk"
 
 aliases:
   - /EKXWMo

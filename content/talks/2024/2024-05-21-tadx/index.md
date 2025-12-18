@@ -1,9 +1,7 @@
 ---
 title: "Elasticsearch Query Language: ES|QL"
-description: ""
 conference: 
   name: "TADx"
-  url: ""
   city: "Tours"
   country: "France"
   country_code: "fr"
@@ -48,12 +46,17 @@ x:
     id: "1792820717891011049"
 
 links:
-  - title: "elastic/elasticsearch"
-    url: "https://github.com/elastic/elasticsearch/commit/8a1022e1c75fd2b99fa77a7ec548b0b2979b4662"
-  - title: "dadoonet/esql-demo"
+  - title: "Event page"
+    url: "https://www.tadx.fr/2024-05-21-47-eme-event"
+  - title: "Demo code"
     url: "https://github.com/dadoonet/esql-demo"
-  - title: "dadoonet/elasticsearch-java-client-demo"
-    url: "https://github.com/dadoonet/elasticsearch-java-client-demo"
+    description: "The code played during the demo"
+  - title: "Playground page"
+    url: "https://esql.demo.elastic.co"
+    description: "If you want to try ES|QL, there’s an open instance with some data."
+  - title: "ES|QL Guide"
+    url: "https://www.elastic.co/guide/en/elasticsearch/reference/current/esql.html"
+    description: "The official guide"
 
 aliases:
   - /snE5A3

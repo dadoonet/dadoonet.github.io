@@ -1,9 +1,7 @@
 ---
 title: "🎹🎻🎸 Searching for similar music tracks 🎼🎶"
-description: ""
 conference: 
   name: "Elastic Sofia Meetup"
-  url: ""
   city: "Sofia"
   country: "Bulgaria"
   country_code: "bg"
@@ -32,8 +30,10 @@ x:
     id: "1795528472749838482"
 
 links:
-  - title: "dadoonet/music-search"
+  - title: "Demo code"
     url: "https://github.com/dadoonet/music-search"
+  - title: "Event page"
+    url: "https://www.meetup.com/elasticsearch-bulgaria-user-group/events/299653357/"
 
 aliases:
   - /D8f9kp

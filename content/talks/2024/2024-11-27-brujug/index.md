@@ -1,9 +1,7 @@
 ---
 title: "Search: a new era"
-description: ""
 conference: 
   name: "BruJUG"
-  url: ""
   city: "Brussels"
   country: "Belgium"
   country_code: "be"
@@ -28,7 +26,9 @@ youtube: "mjC2aACw4xw"
 notist: "dadoonet/afovUS"
 
 links:
-  - title: "dadoonet/music-search"
+  - title: "Event Page"
+    url: "https://www.meetup.com/brujug/events/304382685/"
+  - title: "Music Search demo code"
     url: "https://github.com/dadoonet/music-search"
 
 aliases:

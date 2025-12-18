@@ -1,9 +1,7 @@
 ---
 title: "Elasticsearch"
-description: ""
 conference: 
   name: "BBL leboncoin (Private Event)"
-  url: ""
   city: "Paris"
   country: "France"
   country_code: "fr"
@@ -36,10 +34,15 @@ x:
     id: "1569700766981525517"
 
 links:
+  - title: "leboncoin"
+    url: "https://www.leboncoin.fr"
   - title: "Kibana Demo Script"
     url: "https://gist.github.com/dadoonet/f911291c4dd19b0802031db3064c648f"
+    description: "This is the Kibana script I’m starting from when doing the talk"
   - title: "One Million Tweet Map demo"
-    url: "https://onemilliontweetmap.com"
+    url: "https://onemilliontweetmap.com/"
+  - title: "A video (in french) on the same topic"
+    url: "https://youtu.be/7yr2CC_ZlHs"
 
 aliases:
   - /1GUvVD

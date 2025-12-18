@@ -1,9 +1,7 @@
 ---
 title: "Enriching postal addresses with Elastic stack"
-description: ""
 conference: 
   name: "Big Data Conference Europe"
-  url: ""
   city: "Vilnius"
   country: "LT"
   country_code: "lt"
@@ -34,8 +32,16 @@ x:
     id: "1727277492808085806"
 
 links:
-  - title: "dadoonet/bano-elastic"
-    url: "https://github.com/dadoonet/bano-elastic"
+  - title: "Big Data Conference Europe"
+    url: "https://events.pinetool.ai/3079/#sessions/101080"
+  - title: "Blog post part 1"
+    url: "https://www.elastic.co/blog/enriching-your-postal-addresses-with-the-elastic-stack-part-1"
+  - title: "Blog post part 2"
+    url: "https://www.elastic.co/blog/enriching-your-postal-addresses-with-the-elastic-stack-part-1"
+  - title: "Blog post part 3"
+    url: "https://www.elastic.co/blog/enriching-your-postal-addresses-with-the-elastic-stack-part-3"
+  - title: "Repository used for the demo"
+    url: "https://github.com/dadoonet/bano-elastic/"
 
 aliases:
   - /TN5yX9

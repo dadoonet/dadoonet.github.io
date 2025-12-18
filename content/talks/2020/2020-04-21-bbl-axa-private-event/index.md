@@ -1,9 +1,7 @@
 ---
 title: "Elasticsearch"
-description: ""
 conference: 
   name: "BBL AXA (Private Event)"
-  url: ""
   city: "Nanterre"
   country: "France"
   country_code: "fr"
@@ -34,7 +32,7 @@ x:
     id: "1252520227319025664"
 
 links:
-  - title: "Demo script"
+  - title: "Demo script for BBL"
     url: "https://gist.github.com/dadoonet/f911291c4dd19b0802031db3064c648f"
 
 aliases:

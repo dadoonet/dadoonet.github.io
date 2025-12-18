@@ -1,9 +1,7 @@
 ---
 title: "L’art du DeeJaying par la pratique"
-description: ""
 conference: 
   name: "Volcamp"
-  url: ""
   city: "Clermont-Ferrand"
   country: "France"
   country_code: "fr"
@@ -30,6 +28,8 @@ notist: "dadoonet/Ss00b2"
 links:
   - title: "Podcast DJ Elky"
     url: "https://podcasts.apple.com/fr/podcast/dj-elky-mixes/id959495351"
+    description: "Venez écouter mes derniers sets. Ambiance House, Reprises, Funk."
+
 aliases:
   - /Ss00b2
 ---

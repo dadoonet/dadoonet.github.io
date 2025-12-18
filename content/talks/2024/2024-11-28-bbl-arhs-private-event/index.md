@@ -1,9 +1,7 @@
 ---
 title: "Search: a new era"
-description: ""
 conference: 
   name: "BBL ARHS (private event)"
-  url: ""
   city: "Brussels"
   country: "Belgium"
   country_code: "be"
@@ -32,7 +30,9 @@ x:
     id: "1862255418023493771"
 
 links:
-  - title: "dadoonet/music-search"
+  - title: "Event Page"
+    url: "https://www.arhs-group.com/"
+  - title: "Music Search demo code"
     url: "https://github.com/dadoonet/music-search"
 
 aliases:

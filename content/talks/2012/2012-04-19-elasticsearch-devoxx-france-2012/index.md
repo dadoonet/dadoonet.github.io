@@ -1,9 +1,7 @@
 ---
 title: "Elasticsearch : moteur de recherche taillé pour le cloud"
-description: ""
 conference: 
   name: "Devoxx France 2012"
-  url: "https://devoxx.fr/"
   city: "Paris"
   country: "France"
   country_code: "fr"
@@ -46,10 +44,6 @@ x:
     id: "192919891999858690"
   - user: "descampsf"
     id: "192916118682345472"
-
-links:
-  - title: "dadoonet/talks"
-    url: "https://github.com/dadoonet/talks"
 
 aliases:
   - /ubjdxo

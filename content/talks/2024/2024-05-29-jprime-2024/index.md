@@ -1,9 +1,7 @@
 ---
 title: "Search: a new era"
-description: ""
 conference: 
   name: "jPrime 2024"
-  url: ""
   city: "Sofia"
   country: "Bulgaria"
   country_code: "bg"
@@ -36,9 +34,9 @@ x:
     id: "1759498858676056236"
 
 links:
-  - title: "erikbern/ann-benchmarks"
-    url: "https://github.com/erikbern/ann-benchmarks"
-  - title: "dadoonet/music-search"
+  - title: "Event Page"
+    url: "https://jprime.io/"
+  - title: "Music Search demo code"
     url: "https://github.com/dadoonet/music-search"
 
 aliases:

@@ -1,9 +1,7 @@
 ---
 title: "Elasticsearch"
-description: ""
 conference: 
   name: "Coter Numérique (private event)"
-  url: ""
   city: "Paris"
   country: "France"
   country_code: "fr"
@@ -28,8 +26,11 @@ cover: cover.jpg
 notist: "dadoonet/pmcWFM"
 
 links:
+  - title: "Coter Club"
+    url: "https://coter-club.org/"
   - title: "Kibana Demo Script"
     url: "https://gist.github.com/dadoonet/f911291c4dd19b0802031db3064c648f"
+    description: "This is the Kibana script I’m starting from when doing the talk"
 
 aliases:
   - /pmcWFM

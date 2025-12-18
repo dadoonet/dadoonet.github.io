@@ -1,9 +1,7 @@
 ---
 title: "Centralized Logging Patterns"
-description: ""
 conference: 
   name: "Devops DDay"
-  url: ""
   city: "Marseille"
   country: "France"
   country_code: "fr"

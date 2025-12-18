@@ -1,9 +1,7 @@
 ---
 title: "🎹🎻🎸 Et si nous cherchions des morceaux de musique 🎼🎶 ?"
-description: ""
 conference: 
   name: "Meetup ElasticFR #88"
-  url: ""
   city: "Paris"
   country: "France"
   country_code: "fr"
@@ -42,10 +40,6 @@ x:
     id: "1724854060501585947"
   - user: "dadoonet"
     id: "1725059241818361961"
-
-links:
-  - title: "dadoonet/music-search"
-    url: "https://github.com/dadoonet/music-search"
 
 aliases:
   - /lJdisl

@@ -1,9 +1,7 @@
 ---
 title: "Un moteur de recherche de documents d’entreprise"
-description: ""
 conference: 
   name: "JDLL"
-  url: ""
   city: "Lyon"
   country: "France"
   country_code: "fr"
@@ -32,12 +30,14 @@ x:
     id: "1638567651847929861"
 
 links:
-  - title: "dadoonet/JDLL"
+  - title: "Conference Page"
+    url: "https://jdll.org/programme"
+  - title: "Workshop instructions"
     url: "https://github.com/dadoonet/JDLL"
-  - title: "elastic/enterprise-search-network-drives-connector"
-    url: "https://github.com/elastic/enterprise-search-network-drives-connector"
-  - title: "dadoonet/fscrawler"
-    url: "https://github.com/dadoonet/fscrawler"
+  - title: "Ingest Attachment Processor"
+    url: "https://www.elastic.co/guide/en/elasticsearch/reference/current/attachment.html"
+  - title: "FSCrawler"
+    url: "https://fscrawler.readthedocs.io/"
 
 aliases:
   - /D5Qumy

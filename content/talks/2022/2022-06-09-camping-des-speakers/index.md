@@ -1,9 +1,7 @@
 ---
 title: "La potion magique pour faire progresser ta carrière"
-description: ""
 conference: 
   name: "Camping des speakers"
-  url: ""
   city: "Baden"
   country: "France"
   country_code: "fr"
@@ -26,12 +24,6 @@ cover: cover.jpg
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/0MI79Z"
-
-links:
-  - title: "Le blog à propos de cette session"
-    url: "https://david.pilato.fr/blog/2022-06-10-la-potion-magique-pour-faire-avancer-ta-carriere/"
-  - title: "Camping des speakers"
-    url: "https://camping-speakers.fr/"
 
 x:
   - user: "alexislozano__"
@@ -68,6 +60,14 @@ x:
     id: "1534560993879146496"
   - user: "CampingSpeakers"
     id: "1531281778593472513"
+
+links:
+  - title: "Le blog à propos de cette session"
+    url: "https://david.pilato.fr/blog/2022-06-10-la-potion-magique-pour-faire-avancer-ta-carriere/"
+    description: "Le blog contient le contenu que j’ai délivré pendant la session."
+  - title: "Camping des speakers"
+    url: "https://camping-speakers.fr/"
+
 aliases:
   - /0MI79Z
 ---

@@ -1,9 +1,7 @@
 ---
 title: "La potion magique pour faire progresser ta carrière"
-description: ""
 conference: 
   name: "Very Tech Trip"
-  url: ""
   city: "Paris"
   country: "France"
   country_code: "fr"
@@ -27,15 +25,17 @@ cover: cover.jpg
 #youtube: ""
 notist: "dadoonet/MyZpvU"
 
-links:
-  - title: "Very Tech Trip"
-    url: "https://verytechtrip.com/"
-
 x:
   - user: "dadoonet"
     id: "1611244392907522048"
   - user: "dadoonet"
     id: "1613080645844041729"
+
+links:
+  - title: "Very Tech Trip"
+    url: "https://verytechtrip.com/"
+    description: "#VeryTechTrip : une convention pour les aventuriers de la Tech !"
+
 aliases:
   - /MyZpvU
 ---
