@@ -2,13 +2,13 @@
 title: "Envie de booster ta carrière ? Open source-toi !"
 # description: ""
 conference: 
-  name: "Devoxx France 2012"
+  name: "DevFest Dijon 2025"
   url: "https://devfest.dijon.fr/"
-  city: "Paris"
+  city: "21000 Dijon"
   country: "France"
   country_code: "fr"
-  latitude: "48.856614"
-  longitude: "2.352222"
+  latitude: "47.322047"
+  longitude: "5.041480"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -27,8 +27,8 @@ cover: cover.png
 
 # Speaker specific fields
 #youtube: "sxWTPruEWRU"
-#notist: "dadoonet/ubjdxo"
+notist: "dadoonet/nDR5Bo"
 aliases:
-  - /ubjdxo
+  - /nDR5Bo
 ---
-Présentation d’Elasticsearch lors de Devoxx France 2012
+Présentation lors de DevFest Dijon 2025

@@ -2,13 +2,13 @@
 title: "Le hasard fait bien les tests"
 description: ""
 conference: 
-  name: "Devoxx France 2012"
+  name: "DevFest Toulouse"
   url: "https://devfest.gdgtoulouse.com/"
-  city: "Paris"
+  city: "Toulouse"
   country: "France"
   country_code: "fr"
-  latitude: "48.856614"
-  longitude: "2.352222"
+  latitude: "43.604652"
+  longitude: "1.444209"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -27,8 +27,8 @@ cover: cover.jpg
 
 # Speaker specific fields
 #youtube: "sxWTPruEWRU"
-#notist: "dadoonet/ubjdxo"
+notist: "dadoonet/qC8sMm"
 aliases:
-  - /ubjdxo
+  - /qC8sMm
 ---
-Présentation d’Elasticsearch lors de Devoxx France 2012
+Présentation lors de DevFest Toulouse
