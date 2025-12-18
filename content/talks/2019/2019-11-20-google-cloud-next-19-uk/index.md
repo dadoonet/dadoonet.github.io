@@ -50,9 +50,9 @@ aliases:
 ---
 To deploy elastic stack on Google Compute Platform (GCP), you have several options:
 
-Start GCE instances, install and configure elasticsearch nodes discovery, SSL and security
-Do the same but install discovery-gce plugin to simplify nodes discovery
-Use Elastic Cloud Enterprise and deploy it on GCE instances
-Use Elastic Cloud Kubernetes operator on GKE
+* Start GCE instances, install and configure elasticsearch nodes discovery, SSL and security
+* Do the same but install `discovery-gce` plugin to simplify nodes discovery
+* Use Elastic Cloud Enterprise and deploy it on GCE instances
+* Use Elastic Cloud Kubernetes operator on GKE
 
 Or, you can let Elastic, the company behind elastic stack, deploy and manage it for you with cloud.elastic.co

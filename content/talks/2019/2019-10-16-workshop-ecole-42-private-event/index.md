@@ -32,14 +32,17 @@ links:
 aliases:
   - /BtuDBd
 ---
-Vous cherchez toujours dans vos données avec des SELECT * FROM person WHERE name like '%david%pilato%" ?
+Vous cherchez toujours dans vos données avec des `SELECT * FROM person WHERE name like '%david%pilato%"` ?
+
 Au delà des performances obtenues, êtes-vous certain de renvoyer les résultats les plus pertinents pour vos utilisateurs d’abord ?
+
 Venez découvrir comment un moteur de recherche vous aidera à répondre aux questions posées par vos utilisateurs, de manière pertinente et efficace, tout en apportant des fonctionnalités d’analyse des résultats et ce, quelque soit le volume…
+
 Au programme de cet atelier :
 
-Introduction au principe du moteur de recherche
-Lancement d’elasticsearch et de Kibana
-CRUD avec Elasticsearch
-Search
-Aggregations
-Création de visualisation, dashboards dans Kibana
+* Introduction au principe du moteur de recherche
+* Lancement d’elasticsearch et de Kibana
+* CRUD avec Elasticsearch
+* Search
+* Aggregations
+* Création de visualisation, dashboards dans Kibana

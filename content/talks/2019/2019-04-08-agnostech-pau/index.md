@@ -45,5 +45,7 @@ aliases:
   - /p8V41k
 ---
 Comment mixer SQL et NoSQL sans faire la révolution ?
+
 Cette “live coding” conférence vous montrera comment ajouter Elasticsearch à votre application existante sans changer vos habitudes. Vous aurez des fonctions de recherche avancées sans avoir à écrire du SQL complexe !
+
 David partira d’une application Spring Boot/Postgresql/MySQL et ajoutera Elasticsearch en live depuis la scène !

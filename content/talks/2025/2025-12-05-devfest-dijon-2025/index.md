@@ -29,4 +29,4 @@ cover: cover.png
 aliases:
   - /ubjdxo
 ---
-Viens découvrir à travers une histoire vraie, comment une simple petite réponse dans un forum de discussion sur un projet méconnu peut complètement changer et accélérer ta carrière.
+Présentation d’Elasticsearch lors de Devoxx France 2012

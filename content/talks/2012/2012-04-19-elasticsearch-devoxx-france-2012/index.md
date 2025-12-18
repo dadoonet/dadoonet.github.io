@@ -48,7 +48,4 @@ x:
 aliases:
   - /ubjdxo
 ---
-* Un moteur de recherche ? Pourquoi faire ?
-* Elasticsearch : une solution simple, complète, performante.
-* Et si on indexait Twitter ?
-* Faites du bruit sur `@DevoxxFR` avec le hashtag `#elasticsearch` !
+Présentation d’Elasticsearch lors de Devoxx France 2012
