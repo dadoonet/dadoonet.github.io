@@ -51,6 +51,8 @@ links:
   - title: "dadoonet/talks"
     url: "https://github.com/dadoonet/talks"
 
+aliases:
+  - /ubjdxo
 ---
 * Un moteur de recherche ? Pourquoi faire ?
 * Elasticsearch : une solution simple, complète, performante.

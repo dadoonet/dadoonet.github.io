@@ -39,6 +39,8 @@ links:
   - title: "dadoonet/fscrawler"
     url: "https://github.com/dadoonet/fscrawler"
 
+aliases:
+  - /D5Qumy
 ---
 Lors de cet atelier, nous allons expliquer comment mettre en place un moteur de recherche pour les données de notre entreprise.
 Afin d’éviter le côté trop “magique” parfois des solutions sur étagère, nous verrons d’abord :

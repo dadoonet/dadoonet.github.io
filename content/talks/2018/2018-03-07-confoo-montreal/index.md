@@ -26,6 +26,8 @@ cover: cover.jpg
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/EpnH6d"
+aliases:
+  - /EpnH6d
 ---
 Wanna transform your documents on the fly before indexing them into elasticsearch? Node ingest is built for you.
 

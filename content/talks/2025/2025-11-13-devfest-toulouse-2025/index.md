@@ -26,6 +26,8 @@ cover: cover.jpg
 # Speaker specific fields
 #youtube: "sxWTPruEWRU"
 #notist: "dadoonet/ubjdxo"
+aliases:
+  - /ubjdxo
 ---
 > Le hasard fait bien les choses.
 

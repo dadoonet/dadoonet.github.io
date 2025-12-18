@@ -45,6 +45,8 @@ links:
   - title: "Notebook demo Hummingsearch"
     url: "https://colab.research.google.com/github/dadoonet/music-search/blob/main/elastic_music_search.ipynb"
 
+aliases:
+  - /3nBCuD
 ---
 La recherche ne se contente plus de l’approche maintenant traditionnelle basée sur la fréquence des termes (TF/IDF ou BM25) mais plus sur la tendance actuelle du machine learning où les nouveaux modèles ont ouvert une nouvelle dimension pour la recherche.
 Cette conférence donne un aperçu de :

@@ -31,5 +31,7 @@ links:
   - title: "GitHub Repository"
     url: "https://github.com/elastic"
 
+aliases:
+  - /bwPn68
 ---
 Let’s explore what means community at Elastic and how it plays an important role for our projects.

@@ -62,6 +62,8 @@ x:
     id: "1669791464316870660"
   - user: "dadoonet"
     id: "1669788001876975625"
+aliases:
+  - /qZrOqw
 ---
 Dans cet atelier, nous allons découvrir quelques techniques utilisées par les DeeJays pour vous faire bouger toute une soirée :
 

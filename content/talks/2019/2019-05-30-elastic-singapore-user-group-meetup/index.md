@@ -35,6 +35,8 @@ links:
   - title: "dadoonet/bano-elastic"
     url: "https://github.com/dadoonet/bano-elastic"
 
+aliases:
+  - /uxryJf
 ---
 Come and learn how you can enrich your existing data with normalized postal addresses with geo location points thanks to open data and BANO project.
 

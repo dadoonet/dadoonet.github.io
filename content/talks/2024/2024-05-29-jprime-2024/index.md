@@ -41,6 +41,8 @@ links:
   - title: "dadoonet/music-search"
     url: "https://github.com/dadoonet/music-search"
 
+aliases:
+  - /NizzH6
 ---
 Search is not just traditional TF/IDF any more but the current trend of machine learning and models has opened another dimension for search.
 This talk gives an overview of:

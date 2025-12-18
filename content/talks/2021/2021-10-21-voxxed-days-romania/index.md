@@ -40,6 +40,8 @@ x:
     id: "1450464014929178641"
   - user: "dadoonet"
     id: "1451520492104523779"
+aliases:
+  - /zWe0zu
 ---
 You are a security analyst for your company. The IT Team has deployed Elastic agents on your infrastructure, including endpoints, firewalls… those agents are collecting logs, metrics and security related data for months.
 One morning, you open Kibana and discover that some alerts have been thrown. Is that a real threat?

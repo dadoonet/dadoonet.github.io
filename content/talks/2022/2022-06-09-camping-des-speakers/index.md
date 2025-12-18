@@ -68,6 +68,8 @@ x:
     id: "1534560993879146496"
   - user: "CampingSpeakers"
     id: "1531281778593472513"
+aliases:
+  - /0MI79Z
 ---
 La recette de la potion magique ne se transmet qu’aux seuls druides, normalement. Mais exceptionnellement, le conseil des druides de la forêt des Carnutes m’a autorisé à vous révéler quelques uns des ingrédients qui constituent ce breuvage.
 Il est même possible que je vous indique l’ingrédient secret !

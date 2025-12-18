@@ -47,6 +47,8 @@ links:
   - title: "xeraa/auditbeat-in-action"
     url: "https://github.com/xeraa/auditbeat-in-action"
 
+aliases:
+  - /oBt281
 ---
 Knowing what is going on in your environment is an important part of staying on top of security issues. But how do you capture relevant metrics and visualize them? One widely-used tool for that job is the Elastic Stack, formerly known as the ELK stack. This talk shows how to ingest relevant metrics from your network and hosts as well as how to easily visualize them to find suspicious patterns and behaviors. We will be also using the latest tool named SIEM.
 We will use real-world honeypot data for this example:

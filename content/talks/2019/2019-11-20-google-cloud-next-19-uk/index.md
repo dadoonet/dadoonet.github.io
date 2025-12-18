@@ -46,6 +46,8 @@ x:
     id: "1197087109607305217"
   - user: "dadoonet"
     id: "1197159764800802818"
+aliases:
+  - /jYxmxg
 ---
 To deploy elastic stack on Google Compute Platform (GCP), you have several options:
 

@@ -43,6 +43,8 @@ links:
   - title: "elastic/crawler"
     url: "https://github.com/elastic/crawler"
 
+aliases:
+  - /mQrRCI
 ---
 L’arrivée des LLMs (Large Language Models) tels que ChatGPT ont fait couler beaucoup d’encre en annonçant l’extinction à venir des moteurs de recherche.
 Au cours de cette session, je vous démontrerai que c’est bien l’inverse qui se joue. La grosse conséquence de la “révolution” GPT est, selon moi, le retour en grâce de cette question fondamentale :

@@ -33,6 +33,8 @@ links:
   - title: "gestalt-config/gestalt"
     url: "https://github.com/gestalt-config/gestalt/issues/242"
 
+aliases:
+  - /G8rCxd
 ---
 Chance does things well.
 

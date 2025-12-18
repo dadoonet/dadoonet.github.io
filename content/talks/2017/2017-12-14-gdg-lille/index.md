@@ -40,6 +40,8 @@ x:
     id: "941374288535392256"
   - user: "gui_gillon"
     id: "941377671740710912"
+aliases:
+  - /tlQJC5
 ---
 Pour déployer elasticsearch sur Google Compute Platform, plusieurs options s’offrent à vous :
 

@@ -45,6 +45,8 @@ links:
   - title: "dadoonet/demo-fscrawler"
     url: "https://github.com/dadoonet/demo-fscrawler"
 
+aliases:
+  - /k195XM
 ---
 You have plenty of Open Office, Microsoft Office, PDF, images… documents and you may want to be able to search for their metadata and content. How can you do that?
 In this talk, David will explain how Apache Tika can be used for that and how to combine this fantastic library with Elastic Stack:

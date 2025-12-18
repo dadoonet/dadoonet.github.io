@@ -34,6 +34,8 @@ links:
     url: "https://www.elastic.co/docs/deploy-manage/deploy/elastic-cloud/serverless"
   - title: "Elasticsearch Serverless API"
     url: "https://www.elastic.co/docs/api/doc/elasticsearch-serverless/"
+aliases:
+  - /WA1Ort
 ---
 Comment feriez-vous pour créer Elasticsearch si vous commenciez ce projet en 2025 ?
 

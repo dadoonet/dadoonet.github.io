@@ -40,5 +40,7 @@ links:
   - title: "Podcast"
     details: "This space is where I'm publishing my DJ sets"
     url: "https://djdadoo.pilato.fr/"
+aliases:
+  - /0rheh6
 ---
 In this session, we will use the principles of vector search to find pieces of music that are (maybe) similar to others.

@@ -37,6 +37,8 @@ links:
   - title: "dadoonet/fscrawler"
     url: "https://github.com/dadoonet/fscrawler"
 
+aliases:
+  - /57G2Nv
 ---
 Vous avez sous la main des tonnes de documents Open Office, Microsoft Office, PDF voire des images… Et vous aimeriez être capable de chercher dans leurs meta-données et dans le contenu lui-même.
 Comment faire ? Surtout depuis l’annonce de la fin de Google Search Appliance.

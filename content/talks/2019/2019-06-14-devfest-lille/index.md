@@ -41,6 +41,8 @@ links:
   - title: "testcontainers/testcontainers-java"
     url: "https://github.com/testcontainers/testcontainers-java/tree/master/modules/elasticsearch"
 
+aliases:
+  - /L5rDwO
 ---
 Les tests d’intégration peuvent devenir un cauchemar lorsqu’ils sont lancés depuis la même JVM que votre code:
 
