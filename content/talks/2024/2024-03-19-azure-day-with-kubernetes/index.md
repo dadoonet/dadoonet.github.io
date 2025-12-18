@@ -41,4 +41,5 @@ links:
 aliases:
   - /z9aj7o
 ---
+
 In this session, we will use the principles of vector search to find pieces similar to others. To do this, we will review the principles of generating embeddings to represent any type of data, whether textual or binary. Then we will use that to do RAG and generate meaningful results for our users. Finally we will showcase how all that has been applied to the Elastic Security and Observability AI Assistants.

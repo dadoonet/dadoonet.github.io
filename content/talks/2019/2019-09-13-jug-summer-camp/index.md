@@ -47,4 +47,5 @@ x:
 aliases:
   - /x959ys
 ---
+
 Rétrospective sur 10 ans de Jug Summer Camp sur à la fois les aspects technologiques mais surtout humains.

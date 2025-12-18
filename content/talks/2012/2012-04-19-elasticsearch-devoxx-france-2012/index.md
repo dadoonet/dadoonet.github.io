@@ -50,4 +50,5 @@ x:
 aliases:
   - /ubjdxo
 ---
+
 Présentation d’Elasticsearch lors de Devoxx France 2012

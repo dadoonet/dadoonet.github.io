@@ -35,6 +35,7 @@ x:
 aliases:
   - /StaCjL
 ---
+
 Elasticsearch, vous savez, pour faire des recherches ! Mais saviez-vous qu’on peut également l’utiliser pour comprendre ses données et leur donner du sens, le tout en temps-réel ?
 
 Avec cette session vous découvrirez comment et pourquoi la suite Elastic est si efficace. Pour l’occasion, nous injecterons des données marketing dans Elasticsearch pour construire un tableau de bord en temps réel avec Kibana puis nous extrapolerons le principe à des données IOT pour, par

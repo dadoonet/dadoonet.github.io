@@ -43,4 +43,5 @@ links:
 aliases:
   - /0rheh6
 ---
+
 In this session, we will use the principles of vector search to find pieces of music that are (maybe) similar to others.

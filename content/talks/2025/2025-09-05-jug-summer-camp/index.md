@@ -39,12 +39,17 @@ links:
 aliases:
   - /WA1Ort
 ---
+
 Comment feriez-vous pour créer Elasticsearch si vous commenciez ce projet en 2025 ?
 
 * Découpler le calcul (compute) du stockage (storage)
+
 * Externaliser la gestion de la persistence et la réplication à un blob store comme S3, Google Cloud Storage ou encore Azure Blob Storage
+
 * Dynamiquement ajouter ou supprimer des instances
+
 * Avoir les bonnes valeurs par défaut
+
 * Et un chemin hyper clair et fluide pour les développeurs
 
 C’est exactement ce que nous avons fait avec Elastic Serverless.
