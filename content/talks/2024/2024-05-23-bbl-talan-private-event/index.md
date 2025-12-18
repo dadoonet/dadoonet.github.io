@@ -7,6 +7,7 @@ conference:
   country_code: "fr"
   latitude: "49.894067"
   longitude: "2.295753"
+  url: "https://talan.com/"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -28,8 +29,6 @@ cover: cover.jpg
 notist: "dadoonet/Op8xGg"
 
 links:
-  - title: "Talan"
-    url: "https://talan.com/"
 
 aliases:
   - /Op8xGg

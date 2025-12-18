@@ -7,6 +7,7 @@ conference:
   country_code: "ch"
   latitude: "46.204391"
   longitude: "6.143158"
+  url: "https://www.meetup.com/fr-FR/alpesjug/events/299609510/"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -38,8 +39,6 @@ x:
     id: "1790871185216929808"
 
 links:
-  - title: "Page de l’évènement"
-    url: "https://www.meetup.com/fr-FR/alpesjug/events/299609510/"
   - title: "Notebook demo Hummingsearch"
     url: "https://github.com/dadoonet/music-search"
 

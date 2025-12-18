@@ -7,6 +7,7 @@ conference:
   country_code: "fr"
   latitude: "48.986463"
   longitude: "2.449772"
+  url: "https://www.manutan.fr/"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -28,8 +29,6 @@ cover: cover.png
 notist: "dadoonet/1JTRYt"
 
 links:
-  - title: "Manutan"
-    url: "https://www.manutan.fr/"
   - title: "Person dataset injector"
     url: "https://github.com/dadoonet/injector"
   - title: "Dev Console demo"

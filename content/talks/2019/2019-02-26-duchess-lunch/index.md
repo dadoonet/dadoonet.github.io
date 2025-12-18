@@ -7,6 +7,7 @@ conference:
   country_code: "fr"
   latitude: "48.856614"
   longitude: "2.352222"
+  url: "https://www.meetup.com/Duchess-France-Meetup/events/259185974/"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -38,8 +39,6 @@ x:
     id: "1100349635305050112"
 
 links:
-  - title: "Duchess-France-Meetup"
-    url: "https://www.meetup.com/Duchess-France-Meetup/events/259185974/"
   - title: "Une ancienne vidéo (2015) sur le même sujet"
     url: "https://vimeo.com/129781775"
   - title: "Kibana Demo Script"

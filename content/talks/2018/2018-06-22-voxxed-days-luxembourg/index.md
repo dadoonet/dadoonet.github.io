@@ -7,6 +7,7 @@ conference:
   country_code: "lu"
   latitude: "49.611621"
   longitude: "6.131935"
+  url: "https://voxxeddays.com/luxembourg/"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -44,8 +45,6 @@ x:
     id: "1010050188323540992"
 
 links:
-  - title: "VoxxedDays Luxembourg"
-    url: "https://voxxeddays.com/luxembourg/"
   - title: "Résumé de la conférence par Nicolas Martignole"
     url: "http://www.touilleur-express.fr/2018/06/25/voxxed-luxembourg-2018/"
 

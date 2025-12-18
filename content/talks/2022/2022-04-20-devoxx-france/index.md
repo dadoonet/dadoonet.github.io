@@ -7,6 +7,7 @@ conference:
   country_code: "fr"
   latitude: "48.856614"
   longitude: "2.352222"
+  url: "https://cfp.devoxx.fr/2022/talk/AEC-5516/Ajouter_de_A_a_Z_une_barre_de_recherche_dans_son_application"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -28,8 +29,6 @@ cover: cover.jpg
 notist: "dadoonet/O2ZJHA"
 
 links:
-  - title: "Devoxx France"
-    url: "https://cfp.devoxx.fr/2022/talk/AEC-5516/Ajouter_de_A_a_Z_une_barre_de_recherche_dans_son_application"
   - title: "GitHub Repository"
     url: "https://github.com/GoogleCloudPlatform/serverless-photosharing-workshop"
 

@@ -7,6 +7,7 @@ conference:
   country_code: "fr"
   latitude: "48.856614"
   longitude: "2.352222"
+  url: "https://verytechtrip.com/"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -34,9 +35,6 @@ x:
     id: "1613080645844041729"
 
 links:
-  - title: "Very Tech Trip"
-    url: "https://verytechtrip.com/"
-    description: "#VeryTechTrip : une convention pour les aventuriers de la Tech !"
 
 aliases:
   - /MyZpvU

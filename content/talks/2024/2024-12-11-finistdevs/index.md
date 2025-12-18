@@ -7,6 +7,7 @@ conference:
   country_code: "fr"
   latitude: "48.390394"
   longitude: "-4.486076"
+  url: "https://finistdevs.org/"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -34,8 +35,6 @@ x:
     id: "1866958763883630617"
 
 links:
-  - title: "Page de l’évènement"
-    url: "https://finistdevs.org/"
   - title: "Notebook demo Hummingsearch"
     url: "https://github.com/dadoonet/music-search"
 

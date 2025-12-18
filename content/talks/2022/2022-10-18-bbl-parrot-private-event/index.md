@@ -7,6 +7,7 @@ conference:
   country_code: "fr"
   latitude: "48.856614"
   longitude: "2.352222"
+  url: "https://www.parrot.com/fr"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -32,8 +33,6 @@ x:
     id: "1583399558796623873"
 
 links:
-  - title: "Parrot"
-    url: "https://www.parrot.com/fr"
   - title: "Kibana Demo Script"
     url: "https://gist.github.com/dadoonet/f911291c4dd19b0802031db3064c648f"
     description: "This is the Kibana script I’m starting from when doing the talk"

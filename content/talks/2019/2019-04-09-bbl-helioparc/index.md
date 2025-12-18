@@ -7,6 +7,7 @@ conference:
   country_code: "fr"
   latitude: "43.295100"
   longitude: "-0.370797"
+  url: "https://www.meetup.com/fr-FR/ElasticFR/events/260241960/"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -40,8 +41,6 @@ x:
     id: "1115549903583891456"
 
 links:
-  - title: "Page Meetup.com"
-    url: "https://www.meetup.com/fr-FR/ElasticFR/events/260241960/"
   - title: "Une ancienne vidéo (2015) sur le même sujet"
     url: "https://vimeo.com/129781775"
   - title: "One Million Tweet Map demo"

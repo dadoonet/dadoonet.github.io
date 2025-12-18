@@ -7,6 +7,7 @@ conference:
   country_code: "fr"
   latitude: "46.160329"
   longitude: "-1.151139"
+  url: "https://www.jugsummercamp.org/edition/14/presentations/oVFqGQVuSwZBRIfpXwVd"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -40,10 +41,8 @@ x:
     id: "1710211066024661079"
 
 links:
-  - title: "Conference page"
-    url: "https://www.jugsummercamp.org/edition/14/presentations/oVFqGQVuSwZBRIfpXwVd"
   - title: "Blog: ChatGPT and Elasticsearch: OpenAI meets private data"
-    url: "https://www.elastic.co/fr/blog/chatgpt-elasticsearch-openai-meets-private-data"
+    url: "https://www.elastic.co/blog/chatgpt-elasticsearch-openai-meets-private-data"
     description: "Combine Elasticsearch’s search relevance with OpenAI’s ChatGPT’s question-answering capabilities to query your data. In this blog, you’ll learn how to connect ChatGPT to proprietary data stores using Elasticsearch and build question/answer capabilities for your data."
   - title: "Demo: Humming search"
     url: "https://github.com/dadoonet/music-search/"

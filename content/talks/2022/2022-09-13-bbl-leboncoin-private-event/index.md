@@ -7,6 +7,7 @@ conference:
   country_code: "fr"
   latitude: "48.856614"
   longitude: "2.352222"
+  url: "https://www.leboncoin.fr"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -36,8 +37,6 @@ x:
     id: "1569700766981525517"
 
 links:
-  - title: "leboncoin"
-    url: "https://www.leboncoin.fr"
   - title: "Kibana Demo Script"
     url: "https://gist.github.com/dadoonet/f911291c4dd19b0802031db3064c648f"
     description: "This is the Kibana script I’m starting from when doing the talk"

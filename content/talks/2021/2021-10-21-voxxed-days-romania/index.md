@@ -7,6 +7,7 @@ conference:
   country_code: "ro"
   latitude: "44.426767"
   longitude: "26.102538"
+  url: "https://romania.voxxeddays.com/talk/?id=5852"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -36,8 +37,6 @@ x:
     id: "1451520492104523779"
 
 links:
-  - title: "Voxxed Days Romania"
-    url: "https://romania.voxxeddays.com/talk/?id=5852"
   - title: "Elastic Security Solution"
     url: "https://www.elastic.co/security"
 

@@ -7,6 +7,7 @@ conference:
   country_code: "fr"
   latitude: "43.710173"
   longitude: "7.261953"
+  url: "https://rivieradev.fr/session/259"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -32,8 +33,6 @@ x:
     id: "1805137532293616010"
 
 links:
-  - title: "Page de l’évènement"
-    url: "https://rivieradev.fr/session/259"
   - title: "Notebook demo Hummingsearch"
     url: "https://github.com/dadoonet/music-search"
 

@@ -7,6 +7,7 @@ conference:
   country_code: "pl"
   latitude: "50.064651"
   longitude: "19.944981"
+  url: "https://www.meetup.com/fr-FR/Elastic-Krakow/events/262282793/"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -32,8 +33,6 @@ x:
     id: "1139124121546235904"
 
 links:
-  - title: "Elastic Krakow User Group"
-    url: "https://www.meetup.com/fr-FR/Elastic-Krakow/events/262282793/"
   - title: "Blog post part 1"
     url: "https://www.elastic.co/blog/enriching-your-postal-addresses-with-the-elastic-stack-part-1"
   - title: "Blog post part 2"

@@ -7,6 +7,7 @@ conference:
   country_code: "be"
   latitude: "50.850340"
   longitude: "4.351710"
+  url: "https://infrabel.be/"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -32,8 +33,6 @@ x:
     id: "1862514892042915845"
 
 links:
-  - title: "Infrabel"
-    url: "https://infrabel.be/"
   - title: "Demo code"
     url: "https://github.com/dadoonet/esql-demo"
     description: "The code played during the demo"

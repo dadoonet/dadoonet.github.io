@@ -7,6 +7,7 @@ conference:
   country_code: "nl"
   latitude: "52.370216"
   longitude: "4.895168"
+  url: "https://www.accenture.com/nl-en"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -39,8 +40,6 @@ links:
   - title: "Kibana Demo Script"
     url: "https://gist.github.com/dadoonet/f911291c4dd19b0802031db3064c648f"
     description: "This is the Kibana script I’m starting from when doing the talk"
-  - title: "Accenture"
-    url: "https://www.accenture.com/nl-en"
 
 aliases:
   - /OjlDev

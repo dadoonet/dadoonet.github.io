@@ -7,6 +7,7 @@ conference:
   country_code: "fr"
   latitude: "48.856614"
   longitude: "2.352222"
+  url: "https://malt.fr/"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -28,8 +29,6 @@ cover: cover.jpg
 notist: "dadoonet/VCzrGH"
 
 links:
-  - title: "Page de l’évènement"
-    url: "https://malt.fr/"
   - title: "Notebook demo Hummingsearch"
     url: "https://github.com/dadoonet/music-search"
 

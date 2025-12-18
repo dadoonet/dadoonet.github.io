@@ -7,6 +7,7 @@ conference:
   country_code: "fr"
   latitude: "45.764043"
   longitude: "4.835659"
+  url: "https://lyonjug.org/2024/05/16/la-recherche-a-lheure-de-l-ia.html"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -40,8 +41,6 @@ x:
     id: "1791149498963804593"
 
 links:
-  - title: "Page de l’évènement"
-    url: "https://lyonjug.org/2024/05/16/la-recherche-a-lheure-de-l-ia.html"
   - title: "Notebook demo Hummingsearch"
     url: "https://github.com/dadoonet/music-search"
 

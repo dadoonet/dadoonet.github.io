@@ -7,6 +7,7 @@ conference:
   country_code: "fr"
   latitude: "44.837789"
   longitude: "-0.579180"
+  url: "https://www.4sh.fr/"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -28,9 +29,6 @@ cover: cover.jpg
 notist: "dadoonet/Zm1cqh"
 
 links:
-  - title: "Page de l’évènement"
-    url: "https://www.4sh.fr/"
-    description: "Thank you for hosting me!"
   - title: "Person dataset injector"
     url: "https://github.com/dadoonet/injector"
     description: "The Person injector code"

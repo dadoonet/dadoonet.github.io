@@ -7,6 +7,7 @@ conference:
   country_code: "lt"
   latitude: "54.687156"
   longitude: "25.279651"
+  url: "https://events.pinetool.ai/3079/#sessions/101080"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -34,8 +35,6 @@ x:
     id: "1727277492808085806"
 
 links:
-  - title: "Big Data Conference Europe"
-    url: "https://events.pinetool.ai/3079/#sessions/101080"
   - title: "Blog post part 1"
     url: "https://www.elastic.co/blog/enriching-your-postal-addresses-with-the-elastic-stack-part-1"
   - title: "Blog post part 2"

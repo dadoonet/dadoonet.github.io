@@ -7,6 +7,7 @@ conference:
   country_code: "fr"
   latitude: "47.619668"
   longitude: "-2.918284"
+  url: "https://camping-speakers.fr/"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -64,11 +65,9 @@ x:
     id: "1531281778593472513"
 
 links:
-  - title: "Le blog à propos de cette session"
-    url: "https://david.pilato.fr/blog/2022-06-10-la-potion-magique-pour-faire-avancer-ta-carriere/"
+  - title: "Blog: La potion magique pour faire progresser ta carrière"
+    url: "/blog/2022-06-10-la-potion-magique-pour-faire-avancer-ta-carriere/"
     description: "Le blog contient le contenu que j’ai délivré pendant la session."
-  - title: "Camping des speakers"
-    url: "https://camping-speakers.fr/"
 
 aliases:
   - /0MI79Z

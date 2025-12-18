@@ -7,6 +7,7 @@ conference:
   country_code: "fr"
   latitude: "43.610769"
   longitude: "3.876716"
+  url: "https://www.meetup.com/fr-FR/Open-Source_Talks/events/268883657/"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -41,8 +42,6 @@ links:
     description: "Templates for common auditD rules"
   - title: "Demo repository"
     url: "https://github.com/xeraa/auditbeat-in-action"
-  - title: "Meetup"
-    url: "https://www.meetup.com/fr-FR/Open-Source_Talks/events/268883657/"
 
 aliases:
   - /N3OH1e

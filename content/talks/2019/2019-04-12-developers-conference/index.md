@@ -7,6 +7,7 @@ conference:
   country_code: "mu"
   latitude: "-20.219524"
   longitude: "57.502332"
+  url: "https://conference.mscc.mu/session/76180"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -48,8 +49,6 @@ x:
     id: "1116676391184080896"
 
 links:
-  - title: "Session Link"
-    url: "https://conference.mscc.mu/session/76180"
   - title: "Blog post part 1"
     url: "https://www.elastic.co/blog/enriching-your-postal-addresses-with-the-elastic-stack-part-1"
   - title: "Blog post part 2"

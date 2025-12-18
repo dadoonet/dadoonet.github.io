@@ -7,6 +7,7 @@ conference:
   country_code: "be"
   latitude: "50.850340"
   longitude: "4.351710"
+  url: "https://www.bnpparibasfortis.be/"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -28,8 +29,6 @@ cover: cover.jpg
 notist: "dadoonet/PhbmgJ"
 
 links:
-  - title: "Fortis"
-    url: "https://www.bnpparibasfortis.be/"
   - title: "Demo code"
     url: "https://github.com/dadoonet/esql-demo"
     description: "The code played during the demo"

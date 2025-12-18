@@ -7,6 +7,7 @@ conference:
   country_code: "gb"
   latitude: "51.507351"
   longitude: "-0.127758"
+  url: "https://cloud.withgoogle.com/next/uk/speakers?session=DZ105"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -38,8 +39,6 @@ x:
     id: "1197159764800802818"
 
 links:
-  - title: "Google Cloud Next’19 Session"
-    url: "https://cloud.withgoogle.com/next/uk/speakers?session=DZ105"
   - title: "Elastic Cloud on Kubernetes (ECK) documentation"
     url: "https://www.elastic.co/guide/en/cloud-on-k8s/current/index.html"
   - title: "Kibana Documentation"

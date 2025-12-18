@@ -7,6 +7,7 @@ conference:
   country_code: "sg"
   latitude: "1.352083"
   longitude: "103.819836"
+  url: "https://www.meetup.com/Singapore-Elastic-Fantastics/events/261221284/"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -32,8 +33,6 @@ x:
     id: "1134113250939789312"
 
 links:
-  - title: "Elastic Singapore User Group"
-    url: "https://www.meetup.com/Singapore-Elastic-Fantastics/events/261221284/"
   - title: "Blog post part 1"
     url: "https://www.elastic.co/blog/enriching-your-postal-addresses-with-the-elastic-stack-part-1"
   - title: "Blog post part 2"

@@ -7,6 +7,7 @@ conference:
   country_code: "fr"
   latitude: "44.837789"
   longitude: "-0.579180"
+  url: "https://www.meetup.com/fr-FR/BordeauxJUG/events/296632690"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -40,8 +41,6 @@ x:
     id: "1717609539300991328"
 
 links:
-  - title: "Page de l’évènement"
-    url: "https://www.meetup.com/fr-FR/BordeauxJUG/events/296632690"
   - title: "Notebook demo Hummingsearch"
     url: "https://colab.research.google.com/github/dadoonet/music-search/blob/main/elastic_music_search.ipynb"
 

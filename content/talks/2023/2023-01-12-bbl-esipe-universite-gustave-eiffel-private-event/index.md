@@ -7,6 +7,7 @@ conference:
   country_code: "fr"
   latitude: "48.852775"
   longitude: "2.602651"
+  url: "https://www.vitrine-technologique.gouv.qc.ca/vitrine%20technologique.nsf/Activit%C3%A9s/A40C2E69E95370178525839000558DA7?OpenDocument&SessionID=undefined"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -28,14 +29,10 @@ cover: cover.jpg
 notist: "dadoonet/v8tARM"
 
 links:
-  - title: "Vitrine Technologique"
-    url: "https://www.vitrine-technologique.gouv.qc.ca/vitrine%20technologique.nsf/Activit%C3%A9s/A40C2E69E95370178525839000558DA7?OpenDocument&SessionID=undefined"
   - title: "Une ancienne vidéo (2015) sur le même sujet"
     url: "https://vimeo.com/129781775"
   - title: "The video of the session"
     url: "https://drive.google.com/file/d/1MjY2bFPZEzyp4dJl7Uqvo-LYZ3K5E0nf/view"
-  - title: "Parrot"
-    url: "https://www.parrot.com/fr"
   - title: "Kibana Demo Script"
     url: "https://gist.github.com/dadoonet/f911291c4dd19b0802031db3064c648f"
     description: "This is the Kibana script I’m starting from when doing the talk"

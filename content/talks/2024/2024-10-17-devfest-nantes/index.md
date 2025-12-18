@@ -7,6 +7,7 @@ conference:
   country_code: "fr"
   latitude: "47.218371"
   longitude: "-1.553621"
+  url: "https://devfest2024.gdgnantes.com/"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -38,8 +39,6 @@ x:
     id: "1843247405610963165"
 
 links:
-  - title: "Page de l’évènement"
-    url: "https://devfest2024.gdgnantes.com/"
   - title: "Notebook demo Hummingsearch"
     url: "https://github.com/dadoonet/music-search"
   - title: "Elastic Open Web Crawler"

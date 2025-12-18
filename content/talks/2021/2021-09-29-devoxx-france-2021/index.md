@@ -7,6 +7,7 @@ conference:
   country_code: "fr"
   latitude: "48.856614"
   longitude: "2.352222"
+  url: "https://cfp.devoxx.fr/2021/talk/SQR-3658/Identifier_les_menaces_avec_Elastic_SIEM"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -36,8 +37,6 @@ x:
     id: "1443222996131401729"
 
 links:
-  - title: "Devoxx France"
-    url: "https://cfp.devoxx.fr/2021/talk/SQR-3658/Identifier_les_menaces_avec_Elastic_SIEM"
   - title: "Elastic Security Solution"
     url: "https://www.elastic.co/fr/security"
 

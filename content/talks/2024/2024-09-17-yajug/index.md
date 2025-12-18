@@ -7,6 +7,7 @@ conference:
   country_code: "lu"
   latitude: "49.815273"
   longitude: "6.129583"
+  url: "https://yajug.lu/session/la-recherche-a-lere-de-l-ia/"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -32,8 +33,6 @@ x:
     id: "1833445549715923127"
 
 links:
-  - title: "Page de l’évènement"
-    url: "https://yajug.lu/session/la-recherche-a-lere-de-l-ia/"
   - title: "Notebook demo Hummingsearch"
     url: "https://github.com/dadoonet/music-search"
 

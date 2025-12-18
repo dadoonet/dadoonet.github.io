@@ -7,6 +7,7 @@ conference:
   country_code: "fr"
   latitude: "45.833619"
   longitude: "1.261105"
+  url: "https://www.unilim.fr/"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -28,8 +29,6 @@ cover: cover.jpg
 notist: "dadoonet/jK6xxJ"
 
 links:
-  - title: "Université de Limoges"
-    url: "https://www.unilim.fr/"
   - title: "Person dataset injector"
     url: "https://github.com/dadoonet/injector"
   - title: "Dev Console demo"

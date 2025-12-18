@@ -7,6 +7,7 @@ conference:
   country_code: "fr"
   latitude: "43.610769"
   longitude: "3.876716"
+  url: "https://sunny-tech.io/speakers/david_pilato/"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -38,17 +39,13 @@ x:
     id: "1144177838888771586"
 
 links:
-  - title: "Sunny Tech"
-    url: "https://sunny-tech.io/speakers/david_pilato/"
-  - title: "Feedback"
+  - title: "Feedbacks"
     url: "https://openfeedback.io/3xWvprYgxf1Tzmsj6J51/2019-06-27/50"
     description: "Please give your feedback about the session here"
-  - title: "Code used for the demo"
+  - title: "Code: legacy-search"
     url: "https://github.com/dadoonet/legacy-search"
-    description: "All the live coding session will start from this repository 00-legacy branch. You can switch to other branches which are the major steps I’m performing while coding.
-Just follow the README in every branch to understand what you have to do.
-Compare one branch to the next one to see again the code I’m writing live."
-  - title: "Blog Post (2015)"
+    description: "All the live coding session will start from this repository `00-legacy` branch. You can switch to other branches which are the major steps I'm performing while coding. Just follow the `README` in every branch to understand what you have to do. Compare one branch to the next one to see again the code I'm writing live."
+  - title: "Blog: Advanced search for your legacy application"
     url: "http://david.pilato.fr/blog/2015/05/09/advanced-search-for-your-legacy-application/"
     description: "This blog post describes the major steps I’m doing while on stage. It has not been updated though so it’s better to check out the real code on github."
 

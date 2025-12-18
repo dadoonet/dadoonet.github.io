@@ -7,6 +7,7 @@ conference:
   country_code: "fr"
   latitude: "43.610769"
   longitude: "3.876716"
+  url: "https://sunny-tech.io/"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -34,8 +35,6 @@ x:
     id: "1809193818660778077"
 
 links:
-  - title: "Page de l’évènement"
-    url: "https://sunny-tech.io/"
   - title: "Notebook demo Hummingsearch"
     url: "https://github.com/dadoonet/music-search"
 

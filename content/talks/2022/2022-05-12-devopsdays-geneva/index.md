@@ -7,6 +7,7 @@ conference:
   country_code: "ch"
   latitude: "46.204391"
   longitude: "6.143158"
+  url: "https://devopsdays.org/events/2022-geneva/"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -28,8 +29,6 @@ cover: cover.png
 notist: "dadoonet/cg0v1y"
 
 links:
-  - title: "Devops Days Geneva"
-    url: "https://devopsdays.org/events/2022-geneva/"
   - title: "Elastic Security Solution"
     url: "https://www.elastic.co/security"
 

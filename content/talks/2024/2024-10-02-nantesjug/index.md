@@ -7,6 +7,7 @@ conference:
   country_code: "fr"
   latitude: "47.218371"
   longitude: "-1.553621"
+  url: "https://nantesjug.org/#/events/2024_10_02"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -44,8 +45,6 @@ x:
     id: "1841770165219754335"
 
 links:
-  - title: "Page de l’évènement"
-    url: "https://nantesjug.org/#/events/2024_10_02"
   - title: "Notebook demo Hummingsearch"
     url: "https://github.com/dadoonet/music-search"
 

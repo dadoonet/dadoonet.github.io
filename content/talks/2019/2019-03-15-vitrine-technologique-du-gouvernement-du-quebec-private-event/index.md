@@ -7,6 +7,7 @@ conference:
   country_code: "ca"
   latitude: "46.813878"
   longitude: "-71.207981"
+  url: "https://www.vitrine-technologique.gouv.qc.ca/vitrine%20technologique.nsf/Activit%C3%A9s/A40C2E69E95370178525839000558DA7?OpenDocument&SessionID=undefined"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -34,8 +35,6 @@ x:
     id: "1106531287328849920"
 
 links:
-  - title: "Vitrine Technologique"
-    url: "https://www.vitrine-technologique.gouv.qc.ca/vitrine%20technologique.nsf/Activit%C3%A9s/A40C2E69E95370178525839000558DA7?OpenDocument&SessionID=undefined"
   - title: "Une ancienne vidéo (2015) sur le même sujet"
     url: "https://vimeo.com/129781775"
   - title: "Kibana Demo Script"

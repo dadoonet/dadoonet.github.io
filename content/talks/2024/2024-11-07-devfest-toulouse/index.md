@@ -7,6 +7,7 @@ conference:
   country_code: "fr"
   latitude: "43.604652"
   longitude: "1.444209"
+  url: "https://devfesttoulouse.fr/"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -34,8 +35,6 @@ x:
     id: "1853821935882211798"
 
 links:
-  - title: "Page de l’évènement"
-    url: "https://devfesttoulouse.fr/"
   - title: "Notebook demo Hummingsearch"
     url: "https://github.com/dadoonet/music-search"
 

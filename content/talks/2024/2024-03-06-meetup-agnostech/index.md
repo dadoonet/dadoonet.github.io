@@ -7,6 +7,7 @@ conference:
   country_code: "fr"
   latitude: "43.295100"
   longitude: "-0.370797"
+  url: "https://www.meetup.com/agnostech-pau/events/299096165"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -28,8 +29,6 @@ cover: cover.jpg
 notist: "dadoonet/lPHBOh"
 
 links:
-  - title: "Page de l’évènement"
-    url: "https://www.meetup.com/agnostech-pau/events/299096165"
   - title: "Notebook demo Hummingsearch"
     url: "https://github.com/dadoonet/music-search"
 

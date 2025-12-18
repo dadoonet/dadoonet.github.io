@@ -7,6 +7,7 @@ conference:
   country_code: "fr"
   latitude: "48.573405"
   longitude: "7.752111"
+  url: "https://dev.events/conferences/ia-and-data-day-strasbourg-a3ea8lsm"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -34,8 +35,6 @@ x:
     id: "1767507163696484432"
 
 links:
-  - title: "Page de l’évènement"
-    url: "https://dev.events/conferences/ia-and-data-day-strasbourg-a3ea8lsm"
   - title: "Notebook demo Hummingsearch"
     url: "https://github.com/dadoonet/music-search"
 

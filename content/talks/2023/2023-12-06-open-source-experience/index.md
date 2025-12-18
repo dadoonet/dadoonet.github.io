@@ -7,6 +7,7 @@ conference:
   country_code: "fr"
   latitude: "48.856614"
   longitude: "2.352222"
+  url: "https://www.opensource-experience.com/"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -32,12 +33,9 @@ x:
     id: "1730605321364640036"
 
 links:
-  - title: "Blog post"
-    url: "https://david.pilato.fr/blog/2022-06-10-la-potion-magique-pour-faire-avancer-ta-carriere/"
+  - title: "Blog: La potion magique pour faire progresser ta carrière"
+    url: "/blog/2022-06-10-la-potion-magique-pour-faire-avancer-ta-carriere/"
     description: "Un article de blog avec les points abordés pendant ce talk."
-  - title: "Open Source Experience"
-    url: "https://www.opensource-experience.com/"
-    description: "Site de la conférence"
 
 aliases:
   - /5gomPY

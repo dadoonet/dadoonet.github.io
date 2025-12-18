@@ -7,6 +7,7 @@ conference:
   country_code: "fr"
   latitude: "48.856614"
   longitude: "2.352222"
+  url: "https://cfp.devoxx.fr/2023/talk/SPD-7040/Un_moteur_de_recherche_de_documents_d'entreprise"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -34,8 +35,6 @@ x:
     id: "1621486584032907265"
 
 links:
-  - title: "Conference Page"
-    url: "https://cfp.devoxx.fr/2023/talk/SPD-7040/Un_moteur_de_recherche_de_documents_d'entreprise"
   - title: "Workshop instructions"
     url: "https://github.com/dadoonet/DevoxxFR-2023"
   - title: "Ingest Attachment Processor"

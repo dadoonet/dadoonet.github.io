@@ -7,6 +7,7 @@ conference:
   country_code: "fr"
   latitude: "47.394144"
   longitude: "0.684840"
+  url: "https://touraine.tech/talk/oVFqGQVuSwZBRIfpXwVd/"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -32,8 +33,6 @@ x:
     id: "1745717440724586899"
 
 links:
-  - title: "Page de l’évènement"
-    url: "https://touraine.tech/talk/oVFqGQVuSwZBRIfpXwVd/"
   - title: "Notebook demo Hummingsearch"
     url: "https://github.com/dadoonet/music-search"
 

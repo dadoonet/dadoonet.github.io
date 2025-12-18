@@ -7,6 +7,7 @@ conference:
   country_code: "fr"
   latitude: "48.762895"
   longitude: "2.075323"
+  url: "https://www.credit-agricole.com/"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -36,8 +37,6 @@ x:
     id: "1612803234267029504"
 
 links:
-  - title: "Credit Agricole"
-    url: "https://www.credit-agricole.com/"
   - title: "Kibana Demo Script"
     url: "https://gist.github.com/dadoonet/f911291c4dd19b0802031db3064c648f"
     description: "This is the Kibana script I’m starting from when doing the talk"

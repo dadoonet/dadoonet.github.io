@@ -7,6 +7,7 @@ conference:
   country_code: "fr"
   latitude: "49.443232"
   longitude: "1.099971"
+  url: "https://normandie.ai/"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -28,8 +29,6 @@ cover: cover.jpg
 notist: "dadoonet/EdlBME"
 
 links:
-  - title: "Page de l’évènement"
-    url: "https://normandie.ai/"
   - title: "Notebook demo Hummingsearch"
     url: "https://github.com/dadoonet/music-search"
 

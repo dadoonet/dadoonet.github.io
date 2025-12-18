@@ -7,6 +7,7 @@ conference:
   country_code: "mu"
   latitude: "-20.219524"
   longitude: "57.502332"
+  url: "https://conference.mscc.mu/session/76179"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -40,16 +41,12 @@ x:
     id: "1116341860606328833"
 
 links:
-  - title: "Blog Post (2015)"
+  - title: "Blog: Advanced search for your legacy application"
     url: "http://david.pilato.fr/blog/2015/05/09/advanced-search-for-your-legacy-application/"
     description: "This blog post describes the major steps I’m doing while on stage. It has not been updated though so it’s better to check out the real code on github."
-  - title: "Conference session link"
-    url: "https://conference.mscc.mu/session/76179"
-  - title: "Code use for the demo"
+  - title: "Code: legacy-search"
     url: "https://github.com/dadoonet/legacy-search"
-    description: "All the live coding session will start from this repository 00-legacy branch. You can switch to other branches which are the major steps I’m performing while coding.
-Just follow the README in every branch to understand what you have to do.
-Compare one branch to the next one to see again the code I’m writing live."
+    description: "All the live coding session will start from this repository `00-legacy` branch. You can switch to other branches which are the major steps I'm performing while coding. Just follow the `README` in every branch to understand what you have to do. Compare one branch to the next one to see again the code I'm writing live."
 
 aliases:
   - /5Hhw01

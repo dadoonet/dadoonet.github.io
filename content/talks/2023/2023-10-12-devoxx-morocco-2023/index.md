@@ -7,6 +7,7 @@ conference:
   country_code: "ma"
   latitude: "30.427755"
   longitude: "-9.598107"
+  url: "https://devoxx.ma/talk/?id=1608"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -36,8 +37,6 @@ x:
     id: "1712470259595379174"
 
 links:
-  - title: "Conference page"
-    url: "https://devoxx.ma/talk/?id=1608"
   - title: "Blog: ChatGPT and Elasticsearch: OpenAI meets private data"
     url: "https://www.elastic.co/fr/blog/chatgpt-elasticsearch-openai-meets-private-data"
     description: "Combine Elasticsearch’s search relevance with OpenAI’s ChatGPT’s question-answering capabilities to query your data. In this blog, you’ll learn how to connect ChatGPT to proprietary data stores using Elasticsearch and build question/answer capabilities for your data."

@@ -7,6 +7,7 @@ conference:
   country_code: "fr"
   latitude: "46.160329"
   longitude: "-1.151139"
+  url: "https://www.jugsummercamp.org/edition/11/presentations/si4HEEvfcNOR3P36Npy0"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -33,8 +34,6 @@ links:
     description: "Templates for common auditD rules"
   - title: "Demo repository"
     url: "https://github.com/xeraa/auditbeat-in-action"
-  - title: "JUG Summer Camp"
-    url: "https://www.jugsummercamp.org/edition/11/presentations/si4HEEvfcNOR3P36Npy0"
 
 aliases:
   - /FIdoIN

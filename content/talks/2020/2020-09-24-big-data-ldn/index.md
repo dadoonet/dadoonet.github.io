@@ -7,6 +7,7 @@ conference:
   country_code: "gb"
   latitude: "51.507351"
   longitude: "-0.127758"
+  url: "https://bigdataldn.com/speakers/"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -28,9 +29,6 @@ cover: cover.png
 notist: "dadoonet/PA2kUs"
 
 links:
-  - title: "Big Data London"
-    url: "https://bigdataldn.com/speakers/"
-    description: "Search for PILATO in the search box :)"
   - title: "Blog post part 1"
     url: "https://www.elastic.co/blog/enriching-your-postal-addresses-with-the-elastic-stack-part-1"
   - title: "Blog post part 2"

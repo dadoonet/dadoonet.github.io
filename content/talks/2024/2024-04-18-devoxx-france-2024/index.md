@@ -7,6 +7,7 @@ conference:
   country_code: "fr"
   latitude: "48.856614"
   longitude: "2.352222"
+  url: "https://mobile.devoxx.com/events/devoxxfr2024/talks/4178/details"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -38,8 +39,6 @@ x:
     id: "1780905823620714719"
 
 links:
-  - title: "Page de l’évènement"
-    url: "https://mobile.devoxx.com/events/devoxxfr2024/talks/4178/details"
   - title: "Notebook demo Hummingsearch"
     url: "https://github.com/dadoonet/music-search"
 

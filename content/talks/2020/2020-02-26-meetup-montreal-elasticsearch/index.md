@@ -7,6 +7,7 @@ conference:
   country_code: "ca"
   latitude: "45.501689"
   longitude: "-73.567256"
+  url: "https://www.meetup.com/fr-FR/Elasticsearch-Montreal/events/268675767/"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -34,8 +35,6 @@ x:
     id: "1230829244646903808"
 
 links:
-  - title: "Meetup Elasticsearch-Montreal"
-    url: "https://www.meetup.com/fr-FR/Elasticsearch-Montreal/events/268675767/"
   - title: "Blog post part 1"
     url: "https://www.elastic.co/blog/enriching-your-postal-addresses-with-the-elastic-stack-part-1"
   - title: "Blog post part 2"

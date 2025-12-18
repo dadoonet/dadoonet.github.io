@@ -7,6 +7,7 @@ conference:
   country_code: "fr"
   latitude: "47.619668"
   longitude: "-2.918284"
+  url: "https://camping-speakers.fr/sessions/l_art_du_DeeJaying_par_la_pratique/"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -56,8 +57,6 @@ x:
     id: "1669788001876975625"
 
 links:
-  - title: "Conference"
-    url: "https://camping-speakers.fr/sessions/l_art_du_DeeJaying_par_la_pratique/"
   - title: "DJ David Pilato Podcast"
     url: "https://podcasts.apple.com/fr/podcast/david-pilato-mixes/id959495351"
   - title: "Set Camping Des Speakers"

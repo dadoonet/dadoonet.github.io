@@ -7,6 +7,7 @@ conference:
   country_code: "fr"
   latitude: "50.629250"
   longitude: "3.057256"
+  url: "https://www.meetup.com/fr-FR/GDG-Lille/events/245130596/"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -42,8 +43,6 @@ x:
     id: "941377671740710912"
 
 links:
-  - title: "GDG Lille"
-    url: "https://www.meetup.com/fr-FR/GDG-Lille/events/245130596/"
 
 aliases:
   - /tlQJC5

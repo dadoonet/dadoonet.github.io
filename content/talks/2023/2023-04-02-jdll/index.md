@@ -7,6 +7,7 @@ conference:
   country_code: "fr"
   latitude: "45.764043"
   longitude: "4.835659"
+  url: "https://jdll.org/programme"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -32,8 +33,6 @@ x:
     id: "1638567651847929861"
 
 links:
-  - title: "Conference Page"
-    url: "https://jdll.org/programme"
   - title: "Workshop instructions"
     url: "https://github.com/dadoonet/JDLL"
   - title: "Ingest Attachment Processor"
