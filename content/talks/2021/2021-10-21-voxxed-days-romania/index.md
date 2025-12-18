@@ -3,8 +3,10 @@ title: "Hunting (and stopping!) threats with Elastic Security"
 conference: 
   name: "Voxxed Days Romania"
   city: "Bucharest"
-  country: "RO"
+  country: "Romania"
   country_code: "ro"
+  latitude: "44.426767"
+  longitude: "26.102538"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

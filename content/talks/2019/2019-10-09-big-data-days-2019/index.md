@@ -3,8 +3,10 @@ title: "Advanced (elastic)search for your legacy application"
 conference: 
   name: "Big Data Days 2019"
   city: "Moscow"
-  country: "RU"
+  country: "Russia"
   country_code: "ru"
+  latitude: "55.755826"
+  longitude: "37.617300"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

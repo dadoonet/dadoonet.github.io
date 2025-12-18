@@ -5,6 +5,9 @@ conference:
   city: "Toulouse"
   country: "France"
   country_code: "fr"
+  latitude: "43.604652"
+  longitude: "1.444209"
+  url: "https://cfp.capitoledulibre.org/cdl-2022/talk/SAGLQM/"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -26,8 +29,6 @@ cover: cover.jpg
 notist: "dadoonet/hmRw07"
 
 links:
-  - title: "Event page"
-    url: "https://cfp.capitoledulibre.org/cdl-2022/talk/SAGLQM/"
   - title: "FSCrawler"
     url: "https://fscrawler.readthedocs.io/"
 

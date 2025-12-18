@@ -5,6 +5,9 @@ conference:
   city: "La Rochelle"
   country: "France"
   country_code: "fr"
+  url: "https://www.jugsummercamp.org/"
+  latitude: "46.160329"
+  longitude: "-1.151139"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -26,8 +29,6 @@ youtube: "96lYAIDzX50"
 notist: "dadoonet/WA1Ort"
 
 links:
-  - title: "Conference Website"
-    url: "https://www.jugsummercamp.org/"
   - title: "Elastic Serverless documentation"
     url: "https://www.elastic.co/docs/deploy-manage/deploy/elastic-cloud/serverless"
   - title: "Elasticsearch Serverless API"

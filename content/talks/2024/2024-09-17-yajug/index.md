@@ -5,6 +5,8 @@ conference:
   city: "Luxembourg"
   country: "Luxembourg"
   country_code: "lu"
+  latitude: "49.815273"
+  longitude: "6.129583"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

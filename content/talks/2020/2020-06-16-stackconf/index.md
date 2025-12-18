@@ -5,6 +5,8 @@ conference:
   city: "Berlin"
   country: "Germany"
   country_code: "de"
+  latitude: "52.520007"
+  longitude: "13.404954"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

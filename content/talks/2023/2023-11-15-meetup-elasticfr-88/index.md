@@ -5,6 +5,8 @@ conference:
   city: "Paris"
   country: "France"
   country_code: "fr"
+  latitude: "48.856614"
+  longitude: "2.352222"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

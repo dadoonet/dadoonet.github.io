@@ -5,6 +5,8 @@ conference:
   city: "Brest"
   country: "France"
   country_code: "fr"
+  latitude: "48.390394"
+  longitude: "-4.486076"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

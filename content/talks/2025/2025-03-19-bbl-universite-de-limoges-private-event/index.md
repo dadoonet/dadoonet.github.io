@@ -5,6 +5,8 @@ conference:
   city: "Limoges"
   country: "France"
   country_code: "fr"
+  latitude: "45.833619"
+  longitude: "1.261105"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

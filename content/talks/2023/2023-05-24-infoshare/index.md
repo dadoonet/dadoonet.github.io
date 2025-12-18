@@ -5,6 +5,9 @@ conference:
   city: "Gdańsk"
   country: "Poland"
   country_code: "pl"
+  latitude: "54.352025"
+  longitude: "18.646638"
+  url: "https://infoshare.pl/conference/agenda/#talk698-5"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -26,8 +29,6 @@ cover: cover.jpg
 notist: "dadoonet/zcgzDj"
 
 links:
-  - title: "Conference website"
-    url: "https://infoshare.pl/conference/agenda/#talk698-5"
   - title: "Live coding"
     url: "https://www.elastic.co/blog/how-to-add-powerful-search-existing-sql-applications-elasticsearch-video-tutorial"
     description: "Those videos are recorded from a live coding session."

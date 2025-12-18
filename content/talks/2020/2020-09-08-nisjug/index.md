@@ -5,6 +5,8 @@ conference:
   city: "Niš"
   country: "Serbia"
   country_code: "rs"
+  latitude: "43.320902"
+  longitude: "21.895759"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

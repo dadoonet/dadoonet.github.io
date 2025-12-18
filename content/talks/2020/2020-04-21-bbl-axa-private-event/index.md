@@ -5,6 +5,8 @@ conference:
   city: "Nanterre"
   country: "France"
   country_code: "fr"
+  latitude: "48.892423"
+  longitude: "2.215331"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

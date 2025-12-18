@@ -5,6 +5,8 @@ conference:
   city: "Rouen"
   country: "France"
   country_code: "fr"
+  latitude: "49.443232"
+  longitude: "1.099971"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

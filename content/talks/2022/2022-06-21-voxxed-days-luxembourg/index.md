@@ -5,6 +5,9 @@ conference:
   city: "Luxembourg"
   country: "Luxembourg"
   country_code: "lu"
+  latitude: "49.815273"
+  longitude: "6.129583"
+  url: "https://luxembourg.voxxeddays.com/"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -34,8 +37,6 @@ x:
     id: "1539210577121255425"
 
 links:
-  - title: "Event page"
-    url: "https://luxembourg.voxxeddays.com/"
   - title: "FSCrawler"
     url: "https://fscrawler.readthedocs.io/"
 

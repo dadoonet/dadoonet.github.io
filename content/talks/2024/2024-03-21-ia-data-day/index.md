@@ -5,6 +5,8 @@ conference:
   city: "Strasbourg"
   country: "France"
   country_code: "fr"
+  latitude: "48.573405"
+  longitude: "7.752111"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

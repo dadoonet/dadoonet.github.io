@@ -5,6 +5,9 @@ conference:
   city: "Montreal"
   country: "Canada"
   country_code: "ca"
+  latitude: "45.501689"
+  longitude: "-73.567256"
+  url: "https://www.meetup.com/montreal-jug/events/298437494"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -32,8 +35,6 @@ x:
     id: "1759599463780294975"
 
 links:
-  - title: "Event page"
-    url: "https://www.meetup.com/montreal-jug/events/298437494"
   - title: "Notebook demo Hummingsearch"
     url: "https://github.com/dadoonet/music-search"
   - title: "Une vidéo sur le même sujet"

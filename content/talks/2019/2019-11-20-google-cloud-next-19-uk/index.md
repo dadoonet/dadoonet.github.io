@@ -3,8 +3,10 @@ title: "Deploying and Monitoring Elastic Stack on GCP"
 conference: 
   name: "Google Cloud Next ’19 UK"
   city: "London"
-  country: "United Kingdom"
+  country: "UK"
   country_code: "gb"
+  latitude: "51.507351"
+  longitude: "-0.127758"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

@@ -3,8 +3,11 @@ title: "Indexing your office documents with Elastic stack and FSCrawler"
 conference: 
   name: "Software Architecture Summit"
   city: "Bucharest"
-  country: "RO"
+  country: "Romania"
   country_code: "ro"
+  latitude: "44.426767"
+  longitude: "26.102538"
+  url: "https://www.techweek.ro/software-architecture-summit"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -38,8 +41,6 @@ x:
     id: "1543972927116296194"
 
 links:
-  - title: "Event page"
-    url: "https://www.techweek.ro/software-architecture-summit"
   - title: "FSCrawler"
     url: "https://fscrawler.readthedocs.io/"
 

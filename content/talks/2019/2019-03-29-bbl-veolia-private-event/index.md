@@ -5,6 +5,8 @@ conference:
   city: "Saint-Maurice"
   country: "France"
   country_code: "fr"
+  latitude: "48.820567"
+  longitude: "2.423655"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

@@ -5,6 +5,9 @@ conference:
   city: "Sofia"
   country: "Bulgaria"
   country_code: "bg"
+  latitude: "42.697708"
+  longitude: "23.321868"
+  url: "https://jprime.io/"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -34,8 +37,6 @@ x:
     id: "1759498858676056236"
 
 links:
-  - title: "Event Page"
-    url: "https://jprime.io/"
   - title: "Music Search demo code"
     url: "https://github.com/dadoonet/music-search"
 

@@ -5,6 +5,8 @@ conference:
   city: "La Rochelle"
   country: "France"
   country_code: "fr"
+  latitude: "46.160329"
+  longitude: "-1.151139"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

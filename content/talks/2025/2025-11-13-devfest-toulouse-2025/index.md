@@ -2,11 +2,13 @@
 title: "Le hasard fait bien les tests"
 description: ""
 conference: 
-  name: "Devfest Toulouse 2025"
+  name: "Devoxx France 2012"
   url: "https://devfest.gdgtoulouse.com/"
-  city: "Toulouse"
+  city: "Paris"
   country: "France"
   country_code: "fr"
+  latitude: "48.856614"
+  longitude: "2.352222"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

@@ -5,6 +5,8 @@ conference:
   city: "Rennes"
   country: "France"
   country_code: "fr"
+  latitude: "48.117266"
+  longitude: "-1.677793"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

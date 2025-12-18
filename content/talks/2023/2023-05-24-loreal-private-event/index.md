@@ -5,6 +5,8 @@ conference:
   city: "Puteaux"
   country: "France"
   country_code: "fr"
+  latitude: "48.884748"
+  longitude: "2.239640"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

@@ -5,6 +5,9 @@ conference:
   city: "Paris"
   country: "France"
   country_code: "fr"
+  latitude: "48.856614"
+  longitude: "2.352222"
+  url: "https://paris.aitinkerers.org/p/ai-tinkerers-paris-meetup-on-january-30th"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -30,8 +33,6 @@ x:
     id: "1883838115988509071"
 
 links:
-  - title: "Event page"
-    url: "https://paris.aitinkerers.org/p/ai-tinkerers-paris-meetup-on-january-30th"
   - title: "Demo source code"
     url: "https://github.com/dadoonet/music-search/"
     description: "The Jupyter notebook"

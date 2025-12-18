@@ -5,6 +5,8 @@ conference:
   city: "Nice"
   country: "France"
   country_code: "fr"
+  latitude: "43.710173"
+  longitude: "7.261953"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

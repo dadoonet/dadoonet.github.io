@@ -5,6 +5,8 @@ conference:
   city: "Marseille"
   country: "France"
   country_code: "fr"
+  latitude: "43.296482"
+  longitude: "5.369780"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

@@ -5,6 +5,9 @@ conference:
   city: "Brussels"
   country: "Belgium"
   country_code: "be"
+  latitude: "50.850340"
+  longitude: "4.351710"
+  url: "https://www.meetup.com/brujug/events/304382685/"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -26,8 +29,6 @@ youtube: "mjC2aACw4xw"
 notist: "dadoonet/afovUS"
 
 links:
-  - title: "Event Page"
-    url: "https://www.meetup.com/brujug/events/304382685/"
   - title: "Music Search demo code"
     url: "https://github.com/dadoonet/music-search"
 

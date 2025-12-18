@@ -5,6 +5,8 @@ conference:
   city: "Amsterdam"
   country: "Netherlands"
   country_code: "nl"
+  latitude: "52.370216"
+  longitude: "4.895168"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

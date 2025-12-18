@@ -5,6 +5,9 @@ conference:
   city: "Niort"
   country: "France"
   country_code: "fr"
+  url: "https://www.devquest.fr/"
+  latitude: "46.323716"
+  longitude: "-0.464777"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -26,8 +29,6 @@ youtube: "R_4JmvrIaX0"
 notist: "dadoonet/rlO6SH"
 
 links:
-  - title: "Page de l’évènement"
-    url: "https://www.devquest.fr/sessions/la-recherche-a-lere-de-lia"
   - title: "Notebook demo Hummingsearch"
     url: "https://github.com/dadoonet/music-search"
   - title: "Podcast DJ"

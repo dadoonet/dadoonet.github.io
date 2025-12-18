@@ -5,6 +5,9 @@ conference:
   city: "Paris"
   country: "France"
   country_code: "fr"
+  latitude: "48.856614"
+  longitude: "2.352222"
+  url: "https://www.programmez.com/page-devcon/devcon-23-securite-qualite-du-code"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -26,8 +29,6 @@ youtube: "stH8PHZGTjc"
 notist: "dadoonet/VU9xiG"
 
 links:
-  - title: "Event page"
-    url: "https://www.programmez.com/page-devcon/devcon-23-securite-qualite-du-code"
   - title: "Elastic Security Labs"
     url: "https://www.elastic.co/security-labs"
     description: "Who is Elastic Security Labs?

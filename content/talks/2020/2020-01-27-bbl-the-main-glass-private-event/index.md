@@ -5,6 +5,8 @@ conference:
   city: "Niort"
   country: "France"
   country_code: "fr"
+  latitude: "46.323716"
+  longitude: "-0.464777"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

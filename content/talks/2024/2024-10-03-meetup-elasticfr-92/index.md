@@ -5,6 +5,9 @@ conference:
   city: "Paris"
   country: "France"
   country_code: "fr"
+  url: "https://www.meetup.com/elasticfr/events/303048962"
+  latitude: "48.856614"
+  longitude: "2.352222"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -38,8 +41,6 @@ x:
     id: "1843207134567440484"
 
 links:
-  - title: "Event page"
-    url: "https://www.meetup.com/elasticfr/events/303048962"
   - title: "Demo code"
     url: "https://github.com/dadoonet/esql-demo"
     description: "The code played during the demo"

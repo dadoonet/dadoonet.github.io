@@ -3,8 +3,11 @@ title: "Indexing your office documents with Elastic stack and FSCrawler"
 conference: 
   name: "Elastic London Revival"
   city: "London"
-  country: "United Kingdom"
+  country: "UK"
   country_code: "gb"
+  latitude: "51.507351"
+  longitude: "-0.127758"
+  url: "https://www.meetup.com/London-Elastic-Fantastics/events/285591510/"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -36,8 +39,6 @@ x:
 links:
   - title: "FSCrawler demo repository"
     url: "https://github.com/dadoonet/demo-fscrawler"
-  - title: "Event page"
-    url: "https://www.meetup.com/London-Elastic-Fantastics/events/285591510/"
   - title: "FSCrawler"
     url: "https://fscrawler.readthedocs.io/"
 

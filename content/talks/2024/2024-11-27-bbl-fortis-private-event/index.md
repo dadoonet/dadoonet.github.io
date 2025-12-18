@@ -5,6 +5,8 @@ conference:
   city: "Brussels"
   country: "Belgium"
   country_code: "be"
+  latitude: "50.850340"
+  longitude: "4.351710"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

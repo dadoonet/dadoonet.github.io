@@ -5,6 +5,8 @@ conference:
   city: "Amiens"
   country: "France"
   country_code: "fr"
+  latitude: "49.894067"
+  longitude: "2.295753"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

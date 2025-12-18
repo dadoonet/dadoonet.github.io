@@ -3,8 +3,10 @@ title: "Enriching postal addresses with Elastic stack"
 conference: 
   name: "Big Data Conference Europe"
   city: "Vilnius"
-  country: "LT"
+  country: "Lithuania"
   country_code: "lt"
+  latitude: "54.687156"
+  longitude: "25.279651"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

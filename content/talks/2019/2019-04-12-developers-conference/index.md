@@ -5,6 +5,8 @@ conference:
   city: "Moka"
   country: "Mauritius"
   country_code: "mu"
+  latitude: "-20.219524"
+  longitude: "57.502332"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

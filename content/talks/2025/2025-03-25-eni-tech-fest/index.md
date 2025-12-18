@@ -5,6 +5,9 @@ conference:
   city: "Nantes"
   country: "France"
   country_code: "fr"
+  latitude: "47.218371"
+  longitude: "-1.553621"
+  url: "https://www.eni-service.fr/eni-tech-fest-levenement-incontournable-pour-les-professionnels-du-numerique/"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -26,8 +29,6 @@ cover: cover.jpg
 notist: "dadoonet/bAPRcD"
 
 links:
-  - title: "Event page"
-    url: "https://www.eni-service.fr/eni-tech-fest-levenement-incontournable-pour-les-professionnels-du-numerique/"
   - title: "Notebook demo Hummingsearch"
     url: "https://github.com/dadoonet/music-search"
   - title: "Une vidéo sur le même sujet"

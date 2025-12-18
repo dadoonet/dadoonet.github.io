@@ -5,6 +5,9 @@ conference:
   city: "Grenoble"
   country: "France"
   country_code: "fr"
+  url: "https://alpesjug.org/"
+  latitude: "45.188529"
+  longitude: "5.724524"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

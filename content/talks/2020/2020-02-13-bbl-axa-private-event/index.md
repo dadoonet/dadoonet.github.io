@@ -5,6 +5,8 @@ conference:
   city: "Wasquehal"
   country: "France"
   country_code: "fr"
+  latitude: "50.669276"
+  longitude: "3.130782"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

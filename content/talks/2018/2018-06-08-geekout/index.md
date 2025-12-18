@@ -3,8 +3,10 @@ title: "Advanced (elastic)search for your legacy application"
 conference: 
   name: "GeekOut"
   city: "Tallinn"
-  country: "EE"
+  country: "Estonia"
   country_code: "ee"
+  latitude: "59.436961"
+  longitude: "24.753575"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

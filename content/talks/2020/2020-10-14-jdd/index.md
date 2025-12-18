@@ -5,6 +5,9 @@ conference:
   city: "Kraków"
   country: "Poland"
   country_code: "pl"
+  latitude: "50.064651"
+  longitude: "19.944981"
+  url: "https://jdd.org.pl/lecture/#id=62927"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -26,8 +29,6 @@ cover: cover.jpg
 notist: "dadoonet/VsXioU"
 
 links:
-  - title: "Conference website"
-    url: "https://jdd.org.pl/lecture/#id=62927"
   - title: "Live coding"
     url: "https://www.elastic.co/blog/how-to-add-powerful-search-existing-sql-applications-elasticsearch-video-tutorial"
     description: "Those videos are recorded from a live coding session."

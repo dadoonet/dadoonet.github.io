@@ -5,6 +5,9 @@ conference:
   city: "Nantes"
   country: "France"
   country_code: "fr"
+  latitude: "47.218371"
+  longitude: "-1.553621"
+  url: "https://my.weezevent.com/elastic-search"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -32,8 +35,6 @@ x:
     id: "1866153339307630987"
 
 links:
-  - title: "Event page"
-    url: "https://my.weezevent.com/elastic-search"
   - title: "Demo code"
     url: "https://github.com/dadoonet/esql-demo"
     description: "The code played during the demo"

@@ -3,8 +3,10 @@ title: "Randomized testing: Gotta Catch ‘Em All"
 conference: 
   name: "Elastic EAH (private event)"
   city: "Las Vegas"
-  country: "United States"
+  country: "USA"
   country_code: "us"
+  latitude: "36.169941"
+  longitude: "-115.139830"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

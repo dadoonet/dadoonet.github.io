@@ -5,6 +5,8 @@ conference:
   city: "Geneva"
   country: "Switzerland"
   country_code: "ch"
+  latitude: "46.204391"
+  longitude: "6.143158"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

@@ -5,6 +5,8 @@ conference:
   city: "Orléans"
   country: "France"
   country_code: "fr"
+  latitude: "47.902964"
+  longitude: "1.909251"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

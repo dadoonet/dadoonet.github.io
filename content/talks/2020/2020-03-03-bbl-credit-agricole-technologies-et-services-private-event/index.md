@@ -5,6 +5,8 @@ conference:
   city: "Montpellier"
   country: "France"
   country_code: "fr"
+  latitude: "43.610769"
+  longitude: "3.876716"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

@@ -5,6 +5,8 @@ conference:
   city: "Tours"
   country: "France"
   country_code: "fr"
+  latitude: "47.394144"
+  longitude: "0.684840"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

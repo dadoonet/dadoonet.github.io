@@ -5,6 +5,9 @@ conference:
   city: "Brussels"
   country: "Belgium"
   country_code: "be"
+  latitude: "50.850340"
+  longitude: "4.351710"
+  url: "https://www.arhs-group.com/"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -30,8 +33,6 @@ x:
     id: "1862255418023493771"
 
 links:
-  - title: "Event Page"
-    url: "https://www.arhs-group.com/"
   - title: "Music Search demo code"
     url: "https://github.com/dadoonet/music-search"
 

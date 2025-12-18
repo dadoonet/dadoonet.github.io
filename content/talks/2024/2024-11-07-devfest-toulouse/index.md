@@ -5,6 +5,8 @@ conference:
   city: "Toulouse"
   country: "France"
   country_code: "fr"
+  latitude: "43.604652"
+  longitude: "1.444209"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

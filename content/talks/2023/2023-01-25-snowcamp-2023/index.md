@@ -5,6 +5,9 @@ conference:
   city: "Grenoble"
   country: "France"
   country_code: "fr"
+  latitude: "45.188529"
+  longitude: "5.724524"
+  url: "https://snowcamp.io/fr/"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -45,8 +48,6 @@ links:
   - title: "Demo"
     url: "https://github.com/dadoonet/demo-fscrawler"
     description: "Source code for the demos"
-  - title: "Event page"
-    url: "https://snowcamp.io/fr/"
   - title: "FSCrawler"
     url: "https://fscrawler.readthedocs.io/"
 

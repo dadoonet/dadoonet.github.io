@@ -5,6 +5,9 @@ conference:
   city: "Paris"
   country: "France"
   country_code: "fr"
+  latitude: "48.856614"
+  longitude: "2.352222"
+  url: "https://www.devoxx.fr/agenda-2025/talk/?id=12319"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -30,8 +33,6 @@ x:
     id: "1899853405696217567"
 
 links:
-  - title: "Event page"
-    url: "https://www.devoxx.fr/agenda-2025/talk/?id=12319"
   - title: "Demo code"
     url: "https://github.com/dadoonet/esql-demo"
     description: "The code played during the demo"

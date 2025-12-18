@@ -5,6 +5,9 @@ conference:
   city: "Paris"
   country: "France"
   country_code: "fr"
+  latitude: "48.856614"
+  longitude: "2.352222"
+  url: "https://azureday.eventbuilder.com/event/81082"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -32,8 +35,6 @@ x:
     id: "1770114563440103875"
 
 links:
-  - title: "Event page"
-    url: "https://azureday.eventbuilder.com/event/81082"
   - title: "Notebook demo Hummingsearch"
     url: "https://github.com/dadoonet/music-search"
 

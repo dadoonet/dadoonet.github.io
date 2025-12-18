@@ -3,8 +3,11 @@ title: "Indexing your office documents with Elastic stack and FSCrawler"
 conference: 
   name: "Devoxx UK"
   city: "London"
-  country: "United Kingdom"
+  country: "UK"
   country_code: "gb"
+  latitude: "51.507351"
+  longitude: "-0.127758"
+  url: "https://www.devoxx.co.uk/"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -34,8 +37,6 @@ x:
     id: "1541738182714220544"
 
 links:
-  - title: "Event page"
-    url: "https://www.devoxx.co.uk/"
   - title: "FSCrawler"
     url: "https://fscrawler.readthedocs.io/"
 

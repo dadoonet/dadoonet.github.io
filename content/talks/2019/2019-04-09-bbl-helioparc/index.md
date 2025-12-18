@@ -5,6 +5,8 @@ conference:
   city: "Pau"
   country: "France"
   country_code: "fr"
+  latitude: "43.295100"
+  longitude: "-0.370797"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

@@ -3,8 +3,11 @@ title: "🎹🎻🎸 Searching for similar music tracks 🎼🎶"
 conference: 
   name: "OpenConf"
   city: "Athens"
-  country: "GR"
+  country: "Greece"
   country_code: "gr"
+  latitude: "37.983810"
+  longitude: "23.727539"
+  url: "https://www.open-conf.gr/"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -26,8 +29,6 @@ youtube: "Gwx0kW0EOlQ"
 notist: "dadoonet/RnBVpa"
 
 links:
-  - title: "Event page"
-    url: "https://www.open-conf.gr/"
   - title: "Demo source code"
     url: "https://github.com/dadoonet/music-search/"
     description: "The Jupyter notebook"

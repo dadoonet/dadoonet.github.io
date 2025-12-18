@@ -5,6 +5,8 @@ conference:
   city: "Issy-les-Moulineaux"
   country: "France"
   country_code: "fr"
+  latitude: "48.824531"
+  longitude: "2.274342"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

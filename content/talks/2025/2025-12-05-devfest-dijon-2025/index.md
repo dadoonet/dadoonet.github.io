@@ -2,11 +2,13 @@
 title: "Envie de booster ta carrière ? Open source-toi !"
 # description: ""
 conference: 
-  name: "Devfest Dijon 2025"
+  name: "Devoxx France 2012"
   url: "https://devfest.dijon.fr/"
-  city: "Dijon"
+  city: "Paris"
   country: "France"
   country_code: "fr"
+  latitude: "48.856614"
+  longitude: "2.352222"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

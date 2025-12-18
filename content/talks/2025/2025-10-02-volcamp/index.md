@@ -5,6 +5,8 @@ conference:
   city: "Clermont-Ferrand"
   country: "France"
   country_code: "fr"
+  latitude: "45.777222"
+  longitude: "3.087025"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

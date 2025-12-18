@@ -5,6 +5,8 @@ conference:
   city: "Quebec City"
   country: "Canada"
   country_code: "ca"
+  latitude: "46.813878"
+  longitude: "-71.207981"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

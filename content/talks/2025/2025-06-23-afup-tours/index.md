@@ -5,6 +5,9 @@ conference:
   city: "Tours"
   country: "France"
   country_code: "fr"
+  latitude: "47.394144"
+  longitude: "0.684840"
+  url: "https://www.meetup.com/afup-tours-php/events/307931669/"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -26,8 +29,6 @@ cover: cover.jpg
 notist: "dadoonet/ddCFRI"
 
 links:
-  - title: "Event page"
-    url: "https://www.meetup.com/afup-tours-php/events/307931669/"
   - title: "Demo code"
     url: "https://github.com/dadoonet/esql-demo"
     description: "The code played during the demo"

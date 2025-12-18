@@ -5,6 +5,9 @@ conference:
   city: "Agadir 80000"
   country: "Morocco"
   country_code: "ma"
+  latitude: "30.427755"
+  longitude: "-9.598107"
+  url: "https://devoxx.ma/"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -26,8 +29,6 @@ cover: cover.jpg
 notist: "dadoonet/FtwXG1"
 
 links:
-  - title: "Event page"
-    url: "https://devoxx.ma/"
   - title: "FSCrawler"
     url: "https://fscrawler.readthedocs.io/"
 

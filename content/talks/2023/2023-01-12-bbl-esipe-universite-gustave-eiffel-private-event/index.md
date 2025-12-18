@@ -5,6 +5,8 @@ conference:
   city: "Champs-sur-Marne"
   country: "France"
   country_code: "fr"
+  latitude: "48.852775"
+  longitude: "2.602651"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

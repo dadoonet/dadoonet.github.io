@@ -5,6 +5,8 @@ conference:
   city: "Lyon"
   country: "France"
   country_code: "fr"
+  latitude: "45.764043"
+  longitude: "4.835659"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

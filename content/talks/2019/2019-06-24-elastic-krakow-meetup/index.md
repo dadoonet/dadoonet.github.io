@@ -5,6 +5,8 @@ conference:
   city: "Kraków"
   country: "Poland"
   country_code: "pl"
+  latitude: "50.064651"
+  longitude: "19.944981"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

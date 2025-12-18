@@ -5,6 +5,9 @@ conference:
   city: "Bordeaux"
   country: "France"
   country_code: "fr"
+  latitude: "44.837789"
+  longitude: "-0.579180"
+  url: "http://www.bordeauxjug.org/meetings/20250320-elasticsearch_query_language:_es_ql"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -30,8 +33,6 @@ x:
     id: "1899491715959992658"
 
 links:
-  - title: "Event page"
-    url: "http://www.bordeauxjug.org/meetings/20250320-elasticsearch_query_language:_es_ql"
   - title: "Demo code"
     url: "https://github.com/dadoonet/esql-demo"
     description: "The code played during the demo"

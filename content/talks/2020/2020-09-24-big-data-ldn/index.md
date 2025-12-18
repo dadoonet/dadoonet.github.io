@@ -3,8 +3,10 @@ title: "Enriching postal addresses with Elastic stack"
 conference: 
   name: "Big Data LDN"
   city: "London"
-  country: "United Kingdom"
+  country: "UK"
   country_code: "gb"
+  latitude: "51.507351"
+  longitude: "-0.127758"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

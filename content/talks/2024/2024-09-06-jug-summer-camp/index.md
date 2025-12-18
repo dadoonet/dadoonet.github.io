@@ -5,6 +5,9 @@ conference:
   city: "La Rochelle"
   country: "France"
   country_code: "fr"
+  latitude: "46.160329"
+  longitude: "-1.151139"
+  url: "https://www.jugsummercamp.org/edition/15/presentations/GxmHLbTOhV23O4y88B1Z"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -34,8 +37,6 @@ x:
     id: "1829150830089646215"
 
 links:
-  - title: "Event page"
-    url: "https://www.jugsummercamp.org/edition/15/presentations/GxmHLbTOhV23O4y88B1Z"
   - title: "Demo code"
     url: "https://github.com/dadoonet/esql-demo"
     description: "The code played during the demo"

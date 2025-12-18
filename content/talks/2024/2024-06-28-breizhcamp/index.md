@@ -5,6 +5,9 @@ conference:
   city: "Rennes"
   country: "France"
   country_code: "fr"
+  latitude: "48.117266"
+  longitude: "-1.677793"
+  url: "https://www.breizhcamp.org/"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -34,8 +37,6 @@ x:
     id: "1806688935277404408"
 
 links:
-  - title: "Event page"
-    url: "https://www.breizhcamp.org/"
   - title: "Demo code"
     url: "https://github.com/dadoonet/esql-demo"
     description: "The code played during the demo"

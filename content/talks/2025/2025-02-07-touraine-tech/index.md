@@ -5,6 +5,9 @@ conference:
   city: "Tours"
   country: "France"
   country_code: "fr"
+  latitude: "47.394144"
+  longitude: "0.684840"
+  url: "https://touraine.tech/talk/clzyebffk312o13hpv73ml7xb"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -40,8 +43,6 @@ x:
     id: "1874138596074021243"
 
 links:
-  - title: "Event page"
-    url: "https://touraine.tech/talk/clzyebffk312o13hpv73ml7xb"
   - title: "Demo code"
     url: "https://github.com/dadoonet/esql-demo"
     description: "The code played during the demo"

@@ -5,6 +5,9 @@ conference:
   city: "Paris"
   country: "France"
   country_code: "fr"
+  latitude: "48.856614"
+  longitude: "2.352222"
+  url: "https://www.sido-osxp.com/fr/session/e55fd218-1e28-ec11-ae72-a04a5e7d345e"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -32,8 +35,6 @@ x:
     id: "1458424405139279879"
 
 links:
-  - title: "Event page"
-    url: "https://www.sido-osxp.com/fr/session/e55fd218-1e28-ec11-ae72-a04a5e7d345e"
   - title: "FSCrawler"
     url: "https://fscrawler.readthedocs.io/"
 

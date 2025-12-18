@@ -5,6 +5,8 @@ conference:
   city: "Turin"
   country: "Italy"
   country_code: "it"
+  latitude: "45.070339"
+  longitude: "7.686864"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

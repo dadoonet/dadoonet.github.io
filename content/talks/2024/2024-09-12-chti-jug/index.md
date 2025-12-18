@@ -5,6 +5,9 @@ conference:
   city: "Lille"
   country: "France"
   country_code: "fr"
+  latitude: "50.629250"
+  longitude: "3.057256"
+  url: "https://www.meetup.com/chtijug/events/303211426/"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -34,8 +37,6 @@ x:
     id: "1830957835527823468"
 
 links:
-  - title: "Event page"
-    url: "https://www.meetup.com/chtijug/events/303211426/"
   - title: "Demo code"
     url: "https://github.com/dadoonet/esql-demo"
     description: "The code played during the demo"

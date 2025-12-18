@@ -5,6 +5,9 @@ conference:
   city: "Faro"
   country: "Portugal"
   country_code: "pt"
+  latitude: "37.016463"
+  longitude: "-7.935198"
+  url: "https://geeksessionsconf.pt/"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -34,8 +37,6 @@ x:
     id: "1894292854324781545"
 
 links:
-  - title: "Event page"
-    url: "https://geeksessionsconf.pt/"
   - title: "Demo source code"
     url: "https://github.com/dadoonet/music-search/"
     description: "The Jupyter notebook"

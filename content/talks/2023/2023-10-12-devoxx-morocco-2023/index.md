@@ -5,6 +5,8 @@ conference:
   city: "Agadir 80000"
   country: "Morocco"
   country_code: "ma"
+  latitude: "30.427755"
+  longitude: "-9.598107"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

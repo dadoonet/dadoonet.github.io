@@ -5,6 +5,8 @@ conference:
   city: "Nantes"
   country: "France"
   country_code: "fr"
+  latitude: "47.218371"
+  longitude: "-1.553621"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

@@ -5,6 +5,8 @@ conference:
   city: "Guyancourt"
   country: "France"
   country_code: "fr"
+  latitude: "48.762895"
+  longitude: "2.075323"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

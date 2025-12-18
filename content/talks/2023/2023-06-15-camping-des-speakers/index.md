@@ -5,6 +5,8 @@ conference:
   city: "Baden"
   country: "France"
   country_code: "fr"
+  latitude: "47.619668"
+  longitude: "-2.918284"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

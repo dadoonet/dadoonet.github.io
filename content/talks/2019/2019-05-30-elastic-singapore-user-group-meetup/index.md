@@ -5,6 +5,8 @@ conference:
   city: "Singapore"
   country: "Singapore"
   country_code: "sg"
+  latitude: "1.352083"
+  longitude: "103.819836"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

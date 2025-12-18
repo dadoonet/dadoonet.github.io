@@ -5,6 +5,9 @@ conference:
   city: "Nuremberg"
   country: "Germany"
   country_code: "de"
+  latitude: "49.452102"
+  longitude: "11.076665"
+  url: "https://www.developer-week.de/en/program/#/talk/advanced-elasticsearch-for-your-legacy-application"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -36,8 +39,6 @@ x:
     id: "1807693122463228320"
 
 links:
-  - title: "Conference website"
-    url: "https://www.developer-week.de/en/program/#/talk/advanced-elasticsearch-for-your-legacy-application"
   - title: "Live coding"
     url: "https://www.elastic.co/blog/how-to-add-powerful-search-existing-sql-applications-elasticsearch-video-tutorial"
     description: "Those videos are recorded from a live coding session."
