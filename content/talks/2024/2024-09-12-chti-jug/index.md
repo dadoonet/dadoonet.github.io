@@ -1,13 +1,13 @@
 ---
-title: "Elasticsearch Query Language: ES|QL"
+title: "La recherche à l’ère de l’IA"
 conference: 
   name: "Ch’ti JUG"
+  url: ""
   city: "Lille"
   country: "France"
   country_code: "fr"
   latitude: "50.629250"
   longitude: "3.057256"
-  url: "https://www.meetup.com/chtijug/events/303211426/"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -25,33 +25,11 @@ draft: false
 cover: cover.jpg
 
 # Speaker specific fields
-youtube: "7xoxYx10QBw"
+#youtube: ""
 notist: "dadoonet/xSy3aM"
 
-x:
-  - user: "dadoonet"
-    id: "1831686218561536048"
-  - user: "jak78"
-    id: "1834130746140672357"
-  - user: "chtijug"
-    id: "1830957835527823468"
-
-links:
-  - title: "Demo code"
-    url: "https://github.com/dadoonet/esql-demo"
-    description: "The code played during the demo"
-  - title: "Playground page"
-    url: "https://esql.demo.elastic.co"
-    description: "If you want to try ES|QL, there’s an open instance with some data."
-  - title: "ES|QL Guide"
-    url: "https://www.elastic.co/guide/en/elasticsearch/reference/current/esql.html"
-    description: "The official guide"
-  - title: "Java Demo code"
-    url: "https://github.com/dadoonet/elasticsearch-java-client-demo"
-    description: "The Java demo for ES|QL"
-
 aliases:
-  - /xSy3aM
+  - /C6PfLA
 ---
 
 Dans cette session sans slides, nous découvrirons par la pratique ce qu’apporte le nouveau language `ES|QL` pour aller fouiller dans nos données indexées dans Elasticsearch et ce, de façon interactive et visuelle.

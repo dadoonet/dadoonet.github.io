@@ -1,4 +1,5 @@
 ---
+
 title: "Workshop Elasticsearch / Kibana 7.4"
 conference: 
   name: "Workshop Ecole 42 (private event)"
@@ -33,6 +34,7 @@ links:
 
 aliases:
   - /BtuDBd
+
 ---
 
 Vous cherchez toujours dans vos données avec des `SELECT * FROM person WHERE name like '%david%pilato%"` ?
@@ -44,13 +46,8 @@ Venez découvrir comment un moteur de recherche vous aidera à répondre aux que
 Au programme de cet atelier :
 
 * Introduction au principe du moteur de recherche
-
 * Lancement d’elasticsearch et de Kibana
-
 * CRUD avec Elasticsearch
-
 * Search
-
 * Aggregations
-
 * Création de visualisation, dashboards dans Kibana

@@ -1,4 +1,5 @@
 ---
+
 title: "Un moteur de recherche de documents d’entreprise"
 conference: 
   name: "JDLL"
@@ -42,6 +43,7 @@ links:
 
 aliases:
   - /D5Qumy
+
 ---
 
 Lors de cet atelier, nous allons expliquer comment mettre en place un moteur de recherche pour les données de notre entreprise.
@@ -49,11 +51,8 @@ Lors de cet atelier, nous allons expliquer comment mettre en place un moteur de 
 Afin d’éviter le côté trop “magique” parfois des solutions sur étagère, nous verrons d’abord :
 
 * les bases du moteur de recherche Elasticsearch
-
 * l’indexation de contenu JSON
-
 * l’extraction de texte et de meta-données depuis un document binaire avec le [processor `attachment`](https://www.elastic.co/guide/en/elasticsearch/plugins/current/ingest-attachment.html)
-
 * l’utilisation du projet [FSCrawler](https://github.com/dadoonet/fscrawler) open-source pour réaliser plus simplement ces étapes
 
 Nous verrons ensuite comment chercher dans les données ainsi indexées.

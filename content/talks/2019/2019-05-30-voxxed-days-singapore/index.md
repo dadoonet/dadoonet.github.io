@@ -1,7 +1,9 @@
 ---
-title: "Monitor Your Java Applications with the Elastic Stack: Logs, Metrics, Pings, and Traces"
+
+title: "Panel discussion: all about open source"
 conference: 
   name: "Voxxed Days Singapore"
+  url: ""
   city: "Singapore"
   country: "Singapore"
   country_code: "sg"
@@ -24,28 +26,21 @@ draft: false
 cover: cover.png
 
 # Speaker specific fields
-youtube: "fTxabQd83TM"
+#youtube: ""
 notist: "dadoonet/XHamC4"
 
-links:
-  - title: "Github demo repository"
-    url: "https://github.com/xeraa/microservice-monitoring"
-
 aliases:
-  - /XHamC4
+  - /JSiWGy
+
 ---
 
 “With microservices every outage is like a murder mystery” is a common complaint. But it doesn’t have to be!
 This talk gives an overview on how to monitor distributed applications. We dive into:
 
 * System metrics: Keep track of network traffic and system load.
-
 * Application logs: Collect structured logs in a central location.
-
 * Uptime monitoring: Ping services and actively monitor their availability and response time.
-
 * Application metrics: Get the information from the application’s metrics and health endpoints via REST or JMX.
-
 * Request tracing: Trace requests through a distributed system and show how long each call takes and where errors are happening.
 
 And we will do all of that live, since it is so easy and much more interactive that way.

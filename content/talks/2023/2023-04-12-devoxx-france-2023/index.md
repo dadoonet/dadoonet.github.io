@@ -1,4 +1,5 @@
 ---
+
 title: "Un moteur de recherche de documents d’entreprise"
 conference: 
   name: "Devoxx France 2023"
@@ -44,6 +45,7 @@ links:
 
 aliases:
   - /dnEdLV
+
 ---
 
 Lors de cet atelier, nous allons expliquer comment mettre en place un moteur de recherche pour les données de notre entreprise.
@@ -51,15 +53,10 @@ Lors de cet atelier, nous allons expliquer comment mettre en place un moteur de 
 Afin d’éviter le côté trop “magique” parfois des solutions sur étagère, nous verrons d’abord :
 
 * les bases du moteur de recherche Elasticsearch
-
 * l’indexation de contenu JSON
-
 * la transformation à la volée du contenu JSON via les pipelines ingest
-
 * l’extraction de texte et de meta-données depuis un document binaire avec le [processor `attachment`](https://www.elastic.co/guide/en/elasticsearch/plugins/current/ingest-attachment.html)
-
 * l’utilisation du tout nouveau processeur d’inférence pour déterminer des entités nommées de nos documents ainsi qu’une analyse de sentiments
-
 * l’utilisation du projet [FSCrawler](https://github.com/dadoonet/fscrawler) open-source pour réaliser plus simplement ces étapes
 
 Nous verrons ensuite comment chercher dans les données ainsi indexées.

@@ -55,7 +55,7 @@ L’arrivée des LLMs (Large Language Models) tels que ChatGPT ont fait couler b
 
 Au cours de cette session, je vous démontrerai que c’est bien l’inverse qui se joue. La grosse conséquence de la “révolution” GPT est, selon moi, le retour en grâce de cette question fondamentale :
 
-Comment je peux rechercher dans mes données ?
+> Comment je peux rechercher dans mes données ?
 
 Et donc, le retour au devant de la scène des moteurs de recherche.
 

@@ -1,13 +1,13 @@
 ---
-title: "La recherche à l’ère de l’IA"
+title: "Elasticsearch Query Language: ES|QL"
 conference: 
   name: "NantesJUG"
+  url: ""
   city: "Nantes"
   country: "France"
   country_code: "fr"
   latitude: "47.218371"
   longitude: "-1.553621"
-  url: "https://nantesjug.org/#/events/2024_10_02"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -26,42 +26,12 @@ cover: cover.jpg
 
 # Speaker specific fields
 #youtube: ""
-notist: "dadoonet/BPDkxP"
-
-x:
-  - user: "dadoonet"
-    id: "1840699307445322054"
-  - user: "nantesjug"
-    id: "1835927075959488620"
-  - user: "LucianoVaadin"
-    id: "1841724526943416806"
-  - user: "nantesjug"
-    id: "1841718972464484598"
-  - user: "nantesjug"
-    id: "1841529666823209410"
-  - user: "dadoonet"
-    id: "1841394443544338805"
-  - user: "dadoonet"
-    id: "1841770165219754335"
-
-links:
-  - title: "Notebook demo Hummingsearch"
-    url: "https://github.com/dadoonet/music-search"
+notist: "dadoonet/niwYpo"
 
 aliases:
-  - /BPDkxP
+  - /niwYpo
 ---
 
-La recherche ne se contente plus de l’approche maintenant traditionnelle basée sur la fréquence des termes (TF/IDF ou BM25) mais plus sur la tendance actuelle du machine learning où les nouveaux modèles ont ouvert une nouvelle dimension pour la recherche.
+Dans cette session sans slides, nous découvrirons par la pratique ce qu’apporte le nouveau language `ES|QL` pour aller fouiller dans nos données indexées dans Elasticsearch et ce, de façon interactive et visuelle.
 
-Cette conférence donne un aperçu de :
-
-* La recherche “Classique” et ses limitations
-
-* Qu’est qu’un modèle de machine learning et comment vous pouvez l’utiliser
-
-* Comment utiliser la recherche vectorielle ou la recherche hybride dans Elasticsearch
-
-* Comment ChatGPT d’OpenAI ou les “large language models” (LLMs) similaires viennent jouer naturellement avec Elastic
-
-La démo principale montre comment générer des embeddings à partir de musiques puis comment trouver la musique qui s’approche le plus d’une musique que nous fredonnons 🎶🎸🎻.
+`ES|QL` et surtout le nouveau moteur derrière l’API `_query` apportent à la fois une syntaxe simplifiée permettant d’affiner vos résultats, étape par étape et ajouter de nouvelles fonctionnalités comme par exemple l’enrichissement de données et la transformation à la volée, directement dans votre requête, mais également des performances inégalées.

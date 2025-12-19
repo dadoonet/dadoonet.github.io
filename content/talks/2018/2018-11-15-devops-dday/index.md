@@ -1,7 +1,8 @@
 ---
-title: "Centralized Logging Patterns"
+title: "Les Vendredis noirs : même pas peur !"
 conference: 
   name: "Devops DDay"
+  url: http://2018.devops-dday.com/"
   city: "Marseille"
   country: "France"
   country_code: "fr"
@@ -26,22 +27,22 @@ cover: cover.jpg
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/N1EmNk"
+
 aliases:
   - /N1EmNk
+  - /0CLfLp
 ---
 
-Monitoring an entire application is not a simple task, but with the right tools it is not a hard task either. However, events like Black Friday can push your application to the limit, and even cause crashes. As the system is stressed, it generates a lot more logs, which may crash the monitoring system as well. In this talk I will walk through the best practices when using the Elastic Stack to centralize and monitor your logs. I will also share some tricks to help you with the huge increase of traffic typical in Black Fridays.
+Surveiller une application complexe n'est pas une tâche aisée, mais avec les bons outils, ce n'est pas si sorcier. Néanmoins, des périodes fortes telles que les opérations de type "Black Friday" (Vendredi noir) ou période de Noël peuvent pousser votre application aux limites de ce qu'elle peut supporter, ou pire, la faire crasher. Parce que le système est fortement sollicité, il génère encore davantage de logs qui peuvent également mettre à mal votre système de supervision.
 
-Topics include:
+Dans cette session, j'aborderai les bonnes pratiques d'utilisation de la suite Elastic pour centraliser et monitorer vos logs. Je partagerai également avec vous quelques trucs et astuces pour vous aider à passer sans souci vos Vendredis noirs !
 
-* monitoring architectures
+Nous verrons :
 
-* optimal bulk size
+* Les architectures de monitoring
+* Trouver la taille optimale pour l'API `_bulk`
+* Distribuer la charge
+* Taille des index et des shards
+* Optimiser les E/S disque
 
-* distributing the load
-
-* index and shard size
-
-* optimizing disk IO
-
-Takeaway: best practices when building a monitoring system with the Elastic Stack, advanced tuning to optimize and increase event ingestion performance.
+Vous ressortirez de la session avec : des bonnes pratiques pour bâtir son système de monitoring avec la suite Elastic, le tuning avancé pour optimiser les performances d'ingestion et de recherche.

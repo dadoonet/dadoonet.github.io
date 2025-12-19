@@ -31,4 +31,5 @@ notist: "dadoonet/nDR5Bo"
 aliases:
   - /nDR5Bo
 ---
-Présentation lors de DevFest Dijon 2025
+
+Viens découvrir à travers une histoire vraie, comment une simple petite réponse dans un forum de discussion sur un projet méconnu peut complètement changer et accélérer ta carrière.
