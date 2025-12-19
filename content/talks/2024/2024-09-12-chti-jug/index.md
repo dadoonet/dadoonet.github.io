@@ -24,6 +24,27 @@ nolastmod: true
 draft: false
 cover: cover.jpg
 notist: dadoonet/xSy3aM
+links:
+  - title: "Event page"
+    url: "https://www.meetup.com/chtijug/events/303211426/"
+
+  - title: "Demo code"
+    url: "https://github.com/dadoonet/esql-demo"
+    description: "The code played during the demo"
+
+  - title: "Playground page"
+    url: "https://esql.demo.elastic.co"
+    description: "If you want to try ES|QL, there’s an open instance with some data."
+
+  - title: "ES|QL Guide"
+    url: "https://www.elastic.co/guide/en/elasticsearch/reference/current/esql.html"
+    description: "The official guide"
+
+  - title: "Java Demo code"
+    url: "https://github.com/dadoonet/elasticsearch-java-client-demo"
+    description: "The Java demo for ES|QL"
+
+
 aliases:
 - /C6PfLA
 x:

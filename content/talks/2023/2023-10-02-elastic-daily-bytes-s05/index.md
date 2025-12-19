@@ -24,6 +24,14 @@ nolastmod: true
 draft: false
 cover: cover.jpg
 notist: dadoonet/qyoSSl
+links:
+  - title: "Script for the session"
+    url: "https://github.com/dadoonet/s0501-basic-search/blob/main/README.md"
+
+  - title: "Deep pagination documentation"
+    url: "https://www.elastic.co/guide/en/elasticsearch/reference/8.10/paginate-search-results.html"
+
+
 aliases:
 - /cLMqhx
 x:

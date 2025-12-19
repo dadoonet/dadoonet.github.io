@@ -24,6 +24,11 @@ nolastmod: true
 draft: false
 cover: cover.jpg
 notist: dadoonet/dRVohX
+links:
+  - title: "Demo code for Humming Search"
+    url: "https://github.com/dadoonet/music-search"
+
+
 aliases:
 - /dRVohX
 x:

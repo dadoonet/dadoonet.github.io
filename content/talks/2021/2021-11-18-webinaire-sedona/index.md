@@ -24,6 +24,14 @@ nolastmod: true
 draft: false
 cover: cover.jpg
 notist: dadoonet/dTVWXj
+links:
+  - title: "Event page"
+    url: "https://app.livestorm.co/sedona-1/decouvrez-comment-ameliorer-la-pertinence-de-vos-resultats-avec-elasticsearch"
+
+  - title: "FSCrawler"
+    url: "https://fscrawler.readthedocs.io/"
+
+
 aliases:
 - /dTVWXj
 x:

@@ -27,6 +27,15 @@ cover: cover.jpg
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/EG8ayX"
+links:
+  - title: "dev.pro"
+    url: "https://dev.pro/"
+
+  - title: "Kibana Demo Script"
+    url: "https://gist.github.com/dadoonet/f911291c4dd19b0802031db3064c648f"
+    description: "This is the Kibana script I’m starting from when doing the talk"
+
+
 
 aliases:
   - /EG8ayX

@@ -24,6 +24,11 @@ nolastmod: true
 draft: false
 cover: cover.jpg
 notist: dadoonet/v7OuPW
+links:
+  - title: "One Million Tweet Map demo"
+    url: "https://onemilliontweetmap.com/"
+
+
 aliases:
 - /v7OuPW
 x:

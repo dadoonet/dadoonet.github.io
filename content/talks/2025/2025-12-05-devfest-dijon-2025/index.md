@@ -28,6 +28,15 @@ cover: cover.png
 # Speaker specific fields
 #youtube: "sxWTPruEWRU"
 notist: "dadoonet/nDR5Bo"
+links:
+  - title: "DevFest Dijon 2025"
+    url: "https://devfest.developers-group-dijon.fr/session/cm9sayfd8027io63mgq4ei7dn/"
+
+  - title: "La potion magique pour faire avancer ta carrière"
+    url: "https://david.pilato.fr/posts/2022-06-10-la-potion-magique-pour-faire-avancer-ta-carriere/"
+    description: "Transcription d’une présentation que j’ai eu le plaisir à donner lors du Camping des speakers 2022."
+
+
 aliases:
   - /nDR5Bo
 ---

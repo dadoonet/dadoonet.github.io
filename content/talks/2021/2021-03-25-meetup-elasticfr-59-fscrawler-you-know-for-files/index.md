@@ -24,6 +24,14 @@ nolastmod: true
 draft: false
 cover: cover.jpg
 notist: dadoonet/6qhRBL
+links:
+  - title: "FSCrawler"
+    url: "https://fscrawler.readthedocs.io/"
+
+  - title: "Event page"
+    url: "https://community.elastic.co/e/mwydqr/"
+
+
 aliases:
 - /6qhRBL
 x:

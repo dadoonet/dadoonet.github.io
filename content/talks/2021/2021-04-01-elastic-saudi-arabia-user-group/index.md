@@ -24,6 +24,14 @@ nolastmod: true
 draft: false
 cover: cover.jpg
 notist: dadoonet/sDFpQX
+links:
+  - title: "Event page"
+    url: "https://community.elastic.co/events/details/elastic-saudi-arabia-presents-indexing-your-office-documents-with-elastic-stack-and-fscrawler/#/"
+
+  - title: "FSCrawler"
+    url: "https://fscrawler.readthedocs.io/"
+
+
 aliases:
 - /sDFpQX
 x:

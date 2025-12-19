@@ -24,6 +24,14 @@ nolastmod: true
 draft: false
 cover: cover.jpg
 notist: dadoonet/Llif61
+links:
+  - title: "Elastic Security Solution"
+    url: "https://www.elastic.co/fr/security"
+
+  - title: "Meetup ElasticFR"
+    url: "https://community.elastic.co/e/mzhrxs/"
+
+
 aliases:
 - /Llif61
 x:

@@ -28,6 +28,22 @@ cover: cover.jpg
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/SCe1Fl"
+youtube: "ctQki1Qdrvk"
+links:
+  - title: "Kibana Demo Script"
+    url: "https://gist.github.com/dadoonet/f911291c4dd19b0802031db3064c648f"
+    description: "This is the Kibana script I’m starting from when doing the talk"
+
+  - title: "A video (in french) on the same topic"
+    url: "https://youtu.be/ctQki1Qdrvk"
+
+  - title: "One Million Tweet Map demo"
+    url: "https://onemilliontweetmap.com/"
+
+  - title: "Mastere M2 MOSEF - Data Science"
+    url: "https://www.pantheonsorbonne.fr/diplomes/master-mosef/"
+
+
 
 aliases:
   - /SCe1Fl

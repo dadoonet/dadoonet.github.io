@@ -29,6 +29,40 @@ cover: cover.jpg
 # Speaker specific fields
 #youtube: "sxWTPruEWRU"
 notist: "dadoonet/qC8sMm"
+links:
+  - title: "DevFest Toulouse 2025"
+    url: "https://devfesttoulouse.fr/"
+    description: "The conference website"
+
+  - title: "Demo project"
+    url: "https://github.com/dadoonet/randomizedtesting-demo"
+    description: "The source code for the demo project"
+
+  - title: "RandomizedTesting framework"
+    url: "http://labs.carrotsearch.com/randomizedtesting-concept.html"
+    description: "The framework provided by Carrot Search"
+
+  - title: "Infinitest plugin for Intellij IDEA"
+    url: "https://plugins.jetbrains.com/plugin/3146-infinitest"
+    description: "The plugin to run tests in the background"
+
+  - title: "Ariane 5 launch video"
+    url: "https://www.esa.int/ESA_Multimedia/Videos/1996/06/Ariane_501_recording_launch_pad_before_and_at_launch"
+    description: "The Ariane 5 first launch on June 4th, 1996"
+
+  - title: "FSCrawler project"
+    url: "https://github.com/dadoonet/fscrawler/"
+    description: "FSCrawler is running tests with RandomizedTesting framework"
+
+  - title: "A weird CI error in FSCrawler"
+    url: "https://github.com/dadoonet/fscrawler/actions/runs/14357866984/job/40251514398#step:4:296"
+    description: "The error I could not reproduce locally"
+
+  - title: "Gestalt issue 242"
+    url: "https://github.com/gestalt-config/gestalt/issues/242"
+    description: "The issue I opened after my findings"
+
+
 aliases:
   - /qC8sMm
 

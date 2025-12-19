@@ -26,6 +26,7 @@ cover: cover.jpg
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/lYu3b1"
+youtube: "h7R79ypXJsI"
 
 x:
   - user: "DevopsdaysGe"

@@ -24,6 +24,14 @@ nolastmod: true
 draft: false
 cover: cover.jpg
 notist: dadoonet/rQpyEj
+links:
+  - title: "Elastic Community event"
+    url: "https://community.elastic.co/e/mr3qju/"
+
+  - title: "Script of the talk"
+    url: "https://github.com/dadoonet/s04e06-snapshots"
+
+
 aliases:
 - /rQpyEj
 x:

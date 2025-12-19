@@ -28,6 +28,15 @@ cover: cover.jpg
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/uRwyxm"
+youtube: "ctQki1Qdrvk"
+links:
+  - title: "A video (in french) on the same topic"
+    url: "https://youtu.be/ctQki1Qdrvk"
+
+  - title: "The video of the session"
+    url: "https://drive.google.com/file/d/1MjY2bFPZEzyp4dJl7Uqvo-LYZ3K5E0nf/view"
+
+
 
 aliases:
   - /uRwyxm

@@ -28,6 +28,11 @@ cover: cover.jpg
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/2w2qii"
+links:
+  - title: "Webinar on Demand"
+    url: "https://www.elastic.co/fr/elasticon/archive/2021/solution-series/emea/welcome-to-a-new-state-of-find"
+
+
 
 x:
   - user: "dadoonet"

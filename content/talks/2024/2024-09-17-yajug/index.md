@@ -24,6 +24,14 @@ nolastmod: true
 draft: false
 cover: cover.jpg
 notist: dadoonet/yM67c3
+links:
+  - title: "Page de l’évènement"
+    url: "https://yajug.lu/session/la-recherche-a-lere-de-l-ia/"
+
+  - title: "Notebook demo Hummingsearch"
+    url: "https://github.com/dadoonet/music-search"
+
+
 aliases:
 - /oQ8TDZ
 x:

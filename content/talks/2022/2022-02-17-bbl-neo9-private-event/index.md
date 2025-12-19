@@ -24,6 +24,23 @@ nolastmod: true
 draft: false
 cover: cover.jpg
 notist: dadoonet/RxDtjn
+links:
+  - title: "Neo9"
+    url: "https://neo9.fr/"
+
+  - title: "Repository used for the demo"
+    url: "https://github.com/dadoonet/bano-elastic/"
+
+  - title: "Blog post part 1"
+    url: "https://www.elastic.co/blog/enriching-your-postal-addresses-with-the-elastic-stack-part-1"
+
+  - title: "Blog post part 2"
+    url: "https://www.elastic.co/blog/enriching-your-postal-addresses-with-the-elastic-stack-part-1"
+
+  - title: "Blog post part 3"
+    url: "https://www.elastic.co/blog/enriching-your-postal-addresses-with-the-elastic-stack-part-3"
+
+
 aliases:
 - /RxDtjn
 x:

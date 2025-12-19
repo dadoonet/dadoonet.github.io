@@ -28,6 +28,14 @@ cover: cover.jpg
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/7tWE6b"
+links:
+  - title: "Page de l’évènement"
+    url: "https://www.soprasteria.com/"
+
+  - title: "Notebook demo Hummingsearch"
+    url: "https://github.com/dadoonet/music-search"
+
+
 
 aliases:
   - /7tWE6b

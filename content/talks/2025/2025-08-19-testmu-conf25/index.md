@@ -26,8 +26,24 @@ draft: false
 cover: cover.jpg
 
 # Speaker specific fields
-#youtube: ""
+youtube: "5Pzq9aRNi3o"
 notist: "dadoonet/6DyIt6"
+links:
+  - title: "TestMu Conference 2025"
+    url: "https://www.lambdatest.com/testmuconf-2025/david-pilato"
+    description: "The conference website"
+  - title: "Demo project"
+    url: "https://github.com/dadoonet/randomizedtesting-demo"
+    description: "The source code for the demo project"
+  - title: "RandomizedTesting framework"
+    url: "http://labs.carrotsearch.com/randomizedtesting-concept.html"
+    description: "The framework provided by Carrot Search"
+  - title: "A weird CI error in FSCrawler"
+    url: "https://github.com/dadoonet/fscrawler/actions/runs/14357866984/job/40251514398#step:4:296"
+    description: "The error I could not reproduce locally"
+  - title: "Gestalt issue 242"
+    url: "https://github.com/gestalt-config/gestalt/issues/242"
+    description: "The issue I opened after my findings"
 
 aliases:
   - /6DyIt6

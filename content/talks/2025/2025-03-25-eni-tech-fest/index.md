@@ -27,6 +27,7 @@ cover: cover.jpg
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/bAPRcD"
+youtube: "h8XIj55jPPY"
 
 links:
   - title: "Demo: Humming search"

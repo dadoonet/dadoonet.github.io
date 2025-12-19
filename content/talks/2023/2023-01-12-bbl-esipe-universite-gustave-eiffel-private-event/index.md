@@ -27,6 +27,7 @@ cover: cover.jpg
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/v8tARM"
+youtube: "7yr2CC_ZlHs"
 
 links:
   - title: "Une ancienne vidéo (2015) sur le même sujet"

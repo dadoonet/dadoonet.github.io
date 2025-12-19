@@ -27,6 +27,14 @@ cover: cover.jpg
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/fgcTwf"
+links:
+  - title: "Notebook demo Hummingsearch"
+    url: "https://github.com/dadoonet/music-search"
+
+  - title: "kpler"
+    url: "https://www.kpler.com/"
+
+
 
 aliases:
   - /fgcTwf

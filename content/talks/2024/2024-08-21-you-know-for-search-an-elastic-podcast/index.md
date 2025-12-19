@@ -27,6 +27,14 @@ cover: cover.jpg
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/fZF2Ui"
+links:
+  - title: "Event page"
+    url: "https://open.spotify.com/show/6DLhSV2P7aBQemyUcTVZKE?si=b86a4ef21c234602"
+
+  - title: "Demo code"
+    url: "https://github.com/dadoonet/music-search"
+
+
 
 aliases:
   - /fZF2Ui

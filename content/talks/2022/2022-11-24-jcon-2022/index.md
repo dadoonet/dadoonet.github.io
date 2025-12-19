@@ -24,6 +24,14 @@ nolastmod: true
 draft: false
 cover: cover.jpg
 notist: dadoonet/K6AjsW
+links:
+  - title: "Event page"
+    url: "https://www.techweek.ro/software-architecture-summit"
+
+  - title: "FSCrawler"
+    url: "https://fscrawler.readthedocs.io/"
+
+
 aliases:
 - /K6AjsW
 x:

@@ -24,6 +24,14 @@ nolastmod: true
 draft: false
 cover: cover.jpg
 notist: dadoonet/UZnMYu
+links:
+  - title: "Event page"
+    url: "https://community.elastic.co/e/m5gyz6/"
+
+  - title: "Demo repository"
+    url: "https://github.com/dadoonet/s02e11-ingest"
+
+
 aliases:
 - /UZnMYu
 x:

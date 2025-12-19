@@ -24,6 +24,14 @@ nolastmod: true
 draft: false
 cover: cover.jpg
 notist: dadoonet/XgxLVm
+links:
+  - title: "The Dev Conf 2021"
+    url: "https://thedevconf.com/tdc/2021/future/stadium-2-track"
+
+  - title: "Elastic Security Solution"
+    url: "https://www.elastic.co/security"
+
+
 aliases:
 - /XgxLVm
 x:

@@ -24,6 +24,20 @@ nolastmod: true
 draft: false
 cover: cover.jpg
 notist: dadoonet/UAqIx5
+links:
+  - title: "London Information Retrieval Meetup"
+    url: "https://www.meetup.com/London-Information-Retrieval-Meetup-Group/events/274765296/"
+
+  - title: "Blog post part 1"
+    url: "https://www.elastic.co/blog/enriching-your-postal-addresses-with-the-elastic-stack-part-1"
+
+  - title: "Blog post part 2"
+    url: "https://www.elastic.co/blog/enriching-your-postal-addresses-with-the-elastic-stack-part-1"
+
+  - title: "Blog post part 3"
+    url: "https://www.elastic.co/blog/enriching-your-postal-addresses-with-the-elastic-stack-part-3"
+
+
 aliases:
 - /UAqIx5
 x:

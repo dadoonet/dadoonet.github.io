@@ -24,6 +24,14 @@ nolastmod: true
 draft: false
 cover: cover.jpg
 notist: dadoonet/tfHOrn
+links:
+  - title: "Event Page"
+    url: "https://events.pinetool.ai/3079/#sessions/104117"
+
+  - title: "Music Search demo code"
+    url: "https://github.com/dadoonet/music-search"
+
+
 aliases:
 - /tfHOrn
 x:

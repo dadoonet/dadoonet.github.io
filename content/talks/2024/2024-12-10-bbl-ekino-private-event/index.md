@@ -24,6 +24,21 @@ nolastmod: true
 draft: false
 cover: cover.jpg
 notist: dadoonet/asppSL
+links:
+  - title: "Ekino"
+    url: "https://www.ekino.fr/"
+
+  - title: "Person dataset injector"
+    url: "https://github.com/dadoonet/injector"
+
+  - title: "Dev Console demo"
+    url: "https://gist.github.com/dadoonet/f911291c4dd19b0802031db3064c648f"
+    description: "You can copy/paste this in the Kibana Dev Console."
+
+  - title: "Music Search demo"
+    url: "https://github.com/dadoonet/music-search"
+
+
 aliases:
 - /asppSL
 x:

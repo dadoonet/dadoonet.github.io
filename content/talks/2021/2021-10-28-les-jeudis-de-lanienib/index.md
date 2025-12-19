@@ -24,6 +24,21 @@ nolastmod: true
 draft: false
 cover: cover.jpg
 notist: dadoonet/K8ZxQb
+links:
+  - title: "Inscriptions Eventbrite"
+    url: "https://www.eventbrite.com/e/inscription-jeudi-de-lanienib-decouverte-elasticsearch-194410335547"
+
+  - title: "Kibana Demo Script"
+    url: "https://gist.github.com/dadoonet/f911291c4dd19b0802031db3064c648f"
+    description: "This is the Kibana script I’m starting from when doing the talk"
+
+  - title: "Enib"
+    url: "https://www.enib.fr/"
+
+  - title: "ANIENIB"
+    url: "https://www.anienib.fr/"
+
+
 aliases:
 - /K8ZxQb
 x:

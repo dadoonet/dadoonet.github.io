@@ -24,6 +24,14 @@ nolastmod: true
 draft: false
 cover: cover.jpg
 notist: dadoonet/nwSuc3
+links:
+  - title: "Event Page"
+    url: "https://community.elastic.co/events/details/elastic-emea-virtual-presents-elastic-bytes-bite-sized-elastic-stack-sessions-215/#/"
+
+  - title: "Repository Demo"
+    url: "https://github.com/dadoonet/demo-index-templates-v2"
+
+
 aliases:
 - /jTjq9d
 x:
