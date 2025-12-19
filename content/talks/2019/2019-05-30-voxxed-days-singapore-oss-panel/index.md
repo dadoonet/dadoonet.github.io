@@ -41,4 +41,3 @@ Our panelists:
 * Kohsuke Kawaguchi – Creator of Jenkins & CTO CloudBees
 
 This panel will be moderated by Purnima Kamath – Director at Women Who Code SG & Evangelist at YOW!
-
