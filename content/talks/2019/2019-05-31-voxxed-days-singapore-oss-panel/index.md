@@ -17,7 +17,7 @@ categories:
   - speaker
 series:
   - conferences
-date: 2019-05-30
+date: 2019-05-31
 nolastmod: true
 draft: false
 cover: cover.jpg
