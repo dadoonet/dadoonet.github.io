@@ -1,35 +1,36 @@
 ---
-title: "Indexing your office documents with Elastic stack and FSCrawler"
-conference: 
-  name: "Elastic Saudi Arabia User Group"
-  url: ""
-  city: "Virtual"
-  country: ""
-  country_code: "fr"
-  latitude: ""
-  longitude: ""
+title: Indexing your office documents with Elastic stack and FSCrawler
+conference:
+  name: Elastic Saudi Arabia User Group
+  url: ''
+  city: Virtual
+  country: ''
+  country_code: fr
+  latitude: ''
+  longitude: ''
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
-  - elasticsearch
-  - conference
-  - java
-  - cloud
+- elasticsearch
+- conference
+- java
+- cloud
 categories:
-  - speaker
+- speaker
 series:
-  - conferences
+- conferences
 date: 2021-04-01
 nolastmod: true
 draft: false
 cover: cover.jpg
-
-# Speaker specific fields
-#youtube: ""
-notist: "dadoonet/sDFpQX"
-
+notist: dadoonet/sDFpQX
 aliases:
-  - /sDFpQX
+- /sDFpQX
+x:
+- user: dadoonet
+  id: '1377713638384013315'
+- user: ienjreny
+  id: '1377704809185345539'
 ---
 
 You have plenty of Open Office, Microsoft Office, PDF, images… documents and you may want to be able to search for their metadata and content. How can you do that?

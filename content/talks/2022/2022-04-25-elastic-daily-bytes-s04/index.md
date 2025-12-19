@@ -1,35 +1,34 @@
 ---
-title: "Custom snapshot repository - Daily Elastic Byte S04E06"
-conference: 
-  name: "Elastic Daily Bytes S04"
-  url: ""
-  city: "Virtual"
-  country: ""
-  country_code: "fr"
-  latitude: ""
-  longitude: ""
+title: Custom snapshot repository - Daily Elastic Byte S04E06
+conference:
+  name: Elastic Daily Bytes S04
+  url: ''
+  city: Virtual
+  country: ''
+  country_code: fr
+  latitude: ''
+  longitude: ''
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
-  - elasticsearch
-  - conference
-  - java
-  - cloud
+- elasticsearch
+- conference
+- java
+- cloud
 categories:
-  - speaker
+- speaker
 series:
-  - conferences
+- conferences
 date: 2022-04-25
 nolastmod: true
 draft: false
 cover: cover.jpg
-
-# Speaker specific fields
-#youtube: ""
-notist: "dadoonet/rQpyEj"
-
+notist: dadoonet/rQpyEj
 aliases:
-  - /rQpyEj
+- /rQpyEj
+x:
+- user: dadoonet
+  id: '1520846447482216455'
 ---
 
 For three weeks we will dive into a different topic of Elastic Cloud every day before lunch in the CEST/EST timezone!

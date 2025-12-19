@@ -1,37 +1,34 @@
 ---
-
-title: "Search: a new era"
-conference: 
-  name: "BBL Gravitee.io (Private Event)"
-  url: ""
-  city: "Virtual"
-  country: ""
-  country_code: "fr"
-  latitude: ""
-  longitude: ""
+title: 'Search: a new era'
+conference:
+  name: BBL Gravitee.io (Private Event)
+  url: ''
+  city: Virtual
+  country: ''
+  country_code: fr
+  latitude: ''
+  longitude: ''
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
-  - elasticsearch
-  - conference
-  - java
-  - cloud
+- elasticsearch
+- conference
+- java
+- cloud
 categories:
-  - speaker
+- speaker
 series:
-  - conferences
+- conferences
 date: 2024-03-08
 nolastmod: true
 draft: false
 cover: cover.jpg
-
-# Speaker specific fields
-#youtube: ""
-notist: "dadoonet/dRVohX"
-
+notist: dadoonet/dRVohX
 aliases:
-  - /dRVohX
-
+- /dRVohX
+x:
+- user: dadoonet
+  id: '1766067349864546662'
 ---
 
 Search is not just traditional TF/IDF any more but the current trend of machine learning and models has opened another dimension for search.

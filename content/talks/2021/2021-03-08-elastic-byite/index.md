@@ -1,35 +1,38 @@
 ---
-title: "(Searchable) Snapshots"
-conference: 
-  name: "Elastic B(y|i)te"
-  url: "https://community.elastic.co/emea-virtual/"
-  city: "Virtual"
-  country: ""
-  country_code: "fr"
-  latitude: ""
-  longitude: ""
+title: (Searchable) Snapshots
+conference:
+  name: Elastic B(y|i)te
+  url: https://community.elastic.co/emea-virtual/
+  city: Virtual
+  country: ''
+  country_code: fr
+  latitude: ''
+  longitude: ''
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
-  - elasticsearch
-  - conference
-  - java
-  - cloud
+- elasticsearch
+- conference
+- java
+- cloud
 categories:
-  - speaker
+- speaker
 series:
-  - conferences
+- conferences
 date: 2021-03-08
 nolastmod: true
 draft: false
 cover: cover.jpg
-
-# Speaker specific fields
-#youtube: ""
-notist: "dadoonet/nwSuc3"
-
+notist: dadoonet/nwSuc3
 aliases:
-  - /jTjq9d
+- /jTjq9d
+x:
+- user: dadoonet
+  id: '1367879641415946249'
+- user: dadoonet
+  id: '1369236636173746178'
+- user: dadoonet
+  id: '1369259812933009409'
 ---
 
 Composable Index Templates are also known as Index Templates V2.

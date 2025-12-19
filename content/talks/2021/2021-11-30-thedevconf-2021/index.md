@@ -1,37 +1,34 @@
 ---
-
-title: "Hunting (and stopping!) threats with Elastic Security"
-conference: 
-  name: "TheDevConf 2021"
-  url: ""
-  city: "Virtual"
-  country: ""
-  country_code: "fr"
-  latitude: ""
-  longitude: ""
+title: Hunting (and stopping!) threats with Elastic Security
+conference:
+  name: TheDevConf 2021
+  url: ''
+  city: Virtual
+  country: ''
+  country_code: fr
+  latitude: ''
+  longitude: ''
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
-  - elasticsearch
-  - conference
-  - java
-  - cloud
+- elasticsearch
+- conference
+- java
+- cloud
 categories:
-  - speaker
+- speaker
 series:
-  - conferences
+- conferences
 date: 2021-11-30
 nolastmod: true
 draft: false
 cover: cover.jpg
-
-# Speaker specific fields
-#youtube: ""
-notist: "dadoonet/XgxLVm"
-
+notist: dadoonet/XgxLVm
 aliases:
-  - /XgxLVm
-
+- /XgxLVm
+x:
+- user: dadoonet
+  id: '1461808576696041479'
 ---
 
 You are a security analyst for your company. The IT Team has deployed Elastic agents on your infrastructure, including endpoints, firewalls… those agents are collecting logs, metrics and security related data for months.

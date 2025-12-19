@@ -1,35 +1,36 @@
 ---
-title: "Runtime fields - Daily Elastic Byte S05E04"
-conference: 
-  name: "Elastic Daily Byte(s) S05"
-  url: ""
-  city: "Virtual"
-  country: ""
-  country_code: "fr"
-  latitude: ""
-  longitude: ""
+title: Runtime fields - Daily Elastic Byte S05E04
+conference:
+  name: Elastic Daily Byte(s) S05
+  url: ''
+  city: Virtual
+  country: ''
+  country_code: fr
+  latitude: ''
+  longitude: ''
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
-  - elasticsearch
-  - conference
-  - java
-  - cloud
+- elasticsearch
+- conference
+- java
+- cloud
 categories:
-  - speaker
+- speaker
 series:
-  - conferences
+- conferences
 date: 2023-10-02
 nolastmod: true
 draft: false
 cover: cover.jpg
-
-# Speaker specific fields
-#youtube: ""
-notist: "dadoonet/qyoSSl"
-
+notist: dadoonet/qyoSSl
 aliases:
-  - /cLMqhx
+- /cLMqhx
+x:
+- user: dadoonet
+  id: '1707813022947799511'
+- user: dadoonet
+  id: '1708779605530980428'
 ---
 
 Daily Elastic Byte Season 05: Search

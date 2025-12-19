@@ -1,35 +1,42 @@
 ---
-title: "Indexer ses documents bureautique avec la suite Elastic et FSCrawler"
-conference: 
-  name: "Webinaire Sedona"
-  url: ""
-  city: "Virtual"
-  country: ""
-  country_code: "fr"
-  latitude: ""
-  longitude: ""
+title: Indexer ses documents bureautique avec la suite Elastic et FSCrawler
+conference:
+  name: Webinaire Sedona
+  url: ''
+  city: Virtual
+  country: ''
+  country_code: fr
+  latitude: ''
+  longitude: ''
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
-  - elasticsearch
-  - conference
-  - java
-  - cloud
+- elasticsearch
+- conference
+- java
+- cloud
 categories:
-  - speaker
+- speaker
 series:
-  - conferences
+- conferences
 date: 2021-11-18
 nolastmod: true
 draft: false
 cover: cover.jpg
-
-# Speaker specific fields
-#youtube: ""
-notist: "dadoonet/dTVWXj"
-
+notist: dadoonet/dTVWXj
 aliases:
-  - /dTVWXj
+- /dTVWXj
+x:
+- user: SedonaFR
+  id: '1460621101701246977'
+- user: SedonaFR
+  id: '1460621168088596480'
+- user: SedonaFR
+  id: '1461653975237808131'
+- user: dadoonet
+  id: '1466057432719835137'
+- user: dadoonet
+  id: '1466333417830858754'
 ---
 
 Vous avez sous la main des tonnes de documents Open Office, Microsoft Office, PDF voire des images… Et vous aimeriez être capable de chercher dans leurs meta-données et dans le contenu lui-même.

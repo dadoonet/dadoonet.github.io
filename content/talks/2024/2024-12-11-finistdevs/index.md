@@ -1,35 +1,36 @@
 ---
-title: "Elasticsearch Query Language: ES|QL"
-conference: 
-  name: "FinistDevs"
-  url: ""
-  city: "Brest"
-  country: "France"
-  country_code: "fr"
-  latitude: "48.390394"
-  longitude: "-4.486076"
+title: 'Elasticsearch Query Language: ES|QL'
+conference:
+  name: FinistDevs
+  url: ''
+  city: Brest
+  country: France
+  country_code: fr
+  latitude: '48.390394'
+  longitude: '-4.486076'
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
-  - elasticsearch
-  - conference
-  - java
-  - cloud
+- elasticsearch
+- conference
+- java
+- cloud
 categories:
-  - speaker
+- speaker
 series:
-  - conferences
+- conferences
 date: 2024-12-11
 nolastmod: true
 draft: false
 cover: cover.jpg
-
-# Speaker specific fields
-#youtube: ""
-notist: "dadoonet/yZ71Zw"
-
+notist: dadoonet/yZ71Zw
 aliases:
-  - /yZ71Zw
+- /yZ71Zw
+x:
+- user: clever_cloudFR
+  id: '1866152632815145462'
+- user: dadoonet
+  id: '1866958763883630617'
 ---
 
 Dans cette session sans slides, nous découvrirons par la pratique ce qu’apporte le nouveau language `ES|QL` pour aller fouiller dans nos données indexées dans Elasticsearch et ce, de façon interactive et visuelle.

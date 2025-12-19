@@ -1,35 +1,40 @@
 ---
-title: "Recherche avancée pour votre application “legacy”"
-conference: 
-  name: "Meetup Programmez!"
-  url: ""
-  city: "Virtual"
-  country: ""
-  country_code: "fr"
-  latitude: ""
-  longitude: ""
+title: Recherche avancée pour votre application “legacy”
+conference:
+  name: Meetup Programmez!
+  url: ''
+  city: Virtual
+  country: ''
+  country_code: fr
+  latitude: ''
+  longitude: ''
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
-  - elasticsearch
-  - conference
-  - java
-  - cloud
+- elasticsearch
+- conference
+- java
+- cloud
 categories:
-  - speaker
+- speaker
 series:
-  - conferences
+- conferences
 date: 2020-10-13
 nolastmod: true
 draft: false
 cover: cover.jpg
-
-# Speaker specific fields
-#youtube: ""
-notist: "dadoonet/2IKuCz"
-
+notist: dadoonet/2IKuCz
 aliases:
-  - /2IKuCz
+- /2IKuCz
+x:
+- user: dadoonet
+  id: '1315956406533619717'
+- user: dadoonet
+  id: '1315956407938752513'
+- user: dadoonet
+  id: '1316051980410859525'
+- user: progmag
+  id: '1312040274424602625'
 ---
 
 Comment mixer SQL et NoSQL sans faire la révolution ?

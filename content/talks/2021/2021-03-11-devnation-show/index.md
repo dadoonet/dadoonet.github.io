@@ -1,35 +1,42 @@
 ---
-title: "DevNation: The Show with David from Elastic"
-conference: 
-  name: "DevNation Show"
-  url: ""
-  city: "Virtual"
-  country: ""
-  country_code: "fr"
-  latitude: ""
-  longitude: ""
+title: 'DevNation: The Show with David from Elastic'
+conference:
+  name: DevNation Show
+  url: ''
+  city: Virtual
+  country: ''
+  country_code: fr
+  latitude: ''
+  longitude: ''
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
-  - elasticsearch
-  - conference
-  - java
-  - cloud
+- elasticsearch
+- conference
+- java
+- cloud
 categories:
-  - speaker
+- speaker
 series:
-  - conferences
+- conferences
 date: 2021-03-11
 nolastmod: true
 draft: false
 cover: cover.jpg
-
-# Speaker specific fields
-#youtube: ""
-notist: "dadoonet/UWydIw"
-
+notist: dadoonet/UWydIw
 aliases:
-  - /UWydIw
+- /UWydIw
+x:
+- user: dadoonet
+  id: '1370076162802786305'
+- user: rhdevelopers
+  id: '1369931604420857859'
+- user: rhdevelopers
+  id: '1370283170961195008'
+- user: sebi2706
+  id: '1368997439072579589'
+- user: sebi2706
+  id: '1369997650645417988'
 ---
 
 Join us as we discuss today’s hottest technologies impacting developers and architects — and have a lot of fun

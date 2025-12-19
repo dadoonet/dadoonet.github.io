@@ -1,37 +1,40 @@
 ---
-
-title: "Enriching postal addresses with Elastic stack"
-conference: 
-  name: "London Information Retrieval Meetup"
-  url: ""
-  city: "Virtual"
-  country: ""
-  country_code: "fr"
-  latitude: ""
-  longitude: ""
+title: Enriching postal addresses with Elastic stack
+conference:
+  name: London Information Retrieval Meetup
+  url: ''
+  city: Virtual
+  country: ''
+  country_code: fr
+  latitude: ''
+  longitude: ''
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
-  - elasticsearch
-  - conference
-  - java
-  - cloud
+- elasticsearch
+- conference
+- java
+- cloud
 categories:
-  - speaker
+- speaker
 series:
-  - conferences
+- conferences
 date: 2020-12-10
 nolastmod: true
 draft: false
 cover: cover.jpg
-
-# Speaker specific fields
-#youtube: ""
-notist: "dadoonet/UAqIx5"
-
+notist: dadoonet/UAqIx5
 aliases:
-  - /UAqIx5
-
+- /UAqIx5
+x:
+- user: dadoonet
+  id: '1331552826418401280'
+- user: dadoonet
+  id: '1336933668552466435'
+- user: dadoonet
+  id: '1337095379012247553'
+- user: dadoonet
+  id: '1337117531493031936'
 ---
 
 > Come and learn how you can enrich your existing data with normalized postal addresses with geo location points thanks to open data and [BANO project](http://bano.openstreetmap.fr/data/).

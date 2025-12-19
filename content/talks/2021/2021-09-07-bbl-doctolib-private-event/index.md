@@ -1,37 +1,38 @@
 ---
-
-title: "Elasticsearch"
-conference: 
-  name: "BBL Doctolib (Private Event)"
-  url: ""
-  city: "Virtual"
-  country: ""
-  country_code: "fr"
-  latitude: ""
-  longitude: ""
+title: Elasticsearch
+conference:
+  name: BBL Doctolib (Private Event)
+  url: ''
+  city: Virtual
+  country: ''
+  country_code: fr
+  latitude: ''
+  longitude: ''
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
-  - elasticsearch
-  - conference
-  - java
-  - cloud
+- elasticsearch
+- conference
+- java
+- cloud
 categories:
-  - speaker
+- speaker
 series:
-  - conferences
+- conferences
 date: 2021-09-07
 nolastmod: true
 draft: false
 cover: cover.jpg
-
-# Speaker specific fields
-#youtube: ""
-notist: "dadoonet/HlQc7S"
-
+notist: dadoonet/HlQc7S
 aliases:
-  - /HlQc7S
-
+- /HlQc7S
+x:
+- user: dadoonet
+  id: '1433788230202179587'
+- user: dadoonet
+  id: '1434777451385835520'
+- user: dadoonet
+  id: '1435211229002338309'
 ---
 
 Vous utilisez encore des requêtes SQL pour faire des recherches ? Vos utilisateurs vous reprochent de ne pas pouvoir chercher sur toutes les rubriques ? Votre temps de réponse moyen est supérieur à la demi-seconde avec seulement quelques millions de documents ? Il vous faut 3 jours pour produire des statistiques sur vos données ? Vous rêvez d’offrir une recherche “à la google” sur les données de votre SI ?

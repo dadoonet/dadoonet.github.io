@@ -1,37 +1,34 @@
 ---
-
-title: "Search: a new era"
-conference: 
-  name: "Big Data Conference Europe"
-  url: ""
-  city: "Vilnius"
-  country: "LT"
-  country_code: "lt"
-  latitude: "54.687156"
-  longitude: "25.279651"
+title: 'Search: a new era'
+conference:
+  name: Big Data Conference Europe
+  url: ''
+  city: Vilnius
+  country: LT
+  country_code: lt
+  latitude: '54.687156'
+  longitude: '25.279651'
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
-  - elasticsearch
-  - conference
-  - java
-  - cloud
+- elasticsearch
+- conference
+- java
+- cloud
 categories:
-  - speaker
+- speaker
 series:
-  - conferences
+- conferences
 date: 2023-11-21
 nolastmod: true
 draft: false
 cover: cover.jpg
-
-# Speaker specific fields
-#youtube: ""
-notist: "dadoonet/tfHOrn"
-
+notist: dadoonet/tfHOrn
 aliases:
-  - /tfHOrn
-
+- /tfHOrn
+x:
+- user: dadoonet
+  id: '1726958270148137073'
 ---
 
 Search is not just traditional TF/IDF any more but the current trend of machine learning and models has opened another dimension for search.

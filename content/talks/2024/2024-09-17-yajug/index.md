@@ -1,37 +1,34 @@
 ---
-
-title: "Elasticsearch Query Language: ES|QL"
-conference: 
-  name: "YaJUG"
-  url: ""
-  city: "Luxembourg"
-  country: "Luxembourg"
-  country_code: "lu"
-  latitude: "49.815273"
-  longitude: "6.129583"
+title: 'Elasticsearch Query Language: ES|QL'
+conference:
+  name: YaJUG
+  url: ''
+  city: Luxembourg
+  country: Luxembourg
+  country_code: lu
+  latitude: '49.815273'
+  longitude: '6.129583'
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
-  - elasticsearch
-  - conference
-  - java
-  - cloud
+- elasticsearch
+- conference
+- java
+- cloud
 categories:
-  - speaker
+- speaker
 series:
-  - conferences
+- conferences
 date: 2024-09-17
 nolastmod: true
 draft: false
 cover: cover.jpg
-
-# Speaker specific fields
-#youtube: ""
-notist: "dadoonet/yM67c3"
-
+notist: dadoonet/yM67c3
 aliases:
-  - /oQ8TDZ
-
+- /oQ8TDZ
+x:
+- user: dadoonet
+  id: '1833445549715923127'
 ---
 
 La recherche ne se contente plus de l’approche maintenant traditionnelle basée sur la fréquence des termes (TF/IDF ou BM25) mais plus sur la tendance actuelle du machine learning où les nouveaux modèles ont ouvert une nouvelle dimension pour la recherche.

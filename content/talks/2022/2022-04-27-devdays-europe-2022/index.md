@@ -1,35 +1,36 @@
 ---
-title: "Advanced (elastic)search for your legacy application"
-conference: 
-  name: "DevDays Europe 2022"
-  url: ""
-  city: "Virtual"
-  country: ""
-  country_code: "fr"
-  latitude: ""
-  longitude: ""
+title: Advanced (elastic)search for your legacy application
+conference:
+  name: DevDays Europe 2022
+  url: ''
+  city: Virtual
+  country: ''
+  country_code: fr
+  latitude: ''
+  longitude: ''
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
-  - elasticsearch
-  - conference
-  - java
-  - cloud
+- elasticsearch
+- conference
+- java
+- cloud
 categories:
-  - speaker
+- speaker
 series:
-  - conferences
+- conferences
 date: 2022-04-27
 nolastmod: true
 draft: false
 cover: cover.jpg
-
-# Speaker specific fields
-#youtube: ""
-notist: "dadoonet/EzjiuN"
-
+notist: dadoonet/EzjiuN
 aliases:
-  - /EzjiuN
+- /EzjiuN
+x:
+- user: dadoonet
+  id: '1519285532899090432'
+- user: dadoonet
+  id: '1519591132249968640'
 ---
 
 How do you mix SQL and NoSQL worlds without starting a messy revolution?

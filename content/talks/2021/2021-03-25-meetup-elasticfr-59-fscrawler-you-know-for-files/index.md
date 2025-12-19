@@ -1,35 +1,42 @@
 ---
-title: "FSCrawler! You know, for files!"
-conference: 
-  name: "Meetup ElasticFR #59 - FSCrawler! You know, for files!"
-  url: ""
-  city: "Virtual"
-  country: ""
-  country_code: "fr"
-  latitude: ""
-  longitude: ""
+title: FSCrawler! You know, for files!
+conference:
+  name: 'Meetup ElasticFR #59 - FSCrawler! You know, for files!'
+  url: ''
+  city: Virtual
+  country: ''
+  country_code: fr
+  latitude: ''
+  longitude: ''
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
-  - elasticsearch
-  - conference
-  - java
-  - cloud
+- elasticsearch
+- conference
+- java
+- cloud
 categories:
-  - speaker
+- speaker
 series:
-  - conferences
+- conferences
 date: 2021-03-25
 nolastmod: true
 draft: false
 cover: cover.jpg
-
-# Speaker specific fields
-#youtube: ""
-notist: "dadoonet/6qhRBL"
-
+notist: dadoonet/6qhRBL
 aliases:
-  - /6qhRBL
+- /6qhRBL
+x:
+- user: ElasticFR
+  id: '1369938646611021826'
+- user: ElasticFR
+  id: '1372550607513423872'
+- user: ElasticFR
+  id: '1374664285150908416'
+- user: ElasticFR
+  id: '1374996222306447361'
+- user: ElasticFR
+  id: '1375153007046836230'
 ---
 
 Avez-vous déjà rêvé de pouvoir indexer vos fichiers locaux, genre PDF, OpenOffice, images et autres dans la suite Elastic pour pouvoir en rechercher facilement le contenu ou les meta-données ? C’est toute la promesse du projet open-source [FSCrawler](https://fscrawler.readthedocs.io/).

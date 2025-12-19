@@ -1,35 +1,34 @@
 ---
-title: "S03E03: What is the  Elastic Common Schema?"
-conference: 
-  name: "Elastic Daily B(y|i)te - S03"
-  url: ""
-  city: "Virtual"
-  country: ""
-  country_code: "fr"
-  latitude: ""
-  longitude: ""
+title: 'S03E03: What is the  Elastic Common Schema?'
+conference:
+  name: Elastic Daily B(y|i)te - S03
+  url: ''
+  city: Virtual
+  country: ''
+  country_code: fr
+  latitude: ''
+  longitude: ''
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
-  - elasticsearch
-  - conference
-  - java
-  - cloud
+- elasticsearch
+- conference
+- java
+- cloud
 categories:
-  - speaker
+- speaker
 series:
-  - conferences
+- conferences
 date: 2021-10-18
 nolastmod: true
 draft: false
 cover: cover.jpg
-
-# Speaker specific fields
-#youtube: ""
-notist: "dadoonet/qToQd7"
-
+notist: dadoonet/qToQd7
 aliases:
-  - /bqMosJ
+- /bqMosJ
+x:
+- user: dadoonet
+  id: '1455807270386810880'
 ---
 
 For three weeks we will dive into a different topic of Observability using Elastic Stack every day before lunch in the CEST/EST timezone!

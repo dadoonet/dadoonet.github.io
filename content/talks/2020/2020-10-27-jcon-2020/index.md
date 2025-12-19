@@ -1,35 +1,36 @@
 ---
-title: "Advanced (elastic)search for your legacy application"
-conference: 
-  name: "Jcon 2020"
-  url: ""
-  city: "Virtual"
-  country: ""
-  country_code: "fr"
-  latitude: ""
-  longitude: ""
+title: Advanced (elastic)search for your legacy application
+conference:
+  name: Jcon 2020
+  url: ''
+  city: Virtual
+  country: ''
+  country_code: fr
+  latitude: ''
+  longitude: ''
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
-  - elasticsearch
-  - conference
-  - java
-  - cloud
+- elasticsearch
+- conference
+- java
+- cloud
 categories:
-  - speaker
+- speaker
 series:
-  - conferences
+- conferences
 date: 2020-10-27
 nolastmod: true
 draft: false
 cover: cover.jpg
-
-# Speaker specific fields
-#youtube: ""
-notist: "dadoonet/netISB"
-
+notist: dadoonet/netISB
 aliases:
-  - /netISB
+- /netISB
+x:
+- user: jcon_conference
+  id: '1310866909949116417'
+- user: jcon_conference
+  id: '1321398805263044608'
 ---
 
 How do you mix SQL and NoSQL worlds without starting a messy revolution?

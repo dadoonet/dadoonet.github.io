@@ -24,9 +24,14 @@ nolastmod: true
 draft: false
 cover: cover.jpg
 
+
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/2w2qii"
+
+x:
+  - user: "dadoonet"
+    id:  "1414520303972139011"
 
 aliases:
   - /2w2qii

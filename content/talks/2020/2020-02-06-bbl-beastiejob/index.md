@@ -1,37 +1,42 @@
 ---
-
-title: "Elasticsearch"
-conference: 
-  name: "BBL Beastiejob"
-  url: ""
-  city: "Virtual"
-  country: ""
-  country_code: "fr"
-  latitude: ""
-  longitude: ""
+title: Elasticsearch
+conference:
+  name: BBL Beastiejob
+  url: ''
+  city: Virtual
+  country: ''
+  country_code: fr
+  latitude: ''
+  longitude: ''
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
-  - elasticsearch
-  - conference
-  - java
-  - cloud
+- elasticsearch
+- conference
+- java
+- cloud
 categories:
-  - speaker
+- speaker
 series:
-  - conferences
+- conferences
 date: 2020-02-06
 nolastmod: true
 draft: false
 cover: cover.jpg
-
-# Speaker specific fields
-#youtube: ""
-notist: "dadoonet/n405CQ"
-
+notist: dadoonet/n405CQ
 aliases:
-  - /n405CQ
-
+- /n405CQ
+x:
+- user: beastiejob
+  id: '1219495744538845184'
+- user: beastiejob
+  id: '1220784120776876032'
+- user: beastiejob
+  id: '1222533810883104769'
+- user: beastiejob
+  id: '1227628527765393408'
+- user: dadoonet
+  id: '1225374806775824386'
 ---
 
 Vous utilisez encore des requêtes SQL pour faire des recherches ? Vos utilisateurs vous reprochent de ne pas pouvoir chercher sur toutes les rubriques ? Votre temps de réponse moyen est supérieur à la demi-seconde avec seulement quelques millions de documents ? Il vous faut 3 jours pour produire des statistiques sur vos données ? Vous rêvez d’offrir une recherche “à la google” sur les données de votre SI ?
