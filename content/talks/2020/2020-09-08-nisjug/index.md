@@ -37,7 +37,7 @@ x:
     id: "1302914866316013568"
 
 links:
-  - title: "Videos: Advanced (elastic)search for your legacy application"
+  - title: "Video: Advanced (elastic)search for your legacy application"
     url: "https://www.elastic.co/blog/how-to-add-powerful-search-existing-sql-applications-elasticsearch-video-tutorial"
     description: "Those videos are recorded from a live coding session."
   - title: "Code: legacy-search"

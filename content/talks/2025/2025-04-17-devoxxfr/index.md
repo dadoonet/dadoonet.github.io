@@ -42,7 +42,7 @@ links:
   - title: "ES|QL Guide"
     url: "https://www.elastic.co/guide/en/elasticsearch/reference/current/esql.html"
     description: "This is the official ES|QL guide."
-  - title: "Demo: Java client with ES|QL"
+  - title: "Demo: Elasticsearch Java client with ES|QL"
     url: "https://github.com/dadoonet/elasticsearch-java-client-demo"
     description: "This demo shows how you can use the Elasticsearch Java client to interact with ES|QL"
 

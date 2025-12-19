@@ -50,7 +50,7 @@ links:
   - title: "Documentation: Split Index API"
     url: "https://www.elastic.co/guide/en/elasticsearch/reference/6.6/indices-split-index.html"
     description: "The split index API allows you to split an existing index into a new index, where each original primary shard is split into two or more primary shards in the new index."
-  - title: "Video: same topic (in French)"
+  - title: "Video: same topic (in french)"
     url: "https://www.youtube.com/watch?v=h7R79ypXJsI"
     description: "Talk give at DevopsDDay Marseille, November 2018."
   - title: "Photos: DevopsDays Geneva"
