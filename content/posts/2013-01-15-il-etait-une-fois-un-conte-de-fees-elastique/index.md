@@ -3,7 +3,7 @@ title: 'Il était une fois : un conte de fées élastique !'
 description: "Il y a 2 ans, je cherchais un moyen pour distribuer Hibernate search sur plusieurs noeuds. Ma première idée était de stocker les index dans une base de données partagée par les différents noeuds. Oui ! Il s'agit d'une idée stupide en terme de performances, mais j'avais envie
 d'essayer et de construire ce modèle.
 
-Après avoir cherché du code source, je suis finalement tombé sur la classe JdbcDirectory du projet Compass. Et sur la page d'accueil du projet, j'aperçois quelque chose qui parle du future de Compass et d'Elasticsearch."
+Après avoir cherché du code source, je suis finalement tombé sur la classe JdbcDirectory du projet Compass. Et sur la page d'accueil du projet, j'aperçois quelque chose qui parle du future de Compass et d'Elasticsearch."
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -27,7 +27,7 @@ aliases:
 
 En fait, il y a 2 ans, je cherchais un moyen pour distribuer Hibernate search sur plusieurs noeuds. Ma première idée était de stocker les index dans une base de données partagée par les différents noeuds. Oui ! Il s'agit d'une idée stupide en terme de performances, mais j'avais envie d'essayer et de construire ce modèle.
 
-Après avoir cherché du code source, je suis finalement tombé sur la [classe JdbcDirectory](http://www.compass-project.org/docs/2.0.1/api/org/apache/lucene/store/jdbc/JdbcDirectory.html) du projet Compass. Et sur la page d'accueil du projet, j'aperçois quelque chose qui parle du future de Compass et d'Elasticsearch.
+Après avoir cherché du code source, je suis finalement tombé sur la [classe JdbcDirectory](http://www.compass-project.org/docs/2.0.1/api/org/apache/lucene/store/jdbc/JdbcDirectory.html) du projet Compass. Et sur la page d'accueil du projet, j'aperçois quelque chose qui parle du future de Compass et d'Elasticsearch.
 
 {{< figure src="es1.png" caption="Le futur de Compass et Elasticsearch" >}}
 

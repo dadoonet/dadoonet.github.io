@@ -51,7 +51,6 @@ La recherche ne se contente plus de l’approche maintenant traditionnelle basé
 Cette conférence donne un aperçu de :
 
 * La recherche “Classique” et ses limitations
-* Qu’est-ce que la recherche vectorielle ?
-
+* Qu’est-ce que la recherche vectorielle ?
 * Comment coupler un LLM avec les données d’entreprise (RAG)
 * Un exemple concret d’implémentation avec Attack Discovery d’Elastic
