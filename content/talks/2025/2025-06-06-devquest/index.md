@@ -30,11 +30,12 @@ youtube: "R_4JmvrIaX0"
 notist: "dadoonet/rlO6SH"
 
 links:
-  - title: "Notebook demo Hummingsearch"
+  - title: "Demo: Music search"
     url: "https://github.com/dadoonet/music-search"
-  - title: "Podcast DJ"
+    description: "This demo shows how you can use the principles of vector search to find pieces of music that are (maybe) similar to others."
+  - title: "Podcast: DJ Elky"
     url: "https://djdadoo.pilato.fr/"
-    description: "Envie d’écouter des sets en mixant ?"
+    description: "This is the DJ Elky podcast."
 
 aliases:
   - /rlO6SH

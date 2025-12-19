@@ -29,12 +29,9 @@ cover: cover.jpg
 notist: "dadoonet/bAPRcD"
 
 links:
-  - title: "Notebook demo Hummingsearch"
+  - title: "Demo: Humming search"
     url: "https://github.com/dadoonet/music-search"
-  - title: "Une vidéo sur le même sujet"
-    url: "https://youtu.be/h8XIj55jPPY"
-  - title: "A longer version in English"
-    url: "https://youtu.be/RbdIdSnXbA4"
+    description: "This demo shows how you can search for similar music tracks, using another music track as an input."
 
 aliases:
   - /bAPRcD

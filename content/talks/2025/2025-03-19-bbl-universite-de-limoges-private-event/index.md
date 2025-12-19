@@ -29,11 +29,12 @@ cover: cover.jpg
 notist: "dadoonet/jK6xxJ"
 
 links:
-  - title: "Person dataset injector"
+  - title: "Demo: Person dataset injector"
     url: "https://github.com/dadoonet/injector"
-  - title: "Dev Console demo"
+    description: "This repository contains the code for the Person dataset injector."
+  - title: "Demo: Kibana script for BBL"
     url: "https://gist.github.com/dadoonet/f911291c4dd19b0802031db3064c648f"
-    description: "You can copy/paste this in the Kibana Dev Console."
+    description: "This is the Kibana script I’m starting from when doing the talk"
 
 aliases:
   - /jK6xxJ

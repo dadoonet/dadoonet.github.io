@@ -40,8 +40,9 @@ links:
   - title: "AuditD Rules"
     url: "https://github.com/linux-audit/audit-userspace/tree/master/rules"
     description: "Templates for common auditD rules"
-  - title: "Demo repository"
+  - title: "Demo: Auditbeat in Action"
     url: "https://github.com/xeraa/auditbeat-in-action"
+    description: "This demo shows how you can use Auditbeat to ingest data from your environment and visualize it in Kibana."
 
 aliases:
   - /oBt281

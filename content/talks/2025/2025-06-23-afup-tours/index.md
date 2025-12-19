@@ -31,16 +31,16 @@ notist: "dadoonet/ddCFRI"
 links:
   - title: "Demo: ES|QL"
     url: "https://github.com/dadoonet/esql-demo"
-    description: "The code played during the demo"
-  - title: "Playground page"
+    description: "This repository contains the code for the ES|QL demo."
+  - title: "Demo: Playground page"
     url: "https://esql.demo.elastic.co"
-    description: "If you want to try ES|QL, there’s an open instance with some data."
+    description: "This is an open instance with some data where you can try ES|QL."
   - title: "ES|QL Guide"
     url: "https://www.elastic.co/guide/en/elasticsearch/reference/current/esql.html"
-    description: "The official ES|QL guide"
-  - title: "Demo: PHP client with ES|QL"
+    description: "This is the official ES|QL guide."
+  - title: "Demo: Elasticsearch PHP client with ES|QL"
     url: "https://www.elastic.co/docs/reference/elasticsearch/clients/php/esql"
-    description: "This demo shows how you can use the PHP client to interact with ES|QL"
+    description: "This demo shows how you can use the Elasticsearch PHP client to interact with ES|QL"
 
 aliases:
   - /ddCFRI

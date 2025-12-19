@@ -41,18 +41,18 @@ x:
     id: "1843207134567440484"
 
 links:
-  - title: "Demo code"
+  - title: "Demo: ES|QL"
     url: "https://github.com/dadoonet/esql-demo"
-    description: "The code played during the demo"
-  - title: "Playground page"
+    description: "This repository contains the code for the ES|QL demo."
+  - title: "Demo: Playground page"
     url: "https://esql.demo.elastic.co"
-    description: "If you want to try ES|QL, there’s an open instance with some data."
-  - title: "ES|QL Guide"
+    description: "This is an open instance with some data where you can try ES|QL."
+  - title: "Documentation: ES|QL"
     url: "https://www.elastic.co/guide/en/elasticsearch/reference/current/esql.html"
-    description: "The official guide"
-  - title: "Java Demo code"
+    description: "This is the official ES|QL guide."
+  - title: "Demo: Elasticsearch Java client with ES|QL"
     url: "https://github.com/dadoonet/elasticsearch-java-client-demo"
-    description: "The Java demo for ES|QL"
+    description: "This demo shows how you can use the Elasticsearch Java client to interact with ES|QL"
 
 aliases:
   - /wlm9Cb

@@ -42,8 +42,9 @@ x:
     id: "1717609539300991328"
 
 links:
-  - title: "Notebook demo Hummingsearch"
+  - title: "Demo: Music search"
     url: "https://colab.research.google.com/github/dadoonet/music-search/blob/main/elastic_music_search.ipynb"
+    description: "This demo shows how you can use the principles of vector search to find pieces of music that are (maybe) similar to others."
 
 aliases:
   - /3nBCuD

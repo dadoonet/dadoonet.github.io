@@ -6,7 +6,7 @@ conference:
   city: "Grenoble"
   country: "France"
   country_code: "fr"
-  url: "https://alpesjug.org/"
+  url: "https://www.meetup.com/alpesjug/events/299609510/"
   latitude: "45.188529"
   longitude: "5.724524"
 author: David Pilato
@@ -42,8 +42,9 @@ x:
 links:
   - title: "Page de l’évènement"
     url: "https://www.meetup.com/fr-FR/alpesjug/events/299609510/"
-  - title: "Notebook demo Hummingsearch"
+  - title: "Demo: Music search"
     url: "https://github.com/dadoonet/music-search"
+    description: "This demo shows how you can use the principles of vector search to find pieces of music that are (maybe) similar to others."
 
 aliases:
   - /Pylt8I

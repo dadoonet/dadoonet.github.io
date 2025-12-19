@@ -37,12 +37,12 @@ x:
     id: "1894292854324781545"
 
 links:
-  - title: "Demo source code"
+  - title: "Demo: Music search"
     url: "https://github.com/dadoonet/music-search/"
-    description: "The Jupyter notebook"
-  - title: "Podcast"
+    description: "This demo shows how you can use the principles of vector search to find pieces of music that are (maybe) similar to others."
+  - title: "Podcast: DJ Elky"
     url: "https://djdadoo.pilato.fr/"
-    description: "This space is where I’m publishing my DJ sets"
+    description: "This is the DJ Elky podcast."
 
 aliases:
   - /BLjn5N

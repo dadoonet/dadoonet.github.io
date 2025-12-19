@@ -28,10 +28,6 @@ cover: cover.jpg
 #youtube: ""
 notist: "dadoonet/BtuDBd"
 
-links:
-  - title: "Demo code"
-    url: "https://gist.github.com/dadoonet/f3c67bebf2cf604df02f78ac2cb2fbde"
-
 aliases:
   - /BtuDBd
 

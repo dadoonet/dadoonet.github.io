@@ -37,11 +37,12 @@ x:
     id: "1233388201437515784"
 
 links:
-  - title: "One Million Tweet Map project"
+  - title: "Demo: One Million Tweet Map"
     url: "https://onemilliontweetmap.com/"
-    description: "The Tweet Map project"
-  - title: "Demo script for BBL"
+    description: "This demo shows how you can use One Million Tweet Map to visualize tweets"
+  - title: "Demo: Kibana script for BBL"
     url: "https://gist.github.com/dadoonet/f911291c4dd19b0802031db3064c648f"
+    description: "This is the Kibana script I’m using when doing the talk"
 
 aliases:
   - /7I3iLF

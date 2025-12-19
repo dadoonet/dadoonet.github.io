@@ -37,10 +37,12 @@ x:
     id: "1526507302949363718"
 
 links:
-  - title: "FSCrawler demo repository"
+  - title: "Demo: FSCrawler"
     url: "https://github.com/dadoonet/demo-fscrawler"
-  - title: "FSCrawler"
+    description: "This repository contains the code for the FSCrawler demo."
+  - title: "Documentation: FSCrawler"
     url: "https://fscrawler.readthedocs.io/"
+    description: "The official FSCrawler documentation"
 
 aliases:
   - /k195XM

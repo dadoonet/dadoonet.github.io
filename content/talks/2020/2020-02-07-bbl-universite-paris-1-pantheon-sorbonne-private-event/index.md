@@ -29,17 +29,13 @@ cover: cover.jpg
 notist: "dadoonet/yFE7yS"
 
 links:
-  - title: "Kibana Demo Script"
+  - title: "Demo: Kibana script for BBL"
     url: "https://gist.github.com/dadoonet/f911291c4dd19b0802031db3064c648f"
     description: "This is the Kibana script I’m starting from when doing the talk"
-  - title: "Une ancienne vidéo (2015) sur le même sujet"
+  - title: "Video: Elasticsearch (in french)"
     url: "https://vimeo.com/129781775"
-  - title: "Kibana Demo Script"
-    url: "https://gist.github.com/dadoonet/f911291c4dd19b0802031db3064c648f"
-    description: "This is the Kibana script I’m starting from when doing the talk"
-  - title: "Demo script for BBL"
-    url: "https://gist.github.com/dadoonet/f911291c4dd19b0802031db3064c648f"
-
+    description: "A video (in french) on the same topic"
+    
 aliases:
   - /yFE7yS
 

@@ -39,9 +39,10 @@ x:
     id: "1097807990441340929"
 
 links:
-  - title: "Une ancienne vidéo (2015) sur le même sujet"
+  - title: "Video: same topic (2015)"
     url: "https://vimeo.com/129781775"
-  - title: "Kibana Demo Script"
+    description: "A video (2015) on the same topic"
+  - title: "Demo: Kibana script for BBL" 
     url: "https://gist.github.com/dadoonet/f911291c4dd19b0802031db3064c648f"
     description: "This is the Kibana script I’m starting from when doing the talk"
 

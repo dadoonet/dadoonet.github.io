@@ -37,12 +37,15 @@ x:
     id: "1139544445039370246"
 
 links:
-  - title: "elasticsearch-integration-tests demo repository"
+  - title: "Demo: elasticsearch-integration-tests repository"
     url: "https://github.com/dadoonet/elasticsearch-integration-tests"
-  - title: "Elasticsearch Module for TestContainers"
+    description: "This repository contains the code for the elasticsearch-integration-tests demo."
+  - title: "Repository: Elasticsearch Module for TestContainers"
     url: "https://github.com/testcontainers/testcontainers-java/tree/master/modules/elasticsearch"
-  - title: "Elasticsearch TestContainers module documentation"
+    description: "This repository contains the code for the Elasticsearch Module for TestContainers."
+  - title: "Documentation: Elasticsearch TestContainers module"
     url: "https://www.testcontainers.org/modules/elasticsearch/"
+    description: "This documentation contains the information about the Elasticsearch TestContainers module."
 
 aliases:
   - /L5rDwO

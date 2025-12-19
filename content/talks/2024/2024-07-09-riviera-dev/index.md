@@ -29,8 +29,9 @@ cover: cover.jpg
 notist: "dadoonet/A78dJt"
 
 links:
-  - title: "Podcast"
-    url: "https://podcasts.apple.com/fr/podcast/david-pilato-mixes/id505824965"
+  - title: "Podcast: DJ Elky"
+    description: "This is the DJ Elky podcast."
+    url: "https://podcasts.apple.com/fr/podcast/dj-elky-mixes/id959495351"
 
 aliases:
   - /A78dJt

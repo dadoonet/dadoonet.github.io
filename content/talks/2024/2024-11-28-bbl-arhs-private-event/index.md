@@ -34,8 +34,9 @@ x:
     id: "1862255418023493771"
 
 links:
-  - title: "Music Search demo code"
+  - title: "Demo: Music search"
     url: "https://github.com/dadoonet/music-search"
+    description: "This demo shows how you can use the principles of vector search to find pieces of music that are (maybe) similar to others."
 
 aliases:
   - /7bwbwj

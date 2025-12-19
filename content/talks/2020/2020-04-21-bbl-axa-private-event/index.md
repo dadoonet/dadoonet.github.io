@@ -35,8 +35,9 @@ x:
     id: "1252520227319025664"
 
 links:
-  - title: "Demo script for BBL"
+  - title: "Demo: Kibana script for BBL"
     url: "https://gist.github.com/dadoonet/f911291c4dd19b0802031db3064c648f"
+    description: "This is the Kibana script I’m using when doing the talk"
 
 aliases:
   - /sec6aR

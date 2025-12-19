@@ -40,15 +40,15 @@ x:
     id: "1197159764800802818"
 
 links:
-  - title: "Elastic Cloud on Kubernetes (ECK) documentation"
+  - title: "Documentation: Elastic Cloud on Kubernetes (ECK)"
     url: "https://www.elastic.co/guide/en/cloud-on-k8s/current/index.html"
-    description: "The official Elastic Cloud on Kubernetes (ECK) documentation"
-  - title: "Kibana Documentation"
+    description: "This is the official Elastic Cloud on Kubernetes (ECK) documentation."
+  - title: "Documentation: Kibana"
     url: "https://www.elastic.co/guide/en/kibana/current/introduction.html"
-    description: "The official Kibana documentation"
-  - title: "Elasticsearch Documentation"
+    description: "This is the official Kibana documentation."
+  - title: "Documentation: Elasticsearch"
     url: "https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html"
-    description: "The official Elasticsearch documentation"
+    description: "This is the official Elasticsearch documentation."
 
 aliases:
   - /jYxmxg

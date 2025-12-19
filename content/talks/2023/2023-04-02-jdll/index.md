@@ -36,10 +36,12 @@ x:
 links:
   - title: "Workshop instructions"
     url: "https://github.com/dadoonet/JDLL"
-  - title: "Ingest Attachment Processor"
+  - title: "Documentation: Ingest Attachment Processor"
     url: "https://www.elastic.co/guide/en/elasticsearch/reference/current/attachment.html"
-  - title: "FSCrawler"
+    description: "This is the official Ingest Attachment Processor documentation."
+  - title: "Documentation: FSCrawler"
     url: "https://fscrawler.readthedocs.io/"
+    description: "This is the official FSCrawler documentation."
 
 aliases:
   - /D5Qumy

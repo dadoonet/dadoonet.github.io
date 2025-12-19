@@ -7,7 +7,7 @@ conference:
   country_code: "rs"
   latitude: "43.320902"
   longitude: "21.895759"
-  url: "https://www.meetup.com/fr-FR/NisJUG/events/272577175/"
+  url: "https://www.meetup.com/NisJUG/events/272577175/"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -37,7 +37,7 @@ x:
     id: "1302914866316013568"
 
 links:
-  - title: "Live coding"
+  - title: "Videos: Advanced (elastic)search for your legacy application"
     url: "https://www.elastic.co/blog/how-to-add-powerful-search-existing-sql-applications-elasticsearch-video-tutorial"
     description: "Those videos are recorded from a live coding session."
   - title: "Code: legacy-search"

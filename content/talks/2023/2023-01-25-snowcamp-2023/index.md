@@ -48,9 +48,9 @@ links:
   - title: "Demo: FSCrawler"
     url: "https://github.com/dadoonet/demo-fscrawler"
     description: "This demo shows how you can use FSCrawler to index your documents"
-  - title: "FSCrawler"
+  - title: "Documentation: FSCrawler"
     url: "https://fscrawler.readthedocs.io/"
-    description: "The official FSCrawler documentation"
+    description: "This is the official FSCrawler documentation."
 
 aliases:
   - /UGtHAu

@@ -40,8 +40,9 @@ x:
     id: "1790871185216929808"
 
 links:
-  - title: "Notebook demo Hummingsearch"
+  - title: "Demo: Music search"
     url: "https://github.com/dadoonet/music-search"
+    description: "This demo shows how you can use the principles of vector search to find pieces of music that are (maybe) similar to others."
 
 aliases:
   - /ecDUt6

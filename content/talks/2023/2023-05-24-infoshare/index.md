@@ -29,7 +29,7 @@ cover: cover.jpg
 notist: "dadoonet/zcgzDj"
 
 links:
-  - title: "Live coding"
+  - title: "Video: Advanced (elastic)search for your legacy application"
     url: "https://www.elastic.co/blog/how-to-add-powerful-search-existing-sql-applications-elasticsearch-video-tutorial"
     description: "Those videos are recorded from a live coding session."
   - title: "Code: legacy-search"

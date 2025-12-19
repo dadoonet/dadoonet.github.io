@@ -38,22 +38,22 @@ x:
     id: "1099028173050781696"
 
 links:
-  - title: "Quantitative Cluster Sizing"
+  - title: "Conference:Quantitative Cluster Sizing"
     url: "https://www.elastic.co/fr/elasticon/conf/2016/sf/quantitative-cluster-sizing"
     description: "How many shards should I have? How many nodes should I have? What about replicas? Do these questions sound familiar? The answer is often ‘it depends’. This talk will outline the factors that affect sizing and walk you through a quantitative approach to estimating the configuration and size of your cluster."
-  - title: "Rollover API"
+  - title: "Documentation: Rollover API"
     url: "https://www.elastic.co/guide/en/elasticsearch/reference/6.6/indices-rollover-index.html"
     description: "The rollover index API rolls an alias over to a new index when the existing index is considered to be too large or too old."
-  - title: "Shrink Index API"
+  - title: "Documentation: Shrink Index API"
     url: "https://www.elastic.co/guide/en/elasticsearch/reference/6.6/indices-shrink-index.html"
     description: "The shrink index API allows you to shrink an existing index into a new index with fewer primary shards."
-  - title: "Split Index API"
+  - title: "Documentation: Split Index API"
     url: "https://www.elastic.co/guide/en/elasticsearch/reference/6.6/indices-split-index.html"
     description: "The split index API allows you to split an existing index into a new index, where each original primary shard is split into two or more primary shards in the new index."
-  - title: "Talk video from a past session"
+  - title: "Video: same topic (in French)"
     url: "https://www.youtube.com/watch?v=h7R79ypXJsI"
     description: "Talk give at DevopsDDay Marseille, November 2018."
-  - title: "Official photos from DevopsDays Geneva"
+  - title: "Photos: DevopsDays Geneva"
     url: "https://photos.app.goo.gl/Y4yUQbPbCrdG9DpNA"
 
 aliases:

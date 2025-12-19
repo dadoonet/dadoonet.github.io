@@ -31,7 +31,7 @@ notist: "dadoonet/ComG9L"
 links:
   - title: "Une ancienne vidéo (2015) sur le même sujet"
     url: "https://vimeo.com/129781775"
-  - title: "Kibana Demo Script"
+  - title: "Demo: Kibana script for BBL"
     url: "https://gist.github.com/dadoonet/f911291c4dd19b0802031db3064c648f"
 
 aliases:

@@ -29,8 +29,9 @@ cover: cover.jpg
 notist: "dadoonet/FtwXG1"
 
 links:
-  - title: "FSCrawler"
+  - title: "Documentation: FSCrawler"
     url: "https://fscrawler.readthedocs.io/"
+    description: "This is the official FSCrawler documentation."
 
 aliases:
   - /FtwXG1

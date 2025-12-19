@@ -30,12 +30,12 @@ youtube: "96lYAIDzX50"
 notist: "dadoonet/WA1Ort"
 
 links:
-  - title: "Elastic Serverless documentation"
+  - title: "Documentation: Elastic Serverless"
     url: "https://www.elastic.co/docs/deploy-manage/deploy/elastic-cloud/serverless"
-    description: "The official Elastic Serverless documentation"
-  - title: "Elasticsearch Serverless API"
+    description: "This is the official Elastic Serverless documentation."
+  - title: "Documentation: Elasticsearch Serverless API"
     url: "https://www.elastic.co/docs/api/doc/elasticsearch-serverless/"
-    description: "The official Elasticsearch Serverless API documentation"
+    description: "This is the official Elasticsearch Serverless API documentation."
 
 aliases:
   - /WA1Ort

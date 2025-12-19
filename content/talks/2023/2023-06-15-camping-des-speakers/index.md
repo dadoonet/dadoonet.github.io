@@ -58,10 +58,12 @@ x:
     id: "1669788001876975625"
 
 links:
-  - title: "DJ David Pilato Podcast"
-    url: "https://podcasts.apple.com/fr/podcast/david-pilato-mixes/id959495351"
-  - title: "Set Camping Des Speakers"
+  - title: "Podcast: DJ Elky"
+    url: "https://podcasts.apple.com/fr/podcast/dj-elky-mixes/id959495351"
+    description: "This is the DJ Elky podcast."
+  - title: "Podcast: Camping Des Speakers DJ Set"
     url: "https://podcasts.apple.com/fr/podcast/dj-dadoo-net-mixes/id505824965?i=1000617303592"
+    description: "This is the DJ Elky set from the Camping Des Speakers event."
 
 aliases:
   - /qZrOqw

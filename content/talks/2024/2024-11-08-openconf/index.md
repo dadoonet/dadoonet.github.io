@@ -35,7 +35,7 @@ links:
 
   - title: "Podcast: DJ Elky"
     url: "https://djdadoo.pilato.fr/"
-    description: "This space is where I’m publishing my DJ sets"
+    description: "This is the DJ Elky podcast."
 
 aliases:
   - /RnBVpa

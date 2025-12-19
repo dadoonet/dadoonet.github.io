@@ -35,16 +35,9 @@ x:
     id: "1759599463780294975"
 
 links:
-  - title: "Notebook demo Hummingsearch"
+  - title: "Demo: Humming search"
     url: "https://github.com/dadoonet/music-search"
-  - title: "Une vidéo sur le même sujet"
-    url: "https://youtu.be/h8XIj55jPPY"
-  - title: "A longer version in English"
-    url: "https://youtu.be/RbdIdSnXbA4"
-  - title: "Meetup Elastic Montréal"
-    url: "https://meetu.ps/c/1bLhz/5BwLl/a"
-  - title: "Meetup Elastic Montréal"
-    url: "https://meetu.ps/c/1bLhz/5BwLl/a"
+    description: "This demo shows how you can search for similar music tracks, using another music track as an input."
 
 aliases:
   - /95YNWI

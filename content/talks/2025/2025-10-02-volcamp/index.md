@@ -29,7 +29,7 @@ cover: cover.jpg
 notist: "dadoonet/Ss00b2"
 
 links:
-  - title: "Podcast DJ Elky"
+  - title: "Podcast: DJ Elky"
     url: "https://podcasts.apple.com/fr/podcast/dj-elky-mixes/id959495351"
     description: "Venez écouter mes derniers sets. Ambiance House, Reprises, Funk."
 

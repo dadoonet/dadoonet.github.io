@@ -29,8 +29,9 @@ cover: cover.jpg
 notist: "dadoonet/O2ZJHA"
 
 links:
-  - title: "GitHub Repository"
+  - title: "Demo: Serverless Photo Sharing Repository"
     url: "https://github.com/GoogleCloudPlatform/serverless-photosharing-workshop"
+    description: "This repository contains the code for the Serverless Photo Sharing Repository."
 
 aliases:
   - /O2ZJHA
