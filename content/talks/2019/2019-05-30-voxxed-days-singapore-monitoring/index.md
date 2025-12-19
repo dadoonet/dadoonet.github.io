@@ -1,6 +1,6 @@
 ---
 
-title: "Panel discussion: all about open source"
+title: "Monitor Your Java Applications with the Elastic Stack: Logs, Metrics, Pings, and Traces"
 conference: 
   name: "Voxxed Days Singapore"
   url: ""
@@ -26,11 +26,16 @@ draft: false
 cover: cover.png
 
 # Speaker specific fields
-#youtube: ""
+youtube: "fTxabQd83TM"
 notist: "dadoonet/XHamC4"
 
+links:
+  - title: "Demo: xeraa/microservice-monitoring"
+    url: "https://github.com/xeraa/microservice-monitoring"
+    description: "This demo shows how you can monitor a microservice application with the Elastic Stack."
+
 aliases:
-  - /JSiWGy
+  - /XHamC4
 
 ---
 
