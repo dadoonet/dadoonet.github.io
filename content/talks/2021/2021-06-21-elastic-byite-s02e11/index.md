@@ -2,12 +2,10 @@
 title: Kibana Ingest Management
 conference:
   name: Elastic B(y|i)te S02
-  url: ''
+  url: "https://community.elastic.co/e/m5gyz6/"
   city: Virtual
   country: "Online"
   country_code: "Online"
-  latitude: ''
-  longitude: ''
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -19,21 +17,23 @@ categories:
 - speaker
 series:
 - conferences
-date: 2021-06-07
+date: 2021-06-21
 nolastmod: true
 draft: false
-cover: cover.jpg
-notist: dadoonet/UZnMYu
-links:
-  - title: "Event page"
-    url: "https://community.elastic.co/e/m5gyz6/"
+cover: cover.png
 
+# Speaker specific fields
+youtube: "wOvyubrHIM"
+notist: dadoonet/UZnMYu
+
+links:
   - title: "Demo repository"
     url: "https://github.com/dadoonet/s02e11-ingest"
 
 
 aliases:
 - /UZnMYu
+
 x:
 - user: dadoonet
   id: '1406915077215821825'
