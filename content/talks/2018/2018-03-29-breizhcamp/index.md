@@ -25,7 +25,7 @@ draft: false
 cover: cover.jpg
 
 # Speaker specific fields
-#youtube: ""
+youtube: "qbJtfv2VNow"
 notist: "dadoonet/cW4TEE"
 
 x:

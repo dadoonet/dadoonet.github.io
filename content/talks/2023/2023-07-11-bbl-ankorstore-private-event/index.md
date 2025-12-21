@@ -25,7 +25,7 @@ draft: false
 cover: cover.jpg
 
 # Speaker specific fields
-#youtube: ""
+youtube: "nQv9JCgvVmU"
 notist: "dadoonet/ljG16e"
 links:
   - title: "Ankorstore"
