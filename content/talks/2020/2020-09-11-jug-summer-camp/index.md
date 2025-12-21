@@ -3,11 +3,9 @@
 title: "Identifier les menaces avec Elastic SIEM"
 conference: 
   name: "JUG Summer Camp"
-  city: "La Rochelle"
-  country: "France"
-  country_code: "fr"
-  latitude: "46.160329"
-  longitude: "-1.151139"
+  city: "Online"
+  country: "Online"
+  country_code: "Online"
   url: "https://www.jugsummercamp.org/edition/11/presentations/si4HEEvfcNOR3P36Npy0"
 author: David Pilato
 avatar: /about/david_pilato.png

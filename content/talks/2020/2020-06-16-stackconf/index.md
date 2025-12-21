@@ -3,11 +3,9 @@
 title: "Visualize Your Threats with Elastic SIEM"
 conference: 
   name: "stackconf"
-  city: "Berlin"
-  country: "Germany"
-  country_code: "de"
-  latitude: "52.520007"
-  longitude: "13.404954"
+  city: "Online"
+  country: "Online"
+  country_code: "Online"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

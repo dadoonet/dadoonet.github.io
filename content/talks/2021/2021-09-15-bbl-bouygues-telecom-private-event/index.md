@@ -24,7 +24,7 @@ nolastmod: true
 draft: false
 cover: cover.jpg
 notist: dadoonet/4gYzq5
-youtube: "ctQki1Qdrvk"
+# youtube: ""
 links:
   - title: "Kibana Demo Script"
     url: "https://gist.github.com/dadoonet/f911291c4dd19b0802031db3064c648f"

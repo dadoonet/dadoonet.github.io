@@ -23,6 +23,7 @@ date: 2020-02-06
 nolastmod: true
 draft: false
 cover: cover.jpg
+youtube: "ctQki1Qdrvk"
 notist: dadoonet/n405CQ
 links:
   - title: "Kibana Demo Script"

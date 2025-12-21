@@ -2,11 +2,9 @@
 title: "Advanced (elastic)search for your legacy application"
 conference: 
   name: "NisJUG"
-  city: "Niš"
-  country: "Serbia"
-  country_code: "rs"
-  latitude: "43.320902"
-  longitude: "21.895759"
+  city: "Online"
+  country: "Online"
+  country_code: "Online"
   url: "https://www.meetup.com/NisJUG/events/272577175/"
 author: David Pilato
 avatar: /about/david_pilato.png

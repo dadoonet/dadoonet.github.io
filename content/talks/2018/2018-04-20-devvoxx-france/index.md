@@ -2,12 +2,13 @@
 
 title: "Testcontainers pour de vrais tests d’intégration d’Elasticsearch"
 conference: 
-  name: "Devfest Lille"
-  city: "Lille"
+  name: "Devoxx France"
+  city: "Paris"
   country: "France"
   country_code: "fr"
-  latitude: "50.629250"
-  longitude: "3.057256"
+  latitude: "48.856614"
+  longitude: "2.352222"
+  url: "https://devoxx.fr/"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -19,22 +20,13 @@ categories:
   - speaker
 series:
   - conferences
-date: 2019-06-14
+date: 2018-04-20
 nolastmod: true
 draft: false
-cover: cover.png
+cover: cover.jpg
 
 # Speaker specific fields
-youtube: "hlfy1EDAP4U"
-notist: "dadoonet/L5rDwO"
-
-x:
-  - user: "dadoonet"
-    id: "1139509930002735106"
-  - user: "fdelbrayelle"
-    id: "1139544412952940544"
-  - user: "mattmasztalir"
-    id: "1139544445039370246"
+youtube: "ex2jS3GTUfk"
 
 links:
   - title: "Demo: elasticsearch-integration-tests repository"
@@ -46,9 +38,6 @@ links:
   - title: "Documentation: Elasticsearch TestContainers module"
     url: "https://www.testcontainers.org/modules/elasticsearch/"
     description: "This documentation contains the information about the Elasticsearch TestContainers module."
-
-aliases:
-  - /L5rDwO
 
 ---
 

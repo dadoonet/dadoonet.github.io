@@ -3,11 +3,9 @@
 title: "Elasticsearch"
 conference: 
   name: "BBL AXA (Private Event)"
-  city: "Nanterre"
-  country: "France"
-  country_code: "fr"
-  latitude: "48.892423"
-  longitude: "2.215331"
+  city: "Online"
+  country: "Online"
+  country_code: "Online"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -25,7 +23,7 @@ draft: false
 cover: cover.jpg
 
 # Speaker specific fields
-youtube: "ctQki1Qdrvk"
+# youtube: ""
 notist: "dadoonet/sec6aR"
 
 x:

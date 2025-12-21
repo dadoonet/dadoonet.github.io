@@ -28,7 +28,7 @@ cover: cover.jpg
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/uRwyxm"
-youtube: "ctQki1Qdrvk"
+# youtube: ""
 links:
   - title: "A video (in french) on the same topic"
     url: "https://youtu.be/ctQki1Qdrvk"

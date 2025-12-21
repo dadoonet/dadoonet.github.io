@@ -2,12 +2,10 @@
 title: Advanced (elastic)search for your legacy application
 conference:
   name: Jcon 2020
-  url: ''
-  city: Virtual
+  url: "https://jcon.one/en/"
+  city: "Online"
   country: "Online"
   country_code: "Online"
-  latitude: ''
-  longitude: ''
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

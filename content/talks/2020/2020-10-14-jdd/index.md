@@ -2,11 +2,9 @@
 title: "Advanced (elastic)search for your legacy application"
 conference: 
   name: "JDD"
-  city: "Kraków"
-  country: "Poland"
-  country_code: "pl"
-  latitude: "50.064651"
-  longitude: "19.944981"
+  city: "Online"
+  country: "Online"
+  country_code: "online"
   url: "https://jdd.org.pl/lecture/#id=62927"
 author: David Pilato
 avatar: /about/david_pilato.png

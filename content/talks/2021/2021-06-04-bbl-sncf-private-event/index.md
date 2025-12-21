@@ -28,7 +28,7 @@ cover: cover.jpg
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/kuwOB7"
-youtube: "ctQki1Qdrvk"
+# youtube: ""
 links:
   - title: "Kibana Demo Script"
     url: "https://gist.github.com/dadoonet/f911291c4dd19b0802031db3064c648f"
