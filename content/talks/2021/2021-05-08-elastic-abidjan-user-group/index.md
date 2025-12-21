@@ -2,11 +2,9 @@
 title: "Introduction à Elasticsearch"
 conference: 
   name: "Elastic Abidjan User Group"
-  city: "Abidjan"
-  country: "Côte d'Ivoire"
-  country_code: "ci"
-  latitude: "5.359952"
-  longitude: "-4.008256"
+  city: Virtual
+  country: "Online"
+  country_code: "Online"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
