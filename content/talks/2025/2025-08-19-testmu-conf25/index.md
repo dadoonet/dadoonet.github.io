@@ -4,9 +4,9 @@ title: "Randomized testing: Gotta Catch ‘Em All"
 conference: 
   name: "Testμ Conf’25"
   url: "https://www.lambdatest.com/testmuconf-2025/david-pilato"
-  city: "Virtual"
-  country: ""
-  country_code: "fr"
+  city: ""
+  country: "Online"
+  country_code: "Online"
   latitude: ""
   longitude: ""
 author: David Pilato

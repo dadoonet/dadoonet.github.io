@@ -4,8 +4,8 @@ conference:
   name: Elastic B(y|i)te
   url: https://community.elastic.co/emea-virtual/
   city: Virtual
-  country: ''
-  country_code: fr
+  country: "Online"
+  country_code: "Online"
   latitude: ''
   longitude: ''
 author: David Pilato

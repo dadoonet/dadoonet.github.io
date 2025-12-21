@@ -4,9 +4,9 @@ title: "Elasticsearch"
 conference: 
   name: "BBL Université Paris 1 Pantheon-Sorbonne (Private Event)"
   url: ""
-  city: "Virtual"
-  country: ""
-  country_code: "fr"
+  city: ""
+  country: "Online"
+  country_code: "Online"
   latitude: ""
   longitude: ""
 author: David Pilato

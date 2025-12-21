@@ -3,7 +3,7 @@
 title: "Les Vendredis noirs : même pas peur !"
 conference: 
   name: "VOXXED Days Luxembourg"
-  city: "Luxembourg City"
+  city: "Luxembourg"
   country: "Luxembourg"
   country_code: "lu"
   latitude: "49.611621"

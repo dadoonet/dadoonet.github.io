@@ -4,8 +4,8 @@ conference:
   name: Elastic B(y|i)te S02
   url: ''
   city: Virtual
-  country: ''
-  country_code: fr
+  country: "Online"
+  country_code: "Online"
   latitude: ''
   longitude: ''
 author: David Pilato

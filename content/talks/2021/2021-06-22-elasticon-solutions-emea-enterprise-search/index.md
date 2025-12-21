@@ -3,9 +3,9 @@ title: "Plongez au cœur de la recherche dans tous ses états"
 conference: 
   name: "ElasticON Solutions EMEA: Enterprise Search"
   url: ""
-  city: "Virtual"
-  country: ""
-  country_code: "fr"
+  city: ""
+  country: "Online"
+  country_code: "Online"
   latitude: ""
   longitude: ""
 author: David Pilato

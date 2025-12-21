@@ -40,13 +40,9 @@
           <h1 itemprop="headline">{{ .Title }}</h1>
             <p> 
               <a href="{{ .Params.conference.url }}" target="_blank">{{ .Params.conference.name }}</a>
-              {{ $hasLocation := or .Params.conference.city .Params.conference.country }}
-              {{ if $hasLocation }}
+              {{ if .Params.conference.city }}
               – 
               {{ .Params.conference.city }}
-                {{ if and .Params.conference.city .Params.conference.country }}
-                ,
-                {{ end }}
               {{ partial "countryFlag.html" .Params.conference }}
               {{ end }}
               – {{ .Date | time.Format "Jan. 2006" }}

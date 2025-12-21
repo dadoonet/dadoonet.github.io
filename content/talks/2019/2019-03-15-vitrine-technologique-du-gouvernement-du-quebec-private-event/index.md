@@ -3,7 +3,7 @@
 title: "Elasticsearch"
 conference: 
   name: "Vitrine Technologique du Gouvernement du Québec (private event)"
-  city: "Quebec City"
+  city: "Quebec"
   country: "Canada"
   country_code: "ca"
   latitude: "46.813878"

@@ -4,8 +4,8 @@ conference:
   name: BBL Gravitee.io (Private Event)
   url: ''
   city: Virtual
-  country: ''
-  country_code: fr
+  country: "Online"
+  country_code: "Online"
   latitude: ''
   longitude: ''
 author: David Pilato

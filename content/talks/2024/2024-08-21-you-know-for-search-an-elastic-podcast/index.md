@@ -3,9 +3,9 @@ title: "🎹🎻🎸 Searching for similar music tracks 🎼🎶"
 conference: 
   name: "You know, for search, an Elastic podcast"
   url: ""
-  city: "Virtual"
-  country: ""
-  country_code: "fr"
+  city: ""
+  country: "Online"
+  country_code: "Online"
   latitude: ""
   longitude: ""
 author: David Pilato

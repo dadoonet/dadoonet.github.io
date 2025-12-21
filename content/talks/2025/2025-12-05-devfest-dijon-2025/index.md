@@ -4,7 +4,7 @@ title: "Envie de booster ta carrière ? Open source-toi !"
 conference: 
   name: "DevFest Dijon 2025"
   url: "https://devfest.dijon.fr/"
-  city: "21000 Dijon"
+  city: "Dijon"
   country: "France"
   country_code: "fr"
   latitude: "47.322047"
