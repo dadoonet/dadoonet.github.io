@@ -6,8 +6,6 @@ conference:
   city: Virtual
   country: "Online"
   country_code: "Online"
-  latitude: ''
-  longitude: ''
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -19,16 +17,27 @@ categories:
 - speaker
 series:
 - conferences
-date: 2021-10-18
+date: 2021-10-20
 nolastmod: true
 draft: false
 cover: cover.jpg
+
+# Speaker specific fields
+youtube: "PNkyniADrmk"
 notist: dadoonet/qToQd7
+
 aliases:
 - /bqMosJ
+
 x:
 - user: dadoonet
-  id: '1455807270386810880'
+  id: '1450469176301264902'
+- user: dadoonet
+  id: '1450758690672234496'
+#- user: spinscale
+#  id: '1450752411166023683'
+
+
 ---
 
 For three weeks we will dive into a different topic of Observability using Elastic Stack every day before lunch in the CEST/EST timezone!
