@@ -38,15 +38,21 @@
       <div id="talk-content-container" class="mx-auto" style="max-width: 1024px;">
         <header>
           <h1 itemprop="headline">{{ .Title }}</h1>
-            <p> 
-              <a href="{{ .Params.conference.url }}" target="_blank">{{ .Params.conference.name }}</a>
-              {{ if .Params.conference.city }}
-              – 
-              {{ .Params.conference.city }}
-              {{ partial "countryFlag.html" .Params.conference }}
-              {{ end }}
-              – {{ .Date | time.Format "Jan. 2006" }}
-            </p>
+            <div class="flex justify-between items-start gap-4 my-2">
+              <div class="flex flex-col">
+                <p class="m-0">
+                  <a href="{{ .Params.conference.url }}" target="_blank">{{ .Params.conference.name }}</a>
+                  <br/>
+                {{ if .Params.conference.city }}
+                  {{ .Params.conference.city }}
+                  {{ partial "countryFlag.html" .Params.conference }}
+                {{ end }}
+                </p>
+              </div>
+              <p class="m-0 text-right">
+                {{ .Date | time.Format "Jan. 2006" }}
+              </p>
+            </div>
 
           {{ with .Params.notist }}
             <p class="text-sm">
