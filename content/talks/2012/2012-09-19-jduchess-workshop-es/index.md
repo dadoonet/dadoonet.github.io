@@ -1,7 +1,7 @@
 ---
-title: 'Elasticsearch : le moteur de recherche élastique pour tous'
+title: 'Workshop Elasticsearch'
 conference:
-  name: Workshop JDuchess France
+  name: JDuchess France
   city: Courbevoie
   country: France
   country_code: fr

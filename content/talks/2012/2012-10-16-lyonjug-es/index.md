@@ -1,5 +1,5 @@
 ---
-title: 'ElasticSearch'
+title: 'Elasticsearch : le moteur de recherche élastique pour tous'
 conference:
   name: Lyon JUG
   url: "https://lyonjug.org/2012/10/16/elasticsearch.html"
