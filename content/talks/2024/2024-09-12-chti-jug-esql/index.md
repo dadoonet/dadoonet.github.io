@@ -1,8 +1,8 @@
 ---
-title: La recherche à l’ère de l’IA
+title: "Elasticsearch Query Language: ES|QL"
 conference:
   name: Ch’ti JUG
-  url: ''
+  url: "https://www.meetup.com/chtijug/events/303211426/"
   city: Lille
   country: France
   country_code: fr
@@ -23,11 +23,12 @@ date: 2024-09-12
 nolastmod: true
 draft: false
 cover: cover.jpg
-notist: dadoonet/xSy3aM
-links:
-  - title: "Event page"
-    url: "https://www.meetup.com/chtijug/events/303211426/"
 
+# Speaker specific fields
+youtube: "7xoxYx10QBw"
+notist: dadoonet/xSy3aM
+
+links:
   - title: "Demo code"
     url: "https://github.com/dadoonet/esql-demo"
     description: "The code played during the demo"
@@ -47,6 +48,7 @@ links:
 
 aliases:
 - /C6PfLA
+
 x:
 - user: chtijug
   id: '1830957835527823468'
