@@ -290,7 +290,15 @@
       <div class="featured-grid">
         {{ range $index, $talk := $recentTalks }}
         <a href="{{ $talk.RelPermalink }}" class="featured-card{{ if eq $index 0 }} featured-main{{ end }}">
-          {{ $cover := $talk.Resources.GetMatch $talk.Params.cover }}
+          {{ $cover := "" }}
+          {{ if $talk.Params.cover }}
+            {{ $cover = $talk.Resources.GetMatch $talk.Params.cover }}
+          {{ else }}
+            {{ $cover = $talk.Resources.GetMatch "cover.jpg" }}
+            {{ if not $cover }}
+              {{ $cover = $talk.Resources.GetMatch "cover.png" }}
+            {{ end }}
+          {{ end }}
           {{ if $cover }}
           <img src="{{ $cover.RelPermalink }}" alt="{{ $talk.Title }}" loading="lazy" />
           {{ else }}
@@ -394,7 +402,7 @@
     {{/* Videos Section */}}
     {{ if $recentVideos }}
     <div class="section-divider">
-      <span class="section-title">🎬 Videos</span>
+      <span class="section-title">🎬 Latest videos</span>
     </div>
     
     <section class="mb-12">

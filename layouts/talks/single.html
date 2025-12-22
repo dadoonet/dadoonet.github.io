@@ -70,9 +70,18 @@
           <h2>Slides</h2>
           {{ partial "pdf.html" (dict "ctx" $ "pdf" $pdf) }}
         {{ else }}
-          {{ if and .Params.Cover site.Params.showSummaryCoverInPost }}
+          {{ $cover := "" }}
+          {{ if .Params.cover }}
+            {{ $cover = .Resources.GetMatch .Params.cover }}
+          {{ else }}
+            {{ $cover = .Resources.GetMatch "cover.jpg" }}
+            {{ if not $cover }}
+              {{ $cover = .Resources.GetMatch "cover.png" }}
+            {{ end }}
+          {{ end }}
+          {{ if and $cover site.Params.showSummaryCoverInPost }}
           <figure>
-            <img class="z-30" src="{{ .Params.Cover }}" alt="{{ .Title }}" />
+            <img class="z-30" src="{{ $cover }}" alt="{{ .Title }}" />
             {{ with .Params.covercaption }}
               <figcaption class="text-sm italic text-center mt-2">{{ . }}</figcaption>
             {{ end }}
