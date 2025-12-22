@@ -2,12 +2,10 @@
 title: Advanced (elastic)search for your legacy application
 conference:
   name: Java2Days
-  url: ''
+  url: 'https://2022.java2days.com/'
   city: Virtual
   country: "Online"
   country_code: "Online"
-  latitude: ''
-  longitude: ''
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -25,9 +23,6 @@ draft: false
 cover: cover.jpg
 notist: dadoonet/Xmao1i
 links:
-  - title: "Conference website"
-    url: "https://2022.java2days.com/"
-
   - title: "Live coding"
     url: "https://www.elastic.co/blog/how-to-add-powerful-search-existing-sql-applications-elasticsearch-video-tutorial"
     description: "Those videos are recorded from a live coding session."
@@ -43,6 +38,7 @@ links:
 
 aliases:
 - /Xmao1i
+
 x:
 - user: Java2Days
   id: '1500060100437979142'
