@@ -2,11 +2,9 @@
 title: "🎹🎻🎸 Searching for similar music tracks 🎼🎶"
 conference: 
   name: "OpenConf"
-  city: "Athens"
-  country: "Greece"
-  country_code: "gr"
-  latitude: "37.983810"
-  longitude: "23.727539"
+  city: "Online"
+  country: "Online"
+  country_code: "online"
   url: "https://www.open-conf.gr/"
 author: David Pilato
 avatar: /about/david_pilato.png
