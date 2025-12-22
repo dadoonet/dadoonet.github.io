@@ -23,6 +23,16 @@ date: 2012-12-06
 nolastmod: true
 draft: false
 
+
+# Speaker specific fields
+x:
+  - user: "dadoonet"
+    id: "273853624004784128"
+  - user: "clescot"
+    id: "276776502018854912"
+  - user: "clescot"
+    id: "276750841346678784"
+
 ---
 
 Cette soirée est faite pour vous si :

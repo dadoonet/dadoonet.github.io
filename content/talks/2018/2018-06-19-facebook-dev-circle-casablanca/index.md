@@ -1,5 +1,5 @@
 ---
-title: "Facebook Dev Circle Casablanca"
+title: "Un moteur de recherche NoSQL pour chercher^H^H^H^H^H^H^H^H trouver"
 conference: 
   name: "Facebook Dev Circle Casablanca"
   city: "Casablanca"

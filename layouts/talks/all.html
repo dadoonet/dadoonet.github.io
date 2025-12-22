@@ -123,6 +123,7 @@
       <h1 class="text-4xl font-bold tracking-tight">
         <ion-icon name="mic" class="text-primary align-middle"></ion-icon>
         {{ default "All Talks" .Title }}
+        <span class="year-pill">{{ len $allTalks }}</span>
       </h1>
       {{ if .Content }}
       <p class="text-base-content/70 mt-4 max-w-2xl mx-auto">{{ .Content }}</p>
