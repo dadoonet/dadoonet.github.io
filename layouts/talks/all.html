@@ -173,7 +173,15 @@
       <div class="talks-grid">
         {{ range .Pages.ByDate.Reverse }}
         <article class="card bg-base-200 shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 group">
-          {{ $cover := .Resources.GetMatch .Params.cover }}
+          {{ $cover := "" }}
+          {{ if .Params.cover }}
+            {{ $cover = .Resources.GetMatch .Params.cover }}
+          {{ else }}
+            {{ $cover = .Resources.GetMatch "cover.jpg" }}
+            {{ if not $cover }}
+              {{ $cover = .Resources.GetMatch "cover.png" }}
+            {{ end }}
+          {{ end }}
           {{ if $cover }}
           <figure class="relative overflow-hidden h-40">
             <a href="{{ .RelPermalink }}">

@@ -22,7 +22,7 @@ series:
 date: 2021-11-30
 nolastmod: true
 draft: false
-cover: cover.jpg
+
 notist: dadoonet/XgxLVm
 links:
   - title: "The Dev Conf 2021"

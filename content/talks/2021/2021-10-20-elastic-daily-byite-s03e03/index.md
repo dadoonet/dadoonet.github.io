@@ -20,7 +20,7 @@ series:
 date: 2021-10-20
 nolastmod: true
 draft: false
-cover: cover.jpg
+
 
 # Speaker specific fields
 youtube: "PNkyniADrmk"

@@ -22,7 +22,7 @@ series:
 date: 2020-12-10
 nolastmod: true
 draft: false
-cover: cover.jpg
+
 notist: dadoonet/UAqIx5
 links:
   - title: "London Information Retrieval Meetup"

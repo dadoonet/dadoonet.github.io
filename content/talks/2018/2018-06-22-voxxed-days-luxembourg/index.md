@@ -23,11 +23,12 @@ series:
 date: 2018-06-22
 nolastmod: true
 draft: false
-cover: cover.jpg
+
 
 # Speaker specific fields
 youtube: "xNy4kLm43UA"
 notist: "dadoonet/NscrTQ"
+attendees: 140
 
 x:
   - user: "voxxed_lu"

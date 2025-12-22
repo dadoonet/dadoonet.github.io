@@ -19,6 +19,6 @@ series:
 date: 2013-04-22
 nolastmod: true
 draft: false
-# cover: cover.jpg
+
 ---
 

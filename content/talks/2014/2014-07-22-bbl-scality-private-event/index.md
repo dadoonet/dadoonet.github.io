@@ -19,7 +19,7 @@ series:
 date: 2014-07-22
 nolastmod: true
 draft: false
-cover: cover.png
+
 attendees: 10
 ---
 

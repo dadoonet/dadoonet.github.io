@@ -19,7 +19,7 @@ series:
 date: 2017-02-23
 nolastmod: true
 draft: false
-cover: cover.png
+
 attendees: 15
 ---
 

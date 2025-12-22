@@ -22,7 +22,7 @@ series:
 date: 2021-04-01
 nolastmod: true
 draft: false
-cover: cover.jpg
+
 notist: dadoonet/sDFpQX
 links:
   - title: "Event page"

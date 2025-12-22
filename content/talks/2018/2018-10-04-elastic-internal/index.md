@@ -19,6 +19,6 @@ series:
 date: 2018-10-04
 nolastmod: true
 draft: false
-# cover: cover.jpg
+
 ---
 

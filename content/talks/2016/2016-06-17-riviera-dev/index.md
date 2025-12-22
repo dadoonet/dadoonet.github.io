@@ -19,7 +19,7 @@ series:
 date: 2016-06-17
 nolastmod: true
 draft: false
-# cover: cover.jpg
+
 attendees: 60
 ---
 

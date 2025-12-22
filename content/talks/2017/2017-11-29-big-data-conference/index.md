@@ -19,7 +19,7 @@ series:
 date: 2017-11-29
 nolastmod: true
 draft: false
-# cover: cover.jpg
+
 attendees: 80
 ---
 

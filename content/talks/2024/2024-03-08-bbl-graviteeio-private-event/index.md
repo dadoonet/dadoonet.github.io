@@ -22,7 +22,7 @@ series:
 date: 2024-03-08
 nolastmod: true
 draft: false
-cover: cover.jpg
+
 notist: dadoonet/dRVohX
 links:
   - title: "Demo code for Humming Search"

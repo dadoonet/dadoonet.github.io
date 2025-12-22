@@ -23,7 +23,7 @@ series:
 date: 2021-10-21
 nolastmod: true
 draft: false
-cover: cover.png
+
 
 # Speaker specific fields
 #youtube: ""

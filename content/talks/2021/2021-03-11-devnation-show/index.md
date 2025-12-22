@@ -22,7 +22,7 @@ series:
 date: 2021-03-11
 nolastmod: true
 draft: false
-cover: cover.jpg
+
 
 # Speaker specific fields
 youtube: "tpvRmI2UN4k?t=125"

@@ -22,7 +22,7 @@ series:
 date: 2022-06-17
 nolastmod: true
 draft: false
-cover: cover.jpg
+
 
 # Speaker specific fields
 youtube: "D6dpQ-avd0g"

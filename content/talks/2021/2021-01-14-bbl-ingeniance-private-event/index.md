@@ -22,7 +22,7 @@ series:
 date: 2021-01-14
 nolastmod: true
 draft: false
-cover: cover.jpg
+
 notist: dadoonet/v7OuPW
 links:
   - title: "One Million Tweet Map demo"

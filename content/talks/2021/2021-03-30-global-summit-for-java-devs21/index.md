@@ -22,7 +22,7 @@ series:
 date: 2021-03-30
 nolastmod: true
 draft: false
-cover: cover.jpg
+
 notist: dadoonet/nRD9sE
 links:
   - title: "Conference website"

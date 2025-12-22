@@ -19,7 +19,7 @@ series:
 date: 2015-06-16
 nolastmod: true
 draft: false
-# cover: cover.jpg
+
 attendees: 10
 ---
 

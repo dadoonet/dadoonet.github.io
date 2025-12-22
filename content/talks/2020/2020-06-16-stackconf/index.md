@@ -20,7 +20,7 @@ series:
 date: 2020-06-16
 nolastmod: true
 draft: false
-cover: cover.png
+
 
 # Speaker specific fields
 youtube: "BGVPV8CcLEg"

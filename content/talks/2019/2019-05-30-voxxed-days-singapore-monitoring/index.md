@@ -23,7 +23,7 @@ series:
 date: 2019-05-30
 nolastmod: true
 draft: false
-cover: cover.png
+
 
 # Speaker specific fields
 youtube: "fTxabQd83TM"

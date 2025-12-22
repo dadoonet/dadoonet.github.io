@@ -22,7 +22,7 @@ series:
 date: 2022-02-17
 nolastmod: true
 draft: false
-cover: cover.jpg
+
 notist: dadoonet/RxDtjn
 links:
   - title: "Neo9"

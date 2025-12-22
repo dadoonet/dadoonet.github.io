@@ -23,7 +23,7 @@ series:
 date: 2025-12-05
 nolastmod: true
 draft: false
-cover: cover.png
+
 
 # Speaker specific fields
 #youtube: "sxWTPruEWRU"

@@ -23,7 +23,7 @@ series:
 date: 2024-07-08
 nolastmod: true
 draft: false
-cover: cover.jpg
+
 
 # Speaker specific fields
 youtube: "DM-urSmsdbc"

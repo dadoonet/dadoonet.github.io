@@ -20,7 +20,7 @@ series:
 date: 2021-06-24
 nolastmod: true
 draft: false
-cover: cover.png
+
 
 # Speaker specific fields
 youtube: "hc6V-1aR33E"

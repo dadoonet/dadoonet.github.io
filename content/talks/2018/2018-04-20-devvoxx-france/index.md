@@ -23,10 +23,11 @@ series:
 date: 2018-04-20
 nolastmod: true
 draft: false
-cover: cover.jpg
+
 
 # Speaker specific fields
 youtube: "ex2jS3GTUfk"
+attendees: 100
 
 links:
   - title: "Demo: elasticsearch-integration-tests repository"

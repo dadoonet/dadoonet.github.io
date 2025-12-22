@@ -22,7 +22,7 @@ series:
 date: 2022-02-02
 nolastmod: true
 draft: false
-cover: cover.jpg
+
 notist: dadoonet/pdV5rO
 links:
   - title: "Kibana Demo Script"

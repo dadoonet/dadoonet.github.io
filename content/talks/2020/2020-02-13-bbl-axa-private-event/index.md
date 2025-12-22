@@ -22,7 +22,7 @@ series:
 date: 2020-02-13
 nolastmod: true
 draft: false
-cover: cover.jpg
+
 
 # Speaker specific fields
 # youtube: ""

@@ -19,7 +19,7 @@ series:
 date: 2015-12-08
 nolastmod: true
 draft: false
-cover: cover.png
+
 attendees: 17
 ---
 

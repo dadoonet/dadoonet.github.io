@@ -19,7 +19,7 @@ series:
 date: 2013-01-31
 nolastmod: true
 draft: false
-# cover: cover.jpg
+
 attendees: 1
 ---
 

@@ -22,7 +22,7 @@ series:
 date: 2025-04-17
 nolastmod: true
 draft: false
-cover: cover.png
+
 
 # Speaker specific fields
 youtube: "8bw81NIkH60"

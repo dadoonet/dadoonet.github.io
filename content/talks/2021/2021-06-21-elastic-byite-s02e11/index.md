@@ -20,7 +20,7 @@ series:
 date: 2021-06-21
 nolastmod: true
 draft: false
-cover: cover.png
+
 
 # Speaker specific fields
 youtube: "wOvyubrHIM"

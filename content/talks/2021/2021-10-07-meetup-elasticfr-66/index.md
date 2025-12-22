@@ -22,7 +22,7 @@ series:
 date: 2021-10-07
 nolastmod: true
 draft: false
-cover: cover.jpg
+
 notist: dadoonet/Llif61
 links:
   - title: "Elastic Security Solution"

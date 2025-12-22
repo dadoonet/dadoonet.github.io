@@ -21,10 +21,11 @@ series:
 date: 2018-03-07
 nolastmod: true
 draft: false
-cover: cover.jpg
+
 
 # Speaker specific fields
 #youtube: ""
+attendees: 50
 notist: "dadoonet/EpnH6d"
 aliases:
   - /EpnH6d

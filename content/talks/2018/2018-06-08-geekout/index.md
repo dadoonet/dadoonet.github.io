@@ -21,11 +21,13 @@ series:
 date: 2018-06-08
 nolastmod: true
 draft: false
-cover: cover.png
+
 
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/r9W4z2"
+attendees: 100
+
 aliases:
   - /r9W4z2
 ---

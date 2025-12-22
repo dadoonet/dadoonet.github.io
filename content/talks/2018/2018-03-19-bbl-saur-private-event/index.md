@@ -19,7 +19,7 @@ series:
 date: 2018-03-19
 nolastmod: true
 draft: false
-cover: cover.png
+cover: logo-saur.jpeg
 attendees: 40
 ---
 
@@ -36,4 +36,3 @@ David présentera au cours du déjeuner pourquoi et comment il est passé de la 
 * L'analyse et le mapping
 * La percolation
 * La communauté
-

@@ -22,7 +22,7 @@ series:
 date: 2021-03-25
 nolastmod: true
 draft: false
-cover: cover.jpg
+
 notist: dadoonet/6qhRBL
 links:
   - title: "FSCrawler"

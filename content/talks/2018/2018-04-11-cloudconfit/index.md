@@ -21,10 +21,11 @@ series:
 date: 2018-04-11
 nolastmod: true
 draft: false
-cover: cover.jpg
+
 
 # Speaker specific fields
 #youtube: ""
+attendees: 450
 notist: "dadoonet/TTEsrR"
 aliases:
   - /TTEsrR

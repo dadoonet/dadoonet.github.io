@@ -20,7 +20,7 @@ series:
 date: 2020-10-27
 nolastmod: true
 draft: false
-cover: cover.jpg
+
 notist: dadoonet/netISB
 links:
   - title: "Conference website"

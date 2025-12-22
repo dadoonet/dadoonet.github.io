@@ -22,7 +22,7 @@ series:
 date: 2022-11-24
 nolastmod: true
 draft: false
-cover: cover.jpg
+
 notist: dadoonet/K6AjsW
 links:
   - title: "Event page"

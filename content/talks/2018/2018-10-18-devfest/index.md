@@ -19,7 +19,7 @@ series:
 date: 2018-10-18
 nolastmod: true
 draft: false
-# cover: cover.jpg
+
 attendees: 80
 ---
 

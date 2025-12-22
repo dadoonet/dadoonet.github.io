@@ -23,7 +23,7 @@ series:
 date: 2023-09-08
 nolastmod: true
 draft: false
-cover: cover.jpg
+
 
 # Speaker specific fields
 youtube: "VQLIn2-juzE"

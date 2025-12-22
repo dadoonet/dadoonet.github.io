@@ -21,7 +21,7 @@ series:
 date: 2012-04-19
 nolastmod: true
 draft: false
-cover: cover.jpg
+
 youtube: sxWTPruEWRU
 notist: dadoonet/ubjdxo
 x:

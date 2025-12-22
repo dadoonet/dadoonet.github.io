@@ -22,7 +22,7 @@ series:
 date: 2020-10-13
 nolastmod: true
 draft: false
-cover: cover.jpg
+
 notist: dadoonet/2IKuCz
 links:
   - title: "Programmez web site"

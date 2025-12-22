@@ -22,7 +22,7 @@ series:
 date: 2021-09-15
 nolastmod: true
 draft: false
-cover: cover.jpg
+
 notist: dadoonet/4gYzq5
 # youtube: ""
 links:

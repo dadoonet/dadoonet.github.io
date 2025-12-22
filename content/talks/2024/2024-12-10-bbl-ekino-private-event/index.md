@@ -22,7 +22,7 @@ series:
 date: 2024-12-10
 nolastmod: true
 draft: false
-cover: cover.jpg
+
 notist: dadoonet/asppSL
 links:
   - title: "Person dataset injector"

@@ -22,7 +22,7 @@ series:
 date: 2019-06-27
 nolastmod: true
 draft: false
-cover: cover.jpg
+
 
 # Speaker specific fields
 youtube: "0Zsuae0LWas"

@@ -22,7 +22,7 @@ series:
 date: 2024-09-06
 nolastmod: true
 draft: false
-cover: cover.jpg
+
 
 # Speaker specific fields
 youtube: "Fa6ICBs1KM0"

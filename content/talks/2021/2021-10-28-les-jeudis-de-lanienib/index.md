@@ -22,7 +22,7 @@ series:
 date: 2021-10-28
 nolastmod: true
 draft: false
-cover: cover.jpg
+
 notist: dadoonet/K8ZxQb
 links:
   - title: "Inscriptions Eventbrite"

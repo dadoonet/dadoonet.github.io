@@ -20,7 +20,7 @@ series:
 date: 2022-03-08
 nolastmod: true
 draft: false
-cover: cover.jpg
+
 notist: dadoonet/Xmao1i
 links:
   - title: "Live coding"
