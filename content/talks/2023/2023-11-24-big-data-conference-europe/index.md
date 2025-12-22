@@ -1,84 +1,55 @@
 ---
-
-title: "Enriching postal addresses with Elastic stack"
-conference: 
-  name: "Big Data Conference Europe"
-  city: "Vilnius"
+title: 'Search: a new era'
+conference:
+  name: Big Data Conference Europe
+  url: "https://events.pinetool.ai/3079/#sessions/104117"
+  city: Vilnius
   country: "Lithuania"
   country_code: "lt"
-  latitude: "54.687156"
-  longitude: "25.279651"
-  url: "https://events.pinetool.ai/3079/#sessions/101080"
+  latitude: '54.687156'
+  longitude: '25.279651'
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
-  - elasticsearch
-  - conference
-  - java
-  - cloud
+- elasticsearch
+- conference
+- java
+- cloud
 categories:
-  - speaker
+- speaker
 series:
-  - conferences
+- conferences
 date: 2023-11-24
 nolastmod: true
 draft: false
-cover: cover.png
+cover: cover.jpg
 
 # Speaker specific fields
-youtube: "zJjVnp1davo"
-notist: "dadoonet/TN5yX9"
-
-x:
-  - user: "dadoonet"
-    id: "1724109443783082295"
-  - user: "dadoonet"
-    id: "1727277492808085806"
+youtube: "RbdIdSnXbA4"
+notist: dadoonet/tfHOrn
 
 links:
-  - title: "Blog: Enriching Your Postal Addresses With the Elastic Stack - Part 1"
-    url: "https://www.elastic.co/blog/enriching-your-postal-addresses-with-the-elastic-stack-part-1"
-  - title: "Blog: Enriching Your Postal Addresses With the Elastic Stack - Part 2"
-    url: "https://www.elastic.co/blog/enriching-your-postal-addresses-with-the-elastic-stack-part-1"
-  - title: "Blog: Enriching Your Postal Addresses With the Elastic Stack - Part 3"
-    url: "https://www.elastic.co/blog/enriching-your-postal-addresses-with-the-elastic-stack-part-3"
-  - title: "Code: bano-elastic"
-    url: "https://github.com/dadoonet/bano-elastic/"
+  - title: "Event Page"
+    url: "https://events.pinetool.ai/3079/#sessions/104117"
+
+  - title: "Music Search demo code"
+    url: "https://github.com/dadoonet/music-search"
+
 
 aliases:
-  - /TN5yX9
-
+- /tfHOrn
+x:
+- user: dadoonet
+  id: '1726958270148137073'
 ---
 
-> Come and learn how you can enrich your existing data with normalized postal addresses with geo location points thanks to open data and [BANO project](http://bano.openstreetmap.fr/data/).
+Search is not just traditional TF/IDF any more but the current trend of machine learning and models has opened another dimension for search.
 
-Most of the time postal addresses from our customers or users are not very well formatted or defined in our information systems. And it can become a nightmare if you are a call center employee for example and want to find a customer by its address.
-Imagine as well how a sales service could easily put on a map where are located the customers and where they can open a new shop…
+This talk gives an overview of:
 
-Let’s take a simple example:
+* “Classic” search and its limitations
+* What is a model and how can you use it
+* How to use vector search or hybrid search in Elasticsearch
+* Where OpenAI’s ChatGPT or similar LLMs come into play to with Elastic
 
-```
-{
-  "name": "Joe Smith",
-  "address": {
-    "number": "23",
-    "street_name": "r verdiere",
-    "city": "rochelle",
-    "country": "France"
-  }
-}
-```
-
-Or the opposite. I do have the coordinates but I can’t tell what is the postal address corresponding to it:
-
-```
-{
-  "name": "Joe Smith",
-  "location": {
-    "lat": 46.15735,
-    "lon": -1.1551
-  }
-}
-```
-
-In this live coding session, I will show you how to solve all those questions using the Elastic stack.
+This talk covers the state of the art in terms of search nowadays: BM25, Vector search, Embeddings, Hybrid Search, Reciprocal Rank Fusion, and OpenAI integration. The main demo covers how to generate embeddings from a piece of music and then use the techniques we learned to propose the most probable version of it when we hum a song.
