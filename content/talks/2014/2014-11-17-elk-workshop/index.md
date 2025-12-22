@@ -1,0 +1,25 @@
+---
+title: "ELK Workshop"
+conference: 
+  name: "ELK Workshop"
+  city: "Paris"
+  country: "France"
+  country_code: "fr"
+  latitude: "48.8549225"
+  longitude: "2.2900278"
+author: David Pilato
+avatar: /about/david_pilato.png
+tags:
+  - elasticsearch
+  - conference
+categories:
+  - speaker
+series:
+  - conferences
+date: 2014-11-17
+nolastmod: true
+draft: false
+# cover: cover.jpg
+attendees: 15
+---
+

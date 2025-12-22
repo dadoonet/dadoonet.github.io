@@ -1,0 +1,25 @@
+---
+title: "CCI Le Havre"
+conference: 
+  name: "CCI Le Havre"
+  city: "Le Havre"
+  country: "France"
+  country_code: "fr"
+  latitude: "49.4919055"
+  longitude: "0.1295133"
+author: David Pilato
+avatar: /about/david_pilato.png
+tags:
+  - elasticsearch
+  - conference
+categories:
+  - speaker
+series:
+  - conferences
+date: 2016-06-14
+nolastmod: true
+draft: false
+# cover: cover.jpg
+attendees: 10
+---
+

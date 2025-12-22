@@ -1,0 +1,25 @@
+---
+title: "Meetup ES CH"
+conference: 
+  name: "Meetup ES CH"
+  city: "Geneva"
+  country: "Switzerland"
+  country_code: "ch"
+  latitude: "46.1827664"
+  longitude: "6.1270452"
+author: David Pilato
+avatar: /about/david_pilato.png
+tags:
+  - elasticsearch
+  - conference
+categories:
+  - speaker
+series:
+  - conferences
+date: 2016-10-26
+nolastmod: true
+draft: false
+# cover: cover.jpg
+attendees: 20
+---
+

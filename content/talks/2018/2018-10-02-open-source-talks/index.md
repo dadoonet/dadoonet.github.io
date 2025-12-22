@@ -1,0 +1,25 @@
+---
+title: "Open Source Talks"
+conference: 
+  name: "Open Source Talks"
+  city: "Montpellier"
+  country: "France"
+  country_code: "fr"
+  latitude: "43.6428585"
+  longitude: "3.8417114"
+author: David Pilato
+avatar: /about/david_pilato.png
+tags:
+  - elasticsearch
+  - conference
+categories:
+  - speaker
+series:
+  - conferences
+date: 2018-10-02
+nolastmod: true
+draft: false
+# cover: cover.jpg
+attendees: 40
+---
+
