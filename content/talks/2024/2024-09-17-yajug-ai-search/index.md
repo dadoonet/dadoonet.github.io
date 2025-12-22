@@ -1,8 +1,8 @@
 ---
-title: 'Elasticsearch Query Language: ES|QL'
+title: 'La recherche à l’ère de l’IA'
 conference:
   name: YaJUG
-  url: ''
+  url: "https://yajug.lu/session/la-recherche-a-lere-de-l-ia/"
   city: Luxembourg
   country: Luxembourg
   country_code: lu
@@ -23,20 +23,21 @@ date: 2024-09-17
 nolastmod: true
 draft: false
 cover: cover.jpg
+
+# Speaker specific fields
+# youtube: ""
 notist: dadoonet/yM67c3
-links:
-  - title: "Page de l’évènement"
-    url: "https://yajug.lu/session/la-recherche-a-lere-de-l-ia/"
 
-  - title: "Notebook demo Hummingsearch"
-    url: "https://github.com/dadoonet/music-search"
-
-
-aliases:
-- /oQ8TDZ
 x:
 - user: dadoonet
   id: '1833445549715923127'
+
+links:
+  - title: "Notebook demo Hummingsearch"
+    url: "https://github.com/dadoonet/music-search"
+
+aliases:
+- /oQ8TDZ
 ---
 
 La recherche ne se contente plus de l’approche maintenant traditionnelle basée sur la fréquence des termes (TF/IDF ou BM25) mais plus sur la tendance actuelle du machine learning où les nouveaux modèles ont ouvert une nouvelle dimension pour la recherche.
