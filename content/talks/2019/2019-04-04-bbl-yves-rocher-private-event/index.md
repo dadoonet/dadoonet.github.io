@@ -22,6 +22,7 @@ series:
 date: 2019-04-04
 nolastmod: true
 draft: false
+cover: deck-bbl-generic.png
 
 # Speaker specific fields
 #youtube: ""

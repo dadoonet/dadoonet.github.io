@@ -22,7 +22,7 @@ series:
 date: 2019-03-29
 nolastmod: true
 draft: false
-cover: cover.jpg
+cover: deck-bbl-generic.png
 
 # Speaker specific fields
 #youtube: ""

@@ -23,7 +23,11 @@ date: 2021-03-11
 nolastmod: true
 draft: false
 cover: cover.jpg
+
+# Speaker specific fields
+youtube: "tpvRmI2UN4k?t=125"
 notist: dadoonet/UWydIw
+
 links:
   - title: "Event page"
     url: "https://developers.redhat.com/devnation/the-show"
