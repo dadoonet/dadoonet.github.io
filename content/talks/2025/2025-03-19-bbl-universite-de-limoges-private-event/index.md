@@ -2,11 +2,9 @@
 title: "Elasticsearch"
 conference: 
   name: "BBL Université de Limoges (private event)"
-  city: "Limoges"
-  country: "France"
-  country_code: "fr"
-  latitude: "45.833619"
-  longitude: "1.261105"
+  city: "Online"
+  country: "Online"
+  country_code: "Online"
   url: "https://www.unilim.fr/"
 author: David Pilato
 avatar: /about/david_pilato.png
