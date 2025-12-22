@@ -2,12 +2,10 @@
 title: Custom snapshot repository - Daily Elastic Byte S04E06
 conference:
   name: Elastic Daily Bytes S04
-  url: ''
+  url: "https://community.elastic.co/e/mr3qju/"
   city: Virtual
   country: "Online"
   country_code: "Online"
-  latitude: ''
-  longitude: ''
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -19,30 +17,32 @@ categories:
 - speaker
 series:
 - conferences
-date: 2022-04-25
+date: 2022-05-02
 nolastmod: true
 draft: false
 cover: cover.jpg
-notist: dadoonet/rQpyEj
-links:
-  - title: "Elastic Community event"
-    url: "https://community.elastic.co/e/mr3qju/"
 
+# Speaker specific fields
+youtube: "LD2jGABeUMc"
+notist: dadoonet/rQpyEj
+
+x:
+- user: dadoonet
+  id: '1518545201249333248'
+
+links:
   - title: "Script of the talk"
     url: "https://github.com/dadoonet/s04e06-snapshots"
 
 
 aliases:
 - /rQpyEj
-x:
-- user: dadoonet
-  id: '1520846447482216455'
 ---
 
 For three weeks we will dive into a different topic of Elastic Cloud every day before lunch in the CEST/EST timezone!
 
 All you need to do is to be ready and tune in at 11:45 CEST/EST.
 
-Questions? Ask us on https://discuss.elastic.co
+Questions? Ask us on <https://discuss.elastic.co>
 
-Connect with us in our Slack workspace: https://ela.st/slack
+Connect with us in our Slack workspace: <https://ela.st/slack>.
