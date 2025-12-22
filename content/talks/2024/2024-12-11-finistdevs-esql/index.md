@@ -2,7 +2,7 @@
 title: 'Elasticsearch Query Language: ES|QL'
 conference:
   name: FinistDevs
-  url: ''
+  url: 'https://finistdevs.org/2024/12/03/le-noel-des-devs-%f0%9f%8e%84-decouverte-delastic-ambiance-noel-avec-finistdevs-%f0%9f%8e%85/'
   city: Brest
   country: France
   country_code: fr
@@ -23,11 +23,22 @@ date: 2024-12-11
 nolastmod: true
 draft: false
 cover: cover.jpg
-notist: dadoonet/yZ71Zw
-links:
-  - title: "Event page"
-    url: "https://finistdevs.org/"
 
+# Speaker specific fields
+# youtube: ""
+notist: dadoonet/yZ71Zw
+
+x:
+- user: FinistDevs
+  id: '1862009997942497506'
+- user: FinistDevs
+  id: '1866821061746057452'
+- user: dadoonet
+  id: '1866958763883630617'
+- user: clever_cloudFR
+  id: '1866152632815145462'
+
+links:
   - title: "Demo code"
     url: "https://github.com/dadoonet/esql-demo"
     description: "The code played during the demo"
@@ -47,11 +58,6 @@ links:
 
 aliases:
 - /yZ71Zw
-x:
-- user: clever_cloudFR
-  id: '1866152632815145462'
-- user: dadoonet
-  id: '1866958763883630617'
 ---
 
 Dans cette session sans slides, nous découvrirons par la pratique ce qu’apporte le nouveau language `ES|QL` pour aller fouiller dans nos données indexées dans Elasticsearch et ce, de façon interactive et visuelle.

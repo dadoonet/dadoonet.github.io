@@ -2,7 +2,7 @@
 title: Elasticsearch
 conference:
   name: BBL Ekino (private event)
-  url: ''
+  url: 'https://www.ekino.fr/'
   city: Virtual
   country: "Online"
   country_code: "Online"
@@ -25,9 +25,6 @@ draft: false
 cover: cover.jpg
 notist: dadoonet/asppSL
 links:
-  - title: "Ekino"
-    url: "https://www.ekino.fr/"
-
   - title: "Person dataset injector"
     url: "https://github.com/dadoonet/injector"
 
@@ -39,11 +36,12 @@ links:
     url: "https://github.com/dadoonet/music-search"
 
 
-aliases:
-- /asppSL
 x:
 - user: dadoonet
   id: '1866139000349544468'
+
+aliases:
+- /asppSL
 ---
 
 Vous utilisez encore des requêtes SQL pour faire des recherches ? Vos utilisateurs vous reprochent de ne pas pouvoir chercher sur toutes les rubriques ? Votre temps de réponse moyen est supérieur à la demi-seconde avec seulement quelques millions de documents ? Il vous faut 3 jours pour produire des statistiques sur vos données ? Vous rêvez d’offrir une recherche “à la google” sur les données de votre SI ?
