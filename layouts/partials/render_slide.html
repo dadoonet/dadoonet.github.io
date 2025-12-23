@@ -180,7 +180,7 @@ document.addEventListener("keydown", function(event) {
 });
 
 // If absolute URL from the remote server is provided, configure the CORS header on that server.
-var url = '{{ .RelPermalink }}';
+var url = '{{ .pdf_url }}';
 
 // The workerSrc property shall be specified.
 {{ $script := resources.Get "js/pdf.worker.mjs" | fingerprint -}}

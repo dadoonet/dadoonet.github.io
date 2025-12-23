@@ -2,12 +2,14 @@
 Renders a PDF file.
 
 @param {dict} ctx The context.
-@param {string} pdf The PDF file.
+@param {string} pdf_url The relative PDF URL path (e.g., "2025/2025-12-05-devfest-dijon-2025/2025-12-05-devfest-dijon-2025.pdf")
 
 @returns {template.HTML}
 
-@example {{< pdf (dict "ctx" $ "pdf" $pdf) >}}
+@example {{< pdf (dict "ctx" $ "pdf_url" "2025/2025-12-05-devfest-dijon-2025/2025-12-05-devfest-dijon-2025.pdf") >}}
 */}}
+{{ $pdf_base_url := site.Params.pdf_base_url | default "https://storage.googleapis.com/dadoonet-talks/slides/" }}
+{{ $full_pdf_url := printf "%s%s" $pdf_base_url .pdf_url }}
 <style>
   .talks-controls .icon,
   .talks-controls svg {
@@ -20,7 +22,7 @@ Renders a PDF file.
     <!-- PDF slides - Size calculated by JavaScript to fit viewport -->
     <div class="w-full flex justify-center overflow-hidden">
       <canvas class="cursor-pointer rounded-lg shadow-md max-w-full" id="talks-pdf"></canvas>
-      <noscript><p class="text-center text-sm text-base-content/70 mt-2">It looks like you have disabled JavaScript, so the slides won't load. Please enable it or <a href="{{ .pdf.RelPermalink }}" class="link link-primary" download>download the PDF directly</a>.</p></noscript>
+      <noscript><p class="text-center text-sm text-base-content/70 mt-2">It looks like you have disabled JavaScript, so the slides won't load. Please enable it or <a href="{{ $full_pdf_url }}" class="link link-primary" download>download the PDF directly</a>.</p></noscript>
     </div>
 
     <!-- Controls bar below the canvas -->
@@ -50,13 +52,13 @@ Renders a PDF file.
 
       <!-- Center: Download -->
       <div class="flex items-center">
-        <a href="{{ .pdf.RelPermalink }}" title="Download PDF" download class="flex items-center gap-1 hover:text-primary transition-colors">
+        <a href="{{ $full_pdf_url }}" title="Download PDF" download class="flex items-center gap-1 hover:text-primary transition-colors">
           <span class="w-4 h-4 mr-1">{{ partial "icon.html" (dict "ctx" .ctx "name" "download-cloud") }}</span>
-          <span class="text-base-content/60">{{ $stat := os.Stat .pdf.RelPermalink }}{{ if lt $stat.Size 1048576}}1{{ else }}{{ math.Ceil (div $stat.Size 1048576) }}{{ end }}&#8239;MB</span>
+          <span class="text-base-content/60">PDF</span>
         </a>
       </div>
     </div>
 
-    {{ partial "render_slide.html" .pdf }}
+    {{ partial "render_slide.html" (dict "pdf_url" $full_pdf_url) }}
   </div>
 </div>

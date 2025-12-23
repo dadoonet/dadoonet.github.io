@@ -20,6 +20,9 @@ language = "languages"
  
 lightTheme = "emerald"
 darkTheme = "forest"
+
+# PDF base URL for external storage (Google Cloud Storage)
+pdf_base_url = "https://storage.googleapis.com/dadoonet-talks/slides/"
  
 # backgroundImage = "me/background.jpg"
 # backgroundImageDark = ""
