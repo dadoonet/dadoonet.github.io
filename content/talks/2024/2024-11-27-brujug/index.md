@@ -1,5 +1,4 @@
 ---
-
 title: "Search: a new era"
 conference: 
   name: "BruJUG"
@@ -23,6 +22,7 @@ series:
 date: 2024-11-27
 nolastmod: true
 draft: false
+pdf: "2024/2024-11-27-brujug.pdf"
 
 
 # Speaker specific fields
@@ -36,9 +36,7 @@ links:
 
 aliases:
   - /afovUS
-
 ---
-
 Search is not just traditional TF/IDF any more but the current trend of machine learning and models has opened another dimension for search.
 
 This talk gives an overview of:

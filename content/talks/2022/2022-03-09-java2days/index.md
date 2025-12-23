@@ -20,6 +20,7 @@ series:
 date: 2022-03-09
 nolastmod: true
 draft: false
+pdf: "2022/2022-03-09-java2days.pdf"
 
 
 # Speaker specific fields
@@ -38,9 +39,7 @@ links:
 
 aliases:
   - /A6Jbu7
-
 ---
-
 You have plenty of Open Office, Microsoft Office, PDF, images… documents and you may want to be able to search for their metadata and content. How can you do that? In this talk, David will explain how Apache Tika can be used for that and how to combine this fantastic library with Elastic Stack:
 
 * Elasticsearch [ingest-attachment plugin](https://www.elastic.co/guide/en/elasticsearch/plugins/current/ingest-attachment.html)

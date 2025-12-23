@@ -22,6 +22,7 @@ series:
 date: 2023-11-24
 nolastmod: true
 draft: false
+pdf: "2023/2023-11-24-big-data-conference-europe.pdf"
 
 
 # Speaker specific fields
@@ -42,7 +43,6 @@ x:
 - user: dadoonet
   id: '1726958270148137073'
 ---
-
 Search is not just traditional TF/IDF any more but the current trend of machine learning and models has opened another dimension for search.
 
 This talk gives an overview of:

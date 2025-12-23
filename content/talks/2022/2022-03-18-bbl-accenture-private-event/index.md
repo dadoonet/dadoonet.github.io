@@ -22,6 +22,7 @@ series:
 date: 2022-03-18
 nolastmod: true
 draft: false
+pdf: "2022/2022-03-18-bbl-accenture-private-event.pdf"
 
 
 # Speaker specific fields
@@ -44,7 +45,6 @@ links:
 aliases:
   - /OjlDev
 ---
-
 Do you still use SQL queries to search? Your users blame you for not being able to search any and all data? Your average response time is greater than half a second with only a few million documents? Do you need 3 days to produce statistics on your data? Do you dream of offering a “google search” on your IS data?
 
 Enter Elasticsearch: A simple-to-setup and simple-to-use search service. You simply feed it the information you want to be searchable using its index APIs and use its simple-yet-powerful search APIs to let users search for this information in milliseconds.

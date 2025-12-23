@@ -22,6 +22,7 @@ series:
 date: 2024-12-11
 nolastmod: true
 draft: false
+pdf: "2024/2024-12-11-finistdevs-ai-search.pdf"
 
 
 # Speaker specific fields
@@ -45,9 +46,7 @@ links:
 
 aliases:
   - /jvfPp8
-
 ---
-
 La recherche ne se contente plus de l’approche maintenant traditionnelle basée sur la fréquence des termes (TF/IDF ou BM25) mais plus sur la tendance actuelle du machine learning où les nouveaux modèles ont ouvert une nouvelle dimension pour la recherche.
 
 Cette conférence donne un aperçu de :

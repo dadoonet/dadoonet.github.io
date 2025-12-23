@@ -1,5 +1,4 @@
 ---
-
 title: "Un moteur de recherche de documents d’entreprise"
 conference: 
   name: "Devoxx France 2023"
@@ -23,6 +22,7 @@ series:
 date: 2023-04-12
 nolastmod: true
 draft: false
+pdf: "2023/2023-04-12-devoxx-france-2023.pdf"
 
 
 # Speaker specific fields
@@ -47,9 +47,7 @@ links:
 
 aliases:
   - /dnEdLV
-
 ---
-
 Lors de cet atelier, nous allons expliquer comment mettre en place un moteur de recherche pour les données de notre entreprise.
 
 Afin d’éviter le côté trop “magique” parfois des solutions sur étagère, nous verrons d’abord :

@@ -20,6 +20,7 @@ series:
 date: 2021-10-20
 nolastmod: true
 draft: false
+pdf: "2021/2021-10-20-elastic-daily-byite-s03e03.pdf"
 
 
 # Speaker specific fields
@@ -37,8 +38,6 @@ x:
 #- user: spinscale
 #  id: '1450752411166023683'
 
-
 ---
-
 For three weeks we will dive into a different topic of Observability using Elastic Stack every day before lunch in the CEST/EST timezone!
 All you need to do is to be ready at 11:45 CEST/EST.

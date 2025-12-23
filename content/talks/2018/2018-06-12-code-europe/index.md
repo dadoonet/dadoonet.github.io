@@ -19,7 +19,7 @@ series:
 date: 2018-06-12
 nolastmod: true
 draft: false
+pdf: "2018/2018-06-12-code-europe.pdf"
 
 attendees: 50
 ---
-

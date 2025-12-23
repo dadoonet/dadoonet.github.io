@@ -1,5 +1,4 @@
 ---
-
 title: "La recherche à l’ère de l’IA"
 conference: 
   name: "Devoxx France 2024"
@@ -23,6 +22,7 @@ series:
 date: 2024-04-18
 nolastmod: true
 draft: false
+pdf: "2024/2024-04-18-devoxx-france-2024.pdf"
 
 
 # Speaker specific fields
@@ -46,9 +46,7 @@ links:
 
 aliases:
   - /WlpZdt
-
 ---
-
 La recherche ne se contente plus de l’approche maintenant traditionnelle basée sur la fréquence des termes (TF/IDF ou BM25) mais plus sur la tendance actuelle du machine learning où les nouveaux modèles ont ouvert une nouvelle dimension pour la recherche.
 
 Cette conférence donne un aperçu de :

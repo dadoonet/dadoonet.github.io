@@ -19,7 +19,7 @@ series:
 date: 2013-07-02
 nolastmod: true
 draft: false
+pdf: "2013/2013-07-02-atelier-xebia.pdf"
 
 attendees: 15
 ---
-

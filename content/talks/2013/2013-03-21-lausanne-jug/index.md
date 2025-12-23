@@ -19,7 +19,7 @@ series:
 date: 2013-03-21
 nolastmod: true
 draft: false
+pdf: "2013/2013-03-21-lausanne-jug.pdf"
 
 attendees: 20
 ---
-

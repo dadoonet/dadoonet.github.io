@@ -1,5 +1,4 @@
 ---
-
 title: "Le hasard fait bien les tests"
 description: ""
 conference: 
@@ -24,6 +23,7 @@ series:
 date: 2025-11-13
 nolastmod: true
 draft: false
+pdf: "2025/2025-11-13-devfest-toulouse-2025.pdf"
 
 
 # Speaker specific fields
@@ -65,9 +65,7 @@ links:
 
 aliases:
   - /qC8sMm
-
 ---
-
 > Le hasard fait bien les choses.
 
 Si on applique cette idée aux tests unitaires ou aux tests d’intégration, on peut rendre nos tests beaucoup plus imprévisibles et du coup trouver des problèmes que notre esprit n’aurait jamais osé imaginer ! Par exemple, récemment, j’ai découvert dans une bibliothèque de gestion de configuration, [un bug](https://github.com/gestalt-config/gestalt/issues/242) qui se produit lorsque la `Locale` est configuré en `AZ`. 🤦🏼‍♂️

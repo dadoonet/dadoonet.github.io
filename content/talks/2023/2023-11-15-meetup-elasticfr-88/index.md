@@ -21,6 +21,7 @@ series:
 date: 2023-11-15
 nolastmod: true
 draft: false
+pdf: "2023/2023-11-15-meetup-elasticfr-88.pdf"
 
 
 # Speaker specific fields
@@ -46,5 +47,4 @@ x:
 aliases:
   - /lJdisl
 ---
-
 Pendant cette session, nous allons utiliser les principes de la recherche vectorielle pour trouver des morceaux de musique ressemblant (peut-être) à d’autres. Pour cela, nous ferons un rappel des principes de la génération d’embeddings pour représenter n’importe quel type de données, qu’elles soient textuelles ou binaires.

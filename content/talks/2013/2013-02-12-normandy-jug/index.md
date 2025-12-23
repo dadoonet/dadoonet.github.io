@@ -19,7 +19,7 @@ series:
 date: 2013-02-12
 nolastmod: true
 draft: false
+pdf: "2013/2013-02-12-normandy-jug.pdf"
 
 attendees: 30
 ---
-

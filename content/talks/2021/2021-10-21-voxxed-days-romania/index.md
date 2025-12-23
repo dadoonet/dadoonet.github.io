@@ -1,5 +1,4 @@
 ---
-
 title: "Hunting (and stopping!) threats with Elastic Security"
 conference: 
   name: "Voxxed Days Romania"
@@ -23,6 +22,7 @@ series:
 date: 2021-10-21
 nolastmod: true
 draft: false
+pdf: "2021/2021-10-21-voxxed-days-romania.pdf"
 
 
 # Speaker specific fields
@@ -43,9 +43,7 @@ links:
 
 aliases:
   - /zWe0zu
-
 ---
-
 You are a security analyst for your company. The IT Team has deployed Elastic agents on your infrastructure, including endpoints, firewalls… those agents are collecting logs, metrics and security related data for months.
 
 One morning, you open Kibana and discover that some alerts have been thrown. Is that a real threat?

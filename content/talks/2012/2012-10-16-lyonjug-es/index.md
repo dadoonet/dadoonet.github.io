@@ -22,9 +22,8 @@ series:
 date: 2012-10-16
 nolastmod: true
 draft: false
-
+pdf: "2012/2012-10-16-lyonjug-es.pdf"
 ---
-
 Ce JUG est fait pour vous si :
 
 * Vous utilisez encore des requêtes SQL pour faire des recherches

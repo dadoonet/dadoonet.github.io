@@ -8,7 +8,7 @@ Renders a PDF file.
 
 @example {{< pdf (dict "ctx" $ "pdf_url" "2025/2025-12-05-devfest-dijon-2025/2025-12-05-devfest-dijon-2025.pdf") >}}
 */}}
-{{ $pdf_base_url := site.Params.pdf_base_url | default "https://storage.googleapis.com/dadoonet-talks/slides/" }}
+{{ $pdf_base_url := site.Params.talks.pdf_base_url | default "https://storage.googleapis.com/dadoonet-talks/slides/" }}
 {{ $full_pdf_url := printf "%s%s" $pdf_base_url .pdf_url }}
 <style>
   .talks-controls .icon,

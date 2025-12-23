@@ -22,6 +22,7 @@ series:
 date: 2021-09-29
 nolastmod: true
 draft: false
+pdf: "2021/2021-09-29-devoxx-france-2021.pdf"
 
 
 # Speaker specific fields
@@ -43,7 +44,6 @@ links:
 aliases:
   - /h0HniU
 ---
-
 Savoir ce qui se passe dans votre environnement est une part importante pour être informé de problèmes de sécurité.
 
 Mais comment capturer et visualiser les informations pertinentes ? Un outil open source est mondialement utilisé pour cela : la suite Elastic. Ce talk vous fera découvrir par la pratique comment ingérer les données utiles provenant de votre couche réseau, de vos machines, de vos logs ainsi que le moyen de facilement les visualiser afin d’identifier des patterns et comportements suspicieux.

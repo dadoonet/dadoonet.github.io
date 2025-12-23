@@ -1,5 +1,4 @@
 ---
-
 title: "Un moteur de recherche de documents d’entreprise"
 conference: 
   name: "JDLL"
@@ -23,6 +22,7 @@ series:
 date: 2023-04-02
 nolastmod: true
 draft: false
+pdf: "2023/2023-04-02-jdll.pdf"
 
 
 # Speaker specific fields
@@ -45,9 +45,7 @@ links:
 
 aliases:
   - /D5Qumy
-
 ---
-
 Lors de cet atelier, nous allons expliquer comment mettre en place un moteur de recherche pour les données de notre entreprise.
 
 Afin d’éviter le côté trop “magique” parfois des solutions sur étagère, nous verrons d’abord :

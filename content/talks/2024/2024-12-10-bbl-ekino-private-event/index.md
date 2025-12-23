@@ -22,6 +22,7 @@ series:
 date: 2024-12-10
 nolastmod: true
 draft: false
+pdf: "2024/2024-12-10-bbl-ekino-private-event.pdf"
 
 notist: dadoonet/asppSL
 links:
@@ -43,7 +44,6 @@ x:
 aliases:
 - /asppSL
 ---
-
 Vous utilisez encore des requêtes SQL pour faire des recherches ? Vos utilisateurs vous reprochent de ne pas pouvoir chercher sur toutes les rubriques ? Votre temps de réponse moyen est supérieur à la demi-seconde avec seulement quelques millions de documents ? Il vous faut 3 jours pour produire des statistiques sur vos données ? Vous rêvez d’offrir une recherche “à la google” sur les données de votre SI ?
 
 Ne cherchez plus ! Cette conférence est faite pour vous.

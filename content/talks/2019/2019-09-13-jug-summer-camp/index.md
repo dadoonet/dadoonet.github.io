@@ -21,6 +21,7 @@ series:
 date: 2019-09-13
 nolastmod: true
 draft: false
+pdf: "2019/2019-09-13-jug-summer-camp.pdf"
 
 
 # Speaker specific fields
@@ -47,5 +48,4 @@ x:
 aliases:
   - /x959ys
 ---
-
 Rétrospective sur 10 ans de Jug Summer Camp sur à la fois les aspects technologiques mais surtout humains.

@@ -22,6 +22,7 @@ series:
 date: 2021-06-22
 nolastmod: true
 draft: false
+pdf: "2021/2021-06-22-elasticon-solutions-emea-enterprise-search.pdf"
 
 
 
@@ -41,5 +42,4 @@ x:
 aliases:
   - /2w2qii
 ---
-
 À l’instar de la plupart des entreprises modernes, vos équipes utilisent probablement plus de 10 applications hébergées dans le cloud chaque jour, mais passent aussi bien trop de temps à chercher les informations dont elles ont besoin dans ces outils. Grâce aux fonctionnalités prêtes à l’emploi d’Elastic Workplace Search, découvrez combien il est facile de mettre le contenu pertinent à portée de la main de vos équipes grâce à une recherche unifiée sur l’ensemble des applications qu’elles utilisent pour faire leur travail.

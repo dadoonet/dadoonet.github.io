@@ -1,5 +1,4 @@
 ---
-
 title: "Deploying and Monitoring Elastic Stack on GCP"
 conference: 
   name: "Google Cloud Next ’19 UK"
@@ -23,6 +22,7 @@ series:
 date: 2019-11-20
 nolastmod: true
 draft: false
+pdf: "2019/2019-11-20-google-cloud-next-19-uk.pdf"
 
 
 # Speaker specific fields
@@ -52,9 +52,7 @@ links:
 
 aliases:
   - /jYxmxg
-
 ---
-
 To deploy elastic stack on Google Compute Platform (GCP), you have several options:
 
 * Start GCE instances, install and configure elasticsearch nodes discovery, SSL and security

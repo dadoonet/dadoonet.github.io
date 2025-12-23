@@ -1,5 +1,4 @@
 ---
-
 title: "La recherche à l’ère de l’IA"
 conference: 
   name: "DevQuest"
@@ -23,6 +22,7 @@ series:
 date: 2025-06-06
 nolastmod: true
 draft: false
+pdf: "2025/2025-06-06-devquest.pdf"
 
 
 # Speaker specific fields
@@ -39,9 +39,7 @@ links:
 
 aliases:
   - /rlO6SH
-
 ---
-
 La recherche ne se contente plus de l’approche maintenant traditionnelle basée sur la fréquence des termes (TF/IDF ou BM25) mais plus sur la tendance actuelle du machine learning où les nouveaux modèles ont ouvert une nouvelle dimension pour la recherche.
 
 Cette conférence donne un aperçu de :

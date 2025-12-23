@@ -20,6 +20,7 @@ series:
 date: 2021-04-06
 nolastmod: true
 draft: false
+pdf: "2021/2021-04-06-elastic-byite-s01e02.pdf"
 
 
 # Speaker specific fields
@@ -40,8 +41,6 @@ x:
 
 aliases:
 - /jTjq9d
-
 ---
-
 Composable Index Templates are also known as Index Templates V2.
 Discover what problems they are solving and how to use them using either the Elasticsearch API or the Kibana Index Management UI.

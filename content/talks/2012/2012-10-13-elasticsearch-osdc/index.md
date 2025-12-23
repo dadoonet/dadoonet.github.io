@@ -22,9 +22,8 @@ series:
 date: 2012-10-13
 nolastmod: true
 draft: false
-
+pdf: "2012/2012-10-13-elasticsearch-osdc.pdf"
 ---
-
 ElasticSearch : Moteur de recherche HTTP/REST/JSON, cloud, NoSQL, Scalable
 
 * Un moteur ? Pour quoi faire ?

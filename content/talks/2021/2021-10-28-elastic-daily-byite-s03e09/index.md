@@ -19,6 +19,7 @@ series:
 date: 2021-10-28
 nolastmod: true
 draft: false
+pdf: "2021/2021-10-28-elastic-daily-byite-s03e09.pdf"
 
 
 # Speaker specific fields
@@ -31,7 +32,5 @@ x:
 
 aliases:
   - /EA5cki
-
 ---
-
 For three weeks we will dive into a different topic of Observability using Elastic Stack every day before lunch in the CEST/EST timezone! All you need to do is to be ready at 11:45 CEST/EST.

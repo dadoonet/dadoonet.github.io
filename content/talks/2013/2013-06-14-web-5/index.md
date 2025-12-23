@@ -19,7 +19,7 @@ series:
 date: 2013-06-14
 nolastmod: true
 draft: false
+pdf: "2013/2013-06-14-web-5.pdf"
 
 attendees: 100
 ---
-

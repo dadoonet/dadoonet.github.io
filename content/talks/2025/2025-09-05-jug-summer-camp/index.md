@@ -1,5 +1,4 @@
 ---
-
 title: "do MORE with stateLESS Elasticsearch"
 conference: 
   name: "JUG Summer Camp"
@@ -23,6 +22,7 @@ series:
 date: 2025-09-05
 nolastmod: true
 draft: false
+pdf: "2025/2025-09-05-jug-summer-camp.pdf"
 
 
 # Speaker specific fields
@@ -39,9 +39,7 @@ links:
 
 aliases:
   - /WA1Ort
-
 ---
-
 Comment feriez-vous pour créer Elasticsearch si vous commenciez ce projet en 2025 ?
 
 * Découpler le calcul (compute) du stockage (storage)

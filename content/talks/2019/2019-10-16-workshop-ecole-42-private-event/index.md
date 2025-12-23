@@ -1,5 +1,4 @@
 ---
-
 title: "Workshop Elasticsearch / Kibana 7.4"
 conference: 
   name: "Workshop Ecole 42 (private event)"
@@ -22,6 +21,7 @@ series:
 date: 2019-10-16
 nolastmod: true
 draft: false
+pdf: "2019/2019-10-16-workshop-ecole-42-private-event.pdf"
 
 
 # Speaker specific fields
@@ -35,9 +35,7 @@ links:
 
 aliases:
   - /BtuDBd
-
 ---
-
 Vous cherchez toujours dans vos données avec des `SELECT * FROM person WHERE name like '%david%pilato%"` ?
 
 Au delà des performances obtenues, êtes-vous certain de renvoyer les résultats les plus pertinents pour vos utilisateurs d’abord ?

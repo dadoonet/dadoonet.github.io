@@ -23,7 +23,7 @@ series:
 date: 2025-12-05
 nolastmod: true
 draft: false
-pdf: "2025/2025-12-05-devfest-dijon-2025/2025-12-05-devfest-dijon-2025.pdf"
+pdf: "2025/2025-12-05-devfest-dijon-2025.pdf"
 
 
 # Speaker specific fields

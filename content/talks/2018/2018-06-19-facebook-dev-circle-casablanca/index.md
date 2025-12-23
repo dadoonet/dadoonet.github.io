@@ -19,7 +19,7 @@ series:
 date: 2018-06-19
 nolastmod: true
 draft: false
+pdf: "2018/2018-06-19-facebook-dev-circle-casablanca.pdf"
 
 attendees: 8
 ---
-

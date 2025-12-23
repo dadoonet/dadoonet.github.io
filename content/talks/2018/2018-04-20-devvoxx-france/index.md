@@ -1,5 +1,4 @@
 ---
-
 title: "Testcontainers pour de vrais tests d’intégration d’Elasticsearch"
 conference: 
   name: "Devoxx France"
@@ -23,6 +22,7 @@ series:
 date: 2018-04-20
 nolastmod: true
 draft: false
+pdf: "2018/2018-04-20-devvoxx-france.pdf"
 
 
 # Speaker specific fields
@@ -39,9 +39,7 @@ links:
   - title: "Documentation: Elasticsearch TestContainers module"
     url: "https://www.testcontainers.org/modules/elasticsearch/"
     description: "This documentation contains the information about the Elasticsearch TestContainers module."
-
 ---
-
 Les tests d’intégration peuvent devenir un cauchemar lorsqu’ils sont lancés depuis la même JVM que votre code:
 
 * Conflit de JARs (JAR Hell)

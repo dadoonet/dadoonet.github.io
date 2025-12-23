@@ -19,6 +19,7 @@ series:
 date: 2021-05-08
 nolastmod: true
 draft: false
+pdf: "2021/2021-05-08-elastic-abidjan-user-group.pdf"
 
 
 # Speaker specific fields

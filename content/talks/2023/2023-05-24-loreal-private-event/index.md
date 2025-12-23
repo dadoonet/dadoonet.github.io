@@ -21,6 +21,7 @@ series:
 date: 2023-05-24
 nolastmod: true
 draft: false
+pdf: "2023/2023-05-24-loreal-private-event.pdf"
 
 
 # Speaker specific fields
@@ -30,5 +31,4 @@ notist: "dadoonet/bwPn68"
 aliases:
   - /bwPn68
 ---
-
 Let’s explore what means community at Elastic and how it plays an important role for our projects.

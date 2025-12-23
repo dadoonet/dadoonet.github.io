@@ -22,6 +22,7 @@ series:
 date: 2025-05-28
 nolastmod: true
 draft: false
+pdf: "2025/2025-05-28-bbl-manutan-private-event.pdf"
 
 
 # Speaker specific fields
@@ -42,7 +43,6 @@ links:
 aliases:
   - /1JTRYt
 ---
-
 Vous utilisez encore des requêtes SQL pour faire des recherches ? Vos utilisateurs vous reprochent de ne pas pouvoir chercher sur toutes les rubriques ? Votre temps de réponse moyen est supérieur à la demi-seconde avec seulement quelques millions de documents ? Il vous faut 3 jours pour
 produire des statistiques sur vos données ? Vous rêvez d’oﬀrir une recherche “à la google” sur les
 données de votre SI ?

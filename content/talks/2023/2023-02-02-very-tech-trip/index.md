@@ -22,6 +22,7 @@ series:
 date: 2023-02-02
 nolastmod: true
 draft: false
+pdf: "2023/2023-02-02-very-tech-trip.pdf"
 
 
 # Speaker specific fields
@@ -39,7 +40,6 @@ links:
 aliases:
   - /MyZpvU
 ---
-
 La recette de la potion magique ne se transmet qu’aux seuls druides, normalement. Mais exceptionnellement, le conseil des druides de la forêt des Carnutes m’a autorisé à vous révéler quelques uns des ingrédients qui constituent ce breuvage.
 
 Il est même possible que je vous indique l’ingrédient secret !

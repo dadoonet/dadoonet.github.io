@@ -22,6 +22,7 @@ series:
 date: 2024-02-20
 nolastmod: true
 draft: false
+pdf: "2024/2024-02-20-montreal-jug.pdf"
 
 
 # Speaker specific fields
@@ -43,5 +44,4 @@ links:
 aliases:
   - /95YNWI
 ---
-
 Pendant cette session, nous allons utiliser les principes de la recherche vectorielle pour trouver des morceaux de musique ressemblant (peut-être) à d’autres. Pour cela, nous ferons un rappel des principes de la génération d’embeddings pour représenter n’importe quel type de données, qu’elles soient textuelles ou binaires.

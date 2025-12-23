@@ -1,5 +1,4 @@
 ---
-
 title: "Elasticsearch"
 conference: 
   name: "BBL Total (Private Event)"
@@ -23,6 +22,7 @@ series:
 date: 2021-05-03
 nolastmod: true
 draft: false
+pdf: "2021/2021-05-03-bbl-total-private-event.pdf"
 
 
 # Speaker specific fields
@@ -44,9 +44,7 @@ links:
 
 aliases:
   - /4KQfUE
-
 ---
-
 Vous utilisez encore des requêtes SQL pour faire des recherches ? Vos utilisateurs vous reprochent de ne pas pouvoir chercher sur toutes les rubriques ? Votre temps de réponse moyen est supérieur à la demi-seconde avec seulement quelques millions de documents ? Il vous faut 3 jours pour produire des statistiques sur vos données ? Vous rêvez d’offrir une recherche “à la google” sur les données de votre SI ?
 
 Ne cherchez plus ! Cette conférence est faite pour vous.

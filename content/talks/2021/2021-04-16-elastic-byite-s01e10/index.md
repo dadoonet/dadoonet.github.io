@@ -20,6 +20,7 @@ series:
 date: 2021-04-16
 nolastmod: true
 draft: false
+pdf: "2021/2021-04-16-elastic-byite-s01e10.pdf"
 
 
 # Speaker specific fields
@@ -38,7 +39,5 @@ links:
 
 aliases:
   - /KAJwMc
-
 ---
-
 Let’s discover some nice [Ingest Processors](https://www.elastic.co/guide/en/elasticsearch/reference/current/ingest.html) like [Circle](https://www.elastic.co/guide/en/elasticsearch/reference/current/ingest-circle-processor.html) and [Enrich](https://www.elastic.co/guide/en/elasticsearch/reference/current/enrich-processor.html).

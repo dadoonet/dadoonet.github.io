@@ -1,5 +1,4 @@
 ---
-
 title: "Elasticsearch, you know for (AI) Search"
 conference: 
   name: "BBL Sopra Steria (Private event)"
@@ -23,6 +22,7 @@ series:
 date: 2025-02-27
 nolastmod: true
 draft: false
+pdf: "2025/2025-02-27-bbl-sopra-steria-private-event.pdf"
 
 
 # Speaker specific fields
@@ -39,9 +39,7 @@ links:
 
 aliases:
   - /7tWE6b
-
 ---
-
 Découvrez Elasticsearch, le moteur de recherche open-source le plus populaire et découvrez l’approche traditionnelle basée sur la fréquence des termes (TF/IDF ou BM25) ainsi que la tendance actuelle du machine learning où les nouveaux modèles ont ouvert une nouvelle dimension pour la recherche.
 
 Cette conférence donne un aperçu de :

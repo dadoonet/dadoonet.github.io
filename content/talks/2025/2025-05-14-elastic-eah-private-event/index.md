@@ -1,5 +1,4 @@
 ---
-
 title: "Randomized testing: Gotta Catch ‘Em All"
 conference: 
   name: "Elastic EAH (private event)"
@@ -22,6 +21,7 @@ series:
 date: 2025-05-14
 nolastmod: true
 draft: false
+pdf: "2025/2025-05-14-elastic-eah-private-event.pdf"
 
 
 # Speaker specific fields
@@ -30,9 +30,7 @@ notist: "dadoonet/G8rCxd"
 
 aliases:
   - /G8rCxd
-
 ---
-
 > Chance does things well.
 
 If we apply this idea to unit tests or integration tests, we can make our tests much more unpredictable — and as a result, uncover issues that our minds would never have dared to imagine! For example, I recently discovered a [bug](https://github.com/gestalt-config/gestalt/issues/242) in a configuration management library that occurs when the `Locale` is set to `AZ`. 🤦🏼‍♂️

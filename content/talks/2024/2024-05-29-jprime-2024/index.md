@@ -1,5 +1,4 @@
 ---
-
 title: "Search: a new era"
 conference: 
   name: "jPrime 2024"
@@ -23,6 +22,7 @@ series:
 date: 2024-05-29
 nolastmod: true
 draft: false
+pdf: "2024/2024-05-29-jprime-2024.pdf"
 
 
 # Speaker specific fields
@@ -44,9 +44,7 @@ links:
 
 aliases:
   - /NizzH6
-
 ---
-
 Search is not just traditional TF/IDF any more but the current trend of machine learning and models has opened another dimension for search.
 
 This talk gives an overview of:

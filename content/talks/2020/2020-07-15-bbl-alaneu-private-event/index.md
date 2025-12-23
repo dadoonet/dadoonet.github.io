@@ -1,5 +1,4 @@
 ---
-
 title: "Elasticsearch"
 conference: 
   name: "BBL Alan.eu (Private Event)"
@@ -23,6 +22,7 @@ series:
 date: 2020-07-15
 nolastmod: true
 draft: false
+pdf: "2020/2020-07-15-bbl-alaneu-private-event.pdf"
 
 
 # Speaker specific fields
@@ -40,9 +40,7 @@ links:
 
 aliases:
   - /uRwyxm
-
 ---
-
 Vous utilisez encore des requêtes SQL pour faire des recherches ? Vos utilisateurs vous reprochent de ne pas pouvoir chercher sur toutes les rubriques ? Votre temps de réponse moyen est supérieur à la demi-seconde avec seulement quelques millions de documents ? Il vous faut 3 jours pour produire des statistiques sur vos données ? Vous rêvez d’offrir une recherche “à la google” sur les données de votre SI ?
 
 Ne cherchez plus ! Cette conférence est faite pour vous.

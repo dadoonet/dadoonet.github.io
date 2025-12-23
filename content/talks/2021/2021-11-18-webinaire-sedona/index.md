@@ -22,6 +22,7 @@ series:
 date: 2021-11-18
 nolastmod: true
 draft: false
+pdf: "2021/2021-11-18-webinaire-sedona.pdf"
 
 notist: dadoonet/dTVWXj
 links:
@@ -46,7 +47,6 @@ x:
 - user: dadoonet
   id: '1466333417830858754'
 ---
-
 Vous avez sous la main des tonnes de documents Open Office, Microsoft Office, PDF voire des images… Et vous aimeriez être capable de chercher dans leurs meta-données et dans le contenu lui-même.
 
 Comment faire ? Surtout depuis l’annonce de la fin de Google Search Appliance.

@@ -21,6 +21,7 @@ series:
 date: 2012-11-21
 nolastmod: true
 draft: false
+pdf: "2012/2012-11-21-montpellierjug-es.pdf"
 
 # Speaker specific fields
 x:
@@ -41,9 +42,7 @@ x:
 
 
 
-
 ---
-
 David Pilato présentera au cours de la soirée pourquoi et comment il est passé de la recherche SQL à Elasticsearch en détaillant les apports de ce moteur par rapport à une solution pure Lucene :
 
 * Pourquoi Elasticsearch ?

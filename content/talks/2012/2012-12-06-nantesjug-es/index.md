@@ -22,6 +22,7 @@ series:
 date: 2012-12-06
 nolastmod: true
 draft: false
+pdf: "2012/2012-12-06-nantesjug-es.pdf"
 
 
 # Speaker specific fields
@@ -32,9 +33,7 @@ x:
     id: "276776502018854912"
   - user: "clescot"
     id: "276750841346678784"
-
 ---
-
 Cette soirée est faite pour vous si :
 
 * Vous utilisez encore des requêtes SQL pour faire des recherches

@@ -1,5 +1,4 @@
 ---
-
 title: "do MORE with stateLESS Elasticsearch"
 conference: 
   name: "Meetup ElasticFR #99 - BBQ & Serverless"
@@ -23,6 +22,7 @@ series:
 date: 2025-11-04
 nolastmod: true
 draft: false
+pdf: "2025/2025-11-04-meetup-elasticfr-99-bbq-serverless.pdf"
 
 
 # Speaker specific fields
@@ -39,9 +39,7 @@ links:
 
 aliases:
   - /DsQ4UN
-
 ---
-
 Comment feriez-vous pour créer Elasticsearch si vous commenciez ce projet en 2025 ?
 
 * Découpler le calcul (compute) du stockage (storage)

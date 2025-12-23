@@ -21,6 +21,7 @@ series:
 date: 2012-04-19
 nolastmod: true
 draft: false
+pdf: "2012/2012-04-19-elasticsearch-devoxx-france-2012.pdf"
 
 youtube: sxWTPruEWRU
 notist: dadoonet/ubjdxo
@@ -56,5 +57,4 @@ x:
 aliases:
 - /ubjdxo
 ---
-
-Présentation d’Elasticsearch lors de Devoxx France 2012
+Présentation d'Elasticsearch lors de Devoxx France 2012

@@ -19,7 +19,7 @@ series:
 date: 2018-10-02
 nolastmod: true
 draft: false
+pdf: "2018/2018-10-02-open-source-talks.pdf"
 
 attendees: 40
 ---
-

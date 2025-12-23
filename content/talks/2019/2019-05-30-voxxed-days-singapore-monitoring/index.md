@@ -1,5 +1,4 @@
 ---
-
 title: "Monitor Your Java Applications with the Elastic Stack: Logs, Metrics, Pings, and Traces"
 conference: 
   name: "Voxxed Days Singapore"
@@ -23,6 +22,7 @@ series:
 date: 2019-05-30
 nolastmod: true
 draft: false
+pdf: "2019/2019-05-30-voxxed-days-singapore-monitoring.pdf"
 
 
 # Speaker specific fields
@@ -36,9 +36,7 @@ links:
 
 aliases:
   - /XHamC4
-
 ---
-
 “With microservices every outage is like a murder mystery” is a common complaint. But it doesn’t have to be!
 This talk gives an overview on how to monitor distributed applications. We dive into:
 

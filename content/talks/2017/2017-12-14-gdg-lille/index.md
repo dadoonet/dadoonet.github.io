@@ -1,5 +1,4 @@
 ---
-
 title: "Déployer et monitorer la suite Elastic sur Google Cloud Platform"
 conference: 
   name: "GDG Lille"
@@ -23,6 +22,7 @@ series:
 date: 2017-12-14
 nolastmod: true
 draft: false
+pdf: "2017/2017-12-14-gdg-lille.pdf"
 
 
 # Speaker specific fields
@@ -47,9 +47,7 @@ links:
 
 aliases:
   - /tlQJC5
-
 ---
-
 Pour déployer elasticsearch sur Google Compute Platform, plusieurs options s’offrent à vous :
 
 * Démarrer des instances GCE, installer et configurer elasticsearch pour le discovery

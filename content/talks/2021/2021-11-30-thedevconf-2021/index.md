@@ -22,6 +22,7 @@ series:
 date: 2021-11-30
 nolastmod: true
 draft: false
+pdf: "2021/2021-11-30-thedevconf-2021.pdf"
 
 notist: dadoonet/XgxLVm
 links:
@@ -38,7 +39,6 @@ x:
 - user: dadoonet
   id: '1461808576696041479'
 ---
-
 You are a security analyst for your company. The IT Team has deployed Elastic agents on your infrastructure, including endpoints, firewalls… those agents are collecting logs, metrics and security related data for months.
 
 One morning, you open Kibana and discover that some alerts have been thrown. Is that a real threat?

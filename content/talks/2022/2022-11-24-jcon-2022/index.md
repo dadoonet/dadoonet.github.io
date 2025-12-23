@@ -22,6 +22,7 @@ series:
 date: 2022-11-24
 nolastmod: true
 draft: false
+pdf: "2022/2022-11-24-jcon-2022.pdf"
 
 notist: dadoonet/K6AjsW
 links:
@@ -38,7 +39,6 @@ x:
 - user: dadoonet
   id: '1592127445821685763'
 ---
-
 You have plenty of Open Office, Microsoft Office, PDF, images… documents and you may want to be able to search for their metadata and content. How can you do that?
 
 In this talk, David will explain how Apache Tika can be used for that and how to combine this fantastic library with Elastic Stack:

@@ -22,6 +22,7 @@ series:
 date: 2023-01-25
 nolastmod: true
 draft: false
+pdf: "2023/2023-01-25-snowcamp-2023.pdf"
 
 
 # Speaker specific fields
@@ -55,7 +56,6 @@ links:
 aliases:
   - /UGtHAu
 ---
-
 Vous avez sous la main des tonnes de documents Open Office, Microsoft Office, PDF voire des images… Et vous aimeriez être capable de chercher dans leurs meta-données et dans le contenu lui-même.
 
 Comment faire ? Surtout depuis l’annonce de la fin de Google Search Appliance.

@@ -19,7 +19,7 @@ series:
 date: 2018-06-15
 nolastmod: true
 draft: false
+pdf: "2018/2018-06-15-ndc.pdf"
 
 attendees: 8
 ---
-

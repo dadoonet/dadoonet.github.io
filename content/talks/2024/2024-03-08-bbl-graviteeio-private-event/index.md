@@ -22,6 +22,7 @@ series:
 date: 2024-03-08
 nolastmod: true
 draft: false
+pdf: "2024/2024-03-08-bbl-graviteeio-private-event.pdf"
 
 notist: dadoonet/dRVohX
 links:
@@ -35,7 +36,6 @@ x:
 - user: dadoonet
   id: '1766067349864546662'
 ---
-
 Search is not just traditional TF/IDF any more but the current trend of machine learning and models has opened another dimension for search.
 
 This talk gives an overview of:

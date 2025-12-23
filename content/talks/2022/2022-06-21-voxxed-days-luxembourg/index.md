@@ -22,6 +22,7 @@ series:
 date: 2022-06-21
 nolastmod: true
 draft: false
+pdf: "2022/2022-06-21-voxxed-days-luxembourg.pdf"
 
 
 # Speaker specific fields
@@ -44,7 +45,6 @@ links:
 aliases:
   - /MKrtPl
 ---
-
 Vous avez sous la main des tonnes de documents Open Office, Microsoft Office, PDF voire des images… Et vous aimeriez être capable de chercher dans leurs meta-données et dans le contenu lui-même.
 
 Comment faire ? Surtout depuis l’annonce de la fin de Google Search Appliance.
