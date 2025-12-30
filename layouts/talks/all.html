@@ -221,13 +221,23 @@
                 Video
               </span>
               {{ end }}
+
+              {{ if gt .Date $now }}
+              <span class="badge badge-primary badge-sm gap-1">
+                <ion-icon name="alarm" class="text-xs"></ion-icon>
+                Upcoming
+              </span>
+              {{ end }}
+
             </div>
             <h2 class="card-title text-base leading-tight line-clamp-2 min-h-[2.5rem]">
-              {{ .Title }}
               {{ if gt .Date $now }}
+              {{ .Title }}
               <a href="{{ .RelPermalink }}" class="hidden-link" title="Voir les détails">
                 <ion-icon name="open-outline"></ion-icon>
               </a>
+              {{ else }}
+              <a href="{{ .RelPermalink }}" class="hover:text-primary transition-colors">{{ .Title }}</a>
               {{ end }}
             </h2>
             {{ if .Description }}
