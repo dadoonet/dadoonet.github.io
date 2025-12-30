@@ -117,6 +117,18 @@
   .upcoming-title {
     font-weight: 600;
     color: oklch(var(--bc));
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .upcoming-title a {
+    opacity: 0;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    width: 1.2rem;
+    height: 1.2rem;
+    cursor: pointer;
   }
   .upcoming-conf {
     color: oklch(var(--bc) / 0.7);
@@ -346,7 +358,12 @@
           {{ range $upcomingTalks }}
           <tr>
             <td style="width: 50%;">
-              <div class="upcoming-title">{{ .Title }}</div>
+              <div class="upcoming-title">
+                {{ .Title }}
+                <a href="{{ .RelPermalink }}" title="Voir les détails">
+                  <ion-icon name="open-outline"></ion-icon>
+                </a>
+              </div>
             </td>
             <td>
               <div class="upcoming-conf">
