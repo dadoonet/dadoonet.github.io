@@ -111,11 +111,25 @@
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   }
+  .card-title {
+    position: relative;
+  }
+  .card-title .hidden-link {
+    opacity: 0;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    width: 1.2rem;
+    height: 1.2rem;
+    cursor: pointer;
+    margin-left: 0.5rem;
+  }
 </style>
 
 {{/* Get all talks from the parent section */}}
 {{ $talksSection := site.GetPage "/talks" }}
 {{ $allTalks := $talksSection.RegularPages }}
+{{ $now := now }}
 
 <div id="top" class="mt-8 px-4" style="padding-left: 2rem; padding-right: 2rem;">
   <div style="max-width: 1600px; margin: 0 auto;">
@@ -209,7 +223,12 @@
               {{ end }}
             </div>
             <h2 class="card-title text-base leading-tight line-clamp-2 min-h-[2.5rem]">
-              <a href="{{ .RelPermalink }}" class="hover:text-primary transition-colors">{{ .Title }}</a>
+              {{ .Title }}
+              {{ if gt .Date $now }}
+              <a href="{{ .RelPermalink }}" class="hidden-link" title="Voir les détails">
+                <ion-icon name="open-outline"></ion-icon>
+              </a>
+              {{ end }}
             </h2>
             {{ if .Description }}
             <p class="text-xs text-base-content/60 line-clamp-2 mt-1">{{ .Description }}</p>
