@@ -142,14 +142,19 @@
         {{ if site.Params.showPrevNextPost }}
         <div class="divider"></div>
         <div class="flex flex-col md:flex-row justify-between gap-4 py-4">
+          {{ $now := now }}
           {{ with .NextInSection }}
-          <a role="button" class="btn btn-outline h-12" href="{{ .RelPermalink }}" title="{{ .Title }}">
-            <ion-icon name="chevron-back"></ion-icon>
-            <div class="inline-flex flex-col items-start">
-              <span class="text-base-content/60 text-xs font-normal">{{ T "prevPage" }}</span>
-              <span class="max-w-48 truncate">{{ .LinkTitle }}</span>
-            </div>
-          </a>
+            {{ if le .Date $now }}
+            <a role="button" class="btn btn-outline h-12" href="{{ .RelPermalink }}" title="{{ .Title }}">
+              <ion-icon name="chevron-back"></ion-icon>
+              <div class="inline-flex flex-col items-start">
+                <span class="text-base-content/60 text-xs font-normal">{{ T "prevPage" }}</span>
+                <span class="max-w-48 truncate">{{ .LinkTitle }}</span>
+              </div>
+            </a>
+            {{ else }}
+            <div></div>
+            {{ end }}
           {{ else }}
           <div></div>
           {{ end }}
