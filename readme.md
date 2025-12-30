@@ -15,7 +15,7 @@ hugo new posts/YYYY-MM-DD-something-awesome-to-share/index.md
 From the base folder (otherwise it will fail):
 
 ```sh
-hugo new talks/YYYY/YYYY-MM-DD-talk-name/index.md
+hugo new talks/YYYY/YYYY-MM-DD-conference-name/index.md
 ```
 
 The talk will be created in the appropriate year folder with the date prefix. Make sure to fill in the front matter fields like `conference`, `youtube`, `cover`, etc.
