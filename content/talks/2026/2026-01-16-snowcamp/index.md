@@ -1,24 +1,23 @@
 ---
-title: "Le hasard fait bien les tests"
+title: 'Le hasard fait bien les tests'
 conference: 
-  name: "DevFest Toulouse"
-  url: "https://devfest.gdgtoulouse.com/"
-  city: "Toulouse"
+  name: 'Snowcamp'
+  url: "https://app.voxxr.in/events/snowcamp26/talks/57/details"
+  city: "Grenoble"
   country: "France"
-  country_code: "fr"
-  latitude: "43.604652"
-  longitude: "1.444209"
+  country_code: "fr" # online, fr, us, etc.
+  latitude: "45.1561683"
+  longitude: "5.7311223"
 author: David Pilato
 avatar: /about/david_pilato.png
-date: 2025-11-13
+date: '2026-01-30'
 nolastmod: true
 draft: false
-pdf: "2025/2025-11-13-devfest-toulouse-2025.pdf"
-
+pdf: "2026/2026-01-30 - SnowCamp - Randomized Testing.pdf"
+cover: "cover.png"
 
 # Speaker specific fields
-#youtube: "sxWTPruEWRU"
-notist: "dadoonet/qC8sMm"
+#youtube: ""      # ID de la vidéo YouTube (ex: dQw4w9WgXcQ)
 links:
   - title: "Demo project"
     url: "https://github.com/dadoonet/randomizedtesting-demo"
@@ -44,10 +43,14 @@ links:
     url: "https://github.com/gestalt-config/gestalt/issues/242"
     description: "The issue I opened after my findings"
 
+#x:
+#  - user: "USERNAME"
+#    id: "TWEET_ID"
 
 aliases:
-  - /qC8sMm
+  - /snowcamp26
 ---
+
 > Le hasard fait bien les choses.
 
 Si on applique cette idée aux tests unitaires ou aux tests d’intégration, on peut rendre nos tests beaucoup plus imprévisibles et du coup trouver des problèmes que notre esprit n’aurait jamais osé imaginer ! Par exemple, récemment, j’ai découvert dans une bibliothèque de gestion de configuration, [un bug](https://github.com/gestalt-config/gestalt/issues/242) qui se produit lorsque la `Locale` est configuré en `AZ`. 🤦🏼‍♂️
