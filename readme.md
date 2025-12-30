@@ -10,6 +10,16 @@ From the base folder (otherwise it will fail):
 hugo new posts/YYYY-MM-DD-something-awesome-to-share/index.md
 ```
 
+## Create a New Talk
+
+From the base folder (otherwise it will fail):
+
+```sh
+hugo new talks/YYYY/YYYY-MM-DD-talk-name/index.md
+```
+
+The talk will be created in the appropriate year folder with the date prefix. Make sure to fill in the front matter fields like `conference`, `youtube`, `cover`, etc.
+
 ## Update the Theme
 
 ```sh
