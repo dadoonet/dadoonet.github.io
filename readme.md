@@ -20,18 +20,16 @@ hugo new talks/YYYY/YYYY-MM-DD-conference-name/index.md
 
 The talk will be created in the appropriate year folder with the date prefix. Make sure to fill in the front matter fields like `conference`, `youtube`, `cover`, etc.
 
+Upload the PDF files to the Google Cloud Storage bucket:
+
+```sh
+gsutil cp YYYY-MM-DD-conference-name.pdf gs://dadoonet-talks/slides/YYYY/YYYY-MM-DD-conference-name.pdf
+```
+
 ## Update the Theme
 
 ```sh
 git submodule update --rebase --remote
-```
-
-## Pull the binary files
-
-If the PDF documents for the talks are not present in the repository, you need to pull them from the remote repository:
-
-```sh
-git lfs pull
 ```
 
 ## Run locally
@@ -45,19 +43,7 @@ On fresh new install, before running the build, you need to install the dependen
 Then you can run hugo:
 
 ```sh
-hugo server
-```
-
-Also serve future posts:
-
-```sh
-hugo server --buildFuture
-```
-
-And drafs with:
-
-```sh
-hugo server --buildDrafts
+hugo server --buildFuture --buildDrafts -D
 ```
 
 ## Build
@@ -69,3 +55,4 @@ hugo
 ## Theme
 
 The theme used for this blog is [Dream](https://g1en.site/hugo-theme-dream/).
+Plus my own modifications (templates) for talks.
