@@ -10,15 +10,6 @@ conference:
   url: "https://touraine.tech/talk/clzyebffk312o13hpv73ml7xb"
 author: David Pilato
 avatar: /about/david_pilato.png
-tags:
-  - elasticsearch
-  - conference
-  - java
-  - cloud
-categories:
-  - speaker
-series:
-  - conferences
 date: 2025-02-07
 nolastmod: true
 draft: false
