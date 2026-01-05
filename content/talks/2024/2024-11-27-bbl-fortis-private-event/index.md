@@ -2,7 +2,7 @@
 title: "Elasticsearch Query Language: ES|QL"
 conference: 
   name: "BBL Fortis (private event)"
-  url: ""
+  url: "https://www.bnpparibasfortis.be/"
   city: "Brussels"
   country: "Belgium"
   country_code: "be"

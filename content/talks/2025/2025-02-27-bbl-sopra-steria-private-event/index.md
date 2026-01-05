@@ -2,7 +2,7 @@
 title: "Elasticsearch, you know for (AI) Search"
 conference: 
   name: "BBL Sopra Steria (Private event)"
-  url: ""
+  url: "https://www.soprasteria.fr/"
   country: "Online"
   country_code: "Online"
 author: David Pilato

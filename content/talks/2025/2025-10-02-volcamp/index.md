@@ -2,6 +2,7 @@
 
 title: "L’art du DeeJaying par la pratique"
 conference: 
+  url: "https://2025.volcamp.io/"
   name: "Volcamp"
   city: "Clermont-Ferrand"
   country: "France"

@@ -134,6 +134,15 @@
     color: oklch(var(--bc) / 0.7);
     font-size: 0.9rem;
   }
+  .upcoming-conf a {
+    color: oklch(var(--p));
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  .upcoming-conf a:hover {
+    color: oklch(var(--s));
+    text-decoration: underline;
+  }
   .upcoming-date {
     color: oklch(var(--p));
     font-weight: 600;
@@ -169,6 +178,15 @@
   .past-conf {
     color: oklch(var(--bc) / 0.6);
     font-size: 0.85rem;
+  }
+  .past-conf a {
+    color: oklch(var(--p));
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  .past-conf a:hover {
+    color: oklch(var(--s));
+    text-decoration: underline;
   }
   .past-date {
     color: oklch(var(--bc) / 0.5);
@@ -368,7 +386,11 @@
             <td>
               <div class="upcoming-conf">
                 {{ partial "countryFlag.html" .Params.conference }}
-                {{ .Params.conference.name }}{{ if and .Params.conference.city (ne .Params.conference.city "") }}, {{ .Params.conference.city }}{{ end }}
+                {{ if .Params.conference.url }}
+                <a href="{{ .Params.conference.url }}" target="_blank" rel="noopener noreferrer">{{ .Params.conference.name }}</a>
+                {{ else }}
+                {{ .Params.conference.name }}
+                {{ end }}{{ if and .Params.conference.city (ne .Params.conference.city "") }}, {{ .Params.conference.city }}{{ end }}
               </div>
             </td>
             <td class="upcoming-date">
@@ -397,7 +419,11 @@
             </td>
             <td class="past-conf">
               {{ partial "countryFlag.html" .Params.conference }}
-              {{ .Params.conference.name }}{{ if and .Params.conference.city (ne .Params.conference.city "") }}, {{ .Params.conference.city }}{{ end }}
+              {{ if .Params.conference.url }}
+              <a href="{{ .Params.conference.url }}" target="_blank" rel="noopener noreferrer">{{ .Params.conference.name }}</a>
+              {{ else }}
+              {{ .Params.conference.name }}
+              {{ end }}{{ if and .Params.conference.city (ne .Params.conference.city "") }}, {{ .Params.conference.city }}{{ end }}
             </td>
             <td class="past-date">
               {{ .Date | time.Format "January 2006" }}

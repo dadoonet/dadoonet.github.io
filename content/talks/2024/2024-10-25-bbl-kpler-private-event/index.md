@@ -2,7 +2,7 @@
 title: "🎹🎻🎸 Searching for similar music tracks 🎼🎶"
 conference: 
   name: "BBL Kpler (Private Event)"
-  url: ""
+  url: "https://www.kpler.com/"
   country: "Online"
   country_code: "Online"
 author: David Pilato

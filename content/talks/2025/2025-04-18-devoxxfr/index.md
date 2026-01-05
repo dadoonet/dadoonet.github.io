@@ -1,6 +1,7 @@
 ---
 title: "Envie de booster ta carrière ? Open source-toi !"
-conference: 
+conference:
+  url: "https://devoxx.fr/"
   name: "DevoxxFR"
   city: "Paris"
   country: "France"

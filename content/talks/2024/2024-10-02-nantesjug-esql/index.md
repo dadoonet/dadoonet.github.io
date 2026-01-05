@@ -2,7 +2,7 @@
 title: 'Elasticsearch Query Language: ES|QL'
 conference:
   name: NantesJUG
-  url: ''
+  url: "https://nantesjug.org/#/events/2024_10_02"
   city: Nantes
   country: France
   country_code: fr
@@ -26,9 +26,6 @@ pdf: "2024/2024-10-02-nantesjug-esql.pdf"
 
 notist: dadoonet/niwYpo
 links:
-  - title: "Event page"
-    url: "https://nantesjug.org/#/events/2024_10_02"
-
   - title: "Demo code"
     url: "https://github.com/dadoonet/esql-demo"
     description: "The code played during the demo"

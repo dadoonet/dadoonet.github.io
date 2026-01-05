@@ -2,7 +2,7 @@
 title: "La recherche à l’ère de l’IA"
 conference: 
   name: "NantesJUG"
-  url: ""
+  url: "https://nantesjug.org/#/events/2024_10_02"
   city: "Nantes"
   country: "France"
   country_code: "fr"
@@ -30,8 +30,6 @@ pdf: "2024/2024-10-02-nantesjug-ai-search.pdf"
 notist: "dadoonet/BPDkxP"
 
 links:
-  - title: "Page de l’évènement"
-    url: "https://nantesjug.org/#/events/2024_10_02"
   - title: "Notebook demo Hummingsearch"
     url: "https://github.com/dadoonet/music-search"
 

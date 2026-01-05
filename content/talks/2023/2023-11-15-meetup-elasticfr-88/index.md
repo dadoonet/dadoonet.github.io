@@ -2,6 +2,7 @@
 title: "🎹🎻🎸 Et si nous cherchions des morceaux de musique 🎼🎶 ?"
 conference: 
   name: "Meetup ElasticFR #88"
+  url: "https://www.meetup.com/elasticfr/events/296809690"
   city: "Paris"
   country: "France"
   country_code: "fr"
@@ -27,6 +28,10 @@ pdf: "2023/2023-11-15-meetup-elasticfr-88.pdf"
 # Speaker specific fields
 youtube: "h8XIj55jPPY"
 notist: "dadoonet/lJdisl"
+
+links:
+  - title: "Notebook demo Hummingsearch"
+    url: "https://github.com/dadoonet/music-search"
 
 x:
   - user: "ElasticFR"

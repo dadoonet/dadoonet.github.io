@@ -3,6 +3,7 @@
 title: "L’art du DeeJaying par la pratique"
 conference: 
   name: "Riviera Dev"
+  url: "https://rivieradev.fr/"
   city: "Nice"
   country: "France"
   country_code: "fr"

@@ -2,7 +2,7 @@
 title: "Elasticsearch"
 conference: 
   name: "BBL Ankorstore (Private Event)"
-  url: ""
+  url: "https://ankorstore.com/"
   country: "Online"
   country_code: "Online"
 author: David Pilato

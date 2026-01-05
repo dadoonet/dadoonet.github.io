@@ -2,7 +2,7 @@
 title: 'Search: a new era'
 conference:
   name: BBL Gravitee.io (Private Event)
-  url: ''
+  url: "https://gravitee.io/"
   country: "Online"
   country_code: "Online"
 author: David Pilato
