@@ -3,11 +3,8 @@ title: "Elasticsearch, you know for (AI) Search"
 conference: 
   name: "BBL Sopra Steria (Private event)"
   url: ""
-  city: ""
   country: "Online"
   country_code: "Online"
-  latitude: ""
-  longitude: ""
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

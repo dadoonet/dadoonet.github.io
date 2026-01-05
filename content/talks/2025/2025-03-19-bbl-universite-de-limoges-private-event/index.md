@@ -2,7 +2,6 @@
 title: "Elasticsearch"
 conference: 
   name: "BBL Université de Limoges (private event)"
-  city: "Online"
   country: "Online"
   country_code: "Online"
   url: "https://www.unilim.fr/"

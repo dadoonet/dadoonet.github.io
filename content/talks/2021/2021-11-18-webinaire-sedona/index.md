@@ -3,11 +3,8 @@ title: Indexer ses documents bureautique avec la suite Elastic et FSCrawler
 conference:
   name: Webinaire Sedona
   url: ''
-  city: Virtual
   country: "Online"
   country_code: "Online"
-  latitude: ''
-  longitude: ''
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

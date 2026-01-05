@@ -3,11 +3,8 @@ title: Hunting (and stopping!) threats with Elastic Security
 conference:
   name: TheDevConf 2021
   url: ''
-  city: Virtual
   country: "Online"
   country_code: "Online"
-  latitude: ''
-  longitude: ''
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

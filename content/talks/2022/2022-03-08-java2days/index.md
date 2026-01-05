@@ -3,7 +3,6 @@ title: Advanced (elastic)search for your legacy application
 conference:
   name: Java2Days
   url: 'https://2022.java2days.com/'
-  city: Virtual
   country: "Online"
   country_code: "Online"
 author: David Pilato

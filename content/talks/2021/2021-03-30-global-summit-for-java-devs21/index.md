@@ -3,11 +3,8 @@ title: Advanced (elastic)search for your legacy application
 conference:
   name: Global Summit for Java Devs’21
   url: ''
-  city: Virtual
   country: "Online"
   country_code: "Online"
-  latitude: ''
-  longitude: ''
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

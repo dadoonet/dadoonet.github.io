@@ -3,11 +3,8 @@ title: Enriching postal addresses with Elastic stack
 conference:
   name: London Information Retrieval Meetup
   url: ''
-  city: Virtual
   country: "Online"
   country_code: "Online"
-  latitude: ''
-  longitude: ''
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

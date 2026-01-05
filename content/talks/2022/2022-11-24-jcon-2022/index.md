@@ -3,11 +3,8 @@ title: Indexing your office documents with Elastic stack and FSCrawler
 conference:
   name: JCon 2022
   url: ''
-  city: Virtual
   country: "Online"
   country_code: "Online"
-  latitude: ''
-  longitude: ''
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

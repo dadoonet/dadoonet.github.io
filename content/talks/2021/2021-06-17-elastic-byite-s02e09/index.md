@@ -3,7 +3,6 @@ title: "Kibana Maps"
 conference: 
   name: "Elastic B(y|i)te S02"
   url: "https://community.elastic.co/events/details/elastic-emea-virtual-presents-elastic-bytes-bite-sized-elastic-stack-sessions-kibana-edition-915/"
-  city: Virtual
   country: "Online"
   country_code: "Online"
 author: David Pilato

@@ -2,7 +2,6 @@
 title: "Visualize Your Threats with Elastic SIEM"
 conference: 
   name: "stackconf"
-  city: "Online"
   country: "Online"
   country_code: "Online"
 author: David Pilato

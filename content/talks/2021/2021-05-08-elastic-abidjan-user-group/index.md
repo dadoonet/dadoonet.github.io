@@ -2,7 +2,6 @@
 title: "Introduction à Elasticsearch"
 conference: 
   name: "Elastic Abidjan User Group"
-  city: Virtual
   country: "Online"
   country_code: "Online"
 author: David Pilato

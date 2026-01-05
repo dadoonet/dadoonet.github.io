@@ -2,7 +2,6 @@
 title: "S03E09: ILM and data management"
 conference: 
   name: "Elastic Daily B(y|i)te - S03"
-  city: "Virtual"
   country: "Online"
   country_code: "Online"
 author: David Pilato

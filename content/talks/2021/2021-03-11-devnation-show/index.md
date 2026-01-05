@@ -3,11 +3,8 @@ title: 'DevNation: The Show with David from Elastic'
 conference:
   name: DevNation Show
   url: ''
-  city: Virtual
   country: "Online"
   country_code: "Online"
-  latitude: ''
-  longitude: ''
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

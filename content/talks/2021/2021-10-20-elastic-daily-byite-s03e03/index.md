@@ -3,7 +3,6 @@ title: 'S03E03: What is the  Elastic Common Schema?'
 conference:
   name: Elastic Daily B(y|i)te - S03
   url: ''
-  city: Virtual
   country: "Online"
   country_code: "Online"
 author: David Pilato

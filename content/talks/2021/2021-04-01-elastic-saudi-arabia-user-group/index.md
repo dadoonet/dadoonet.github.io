@@ -3,11 +3,8 @@ title: Indexing your office documents with Elastic stack and FSCrawler
 conference:
   name: Elastic Saudi Arabia User Group
   url: ''
-  city: Virtual
   country: "Online"
   country_code: "Online"
-  latitude: ''
-  longitude: ''
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

@@ -368,7 +368,7 @@
             <td>
               <div class="upcoming-conf">
                 {{ partial "countryFlag.html" .Params.conference }}
-                {{ .Params.conference.name }}
+                {{ .Params.conference.name }}{{ if and .Params.conference.city (ne .Params.conference.city "") }}, {{ .Params.conference.city }}{{ end }}
               </div>
             </td>
             <td class="upcoming-date">
@@ -397,7 +397,7 @@
             </td>
             <td class="past-conf">
               {{ partial "countryFlag.html" .Params.conference }}
-              {{ .Params.conference.name }}
+              {{ .Params.conference.name }}{{ if and .Params.conference.city (ne .Params.conference.city "") }}, {{ .Params.conference.city }}{{ end }}
             </td>
             <td class="past-date">
               {{ .Date | time.Format "January 2006" }}

@@ -3,11 +3,8 @@ title: Elasticsearch
 conference:
   name: BBL Ekino (private event)
   url: 'https://www.ekino.fr/'
-  city: Virtual
   country: "Online"
   country_code: "Online"
-  latitude: ''
-  longitude: ''
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

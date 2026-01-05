@@ -3,7 +3,6 @@ title: "Kibana Snaphots Management"
 conference: 
   name: "Elastic B(y|i)te S02"
   url: "https://community.elastic.co/e/m44hpt/"
-  city: Virtual
   country: "Online"
   country_code: "Online"
 author: David Pilato

@@ -3,11 +3,8 @@ title: Enrichir ses adresses postales avec la suite Elastic
 conference:
   name: BBL Neo9 (Private Event)
   url: ''
-  city: Virtual
   country: "Online"
   country_code: "Online"
-  latitude: ''
-  longitude: ''
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

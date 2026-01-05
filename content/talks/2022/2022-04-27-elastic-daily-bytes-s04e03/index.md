@@ -3,7 +3,6 @@ title: "Elastic Agent Ingestion - Daily Elastic Byte S04E03"
 conference: 
   name: "Elastic Daily Bytes S04"
   url: "https://community.elastic.co/e/mwe23n/"
-  city: "Virtual"
   country: "Online"
   country_code: "Online"
 author: David Pilato

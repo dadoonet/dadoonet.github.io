@@ -3,11 +3,8 @@ title: 'Search: a new era'
 conference:
   name: BBL Gravitee.io (Private Event)
   url: ''
-  city: Virtual
   country: "Online"
   country_code: "Online"
-  latitude: ''
-  longitude: ''
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

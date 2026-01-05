@@ -3,11 +3,8 @@ title: FSCrawler! You know, for files!
 conference:
   name: 'Meetup ElasticFR #59 - FSCrawler! You know, for files!'
   url: ''
-  city: Virtual
   country: "Online"
   country_code: "Online"
-  latitude: ''
-  longitude: ''
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

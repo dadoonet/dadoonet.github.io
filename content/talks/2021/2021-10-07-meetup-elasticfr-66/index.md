@@ -3,11 +3,8 @@ title: Identifier (et bloquer !) les menaces avec Elastic Security
 conference:
   name: 'Meetup ElasticFR #66'
   url: ''
-  city: Virtual
   country: "Online"
   country_code: "Online"
-  latitude: ''
-  longitude: ''
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

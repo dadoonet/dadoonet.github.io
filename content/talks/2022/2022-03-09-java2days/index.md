@@ -3,7 +3,6 @@ title: "Indexing your office documents with Elastic stack and FSCrawler"
 conference: 
   name: "Java2Days"
   url: "https://2022.java2days.com/"
-  city: "Virtual"
   country: "Online"
   country_code: "Online"
 author: David Pilato

@@ -2,7 +2,6 @@
 title: "Identifier les menaces avec Elastic SIEM"
 conference: 
   name: "JUG Summer Camp"
-  city: "Online"
   country: "Online"
   country_code: "Online"
   url: "https://www.jugsummercamp.org/edition/11/presentations/si4HEEvfcNOR3P36Npy0"

@@ -3,11 +3,8 @@ title: 'S03E13: Alerting: Adding Metrics and Monitoring rules'
 conference:
   name: Elastic Daily B(y|i)te - S03
   url: ''
-  city: Virtual
   country: "Online"
   country_code: "Online"
-  latitude: ''
-  longitude: ''
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:

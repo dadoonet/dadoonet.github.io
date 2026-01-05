@@ -3,7 +3,6 @@ title: Custom snapshot repository - Daily Elastic Byte S04E06
 conference:
   name: Elastic Daily Bytes S04
   url: "https://community.elastic.co/e/mr3qju/"
-  city: Virtual
   country: "Online"
   country_code: "Online"
 author: David Pilato

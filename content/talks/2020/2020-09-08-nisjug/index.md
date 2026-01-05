@@ -2,7 +2,6 @@
 title: "Advanced (elastic)search for your legacy application"
 conference: 
   name: "NisJUG"
-  city: "Online"
   country: "Online"
   country_code: "Online"
   url: "https://www.meetup.com/NisJUG/events/272577175/"

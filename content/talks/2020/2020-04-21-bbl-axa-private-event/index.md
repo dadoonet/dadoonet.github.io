@@ -2,7 +2,6 @@
 title: "Elasticsearch"
 conference: 
   name: "BBL AXA (Private Event)"
-  city: "Online"
   country: "Online"
   country_code: "Online"
 author: David Pilato

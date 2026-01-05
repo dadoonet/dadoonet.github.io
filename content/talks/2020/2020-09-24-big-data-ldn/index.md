@@ -3,7 +3,6 @@
 title: "Enriching postal addresses with Elastic stack"
 conference: 
   name: "Big Data LDN"
-  city: "Online"
   country: "Online"
   country_code: "Online"
   url: "https://bigdataldn.com/speakers/"

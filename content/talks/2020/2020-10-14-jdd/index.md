@@ -2,7 +2,6 @@
 title: "Advanced (elastic)search for your legacy application"
 conference: 
   name: "JDD"
-  city: "Online"
   country: "Online"
   country_code: "online"
   url: "https://jdd.org.pl/lecture/#id=62927"

@@ -3,7 +3,6 @@ title: "Ingest Processors"
 conference: 
   name: Elastic B(y|i)te S01
   url: "https://community.elastic.co/emea-virtual/"
-  city: Virtual
   country: "Online"
   country_code: "Online"
 author: David Pilato

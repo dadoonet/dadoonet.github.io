@@ -3,7 +3,6 @@ title: "Text analysis - Daily Elastic Byte S05E02"
 conference: 
   name: "Elastic Daily Byte(s) S05"
   url: "https://www.youtube.com/playlist?list=PL_mJOmq4zsHa6Ii4LArg_r1l08FHleaCl"
-  city: "Virtual"
   country: "Online"
   country_code: "Online"
 author: David Pilato

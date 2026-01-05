@@ -2,7 +2,6 @@
 title: "🎹🎻🎸 Searching for similar music tracks 🎼🎶"
 conference: 
   name: "OpenConf"
-  city: "Online"
   country: "Online"
   country_code: "online"
   url: "https://www.open-conf.gr/"
