@@ -1,0 +1,37 @@
+{{- /*
+  Partial pour afficher un embed X/Twitter
+  Paramètres attendus :
+    - id: l'ID du tweet
+    - user: le nom d'utilisateur
+    - ctx: (optionnel) le contexte pour les messages d'erreur
+*/ -}}
+{{- $pc := site.Config.Privacy.X -}}
+{{- if not $pc.Disable -}}
+  {{- $id := .id -}}
+  {{- $user := .user -}}
+  {{- if and $id $user -}}
+    {{- $url := printf "https://x.com/%v/status/%v" $user $id -}}
+    {{- $query := querify "url" $url "dnt" $pc.EnableDNT -}}
+    {{- $request := printf "https://publish.x.com/oembed?%s" $query -}}
+    {{- with try (resources.GetRemote $request) -}}
+      {{- with .Err -}}
+        {{- if $.ctx -}}
+          {{- warnidf "x-embed-getremote" "The x-embed partial was unable to retrieve the remote data: %s. See %s" . $.ctx.Position -}}
+        {{- else -}}
+          {{- warnidf "x-embed-getremote" "The x-embed partial was unable to retrieve the remote data: %s" . -}}
+        {{- end -}}
+      {{- else with .Value -}}
+        {{- (. | transform.Unmarshal).html | safeHTML -}}
+      {{- else -}}
+        {{- if $.ctx -}}
+          {{- warnidf "x-embed-getremote" "The x-embed partial was unable to retrieve the remote data. See %s" $.ctx.Position -}}
+        {{- else -}}
+          {{- warnidf "x-embed-getremote" "The x-embed partial was unable to retrieve the remote data." -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+  {{- else -}}
+    {{- errorf "The x-embed partial requires two parameters: user and id. Got user=%v, id=%v" $user $id -}}
+  {{- end -}}
+{{- end -}}
+

@@ -1,0 +1,55 @@
+---
+title: "Elasticsearch"
+conference: 
+  name: "BBL Alan.eu (Private Event)"
+  url: ""
+  city: ""
+  country: "Online"
+  country_code: "Online"
+  latitude: ""
+  longitude: ""
+author: David Pilato
+avatar: /about/david_pilato.png
+tags:
+  - elasticsearch
+  - conference
+  - java
+  - cloud
+categories:
+  - speaker
+series:
+  - conferences
+date: 2020-07-15
+nolastmod: true
+draft: false
+pdf: "2020/2020-07-15-bbl-alaneu-private-event.pdf"
+
+
+# Speaker specific fields
+#youtube: ""
+notist: "dadoonet/uRwyxm"
+# youtube: ""
+links:
+  - title: "A video (in french) on the same topic"
+    url: "https://youtu.be/ctQki1Qdrvk"
+
+  - title: "The video of the session"
+    url: "https://drive.google.com/file/d/1MjY2bFPZEzyp4dJl7Uqvo-LYZ3K5E0nf/view"
+
+
+
+aliases:
+  - /uRwyxm
+---
+Vous utilisez encore des requêtes SQL pour faire des recherches ? Vos utilisateurs vous reprochent de ne pas pouvoir chercher sur toutes les rubriques ? Votre temps de réponse moyen est supérieur à la demi-seconde avec seulement quelques millions de documents ? Il vous faut 3 jours pour produire des statistiques sur vos données ? Vous rêvez d’offrir une recherche “à la google” sur les données de votre SI ?
+
+Ne cherchez plus ! Cette conférence est faite pour vous.
+
+David présentera au cours du déjeuner pourquoi et comment il est passé de la recherche SQL à Elasticsearch en détaillant les apports de ce moteur par rapport à une solution pure Lucene :
+
+* Pourquoi Elasticsearch ?
+* L’indexation
+* La recherche
+* Les agrégations et le principe de navigation par facettes
+* La scalabilité horizontale
+* La communauté

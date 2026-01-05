@@ -1,0 +1,255 @@
+{{ define "title" }}{{ .Title }}{{ end }}
+
+{{ define "css" }}
+
+{{ if site.Params.customSyntaxHighlighting }}
+<link rel="stylesheet" data-custom-syntax-highlighting />
+<style>
+  .chroma {
+    padding: 1em;
+    background-color: var(--dream-pre-bg, #f5f5f5);
+    border-radius: .5em;
+    overflow: auto;
+  }
+
+  html.dark .chroma {
+    background-color: var(--dream-pre-bg-dark, #262626);
+  }
+</style>
+{{ else }}
+<style>
+  pre {
+    padding: 1em;
+    overflow: auto;
+  }
+</style>
+{{ end }}
+
+{{ partialCached "commentSystemHeads.html" . }}
+
+{{ end }}
+
+{{ define "main" }}
+<div class="mt-4 px-4 lg:px-8">
+  <div class="flex flex-col items-center">
+    <article class="prose prose-quoteless dark:prose-invert max-w-none w-full" id="dream-single-post-main" itemscope itemtype="http://schema.org/Article">
+      {{ template "_internal/schema.html" . }}
+
+      <div id="talk-content-container" class="mx-auto" style="max-width: 1024px;">
+        <header>
+          <h1 itemprop="headline">{{ .Title }}</h1>
+            <div class="flex justify-between items-start gap-4 my-2">
+              <div class="flex flex-col">
+                <p class="m-0">
+                  <a href="{{ .Params.conference.url }}" target="_blank">{{ .Params.conference.name }}</a>
+                  <br/>
+                {{ if .Params.conference.city }}
+                  {{ .Params.conference.city }}
+                  {{ partial "countryFlag.html" .Params.conference }}
+                {{ end }}
+                </p>
+              </div>
+              <p class="m-0 text-right">
+                {{ .Date | time.Format "Jan. 2006" }}
+              </p>
+            </div>
+
+          {{ $hasAuthor := or .Params.author site.Params.author }}
+          <div class="flex justify-between">
+            {{ if $hasAuthor }}
+              {{ partial "author.html" (dict "Params" .Params "template" "single") }}
+            {{ end }}
+
+            {{ partial "share.html" . }}
+          </div>
+        </header>
+
+        {{ if .Params.pdf }}
+        <div class="divider"></div>
+          <h2>Slides</h2>
+          {{ partial "pdf.html" (dict "ctx" $ "pdf_url" .Params.pdf) }}
+        {{ else }}
+          {{ $cover := "" }}
+          {{ if .Params.cover }}
+            {{ $cover = .Resources.GetMatch .Params.cover }}
+          {{ else }}
+            {{ $cover = .Resources.GetMatch "cover.jpg" }}
+            {{ if not $cover }}
+              {{ $cover = .Resources.GetMatch "cover.png" }}
+            {{ end }}
+          {{ end }}
+          {{ if and $cover site.Params.showSummaryCoverInPost }}
+          <figure>
+            <img class="z-30" src="{{ $cover }}" alt="{{ .Title }}" />
+            {{ with .Params.covercaption }}
+              <figcaption class="text-sm italic text-center mt-2">{{ . }}</figcaption>
+            {{ end }}
+          </figure>
+          {{ end }}
+        {{ end }}
+        
+        <div class="divider"></div>
+        <h2>Abstract</h2>
+        {{ .Content | emojify }}
+
+
+        {{ with .Params.youtube }}
+        <div class="divider"></div>
+        <h2 id="video">Video</h2>
+
+        <div class="youtube-embed my-4" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+          <iframe 
+            src="https://www.youtube.com/embed/{{ . }}" 
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" 
+            allowfullscreen 
+            title="YouTube Video">
+          </iframe>
+        </div>
+        {{ end }}
+
+        {{- with .Params.links -}}
+        <div class="divider"></div>
+        <h2 id="resources">Resources</h2>
+        <p>The following resources were mentioned during the presentation or are useful additional information.</p>
+        <div class="grid grid-cols-2 lg:grid-cols-3 gap-2 my-4">
+          {{- range . -}}
+          <a href="{{ .url }}" target="_blank" rel="noopener noreferrer" class="card bg-base-200 hover:bg-base-300 transition-colors no-underline">
+            <div class="card-body p-2">
+              <h3 class="card-title m-0">{{ .title }} <ion-icon name="open-outline" class="text-sm"></ion-icon></h3>
+              {{- $desc := or .description .details -}}
+              {{- with $desc -}}
+              <blockquote class="m-0 py-1 text-sm">{{ . | emojify | markdownify }}</blockquote>
+              {{- end -}}
+            </div>
+          </a>
+          {{- end -}}
+        </div>
+        {{- end -}}
+
+        <div class="post-content">
+
+          {{- with .Params.x -}}
+          <div class="x-embeds">
+            <h2>Buzz et feedback</h2>
+            <p>Here's what was said about this presentation on social media.</p>
+            {{- range . -}}
+              {{- partial "x-embed.html" (dict "id" .id "user" .user) -}}
+            {{- end -}}
+          </div>
+          {{- end -}}
+        </div>
+        
+        {{ if site.Params.showPrevNextPost }}
+        <div class="divider"></div>
+        <div class="flex flex-col md:flex-row justify-between gap-4 py-4">
+          {{ $now := now }}
+          {{ with .NextInSection }}
+            {{ if le .Date $now }}
+            <a role="button" class="btn btn-outline h-12" href="{{ .RelPermalink }}" title="{{ .Title }}">
+              <ion-icon name="chevron-back"></ion-icon>
+              <div class="inline-flex flex-col items-start">
+                <span class="text-base-content/60 text-xs font-normal">{{ T "prevPage" }}</span>
+                <span class="max-w-48 truncate">{{ .LinkTitle }}</span>
+              </div>
+            </a>
+            {{ else }}
+            <div></div>
+            {{ end }}
+          {{ else }}
+          <div></div>
+          {{ end }}
+
+          {{ with .PrevInSection }}
+          <a role="button" class="btn btn-outline h-12" href="{{ .RelPermalink }}" title="{{ .Title }}">
+            <div class="inline-flex flex-col items-end">
+              <span class="text-base-content/60 text-xs font-normal">{{ T "nextPage" }}</span>
+              <span class="max-w-48 truncate">{{ .LinkTitle }}</span>
+            </div>
+            <ion-icon name="chevron-forward"></ion-icon>
+          </a>
+          {{ else }}
+          <div></div>
+          {{ end }}
+        </div>
+        {{ end }}
+
+        {{ if or site.Config.Services.Disqus.Shortname site.Params.utterancesRepo site.Params.valine site.Params.waline site.Params.twikoo.enabled }}
+        <div class="divider"></div>
+
+        <section class="space-y-4">
+          {{ partialCached "commentSystems.html" . .RelPermalink }}
+        </section>
+        {{ end }}
+      </div>
+    </article>
+
+    {{/* Table of Contents - shown on the side for xl screens */}}
+    {{ if site.Params.showTableOfContents }}
+    <div
+      x-data="tocHighlighter()"
+      @scroll.window="debouncedScroll"
+      class="hidden xl:block fixed right-8 top-32 max-w-xs"
+    >
+      {{ .TableOfContents }}
+    </div>
+    {{ end }}
+  </div>
+</div>
+{{ end }}
+
+{{ define "js" }}
+
+{{ if site.Params.Experimental.jsDate }}
+  {{ partial "luxon.html" . }}
+{{ end }}
+
+{{ if site.Params.customSyntaxHighlighting }}
+  {{- $syntaxLightCSS := resources.Get "css/syntax-light.css" | minify -}}
+  {{- $syntaxDarkCSS := resources.Get "css/syntax-dark.css" | minify -}}
+
+  <script>
+    window.customSyntaxHighlighting = {
+      light: {{ $syntaxLightCSS.RelPermalink }},
+      dark: {{ $syntaxDarkCSS.RelPermalink }}
+    }
+
+    document.addEventListener('alpine:initialized', () => {
+      var isDark = Alpine.store('darkMode').isDark()
+      var customSyntaxHighlightingUrl = isDark ? window.customSyntaxHighlighting.dark : window.customSyntaxHighlighting.light
+
+      document
+        .querySelector('link[data-custom-syntax-highlighting]')
+        .setAttribute('href', customSyntaxHighlightingUrl)
+    })
+  </script>
+{{ end }}
+
+{{ $tocJs := resources.Get "js/toc.js" }}
+{{ if hugo.IsProduction }}
+  {{ $tocJs = $tocJs | minify }}
+{{ end }}
+<script src="{{ $tocJs.RelPermalink }}"></script>
+
+{{ if site.Params.imageZoomableInPost }}
+  {{ if fileExists "layouts/partials/medium-zoom.html" }}
+    {{ partialCached "medium-zoom.html" . }}
+  {{ else }}
+    <script type="module">
+      import mediumZoom from 'https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/+esm';
+      mediumZoom('#dream-single-post-content img', {
+        background: 'oklch(var(--b1))',
+        margin: 24,
+      })
+    </script>
+  {{ end }}
+{{ end }}
+
+{{ if .Params.math }}
+  {{ .Page.Store.Set "hasMathjax" true }}
+{{ end }}
+
+{{ with .Params.x }}
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+{{ end }}
+
+{{ end }}

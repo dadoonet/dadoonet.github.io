@@ -1,0 +1,6 @@
+/* Custom CSS for badge-error (YouTube-inspired red) */
+.badge-error {
+  --badge-color: oklch(55% 0.2 25);
+  --badge-fg: oklch(100% 0 0);
+}
+

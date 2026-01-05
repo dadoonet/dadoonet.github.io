@@ -56,7 +56,7 @@ favicon = "favicon.ico"
  
 # options
 stickyNav = true
-reorderNavItems = ["rss", "posts", "categories", "tags", "github", "x", "linkedin", "elastic", "podcast", "deejay"]
+reorderNavItems = ["rss", "posts", "talks", "categories", "tags", "github", "x", "bluesky", "linkedin", "elastic", "podcast", "deejay"]
 # collapseNavItems = ["posts", "categories", "tags"]
 noDefaultSummaryCover = true
 showTableOfContents = true
@@ -65,16 +65,24 @@ imageZoomableInPost = true
 showPrevNextPost = true
 
 [params.navItems]
+talks = { href = "/talks", icon = "mic", title = "Talks" }
 github = { href = "https://github.com/dadoonet", target = "_blank", icon = "logo-github", title = "GitHub" }
 x = { href = "https://x.com/dadoonet", target = "_blank", icon = "logo-x", title = "X" }
+bluesky = { href = "https://bsky.app/profile/pilato.fr", target = "_blank", icon = "logo-twitter", title = "BlueSky" }
 linkedin = { href = "https://www.linkedin.com/in/dadoonet", target = "_blank", icon = "logo-linkedin", title = "Linkedin" }
 elastic = { href = "https://elastic.co/", target="_blank", icon = "business", title = "Elastic" }
 podcast = { href = "https://podcasts.apple.com/fr/podcast/dj-elky-mixes/id959495351", target="_blank", icon = "musical-notes", title = "Podcast DJ Elky" }
 instagram = { href = "https://www.instagram.com/dj_elky/", target="_blank", icon = "logo-instagram", title = "DJ Elky" }
 
+[params.icons]
+online = "🌎"
+
+[params.talks]
+# PDF base URL for external storage (Google Cloud Storage)
+pdf_base_url = "https://storage.googleapis.com/dadoonet-talks/slides/"
 
 [params.advanced]
-# customCSS = ["css/custom.css"]
+customCSS = ["css/custom.css"]
 # customJS = []
  
 [params.experimental]

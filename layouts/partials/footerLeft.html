@@ -1,19 +1,22 @@
 <!-- QueryBox Search Integration -->
 <script>
-  const querybox = new QueryBox({
-    apiEndpoint: 'https://api.querybox.dev/david.pilato.fr/v1',
-    theme: 'auto',
-    primaryColor: '#000000',
-    title: 'Search my pages'
-  });
+  // Only initialize QueryBox if it hasn't been initialized yet
+  if (typeof window.querybox === 'undefined') {
+    window.querybox = new QueryBox({
+      apiEndpoint: 'https://api.querybox.dev/david.pilato.fr/v1',
+      theme: 'auto',
+      primaryColor: '#000000',
+      title: 'Search my pages'
+    });
 
-  // Add keyboard shortcut (Cmd+K / Ctrl+K)
-  document.addEventListener('keydown', (e) => {
-    if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
-      e.preventDefault();
-      querybox.search();
-    }
-  });
+    // Add keyboard shortcut (Cmd+K / Ctrl+K)
+    document.addEventListener('keydown', (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        window.querybox.search();
+      }
+    });
+  }
 </script>
 
 <div>

@@ -1,0 +1,64 @@
+{{- /*
+Renders a PDF file.
+
+@param {dict} ctx The context.
+@param {string} pdf_url The relative PDF URL path (e.g., "2025/2025-12-05-devfest-dijon-2025/2025-12-05-devfest-dijon-2025.pdf")
+
+@returns {template.HTML}
+
+@example {{< pdf (dict "ctx" $ "pdf_url" "2025/2025-12-05-devfest-dijon-2025/2025-12-05-devfest-dijon-2025.pdf") >}}
+*/}}
+{{ $pdf_base_url := site.Params.talks.pdf_base_url | default "https://storage.googleapis.com/dadoonet-talks/slides/" }}
+{{ $full_pdf_url := printf "%s%s" $pdf_base_url .pdf_url }}
+<style>
+  .talks-controls .icon,
+  .talks-controls svg {
+    width: 1rem;
+    height: 1rem;
+  }
+</style>
+<div class="post-content">
+  <div class="flex flex-col gap-2 py-1">
+    <!-- PDF slides - Size calculated by JavaScript to fit viewport -->
+    <div class="w-full flex justify-center overflow-hidden">
+      <canvas class="cursor-pointer rounded-lg shadow-md max-w-full" id="talks-pdf"></canvas>
+      <noscript><p class="text-center text-sm text-base-content/70 mt-2">It looks like you have disabled JavaScript, so the slides won't load. Please enable it or <a href="{{ $full_pdf_url }}" class="link link-primary" download>download the PDF directly</a>.</p></noscript>
+    </div>
+
+    <!-- Controls bar below the canvas -->
+    <div class="talks-controls flex flex-wrap items-center justify-between gap-2 text-sm">
+      <!-- Left: Navigation controls -->
+      <div class="flex items-center gap-3">
+        <a href="#" onclick="return false;" id="first" class="flex items-center gap-1 hover:text-primary transition-colors" title="First slide">
+          <span class="w-4 h-4">{{ partial "icon.html" (dict "ctx" .ctx "name" "skip-back") }}</span>
+          <span class="hidden sm:inline">First</span>
+        </a>
+        <a href="#" onclick="return false;" id="prev" class="flex items-center gap-1 hover:text-primary transition-colors" title="Previous slide">
+          <span class="w-4 h-4">{{ partial "icon.html" (dict "ctx" .ctx "name" "chevrons-left") }}</span>
+          <span class="hidden sm:inline">Previous</span>
+        </a>
+        <span class="text-base-content/60 tabular-nums">
+          <ins id="page_num" class="no-underline"></ins>&#8239;/&#8239;<ins id="page_count" class="no-underline"></ins>
+        </span>
+        <a href="#" onclick="return false;" id="next" class="flex items-center gap-1 hover:text-primary transition-colors" title="Next slide">
+          <span class="hidden sm:inline">Next</span>
+          <span class="w-4 h-4">{{ partial "icon.html" (dict "ctx" .ctx "name" "chevrons-right") }}</span>
+        </a>
+        <a href="#" onclick="return false;" id="last" class="flex items-center gap-1 hover:text-primary transition-colors" title="Last slide">
+          <span class="hidden sm:inline">Last</span>
+          <span class="w-4 h-4">{{ partial "icon.html" (dict "ctx" .ctx "name" "skip-forward") }}</span>
+        </a>
+      </div>
+
+      <!-- Center: Download -->
+      <div class="flex items-center">
+        <a href="{{ $full_pdf_url }}" title="Download PDF" download class="flex items-center gap-1 hover:text-primary transition-colors">
+          <span class="w-4 h-4 mr-1">{{ partial "icon.html" (dict "ctx" .ctx "name" "download-cloud") }}</span>
+          <span class="text-base-content/60">PDF</span>
+        </a>
+      </div>
+    </div>
+
+    {{ partial "render_slide.html" (dict "pdf_url" $full_pdf_url) }}
+  </div>
+</div>
