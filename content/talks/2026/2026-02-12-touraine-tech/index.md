@@ -12,7 +12,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 date: '2026-02-12'
 nolastmod: true
-draft: true
+draft: false
 pdf: "2026/2026-02-12 - Touraine Tech - Randomized Testing.pdf"
 cover: "cover.png"
 
