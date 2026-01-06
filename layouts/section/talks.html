@@ -390,7 +390,7 @@
                 <a href="{{ .Params.conference.url }}" target="_blank" rel="noopener noreferrer">{{ .Params.conference.name }}</a>
                 {{ else }}
                 {{ .Params.conference.name }}
-                {{ end }}{{ if and .Params.conference.city (ne .Params.conference.city "") }}, {{ .Params.conference.city }}{{ end }}
+                {{ end }}{{ if and .Params.conference.city (ne .Params.conference.city "") }}, {{ if and .Params.conference.latitude .Params.conference.longitude }}<a href="https://www.google.com/maps?q={{ .Params.conference.latitude }},{{ .Params.conference.longitude }}" target="_blank" rel="noopener noreferrer">{{ .Params.conference.city }}</a>{{ else }}{{ .Params.conference.city }}{{ end }}{{ end }}
               </div>
             </td>
             <td class="upcoming-date">
@@ -423,7 +423,7 @@
               <a href="{{ .Params.conference.url }}" target="_blank" rel="noopener noreferrer">{{ .Params.conference.name }}</a>
               {{ else }}
               {{ .Params.conference.name }}
-              {{ end }}{{ if and .Params.conference.city (ne .Params.conference.city "") }}, {{ .Params.conference.city }}{{ end }}
+              {{ end }}{{ if and .Params.conference.city (ne .Params.conference.city "") }}, {{ if and .Params.conference.latitude .Params.conference.longitude }}<a href="https://www.google.com/maps?q={{ .Params.conference.latitude }},{{ .Params.conference.longitude }}" target="_blank" rel="noopener noreferrer">{{ .Params.conference.city }}</a>{{ else }}{{ .Params.conference.city }}{{ end }}{{ end }}
             </td>
             <td class="past-date">
               {{ .Date | time.Format "January 2006" }}
