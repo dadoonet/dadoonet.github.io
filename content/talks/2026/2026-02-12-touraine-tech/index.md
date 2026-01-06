@@ -10,6 +10,7 @@ conference:
   url: "https://touraine.tech/talk/cmi15i4ad00901eqwb4h2epxz"
 author: David Pilato
 avatar: /about/david_pilato.png
+talk: Randomized Testing
 date: '2026-02-12'
 nolastmod: true
 draft: false
