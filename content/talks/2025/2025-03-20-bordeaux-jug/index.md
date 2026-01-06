@@ -10,7 +10,7 @@ conference:
   url: "http://www.bordeauxjug.org/meetings/20250320-elasticsearch_query_language:_es_ql"
 author: David Pilato
 avatar: /about/david_pilato.png
-talk: conferences
+talk: ES|QL
 date: 2025-03-20
 nolastmod: true
 draft: false

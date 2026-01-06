@@ -10,7 +10,7 @@ conference:
   url: "https://www.meetup.com/afup-tours-php/events/307931669/"
 author: David Pilato
 avatar: /about/david_pilato.png
-talk: conferences
+talk: ES|QL
 date: 2025-06-23
 nolastmod: true
 draft: false

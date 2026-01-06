@@ -10,7 +10,7 @@ conference:
   url: "https://www.breizhcamp.org/"
 author: David Pilato
 avatar: /about/david_pilato.png
-talk: conferences
+talk: ES|QL
 date: 2024-06-28
 nolastmod: true
 draft: false

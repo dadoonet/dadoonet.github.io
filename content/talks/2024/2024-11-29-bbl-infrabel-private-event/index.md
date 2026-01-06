@@ -10,7 +10,7 @@ conference:
   url: "https://infrabel.be/"
 author: David Pilato
 avatar: /about/david_pilato.png
-talk: conferences
+talk: ES|QL
 date: 2024-11-29
 nolastmod: true
 draft: false
