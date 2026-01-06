@@ -30,15 +30,13 @@
 {{ end }}
 
 {{ define "main" }}
-{{/* Build the related talks list first */}}
+{{/* Build the related talks list first (including current page) */}}
 {{ $relatedTalks := slice }}
+{{ $currentPagePermalink := .Permalink }}
 {{ with .Params.talk }}
   {{ $currentTalk := . }}
-  {{ $currentPage := $.Page }}
   {{ range where (where site.RegularPages "Section" "talks") ".Params.talk" $currentTalk }}
-    {{ if ne .Permalink $currentPage.Permalink }}
-      {{ $relatedTalks = $relatedTalks | append . }}
-    {{ end }}
+    {{ $relatedTalks = $relatedTalks | append . }}
   {{ end }}
 {{ end }}
 
@@ -221,7 +219,7 @@
     {{ end }}
 
     {{/* See also section - other conferences with the same talk */}}
-    {{ if gt (len $relatedTalks) 0 }}
+    {{ if gt (len $relatedTalks) 1 }}
     {{ $totalRelated := len $relatedTalks }}
     {{ $sortedRelated := sort $relatedTalks ".Date" "desc" }}
     {{ $displayLimit := 15 }}
@@ -234,8 +232,9 @@
       </div>
       <ul class="menu menu-sm bg-base-200 rounded-box w-full max-h-[40vh] overflow-y-auto">
         {{ range $displayedTalks }}
+        {{ $isCurrent := eq .Permalink $currentPagePermalink }}
         <li>
-          <a href="{{ .RelPermalink }}" class="flex flex-col items-start py-2">
+          <a href="{{ .RelPermalink }}" class="flex flex-col items-start py-2{{ if $isCurrent }} pointer-events-none{{ end }}"{{ if $isCurrent }} style="background-color: rgba(34, 197, 94, 0.25);"{{ end }}>
             <span class="text-xs text-base-content/60">{{ .Date | time.Format "2006-01-02" }}</span>
             <span class="text-sm">{{ .Params.conference.name }}</span>
           </a>
