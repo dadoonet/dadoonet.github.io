@@ -46,13 +46,15 @@
                   {{ else }}
                     {{ .Params.conference.name }}
                   {{ end }}
-                  <br/>
                 {{ if .Params.conference.city }}
+                  <span>–</span>
                   {{ if and .Params.conference.latitude .Params.conference.longitude }}
                     <a href="https://www.google.com/maps?q={{ .Params.conference.latitude }},{{ .Params.conference.longitude }}" target="_blank" rel="noopener noreferrer">{{ .Params.conference.city }}</a>
                   {{ else }}
                     {{ .Params.conference.city }}
                   {{ end }}
+                {{ end }}
+                {{ if .Params.conference.city }}
                   {{ partial "countryFlag.html" .Params.conference }}
                 {{ end }}
                 </p>
