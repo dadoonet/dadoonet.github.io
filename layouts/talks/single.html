@@ -37,32 +37,32 @@
 
       <div id="talk-content-container" class="mx-auto" style="max-width: 1024px;">
         <header>
-          <h1 itemprop="headline">{{ .Title }}</h1>
-            <div class="flex justify-between items-start gap-4 my-2">
-              <div class="flex flex-col">
-                <p class="m-0">
-                  {{ if .Params.conference.url }}
-                    <a href="{{ .Params.conference.url }}" target="_blank">{{ .Params.conference.name }}</a>
-                  {{ else }}
-                    {{ .Params.conference.name }}
-                  {{ end }}
-                {{ if .Params.conference.city }}
-                  <span>–</span>
-                  {{ if and .Params.conference.latitude .Params.conference.longitude }}
-                    <a href="https://www.google.com/maps?q={{ .Params.conference.latitude }},{{ .Params.conference.longitude }}" target="_blank" rel="noopener noreferrer">{{ .Params.conference.city }}</a>
-                  {{ else }}
-                    {{ .Params.conference.city }}
-                  {{ end }}
+          <h1 itemprop="headline" style="margin-bottom: 0.25rem;">{{ .Title }}</h1>
+          <div class="flex justify-between items-start gap-4">
+            <div class="flex flex-col">
+              <p class="m-0">
+                {{ if .Params.conference.url }}
+                  <a href="{{ .Params.conference.url }}" target="_blank">{{ .Params.conference.name }}</a>
+                {{ else }}
+                  {{ .Params.conference.name }}
                 {{ end }}
-                {{ if .Params.conference.city }}
-                  {{ partial "countryFlag.html" .Params.conference }}
+              {{ if .Params.conference.city }}
+                <span>–</span>
+                {{ if and .Params.conference.latitude .Params.conference.longitude }}
+                  <a href="https://www.google.com/maps?q={{ .Params.conference.latitude }},{{ .Params.conference.longitude }}" target="_blank" rel="noopener noreferrer">{{ .Params.conference.city }}</a>
+                {{ else }}
+                  {{ .Params.conference.city }}
                 {{ end }}
-                </p>
-              </div>
-              <p class="m-0 text-right">
-                {{ .Date | time.Format "Jan. 2006" }}
+              {{ end }}
+              {{ if .Params.conference.city }}
+                {{ partial "countryFlag.html" .Params.conference }}
+              {{ end }}
               </p>
             </div>
+            <p class="m-0 text-right">
+              {{ .Date | time.Format "Jan. 2006" }}
+            </p>
+          </div>
 
           {{ $hasAuthor := or .Params.author site.Params.author }}
           <div class="flex justify-between">
