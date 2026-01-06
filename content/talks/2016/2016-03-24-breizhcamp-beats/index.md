@@ -1,6 +1,7 @@
 ---
 title: "And the beats go on!"
 conference: 
+  url: "https://2016.breizhcamp.org/"
   name: "Breizhcamp"
   city: "Rennes"
   country: "France"
@@ -14,7 +15,7 @@ date: 2016-03-25
 nolastmod: true
 draft: false
 
-#pdf: "2016/2016-03-25 - Le_Hasard_Fait_Bien_Les_Tests.pdf"
+pdf: "2016/2016-03-24 - And_The_Beats_Go_On.pdf"
 attendees: 100
 ---
 

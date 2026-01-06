@@ -14,5 +14,6 @@ date: 2018-02-23
 nolastmod: true
 draft: false
 
+pdf: "2018/2018-02-23-tnt-Managing_Black_Friday_Logs.pdf"
 attendees: 60
 ---
