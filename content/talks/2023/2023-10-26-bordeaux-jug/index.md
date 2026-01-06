@@ -7,7 +7,7 @@ conference:
   country_code: "fr"
   latitude: "44.837789"
   longitude: "-0.579180"
-  url: "https://www.meetup.com/fr-FR/BordeauxJUG/events/296632690"
+  url: "https://www.meetup.com/BordeauxJUG/events/296632690"
 author: David Pilato
 avatar: /about/david_pilato.png
 talk: conferences

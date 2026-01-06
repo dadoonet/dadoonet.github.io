@@ -5,7 +5,7 @@ conference:
   city: "Paris"
   country: "France"
   country_code: "fr"
-  url: "https://www.meetup.com/fr-FR/elasticfr/events/310730914/"
+  url: "https://www.meetup.com/elasticfr/events/310730914/"
   latitude: "48.856614"
   longitude: "2.352222"
 author: David Pilato

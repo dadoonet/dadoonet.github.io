@@ -7,7 +7,7 @@ conference:
   country_code: "ch"
   latitude: "46.204391"
   longitude: "6.143158"
-  url: "https://www.meetup.com/fr-FR/alpesjug/events/299609510/"
+  url: "https://www.meetup.com/alpesjug/events/299609510/"
 author: David Pilato
 avatar: /about/david_pilato.png
 talk: conferences

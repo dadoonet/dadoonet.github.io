@@ -7,7 +7,7 @@ conference:
   country_code: "ca"
   latitude: "45.501689"
   longitude: "-73.567256"
-  url: "https://www.meetup.com/fr-FR/Elasticsearch-Montreal/events/268675767/"
+  url: "https://www.meetup.com/Elasticsearch-Montreal/events/268675767/"
 author: David Pilato
 avatar: /about/david_pilato.png
 talk: conferences

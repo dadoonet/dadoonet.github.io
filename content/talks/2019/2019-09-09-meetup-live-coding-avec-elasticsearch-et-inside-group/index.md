@@ -7,7 +7,7 @@ conference:
   country_code: "fr"
   latitude: "44.837789"
   longitude: "-0.579180"
-  url: "https://www.meetup.com/fr-FR/Meetup-IT-Inside-Bordeaux/events/263861965/"
+  url: "https://www.meetup.com/Meetup-IT-Inside-Bordeaux/events/263861965/"
 author: David Pilato
 avatar: /about/david_pilato.png
 talk: conferences

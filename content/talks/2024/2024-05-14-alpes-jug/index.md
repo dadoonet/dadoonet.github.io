@@ -33,7 +33,7 @@ x:
 
 links:
   - title: "Page de l’évènement"
-    url: "https://www.meetup.com/fr-FR/alpesjug/events/299609510/"
+    url: "https://www.meetup.com/alpesjug/events/299609510/"
   - title: "Demo: Music search"
     url: "https://github.com/dadoonet/music-search"
     description: "This demo shows how you can use the principles of vector search to find pieces of music that are (maybe) similar to others."

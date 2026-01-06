@@ -7,7 +7,7 @@ conference:
   country_code: "pl"
   latitude: "50.064651"
   longitude: "19.944981"
-  url: "https://www.meetup.com/fr-FR/Elastic-Krakow/events/262282793/"
+  url: "https://www.meetup.com/Elastic-Krakow/events/262282793/"
 author: David Pilato
 avatar: /about/david_pilato.png
 talk: conferences

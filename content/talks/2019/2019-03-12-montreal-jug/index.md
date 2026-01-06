@@ -7,7 +7,7 @@ conference:
   country_code: "ca"
   latitude: "45.501689"
   longitude: "-73.567256"
-  url: "https://www.meetup.com/fr-FR/montreal-jug/events/259314381/"
+  url: "https://www.meetup.com/montreal-jug/events/259314381/"
 author: David Pilato
 avatar: /about/david_pilato.png
 talk: conferences

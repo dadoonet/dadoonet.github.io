@@ -7,7 +7,7 @@ conference:
   country_code: "fr"
   latitude: "43.295100"
   longitude: "-0.370797"
-  url: "https://www.meetup.com/fr-FR/ElasticFR/events/260241960/"
+  url: "https://www.meetup.com/ElasticFR/events/260241960/"
 author: David Pilato
 avatar: /about/david_pilato.png
 talk: conferences

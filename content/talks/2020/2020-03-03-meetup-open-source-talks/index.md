@@ -7,7 +7,7 @@ conference:
   country_code: "fr"
   latitude: "43.610769"
   longitude: "3.876716"
-  url: "https://www.meetup.com/fr-FR/Open-Source_Talks/events/268883657/"
+  url: "https://www.meetup.com/Open-Source_Talks/events/268883657/"
 author: David Pilato
 avatar: /about/david_pilato.png
 talk: conferences
