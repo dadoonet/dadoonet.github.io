@@ -266,10 +266,6 @@
       {{ $yearEnd := printf "%s-12-31" $year }}
       {{ $mapId := printf "map-year-%s" $year }}
       <div class="mt-8">
-        <h3 class="text-2xl font-bold mb-4">
-          <ion-icon name="map" class="text-primary align-middle"></ion-icon>
-          Carte des conférences {{ $year }}
-        </h3>
         {{ partial "talks-map.html" (dict "startDate" $yearStart "endDate" $yearEnd "mapId" $mapId) }}
       </div>
     </section>

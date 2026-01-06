@@ -158,17 +158,15 @@
 
 <div class="map-info">
   <div class="map-stats">
-    <div class="stat-item">
-      <span class="stat-value">{{ $totalTalks }}</span>
-      <span class="stat-label">Talks</span>
-    </div>
-    <div class="stat-item">
-      <span class="stat-value">{{ len $uniqueCities }}</span>
-      <span class="stat-label">Villes</span>
-    </div>
-    <div class="stat-item">
-      <span class="stat-value">{{ len $uniqueCountries }}</span>
-      <span class="stat-label">Pays</span>
+    {{/* Get list of country names from the map */}}
+    {{ $countryNames := slice }}
+    {{ range $key, $value := $uniqueCountries }}
+      {{ $countryNames = $countryNames | append $key }}
+    {{ end }}
+    {{ $countryNames = sort $countryNames }}
+    {{ $countriesList := delimit $countryNames ", " }}
+    <div class="stat-item" style="flex: 1;">
+      <span class="stat-value" style="font-size: 1rem; font-weight: 600;">{{ $totalTalks }} Talks - {{ len $uniqueCities }} Cities - {{ len $uniqueCountries }} Countries{{ if $countriesList }} ({{ $countriesList }}){{ end }}</span>
     </div>
   </div>
 </div>
