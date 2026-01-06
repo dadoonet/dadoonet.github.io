@@ -9,15 +9,8 @@ conference:
   longitude: '3.876389'
 author: David Pilato
 avatar: /about/david_pilato.png
-tags:
-- elasticsearch
-- conference
-- java
-- cloud
-categories:
-- speaker
 series:
-- conferences
+- Elasticsearch
 date: 2012-11-21
 nolastmod: true
 draft: false
@@ -39,9 +32,6 @@ x:
     id: "270800223549399040"
   - user: "a_castelltort"
     id: "271380667508617216"
-
-
-
 ---
 David Pilato présentera au cours de la soirée pourquoi et comment il est passé de la recherche SQL à Elasticsearch en détaillant les apports de ce moteur par rapport à une solution pure Lucene :
 

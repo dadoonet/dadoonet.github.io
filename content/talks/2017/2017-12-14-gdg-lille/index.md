@@ -10,13 +10,6 @@ conference:
   url: "https://www.meetup.com/fr-FR/GDG-Lille/events/245130596/"
 author: David Pilato
 avatar: /about/david_pilato.png
-tags:
-  - elasticsearch
-  - conference
-  - java
-  - cloud
-categories:
-  - speaker
 series:
   - conferences
 date: 2017-12-14

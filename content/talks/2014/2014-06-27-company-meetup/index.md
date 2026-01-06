@@ -9,16 +9,9 @@ conference:
   longitude: "4.7585398"
 author: David Pilato
 avatar: /about/david_pilato.png
-tags:
-  - elasticsearch
-  - conference
-categories:
-  - speaker
 series:
   - conferences
 date: 2014-06-27
 nolastmod: true
 draft: false
-
 ---
-

@@ -10,13 +10,6 @@ conference:
   url: "https://lyonjug.org/2024/05/16/la-recherche-a-lheure-de-l-ia.html"
 author: David Pilato
 avatar: /about/david_pilato.png
-tags:
-  - elasticsearch
-  - conference
-  - java
-  - cloud
-categories:
-  - speaker
 series:
   - conferences
 date: 2024-05-16

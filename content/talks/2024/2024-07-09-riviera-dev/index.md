@@ -1,5 +1,4 @@
 ---
-
 title: "L’art du DeeJaying par la pratique"
 conference: 
   name: "Riviera Dev"
@@ -11,13 +10,6 @@ conference:
   longitude: "7.261953"
 author: David Pilato
 avatar: /about/david_pilato.png
-tags:
-  - elasticsearch
-  - conference
-  - java
-  - cloud
-categories:
-  - speaker
 series:
   - conferences
 date: 2024-07-09
@@ -36,9 +28,7 @@ links:
 
 aliases:
   - /A78dJt
-
 ---
-
 Dans cet atelier, nous allons découvrir quelques techniques utilisées par les DeeJays pour vous faire bouger toute une soirée :
 
 * L’ajustement des BPM (Battements Par Minute)

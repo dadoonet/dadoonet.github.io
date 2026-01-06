@@ -10,13 +10,6 @@ conference:
   url: "https://cfp.devoxx.fr/2022/talk/AEC-5516/Ajouter_de_A_a_Z_une_barre_de_recherche_dans_son_application"
 author: David Pilato
 avatar: /about/david_pilato.png
-tags:
-  - elasticsearch
-  - conference
-  - java
-  - cloud
-categories:
-  - speaker
 series:
   - conferences
 date: 2022-04-20
@@ -36,7 +29,6 @@ links:
 aliases:
   - /O2ZJHA
 ---
-
 L’année dernière, à coups de serverless et de machine learning, Guillaume avait présenté une application de partage de photographies. La reconnaissance d’image avait permis de savoir de quoi ces photos étaient faites, et ces métadonnées avaient été stockées dans Google Cloud Firestore. Mais il est temps de pouvoir rendre ces photos “cherchables” !
 
 Guillaume et David vous montreront comment chercher bien plus d’informations que par le nom du fichier et la date, notamment comment trouver des photos ressemblantes, de les rechercher par mot-clé. Une solution non pas avec des bouts de ficelles, mais avec des “Elastic” !!!

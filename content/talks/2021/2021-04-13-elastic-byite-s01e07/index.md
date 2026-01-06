@@ -7,13 +7,6 @@ conference:
   country_code: "Online"
 author: David Pilato
 avatar: /about/david_pilato.png
-tags:
-  - elasticsearch
-  - conference
-  - java
-  - cloud
-categories:
-  - speaker
 series:
   - conferences
 date: 2021-04-13
@@ -37,7 +30,5 @@ x:
 
 aliases:
   - /8z5taa
-
 ---
-
 You should always use aliases in Elasticsearch. This talk will explain why and how you can use this API. The Reindex API helps you to reindex a dataset into another index. We will cover this with some practical examples.

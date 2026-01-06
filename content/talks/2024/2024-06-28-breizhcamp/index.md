@@ -10,13 +10,6 @@ conference:
   url: "https://www.breizhcamp.org/"
 author: David Pilato
 avatar: /about/david_pilato.png
-tags:
-  - elasticsearch
-  - conference
-  - java
-  - cloud
-categories:
-  - speaker
 series:
   - conferences
 date: 2024-06-28

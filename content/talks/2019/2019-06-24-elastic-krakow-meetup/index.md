@@ -1,5 +1,4 @@
 ---
-
 title: "Enriching postal addresses with Elastic stack"
 conference: 
   name: "Elastic Krakow Meetup"
@@ -11,13 +10,6 @@ conference:
   url: "https://www.meetup.com/fr-FR/Elastic-Krakow/events/262282793/"
 author: David Pilato
 avatar: /about/david_pilato.png
-tags:
-  - elasticsearch
-  - conference
-  - java
-  - cloud
-categories:
-  - speaker
 series:
   - conferences
 date: 2019-06-24
@@ -45,9 +37,7 @@ links:
 
 aliases:
   - /im8Q3z
-
 ---
-
 > Come and learn how you can enrich your existing data with normalized postal addresses with geo location points thanks to open data and [BANO project](http://bano.openstreetmap.fr/data/).
 
 Most of the time postal addresses from our customers or users are not very well formatted or defined in our information systems. And it can become a nightmare if you are a call center employee for example and want to find a customer by its address.

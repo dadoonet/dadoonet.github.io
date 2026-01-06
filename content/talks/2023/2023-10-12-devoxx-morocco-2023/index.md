@@ -10,13 +10,6 @@ conference:
   url: "https://devoxx.ma/talk/?id=1608"
 author: David Pilato
 avatar: /about/david_pilato.png
-tags:
-  - elasticsearch
-  - conference
-  - java
-  - cloud
-categories:
-  - speaker
 series:
   - conferences
 date: 2023-10-12

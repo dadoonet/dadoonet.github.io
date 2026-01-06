@@ -7,13 +7,6 @@ conference:
   country_code: "Online"
 author: David Pilato
 avatar: /about/david_pilato.png
-tags:
-  - elasticsearch
-  - conference
-  - java
-  - cloud
-categories:
-  - speaker
 series:
   - conferences
 date: 2021-04-09
@@ -35,7 +28,5 @@ x:
 
 aliases:
   - /jAQF3k
-
 ---
-
 Index Split, Shrink and Rollover features are handy to keep the shard size as optimal as possible. This session will go through practical examples.

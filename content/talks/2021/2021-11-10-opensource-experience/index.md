@@ -10,13 +10,6 @@ conference:
   url: "https://www.sido-osxp.com/fr/session/e55fd218-1e28-ec11-ae72-a04a5e7d345e"
 author: David Pilato
 avatar: /about/david_pilato.png
-tags:
-  - elasticsearch
-  - conference
-  - java
-  - cloud
-categories:
-  - speaker
 series:
   - conferences
 date: 2021-11-10

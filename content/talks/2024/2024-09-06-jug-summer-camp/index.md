@@ -10,13 +10,6 @@ conference:
   url: "https://www.jugsummercamp.org/edition/15/presentations/GxmHLbTOhV23O4y88B1Z"
 author: David Pilato
 avatar: /about/david_pilato.png
-tags:
-  - elasticsearch
-  - conference
-  - java
-  - cloud
-categories:
-  - speaker
 series:
   - conferences
 date: 2024-09-06

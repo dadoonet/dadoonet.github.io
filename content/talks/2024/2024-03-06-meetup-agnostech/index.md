@@ -10,13 +10,6 @@ conference:
   url: "https://www.meetup.com/agnostech-pau/events/299096165"
 author: David Pilato
 avatar: /about/david_pilato.png
-tags:
-  - elasticsearch
-  - conference
-  - java
-  - cloud
-categories:
-  - speaker
 series:
   - conferences
 date: 2024-03-06

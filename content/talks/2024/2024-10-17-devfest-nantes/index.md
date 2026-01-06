@@ -10,13 +10,6 @@ conference:
   url: "https://devfest2024.gdgnantes.com/"
 author: David Pilato
 avatar: /about/david_pilato.png
-tags:
-  - elasticsearch
-  - conference
-  - java
-  - cloud
-categories:
-  - speaker
 series:
   - conferences
 date: 2024-10-17

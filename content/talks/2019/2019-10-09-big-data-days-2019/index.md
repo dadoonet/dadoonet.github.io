@@ -10,13 +10,6 @@ conference:
   url: "https://bigdatadays.ru/en/david-pilato/"
 author: David Pilato
 avatar: /about/david_pilato.png
-tags:
-  - elasticsearch
-  - conference
-  - java
-  - cloud
-categories:
-  - speaker
 series:
   - conferences
 date: 2019-10-09
@@ -45,7 +38,6 @@ links:
 aliases:
   - /Diz4Uz
 ---
-
 How do you mix SQL and NoSQL worlds without starting a messy revolution?
 
 This live coding talk will show you how to add Elasticsearch to your legacy application without changing all your current development habits. Your application will have suddenly have advanced search features, all without the need to write complex SQL code!

@@ -10,13 +10,6 @@ conference:
   url: "https://www.4sh.fr/"
 author: David Pilato
 avatar: /about/david_pilato.png
-tags:
-  - elasticsearch
-  - conference
-  - java
-  - cloud
-categories:
-  - speaker
 series:
   - conferences
 date: 2025-03-21

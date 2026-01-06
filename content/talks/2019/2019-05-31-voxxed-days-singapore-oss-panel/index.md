@@ -1,5 +1,4 @@
 ---
-
 title: "Panel discussion: all about open source"
 conference: 
   name: "Voxxed Days Singapore"
@@ -10,11 +9,6 @@ conference:
   longitude: "103.819836"
 author: David Pilato
 avatar: /about/david_pilato.png
-tags:
-  - conference
-  - open source
-categories:
-  - speaker
 series:
   - conferences
 date: 2019-05-31
@@ -28,9 +22,7 @@ notist: "dadoonet/JSiWGy"
 
 aliases:
   - /JSiWGy
-
 ---
-
 We all use open source software in our personal, business or work related projects. Ever wondered who the people behind developing & maintaining these open source libraries are?
 Join us on for a panel discussion to know more about the intricacies of open source development & learn from the masters themselves. Hear them share their career journeys, their motivations behind contributing to OS and how they manage teams on various OS projects.
 Our panelists:

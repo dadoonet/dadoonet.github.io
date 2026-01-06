@@ -9,13 +9,6 @@ conference:
   longitude: "-1.151139"
 author: David Pilato
 avatar: /about/david_pilato.png
-tags:
-  - elasticsearch
-  - conference
-  - java
-  - cloud
-categories:
-  - speaker
 series:
   - conferences
 date: 2019-09-13

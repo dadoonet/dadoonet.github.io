@@ -10,13 +10,6 @@ conference:
   url: "https://www.tadx.fr/2024-05-21-47-eme-event"
 author: David Pilato
 avatar: /about/david_pilato.png
-tags:
-  - elasticsearch
-  - conference
-  - java
-  - cloud
-categories:
-  - speaker
 series:
   - conferences
 date: 2024-05-21

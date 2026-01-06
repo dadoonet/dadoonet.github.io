@@ -10,13 +10,6 @@ conference:
   url: "https://www.meetup.com/fr-FR/alpesjug/events/299609510/"
 author: David Pilato
 avatar: /about/david_pilato.png
-tags:
-  - elasticsearch
-  - conference
-  - java
-  - cloud
-categories:
-  - speaker
 series:
   - conferences
 date: 2024-05-15

@@ -10,13 +10,6 @@ conference:
   url: "https://www.accenture.com/nl-en"
 author: David Pilato
 avatar: /about/david_pilato.png
-tags:
-  - elasticsearch
-  - conference
-  - java
-  - cloud
-categories:
-  - speaker
 series:
   - conferences
 date: 2022-03-18

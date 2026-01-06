@@ -7,13 +7,6 @@ conference:
   country_code: "Online"
 author: David Pilato
 avatar: /about/david_pilato.png
-tags:
-- elasticsearch
-- conference
-- java
-- cloud
-categories:
-- speaker
 series:
 - conferences
 date: 2021-10-20
@@ -36,7 +29,6 @@ x:
   id: '1450758690672234496'
 #- user: spinscale
 #  id: '1450752411166023683'
-
 ---
 For three weeks we will dive into a different topic of Observability using Elastic Stack every day before lunch in the CEST/EST timezone!
 All you need to do is to be ready at 11:45 CEST/EST.

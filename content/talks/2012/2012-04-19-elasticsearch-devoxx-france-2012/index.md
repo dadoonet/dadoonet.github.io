@@ -5,19 +5,12 @@ conference:
   city: Paris
   country: France
   country_code: fr
-  latitude: '48.856614'
-  longitude: '2.352222'
+  latitude: '48.8318573'
+  longitude: '2.339769'
 author: David Pilato
 avatar: /about/david_pilato.png
-tags:
-- elasticsearch
-- conference
-- java
-- cloud
-categories:
-- speaker
 series:
-- conferences
+- Elasticsearch
 date: 2012-04-19
 nolastmod: true
 draft: false

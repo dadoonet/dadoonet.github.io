@@ -10,13 +10,6 @@ conference:
   longitude: '25.279651'
 author: David Pilato
 avatar: /about/david_pilato.png
-tags:
-- elasticsearch
-- conference
-- java
-- cloud
-categories:
-- speaker
 series:
 - conferences
 date: 2023-11-24

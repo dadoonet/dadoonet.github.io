@@ -1,5 +1,4 @@
 ---
-
 title: "Testcontainers pour de vrais tests d’intégration d’Elasticsearch"
 conference: 
   name: "Devfest Lille"
@@ -10,13 +9,6 @@ conference:
   longitude: "3.057256"
 author: David Pilato
 avatar: /about/david_pilato.png
-tags:
-  - elasticsearch
-  - conference
-  - java
-  - cloud
-categories:
-  - speaker
 series:
   - conferences
 date: 2019-06-14
@@ -49,9 +41,7 @@ links:
 
 aliases:
   - /L5rDwO
-
 ---
-
 Les tests d’intégration peuvent devenir un cauchemar lorsqu’ils sont lancés depuis la même JVM que votre code:
 
 * Conflit de JARs (JAR Hell)

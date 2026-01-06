@@ -10,13 +10,6 @@ conference:
   url: "https://devopsdays.org/events/2022-geneva/"
 author: David Pilato
 avatar: /about/david_pilato.png
-tags:
-  - elasticsearch
-  - conference
-  - java
-  - cloud
-categories:
-  - speaker
 series:
   - conferences
 date: 2022-05-12

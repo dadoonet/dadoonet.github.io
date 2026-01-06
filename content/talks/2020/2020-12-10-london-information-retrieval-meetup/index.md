@@ -7,13 +7,6 @@ conference:
   country_code: "Online"
 author: David Pilato
 avatar: /about/david_pilato.png
-tags:
-- elasticsearch
-- conference
-- java
-- cloud
-categories:
-- speaker
 series:
 - conferences
 date: 2020-12-10
@@ -47,7 +40,6 @@ x:
 - user: dadoonet
   id: '1337117531493031936'
 ---
-
 > Come and learn how you can enrich your existing data with normalized postal addresses with geo location points thanks to open data and [BANO project](http://bano.openstreetmap.fr/data/).
 
 Most of the time postal addresses from our customers or users are not very well formatted or defined in our information systems. And it can become a nightmare if you are a call center employee for example and want to find a customer by its address.

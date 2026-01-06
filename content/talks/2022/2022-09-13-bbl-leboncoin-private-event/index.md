@@ -10,13 +10,6 @@ conference:
   url: "https://www.leboncoin.fr"
 author: David Pilato
 avatar: /about/david_pilato.png
-tags:
-  - elasticsearch
-  - conference
-  - java
-  - cloud
-categories:
-  - speaker
 series:
   - conferences
 date: 2022-09-13

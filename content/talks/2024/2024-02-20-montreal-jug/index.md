@@ -10,13 +10,6 @@ conference:
   url: "https://www.meetup.com/montreal-jug/events/298437494"
 author: David Pilato
 avatar: /about/david_pilato.png
-tags:
-  - elasticsearch
-  - conference
-  - java
-  - cloud
-categories:
-  - speaker
 series:
   - conferences
 date: 2024-02-20

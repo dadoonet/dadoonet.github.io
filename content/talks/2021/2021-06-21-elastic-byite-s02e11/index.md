@@ -7,13 +7,6 @@ conference:
   country_code: "Online"
 author: David Pilato
 avatar: /about/david_pilato.png
-tags:
-- elasticsearch
-- conference
-- java
-- cloud
-categories:
-- speaker
 series:
 - conferences
 date: 2021-06-21
@@ -41,5 +34,4 @@ x:
 - user: dadoonet
   id: '1407009163943714816'
 ---
-
 Discover how to manage your ingest pipelines in Kibana with this 8 minutes session.

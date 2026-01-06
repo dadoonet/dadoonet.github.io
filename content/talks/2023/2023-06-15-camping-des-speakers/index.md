@@ -1,5 +1,4 @@
 ---
-
 title: "L’art du DeeJaying par la pratique"
 conference: 
   name: "Camping des Speakers"
@@ -11,13 +10,6 @@ conference:
   url: "https://camping-speakers.fr/sessions/l_art_du_DeeJaying_par_la_pratique/"
 author: David Pilato
 avatar: /about/david_pilato.png
-tags:
-  - elasticsearch
-  - conference
-  - java
-  - cloud
-categories:
-  - speaker
 series:
   - conferences
 date: 2023-06-15
@@ -67,9 +59,7 @@ links:
 
 aliases:
   - /qZrOqw
-
 ---
-
 Dans cet atelier, nous allons découvrir quelques techniques utilisées par les DeeJays pour vous faire bouger toute une soirée :
 
 * L’ajustement des BPM (Battements Par Minute)

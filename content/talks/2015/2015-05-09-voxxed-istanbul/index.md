@@ -9,11 +9,6 @@ conference:
   longitude: "28.7319906"
 author: David Pilato
 avatar: /about/david_pilato.png
-tags:
-  - elasticsearch
-  - conference
-categories:
-  - speaker
 series:
   - conferences
 date: 2015-05-09
@@ -22,7 +17,6 @@ draft: false
 
 attendees: 60
 ---
-
 How do you mix SQL and NoSQL worlds without starting a messy revolution?
 
 This live coding talk will show you how to add Elasticsearch to your legacy application without changing all your current development habits. Your application will have suddenly have advanced search features, all without the need to write complex SQL code!

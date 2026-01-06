@@ -1,5 +1,4 @@
 ---
-
 title: "L’art du DeeJaying par la pratique"
 conference: 
   url: "https://2025.volcamp.io/"
@@ -11,13 +10,6 @@ conference:
   longitude: "3.087025"
 author: David Pilato
 avatar: /about/david_pilato.png
-tags:
-  - elasticsearch
-  - conference
-  - java
-  - cloud
-categories:
-  - speaker
 series:
   - conferences
 date: 2025-10-02
@@ -36,9 +28,7 @@ links:
 
 aliases:
   - /Ss00b2
-
 ---
-
 Dans cet atelier, nous allons découvrir quelques techniques utilisées par les DeeJays pour vous faire bouger toute une soirée :
 
 * L’ajustement des BPM (Battements Par Minute)

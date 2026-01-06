@@ -7,13 +7,6 @@ conference:
   country_code: "Online"
 author: David Pilato
 avatar: /about/david_pilato.png
-tags:
-  - elasticsearch
-  - conference
-  - java
-  - cloud
-categories:
-  - speaker
 series:
   - conferences
 date: 2021-06-24
@@ -36,7 +29,5 @@ x:
 
 aliases:
   - /CU8BpK
-
 ---
-
 Discover how to manage your snapshots from Kibana in this 8 minutes session

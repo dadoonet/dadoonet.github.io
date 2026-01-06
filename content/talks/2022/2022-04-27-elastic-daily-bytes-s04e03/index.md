@@ -7,13 +7,6 @@ conference:
   country_code: "Online"
 author: David Pilato
 avatar: /about/david_pilato.png
-tags:
-  - elasticsearch
-  - conference
-  - java
-  - cloud
-categories:
-  - speaker
 series:
   - conferences
 date: 2022-04-27
@@ -35,9 +28,7 @@ links:
 
 aliases:
   - /cnOMTv
-
 ---
-
 For three weeks we will dive into a different topic of Elastic Cloud every day before lunch in the CEST/EST timezone!
 
 All you need to do is to be ready and tune in at 11:45 CEST/EST.

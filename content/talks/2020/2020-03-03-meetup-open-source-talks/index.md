@@ -10,13 +10,6 @@ conference:
   url: "https://www.meetup.com/fr-FR/Open-Source_Talks/events/268883657/"
 author: David Pilato
 avatar: /about/david_pilato.png
-tags:
-  - elasticsearch
-  - conference
-  - java
-  - cloud
-categories:
-  - speaker
 series:
   - conferences
 date: 2020-03-03

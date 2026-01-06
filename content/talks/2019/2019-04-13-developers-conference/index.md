@@ -10,13 +10,6 @@ conference:
   url: "https://conference.mscc.mu/session/76179"
 author: David Pilato
 avatar: /about/david_pilato.png
-tags:
-  - elasticsearch
-  - conference
-  - java
-  - cloud
-categories:
-  - speaker
 series:
   - conferences
 date: 2019-04-13
@@ -51,7 +44,6 @@ links:
 aliases:
   - /5Hhw01
 ---
-
 Comment mixer SQL et NoSQL sans faire la révolution ?
 
 Cette “live coding” conférence vous montrera comment ajouter Elasticsearch à votre application existante sans changer vos habitudes. Vous aurez des fonctions de recherche avancées sans avoir à écrire du SQL complexe !

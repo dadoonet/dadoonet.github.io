@@ -7,13 +7,6 @@ conference:
   country_code: "Online"
 author: David Pilato
 avatar: /about/david_pilato.png
-tags:
-  - elasticsearch
-  - conference
-  - java
-  - cloud
-categories:
-  - speaker
 series:
   - conferences
 date: 2021-04-22
@@ -35,7 +28,5 @@ x:
 
 aliases:
   - /jTjq9d
-
 ---
-
 Snapshots are a way to backup your data. But do you know that you can search in your snapshots nowadays? And more than that, with the coming 7.12 version, you don’t even have to recover them to make them searchable.

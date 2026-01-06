@@ -7,13 +7,6 @@ conference:
   country_code: "Online"
 author: David Pilato
 avatar: /about/david_pilato.png
-tags:
-  - elasticsearch
-  - conference
-  - java
-  - cloud
-categories:
-  - speaker
 series:
   - conferences
 date: 2024-08-21
@@ -36,5 +29,4 @@ links:
 aliases:
   - /fZF2Ui
 ---
-
 In this session, we will use the principles of vector search to find pieces of music that are (maybe) similar to others.

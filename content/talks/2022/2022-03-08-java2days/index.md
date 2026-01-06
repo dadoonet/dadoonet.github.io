@@ -7,13 +7,6 @@ conference:
   country_code: "Online"
 author: David Pilato
 avatar: /about/david_pilato.png
-tags:
-- elasticsearch
-- conference
-- java
-- cloud
-categories:
-- speaker
 series:
 - conferences
 date: 2022-03-08
@@ -44,7 +37,6 @@ x:
 - user: dadoonet
   id: '1501218291955769353'
 ---
-
 How do you mix SQL and NoSQL worlds without starting a messy revolution?
 
 This live coding talk will show you how to add Elasticsearch to your legacy application without changing all your current development habits. Your application will have suddenly have advanced search features, all without the need to write complex SQL code!

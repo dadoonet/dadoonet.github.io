@@ -7,13 +7,6 @@ conference:
   country_code: "Online"
 author: David Pilato
 avatar: /about/david_pilato.png
-tags:
-  - elasticsearch
-  - conference
-  - java
-  - cloud
-categories:
-  - speaker
 series:
   - conferences
 date: 2021-04-20
@@ -37,7 +30,5 @@ x:
 
 aliases:
   - /Shtlza
-
 ---
-
 When it comes to index text with Elasticsearch, the text is first analyzed and transformed into tokens before getting indexed. Enter text analysis.

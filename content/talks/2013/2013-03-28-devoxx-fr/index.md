@@ -9,11 +9,6 @@ conference:
   longitude: "2.3376006"
 author: David Pilato
 avatar: /about/david_pilato.png
-tags:
-  - elasticsearch
-  - conference
-categories:
-  - speaker
 series:
   - conferences
 date: 2013-03-28
@@ -23,7 +18,6 @@ draft: false
 youtube: "zcQ7VHuQzuU"
 attendees: 500
 ---
-
 Au cours de cette session "live coding", Tugdual et David reprendront une application full SQL "à papa" pour la réécrire en NoSQL en 45 minutes.
 En s'appuyant sur CouchBase et Elasticsearch, ils mettront en avant les bénéfices de cette nouvelle architecture :
 

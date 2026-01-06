@@ -10,13 +10,6 @@ conference:
   url: "https://www.opensource-experience.com/"
 author: David Pilato
 avatar: /about/david_pilato.png
-tags:
-  - elasticsearch
-  - conference
-  - java
-  - cloud
-categories:
-  - speaker
 series:
   - conferences
 date: 2023-12-06

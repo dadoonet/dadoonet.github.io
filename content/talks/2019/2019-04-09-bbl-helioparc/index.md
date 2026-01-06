@@ -10,13 +10,6 @@ conference:
   url: "https://www.meetup.com/fr-FR/ElasticFR/events/260241960/"
 author: David Pilato
 avatar: /about/david_pilato.png
-tags:
-  - elasticsearch
-  - conference
-  - java
-  - cloud
-categories:
-  - speaker
 series:
   - conferences
 date: 2019-04-09

@@ -7,13 +7,6 @@ conference:
   country_code: "Online"
 author: David Pilato
 avatar: /about/david_pilato.png
-tags:
-  - elasticsearch
-  - conference
-  - java
-  - cloud
-categories:
-  - speaker
 series:
   - conferences
 date: 2021-06-17
@@ -39,7 +32,5 @@ x:
 
 aliases:
   - /ALjjQ5
-
 ---
-
 Discover what Kibana Maps is about in this 8 minutes session

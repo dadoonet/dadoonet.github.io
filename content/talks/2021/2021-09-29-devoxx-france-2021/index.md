@@ -10,13 +10,6 @@ conference:
   url: "https://cfp.devoxx.fr/2021/talk/SQR-3658/Identifier_les_menaces_avec_Elastic_SIEM"
 author: David Pilato
 avatar: /about/david_pilato.png
-tags:
-  - elasticsearch
-  - conference
-  - java
-  - cloud
-categories:
-  - speaker
 series:
   - conferences
 date: 2021-09-29

@@ -7,13 +7,6 @@ conference:
   country_code: "Online"
 author: David Pilato
 avatar: /about/david_pilato.png
-tags:
-  - elasticsearch
-  - conference
-  - java
-  - cloud
-categories:
-  - speaker
 series:
   - conferences
 date: 2023-10-02
@@ -39,9 +32,7 @@ x:
 
 aliases:
   - /cLMqhx
-
 ---
-
 Daily Elastic Byte Season 05: Search
 
 For three weeks we will dive into a different topic related to the Search space every day before lunch in the CEST/EST timezone!

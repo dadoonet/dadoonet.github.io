@@ -12,4 +12,3 @@ draft: false
 
 attendees: 15
 ---
-
