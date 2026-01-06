@@ -10,8 +10,7 @@ conference:
   url: "https://www.orpea.com/"
 author: David Pilato
 avatar: /about/david_pilato.png
-series:
-  - conferences
+talk: conferences
 date: 2022-06-01
 nolastmod: true
 draft: false

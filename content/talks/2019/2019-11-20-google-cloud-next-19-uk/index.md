@@ -10,8 +10,7 @@ conference:
   url: "https://cloud.withgoogle.com/next/uk/speakers?session=DZ105"
 author: David Pilato
 avatar: /about/david_pilato.png
-series:
-  - conferences
+talk: conferences
 date: 2019-11-20
 nolastmod: true
 draft: false

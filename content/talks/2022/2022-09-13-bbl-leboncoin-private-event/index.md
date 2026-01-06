@@ -10,8 +10,7 @@ conference:
   url: "https://www.leboncoin.fr"
 author: David Pilato
 avatar: /about/david_pilato.png
-series:
-  - conferences
+talk: conferences
 date: 2022-09-13
 nolastmod: true
 draft: false

@@ -10,8 +10,7 @@ conference:
   url: "https://talan.com/"
 author: David Pilato
 avatar: /about/david_pilato.png
-series:
-  - conferences
+talk: conferences
 date: 2024-05-23
 nolastmod: true
 draft: false

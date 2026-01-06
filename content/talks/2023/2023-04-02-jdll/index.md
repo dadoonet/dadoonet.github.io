@@ -10,8 +10,7 @@ conference:
   url: "https://jdll.org/programme"
 author: David Pilato
 avatar: /about/david_pilato.png
-series:
-  - conferences
+talk: conferences
 date: 2023-04-02
 nolastmod: true
 draft: false

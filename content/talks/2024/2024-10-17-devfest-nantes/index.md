@@ -10,8 +10,7 @@ conference:
   url: "https://devfest2024.gdgnantes.com/"
 author: David Pilato
 avatar: /about/david_pilato.png
-series:
-  - conferences
+talk: conferences
 date: 2024-10-17
 nolastmod: true
 draft: false

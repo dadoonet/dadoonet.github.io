@@ -6,8 +6,7 @@ conference:
   country_code: "Online"
 author: David Pilato
 avatar: /about/david_pilato.png
-series:
-  - conferences
+talk: conferences
 date: 2020-06-16
 nolastmod: true
 draft: false

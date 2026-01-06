@@ -10,8 +10,7 @@ conference:
   url: "https://jprime.io/"
 author: David Pilato
 avatar: /about/david_pilato.png
-series:
-  - conferences
+talk: conferences
 date: 2024-05-29
 nolastmod: true
 draft: false

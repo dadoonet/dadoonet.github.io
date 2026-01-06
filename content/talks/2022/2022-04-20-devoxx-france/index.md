@@ -10,8 +10,7 @@ conference:
   url: "https://cfp.devoxx.fr/2022/talk/AEC-5516/Ajouter_de_A_a_Z_une_barre_de_recherche_dans_son_application"
 author: David Pilato
 avatar: /about/david_pilato.png
-series:
-  - conferences
+talk: conferences
 date: 2022-04-20
 nolastmod: true
 draft: false

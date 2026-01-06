@@ -10,8 +10,7 @@ conference:
   url: "https://www.meetup.com/Duchess-France-Meetup/events/259185974/"
 author: David Pilato
 avatar: /about/david_pilato.png
-series:
-  - conferences
+talk: conferences
 date: 2019-02-26
 nolastmod: true
 draft: false

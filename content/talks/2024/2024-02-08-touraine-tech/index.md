@@ -10,8 +10,7 @@ conference:
   url: "https://touraine.tech/talk/oVFqGQVuSwZBRIfpXwVd/"
 author: David Pilato
 avatar: /about/david_pilato.png
-series:
-  - conferences
+talk: conferences
 date: 2024-02-08
 nolastmod: true
 draft: false

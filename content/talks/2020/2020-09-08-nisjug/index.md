@@ -7,8 +7,7 @@ conference:
   url: "https://www.meetup.com/NisJUG/events/272577175/"
 author: David Pilato
 avatar: /about/david_pilato.png
-series:
-  - conferences
+talk: conferences
 date: 2020-09-08
 nolastmod: true
 draft: false

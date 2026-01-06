@@ -10,8 +10,7 @@ conference:
   url: "https://www.developer-week.de/en/program/#/talk/advanced-elasticsearch-for-your-legacy-application"
 author: David Pilato
 avatar: /about/david_pilato.png
-series:
-  - conferences
+talk: conferences
 date: 2024-07-03
 nolastmod: true
 draft: false

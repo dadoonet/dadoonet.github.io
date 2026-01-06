@@ -10,8 +10,7 @@ conference:
   url: "https://sunny-tech.io/"
 author: David Pilato
 avatar: /about/david_pilato.png
-series:
-  - conferences
+talk: conferences
 date: 2024-07-05
 nolastmod: true
 draft: false

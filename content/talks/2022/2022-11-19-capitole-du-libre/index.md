@@ -10,8 +10,7 @@ conference:
   url: "https://cfp.capitoledulibre.org/cdl-2022/talk/SAGLQM/"
 author: David Pilato
 avatar: /about/david_pilato.png
-series:
-  - conferences
+talk: conferences
 date: 2022-11-19
 nolastmod: true
 draft: false

@@ -10,8 +10,7 @@ conference:
   url: "https://www.techweek.ro/software-architecture-summit"
 author: David Pilato
 avatar: /about/david_pilato.png
-series:
-  - conferences
+talk: conferences
 date: 2022-06-17
 nolastmod: true
 draft: false

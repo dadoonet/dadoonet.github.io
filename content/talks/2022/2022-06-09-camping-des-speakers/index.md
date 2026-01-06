@@ -10,8 +10,7 @@ conference:
   url: "https://camping-speakers.fr/"
 author: David Pilato
 avatar: /about/david_pilato.png
-series:
-  - conferences
+talk: conferences
 date: 2022-06-09
 nolastmod: true
 draft: false

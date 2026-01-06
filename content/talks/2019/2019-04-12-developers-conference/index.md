@@ -10,8 +10,7 @@ conference:
   url: "https://conference.mscc.mu/session/76180"
 author: David Pilato
 avatar: /about/david_pilato.png
-series:
-  - conferences
+talk: conferences
 date: 2019-04-12
 nolastmod: true
 draft: false

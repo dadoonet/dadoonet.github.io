@@ -10,8 +10,7 @@ conference:
   url: "https://www.opensource-experience.com/"
 author: David Pilato
 avatar: /about/david_pilato.png
-series:
-  - conferences
+talk: conferences
 date: 2023-12-06
 nolastmod: true
 draft: false

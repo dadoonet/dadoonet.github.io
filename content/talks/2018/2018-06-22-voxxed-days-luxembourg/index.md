@@ -10,8 +10,7 @@ conference:
   url: "https://voxxeddays.com/luxembourg/"
 author: David Pilato
 avatar: /about/david_pilato.png
-series:
-  - conferences
+talk: conferences
 date: 2018-06-22
 nolastmod: true
 draft: false

@@ -10,8 +10,7 @@ conference:
   url: "https://snowcamp.io/fr/"
 author: David Pilato
 avatar: /about/david_pilato.png
-series:
-  - conferences
+talk: conferences
 date: 2023-01-25
 nolastmod: true
 draft: false

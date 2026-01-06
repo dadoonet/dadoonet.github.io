@@ -10,8 +10,7 @@ conference:
   url: "https://devopsdays.org/events/2022-geneva/"
 author: David Pilato
 avatar: /about/david_pilato.png
-series:
-  - conferences
+talk: conferences
 date: 2022-05-12
 nolastmod: true
 draft: false

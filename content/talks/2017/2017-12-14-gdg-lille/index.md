@@ -10,8 +10,7 @@ conference:
   url: "https://www.meetup.com/fr-FR/GDG-Lille/events/245130596/"
 author: David Pilato
 avatar: /about/david_pilato.png
-series:
-  - conferences
+talk: conferences
 date: 2017-12-14
 nolastmod: true
 draft: false

@@ -10,8 +10,7 @@ conference:
   url: "https://devoxx.fr/"
 author: David Pilato
 avatar: /about/david_pilato.png
-series:
-  - conferences
+talk: conferences
 date: 2018-04-20
 nolastmod: true
 draft: false

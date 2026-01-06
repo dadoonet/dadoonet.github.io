@@ -10,8 +10,7 @@ conference:
   url: "https://my.weezevent.com/elastic-search"
 author: David Pilato
 avatar: /about/david_pilato.png
-series:
-  - conferences
+talk: conferences
 date: 2024-12-12
 nolastmod: true
 draft: false

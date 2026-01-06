@@ -10,8 +10,7 @@ conference:
   url: "https://www.jolimoi.com/"
 author: David Pilato
 avatar: /about/david_pilato.png
-series:
-  - conferences
+talk: conferences
 date: 2022-05-19
 nolastmod: true
 draft: false

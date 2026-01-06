@@ -10,8 +10,7 @@ conference:
   url: "https://www.meetup.com/fr-FR/AgnosTech-Pau/events/258559231/"
 author: David Pilato
 avatar: /about/david_pilato.png
-series:
-  - conferences
+talk: conferences
 date: 2019-04-08
 nolastmod: true
 draft: false

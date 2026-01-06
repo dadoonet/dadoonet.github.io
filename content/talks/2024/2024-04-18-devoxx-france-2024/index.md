@@ -10,8 +10,7 @@ conference:
   url: "https://mobile.devoxx.com/events/devoxxfr2024/talks/4178/details"
 author: David Pilato
 avatar: /about/david_pilato.png
-series:
-  - conferences
+talk: conferences
 date: 2024-04-18
 nolastmod: true
 draft: false

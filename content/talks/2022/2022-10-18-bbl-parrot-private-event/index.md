@@ -10,8 +10,7 @@ conference:
   url: "https://www.parrot.com/fr"
 author: David Pilato
 avatar: /about/david_pilato.png
-series:
-  - conferences
+talk: conferences
 date: 2022-10-18
 nolastmod: true
 draft: false

@@ -10,8 +10,7 @@ conference:
   url: "https://www.meetup.com/brujug/events/304382685/"
 author: David Pilato
 avatar: /about/david_pilato.png
-series:
-  - conferences
+talk: conferences
 date: 2024-11-27
 nolastmod: true
 draft: false

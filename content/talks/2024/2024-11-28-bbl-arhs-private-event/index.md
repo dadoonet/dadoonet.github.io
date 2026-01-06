@@ -10,8 +10,7 @@ conference:
   url: "https://www.arhs-group.com/"
 author: David Pilato
 avatar: /about/david_pilato.png
-series:
-  - conferences
+talk: conferences
 date: 2024-11-28
 nolastmod: true
 draft: false

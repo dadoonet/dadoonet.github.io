@@ -10,8 +10,7 @@ conference:
   url: "https://camping-speakers.fr/sessions/l_art_du_DeeJaying_par_la_pratique/"
 author: David Pilato
 avatar: /about/david_pilato.png
-series:
-  - conferences
+talk: conferences
 date: 2023-06-15
 nolastmod: true
 draft: false

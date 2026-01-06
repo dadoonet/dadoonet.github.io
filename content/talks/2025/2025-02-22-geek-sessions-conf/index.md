@@ -10,8 +10,7 @@ conference:
   url: "https://geeksessionsconf.pt/"
 author: David Pilato
 avatar: /about/david_pilato.png
-series:
-  - conferences
+talk: conferences
 date: 2025-02-22
 nolastmod: true
 draft: false
