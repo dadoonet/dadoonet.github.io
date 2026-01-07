@@ -10,7 +10,7 @@ conference:
   longitude: "2.352222"
 author: David Pilato
 avatar: /about/david_pilato.png
-# talk: conferences
+talk: Potion Magique
 date: 2025-04-18
 nolastmod: true
 draft: false

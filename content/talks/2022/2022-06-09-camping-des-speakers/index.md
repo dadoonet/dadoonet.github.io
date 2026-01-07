@@ -10,7 +10,7 @@ conference:
   url: "https://camping-speakers.fr/"
 author: David Pilato
 avatar: /about/david_pilato.png
-# talk: conferences
+talk: Potion Magique
 date: 2022-06-09
 nolastmod: true
 draft: false
@@ -33,8 +33,6 @@ x:
     id: "1535273724898836480"
   - user: "dadideo"
     id: "1535256169899499521"
-  - user: "La_Fee_Dragee"
-    id: "1535247233557401600"
   - user: "dadoonet"
     id: "1535192114639753216"
   - user: "BillyTheTroll"

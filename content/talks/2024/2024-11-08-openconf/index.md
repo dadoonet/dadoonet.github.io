@@ -7,7 +7,7 @@ conference:
   url: "https://www.open-conf.gr/"
 author: David Pilato
 avatar: /about/david_pilato.png
-# talk: conferences
+talk: Music Search
 date: 2024-11-08
 nolastmod: true
 draft: false

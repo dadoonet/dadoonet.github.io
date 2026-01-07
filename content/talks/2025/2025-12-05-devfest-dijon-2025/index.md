@@ -2,7 +2,7 @@
 title: "Envie de booster ta carrière ? Open source-toi !"
 # description: ""
 conference: 
-  name: "DevFest Dijon 2025"
+  name: "DevFest Dijon"
   url: "https://devfest.developers-group-dijon.fr/session/cm9sayfd8027io63mgq4ei7dn/"
   city: "Dijon"
   country: "France"
@@ -20,6 +20,7 @@ pdf: "2025/2025-12-05-devfest-dijon-2025.pdf"
 # Speaker specific fields
 #youtube: "sxWTPruEWRU"
 notist: "dadoonet/nDR5Bo"
+talk: Potion Magique
 links:
   - title: "La potion magique pour faire avancer ta carrière"
     url: "https://david.pilato.fr/posts/2022-06-10-la-potion-magique-pour-faire-avancer-ta-carriere/"
