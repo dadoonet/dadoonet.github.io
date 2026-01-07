@@ -16,6 +16,8 @@ draft: true
 pdf: "{{ substr .File.ContentBaseName 0 4 }}/{{ .File.ContentBaseName }}.pdf"
 #cover: "cover.png"
 
+# talk: Talk template name (like black friday, ES|QL, Serverless, etc.)
+
 # Speaker specific fields
 #youtube: ""      # ID de la vidéo YouTube (ex: dQw4w9WgXcQ)
 #links:
