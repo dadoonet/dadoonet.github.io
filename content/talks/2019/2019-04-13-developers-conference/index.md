@@ -23,8 +23,6 @@ notist: "dadoonet/5Hhw01"
 x:
   - user: "dadoonet"
     id: "1116986432223088642"
-  - user: "OssAnna16"
-    id: "1116979424585506817"
   - user: "dadoonet"
     id: "1116978098531074048"
   - user: "dadoonet"

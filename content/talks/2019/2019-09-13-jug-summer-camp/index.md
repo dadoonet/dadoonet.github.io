@@ -27,8 +27,6 @@ x:
     id: "1172417393362030593"
   - user: "jeromepetit"
     id: "1172415259589529601"
-  - user: "JulienTopcu"
-    id: "1172415223606607873"
   - user: "jugsummercamp"
     id: "1172414593332678657"
   - user: "dadoonet"
