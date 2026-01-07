@@ -223,7 +223,7 @@
     {{ $totalRelated := len $relatedTalks }}
     {{ $sortedRelated := sort $relatedTalks ".Date" "desc" }}
     {{ $displayLimit := 15 }}
-    {{ $displayedTalks := first $displayLimit $sortedRelated }}
+    
     <nav class="w-full">
       <div class="text-sm font-semibold mb-2 flex items-center gap-2">
         Played 
@@ -231,19 +231,149 @@
         times
       </div>
       <ul class="menu menu-sm bg-base-200 rounded-box w-full max-h-[40vh] overflow-y-auto">
-        {{ range $displayedTalks }}
-        {{ $isCurrent := eq .Permalink $currentPagePermalink }}
-        <li>
-          <a href="{{ .RelPermalink }}" class="flex flex-col items-start py-2{{ if $isCurrent }} pointer-events-none{{ end }}"{{ if $isCurrent }} style="background-color: rgba(34, 197, 94, 0.25);"{{ end }}>
-            <span class="text-xs text-base-content/60">{{ .Date | time.Format "2006-01-02" }}</span>
-            <span class="text-sm">{{ .Params.conference.name }}</span>
-          </a>
-        </li>
-        {{ end }}
-        {{ if gt $totalRelated $displayLimit }}
-        <li class="menu-title text-xs text-center">
-          ... and {{ sub $totalRelated $displayLimit }} more
-        </li>
+        {{ if le $totalRelated $displayLimit }}
+          {{/* Afficher tous les talks si moins de 16 */}}
+          {{ range $sortedRelated }}
+          {{ $isCurrent := eq .Permalink $currentPagePermalink }}
+          <li>
+            <a href="{{ .RelPermalink }}" class="flex flex-col items-start py-2{{ if $isCurrent }} pointer-events-none{{ end }}"{{ if $isCurrent }} style="background-color: rgba(34, 197, 94, 0.25);"{{ end }}>
+              <span class="text-xs text-base-content/60">{{ .Date | time.Format "2006-01-02" }}</span>
+              <span class="text-sm">{{ .Params.conference.name }}</span>
+            </a>
+          </li>
+          {{ end }}
+        {{ else }}
+          {{/* Logique pour afficher avec "..." au milieu - toujours 15 talks */}}
+          {{/* Trouver l'index du talk actuel */}}
+          {{ $scratch := newScratch }}
+          {{ $scratch.Set "currentIndex" 0 }}
+          {{ range $idx, $talk := $sortedRelated }}
+            {{ if eq $talk.Permalink $currentPagePermalink }}
+              {{ $scratch.Set "currentIndex" $idx }}
+            {{ end }}
+          {{ end }}
+          {{ $currentIndex := $scratch.Get "currentIndex" }}
+          {{ $lastIndex := sub $totalRelated 1 }}
+          
+          {{/* Zones de base */}}
+          {{ $baseRecentEnd := 4 }}
+          {{/* Zone centrale: 1 précédent + talk actuel + 3 suivants = 5 talks */}}
+          {{ $aroundStartCalc := sub $currentIndex 1 }}
+          {{ $aroundStart := cond (gt $aroundStartCalc 0) $aroundStartCalc 0 }}
+          {{ $aroundEndCalc := add $currentIndex 3 }}
+          {{ $aroundEnd := cond (lt $aroundEndCalc $lastIndex) $aroundEndCalc $lastIndex }}
+          {{ $baseOldStart := sub $totalRelated 5 }}
+          
+          {{/* Calculer le nombre d'indices uniques avec les zones de base */}}
+          {{/* Zone récente: 0 à baseRecentEnd */}}
+          {{/* Zone centrale: aroundStart à aroundEnd */}}
+          {{/* Zone ancienne: baseOldStart à lastIndex */}}
+          
+          {{/* Calculer les chevauchements */}}
+          {{/* Chevauchement récent/central: si aroundStart <= baseRecentEnd */}}
+          {{ $overlapRecentCentral := 0 }}
+          {{ if le $aroundStart $baseRecentEnd }}
+            {{ $overlapRecentCentral = add (sub $baseRecentEnd $aroundStart) 1 }}
+          {{ end }}
+          
+          {{/* Chevauchement central/ancien: si aroundEnd >= baseOldStart */}}
+          {{ $overlapCentralOld := 0 }}
+          {{ if ge $aroundEnd $baseOldStart }}
+            {{ $overlapCentralOld = add (sub $aroundEnd $baseOldStart) 1 }}
+          {{ end }}
+          
+          {{/* Nombre d'indices uniques = 5 (récent) + 5 (central) + 5 (ancien) - chevauchements */}}
+          {{ $recentCount := add $baseRecentEnd 1 }}
+          {{ $centralCount := add (sub $aroundEnd $aroundStart) 1 }}
+          {{ $oldCount := add (sub $lastIndex $baseOldStart) 1 }}
+          {{ $uniqueCount := sub (add (add $recentCount $centralCount) $oldCount) (add $overlapRecentCentral $overlapCentralOld) }}
+          
+          {{/* Calculer combien de talks manquent pour atteindre 15 */}}
+          {{ $missing := sub $displayLimit $uniqueCount }}
+          
+          {{/* Étendre les zones pour compenser */}}
+          {{ $recentEnd := $baseRecentEnd }}
+          {{ $oldStart := $baseOldStart }}
+          
+          {{ if gt $missing 0 }}
+            {{/* Calculer les gaps disponibles pour extension */}}
+            {{/* Gap entre récent et central */}}
+            {{ $gapAfterRecent := 0 }}
+            {{ if gt $aroundStart (add $baseRecentEnd 1) }}
+              {{ $gapAfterRecent = sub (sub $aroundStart $baseRecentEnd) 1 }}
+            {{ end }}
+            
+            {{/* Gap entre central et ancien */}}
+            {{ $gapBeforeOld := 0 }}
+            {{ if gt $baseOldStart (add $aroundEnd 1) }}
+              {{ $gapBeforeOld = sub (sub $baseOldStart $aroundEnd) 1 }}
+            {{ end }}
+            
+            {{/* Si talk actuel dans la seconde moitié, étendre d'abord récent, sinon étendre ancien */}}
+            {{ $halfPoint := div $totalRelated 2 }}
+            {{ if ge $currentIndex $halfPoint }}
+              {{/* Priorité: étendre la zone récente */}}
+              {{ $extendRecent := cond (lt $missing $gapAfterRecent) $missing $gapAfterRecent }}
+              {{ $recentEnd = add $baseRecentEnd $extendRecent }}
+              {{ $remaining := sub $missing $extendRecent }}
+              {{ if gt $remaining 0 }}
+                {{ $extendOld := cond (lt $remaining $gapBeforeOld) $remaining $gapBeforeOld }}
+                {{ $oldStart = sub $baseOldStart $extendOld }}
+              {{ end }}
+            {{ else }}
+              {{/* Priorité: étendre la zone ancienne */}}
+              {{ $extendOld := cond (lt $missing $gapBeforeOld) $missing $gapBeforeOld }}
+              {{ $oldStart = sub $baseOldStart $extendOld }}
+              {{ $remaining := sub $missing $extendOld }}
+              {{ if gt $remaining 0 }}
+                {{ $extendRecent := cond (lt $remaining $gapAfterRecent) $remaining $gapAfterRecent }}
+                {{ $recentEnd = add $baseRecentEnd $extendRecent }}
+              {{ end }}
+            {{ end }}
+          {{ end }}
+          
+          {{/* Afficher avec gestion des gaps */}}
+          {{ $scratch.Set "lastDisplayedIndex" -2 }}
+          {{ range $idx, $talk := $sortedRelated }}
+            {{ $shouldDisplay := false }}
+            
+            {{/* Dans zone récente? */}}
+            {{ if le $idx $recentEnd }}
+              {{ $shouldDisplay = true }}
+            {{ end }}
+            
+            {{/* Dans zone centrale? (talk actuel + suivants) */}}
+            {{ if and (ge $idx $aroundStart) (le $idx $aroundEnd) }}
+              {{ $shouldDisplay = true }}
+            {{ end }}
+            
+            {{/* Dans zone ancienne? */}}
+            {{ if ge $idx $oldStart }}
+              {{ $shouldDisplay = true }}
+            {{ end }}
+            
+            {{ if $shouldDisplay }}
+              {{/* Afficher "..." si gap > 1 */}}
+              {{ $lastIdx := $scratch.Get "lastDisplayedIndex" }}
+              {{ $gap := sub $idx $lastIdx }}
+              {{ if gt $gap 1 }}
+              <li class="menu-title text-xs text-center py-1">
+                <span class="text-base-content/50">...</span>
+              </li>
+              {{ end }}
+              
+              {{/* Afficher le talk */}}
+              {{ $isCurrent := eq $talk.Permalink $currentPagePermalink }}
+              <li>
+                <a href="{{ $talk.RelPermalink }}" class="flex flex-col items-start py-2{{ if $isCurrent }} pointer-events-none{{ end }}"{{ if $isCurrent }} style="background-color: rgba(34, 197, 94, 0.25);"{{ end }}>
+                  <span class="text-xs text-base-content/60">{{ $talk.Date | time.Format "2006-01-02" }}</span>
+                  <span class="text-sm">{{ $talk.Params.conference.name }}</span>
+                </a>
+              </li>
+              
+              {{ $scratch.Set "lastDisplayedIndex" $idx }}
+            {{ end }}
+          {{ end }}
         {{ end }}
       </ul>
     </nav>
