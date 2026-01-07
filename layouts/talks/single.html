@@ -230,16 +230,26 @@
         <span class="badge badge-sm badge-primary">{{ $totalRelated }}</span>
         times
       </div>
+      {{ $now := now }}
       <ul class="menu menu-sm bg-base-200 rounded-box w-full max-h-[40vh] overflow-y-auto">
         {{ if le $totalRelated $displayLimit }}
           {{/* Afficher tous les talks si moins de 16 */}}
           {{ range $sortedRelated }}
           {{ $isCurrent := eq .Permalink $currentPagePermalink }}
+          {{ $isUpcoming := gt .Date $now }}
           <li>
+            {{ if $isUpcoming }}
+            {{/* Talk à venir : pas de lien direct, juste une icône discrète */}}
+            <div class="flex flex-col items-start py-2{{ if $isCurrent }} pointer-events-none{{ end }}"{{ if $isCurrent }} style="background-color: rgba(34, 197, 94, 0.25);"{{ end }}>
+              <span class="text-xs text-base-content/60">{{ .Date | time.Format "2006-01-02" }}</span>
+              <span class="text-sm">{{ .Params.conference.name }} <a href="{{ .RelPermalink }}" title="Voir les détails">&nbsp;</a></span>
+            </div>
+            {{ else }}
             <a href="{{ .RelPermalink }}" class="flex flex-col items-start py-2{{ if $isCurrent }} pointer-events-none{{ end }}"{{ if $isCurrent }} style="background-color: rgba(34, 197, 94, 0.25);"{{ end }}>
               <span class="text-xs text-base-content/60">{{ .Date | time.Format "2006-01-02" }}</span>
               <span class="text-sm">{{ .Params.conference.name }}</span>
             </a>
+            {{ end }}
           </li>
           {{ end }}
         {{ else }}
@@ -364,11 +374,20 @@
               
               {{/* Afficher le talk */}}
               {{ $isCurrent := eq $talk.Permalink $currentPagePermalink }}
+              {{ $isUpcoming := gt $talk.Date $now }}
               <li>
+                {{ if $isUpcoming }}
+                {{/* Talk à venir : pas de lien direct, juste une icône discrète */}}
+                <div class="flex flex-col items-start py-2{{ if $isCurrent }} pointer-events-none{{ end }}"{{ if $isCurrent }} style="background-color: rgba(34, 197, 94, 0.25);"{{ end }}>
+                  <span class="text-xs text-base-content/60">{{ $talk.Date | time.Format "2006-01-02" }}</span>
+                  <span class="text-sm">{{ $talk.Params.conference.name }} <a href="{{ $talk.RelPermalink }}" title="Voir les détails"><ion-icon name="open-outline" class="text-xs"></ion-icon></a></span>
+                </div>
+                {{ else }}
                 <a href="{{ $talk.RelPermalink }}" class="flex flex-col items-start py-2{{ if $isCurrent }} pointer-events-none{{ end }}"{{ if $isCurrent }} style="background-color: rgba(34, 197, 94, 0.25);"{{ end }}>
                   <span class="text-xs text-base-content/60">{{ $talk.Date | time.Format "2006-01-02" }}</span>
                   <span class="text-sm">{{ $talk.Params.conference.name }}</span>
                 </a>
+                {{ end }}
               </li>
               
               {{ $scratch.Set "lastDisplayedIndex" $idx }}
