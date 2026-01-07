@@ -12,14 +12,17 @@
 {{ $startDate := "" }}
 {{ $endDate := "" }}
 {{ $mapId := "map-container" }}
-{{ if isset . "startDate" }}
-  {{ $startDate = .startDate }}
-{{ end }}
-{{ if isset . "endDate" }}
-  {{ $endDate = .endDate }}
-{{ end }}
-{{ if isset . "mapId" }}
-  {{ $mapId = .mapId }}
+{{/* Only use isset when . is a map/dict, not a page object */}}
+{{ if reflect.IsMap . }}
+  {{ if isset . "startDate" }}
+    {{ $startDate = .startDate }}
+  {{ end }}
+  {{ if isset . "endDate" }}
+    {{ $endDate = .endDate }}
+  {{ end }}
+  {{ if isset . "mapId" }}
+    {{ $mapId = .mapId }}
+  {{ end }}
 {{ end }}
 
 {{/* Parse dates if provided */}}
