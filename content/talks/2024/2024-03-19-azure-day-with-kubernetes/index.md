@@ -10,7 +10,7 @@ conference:
   url: "https://azureday.eventbuilder.com/event/81082"
 author: David Pilato
 avatar: /about/david_pilato.png
-talk: conferences
+# talk: conferences
 date: 2024-03-19
 nolastmod: true
 draft: false

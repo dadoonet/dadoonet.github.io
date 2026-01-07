@@ -10,7 +10,7 @@ conference:
   url: "https://rivieradev.fr/session/259"
 author: David Pilato
 avatar: /about/david_pilato.png
-talk: conferences
+# talk: conferences
 date: 2024-07-08
 nolastmod: true
 draft: false

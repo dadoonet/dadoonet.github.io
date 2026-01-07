@@ -10,7 +10,7 @@ conference:
   url: "https://www.credit-agricole.com/"
 author: David Pilato
 avatar: /about/david_pilato.png
-talk: conferences
+talk: Elasticsearch
 date: 2023-01-10
 nolastmod: true
 draft: false

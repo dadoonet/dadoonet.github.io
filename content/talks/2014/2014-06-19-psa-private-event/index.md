@@ -1,7 +1,7 @@
 ---
-title: "PSA"
+title: "Elasticsearch, le moteur de recherche élastique"
 conference: 
-  name: "PSA"
+  name: "PSA (private event)"
   city: "Poissy"
   country: "France"
   country_code: "fr"
@@ -9,7 +9,7 @@ conference:
   longitude: "1.9900117"
 author: David Pilato
 avatar: /about/david_pilato.png
-talk: conferences
+talk: Elasticsearch
 date: 2014-06-19
 nolastmod: true
 draft: false

@@ -10,7 +10,7 @@ conference:
   url: "https://www.4sh.fr/"
 author: David Pilato
 avatar: /about/david_pilato.png
-talk: conferences
+talk: Elasticsearch
 date: 2025-03-21
 nolastmod: true
 draft: false

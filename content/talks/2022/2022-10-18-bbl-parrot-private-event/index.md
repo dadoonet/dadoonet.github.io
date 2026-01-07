@@ -10,7 +10,7 @@ conference:
   url: "https://www.parrot.com/fr"
 author: David Pilato
 avatar: /about/david_pilato.png
-talk: conferences
+talk: Elasticsearch
 date: 2022-10-18
 nolastmod: true
 draft: false

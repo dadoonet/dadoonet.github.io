@@ -10,7 +10,7 @@ conference:
   url: "https://www.meetup.com/alpesjug/events/299609510/"
 author: David Pilato
 avatar: /about/david_pilato.png
-talk: conferences
+# talk: conferences
 date: 2024-05-15
 nolastmod: true
 draft: false

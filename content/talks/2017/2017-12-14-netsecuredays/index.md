@@ -16,7 +16,7 @@ draft: true
 pdf: "2017/2017-12-14-netsecuredays.pdf"
 #cover: "cover.png"
 
-talk: black friday
+talk: Black Friday
 
 # Speaker specific fields
 youtube: "t6ge5Idzhck"

@@ -10,7 +10,7 @@ conference:
   url: "https://sunny-tech.io/speakers/david_pilato/"
 author: David Pilato
 avatar: /about/david_pilato.png
-talk: conferences
+# talk: conferences
 date: 2019-06-27
 nolastmod: true
 draft: false

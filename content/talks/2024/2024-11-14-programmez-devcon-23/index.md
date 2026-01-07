@@ -10,7 +10,7 @@ conference:
   url: "https://www.programmez.com/page-devcon/devcon-23-securite-qualite-du-code"
 author: David Pilato
 avatar: /about/david_pilato.png
-talk: conferences
+# talk: conferences
 date: 2024-11-14
 nolastmod: true
 draft: false

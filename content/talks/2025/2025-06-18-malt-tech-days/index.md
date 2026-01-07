@@ -10,7 +10,7 @@ conference:
   url: "https://malt.fr/"
 author: David Pilato
 avatar: /about/david_pilato.png
-talk: conferences
+# talk: conferences
 date: 2025-06-18
 nolastmod: true
 draft: false

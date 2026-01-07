@@ -9,7 +9,7 @@ conference:
   longitude: "2.2987519"
 author: David Pilato
 avatar: /about/david_pilato.png
-talk: conferences
+talk: Elasticsearch
 date: 2015-05-19
 nolastmod: true
 draft: false

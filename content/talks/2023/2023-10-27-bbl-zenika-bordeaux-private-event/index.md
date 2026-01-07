@@ -10,7 +10,7 @@ conference:
   url: "https://www.zenika.fr"
 author: David Pilato
 avatar: /about/david_pilato.png
-talk: conferences
+talk: Elasticsearch
 date: 2023-10-27
 nolastmod: true
 draft: false

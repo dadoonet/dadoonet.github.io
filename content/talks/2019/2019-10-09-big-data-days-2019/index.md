@@ -10,7 +10,7 @@ conference:
   url: "https://bigdatadays.ru/en/david-pilato/"
 author: David Pilato
 avatar: /about/david_pilato.png
-talk: conferences
+# talk: conferences
 date: 2019-10-09
 nolastmod: true
 draft: false

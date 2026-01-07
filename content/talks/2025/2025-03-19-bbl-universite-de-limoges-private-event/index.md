@@ -7,7 +7,7 @@ conference:
   url: "https://www.unilim.fr/"
 author: David Pilato
 avatar: /about/david_pilato.png
-talk: conferences
+talk: Elasticsearch
 date: 2025-03-19
 nolastmod: true
 draft: false

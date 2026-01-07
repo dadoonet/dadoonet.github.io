@@ -10,7 +10,7 @@ conference:
   url: "https://www.manutan.fr/"
 author: David Pilato
 avatar: /about/david_pilato.png
-talk: conferences
+talk: Elasticsearch
 date: 2025-05-28
 nolastmod: true
 draft: false

@@ -9,7 +9,7 @@ conference:
   longitude: "2.3544033"
 author: David Pilato
 avatar: /about/david_pilato.png
-talk: conferences
+# talk: conferences
 date: 2013-05-30
 nolastmod: true
 draft: false

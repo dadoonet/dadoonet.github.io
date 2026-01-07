@@ -10,7 +10,7 @@ conference:
   url: "https://www.eni-service.fr/eni-tech-fest-levenement-incontournable-pour-les-professionnels-du-numerique/"
 author: David Pilato
 avatar: /about/david_pilato.png
-talk: conferences
+# talk: conferences
 date: 2025-03-25
 nolastmod: true
 draft: false

@@ -10,7 +10,7 @@ conference:
   url: "https://romania.voxxeddays.com/talk/?id=5852"
 author: David Pilato
 avatar: /about/david_pilato.png
-talk: conferences
+# talk: conferences
 date: 2021-10-21
 nolastmod: true
 draft: false

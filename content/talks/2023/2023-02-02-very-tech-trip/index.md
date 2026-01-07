@@ -10,7 +10,7 @@ conference:
   url: "https://verytechtrip.com/"
 author: David Pilato
 avatar: /about/david_pilato.png
-talk: conferences
+# talk: conferences
 date: 2023-02-02
 nolastmod: true
 draft: false

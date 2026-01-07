@@ -10,7 +10,7 @@ conference:
   url: "https://cfp.devoxx.fr/2023/talk/SPD-7040/Un_moteur_de_recherche_de_documents_d'entreprise"
 author: David Pilato
 avatar: /about/david_pilato.png
-talk: conferences
+# talk: conferences
 date: 2023-04-12
 nolastmod: true
 draft: false

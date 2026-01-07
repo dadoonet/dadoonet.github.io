@@ -7,7 +7,7 @@ conference:
   country_code: "Online"
 author: David Pilato
 avatar: /about/david_pilato.png
-talk: conferences
+talk: Elasticsearch
 date: 2025-02-27
 nolastmod: true
 draft: false

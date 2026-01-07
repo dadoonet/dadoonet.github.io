@@ -10,7 +10,7 @@ conference:
   url: "https://www.jugsummercamp.org/edition/14/presentations/oVFqGQVuSwZBRIfpXwVd"
 author: David Pilato
 avatar: /about/david_pilato.png
-talk: conferences
+# talk: conferences
 date: 2023-09-08
 nolastmod: true
 draft: false

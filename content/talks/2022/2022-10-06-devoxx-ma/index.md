@@ -10,7 +10,7 @@ conference:
   url: "https://devoxx.ma/"
 author: David Pilato
 avatar: /about/david_pilato.png
-talk: conferences
+# talk: conferences
 date: 2022-10-06
 nolastmod: true
 draft: false

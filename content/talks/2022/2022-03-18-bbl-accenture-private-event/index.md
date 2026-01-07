@@ -10,7 +10,7 @@ conference:
   url: "https://www.accenture.com/nl-en"
 author: David Pilato
 avatar: /about/david_pilato.png
-talk: conferences
+talk: Elasticsearch
 date: 2022-03-18
 nolastmod: true
 draft: false

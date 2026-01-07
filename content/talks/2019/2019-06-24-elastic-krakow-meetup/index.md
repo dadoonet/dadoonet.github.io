@@ -10,7 +10,7 @@ conference:
   url: "https://www.meetup.com/Elastic-Krakow/events/262282793/"
 author: David Pilato
 avatar: /about/david_pilato.png
-talk: conferences
+# talk: conferences
 date: 2019-06-24
 nolastmod: true
 draft: false

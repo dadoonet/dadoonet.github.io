@@ -10,7 +10,7 @@ conference:
   url: "https://infoshare.pl/conference/agenda/#talk698-5"
 author: David Pilato
 avatar: /about/david_pilato.png
-talk: conferences
+# talk: conferences
 date: 2023-05-24
 nolastmod: true
 draft: false

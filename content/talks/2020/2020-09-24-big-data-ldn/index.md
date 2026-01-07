@@ -7,7 +7,7 @@ conference:
   url: "https://bigdataldn.com/speakers/"
 author: David Pilato
 avatar: /about/david_pilato.png
-talk: conferences
+# talk: conferences
 date: 2020-09-24
 nolastmod: true
 draft: false

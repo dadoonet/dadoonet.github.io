@@ -10,7 +10,7 @@ conference:
   url: "https://www.meetup.com/Elasticsearch-Montreal/events/268675767/"
 author: David Pilato
 avatar: /about/david_pilato.png
-talk: conferences
+# talk: conferences
 date: 2020-02-26
 nolastmod: true
 draft: false

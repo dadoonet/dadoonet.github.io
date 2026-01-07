@@ -10,7 +10,7 @@ conference:
   url: "https://www.meetup.com/Meetup-IT-Inside-Bordeaux/events/263861965/"
 author: David Pilato
 avatar: /about/david_pilato.png
-talk: conferences
+# talk: conferences
 date: 2019-09-09
 nolastmod: true
 draft: false
