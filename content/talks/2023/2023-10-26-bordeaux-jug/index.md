@@ -28,8 +28,6 @@ x:
     id: "1713976056279871575"
   - user: "dadoonet"
     id: "1716362068360917139"
-  - user: "jrmguimberteau"
-    id: "1717612238624747623"
   - user: "dadoonet"
     id: "1717609539300991328"
 

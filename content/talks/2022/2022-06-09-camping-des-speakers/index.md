@@ -21,8 +21,6 @@ draft: false
 notist: "dadoonet/0MI79Z"
 
 x:
-  - user: "alexislozano__"
-    id: "1535628474660147201"
   - user: "dadoonet"
     id: "1535292239622070275"
   - user: "dadideo"
@@ -35,14 +33,8 @@ x:
     id: "1535256169899499521"
   - user: "dadoonet"
     id: "1535192114639753216"
-  - user: "BillyTheTroll"
-    id: "1535180065276932096"
   - user: "mathieupassenau"
     id: "1535179536052240385"
-  - user: "rverchere"
-    id: "1535176115270164480"
-  - user: "alexislozano__"
-    id: "1535176045653020672"
   - user: "dadoonet"
     id: "1535164971172102144"
   - user: "dadoonet"

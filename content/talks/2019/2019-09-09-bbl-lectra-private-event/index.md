@@ -23,8 +23,6 @@ notist: "dadoonet/LKc6qI"
 x:
   - user: "dadoonet"
     id: "1170997223485784065"
-  - user: "NicolasComet"
-    id: "1171009753193111554"
   - user: "_sjoss"
     id: "1171038216478167041"
   - user: "dadoonet"

@@ -27,8 +27,6 @@ x:
     id: "1010075039000072192"
   - user: "dadoonet"
     id: "1010108423697059841"
-  - user: "LaffezAntoine"
-    id: "1010087668825370625"
   - user: "dadoonet"
     id: "1011848627243929600"
   - user: "dadoonet"

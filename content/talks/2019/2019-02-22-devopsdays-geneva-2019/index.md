@@ -28,8 +28,6 @@ x:
     id: "1098926966814715904"
   - user: "mathieu_b"
     id: "1098902999773138945"
-  - user: "SgGuibert"
-    id: "1099028173050781696"
 
 links:
   - title: "Conference:Quantitative Cluster Sizing"

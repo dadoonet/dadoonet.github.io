@@ -33,8 +33,6 @@ links:
 aliases:
 - /nRD9sE
 x:
-- user: GiuseScara
-  id: '1377195630351810561'
 - user: dadoonet
   id: '1376548944994570243'
 - user: dadoonet

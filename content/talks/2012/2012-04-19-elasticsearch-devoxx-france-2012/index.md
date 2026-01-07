@@ -18,8 +18,6 @@ pdf: "2012/2012-04-19-elasticsearch-devoxx-france-2012.pdf"
 youtube: sxWTPruEWRU
 notist: dadoonet/ubjdxo
 x:
-- user: Audrey_Neveu
-  id: '192919895497900033'
 - user: agnes_crepet
   id: '193443146091343872'
 - user: dadoonet

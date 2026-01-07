@@ -25,8 +25,6 @@ x:
     id: "1228349290403303424"
   - user: "MeetupDataLille"
     id: "1227620844211441664"
-  - user: "EmmanuelDemey"
-    id: "1220645207928078337"
 
 links:
   - title: "AuditD Rules"

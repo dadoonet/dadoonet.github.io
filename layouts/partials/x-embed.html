@@ -24,9 +24,9 @@
         {{- (. | transform.Unmarshal).html | safeHTML -}}
       {{- else -}}
         {{- if $.ctx -}}
-          {{- warnidf "x-embed-getremote" "The x-embed partial was unable to retrieve the remote data. See %s" $.ctx.Position -}}
+          {{- warnidf "x-embed-getremote" "The x-embed partial was unable to retrieve the remote data for %s. See %s" $url $.ctx.Position -}}
         {{- else -}}
-          {{- warnidf "x-embed-getremote" "The x-embed partial was unable to retrieve the remote data." -}}
+          {{- warnidf "x-embed-getremote" "The x-embed partial was unable to retrieve the remote data for %s" $url -}}
         {{- end -}}
       {{- end -}}
     {{- end -}}

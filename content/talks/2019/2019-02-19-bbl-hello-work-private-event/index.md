@@ -21,8 +21,6 @@ pdf: "2019/2019-02-19-bbl-hello-work-private-event.pdf"
 notist: "dadoonet/aV3SGw"
 
 x:
-  - user: "elkarimero"
-    id: "1098260503800020994"
   - user: "dadoonet"
     id: "1097954040913317889"
   - user: "dadoonet"
