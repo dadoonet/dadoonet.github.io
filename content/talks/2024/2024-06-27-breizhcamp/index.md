@@ -7,7 +7,7 @@ conference:
   country_code: "fr"
   latitude: "48.117266"
   longitude: "-1.677793"
-  url: "https://www.breizhcamp.org/"
+  url: "https://2024.breizhcamp.org/"
 author: David Pilato
 avatar: /about/david_pilato.png
 talk: conferences

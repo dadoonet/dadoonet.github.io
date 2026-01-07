@@ -1,6 +1,7 @@
 ---
 title: "BreizhCamp"
 conference: 
+  url: "https://2014.breizhcamp.org/"
   name: "BreizhCamp"
   city: "Rennes"
   country: "France"

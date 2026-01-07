@@ -1,6 +1,7 @@
 ---
 title: "Les Vendredis noirs : même pas peur !"
 conference: 
+  url: "https://2018.breizhcamp.org/"
   name: "BreizhCamp"
   city: "Rennes"
   country: "France"
