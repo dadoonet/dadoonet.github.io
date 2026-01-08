@@ -31,3 +31,5 @@ David présentera pourquoi et comment il est passé de la recherche SQL à Elast
 * L'analyse et le mapping
 * La percolation
 * La communauté
+
+![Présentation Normandy JUG](pic.jpg)

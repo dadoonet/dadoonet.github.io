@@ -1,5 +1,5 @@
 ---
-title: "Elasticsearch"
+title: "Elasticsearch: le moteur de recherche élastique pour tous"
 conference: 
   name: "BBL ESME Sudria (private event)"
   city: "Paris"
@@ -30,4 +30,3 @@ David présentera au cours du déjeuner pourquoi et comment il est passé de la 
 * L'analyse et le mapping
 * La percolation
 * La communauté
-
