@@ -11,6 +11,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 # talk: conferences
 date: 2019-11-13
+lang: fr
 nolastmod: true
 draft: false
 pdf: "2019/2019-11-13-blend-web-mix-2019.pdf"

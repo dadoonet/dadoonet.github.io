@@ -11,6 +11,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 # talk: conferences
 date: 2018-04-11
+lang: en
 nolastmod: true
 draft: false
 pdf: "2018/2018-04-11-cloudconfit.pdf"

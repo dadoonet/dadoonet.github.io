@@ -12,6 +12,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 talk: ES|QL
 date: 2025-02-07
+lang: fr
 nolastmod: true
 draft: false
 pdf: "2025/2025-02-07-touraine-tech.pdf"

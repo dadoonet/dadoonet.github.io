@@ -9,6 +9,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 talk: Elasticsearch
 date: 2025-03-19
+lang: fr
 nolastmod: true
 draft: false
 pdf: "2025/2025-03-19-bbl-universite-de-limoges-private-event.pdf"

@@ -12,6 +12,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 # talk: conferences
 date: 2025-06-18
+lang: fr
 nolastmod: true
 draft: false
 pdf: "2025/2025-06-18-malt-tech-days.pdf"

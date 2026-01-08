@@ -12,6 +12,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 talk: Legacy Search
 date: 2016-12-01T19:15:00+01:00
+lang: fr
 nolastmod: true
 draft: false
 

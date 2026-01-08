@@ -11,6 +11,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 talk: Elasticsearch
 date: 2020-02-13
+lang: fr
 nolastmod: true
 draft: false
 pdf: "2020/2020-02-13-bbl-axa-private-event.pdf"

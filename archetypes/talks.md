@@ -11,6 +11,7 @@ conference:
 author: David Pilato
 avatar: /about/david_pilato.png
 date: '{{ substr .File.ContentBaseName 0 10 }}'
+lang: fr # fr or en
 nolastmod: true
 draft: true
 pdf: "{{ substr .File.ContentBaseName 0 4 }}/{{ .File.ContentBaseName }}.pdf"

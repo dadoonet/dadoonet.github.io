@@ -9,6 +9,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 # talk: conferences
 date: 2021-11-30
+lang: en
 nolastmod: true
 draft: false
 pdf: "2021/2021-11-30-thedevconf-2021.pdf"

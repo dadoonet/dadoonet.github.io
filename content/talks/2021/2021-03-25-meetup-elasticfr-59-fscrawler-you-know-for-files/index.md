@@ -9,6 +9,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 # talk: conferences
 date: 2021-03-25
+lang: fr
 nolastmod: true
 draft: false
 pdf: "2021/2021-03-25-meetup-elasticfr-59-fscrawler-you-know-for-files.pdf"

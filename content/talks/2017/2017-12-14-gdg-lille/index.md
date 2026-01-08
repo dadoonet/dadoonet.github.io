@@ -12,6 +12,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 # talk: conferences
 date: 2017-12-14
+lang: fr
 nolastmod: true
 draft: false
 pdf: "2017/2017-12-14-gdg-lille.pdf"

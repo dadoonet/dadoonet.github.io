@@ -11,6 +11,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 talk: Elasticsearch Workshop
 date: 2012-09-19
+lang: fr
 nolastmod: true
 draft: false
 pdf: "2012/2012-09-19-jduchess-workshop-es.pdf"

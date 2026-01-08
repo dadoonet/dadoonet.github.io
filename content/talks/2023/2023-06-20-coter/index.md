@@ -11,6 +11,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 # talk: conferences
 date: 2023-06-20
+lang: fr
 nolastmod: true
 draft: false
 pdf: "2023/2023-06-20-coter.pdf"

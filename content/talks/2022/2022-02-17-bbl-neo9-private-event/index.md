@@ -9,6 +9,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 talk: Postal Addresses
 date: 2022-02-17
+lang: fr
 nolastmod: true
 draft: false
 

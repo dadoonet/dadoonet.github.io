@@ -12,6 +12,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 # talk: conferences
 date: 2014-05-22
+lang: fr
 nolastmod: true
 draft: false
 

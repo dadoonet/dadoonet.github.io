@@ -12,6 +12,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 # talk: conferences
 date: 2024-04-18
+lang: fr
 nolastmod: true
 draft: false
 pdf: "2024/2024-04-18-devoxx-france-2024.pdf"

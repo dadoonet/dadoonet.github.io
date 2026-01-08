@@ -12,6 +12,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 talk: Randomized Testing
 date: 2025-11-13
+lang: fr
 nolastmod: true
 draft: false
 pdf: "2025/2025-11-13-devfest-toulouse-2025.pdf"

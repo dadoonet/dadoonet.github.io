@@ -9,6 +9,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 # talk: conferences
 date: 2021-11-18
+lang: fr
 nolastmod: true
 draft: false
 pdf: "2021/2021-11-18-webinaire-sedona.pdf"

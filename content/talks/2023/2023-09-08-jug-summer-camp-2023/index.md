@@ -12,6 +12,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 # talk: conferences
 date: 2023-09-08
+lang: fr
 nolastmod: true
 draft: false
 pdf: "2023/2023-09-08-jug-summer-camp-2023.pdf"

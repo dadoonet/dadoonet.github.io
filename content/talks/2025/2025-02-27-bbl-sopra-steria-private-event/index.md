@@ -9,6 +9,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 talk: Elasticsearch
 date: 2025-02-27
+lang: fr
 nolastmod: true
 draft: false
 pdf: "2025/2025-02-27-bbl-sopra-steria-private-event.pdf"

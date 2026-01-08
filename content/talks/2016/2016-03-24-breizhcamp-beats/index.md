@@ -12,6 +12,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 talk: Beats
 date: 2016-03-25
+lang: fr
 nolastmod: true
 draft: false
 

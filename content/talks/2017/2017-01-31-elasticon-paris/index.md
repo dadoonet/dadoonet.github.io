@@ -11,6 +11,7 @@ conference:
 author: David Pilato
 avatar: /about/david_pilato.png
 date: '2017-01-31'
+lang: fr
 nolastmod: true
 draft: false
 pdf: "2017/2017-01-31-elasticonparis-ingest.pdf"

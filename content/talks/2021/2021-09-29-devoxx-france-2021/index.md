@@ -12,6 +12,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 # talk: conferences
 date: 2021-09-29
+lang: fr
 nolastmod: true
 draft: false
 pdf: "2021/2021-09-29-devoxx-france-2021.pdf"

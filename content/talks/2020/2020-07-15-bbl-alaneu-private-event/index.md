@@ -9,6 +9,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 talk: Elasticsearch
 date: 2020-07-15
+lang: fr
 nolastmod: true
 draft: false
 pdf: "2020/2020-07-15-bbl-alaneu-private-event.pdf"

@@ -12,6 +12,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 # talk: conferences
 date: 2024-11-14
+lang: fr
 nolastmod: true
 draft: false
 pdf: "2024/2024-11-14-programmez-devcon-23.pdf"

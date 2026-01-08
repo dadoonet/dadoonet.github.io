@@ -12,6 +12,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 talk: Postal Addresses
 date: 2020-02-26
+lang: fr
 nolastmod: true
 draft: false
 

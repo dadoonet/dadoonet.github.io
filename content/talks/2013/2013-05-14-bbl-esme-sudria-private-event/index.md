@@ -11,6 +11,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 talk: Elasticsearch
 date: 2013-05-14
+lang: fr
 nolastmod: true
 draft: false
 pdf: "2013/2013-05-14-bbl-esme-sudria-private-event.pdf"

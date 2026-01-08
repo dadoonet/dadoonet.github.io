@@ -11,6 +11,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 talk: Elasticsearch
 date: 2013-04-18
+lang: fr
 nolastmod: true
 draft: false
 cover: es-logo.png

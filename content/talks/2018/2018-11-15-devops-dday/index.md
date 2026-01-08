@@ -12,6 +12,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 # talk: conferences
 date: 2018-11-15
+lang: fr
 nolastmod: true
 draft: false
 pdf: "2018/2018-11-15-devops-dday.pdf"

@@ -11,6 +11,7 @@ conference:
 author: David Pilato
 avatar: /about/david_pilato.png
 date: '2026-05-22'
+lang: fr
 nolastmod: true
 draft: false
 #pdf: "2026/2026-05-22-afup-day-lille.pdf"

@@ -9,6 +9,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 talk: Elasticsearch
 date: 2024-10-25
+lang: en
 nolastmod: true
 draft: false
 pdf: "2024/2024-10-25-bbl-kpler-private-event.pdf"

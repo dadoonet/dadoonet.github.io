@@ -9,6 +9,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 talk: Elasticsearch
 date: 2024-12-10
+lang: fr
 nolastmod: true
 draft: false
 pdf: "2024/2024-12-10-bbl-ekino-private-event.pdf"

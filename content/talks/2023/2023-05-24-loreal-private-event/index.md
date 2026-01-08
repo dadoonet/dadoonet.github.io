@@ -11,6 +11,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 talk: Community
 date: 2023-05-24
+lang: en
 nolastmod: true
 draft: false
 pdf: "2023/2023-05-24-loreal-private-event.pdf"

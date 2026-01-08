@@ -12,6 +12,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 talk: Potion Magique
 date: 2025-04-18
+lang: fr
 nolastmod: true
 draft: false
 pdf: "2025/2025-04-18-devoxxfr.pdf"

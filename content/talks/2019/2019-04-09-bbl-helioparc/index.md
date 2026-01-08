@@ -12,6 +12,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 talk: Elasticsearch
 date: 2019-04-09
+lang: fr
 nolastmod: true
 draft: false
 pdf: "2019/2019-04-09-bbl-helioparc.pdf"

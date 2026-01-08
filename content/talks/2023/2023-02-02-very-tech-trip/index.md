@@ -12,6 +12,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 talk: Potion Magique
 date: 2023-02-02
+lang: fr
 nolastmod: true
 draft: false
 pdf: "2023/2023-02-02-very-tech-trip.pdf"

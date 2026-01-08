@@ -12,6 +12,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 talk: DJ
 date: 2025-10-02
+lang: fr
 nolastmod: true
 draft: false
 

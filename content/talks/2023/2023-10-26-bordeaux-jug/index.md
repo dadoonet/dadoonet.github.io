@@ -12,6 +12,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 # talk: conferences
 date: 2023-10-26
+lang: fr
 nolastmod: true
 draft: false
 pdf: "2023/2023-10-26-bordeaux-jug.pdf"

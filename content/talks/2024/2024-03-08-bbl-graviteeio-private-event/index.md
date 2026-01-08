@@ -9,6 +9,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 talk: Elasticsearch
 date: 2024-03-08
+lang: en
 nolastmod: true
 draft: false
 pdf: "2024/2024-03-08-bbl-graviteeio-private-event.pdf"

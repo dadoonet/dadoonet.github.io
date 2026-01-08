@@ -11,6 +11,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 # talk: conferences
 date: 2018-03-07
+lang: en
 nolastmod: true
 draft: false
 pdf: "2018/2018-03-07-confoo-montreal.pdf"

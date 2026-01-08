@@ -12,6 +12,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 talk: Elasticsearch
 date: 2022-09-13
+lang: fr
 nolastmod: true
 draft: false
 pdf: "2022/2022-09-13-bbl-leboncoin-private-event.pdf"

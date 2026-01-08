@@ -12,6 +12,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 talk: Potion Magique
 date: 2022-06-09
+lang: fr
 nolastmod: true
 draft: false
 

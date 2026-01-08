@@ -12,6 +12,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 talk: Elasticsearch
 date: 2012-12-11
+lang: fr
 nolastmod: true
 draft: false
 pdf: "2012/2012-12-11-finistjug-es.pdf"

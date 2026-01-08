@@ -12,6 +12,7 @@ avatar: /about/david_pilato.png
 cover: es-logo.png
 talk: Elasticsearch
 date: 2013-01-31
+lang: fr
 nolastmod: true
 draft: false
 

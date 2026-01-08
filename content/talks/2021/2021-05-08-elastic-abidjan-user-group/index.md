@@ -8,6 +8,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 talk: Elasticsearch
 date: 2021-05-08
+lang: fr
 nolastmod: true
 draft: false
 pdf: "2021/2021-05-08-elastic-abidjan-user-group.pdf"

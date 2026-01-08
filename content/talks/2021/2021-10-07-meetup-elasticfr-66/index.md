@@ -9,6 +9,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 # talk: conferences
 date: 2021-10-07
+lang: fr
 nolastmod: true
 draft: false
 pdf: "2021/2021-10-07-meetup-elasticfr-66.pdf"

@@ -12,6 +12,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 talk: Randomized Testing
 date: '2026-02-12'
+lang: fr
 nolastmod: true
 draft: false
 pdf: "2026/2026-02-12 - Touraine Tech - Randomized Testing.pdf"

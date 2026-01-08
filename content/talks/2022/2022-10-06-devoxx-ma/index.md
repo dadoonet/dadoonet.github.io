@@ -12,6 +12,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 # talk: conferences
 date: 2022-10-06
+lang: fr
 nolastmod: true
 draft: false
 pdf: "2022/2022-10-06-devoxx-ma.pdf"

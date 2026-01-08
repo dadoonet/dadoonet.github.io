@@ -9,6 +9,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 talk: Elasticsearch
 date: 2021-04-07
+lang: fr
 nolastmod: true
 draft: false
 pdf: "2021/2021-04-07-bbl-universite-paris-1-pantheon-sorbonne-private-event.pdf"

@@ -11,6 +11,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 talk: SQL2NoSQL
 date: 2013-11-04
+lang: fr
 nolastmod: true
 draft: false
 

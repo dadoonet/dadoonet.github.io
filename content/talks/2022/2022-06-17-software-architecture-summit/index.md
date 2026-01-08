@@ -12,6 +12,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 # talk: conferences
 date: 2022-06-17
+lang: en
 nolastmod: true
 draft: false
 pdf: "2022/2022-06-17-software-architecture-summit.pdf"

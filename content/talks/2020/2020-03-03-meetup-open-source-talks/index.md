@@ -12,6 +12,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 # talk: conferences
 date: 2020-03-03
+lang: fr
 nolastmod: true
 draft: false
 pdf: "2020/2020-03-03-meetup-open-source-talks.pdf"

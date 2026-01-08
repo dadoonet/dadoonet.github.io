@@ -12,6 +12,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 talk: Elasticsearch
 date: 2023-10-27
+lang: fr
 nolastmod: true
 draft: false
 pdf: "2023/2023-10-27-bbl-zenika-bordeaux-private-event.pdf"

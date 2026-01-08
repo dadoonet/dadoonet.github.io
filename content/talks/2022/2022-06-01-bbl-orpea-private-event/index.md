@@ -12,6 +12,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 talk: Elasticsearch
 date: 2022-06-01
+lang: fr
 nolastmod: true
 draft: false
 pdf: "2022/2022-06-01-bbl-orpea-private-event.pdf"

@@ -9,6 +9,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 # talk: conferences
 date: 2021-04-06
+lang: en
 nolastmod: true
 draft: false
 pdf: "2021/2021-04-06-elastic-byite-s01e02.pdf"

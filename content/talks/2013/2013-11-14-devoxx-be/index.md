@@ -10,6 +10,7 @@ conference:
 author: David Pilato
 avatar: /about/david_pilato.png
 date: 2013-11-14
+lang: en
 nolastmod: true
 draft: false
 

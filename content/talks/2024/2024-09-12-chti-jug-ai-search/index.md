@@ -12,6 +12,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 # talk: conferences
 date: 2024-09-12
+lang: fr
 nolastmod: true
 draft: false
 pdf: "2024/2024-09-12-chti-jug-ai-search.pdf"

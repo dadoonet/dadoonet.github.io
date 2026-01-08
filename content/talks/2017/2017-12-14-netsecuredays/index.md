@@ -11,6 +11,7 @@ conference:
 author: David Pilato
 avatar: /about/david_pilato.png
 date: '2017-12-14'
+lang: fr
 nolastmod: true
 draft: true
 pdf: "2017/2017-12-14-netsecuredays.pdf"

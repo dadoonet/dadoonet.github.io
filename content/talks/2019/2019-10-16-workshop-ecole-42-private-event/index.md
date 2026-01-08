@@ -11,6 +11,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 talk: Elasticsearch Workshop
 date: 2019-10-16
+lang: fr
 nolastmod: true
 draft: false
 pdf: "2019/2019-10-16-workshop-ecole-42-private-event.pdf"

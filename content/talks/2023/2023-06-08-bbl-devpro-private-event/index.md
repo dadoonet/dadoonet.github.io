@@ -9,6 +9,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 talk: Elasticsearch
 date: 2023-06-08
+lang: en
 nolastmod: true
 draft: false
 pdf: "2023/2023-06-08-bbl-devpro-private-event.pdf"

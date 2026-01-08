@@ -12,6 +12,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 talk: Ingest Node
 date: 2016-12-01T20:15:00+01:00
+lang: fr
 nolastmod: true
 draft: false
 

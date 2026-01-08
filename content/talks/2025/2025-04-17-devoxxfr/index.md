@@ -12,6 +12,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 talk: ES|QL
 date: 2025-04-17
+lang: fr
 nolastmod: true
 draft: false
 

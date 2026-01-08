@@ -9,6 +9,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 # talk: conferences
 date: 2020-09-11
+lang: fr
 nolastmod: true
 draft: false
 pdf: "2020/2020-09-11-jug-summer-camp.pdf"

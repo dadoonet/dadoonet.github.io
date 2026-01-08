@@ -7,6 +7,7 @@ conference:
 author: David Pilato
 avatar: /about/david_pilato.png
 date: 2015-01-27
+lang: fr
 nolastmod: true
 draft: false
 

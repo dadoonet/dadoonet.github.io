@@ -11,6 +11,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 talk: Elasticsearch
 date: 2019-04-08
+lang: fr
 nolastmod: true
 draft: false
 pdf: "2019/2019-04-08-bbl-terega-private-event.pdf"
