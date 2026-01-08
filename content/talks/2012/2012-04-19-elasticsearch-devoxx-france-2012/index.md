@@ -1,7 +1,7 @@
 ---
 title: 'Elasticsearch : moteur de recherche taillé pour le cloud'
 conference:
-  name: Devoxx France 2012
+  name: Devoxx FR
   city: Paris
   country: France
   country_code: fr
