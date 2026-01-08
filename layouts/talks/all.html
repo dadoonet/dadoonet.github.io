@@ -196,6 +196,9 @@
             {{ if not $cover }}
               {{ $cover = .Resources.GetMatch "cover.png" }}
             {{ end }}
+            {{ if not $cover }}
+              {{ $cover = .Resources.GetMatch "cover.webp" }}
+            {{ end }}
           {{ end }}
           {{ if $cover }}
           <figure class="relative overflow-hidden h-40">
