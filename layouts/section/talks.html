@@ -341,19 +341,22 @@
   }
 </style>
 
-{{/* Get all talks and sort by date descending */}}
+{{/* Get all talks and sort by date descending, excluding special pages */}}
 {{ $allTalks := .Pages.ByDate.Reverse }}
 {{ $now := now }}
 
-{{/* Separate upcoming and past talks */}}
+{{/* Separate upcoming and past talks, excluding special pages (templates, all, map, videos) */}}
 {{ $scratch := newScratch }}
 {{ $scratch.Set "upcoming" slice }}
 {{ $scratch.Set "past" slice }}
 {{ range $allTalks }}
-  {{ if gt .Date $now }}
-    {{ $scratch.Add "upcoming" (slice .) }}
-  {{ else }}
-    {{ $scratch.Add "past" (slice .) }}
+  {{ $dir := .File.Dir }}
+  {{ if not (or (in $dir "templates/") (in $dir "all/") (in $dir "map/") (in $dir "videos/")) }}
+    {{ if gt .Date $now }}
+      {{ $scratch.Add "upcoming" (slice .) }}
+    {{ else }}
+      {{ $scratch.Add "past" (slice .) }}
+    {{ end }}
   {{ end }}
 {{ end }}
 {{ $upcomingTalks := $scratch.Get "upcoming" }}
