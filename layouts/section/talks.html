@@ -271,6 +271,74 @@
     font-size: 0.7rem;
     margin-top: 0.25rem;
   }
+
+  /* Template preview cards */
+  .template-preview-card {
+    position: relative;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    background: oklch(var(--b2));
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+  }
+  .template-preview-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  }
+  .template-preview-header {
+    padding: 1rem;
+    background: linear-gradient(135deg, oklch(var(--p)) 0%, oklch(var(--s)) 100%);
+    color: oklch(var(--pc));
+  }
+  .template-preview-title {
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.3;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .template-preview-body {
+    padding: 0.75rem 1rem;
+    flex: 1;
+  }
+  .template-preview-abstract {
+    color: oklch(var(--bc) / 0.7);
+    font-size: 0.8rem;
+    line-height: 1.4;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .template-preview-footer {
+    padding: 0.5rem 1rem;
+    border-top: 1px solid oklch(var(--bc) / 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.75rem;
+  }
+  .template-preview-count {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    color: oklch(var(--p));
+    font-weight: 600;
+  }
+  .template-preview-count ion-icon {
+    font-size: 0.9rem;
+  }
+  .template-preview-date {
+    color: oklch(var(--bc) / 0.5);
+  }
 </style>
 
 {{/* Get all talks and sort by date descending */}}
@@ -464,6 +532,54 @@
         </a>
       </div>
     </section>
+    {{ end }}
+
+    {{/* Talk Templates Section */}}
+    {{ $templatesSection := site.GetPage "/talks/templates" }}
+    {{ if $templatesSection }}
+    {{ $templates := $templatesSection.Pages }}
+    {{ $sortedTemplates := sort $templates ".Date" "desc" }}
+    {{ $recentTemplates := first 4 $sortedTemplates }}
+    {{ if $recentTemplates }}
+    <div class="section-divider">
+      <span class="section-title">📋 Talk templates</span>
+    </div>
+    
+    <section class="mb-12">
+      <div class="video-grid">
+        {{ range $recentTemplates }}
+        {{ $talkName := .Params.talk }}
+        {{/* Count how many times this talk was played */}}
+        {{ $playedCount := 0 }}
+        {{ range where (where site.RegularPages "Section" "talks") ".Params.talk" $talkName }}
+          {{ $playedCount = add $playedCount 1 }}
+        {{ end }}
+        <a href="{{ .RelPermalink }}" class="template-preview-card">
+          <div class="template-preview-header">
+            <h3 class="template-preview-title">{{ .Title }}</h3>
+          </div>
+          <div class="template-preview-body">
+            <p class="template-preview-abstract">{{ .Summary | plainify | truncate 100 }}</p>
+          </div>
+          <div class="template-preview-footer">
+            <span class="template-preview-count">
+              <ion-icon name="mic"></ion-icon>
+              {{ $playedCount }} times
+            </span>
+            <span class="template-preview-date">Since {{ .Date | time.Format "2006" }}</span>
+          </div>
+        </a>
+        {{ end }}
+      </div>
+      
+      <div class="more-button-container">
+        <a href="/talks/templates/" class="more-button">
+          More templates
+          <ion-icon name="arrow-forward"></ion-icon>
+        </a>
+      </div>
+    </section>
+    {{ end }}
     {{ end }}
 
   </div>
