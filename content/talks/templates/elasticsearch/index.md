@@ -11,18 +11,21 @@ versions:
     flag: "gb"
     title: "Elasticsearch"
     abstract: |
-      Still using SQL queries for searches? Are your users complaining they can't search across all fields? Is your average response time over half a second with just a few million documents? Does it take 3 days to produce statistics on your data? Do you dream of offering a "Google-like" search on your information system data?
-      
-      Look no further! This talk is made for you.
-      
-      David will present during this lunch session why and how he moved from SQL search to Elasticsearch, detailing the benefits of this engine compared to a pure Lucene solution:
-      
-      * Why Elasticsearch?
+      Are you still using SQL queries for searches? Are your users frustrated about not being able to search across all categories? Is your average response time over half a second with just a few million documents? Does it take you three days to generate statistics on your data? Are you looking to provide a Google-like search experience for your information system?
+
+      If so, this conference is for you.
+
+      During the session, David will explain the transition from SQL searches to Elasticsearch, highlighting the benefits of this engine compared to a pure Lucene solution. Topics will include:
+
+      * Why using a search engine?
       * Indexing
-      * Search
-      * Aggregations and faceted navigation
-      * Horizontal scalability
+      * Searching
+      * Aggregations and the concept of faceted navigation
+      * Analysis and mapping (if time allows)
       * The community
+      
+      Depending on interest, we can also touch on recent developments, such as vector search and the ES|QL language/engine in a simplified manner.
+
   - label: "FR"
     flag: "fr"
     title: "Elasticsearch"
@@ -39,6 +42,16 @@ versions:
       * Les agrégations et le principe de navigation par facettes
       * La scalabilité horizontale
       * La communauté
+
+  - label: "FR (with AI)"
+    flag: "fr"
+    title: "Elasticsearch, you know for (AI) Search"
+    abstract: |
+      Vous utilisez encore des requêtes SQL pour faire des recherches ? Vos utilisateurs vous reprochent de ne pas pouvoir chercher sur toutes les rubriques ? Votre temps de réponse moyen est supérieur à la demi-seconde avec seulement quelques millions de documents ? Il vous faut 3 jours pour produire des statistiques sur vos données ? Vous rêvez d’offrir une recherche "à la google" sur les données de votre SI ?
+
+      Ne cherchez plus ! Cette conférence est faite pour vous.
+
+      Venez découvrir comment Elasticsearch peut résoudre ces problèmes et bien d'autres lors d'une session basée principalement sur des démonstrations live dont comment trouver la musique qui s'approche le plus d'une musique que nous fredonnons 🎶🎸🎻.
 
 links:
   - title: "Demo: Kibana script for BBL"
