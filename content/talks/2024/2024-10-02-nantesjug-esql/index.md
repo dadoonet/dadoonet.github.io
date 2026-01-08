@@ -1,7 +1,7 @@
 ---
 title: 'Elasticsearch Query Language: ES|QL'
 conference:
-  name: NantesJUG
+  name: Nantes JUG
   url: "https://nantesjug.org/#/events/2024_10_02"
   city: Nantes
   country: France
