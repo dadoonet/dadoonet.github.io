@@ -404,6 +404,7 @@
           {{ end }}
           <div class="featured-overlay">
             <div style="display: flex; gap: 0.5rem; margin-bottom: 0.5rem;">
+              {{ partial "langLabel.html" $talk }}
               {{ partial "videoLabel.html" $talk }}
               {{ partial "slidesLabel.html" $talk }}
             </div>
@@ -435,6 +436,7 @@
             <td style="width: 50%;">
               <div class="upcoming-title">
                 {{ .Title }}
+                {{ partial "langLabel.html" . }}
                 <a href="{{ .RelPermalink }}" title="Voir les détails">&nbsp;                </a>
               </div>
             </td>
@@ -471,6 +473,7 @@
           <tr>
             <td style="width: 50%;" class="past-title">
               <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+              {{ partial "langLabel.html" . }}
               {{ partial "slidesLabel.html" . }}
               {{ partial "videoLabel.html" . }}
             </td>

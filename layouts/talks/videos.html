@@ -241,6 +241,7 @@
             <div class="video-title">{{ .Title }}</div>
             <div class="video-meta">
               {{ partial "countryFlag.html" .Params.conference }}
+              {{ partial "langLabel.html" . }}
               <span>{{ .Params.conference.name }}</span>
               <span>•</span>
               <span>{{ .Date | time.Format "Jan 2006" }}</span>
