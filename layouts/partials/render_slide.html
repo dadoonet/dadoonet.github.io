@@ -29,9 +29,15 @@ var pdfDoc = null,
 function calculateOptimalScale(page) {
   // Get available height: viewport height minus space for header, title, controls
   var availableHeight = window.innerHeight - 280;
-  // Get available width from container
-  var container = canvas.parentElement;
-  var availableWidth = container ? container.clientWidth : window.innerWidth - 64;
+  
+  // Get available width from the pdf-container which has proper CSS constraints
+  var pdfContainer = document.getElementById('pdf-container');
+  var availableWidth = pdfContainer ? pdfContainer.clientWidth : (window.innerWidth - 64);
+  
+  // On smaller screens, be more conservative with width
+  if (window.innerWidth < 1024) {
+    availableWidth = Math.min(availableWidth, window.innerWidth - 32);
+  }
   
   // Get the page dimensions at scale 1
   var viewport = page.getViewport({scale: 1});
@@ -214,5 +220,16 @@ pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
 
   // Initial/first page rendering
   renderPage(pageNum);
+});
+
+// Re-render on window resize with debounce
+var resizeTimeout;
+window.addEventListener('resize', function() {
+  clearTimeout(resizeTimeout);
+  resizeTimeout = setTimeout(function() {
+    if (pdfDoc) {
+      queueRenderPage(pageNum);
+    }
+  }, 250);
 });
 </script>

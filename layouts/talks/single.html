@@ -51,14 +51,14 @@
   {{ end }}
 {{ end }}
 
-<div class="lg:grid lg:grid-cols-4 gap-4 mt-4 px-4">
+<div class="flex flex-col lg:grid lg:grid-cols-4 gap-4 mt-4 px-4">
   {{/* Left column - empty for now */}}
   <div class="hidden lg:block">
   </div>
 
   {{/* Main content - spans 2 columns */}}
-  <div class="lg:col-span-2">
-    <article class="mx-auto prose prose-quoteless dark:prose-invert" id="dream-single-post-main" itemscope itemtype="http://schema.org/Article">
+  <div class="lg:col-span-2 min-w-0">
+    <article class="mx-auto prose prose-quoteless dark:prose-invert max-w-none lg:max-w-prose" id="dream-single-post-main" itemscope itemtype="http://schema.org/Article">
       {{ template "_internal/schema.html" . }}
 
       <header>
@@ -219,7 +219,7 @@
   <div
     x-data="tocHighlighter()"
     @scroll.window="debouncedScroll"
-    class="hidden lg:flex lg:flex-col lg:items-end space-y-4"
+    class="flex flex-col space-y-4 lg:items-end"
   >
     {{/* Table of Contents */}}
     {{ if site.Params.showTableOfContents }}
