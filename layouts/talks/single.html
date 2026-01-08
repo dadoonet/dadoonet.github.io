@@ -235,7 +235,13 @@
     <nav class="w-full">
       <div class="text-sm font-semibold mb-2 flex flex-wrap items-center gap-2">
         Played
+        {{ $templateSlug := .Params.talk | urlize }}
+        {{ $templatePage := site.GetPage (printf "/talks/templates/%s" $templateSlug) }}
+        {{ if $templatePage }}
+        <a href="{{ $templatePage.RelPermalink }}" class="badge badge-sm badge-primary whitespace-nowrap hover:badge-secondary transition-colors">{{ .Params.talk }}</a>
+        {{ else }}
         <span class="badge badge-sm badge-primary whitespace-nowrap">{{ .Params.talk }}</span>
+        {{ end }}
         <span class="badge badge-sm badge-primary">{{ $totalRelated }}</span>
         times
       </div>
