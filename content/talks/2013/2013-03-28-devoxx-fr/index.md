@@ -17,6 +17,7 @@ draft: false
 youtube: "zcQ7VHuQzuU"
 attendees: 500
 ---
+
 Au cours de cette session "live coding", Tugdual et David reprendront une application full SQL "à papa" pour la réécrire en NoSQL en 45 minutes.
 En s'appuyant sur CouchBase et Elasticsearch, ils mettront en avant les bénéfices de cette nouvelle architecture :
 
