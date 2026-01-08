@@ -4,3 +4,9 @@
   --badge-fg: oklch(100% 0 0);
 }
 
+/* Custom CSS for badge-info (blue - matching conference highlight) */
+.badge-info {
+  --badge-color: oklch(60% 0.2 250);
+  --badge-fg: oklch(100% 0 0);
+}
+
