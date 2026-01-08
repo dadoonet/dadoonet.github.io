@@ -230,7 +230,7 @@
     {{ if gt (len $relatedTalks) 1 }}
     {{ $totalRelated := len $relatedTalks }}
     {{ $sortedRelated := sort $relatedTalks ".Date" "desc" }}
-    {{ $displayLimit := 15 }}
+    {{ $displayLimit := 7 }}
     
     <nav class="w-full">
       <div class="text-sm font-semibold mb-2 flex items-center gap-2">
@@ -261,7 +261,7 @@
           </li>
           {{ end }}
         {{ else }}
-          {{/* Logique pour afficher avec "..." au milieu - toujours 15 talks */}}
+          {{/* Logique pour afficher avec "..." au milieu - toujours 7 talks */}}
           {{/* Trouver l'index du talk actuel */}}
           {{ $scratch := newScratch }}
           {{ $scratch.Set "currentIndex" 0 }}
@@ -274,13 +274,13 @@
           {{ $lastIndex := sub $totalRelated 1 }}
           
           {{/* Zones de base */}}
-          {{ $baseRecentEnd := 4 }}
-          {{/* Zone centrale: 1 précédent + talk actuel + 3 suivants = 5 talks */}}
+          {{ $baseRecentEnd := 1 }}
+          {{/* Zone centrale: 1 précédent + talk actuel + 1 suivant = 3 talks */}}
           {{ $aroundStartCalc := sub $currentIndex 1 }}
           {{ $aroundStart := cond (gt $aroundStartCalc 0) $aroundStartCalc 0 }}
-          {{ $aroundEndCalc := add $currentIndex 3 }}
+          {{ $aroundEndCalc := add $currentIndex 1 }}
           {{ $aroundEnd := cond (lt $aroundEndCalc $lastIndex) $aroundEndCalc $lastIndex }}
-          {{ $baseOldStart := sub $totalRelated 5 }}
+          {{ $baseOldStart := sub $totalRelated 2 }}
           
           {{/* Calculer le nombre d'indices uniques avec les zones de base */}}
           {{/* Zone récente: 0 à baseRecentEnd */}}
@@ -300,13 +300,13 @@
             {{ $overlapCentralOld = add (sub $aroundEnd $baseOldStart) 1 }}
           {{ end }}
           
-          {{/* Nombre d'indices uniques = 5 (récent) + 5 (central) + 5 (ancien) - chevauchements */}}
+          {{/* Nombre d'indices uniques = 2 (récent) + 3 (central) + 2 (ancien) - chevauchements */}}
           {{ $recentCount := add $baseRecentEnd 1 }}
           {{ $centralCount := add (sub $aroundEnd $aroundStart) 1 }}
           {{ $oldCount := add (sub $lastIndex $baseOldStart) 1 }}
           {{ $uniqueCount := sub (add (add $recentCount $centralCount) $oldCount) (add $overlapRecentCentral $overlapCentralOld) }}
           
-          {{/* Calculer combien de talks manquent pour atteindre 15 */}}
+          {{/* Calculer combien de talks manquent pour atteindre 7 */}}
           {{ $missing := sub $displayLimit $uniqueCount }}
           
           {{/* Étendre les zones pour compenser */}}
@@ -371,12 +371,13 @@
             {{ end }}
             
             {{ if $shouldDisplay }}
-              {{/* Afficher "..." si gap > 1 */}}
+              {{/* Afficher "... skipped x talks ..." si gap > 1 */}}
               {{ $lastIdx := $scratch.Get "lastDisplayedIndex" }}
               {{ $gap := sub $idx $lastIdx }}
               {{ if gt $gap 1 }}
+              {{ $skipped := sub $gap 1 }}
               <li class="menu-title text-xs text-center py-1">
-                <span class="text-base-content/50">...</span>
+                <span class="text-base-content/50">... skipped {{ $skipped }} talk{{ if gt $skipped 1 }}s{{ end }} ...</span>
               </li>
               {{ end }}
               
@@ -550,12 +551,13 @@
             {{ end }}
             
             {{ if $shouldDisplay }}
-              {{/* Afficher "..." si gap > 1 */}}
+              {{/* Afficher "... skipped x talks ..." si gap > 1 */}}
               {{ $lastIdx := $scratch.Get "lastDisplayedIndex" }}
               {{ $gap := sub $idx $lastIdx }}
               {{ if gt $gap 1 }}
+              {{ $skipped := sub $gap 1 }}
               <li class="menu-title text-xs text-center py-1">
-                <span class="text-base-content/50">...</span>
+                <span class="text-base-content/50">... skipped {{ $skipped }} talk{{ if gt $skipped 1 }}s{{ end }} ...</span>
               </li>
               {{ end }}
               
