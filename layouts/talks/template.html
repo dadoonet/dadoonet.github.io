@@ -1,4 +1,4 @@
-{{ define "title" }}{{ .Params.title_en | default .Params.title_fr | default .Title }}{{ end }}
+{{ define "title" }}{{ with .Params.versions }}{{ (index . 0).title }}{{ else }}{{ $.Title }}{{ end }}{{ end }}
 
 {{ define "css" }}
 
@@ -107,6 +107,33 @@
     background-color: #e53935;
   }
 
+  /* Sub-tabs (secondary level) */
+  .sub-tab-bar {
+    display: flex;
+    gap: 0;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid oklch(var(--bc) / 0.1);
+  }
+  .sub-tab-bar .sub-tab-button {
+    padding: 0.5rem 1rem;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+    color: oklch(var(--bc) / 0.6);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+  .sub-tab-bar .sub-tab-button:hover {
+    color: oklch(var(--bc));
+  }
+  .sub-tab-bar .sub-tab-button.active {
+    color: oklch(var(--p));
+    border-bottom-color: oklch(var(--p));
+  }
+
   /* Code block with copy button */
   .code-block {
     position: relative;
@@ -198,12 +225,9 @@
   {{ end }}
 {{ end }}
 
-{{/* Determine if we have multilingual content */}}
-{{ $hasMultilingual := and .Params.title_fr .Params.title_en }}
-{{ $titleFr := .Params.title_fr | default .Title }}
-{{ $titleEn := .Params.title_en | default .Title }}
-{{ $abstractFr := .Params.abstract_fr }}
-{{ $abstractEn := .Params.abstract_en }}
+{{/* Determine if we have versions */}}
+{{ $hasVersions := .Params.versions }}
+{{ $firstVersion := index .Params.versions 0 }}
 
 {{/* Main content - same layout as single talk page */}}
 <div class="flex flex-col lg:grid lg:grid-cols-4 gap-4 mt-4 px-4">
@@ -215,12 +239,12 @@
     <article class="mx-auto prose prose-quoteless dark:prose-invert max-w-none lg:max-w-prose" itemscope itemtype="http://schema.org/Article">
       {{ template "_internal/schema.html" . }}
 
-      {{ if $hasMultilingual }}
-      {{/* Multilingual tabs version */}}
-      <div x-data="{ activeTab: 'abstract-en' }">
-        {{/* Title - EN by default, FR as fallback */}}
+      {{ if $hasVersions }}
+      {{/* Dynamic versions tabs */}}
+      <div x-data="{ activeVersion: 0, activeSubTab: 'talk' }">
+        {{/* Title - first version by default */}}
         <header class="not-prose">
-          <h1 itemprop="headline" class="text-3xl font-bold mb-1">{{ $titleEn }}</h1>
+          <h1 itemprop="headline" class="text-3xl font-bold mb-1">{{ $firstVersion.title }}</h1>
         </header>
 
         {{/* Stats - always in English */}}
@@ -254,89 +278,66 @@
 
         <div class="divider"></div>
 
-        {{/* Language tabs - W3Schools style */}}
-        <div class="tab-bar not-prose">
+        {{/* Main tabs - Version labels (EN, FR, etc.) */}}
+        <div class="tab-bar not-prose" style="flex-wrap: wrap;">
+          {{ range $index, $version := .Params.versions }}
           <button 
             class="tab-button"
-            :class="activeTab === 'abstract-en' ? 'active' : ''"
-            @click="activeTab = 'abstract-en'"
+            :class="activeVersion === {{ $index }} ? 'active' : ''"
+            @click="activeVersion = {{ $index }}"
           >
-            <span class="fi fi-gb"></span>
-            Abstract EN
+            <span class="fi fi-{{ $version.flag }}"></span>
+            {{ $version.label }}
+          </button>
+          {{ end }}
+        </div>
+
+        {{/* Sub-tabs - Talk / Raw */}}
+        <div class="sub-tab-bar not-prose">
+          <button 
+            class="sub-tab-button"
+            :class="activeSubTab === 'talk' ? 'active' : ''"
+            @click="activeSubTab = 'talk'"
+          >
+            <ion-icon name="chatbubble-outline" class="align-middle mr-1"></ion-icon>
+            Talk
           </button>
           <button 
-            class="tab-button"
-            :class="activeTab === 'raw-en' ? 'active' : ''"
-            @click="activeTab = 'raw-en'"
+            class="sub-tab-button"
+            :class="activeSubTab === 'raw' ? 'active' : ''"
+            @click="activeSubTab = 'raw'"
           >
-            <span class="fi fi-gb"></span>
-            Raw EN
-          </button>
-          <button 
-            class="tab-button"
-            :class="activeTab === 'abstract-fr' ? 'active' : ''"
-            @click="activeTab = 'abstract-fr'"
-          >
-            <span class="fi fi-fr"></span>
-            Abstract FR
-          </button>
-          <button 
-            class="tab-button"
-            :class="activeTab === 'raw-fr' ? 'active' : ''"
-            @click="activeTab = 'raw-fr'"
-          >
-            <span class="fi fi-fr"></span>
-            Raw FR
+            <ion-icon name="code-slash-outline" class="align-middle mr-1"></ion-icon>
+            Raw
           </button>
         </div>
 
-        {{/* Abstract EN */}}
-        <div x-show="activeTab === 'abstract-en'" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100">
-          <h2>{{ $titleEn }}</h2>
-          {{ with $abstractEn }}{{ . | markdownify }}{{ end }}
+        {{/* Dynamic content for each version */}}
+        {{ range $index, $version := .Params.versions }}
+        {{/* Talk view (formatted abstract) */}}
+        <div x-show="activeVersion === {{ $index }} && activeSubTab === 'talk'" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100">
+          <h2>{{ $version.title }}</h2>
+          {{ $version.abstract | markdownify }}
         </div>
 
-        {{/* Raw EN - for CFP copy/paste */}}
-        <div x-show="activeTab === 'raw-en'" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100">
+        {{/* Raw view - for CFP copy/paste */}}
+        <div x-show="activeVersion === {{ $index }} && activeSubTab === 'raw'" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100">
           <h3>Title</h3>
           <div class="code-block">
             <button class="copy-button" onclick="copyToClipboard(this)" aria-label="Copy to clipboard">
               <ion-icon name="copy-outline"></ion-icon>
             </button>
-            <pre><code>{{ $titleEn }}</code></pre>
+            <pre><code>{{ $version.title }}</code></pre>
           </div>
           <h3 class="mt-4">Abstract</h3>
           <div class="code-block">
             <button class="copy-button" onclick="copyToClipboard(this)" aria-label="Copy to clipboard">
               <ion-icon name="copy-outline"></ion-icon>
             </button>
-            <pre><code>{{ with $abstractEn }}{{ . }}{{ end }}</code></pre>
+            <pre><code>{{ $version.abstract }}</code></pre>
           </div>
         </div>
-
-        {{/* Abstract FR */}}
-        <div x-show="activeTab === 'abstract-fr'" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100">
-          <h2>{{ $titleFr }}</h2>
-          {{ with $abstractFr }}{{ . | markdownify }}{{ else }}{{ .Content | emojify }}{{ end }}
-        </div>
-
-        {{/* Raw FR - for CFP copy/paste */}}
-        <div x-show="activeTab === 'raw-fr'" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100">
-          <h3>Title</h3>
-          <div class="code-block">
-            <button class="copy-button" onclick="copyToClipboard(this)" aria-label="Copy to clipboard">
-              <ion-icon name="copy-outline"></ion-icon>
-            </button>
-            <pre><code>{{ $titleFr }}</code></pre>
-          </div>
-          <h3 class="mt-4">Abstract</h3>
-          <div class="code-block">
-            <button class="copy-button" onclick="copyToClipboard(this)" aria-label="Copy to clipboard">
-              <ion-icon name="copy-outline"></ion-icon>
-            </button>
-            <pre><code>{{ with $abstractFr }}{{ . }}{{ else }}{{ .RawContent }}{{ end }}</code></pre>
-          </div>
-        </div>
+        {{ end }}
       </div>
       {{ else }}
       {{/* Single language version (backward compatible) */}}

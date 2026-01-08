@@ -149,8 +149,14 @@
         {{ end }}
       {{ end }}
 
-      {{ $displayTitle := .Params.title_en | default .Params.title_fr | default .Title }}
-      {{ $displayAbstract := .Params.abstract_en | default .Params.abstract_fr | default .Summary }}
+      {{/* Use first version if available, otherwise fallback to old format or defaults */}}
+      {{ $displayTitle := .Title }}
+      {{ $displayAbstract := .Summary }}
+      {{ with .Params.versions }}
+        {{ $firstVersion := index . 0 }}
+        {{ $displayTitle = $firstVersion.title }}
+        {{ $displayAbstract = $firstVersion.abstract }}
+      {{ end }}
       <a href="{{ .RelPermalink }}" class="template-card">
         <div class="template-card-header">
           <h2 class="template-card-title">{{ $displayTitle }}</h2>
