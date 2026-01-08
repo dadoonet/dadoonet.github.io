@@ -5,6 +5,7 @@ conference:
   city: "La Rochelle"
   country: "France"
   country_code: "fr"
+  url: "https://www.jugsummercamp.org/edition/5"
   latitude: "46.1620346"
   longitude: "-1.2463011"
 author: David Pilato

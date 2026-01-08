@@ -10,7 +10,7 @@ conference:
 author: David Pilato
 avatar: /about/david_pilato.png
 talk: Elasticsearch
-date: 2013-07-24
+date: 2013-07-24T09:00:00+02:00
 nolastmod: true
 draft: false
 
