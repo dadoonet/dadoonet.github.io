@@ -470,26 +470,9 @@
 
 {{/* Ajouter la carte des talks - tous les talks */}}
 <div class="section-divider">
-  <span class="section-title">🗺️ Events map 2025</span>
+  <span class="section-title">🗺️ Talks map</span>
 </div>
 {{ partial "talks-map.html" . }}
-
-{{/* Exemple: Carte des prochains talks uniquement (à partir d'aujourd'hui) */}}
-{{/* 
-{{ $today := now.Format "2006-01-02" }}
-<div class="section-divider">
-  <span class="section-title">🗺️ Carte des prochains talks</span>
-</div>
-{{ partial "talks-map.html" (dict "startDate" $today) }}
-*/}}
-
-{{/* Exemple: Carte des talks d'une année spécifique */}}
-{{/* 
-<div class="section-divider">
-  <span class="section-title">🗺️ Carte des talks 2025</span>
-</div>
-{{ partial "talks-map.html" (dict "startDate" "2025-01-01" "endDate" "2025-12-31") }}
-*/}}
 
 </div>
 
