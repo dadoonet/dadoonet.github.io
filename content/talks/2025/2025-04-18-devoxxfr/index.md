@@ -2,7 +2,7 @@
 title: "Envie de booster ta carrière ? Open source-toi !"
 conference:
   url: "https://devoxx.fr/"
-  name: "DevoxxFR"
+  name: "Devoxx FR"
   city: "Paris"
   country: "France"
   country_code: "fr"

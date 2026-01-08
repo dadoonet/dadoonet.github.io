@@ -1,7 +1,7 @@
 ---
 title: "Testcontainers pour de vrais tests d’intégration d’Elasticsearch"
 conference: 
-  name: "Devoxx France"
+  name: "Devoxx FR"
   city: "Paris"
   country: "France"
   country_code: "fr"

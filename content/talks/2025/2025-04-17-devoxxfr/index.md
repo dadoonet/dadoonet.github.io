@@ -1,7 +1,7 @@
 ---
 title: "Elasticsearch Query Language: ES|QL"
 conference: 
-  name: "DevoxxFR"
+  name: "Devoxx FR"
   city: "Paris"
   country: "France"
   country_code: "fr"

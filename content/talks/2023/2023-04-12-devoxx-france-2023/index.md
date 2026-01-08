@@ -1,7 +1,7 @@
 ---
 title: "Un moteur de recherche de documents d’entreprise"
 conference: 
-  name: "Devoxx France 2023"
+  name: "Devoxx FR"
   city: "Paris"
   country: "France"
   country_code: "fr"

@@ -1,7 +1,7 @@
 ---
 title: "La recherche à l’ère de l’IA"
 conference: 
-  name: "Devoxx France 2024"
+  name: "Devoxx FR"
   city: "Paris"
   country: "France"
   country_code: "fr"

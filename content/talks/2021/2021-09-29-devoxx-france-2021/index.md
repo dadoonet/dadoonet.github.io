@@ -1,7 +1,7 @@
 ---
 title: "Identifier (et bloquer !) les menaces avec Elastic Security"
 conference: 
-  name: "Devoxx France 2021"
+  name: "Devoxx FR"
   city: "Paris"
   country: "France"
   country_code: "fr"

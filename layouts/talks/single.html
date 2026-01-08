@@ -234,7 +234,8 @@
     
     <nav class="w-full">
       <div class="text-sm font-semibold mb-2 flex items-center gap-2">
-        Played 
+        Played
+        <span class="badge badge-sm badge-primary">{{ .Params.talk }}</span>
         <span class="badge badge-sm badge-primary">{{ $totalRelated }}</span>
         times
       </div>
@@ -417,8 +418,10 @@
     
     <nav class="w-full">
       <div class="text-sm font-semibold mb-2 flex items-center gap-2">
-        At {{ .Params.conference.name }}
+        Gave
         <span class="badge badge-sm badge-info">{{ $totalConference }}</span>
+        talks at 
+        <span class="badge badge-sm badge-info">{{ .Params.conference.name }}</span>
       </div>
       {{ $now := now }}
       <ul class="menu menu-sm bg-base-200 rounded-box w-full max-h-[40vh] overflow-y-auto">

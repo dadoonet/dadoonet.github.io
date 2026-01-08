@@ -1,7 +1,7 @@
 ---
 title: "Ajouter de A à Z une barre de recherche dans son application"
 conference: 
-  name: "Devoxx France"
+  name: "Devoxx FR"
   city: "Paris"
   country: "France"
   country_code: "fr"
