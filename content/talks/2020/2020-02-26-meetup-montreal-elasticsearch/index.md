@@ -1,7 +1,7 @@
 ---
 title: "Enrichir ses adresses postales avec la suite Elastic"
 conference: 
-  name: "Meetup Montreal Elasticsearch"
+  name: "Meetup Elastic Montreal"
   city: "Montreal"
   country: "Canada"
   country_code: "ca"
@@ -10,7 +10,7 @@ conference:
   url: "https://www.meetup.com/Elasticsearch-Montreal/events/268675767/"
 author: David Pilato
 avatar: /about/david_pilato.png
-# talk: conferences
+talk: Postal Addresses
 date: 2020-02-26
 nolastmod: true
 draft: false
@@ -43,7 +43,7 @@ Souvent, les adresses postales de nos clients ou utilisateurs sont très mal for
 
 Prenons un cas simple :
 
-```
+```json
 {
   "name": "Joe Smith",
   "address": {
@@ -57,7 +57,7 @@ Prenons un cas simple :
 
 Ou l’inverse. J’ai des coordonnées, mais je ne peux pas dire à quelle adresse cela correspond :
 
-```
+```json
 {
   "name": "Joe Smith",
   "location": {

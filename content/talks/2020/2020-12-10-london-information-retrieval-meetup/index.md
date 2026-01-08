@@ -2,21 +2,18 @@
 title: Enriching postal addresses with Elastic stack
 conference:
   name: London Information Retrieval Meetup
-  url: ''
+  url: "https://www.meetup.com/London-Information-Retrieval-Meetup-Group/events/274765296/"
   country: "Online"
   country_code: "Online"
 author: David Pilato
 avatar: /about/david_pilato.png
-# talk: conferences
+talk: Postal Addresses
 date: 2020-12-10
 nolastmod: true
 draft: false
 
 notist: dadoonet/UAqIx5
 links:
-  - title: "London Information Retrieval Meetup"
-    url: "https://www.meetup.com/London-Information-Retrieval-Meetup-Group/events/274765296/"
-
   - title: "Blog post part 1"
     url: "https://www.elastic.co/blog/enriching-your-postal-addresses-with-the-elastic-stack-part-1"
 
@@ -42,11 +39,11 @@ x:
 > Come and learn how you can enrich your existing data with normalized postal addresses with geo location points thanks to open data and [BANO project](http://bano.openstreetmap.fr/data/).
 
 Most of the time postal addresses from our customers or users are not very well formatted or defined in our information systems. And it can become a nightmare if you are a call center employee for example and want to find a customer by its address.
-Imagine as well how a sales service could easily put on a map where are located the customers and where they can open a new shop…
+Imagine as well how a sales service could easily put on a map where are located the customers and where they can open a new shop...
 
 Let’s take a simple example:
 
-```
+```json
 {
   "name": "Joe Smith",
   "address": {
@@ -60,7 +57,7 @@ Let’s take a simple example:
 
 Or the opposite. I do have the coordinates but I can’t tell what is the postal address corresponding to it:
 
-```
+```json
 {
   "name": "Joe Smith",
   "location": {

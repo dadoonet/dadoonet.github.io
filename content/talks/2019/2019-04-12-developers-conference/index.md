@@ -10,7 +10,7 @@ conference:
   url: "https://conference.mscc.mu/session/76180"
 author: David Pilato
 avatar: /about/david_pilato.png
-# talk: conferences
+talk: Postal Addresses
 date: 2019-04-12
 nolastmod: true
 draft: false
@@ -57,7 +57,7 @@ Souvent, les adresses postales de nos clients ou utilisateurs sont très mal for
 
 Prenons un cas simple :
 
-```
+```json
 {
   "name": "Joe Smith",
   "address": {
@@ -71,7 +71,7 @@ Prenons un cas simple :
 
 Ou l’inverse. J’ai des coordonnées, mais je ne peux pas dire à quelle adresse cela correspond :
 
-```
+```json
 {
   "name": "Joe Smith",
   "location": {

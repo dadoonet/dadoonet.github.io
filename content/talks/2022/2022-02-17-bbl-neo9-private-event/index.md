@@ -2,21 +2,18 @@
 title: Enrichir ses adresses postales avec la suite Elastic
 conference:
   name: BBL Neo9 (Private Event)
-  url: ''
+  url: "https://neo9.fr/"
   country: "Online"
   country_code: "Online"
 author: David Pilato
 avatar: /about/david_pilato.png
-talk: Elasticsearch
+talk: Postal Addresses
 date: 2022-02-17
 nolastmod: true
 draft: false
 
 notist: dadoonet/RxDtjn
 links:
-  - title: "Neo9"
-    url: "https://neo9.fr/"
-
   - title: "Repository used for the demo"
     url: "https://github.com/dadoonet/bano-elastic/"
 
@@ -40,7 +37,7 @@ Souvent, les adresses postales de nos clients ou utilisateurs sont très mal for
 
 Prenons un cas simple :
 
-```
+```json
 {
   "name": "Joe Smith",
   "address": {
@@ -54,7 +51,7 @@ Prenons un cas simple :
 
 Ou l’inverse. J’ai des coordonnées, mais je ne peux pas dire à quelle adresse cela correspond :
 
-```
+```json
 {
   "name": "Joe Smith",
   "location": {

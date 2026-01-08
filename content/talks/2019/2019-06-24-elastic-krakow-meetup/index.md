@@ -10,7 +10,7 @@ conference:
   url: "https://www.meetup.com/Elastic-Krakow/events/262282793/"
 author: David Pilato
 avatar: /about/david_pilato.png
-# talk: conferences
+talk: Postal Addresses
 date: 2019-06-24
 nolastmod: true
 draft: false
@@ -44,7 +44,7 @@ Imagine as well how a sales service could easily put on a map where are located 
 
 Let’s take a simple example:
 
-```
+```json
 {
   "name": "Joe Smith",
   "address": {
@@ -58,7 +58,7 @@ Let’s take a simple example:
 
 Or the opposite. I do have the coordinates but I can’t tell what is the postal address corresponding to it:
 
-```
+```json
 {
   "name": "Joe Smith",
   "location": {
