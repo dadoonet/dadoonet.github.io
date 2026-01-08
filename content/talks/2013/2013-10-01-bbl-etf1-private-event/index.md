@@ -2,7 +2,7 @@
 title: "Elasticsearch"
 conference: 
   name: "BBL eTF1 (private event)"
-  city: "Paris"
+  city: "Boulogne-Billancourt"
   country: "France"
   country_code: "fr"
   latitude: "48.8341066"

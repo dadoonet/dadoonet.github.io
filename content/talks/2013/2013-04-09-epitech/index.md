@@ -2,7 +2,7 @@
 title: "Elasticsearch: le moteur de recherche élastique"
 conference: 
   name: "Epitech (private event)"
-  city: "Paris"
+  city: "Le Kremlin-Bicêtre"
   country: "France"
   country_code: "fr"
   latitude: "48.8153995"

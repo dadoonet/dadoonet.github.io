@@ -2,7 +2,7 @@
 title: "ES Core"
 conference: 
   name: "ES Core"
-  city: "Amsterdam"
+  city: "Haarlemmermeer"
   country: "Netherlands"
   country_code: "nl"
   latitude: "52.3545653"

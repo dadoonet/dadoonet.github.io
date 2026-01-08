@@ -9,7 +9,7 @@ conference:
   longitude: "2.458934"
 author: David Pilato
 avatar: /about/david_pilato.png
-talk: Legacy Search
+talk: SQL2NoSQL
 date: 2013-05-24
 nolastmod: true
 draft: false

@@ -2,7 +2,7 @@
 title: "Elasticsearch"
 conference: 
   name: "BBL BNP Paribas (private event)"
-  city: "Paris"
+  city: "Montreuil"
   country: "France"
   country_code: "fr"
   latitude: "48.8542522"

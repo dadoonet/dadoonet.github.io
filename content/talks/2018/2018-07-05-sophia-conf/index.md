@@ -2,7 +2,7 @@
 title: "Sophia Conf"
 conference: 
   name: "Sophia Conf"
-  city: "Nice"
+  city: "Grasse"
   country: "France"
   country_code: "fr"
   latitude: "43.6164273"

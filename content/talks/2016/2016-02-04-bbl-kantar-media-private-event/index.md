@@ -2,7 +2,7 @@
 title: "Elasticsearch"
 conference: 
   name: "BBL Kantar Media (private event)"
-  city: "Paris"
+  city: "Puteaux"
   country: "France"
   country_code: "fr"
   latitude: "48.8880874"

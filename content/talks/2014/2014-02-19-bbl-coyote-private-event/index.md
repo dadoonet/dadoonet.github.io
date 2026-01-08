@@ -2,7 +2,7 @@
 title: "Elasticsearch"
 conference: 
   name: "BBL Coyote (private event)"
-  city: "Suresnes"
+  city: "Rueil-Malmaison"
   country: "France"
   country_code: "fr"
   latitude: "48.8710207"

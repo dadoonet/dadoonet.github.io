@@ -2,7 +2,7 @@
 title: "Elasticsearch: le moteur de recherche élastique pour tous"
 conference: 
   name: "BBL Altavia Connect (private event)"
-  city: "Paris"
+  city: "Saint-Ouen-sur-Seine"
   country: "France"
   country_code: "fr"
   latitude: "48.9071957"

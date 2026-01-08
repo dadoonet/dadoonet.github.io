@@ -2,7 +2,7 @@
 title: "Devoxx4Kids"
 conference: 
   name: "Devoxx4Kids"
-  city: "Paris"
+  city: "Arcueil"
   country: "France"
   country_code: "fr"
   latitude: "48.8012274"

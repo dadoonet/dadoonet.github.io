@@ -2,7 +2,7 @@
 title: "Percona"
 conference: 
   name: "Percona"
-  city: "Amsterdam"
+  city: "Haarlemmermeer"
   country: "Netherlands"
   country_code: "nl"
   latitude: "52.3545653"

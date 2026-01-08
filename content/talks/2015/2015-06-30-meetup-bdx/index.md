@@ -2,7 +2,7 @@
 title: "Meetup BDX"
 conference: 
   name: "Meetup BDX"
-  city: "Bordeaux"
+  city: "Eysines"
   country: "France"
   country_code: "fr"
   latitude: "44.8637065"

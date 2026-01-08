@@ -2,7 +2,7 @@
 title: "Elasticsearch: le moteur de recherche élastique pour tous"
 conference: 
   name: "Normandy JUG"
-  city: "Rouen"
+  city: "Mont-Saint-Aignan"
   country: "France"
   country_code: "fr"
   latitude: "49.4770958"

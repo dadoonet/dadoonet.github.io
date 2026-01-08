@@ -2,7 +2,7 @@
 title: "Geneva JUG"
 conference: 
   name: "Geneva JUG"
-  city: "Geneva"
+  city: "Lancy"
   country: "Switzerland"
   country_code: "ch"
   latitude: "46.1872424"

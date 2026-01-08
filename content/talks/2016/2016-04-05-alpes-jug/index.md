@@ -2,7 +2,7 @@
 title: "Alpes JUG"
 conference: 
   name: "Alpes JUG"
-  city: "Grenoble"
+  city: "Saint-Martin-d'Hères"
   country: "France"
   country_code: "fr"
   latitude: "45.1940368"

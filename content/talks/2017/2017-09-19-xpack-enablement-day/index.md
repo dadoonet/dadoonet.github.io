@@ -2,7 +2,7 @@
 title: "XPack Enablement Day"
 conference: 
   name: "XPack Enablement Day"
-  city: "Paris"
+  city: "Puteaux"
   country: "France"
   country_code: "fr"
   latitude: "48.8929569"

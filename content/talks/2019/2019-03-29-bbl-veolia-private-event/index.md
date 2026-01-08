@@ -2,7 +2,7 @@
 title: "Elasticsearch"
 conference: 
   name: "BBL Veolia (private event)"
-  city: "Saint-Maurice"
+  city: "Paris"
   country: "France"
   country_code: "fr"
   latitude: "48.820567"

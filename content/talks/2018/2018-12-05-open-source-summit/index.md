@@ -2,7 +2,7 @@
 title: "Open Source Summit"
 conference: 
   name: "Open Source Summit"
-  city: "Paris"
+  city: "Aubervilliers"
   country: "France"
   country_code: "fr"
   latitude: "48.903117"

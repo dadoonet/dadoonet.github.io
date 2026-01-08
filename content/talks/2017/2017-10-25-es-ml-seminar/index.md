@@ -2,7 +2,7 @@
 title: "ES ML Seminar"
 conference: 
   name: "ES ML Seminar"
-  city: "Paris"
+  city: "Puteaux"
   country: "France"
   country_code: "fr"
   latitude: "48.8925044"

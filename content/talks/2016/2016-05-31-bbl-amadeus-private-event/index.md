@@ -2,7 +2,7 @@
 title: "Elasticsearch"
 conference: 
   name: "BBL Amadeus (private event)"
-  city: "Nice"
+  city: "Grasse"
   country: "France"
   country_code: "fr"
   latitude: "43.6245435"

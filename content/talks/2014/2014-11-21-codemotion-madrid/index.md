@@ -2,7 +2,7 @@
 title: "CodeMotion Madrid"
 conference: 
   name: "CodeMotion Madrid"
-  city: "Madrid"
+  city: "Pozuelo de Alarcón"
   country: "Spain"
   country_code: "es"
   latitude: "40.4378698"

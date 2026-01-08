@@ -2,7 +2,7 @@
 title: "Open World Forum"
 conference: 
   name: "Open World Forum"
-  city: "Paris"
+  city: "Montrouge"
   country: "France"
   country_code: "fr"
   latitude: "48.8192054"

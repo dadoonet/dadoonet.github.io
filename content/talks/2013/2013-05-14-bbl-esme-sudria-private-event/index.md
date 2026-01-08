@@ -2,7 +2,7 @@
 title: "Elasticsearch: le moteur de recherche élastique pour tous"
 conference: 
   name: "BBL ESME Sudria (private event)"
-  city: "Paris"
+  city: "Ivry-sur-Seine"
   country: "France"
   country_code: "fr"
   latitude: "48.8144436"

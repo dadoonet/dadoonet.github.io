@@ -2,7 +2,7 @@
 title: "Meetup CERN"
 conference: 
   name: "Meetup CERN"
-  city: "Geneva"
+  city: "Saint-Genis-Pouilly"
   country: "Switzerland"
   country_code: "ch"
   latitude: "46.2521574"

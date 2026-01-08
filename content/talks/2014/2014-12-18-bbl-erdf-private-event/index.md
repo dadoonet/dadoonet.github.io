@@ -2,7 +2,7 @@
 title: "Elasticsearch"
 conference: 
   name: "BBL ERDF (private event)"
-  city: "Paris"
+  city: "Nanterre"
   country: "France"
   country_code: "fr"
   latitude: "48.8856343"

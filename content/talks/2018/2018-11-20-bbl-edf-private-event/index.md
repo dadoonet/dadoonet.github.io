@@ -2,7 +2,7 @@
 title: "Elasticsearch"
 conference: 
   name: "BBL EDF (private event)"
-  city: "Paris"
+  city: "Saint-Denis"
   country: "France"
   country_code: "fr"
   latitude: "48.9204656"

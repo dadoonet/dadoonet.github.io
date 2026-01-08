@@ -2,7 +2,7 @@
 title: "ELK Workshop"
 conference: 
   name: "ELK Workshop"
-  city: "Amsterdam"
+  city: "Haarlemmermeer"
   country: "Netherlands"
   country_code: "nl"
   latitude: "52.3545653"

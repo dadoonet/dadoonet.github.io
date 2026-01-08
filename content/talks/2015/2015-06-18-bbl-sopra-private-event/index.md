@@ -2,7 +2,7 @@
 title: "Elasticsearch"
 conference: 
   name: "BBL Sopra (private event)"
-  city: "Paris"
+  city: "Courbevoie"
   country: "France"
   country_code: "fr"
   latitude: "48.8896305"

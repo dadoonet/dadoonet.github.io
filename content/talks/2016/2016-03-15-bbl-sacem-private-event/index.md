@@ -2,7 +2,7 @@
 title: "Elasticsearch"
 conference: 
   name: "BBL Sacem (private event)"
-  city: "Paris"
+  city: "Neuilly-sur-Seine"
   country: "France"
   country_code: "fr"
   latitude: "48.8855176"

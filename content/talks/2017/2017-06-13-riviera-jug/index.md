@@ -2,7 +2,7 @@
 title: "Riviera JUG"
 conference: 
   name: "Riviera JUG"
-  city: "Nice"
+  city: "Grasse"
   country: "France"
   country_code: "fr"
   latitude: "43.616722"

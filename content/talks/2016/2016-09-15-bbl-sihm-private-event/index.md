@@ -2,7 +2,7 @@
 title: "Elasticsearch"
 conference: 
   name: "BBL SIHM (private event)"
-  city: "Tours"
+  city: "Saint-Pierre-des-Corps"
   country: "France"
   country_code: "fr"
   latitude: "47.3863188"

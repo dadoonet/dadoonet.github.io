@@ -2,7 +2,7 @@
 title: "BDX.io"
 conference: 
   name: "BDX.io"
-  city: "Bordeaux"
+  city: "Pessac"
   country: "France"
   country_code: "fr"
   latitude: "44.8066376"

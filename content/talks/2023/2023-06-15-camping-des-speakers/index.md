@@ -2,7 +2,7 @@
 title: "L’art du DeeJaying par la pratique"
 conference: 
   name: "Camping des Speakers"
-  city: "Baden"
+  city: "Vannes"
   country: "France"
   country_code: "fr"
   latitude: "47.619668"

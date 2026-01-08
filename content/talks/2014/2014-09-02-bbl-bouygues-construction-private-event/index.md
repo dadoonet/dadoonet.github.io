@@ -2,7 +2,7 @@
 title: "Elasticsearch"
 conference: 
   name: "BBL Bouygues Construction (private event)"
-  city: "Saint-Quentin-en-Yvelines"
+  city: "Montigny-le-Bretonneux"
   country: "France"
   country_code: "fr"
   latitude: "48.7730107"

@@ -2,7 +2,7 @@
 title: "Voxxed Cluj Napoca"
 conference: 
   name: "Voxxed Cluj Napoca"
-  city: "Cluj-Napoca"
+  city: "Zona Metropolitană Cluj"
   country: "Romania"
   country_code: "ro"
   latitude: "46.7833002"

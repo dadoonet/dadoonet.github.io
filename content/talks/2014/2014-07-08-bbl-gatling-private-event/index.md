@@ -2,7 +2,7 @@
 title: "Elasticsearch"
 conference: 
   name: "BBL GATLING (private event)"
-  city: "Paris"
+  city: "Cachan"
   country: "France"
   country_code: "fr"
   latitude: "48.7985651"

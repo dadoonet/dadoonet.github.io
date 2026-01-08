@@ -2,7 +2,7 @@
 title: "Voxxed Luxembourg"
 conference: 
   name: "Voxxed Luxembourg"
-  city: "Luxembourg"
+  city: "Ellange"
   country: "Luxembourg"
   country_code: "lu"
   latitude: "49.5074915"

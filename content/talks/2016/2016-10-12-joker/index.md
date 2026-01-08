@@ -2,7 +2,7 @@
 title: "Joker<?>"
 conference: 
   name: "Joker<?>"
-  city: "Saint Petersburg"
+  city: "Chouchary"
   country: "Russia"
   country_code: "ru"
   latitude: "59.7628786"

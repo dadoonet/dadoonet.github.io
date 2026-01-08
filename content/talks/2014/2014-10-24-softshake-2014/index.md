@@ -2,7 +2,7 @@
 title: "SoftShake 2014"
 conference: 
   name: "SoftShake 2014"
-  city: "Geneva"
+  city: "Vernier"
   country: "Switzerland"
   country_code: "ch"
   latitude: "46.2050242"

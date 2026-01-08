@@ -2,7 +2,7 @@
 title: "Elasticsearch"
 conference: 
   name: "BBL Infotel (private event)"
-  city: "Bagnolet"
+  city: "Paris"
   country: "France"
   country_code: "fr"
   latitude: "48.8670922"

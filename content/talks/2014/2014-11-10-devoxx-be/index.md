@@ -2,7 +2,7 @@
 title: "Devoxx BE"
 conference: 
   name: "Devoxx BE"
-  city: "Antwerp"
+  city: "Beveren-Kruibeke-Zwijndrecht"
   country: "Belgium"
   country_code: "be"
   latitude: "51.2603015"

@@ -2,7 +2,7 @@
 title: "Dub JUG"
 conference: 
   name: "Dub JUG"
-  city: "Dublin"
+  city: "Comté de Kildare"
   country: "Ireland"
   country_code: "ie"
   latitude: "53.3239919"

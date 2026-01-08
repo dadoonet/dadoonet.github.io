@@ -2,7 +2,7 @@
 title: "Web2Day Nantes"
 conference: 
   name: "Web2Day Nantes"
-  city: "Nantes"
+  city: "Saint-Herblain"
   country: "France"
   country_code: "fr"
   latitude: "47.2382007"

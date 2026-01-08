@@ -2,7 +2,7 @@
 title: "Elasticsearch"
 conference: 
   name: "BBL Caisse des dépôts (private event)"
-  city: "Arcueil"
+  city: "Bagneux"
   country: "France"
   country_code: "fr"
   latitude: "48.8053407"

@@ -2,7 +2,7 @@
 title: "SnowCamp"
 conference: 
   name: "SnowCamp"
-  city: "Grenoble"
+  city: "Saint-Martin-d'Hères"
   country: "France"
   country_code: "fr"
   latitude: "45.190652"

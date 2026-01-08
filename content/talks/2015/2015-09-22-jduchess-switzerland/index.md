@@ -2,7 +2,7 @@
 title: "JDuchess Switzerland"
 conference: 
   name: "JDuchess Switzerland"
-  city: "Geneva"
+  city: "Vernier"
   country: "Switzerland"
   country_code: "ch"
   latitude: "46.2050242"

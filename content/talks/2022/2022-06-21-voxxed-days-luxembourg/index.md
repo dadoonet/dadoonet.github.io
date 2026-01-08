@@ -2,7 +2,7 @@
 title: "Indexer ses documents bureautique avec la suite Elastic et FSCrawler"
 conference: 
   name: "Voxxed Days Luxembourg"
-  city: "Luxembourg"
+  city: "Cruchten"
   country: "Luxembourg"
   country_code: "lu"
   latitude: "49.815273"

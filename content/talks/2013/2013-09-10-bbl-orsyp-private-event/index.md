@@ -2,7 +2,7 @@
 title: "Elasticsearch: le moteur de recherche élastique pour tous"
 conference: 
   name: "BBL Orsyp (private event)"
-  city: "Paris"
+  city: "Puteaux"
   country: "France"
   country_code: "fr"
   latitude: "48.8888904"

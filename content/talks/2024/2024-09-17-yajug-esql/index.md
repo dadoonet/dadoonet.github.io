@@ -3,7 +3,7 @@ title: "Elasticsearch Query Language: ES|QL"
 conference: 
   name: "YaJUG"
   url: "https://yajug.lu/session/la-recherche-a-lere-de-l-ia/"
-  city: "Luxembourg"
+  city: "Cruchten"
   country: "Luxembourg"
   country_code: "lu"
   latitude: "49.815273"

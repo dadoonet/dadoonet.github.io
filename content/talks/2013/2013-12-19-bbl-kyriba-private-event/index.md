@@ -2,7 +2,7 @@
 title: "Elasticsearch"
 conference: 
   name: "BBL KYRIBA (private event)"
-  city: "Paris"
+  city: "Saint-Cloud"
   country: "France"
   country_code: "fr"
   latitude: "48.8412302"

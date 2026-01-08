@@ -2,7 +2,7 @@
 title: "Meetup ES FR"
 conference: 
   name: "Meetup ES FR"
-  city: "Paris"
+  city: "Asnières-sur-Seine"
   country: "France"
   country_code: "fr"
   latitude: "48.9121357"

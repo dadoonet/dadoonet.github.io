@@ -2,7 +2,7 @@
 title: "Elasticsearch"
 conference: 
   name: "BBL Sentelis (private event)"
-  city: "Paris"
+  city: "Neuilly-sur-Seine"
   country: "France"
   country_code: "fr"
   latitude: "48.8874803"

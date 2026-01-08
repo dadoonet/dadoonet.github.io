@@ -2,7 +2,7 @@
 title: "Advanced (elastic)search for your legacy application"
 conference: 
   name: "Voxxed Istanbul"
-  city: "Istanbul"
+  city: "Avcılar"
   country: "Turkey"
   country_code: "tr"
   latitude: "41.0049823"

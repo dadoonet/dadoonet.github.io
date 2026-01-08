@@ -2,7 +2,7 @@
 title: "Elasticsearch"
 conference: 
   name: "BBL Hybris (private event)"
-  city: "Levallois"
+  city: "Neuilly-sur-Seine"
   country: "France"
   country_code: "fr"
   latitude: "48.8946551"

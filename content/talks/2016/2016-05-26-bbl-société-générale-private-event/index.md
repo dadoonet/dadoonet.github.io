@@ -2,7 +2,7 @@
 title: "Elasticsearch"
 conference: 
   name: "BBL Société Générale (private event)"
-  city: "Paris"
+  city: "Puteaux"
   country: "France"
   country_code: "fr"
   latitude: "48.892067"

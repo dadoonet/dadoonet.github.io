@@ -2,7 +2,7 @@
 title: "Lorraine JUG"
 conference: 
   name: "Lorraine JUG"
-  city: "Nancy"
+  city: "Laxou"
   country: "France"
   country_code: "fr"
   latitude: "48.6880756"

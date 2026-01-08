@@ -10,11 +10,11 @@ conference:
   longitude: "-1.1591009"
 author: David Pilato
 avatar: /about/david_pilato.png
-talk: Legacy Search
+talk: SQL2NoSQL
 date: 2013-09-20
 nolastmod: true
 draft: false
-
+pdf: "2013/2013-09-20-FromSQL2NoSQL-JUGSummerCamp.pdf"
 attendees: 50
 ---
 

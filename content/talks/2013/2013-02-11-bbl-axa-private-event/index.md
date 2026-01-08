@@ -2,7 +2,7 @@
 title: "Elasticsearch: le moteur de recherche élastique pour tous"
 conference: 
   name: "BBL AXA (private event)"
-  city: "La Défense"
+  city: "Nanterre"
   country: "France"
   country_code: "fr"
   latitude: "48.89606"

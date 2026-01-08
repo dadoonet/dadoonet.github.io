@@ -2,7 +2,7 @@
 title: "JDEV"
 conference: 
   name: "JDEV"
-  city: "Bordeaux"
+  city: "Eysines"
   country: "France"
   country_code: "fr"
   latitude: "44.8637065"

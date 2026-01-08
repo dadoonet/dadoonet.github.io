@@ -2,7 +2,7 @@
 title: "CloudConf.IT"
 conference: 
   name: "CloudConf.IT"
-  city: "Turin"
+  city: "Grugliasco"
   country: "Italy"
   country_code: "it"
   latitude: "45.0701176"

@@ -2,7 +2,7 @@
 title: "Elasticsearch"
 conference: 
   name: "BBL Cloudwatt (private event)"
-  city: "Paris"
+  city: "Boulogne-Billancourt"
   country: "France"
   country_code: "fr"
   latitude: "48.8292081"

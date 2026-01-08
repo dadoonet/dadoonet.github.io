@@ -2,7 +2,7 @@
 title: "Elasticsearch"
 conference: 
   name: "BBL Air France (private event)"
-  city: "Paray Vielle Poste"
+  city: "Palaiseau"
   country: "France"
   country_code: "fr"
   latitude: "48.7239152"

@@ -2,7 +2,7 @@
 title: "Elasticsearch"
 conference: 
   name: "BBL Crédit Agricole (private event)"
-  city: "Paris"
+  city: "Montrouge"
   country: "France"
   country_code: "fr"
   latitude: "48.8179311"

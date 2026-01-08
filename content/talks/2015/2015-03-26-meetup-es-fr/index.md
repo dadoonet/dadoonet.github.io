@@ -2,7 +2,7 @@
 title: "Meetup ES FR"
 conference: 
   name: "Meetup ES FR"
-  city: "Paris"
+  city: "Nanterre"
   country: "France"
   country_code: "fr"
   latitude: "48.8919573"

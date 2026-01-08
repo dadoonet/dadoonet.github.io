@@ -2,7 +2,7 @@
 title: "Elasticsearch"
 conference: 
   name: "BBL Pickup Services (private event)"
-  city: "Saint-Ouen"
+  city: "Clichy"
   country: "France"
   country_code: "fr"
   latitude: "48.9118187"

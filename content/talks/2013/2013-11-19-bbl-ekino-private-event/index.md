@@ -2,7 +2,7 @@
 title: "Elasticsearch"
 conference: 
   name: "BBL Ekino (private event)"
-  city: "Paris"
+  city: "Levallois-Perret"
   country: "France"
   country_code: "fr"
   latitude: "48.8979889"

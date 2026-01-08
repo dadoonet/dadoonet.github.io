@@ -2,7 +2,7 @@
 title: "AFUP Paris 2014"
 conference: 
   name: "AFUP Paris 2014"
-  city: "Paris"
+  city: "Montrouge"
   country: "France"
   country_code: "fr"
   latitude: "48.8193761"

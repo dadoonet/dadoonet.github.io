@@ -2,7 +2,7 @@
 title: "Elasticsearch"
 conference: 
   name: "BBL Rue Du Commerce (private event)"
-  city: "Saint-Ouen"
+  city: "Clichy"
   country: "France"
   country_code: "fr"
   latitude: "48.9118187"

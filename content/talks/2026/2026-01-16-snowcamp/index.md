@@ -3,7 +3,7 @@ title: 'Le hasard fait bien les tests'
 conference: 
   name: 'Snowcamp'
   url: "https://app.voxxr.in/events/snowcamp26/talks/57/details"
-  city: "Grenoble"
+  city: "Échirolles"
   country: "France"
   country_code: "fr" # online, fr, us, etc.
   latitude: "45.1561683"

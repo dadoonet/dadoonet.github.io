@@ -2,7 +2,7 @@
 title: "Elasticsearch"
 conference: 
   name: "BBL Edelia (EDF) (private event)"
-  city: "Paris"
+  city: "Courbevoie"
   country: "France"
   country_code: "fr"
   latitude: "48.8929779"

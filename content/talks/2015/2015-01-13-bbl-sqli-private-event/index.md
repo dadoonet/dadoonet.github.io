@@ -2,7 +2,7 @@
 title: "Elasticsearch"
 conference: 
   name: "BBL SQLi (private event)"
-  city: "Saint-Denis"
+  city: "Villeneuve-la-Garenne"
   country: "France"
   country_code: "fr"
   latitude: "48.9267902"

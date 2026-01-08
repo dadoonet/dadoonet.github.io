@@ -2,7 +2,7 @@
 title: "Bordeaux JUG"
 conference: 
   name: "Bordeaux JUG"
-  city: "Bordeaux"
+  city: "Pessac"
   country: "France"
   country_code: "fr"
   latitude: "44.8063124"

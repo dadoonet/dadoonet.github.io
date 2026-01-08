@@ -2,7 +2,7 @@
 title: "La potion magique pour faire progresser ta carrière"
 conference: 
   name: "Camping des speakers"
-  city: "Baden"
+  city: "Vannes"
   country: "France"
   country_code: "fr"
   latitude: "47.619668"

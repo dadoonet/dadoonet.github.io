@@ -2,7 +2,7 @@
 title: "Meetup ES FR"
 conference: 
   name: "Meetup ES FR"
-  city: "Issy-les-Moulineaux"
+  city: "Boulogne-Billancourt"
   country: "France"
   country_code: "fr"
   latitude: "48.8239641"

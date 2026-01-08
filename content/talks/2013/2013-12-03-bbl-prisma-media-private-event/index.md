@@ -2,7 +2,7 @@
 title: "Elasticsearch"
 conference: 
   name: "BBL Prisma Media (private event)"
-  city: "Paris"
+  city: "Asnières-sur-Seine"
   country: "France"
   country_code: "fr"
   latitude: "48.918883"

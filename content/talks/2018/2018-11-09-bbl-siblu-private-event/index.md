@@ -2,7 +2,7 @@
 title: "Elasticsearch"
 conference: 
   name: "BBL Siblu (private event)"
-  city: "Bordeaux"
+  city: "Pessac"
   country: "France"
   country_code: "fr"
   latitude: "44.7834857"

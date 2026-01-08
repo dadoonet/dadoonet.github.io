@@ -2,7 +2,7 @@
 title: "K4 Workshop"
 conference: 
   name: "K4 Workshop"
-  city: "Amsterdam"
+  city: "Haarlemmermeer"
   country: "Netherlands"
   country_code: "nl"
   latitude: "52.3545653"

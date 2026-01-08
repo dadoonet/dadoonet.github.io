@@ -2,7 +2,7 @@
 title: "Elasticsearch: le moteur de recherche élastique pour tous"
 conference: 
   name: "Bordeaux JUG"
-  city: "Bordeaux"
+  city: "Pessac"
   country: "France"
   country_code: "fr"
   latitude: "44.8063124"

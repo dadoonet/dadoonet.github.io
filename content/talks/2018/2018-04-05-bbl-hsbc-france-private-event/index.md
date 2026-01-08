@@ -2,7 +2,7 @@
 title: "Elasticsearch"
 conference: 
   name: "BBL HSBC France (private event)"
-  city: "Paris"
+  city: "Courbevoie"
   country: "France"
   country_code: "fr"
   latitude: "48.8909658"

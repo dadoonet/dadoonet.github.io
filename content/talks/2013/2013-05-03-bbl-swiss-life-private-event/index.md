@@ -2,7 +2,7 @@
 title: "Elasticsearch: le moteur de recherche élastique pour tous"
 conference: 
   name: "BBL Swiss Life (private event)"
-  city: "Paris"
+  city: "Levallois-Perret"
   country: "France"
   country_code: "fr"
   latitude: "48.8998597"

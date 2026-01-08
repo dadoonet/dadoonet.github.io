@@ -2,7 +2,7 @@
 title: "Elasticsearch"
 conference: 
   name: "BBL Gendarmerie (private event)"
-  city: "Pontoise"
+  city: "Cergy"
   country: "France"
   country_code: "fr"
   latitude: "49.0487782"

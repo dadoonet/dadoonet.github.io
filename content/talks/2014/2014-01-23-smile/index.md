@@ -2,7 +2,7 @@
 title: "Smile"
 conference: 
   name: "Smile"
-  city: "Levallois"
+  city: "Neuilly-sur-Seine"
   country: "France"
   country_code: "fr"
   latitude: "48.8946551"

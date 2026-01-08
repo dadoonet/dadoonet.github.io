@@ -2,7 +2,7 @@
 title: "Solution Linux"
 conference: 
   name: "Solution Linux"
-  city: "La Défense"
+  city: "Puteaux"
   country: "France"
   country_code: "fr"
   latitude: "48.8909964"

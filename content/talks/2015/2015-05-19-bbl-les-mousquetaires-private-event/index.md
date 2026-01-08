@@ -2,7 +2,7 @@
 title: "Elasticsearch"
 conference: 
   name: "BBL Les Mousquetaires (private event)"
-  city: "Montrouge"
+  city: "Malakoff"
   country: "France"
   country_code: "fr"
   latitude: "48.8159367"

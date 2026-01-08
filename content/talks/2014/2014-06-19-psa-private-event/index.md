@@ -2,7 +2,7 @@
 title: "Elasticsearch, le moteur de recherche élastique"
 conference: 
   name: "PSA (private event)"
-  city: "Poissy"
+  city: "Saint-Germain-en-Laye"
   country: "France"
   country_code: "fr"
   latitude: "48.9240461"

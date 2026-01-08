@@ -2,7 +2,7 @@
 title: "Meetup ES CH"
 conference: 
   name: "Meetup ES CH"
-  city: "Geneva"
+  city: "Carouge"
   country: "Switzerland"
   country_code: "ch"
   latitude: "46.1827664"
