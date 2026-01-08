@@ -97,13 +97,7 @@
         {{ if .Params.cover }}
           {{ $cover = .Resources.GetMatch .Params.cover }}
         {{ else }}
-          {{ $cover = .Resources.GetMatch "cover.jpg" }}
-          {{ if not $cover }}
-            {{ $cover = .Resources.GetMatch "cover.png" }}
-          {{ end }}
-          {{ if not $cover }}
-            {{ $cover = .Resources.GetMatch "cover.webp" }}
-          {{ end }}
+          {{ $cover = .Resources.GetMatch "cover.*" }}
         {{ end }}
         {{ if and $cover site.Params.showSummaryCoverInPost }}
         <figure>
