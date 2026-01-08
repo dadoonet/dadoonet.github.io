@@ -1,6 +1,7 @@
 ---
-title: "Web 5"
-conference: 
+title: "Elastify your app: from SQL to NoSQL in less than an hour!"
+conference:
+  url: "https://www.weblife.fr/evenements/web-5-conference-2013"
   name: "Web 5"
   city: "Béziers"
   country: "France"
@@ -9,11 +10,21 @@ conference:
   longitude: "3.2199275"
 author: David Pilato
 avatar: /about/david_pilato.png
-# talk: conferences
+talk: Legacy Search
 date: 2013-06-14
 nolastmod: true
 draft: false
-pdf: "2013/2013-06-14-web-5.pdf"
 
+# Speaker specific fields
+youtube: "ctxpPd7lSnA"
+pdf: "2013/2013-06-14-web-5.pdf"
 attendees: 100
+
+x:
+  - user: dadoonet
+    id: 346345104333750272
+  - user: dadoonet
+    id: 345889595923263488
+
 ---
+
