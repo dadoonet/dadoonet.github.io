@@ -210,16 +210,14 @@
             <div class="flex flex-wrap gap-2 mb-2">
               {{ partial "countryFlag.html" .Params.conference }}
               {{ $pdf := .Resources.GetMatch "*.pdf" }}
-              {{ if $pdf }}
-              <span class="badge badge-primary badge-sm gap-1">
+              {{ if or $pdf .Params.pdf }}
+              <span class="badge badge-primary badge-sm" title="Slides">
                 <ion-icon name="easel" class="text-xs"></ion-icon>
-                Slides
               </span>
               {{ end }}
               {{ if .Params.youtube }}
-              <span class="badge badge-error badge-sm gap-1">
+              <span class="badge badge-error badge-sm" title="Video">
                 <ion-icon name="logo-youtube" class="text-xs"></ion-icon>
-                Video
               </span>
               {{ end }}
 

@@ -1,13 +1,11 @@
 {{ if .country }}
-<span class="badge badge-outline badge-sm">
+<span class="badge badge-outline badge-sm" title="{{ .country }}">
   {{- $code := upper .country_code -}}
   {{- if eq $code "ONLINE" -}}
     {{ site.Params.icons.online | default "🌎" }}
-    <span class="inline-block w-4 h-4">{{ .country }}</span>
   {{- else -}}
     {{- if eq (len $code) 2 -}}
         {{- printf "%c%c" (add (index $code 0) 127397) (add (index $code 1) 127397) -}}
-        <span class="inline-block w-4 h-4">{{ .country }}</span>        
     {{- else -}}
       {{- .country -}}
     {{- end -}}
