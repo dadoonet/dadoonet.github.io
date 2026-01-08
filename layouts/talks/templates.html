@@ -123,8 +123,25 @@
 {{/* Get all template pages from this section */}}
 {{ $templates := .Pages }}
 
-{{/* Sort templates by date descending (most recent first) */}}
-{{ $sortedTemplates := sort $templates ".Date" "desc" }}
+{{/* Build a slice of maps with template and its latest played date */}}
+{{ $templatesWithDates := slice }}
+{{/* Get all talks excluding templates */}}
+{{ $allTalks := where (where site.RegularPages "Section" "talks") ".File.Dir" "not in" (slice "talks/templates/") }}
+{{ range $templates }}
+  {{ $talkName := .Params.talk }}
+  {{ $latestDate := time "1970-01-01" }}
+  {{ $playedCount := 0 }}
+  {{ range where $allTalks ".Params.talk" $talkName }}
+    {{ $playedCount = add $playedCount 1 }}
+    {{ if gt .Date $latestDate }}
+      {{ $latestDate = .Date }}
+    {{ end }}
+  {{ end }}
+  {{ $templatesWithDates = $templatesWithDates | append (dict "template" . "latestDate" $latestDate "playedCount" $playedCount) }}
+{{ end }}
+
+{{/* Sort by latestDate descending (most recent first) */}}
+{{ $sortedTemplates := sort $templatesWithDates "latestDate" "desc" }}
 
 <div id="top" class="mt-8 px-4" style="padding-left: 2rem; padding-right: 2rem;">
   <div style="max-width: 1600px; margin: 0 auto;">
@@ -138,26 +155,19 @@
 
     <div class="template-grid">
       {{ range $sortedTemplates }}
-      {{ $talkName := .Params.talk }}
-      {{/* Count how many times this talk was played */}}
-      {{ $playedCount := 0 }}
-      {{ $latestDate := .Date }}
-      {{ range where (where site.RegularPages "Section" "talks") ".Params.talk" $talkName }}
-        {{ $playedCount = add $playedCount 1 }}
-        {{ if gt .Date $latestDate }}
-          {{ $latestDate = .Date }}
-        {{ end }}
-      {{ end }}
+      {{ $template := .template }}
+      {{ $latestDate := .latestDate }}
+      {{ $playedCount := .playedCount }}
 
       {{/* Use first version if available, otherwise fallback to old format or defaults */}}
-      {{ $displayTitle := .Title }}
-      {{ $displayAbstract := .Summary }}
-      {{ with .Params.versions }}
+      {{ $displayTitle := $template.Title }}
+      {{ $displayAbstract := $template.Summary }}
+      {{ with $template.Params.versions }}
         {{ $firstVersion := index . 0 }}
         {{ $displayTitle = $firstVersion.title }}
         {{ $displayAbstract = $firstVersion.abstract }}
       {{ end }}
-      <a href="{{ .RelPermalink }}" class="template-card">
+      <a href="{{ $template.RelPermalink }}" class="template-card">
         <div class="template-card-header">
           <h2 class="template-card-title">{{ $displayTitle }}</h2>
         </div>
@@ -169,7 +179,7 @@
             <ion-icon name="mic"></ion-icon>
             <span>Played <span class="template-badge">{{ $playedCount }}</span> times</span>
           </div>
-          <span class="template-date">Since {{ .Date | time.Format "Jan 2006" }}</span>
+          <span class="template-date">{{ if gt $playedCount 0 }}Last {{ $latestDate | time.Format "Jan 2006" }}{{ else }}Never played{{ end }}</span>
         </div>
       </a>
       {{ end }}
