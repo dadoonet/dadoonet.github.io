@@ -1,5 +1,5 @@
 ---
-title: "Normandy JUG"
+title: "Elasticsearch: le moteur de recherche élastique pour tous"
 conference: 
   name: "Normandy JUG"
   city: "Rouen"
@@ -17,3 +17,17 @@ pdf: "2013/2013-02-12-normandy-jug.pdf"
 
 attendees: 30
 ---
+
+Vous utilisez encore des requêtes SQL pour faire des recherches ? Vos utilisateurs vous reprochent de ne pas pouvoir chercher sur toutes les rubriques ? Votre temps de réponse moyen est supérieur à la demi-seconde avec seulement quelques millions de documents ? Il vous faut 3 jours pour produire des statistiques sur vos données ? Vous rêvez d'offrir une recherche "à la google" sur les données de votre SI ? Ne cherchez plus ! Cette conférence est faite pour vous.
+
+David présentera pourquoi et comment il est passé de la recherche SQL à Elasticsearch en détaillant les apports de ce moteur par rapport à une solution pure Lucene :
+
+* Pourquoi Elasticsearch ?
+* L'indexation
+* La recherche
+* La collecte de données (rivers)
+* Les facettes et le principe de navigation par facettes
+* La scalabilité horizontale
+* L'analyse et le mapping
+* La percolation
+* La communauté

@@ -1,5 +1,5 @@
 ---
-title: "Paris Datageeks"
+title: "Elasticsearch: le moteur de recherche élastique pour tous"
 conference: 
   name: "Paris Datageeks"
   url: "https://www.meetup.com/paris-datageeks/events/99501752/"

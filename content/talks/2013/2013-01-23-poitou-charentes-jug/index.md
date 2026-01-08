@@ -1,5 +1,5 @@
 ---
-title: "Elasticsearch: you data, you search"
+title: "Elasticsearch: your data, your search"
 conference: 
   name: "Poitou Charentes JUG"
   url: "https://www.poitoucharentesjug.org/rencontres/elasticsearch-your-data-your-search"
