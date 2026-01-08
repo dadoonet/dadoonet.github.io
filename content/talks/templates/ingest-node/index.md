@@ -1,5 +1,5 @@
 ---
-title: "Ingest node : (ré)indexer et enrichir des documents dans Elasticsearch"
+title: "Ingest node: (re)index and enrich documents in Elasticsearch"
 layout: "template"
 talk: Ingest Node
 date: 2016-12-01
@@ -7,6 +7,17 @@ nolastmod: true
 draft: false
 
 versions:
+  - label: "EN"
+    flag: "gb"
+    title: "Ingest node: (re)index and enrich documents in Elasticsearch"
+    abstract: |
+      When you ingest data into Elasticsearch, you may need to perform fairly simple transformation operations. Until now, these operations had to be done outside of Elasticsearch, before the actual indexing.
+      
+      Welcome Ingest node! A new type of node that allows you to do just that.
+      
+      This talk explains the concept of Ingest Node, how to integrate it with the rest of the Elastic software suite, and how to develop your own Ingest plugin in practice by showing how I developed the ingest-bano plugin to enrich French postal addresses and/or geographic coordinates (for now).
+      
+      This talk will also cover the reindex API which can also benefit from the ingest pipeline to modify your data on the fly during reindexing.
   - label: "FR"
     flag: "fr"
     title: "Ingest node : (ré)indexer et enrichir des documents dans Elasticsearch"

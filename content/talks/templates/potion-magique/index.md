@@ -1,5 +1,5 @@
 ---
-title: "Envie de booster ta carrière ? Open source-toi !"
+title: "Want to boost your career? Open source yourself!"
 layout: "template"
 talk: Potion Magique
 date: 2022-06-09
@@ -7,6 +7,11 @@ nolastmod: true
 draft: false
 
 versions:
+  - label: "EN"
+    flag: "gb"
+    title: "Want to boost your career? Open source yourself!"
+    abstract: |
+      Come discover through a true story how a simple little answer in a discussion forum on an unknown project can completely change and accelerate your career.
   - label: "FR"
     flag: "fr"
     title: "Envie de booster ta carrière ? Open source-toi !"

@@ -7,6 +7,13 @@ nolastmod: true
 draft: false
 
 versions:
+  - label: "EN"
+    flag: "gb"
+    title: "Make sense of your (BIG) data!"
+    abstract: |
+      What if we could build dashboards based on our needs, right when we need them?
+      
+      In this session, I'll show you how to combine the power of Elasticsearch with the simplicity of Kibana to effortlessly analyze your data, whether it comes from Twitter, your production logs, or your marketing data...
   - label: "FR"
     flag: "fr"
     title: "Make sense of your (BIG) data!"

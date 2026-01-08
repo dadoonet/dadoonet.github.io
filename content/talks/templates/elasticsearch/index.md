@@ -7,6 +7,22 @@ nolastmod: true
 draft: false
 
 versions:
+  - label: "EN"
+    flag: "gb"
+    title: "Elasticsearch"
+    abstract: |
+      Still using SQL queries for searches? Are your users complaining they can't search across all fields? Is your average response time over half a second with just a few million documents? Does it take 3 days to produce statistics on your data? Do you dream of offering a "Google-like" search on your information system data?
+      
+      Look no further! This talk is made for you.
+      
+      David will present during this lunch session why and how he moved from SQL search to Elasticsearch, detailing the benefits of this engine compared to a pure Lucene solution:
+      
+      * Why Elasticsearch?
+      * Indexing
+      * Search
+      * Aggregations and faceted navigation
+      * Horizontal scalability
+      * The community
   - label: "FR"
     flag: "fr"
     title: "Elasticsearch"

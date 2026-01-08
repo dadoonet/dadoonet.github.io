@@ -25,4 +25,22 @@ versions:
       - Caching / Memcache
       - Full text search
       - Building live dashboards with Kibana
+  - label: "FR"
+    flag: "fr"
+    title: "Elastifiez votre application : du SQL au NoSQL"
+    abstract: |
+      Pendant cette session de "live coding", Tugdual et David migreront une application full SQL à l'ancienne vers le monde NoSQL.
+      En utilisant CouchBase et Elasticsearch, ils montreront tous les gains que vous pouvez avoir avec cette nouvelle architecture :
+      
+      - Simplicité
+      - Élasticité (scalabilité)
+      
+      Les points suivants seront couverts :
+      
+      - Modèle orienté document
+      - JSON
+      - REST
+      - Cache / Memcache
+      - Recherche full text
+      - Construction de tableaux de bord en direct avec Kibana
 ---

@@ -43,6 +43,42 @@ versions:
       ```
       
       In this live coding session, I will show you how to solve all those questions using the Elastic stack.
+  - label: "FR"
+    flag: "fr"
+    title: "Enrichir les adresses postales avec la suite Elastic"
+    abstract: |
+      > Venez apprendre comment enrichir vos données existantes avec des adresses postales normalisées et des points de géolocalisation grâce à l'open data et au [projet BANO](http://bano.openstreetmap.fr/data/).
+      
+      La plupart du temps, les adresses postales de nos clients ou utilisateurs ne sont pas très bien formatées ou définies dans nos systèmes d'information. Et cela peut devenir un cauchemar si vous êtes un employé de centre d'appel par exemple et que vous voulez trouver un client par son adresse.
+      Imaginez également comment un service commercial pourrait facilement mettre sur une carte où sont situés les clients et où ils peuvent ouvrir un nouveau magasin…
+      
+      Prenons un exemple simple :
+      
+      ```json
+      {
+        "name": "Joe Smith",
+        "address": {
+          "number": "23",
+          "street_name": "r verdiere",
+          "city": "rochelle",
+          "country": "France"
+        }
+      }
+      ```
+      
+      Ou l'inverse. J'ai les coordonnées mais je ne peux pas dire quelle est l'adresse postale correspondante :
+      
+      ```json
+      {
+        "name": "Joe Smith",
+        "location": {
+          "lat": 46.15735,
+          "lon": -1.1551
+        }
+      }
+      ```
+      
+      Dans cette session de live coding, je vous montrerai comment résoudre toutes ces questions en utilisant la suite Elastic.
 
 links:
   - title: "Blog: Enriching Your Postal Addresses With the Elastic Stack - Part 1"

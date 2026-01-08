@@ -27,4 +27,24 @@ versions:
       
       * a JVM (1.7 preferred)
       * a web browser
+  - label: "FR"
+    flag: "fr"
+    title: "Atelier pratique elasticsearch / Kibana"
+    abstract: |
+      ### Jouons avec elasticsearch et Kibana
+      
+      Nous allons installer elasticsearch, Kibana et Marvel et utiliser ces outils pour :
+      
+      * indexer/mettre à jour/récupérer/supprimer des documents
+      * rechercher
+      * calculer
+      * construire des tableaux de bord pour donner du sens aux données marketing
+      * sauvegarder vos données et les restaurer
+      
+      ### Public visé
+      
+      Le public doit déjà connaître quelques bases comme le `JSON` et doit avoir un ordinateur portable avec :
+      
+      * une JVM (1.7 de préférence)
+      * un navigateur web
 ---
