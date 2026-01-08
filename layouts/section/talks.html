@@ -336,17 +336,8 @@
           {{ end }}
           <div class="featured-overlay">
             <div style="display: flex; gap: 0.5rem; margin-bottom: 0.5rem;">
-              {{ if $talk.Params.youtube }}
-              <span class="badge badge-error badge-sm" title="Video">
-                <ion-icon name="logo-youtube" class="text-xs"></ion-icon>
-              </span>
-              {{ end }}
-              {{ $pdf := $talk.Resources.GetMatch "*.pdf" }}
-              {{ if or $pdf $talk.Params.pdf }}
-              <span class="badge badge-primary badge-sm" title="Slides">
-                <ion-icon name="easel" class="text-xs"></ion-icon>
-              </span>
-              {{ end }}
+              {{ partial "videoLabel.html" $talk }}
+              {{ partial "slidesLabel.html" $talk }}
             </div>
             <h3 class="featured-title">{{ $talk.Title }}</h3>
             <div class="featured-meta">
@@ -412,6 +403,8 @@
           <tr>
             <td style="width: 50%;" class="past-title">
               <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+              {{ partial "slidesLabel.html" . }}
+              {{ partial "videoLabel.html" . }}
             </td>
             <td class="past-conf">
               {{ partial "countryFlag.html" .Params.conference }}
