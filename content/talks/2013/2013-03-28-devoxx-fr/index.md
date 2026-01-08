@@ -32,3 +32,5 @@ Les thèmes abordés seront :
 * Filtres et Facettes
 
 Notre plan diabolique est de vous convertir au NoSQL à tel point que vous ne puissiez faire autrement que de le mettre chez vous (et chez vos amis) ! Niark ! Niark ! Niark ! (rire satanique)
+
+![Article Programmez!](programmez.jpg)
