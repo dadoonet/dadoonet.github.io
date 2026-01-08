@@ -199,12 +199,15 @@
 {{ end }}
 
 {{ define "main" }}
-{{/* Get all talks with this template */}}
+{{/* Get all talks with this template (excluding template pages themselves) */}}
 {{ $talkName := .Params.talk }}
 {{ $relatedTalks := slice }}
 {{ $now := now }}
 {{ range where (where site.RegularPages "Section" "talks") ".Params.talk" $talkName }}
-  {{ $relatedTalks = $relatedTalks | append . }}
+  {{/* Exclude template pages (they have layout: "template") */}}
+  {{ if ne .Params.layout "template" }}
+    {{ $relatedTalks = $relatedTalks | append . }}
+  {{ end }}
 {{ end }}
 {{ $sortedTalks := sort $relatedTalks ".Date" "desc" }}
 {{ $totalPlayed := len $sortedTalks }}

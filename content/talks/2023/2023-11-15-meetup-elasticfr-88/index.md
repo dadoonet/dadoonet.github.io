@@ -10,7 +10,7 @@ conference:
   longitude: "2.352222"
 author: David Pilato
 avatar: /about/david_pilato.png
-# talk: conferences
+talk: Music Search
 date: 2023-11-15
 lang: fr
 nolastmod: true
