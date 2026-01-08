@@ -5,8 +5,8 @@ conference:
   city: "Deauville"
   country: "France"
   country_code: "fr"
-  latitude: "49.353976"
-  longitude: "0.075122"
+  latitude: "49.3582146"
+  longitude: "0.0740245"
 author: David Pilato
 avatar: /about/david_pilato.png
 # talk: conferences

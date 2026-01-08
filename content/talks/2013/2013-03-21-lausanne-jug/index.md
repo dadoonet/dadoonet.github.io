@@ -5,8 +5,8 @@ conference:
   city: "Lausanne"
   country: "Switzerland"
   country_code: "ch"
-  latitude: "47.7656064"
-  longitude: "2.0792748"
+  latitude: "46.5196535"
+  longitude: "6.6322734"
 author: David Pilato
 avatar: /about/david_pilato.png
 talk: Elasticsearch

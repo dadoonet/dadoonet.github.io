@@ -5,8 +5,8 @@ conference:
   city: "Nancy"
   country: "France"
   country_code: "fr"
-  latitude: "48.8753685"
-  longitude: "2.9773511"
+  latitude: "48.6920960"
+  longitude: "6.1844176"
 author: David Pilato
 avatar: /about/david_pilato.png
 # talk: conferences

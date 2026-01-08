@@ -1,0 +1,4361 @@
+{
+  "total_talks": 514,
+  "unique_coordinates": 357,
+  "discrepancies": 123,
+  "details": [
+    {
+      "coordinates": [
+        "48.8998597",
+        "2.2902276"
+      ],
+      "expected_city": "Paris",
+      "actual_city": "Levallois-Perret",
+      "full_address": "102, Rue Baudin, Levallois-Perret, Nanterre, Hauts-de-Seine, Île-de-France, France métropolitaine, 92300, France",
+      "talks": [
+        {
+          "file": "content/talks/2013/2013-03-01-bbl-swiss-life-private-event/index.md",
+          "city": "Paris",
+          "country": "France",
+          "latitude": "48.8998597",
+          "longitude": "2.2902276",
+          "conference_name": "BBL Swiss Life (private event)"
+        },
+        {
+          "file": "content/talks/2013/2013-02-15-bbl-swiss-life-private-event/index.md",
+          "city": "Paris",
+          "country": "France",
+          "latitude": "48.8998597",
+          "longitude": "2.2902276",
+          "conference_name": "BBL Swiss Life (private event)"
+        },
+        {
+          "file": "content/talks/2013/2013-05-03-bbl-swiss-life-private-event/index.md",
+          "city": "Paris",
+          "country": "France",
+          "latitude": "48.8998597",
+          "longitude": "2.2902276",
+          "conference_name": "BBL Swiss Life (private event)"
+        }
+      ],
+      "address": {
+        "house_number": "102",
+        "road": "Rue Baudin",
+        "town": "Levallois-Perret",
+        "municipality": "Nanterre",
+        "county": "Hauts-de-Seine",
+        "ISO3166-2-lvl6": "FR-92",
+        "state": "Île-de-France",
+        "ISO3166-2-lvl4": "FR-IDF",
+        "region": "France métropolitaine",
+        "postcode": "92300",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "47.7656064",
+        "2.0792748"
+      ],
+      "expected_city": "Lausanne",
+      "actual_city": "Orléans",
+      "full_address": "Route de Vienne-en-Val, Lotissement de la Tuilerie, La Met, Marcilly-en-Villette, Orléans, Loiret, Centre-Val de Loire, France métropolitaine, 45240, France",
+      "talks": [
+        {
+          "file": "content/talks/2013/2013-03-21-lausanne-jug/index.md",
+          "city": "Lausanne",
+          "country": "Switzerland",
+          "latitude": "47.7656064",
+          "longitude": "2.0792748",
+          "conference_name": "Lausanne JUG"
+        }
+      ],
+      "address": {
+        "road": "Route de Vienne-en-Val",
+        "residential": "Lotissement de la Tuilerie",
+        "hamlet": "La Met",
+        "village": "Marcilly-en-Villette",
+        "municipality": "Orléans",
+        "county": "Loiret",
+        "ISO3166-2-lvl6": "FR-45",
+        "state": "Centre-Val de Loire",
+        "ISO3166-2-lvl4": "FR-CVL",
+        "region": "France métropolitaine",
+        "postcode": "45240",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "48.8979889",
+        "2.276337"
+      ],
+      "expected_city": "Paris",
+      "actual_city": "Levallois-Perret",
+      "full_address": "Quai Charles Pasqua, Levallois-Perret, Nanterre, Hauts-de-Seine, Île-de-France, France métropolitaine, 92300, France",
+      "talks": [
+        {
+          "file": "content/talks/2013/2013-11-19-bbl-ekino-private-event/index.md",
+          "city": "Paris",
+          "country": "France",
+          "latitude": "48.8979889",
+          "longitude": "2.276337",
+          "conference_name": "BBL Ekino (private event)"
+        }
+      ],
+      "address": {
+        "road": "Quai Charles Pasqua",
+        "town": "Levallois-Perret",
+        "municipality": "Nanterre",
+        "county": "Hauts-de-Seine",
+        "ISO3166-2-lvl6": "FR-92",
+        "state": "Île-de-France",
+        "ISO3166-2-lvl4": "FR-IDF",
+        "region": "France métropolitaine",
+        "postcode": "92300",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "47.6087646",
+        "1.8504499"
+      ],
+      "expected_city": "Geneva",
+      "actual_city": "Romorantin-Lanthenay",
+      "full_address": "Route de Saint-Jean, Milbert, Yvoy-le-Marron, Romorantin-Lanthenay, Loir-et-Cher, Centre-Val de Loire, France métropolitaine, 41600, France",
+      "talks": [
+        {
+          "file": "content/talks/2013/2013-10-25-softshake/index.md",
+          "city": "Geneva",
+          "country": "Switzerland",
+          "latitude": "47.6087646",
+          "longitude": "1.8504499",
+          "conference_name": "Softshake"
+        },
+        {
+          "file": "content/talks/2013/2013-05-28-geneva-jug/index.md",
+          "city": "Geneva",
+          "country": "Switzerland",
+          "latitude": "47.6087646",
+          "longitude": "1.8504499",
+          "conference_name": "Geneva JUG"
+        }
+      ],
+      "address": {
+        "road": "Route de Saint-Jean",
+        "isolated_dwelling": "Milbert",
+        "village": "Yvoy-le-Marron",
+        "municipality": "Romorantin-Lanthenay",
+        "county": "Loir-et-Cher",
+        "ISO3166-2-lvl6": "FR-41",
+        "state": "Centre-Val de Loire",
+        "ISO3166-2-lvl4": "FR-CVL",
+        "region": "France métropolitaine",
+        "postcode": "41600",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "48.9121357",
+        "2.2896513"
+      ],
+      "expected_city": "Paris",
+      "actual_city": "Asnières-sur-Seine",
+      "full_address": "École Maternelle Concorde, 16, Rue du Révérend Père Christian Gilbert, Centre-Ville, Asnières-sur-Seine, Nanterre, Hauts-de-Seine, Île-de-France, France métropolitaine, 92600, France",
+      "talks": [
+        {
+          "file": "content/talks/2013/2013-07-24-bbl-smile-private-event/index.md",
+          "city": "Paris",
+          "country": "France",
+          "latitude": "48.9121357",
+          "longitude": "2.2896513",
+          "conference_name": "BBL Smile (private event)"
+        }
+      ],
+      "address": {
+        "amenity": "École Maternelle Concorde",
+        "house_number": "16",
+        "road": "Rue du Révérend Père Christian Gilbert",
+        "neighbourhood": "Centre-Ville",
+        "town": "Asnières-sur-Seine",
+        "municipality": "Nanterre",
+        "county": "Hauts-de-Seine",
+        "ISO3166-2-lvl6": "FR-92",
+        "state": "Île-de-France",
+        "ISO3166-2-lvl4": "FR-IDF",
+        "region": "France métropolitaine",
+        "postcode": "92600",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "48.918883",
+        "2.294954"
+      ],
+      "expected_city": "Paris",
+      "actual_city": "Asnières-sur-Seine",
+      "full_address": "44, Rue Gustave Caillebotte, Voltaire, Asnières-sur-Seine, Nanterre, Hauts-de-Seine, Île-de-France, France métropolitaine, 92600, France",
+      "talks": [
+        {
+          "file": "content/talks/2013/2013-12-03-bbl-prisma-media-private-event/index.md",
+          "city": "Paris",
+          "country": "France",
+          "latitude": "48.918883",
+          "longitude": "2.294954",
+          "conference_name": "BBL Prisma Media (private event)"
+        }
+      ],
+      "address": {
+        "house_number": "44",
+        "road": "Rue Gustave Caillebotte",
+        "neighbourhood": "Voltaire",
+        "town": "Asnières-sur-Seine",
+        "municipality": "Nanterre",
+        "county": "Hauts-de-Seine",
+        "ISO3166-2-lvl6": "FR-92",
+        "state": "Île-de-France",
+        "ISO3166-2-lvl4": "FR-IDF",
+        "region": "France métropolitaine",
+        "postcode": "92600",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "48.8927042",
+        "2.2372652"
+      ],
+      "expected_city": "La Défense",
+      "actual_city": "Puteaux",
+      "full_address": "Selecta, Le Parvis, La Défense 12, Quartier Boieldieu, Puteaux, Nanterre, Hauts-de-Seine, Île-de-France, France métropolitaine, 92800, France",
+      "talks": [
+        {
+          "file": "content/talks/2013/2013-01-31-bbl-mada-private-event/index.md",
+          "city": "La Défense",
+          "country": "France",
+          "latitude": "48.8927042",
+          "longitude": "2.2372652",
+          "conference_name": "BBL MADA (private event)"
+        }
+      ],
+      "address": {
+        "amenity": "Selecta",
+        "road": "Le Parvis",
+        "quarter": "La Défense 12",
+        "hamlet": "Quartier Boieldieu",
+        "town": "Puteaux",
+        "municipality": "Nanterre",
+        "county": "Hauts-de-Seine",
+        "ISO3166-2-lvl6": "FR-92",
+        "state": "Île-de-France",
+        "ISO3166-2-lvl4": "FR-IDF",
+        "region": "France métropolitaine",
+        "postcode": "92800",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "48.8153995",
+        "2.3628594"
+      ],
+      "expected_city": "Paris",
+      "actual_city": "Le Kremlin-Bicêtre",
+      "full_address": "19, Rue Pasteur, La Mairie - Salengro, Le Kremlin-Bicêtre, L'Haÿ-les-Roses, Val-de-Marne, Île-de-France, France métropolitaine, 94270, France",
+      "talks": [
+        {
+          "file": "content/talks/2013/2013-04-09-epitech/index.md",
+          "city": "Paris",
+          "country": "France",
+          "latitude": "48.8153995",
+          "longitude": "2.3628594",
+          "conference_name": "Epitech (private event)"
+        }
+      ],
+      "address": {
+        "house_number": "19",
+        "road": "Rue Pasteur",
+        "suburb": "La Mairie - Salengro",
+        "town": "Le Kremlin-Bicêtre",
+        "municipality": "L'Haÿ-les-Roses",
+        "county": "Val-de-Marne",
+        "ISO3166-2-lvl6": "FR-94",
+        "state": "Île-de-France",
+        "ISO3166-2-lvl4": "FR-IDF",
+        "region": "France métropolitaine",
+        "postcode": "94270",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "48.8192054",
+        "2.3174475"
+      ],
+      "expected_city": "Paris",
+      "actual_city": "Montrouge",
+      "full_address": "54, Rue Gabriel Péri, Quartier Portes de Montrouge, Montrouge, Antony, Hauts-de-Seine, Île-de-France, France métropolitaine, 92120, France",
+      "talks": [
+        {
+          "file": "content/talks/2013/2013-10-04-open-world-forum/index.md",
+          "city": "Paris",
+          "country": "France",
+          "latitude": "48.8192054",
+          "longitude": "2.3174475",
+          "conference_name": "Open World Forum"
+        },
+        {
+          "file": "content/talks/2013/2013-10-03-open-world-forum/index.md",
+          "city": "Paris",
+          "country": "France",
+          "latitude": "48.8192054",
+          "longitude": "2.3174475",
+          "conference_name": "Open World Forum"
+        }
+      ],
+      "address": {
+        "house_number": "54",
+        "road": "Rue Gabriel Péri",
+        "suburb": "Quartier Portes de Montrouge",
+        "town": "Montrouge",
+        "municipality": "Antony",
+        "county": "Hauts-de-Seine",
+        "ISO3166-2-lvl6": "FR-92",
+        "state": "Île-de-France",
+        "ISO3166-2-lvl4": "FR-IDF",
+        "region": "France métropolitaine",
+        "postcode": "92120",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "48.8144436",
+        "2.3925219"
+      ],
+      "expected_city": "Paris",
+      "actual_city": "Ivry-sur-Seine",
+      "full_address": "75, Boulevard de Brandebourg, Ivry Port, Ivry-sur-Seine, L'Haÿ-les-Roses, Val-de-Marne, Île-de-France, France métropolitaine, 94200, France",
+      "talks": [
+        {
+          "file": "content/talks/2013/2013-05-14-bbl-esme-sudria-private-event/index.md",
+          "city": "Paris",
+          "country": "France",
+          "latitude": "48.8144436",
+          "longitude": "2.3925219",
+          "conference_name": "BBL ESME Sudria (private event)"
+        }
+      ],
+      "address": {
+        "house_number": "75",
+        "road": "Boulevard de Brandebourg",
+        "suburb": "Ivry Port",
+        "town": "Ivry-sur-Seine",
+        "municipality": "L'Haÿ-les-Roses",
+        "county": "Val-de-Marne",
+        "ISO3166-2-lvl6": "FR-94",
+        "state": "Île-de-France",
+        "ISO3166-2-lvl4": "FR-IDF",
+        "region": "France métropolitaine",
+        "postcode": "94200",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "48.89606",
+        "2.2241168"
+      ],
+      "expected_city": "La Défense",
+      "actual_city": "Nanterre",
+      "full_address": "Tunnel de la Défense, Quartier du Parc Nord, Nanterre, Hauts-de-Seine, Île-de-France, France métropolitaine, 92000, France",
+      "talks": [
+        {
+          "file": "content/talks/2013/2013-02-11-bbl-axa-private-event/index.md",
+          "city": "La Défense",
+          "country": "France",
+          "latitude": "48.89606",
+          "longitude": "2.2241168",
+          "conference_name": "BBL AXA (private event)"
+        }
+      ],
+      "address": {
+        "road": "Tunnel de la Défense",
+        "suburb": "Quartier du Parc Nord",
+        "town": "Nanterre",
+        "municipality": "Nanterre",
+        "county": "Hauts-de-Seine",
+        "ISO3166-2-lvl6": "FR-92",
+        "state": "Île-de-France",
+        "ISO3166-2-lvl4": "FR-IDF",
+        "region": "France métropolitaine",
+        "postcode": "92000",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "48.6403852",
+        "-0.9300789"
+      ],
+      "expected_city": "Rennes",
+      "actual_city": "Mortain-Bocage",
+      "full_address": "Route des Aubrils, Mortain, Mortain-Bocage, Avranches, Manche, Normandie, France métropolitaine, 50140, France",
+      "talks": [
+        {
+          "file": "content/talks/2013/2013-04-30-bbl-pages-jaunes-private-event/index.md",
+          "city": "Rennes",
+          "country": "France",
+          "latitude": "48.6403852",
+          "longitude": "-0.9300789",
+          "conference_name": "BBL Pages Jaunes (private event)"
+        }
+      ],
+      "address": {
+        "road": "Route des Aubrils",
+        "village": "Mortain",
+        "city": "Mortain-Bocage",
+        "municipality": "Avranches",
+        "county": "Manche",
+        "ISO3166-2-lvl6": "FR-50",
+        "state": "Normandie",
+        "ISO3166-2-lvl4": "FR-NOR",
+        "region": "France métropolitaine",
+        "postcode": "50140",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "48.8000117",
+        "2.6418403"
+      ],
+      "expected_city": "Strasbourg",
+      "actual_city": "Roissy-en-Brie",
+      "full_address": "Rue J-B Monet de Lamarck, Résidence Ascot, Roissy-en-Brie, Torcy, Seine-et-Marne, France métropolitaine, 77680, France",
+      "talks": [
+        {
+          "file": "content/talks/2013/2013-09-18-elsass-jug/index.md",
+          "city": "Strasbourg",
+          "country": "France",
+          "latitude": "48.8000117",
+          "longitude": "2.6418403",
+          "conference_name": "Elsass JUG"
+        }
+      ],
+      "address": {
+        "road": "Rue J-B Monet de Lamarck",
+        "hamlet": "Résidence Ascot",
+        "town": "Roissy-en-Brie",
+        "municipality": "Torcy",
+        "county": "Seine-et-Marne",
+        "ISO3166-2-lvl6": "FR-77",
+        "region": "France métropolitaine",
+        "postcode": "77680",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "48.8880544",
+        "2.2309642"
+      ],
+      "expected_city": "Paris",
+      "actual_city": "Puteaux",
+      "full_address": "Place des Marées, La Défense 8, Quartier Boieldieu, Puteaux, Nanterre, Hauts-de-Seine, Île-de-France, France métropolitaine, 92800, France",
+      "talks": [
+        {
+          "file": "content/talks/2013/2013-11-07-bbl-kantar-media-private-event/index.md",
+          "city": "Paris",
+          "country": "France",
+          "latitude": "48.8880544",
+          "longitude": "2.2309642",
+          "conference_name": "BBL Kantar Media (private event)"
+        }
+      ],
+      "address": {
+        "road": "Place des Marées",
+        "quarter": "La Défense 8",
+        "hamlet": "Quartier Boieldieu",
+        "town": "Puteaux",
+        "municipality": "Nanterre",
+        "county": "Hauts-de-Seine",
+        "ISO3166-2-lvl6": "FR-92",
+        "state": "Île-de-France",
+        "ISO3166-2-lvl4": "FR-IDF",
+        "region": "France métropolitaine",
+        "postcode": "92800",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "50.1272454",
+        "2.0864491"
+      ],
+      "expected_city": "Antwerp",
+      "actual_city": "Amiens",
+      "full_address": "Beaumetz, Amiens, Somme, Hauts-de-France, France métropolitaine, 80370, France",
+      "talks": [
+        {
+          "file": "content/talks/2013/2013-11-14-devoxx-be/index.md",
+          "city": "Antwerp",
+          "country": "Belgium",
+          "latitude": "50.1272454",
+          "longitude": "2.0864491",
+          "conference_name": "Devoxx BE"
+        }
+      ],
+      "address": {
+        "village": "Beaumetz",
+        "municipality": "Amiens",
+        "county": "Somme",
+        "ISO3166-2-lvl6": "FR-80",
+        "state": "Hauts-de-France",
+        "ISO3166-2-lvl4": "FR-HDF",
+        "region": "France métropolitaine",
+        "postcode": "80370",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "49.4253323",
+        "2.9501028"
+      ],
+      "expected_city": "Luxembourg",
+      "actual_city": "Compiègne",
+      "full_address": "Chemin des Meuniers, Rethondes, Compiègne, Oise, Hauts-de-France, France métropolitaine, 60153, France",
+      "talks": [
+        {
+          "file": "content/talks/2013/2013-03-14-ya-jug/index.md",
+          "city": "Luxembourg",
+          "country": "Luxembourg",
+          "latitude": "49.4253323",
+          "longitude": "2.9501028",
+          "conference_name": "Ya JUG"
+        }
+      ],
+      "address": {
+        "road": "Chemin des Meuniers",
+        "village": "Rethondes",
+        "municipality": "Compiègne",
+        "county": "Oise",
+        "ISO3166-2-lvl6": "FR-60",
+        "state": "Hauts-de-France",
+        "ISO3166-2-lvl4": "FR-HDF",
+        "region": "France métropolitaine",
+        "postcode": "60153",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "49.4770958",
+        "1.0893741"
+      ],
+      "expected_city": "Rouen",
+      "actual_city": "Mont-Saint-Aignan",
+      "full_address": "Rue Guglielmo Marconi, Zone d'activités du Village, Mont-Saint-Aignan, Rouen, Seine-Maritime, Normandie, France métropolitaine, 76130, France",
+      "talks": [
+        {
+          "file": "content/talks/2013/2013-02-12-normandy-jug/index.md",
+          "city": "Rouen",
+          "country": "France",
+          "latitude": "49.4770958",
+          "longitude": "1.0893741",
+          "conference_name": "Normandy JUG"
+        }
+      ],
+      "address": {
+        "road": "Rue Guglielmo Marconi",
+        "commercial": "Zone d'activités du Village",
+        "town": "Mont-Saint-Aignan",
+        "municipality": "Rouen",
+        "county": "Seine-Maritime",
+        "ISO3166-2-lvl6": "FR-76",
+        "state": "Normandie",
+        "ISO3166-2-lvl4": "FR-NOR",
+        "region": "France métropolitaine",
+        "postcode": "76130",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "48.8156781",
+        "2.3606668"
+      ],
+      "expected_city": "Paris",
+      "actual_city": "Le Kremlin-Bicêtre",
+      "full_address": "Avenue de Fontainebleau, La Mairie - Salengro, Le Kremlin-Bicêtre, L'Haÿ-les-Roses, Val-de-Marne, Île-de-France, France métropolitaine, 94270, France",
+      "talks": [
+        {
+          "file": "content/talks/2013/2013-12-10-epita/index.md",
+          "city": "Paris",
+          "country": "France",
+          "latitude": "48.8156781",
+          "longitude": "2.3606668",
+          "conference_name": "Epita"
+        }
+      ],
+      "address": {
+        "road": "Avenue de Fontainebleau",
+        "suburb": "La Mairie - Salengro",
+        "town": "Le Kremlin-Bicêtre",
+        "municipality": "L'Haÿ-les-Roses",
+        "county": "Val-de-Marne",
+        "ISO3166-2-lvl6": "FR-94",
+        "state": "Île-de-France",
+        "ISO3166-2-lvl4": "FR-IDF",
+        "region": "France métropolitaine",
+        "postcode": "94270",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "48.9071957",
+        "2.3375689"
+      ],
+      "expected_city": "Paris",
+      "actual_city": "Saint-Ouen-sur-Seine",
+      "full_address": "Kuoni, Rue Dieumegard, Rosiers - Les Puces, Saint-Ouen-sur-Seine, Saint-Denis, Seine-Saint-Denis, Île-de-France, France métropolitaine, 93400, France",
+      "talks": [
+        {
+          "file": "content/talks/2013/2013-03-05-bbl-altavia-connect-private-event/index.md",
+          "city": "Paris",
+          "country": "France",
+          "latitude": "48.9071957",
+          "longitude": "2.3375689",
+          "conference_name": "BBL Altavia Connect (private event)"
+        }
+      ],
+      "address": {
+        "office": "Kuoni",
+        "road": "Rue Dieumegard",
+        "neighbourhood": "Rosiers - Les Puces",
+        "town": "Saint-Ouen-sur-Seine",
+        "municipality": "Saint-Denis",
+        "county": "Seine-Saint-Denis",
+        "ISO3166-2-lvl6": "FR-93",
+        "state": "Île-de-France",
+        "ISO3166-2-lvl4": "FR-IDF",
+        "region": "France métropolitaine",
+        "postcode": "93400",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "48.8341066",
+        "2.2563623"
+      ],
+      "expected_city": "Paris",
+      "actual_city": "Boulogne-Billancourt",
+      "full_address": "1, Place René Clair, Point du Jour, Boulogne-Billancourt, Hauts-de-Seine, Île-de-France, France métropolitaine, 92100, France",
+      "talks": [
+        {
+          "file": "content/talks/2013/2013-10-01-bbl-etf1-private-event/index.md",
+          "city": "Paris",
+          "country": "France",
+          "latitude": "48.8341066",
+          "longitude": "2.2563623",
+          "conference_name": "BBL eTF1 (private event)"
+        }
+      ],
+      "address": {
+        "house_number": "1",
+        "road": "Place René Clair",
+        "suburb": "Point du Jour",
+        "city": "Boulogne-Billancourt",
+        "municipality": "Boulogne-Billancourt",
+        "county": "Hauts-de-Seine",
+        "ISO3166-2-lvl6": "FR-92",
+        "state": "Île-de-France",
+        "ISO3166-2-lvl4": "FR-IDF",
+        "region": "France métropolitaine",
+        "postcode": "92100",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "48.8292081",
+        "2.235353"
+      ],
+      "expected_city": "Paris",
+      "actual_city": "Boulogne-Billancourt",
+      "full_address": "1568, Allée du Vieux Pont de Sèvres, Rives de Seine, Boulogne-Billancourt, Hauts-de-Seine, France métropolitaine, 92100, France",
+      "talks": [
+        {
+          "file": "content/talks/2013/2013-10-15-bbl-cloudwatt-private-event/index.md",
+          "city": "Paris",
+          "country": "France",
+          "latitude": "48.8292081",
+          "longitude": "2.235353",
+          "conference_name": "BBL Cloudwatt (private event)"
+        }
+      ],
+      "address": {
+        "house_number": "1568",
+        "road": "Allée du Vieux Pont de Sèvres",
+        "suburb": "Rives de Seine",
+        "city": "Boulogne-Billancourt",
+        "municipality": "Boulogne-Billancourt",
+        "county": "Hauts-de-Seine",
+        "ISO3166-2-lvl6": "FR-92",
+        "region": "France métropolitaine",
+        "postcode": "92100",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "48.8888904",
+        "2.2380939"
+      ],
+      "expected_city": "Paris",
+      "actual_city": "Puteaux",
+      "full_address": "Centre de Soins, 68, Jardins Boieldieu, La Défense 8, Quartier Boieldieu, Puteaux, Nanterre, Hauts-de-Seine, Île-de-France, France métropolitaine, 92800, France",
+      "talks": [
+        {
+          "file": "content/talks/2013/2013-09-10-bbl-orsyp-private-event/index.md",
+          "city": "Paris",
+          "country": "France",
+          "latitude": "48.8888904",
+          "longitude": "2.2380939",
+          "conference_name": "BBL Orsyp (private event)"
+        }
+      ],
+      "address": {
+        "amenity": "Centre de Soins",
+        "house_number": "68",
+        "road": "Jardins Boieldieu",
+        "quarter": "La Défense 8",
+        "hamlet": "Quartier Boieldieu",
+        "town": "Puteaux",
+        "municipality": "Nanterre",
+        "county": "Hauts-de-Seine",
+        "ISO3166-2-lvl6": "FR-92",
+        "state": "Île-de-France",
+        "ISO3166-2-lvl4": "FR-IDF",
+        "region": "France métropolitaine",
+        "postcode": "92800",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "44.8063124",
+        "-0.6090116"
+      ],
+      "expected_city": "Bordeaux",
+      "actual_city": "Pessac",
+      "full_address": "Clinique mutualiste Arnaud Duben, 46, Avenue du Docteur Albert Schweitzer, Brivazac-Candau, Pessac, Bordeaux, Gironde, Nouvelle-Aquitaine, France métropolitaine, 33600, France",
+      "talks": [
+        {
+          "file": "content/talks/2013/2013-04-11-bordeaux-jug/index.md",
+          "city": "Bordeaux",
+          "country": "France",
+          "latitude": "44.8063124",
+          "longitude": "-0.6090116",
+          "conference_name": "Bordeaux JUG"
+        },
+        {
+          "file": "content/talks/2017/2017-05-04-bordeaux-jug/index.md",
+          "city": "Bordeaux",
+          "country": "France",
+          "latitude": "44.8063124",
+          "longitude": "-0.6090116",
+          "conference_name": "Bordeaux JUG"
+        }
+      ],
+      "address": {
+        "amenity": "Clinique mutualiste Arnaud Duben",
+        "house_number": "46",
+        "road": "Avenue du Docteur Albert Schweitzer",
+        "suburb": "Brivazac-Candau",
+        "town": "Pessac",
+        "municipality": "Bordeaux",
+        "county": "Gironde",
+        "ISO3166-2-lvl6": "FR-33",
+        "state": "Nouvelle-Aquitaine",
+        "ISO3166-2-lvl4": "FR-NAQ",
+        "region": "France métropolitaine",
+        "postcode": "33600",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "47.391194",
+        "0.2883559"
+      ],
+      "expected_city": "Clermont-Ferrand",
+      "actual_city": "Chinon",
+      "full_address": "Chemin du Carroi des Vignes, La Fontaine, Avrillé-les-Ponceaux, Chinon, Indre-et-Loire, Centre-Val de Loire, France métropolitaine, 37340, France",
+      "talks": [
+        {
+          "file": "content/talks/2013/2013-05-16-lava-jug/index.md",
+          "city": "Clermont-Ferrand",
+          "country": "France",
+          "latitude": "47.391194",
+          "longitude": "0.2883559",
+          "conference_name": "Lava JUG"
+        }
+      ],
+      "address": {
+        "road": "Chemin du Carroi des Vignes",
+        "hamlet": "La Fontaine",
+        "village": "Avrillé-les-Ponceaux",
+        "municipality": "Chinon",
+        "county": "Indre-et-Loire",
+        "ISO3166-2-lvl6": "FR-37",
+        "state": "Centre-Val de Loire",
+        "ISO3166-2-lvl4": "FR-CVL",
+        "region": "France métropolitaine",
+        "postcode": "37340",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "48.8412302",
+        "2.2174327"
+      ],
+      "expected_city": "Paris",
+      "actual_city": "Saint-Cloud",
+      "full_address": "École maternelle du Centre, 17, Rue Anatole Hébert, Les Bureaux de la Colline, Saint-Cloud, Nanterre, Hauts-de-Seine, France métropolitaine, 92210, France",
+      "talks": [
+        {
+          "file": "content/talks/2013/2013-12-19-bbl-kyriba-private-event/index.md",
+          "city": "Paris",
+          "country": "France",
+          "latitude": "48.8412302",
+          "longitude": "2.2174327",
+          "conference_name": "BBL KYRIBA (private event)"
+        }
+      ],
+      "address": {
+        "amenity": "École maternelle du Centre",
+        "house_number": "17",
+        "road": "Rue Anatole Hébert",
+        "hamlet": "Les Bureaux de la Colline",
+        "town": "Saint-Cloud",
+        "municipality": "Nanterre",
+        "county": "Hauts-de-Seine",
+        "ISO3166-2-lvl6": "FR-92",
+        "region": "France métropolitaine",
+        "postcode": "92210",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "48.8710207",
+        "2.2007824"
+      ],
+      "expected_city": "Suresnes",
+      "actual_city": "Rueil-Malmaison",
+      "full_address": "Square Chateaubriand, Village Mont-Valérien, Rueil-Malmaison, Nanterre, Hauts-de-Seine, Île-de-France, France métropolitaine, 92500, France",
+      "talks": [
+        {
+          "file": "content/talks/2014/2014-02-19-bbl-coyote-private-event/index.md",
+          "city": "Suresnes",
+          "country": "France",
+          "latitude": "48.8710207",
+          "longitude": "2.2007824",
+          "conference_name": "BBL Coyote (private event)"
+        }
+      ],
+      "address": {
+        "road": "Square Chateaubriand",
+        "suburb": "Village Mont-Valérien",
+        "town": "Rueil-Malmaison",
+        "municipality": "Nanterre",
+        "county": "Hauts-de-Seine",
+        "ISO3166-2-lvl6": "FR-92",
+        "state": "Île-de-France",
+        "ISO3166-2-lvl4": "FR-IDF",
+        "region": "France métropolitaine",
+        "postcode": "92500",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "51.2603015",
+        "4.2176366"
+      ],
+      "expected_city": "Antwerp",
+      "actual_city": "Beveren-Kruibeke-Zwijndrecht",
+      "full_address": "Haandorpweg, Hazopweg Haven 1227, Calloo, Beveren-Kruibeke-Zwijndrecht, Saint-Nicolas-Waes, Flandre-Orientale, 9130, Belgique",
+      "talks": [
+        {
+          "file": "content/talks/2014/2014-11-10-devoxx-be/index.md",
+          "city": "Antwerp",
+          "country": "Belgium",
+          "latitude": "51.2603015",
+          "longitude": "4.2176366",
+          "conference_name": "Devoxx BE"
+        }
+      ],
+      "address": {
+        "road": "Haandorpweg",
+        "industrial": "Hazopweg Haven 1227",
+        "village": "Calloo",
+        "municipality": "Beveren-Kruibeke-Zwijndrecht",
+        "county": "Saint-Nicolas-Waes",
+        "state": "Flandre-Orientale",
+        "ISO3166-2-lvl6": "BE-VOV",
+        "postcode": "9130",
+        "country": "Belgique",
+        "country_code": "be"
+      }
+    },
+    {
+      "coordinates": [
+        "52.5065133",
+        "13.1445509"
+      ],
+      "expected_city": "Berlin",
+      "actual_city": "Seeburg",
+      "full_address": "2, Engelsfelde, Seeburg, Dallgow-Döberitz, Havelland, Brandebourg, 14624, Allemagne",
+      "talks": [
+        {
+          "file": "content/talks/2014/2014-12-15-elk-workshop/index.md",
+          "city": "Berlin",
+          "country": "Germany",
+          "latitude": "52.5065133",
+          "longitude": "13.1445509",
+          "conference_name": "ELK Workshop"
+        },
+        {
+          "file": "content/talks/2015/2015-11-03-codemotion/index.md",
+          "city": "Berlin",
+          "country": "Germany",
+          "latitude": "52.5065133",
+          "longitude": "13.1445509",
+          "conference_name": "CodeMotion"
+        }
+      ],
+      "address": {
+        "house_number": "2",
+        "road": "Engelsfelde",
+        "hamlet": "Engelsfelde",
+        "village": "Seeburg",
+        "county": "Havelland",
+        "state": "Brandebourg",
+        "ISO3166-2-lvl4": "DE-BB",
+        "postcode": "14624",
+        "country": "Allemagne",
+        "country_code": "de"
+      }
+    },
+    {
+      "coordinates": [
+        "44.4990968",
+        "11.2616454"
+      ],
+      "expected_city": "Bologna",
+      "actual_city": "Bologne",
+      "full_address": "Via Casteldebole, Barca, Borgo Panigale-Reno, Casteldebole, Bologne, Bologna, Émilie-Romagne, 40033, Italie",
+      "talks": [
+        {
+          "file": "content/talks/2014/2014-07-17-bbl-cineca-private-event/index.md",
+          "city": "Bologna",
+          "country": "Italy",
+          "latitude": "44.4990968",
+          "longitude": "11.2616454",
+          "conference_name": "BBL Cineca (private event)"
+        }
+      ],
+      "address": {
+        "road": "Via Casteldebole",
+        "suburb": "Barca",
+        "village": "Casteldebole",
+        "city": "Bologne",
+        "county": "Bologna",
+        "ISO3166-2-lvl6": "IT-BO",
+        "state": "Émilie-Romagne",
+        "ISO3166-2-lvl4": "IT-45",
+        "postcode": "40033",
+        "country": "Italie",
+        "country_code": "it"
+      }
+    },
+    {
+      "coordinates": [
+        "48.7985651",
+        "2.3241883"
+      ],
+      "expected_city": "Paris",
+      "actual_city": "Cachan",
+      "full_address": "30, Avenue Benoît Guichon, Cachan, L'Haÿ-les-Roses, Val-de-Marne, Île-de-France, France métropolitaine, 94230, France",
+      "talks": [
+        {
+          "file": "content/talks/2014/2014-07-08-bbl-gatling-private-event/index.md",
+          "city": "Paris",
+          "country": "France",
+          "latitude": "48.7985651",
+          "longitude": "2.3241883",
+          "conference_name": "BBL GATLING (private event)"
+        }
+      ],
+      "address": {
+        "house_number": "30",
+        "road": "Avenue Benoît Guichon",
+        "town": "Cachan",
+        "municipality": "L'Haÿ-les-Roses",
+        "county": "Val-de-Marne",
+        "ISO3166-2-lvl6": "FR-94",
+        "state": "Île-de-France",
+        "ISO3166-2-lvl4": "FR-IDF",
+        "region": "France métropolitaine",
+        "postcode": "94230",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "48.7239152",
+        "2.322651"
+      ],
+      "expected_city": "Paray Vielle Poste",
+      "actual_city": "Palaiseau",
+      "full_address": "Le Colombier, Wissous, Palaiseau, Essonne, France métropolitaine, 91320, France",
+      "talks": [
+        {
+          "file": "content/talks/2014/2014-10-02-bbl-air-france-private-event/index.md",
+          "city": "Paray Vielle Poste",
+          "country": "France",
+          "latitude": "48.7239152",
+          "longitude": "2.322651",
+          "conference_name": "BBL Air France (private event)"
+        }
+      ],
+      "address": {
+        "neighbourhood": "Le Colombier",
+        "village": "Wissous",
+        "municipality": "Palaiseau",
+        "county": "Essonne",
+        "ISO3166-2-lvl6": "FR-91",
+        "region": "France métropolitaine",
+        "postcode": "91320",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "48.8856343",
+        "2.2219763"
+      ],
+      "expected_city": "Paris",
+      "actual_city": "Nanterre",
+      "full_address": "285, Avenue Georges Clemenceau, Quartier du Parc Sud, Nanterre, Hauts-de-Seine, Île-de-France, France métropolitaine, 92000, France",
+      "talks": [
+        {
+          "file": "content/talks/2014/2014-12-18-bbl-erdf-private-event/index.md",
+          "city": "Paris",
+          "country": "France",
+          "latitude": "48.8856343",
+          "longitude": "2.2219763",
+          "conference_name": "BBL ERDF (private event)"
+        }
+      ],
+      "address": {
+        "house_number": "285",
+        "road": "Avenue Georges Clemenceau",
+        "suburb": "Quartier du Parc Sud",
+        "town": "Nanterre",
+        "municipality": "Nanterre",
+        "county": "Hauts-de-Seine",
+        "ISO3166-2-lvl6": "FR-92",
+        "state": "Île-de-France",
+        "ISO3166-2-lvl4": "FR-IDF",
+        "region": "France métropolitaine",
+        "postcode": "92000",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "48.7730107",
+        "2.013765"
+      ],
+      "expected_city": "Saint-Quentin-en-Yvelines",
+      "actual_city": "Montigny-le-Bretonneux",
+      "full_address": "Avenue des Prés, Zone d'activités de l'Observatoire, Montigny-le-Bretonneux, Versailles, Yvelines, Île-de-France, France métropolitaine, 78180, France",
+      "talks": [
+        {
+          "file": "content/talks/2014/2014-09-02-bbl-bouygues-construction-private-event/index.md",
+          "city": "Saint-Quentin-en-Yvelines",
+          "country": "France",
+          "latitude": "48.7730107",
+          "longitude": "2.013765",
+          "conference_name": "BBL Bouygues Construction (private event)"
+        },
+        {
+          "file": "content/talks/2015/2015-07-02-bbl-europcar-private-event/index.md",
+          "city": "Saint-Quentin-en-Yvelines",
+          "country": "France",
+          "latitude": "48.7730107",
+          "longitude": "2.013765",
+          "conference_name": "BBL Europcar (private event)"
+        }
+      ],
+      "address": {
+        "road": "Avenue des Prés",
+        "industrial": "Zone d'activités de l'Observatoire",
+        "town": "Montigny-le-Bretonneux",
+        "municipality": "Versailles",
+        "county": "Yvelines",
+        "ISO3166-2-lvl6": "FR-78",
+        "state": "Île-de-France",
+        "ISO3166-2-lvl4": "FR-IDF",
+        "region": "France métropolitaine",
+        "postcode": "78180",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "48.8239641",
+        "2.2452304"
+      ],
+      "expected_city": "Issy-les-Moulineaux",
+      "actual_city": "Boulogne-Billancourt",
+      "full_address": "Quai de Stalingrad, Rives de Seine, Boulogne-Billancourt, Hauts-de-Seine, Île-de-France, France métropolitaine, 92100, France",
+      "talks": [
+        {
+          "file": "content/talks/2014/2014-03-12-bbl-canal-plus-private-event/index.md",
+          "city": "Issy-les-Moulineaux",
+          "country": "France",
+          "latitude": "48.8239641",
+          "longitude": "2.2452304",
+          "conference_name": "BBL Canal Plus (private event)"
+        },
+        {
+          "file": "content/talks/2014/2014-01-09-bbl-mappy-private-event/index.md",
+          "city": "Issy-les-Moulineaux",
+          "country": "France",
+          "latitude": "48.8239641",
+          "longitude": "2.2452304",
+          "conference_name": "BBL Mappy (private event)"
+        },
+        {
+          "file": "content/talks/2014/2014-11-07-bbl-coliposte-private-event/index.md",
+          "city": "Issy-les-Moulineaux",
+          "country": "France",
+          "latitude": "48.8239641",
+          "longitude": "2.2452304",
+          "conference_name": "BBL Coliposte (private event)"
+        },
+        {
+          "file": "content/talks/2015/2015-01-22-meetup-es-fr/index.md",
+          "city": "Issy-les-Moulineaux",
+          "country": "France",
+          "latitude": "48.8239641",
+          "longitude": "2.2452304",
+          "conference_name": "Meetup ES FR"
+        }
+      ],
+      "address": {
+        "road": "Quai de Stalingrad",
+        "suburb": "Rives de Seine",
+        "city": "Boulogne-Billancourt",
+        "municipality": "Boulogne-Billancourt",
+        "county": "Hauts-de-Seine",
+        "ISO3166-2-lvl6": "FR-92",
+        "state": "Île-de-France",
+        "ISO3166-2-lvl4": "FR-IDF",
+        "region": "France métropolitaine",
+        "postcode": "92100",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "48.9240461",
+        "1.9900117"
+      ],
+      "expected_city": "Poissy",
+      "actual_city": "Saint-Germain-en-Laye",
+      "full_address": "Rue des Cormiers, Orgeval, Saint-Germain-en-Laye, Yvelines, Île-de-France, France métropolitaine, 78630, France",
+      "talks": [
+        {
+          "file": "content/talks/2014/2014-06-19-psa-private-event/index.md",
+          "city": "Poissy",
+          "country": "France",
+          "latitude": "48.9240461",
+          "longitude": "1.9900117",
+          "conference_name": "PSA (private event)"
+        }
+      ],
+      "address": {
+        "road": "Rue des Cormiers",
+        "village": "Orgeval",
+        "municipality": "Saint-Germain-en-Laye",
+        "county": "Yvelines",
+        "ISO3166-2-lvl6": "FR-78",
+        "state": "Île-de-France",
+        "ISO3166-2-lvl4": "FR-IDF",
+        "region": "France métropolitaine",
+        "postcode": "78630",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "59.8937806",
+        "10.6450347"
+      ],
+      "expected_city": "Oslo",
+      "actual_city": "Bærum",
+      "full_address": "Pælvika, Halden, Fornebu, Bærum, Comté d'Akershus, 1364, Norvège",
+      "talks": [
+        {
+          "file": "content/talks/2014/2014-09-09-javazone-2014/index.md",
+          "city": "Oslo",
+          "country": "Norway",
+          "latitude": "59.8937806",
+          "longitude": "10.6450347",
+          "conference_name": "JavaZone 2014"
+        }
+      ],
+      "address": {
+        "isolated_dwelling": "Pælvika",
+        "quarter": "Halden",
+        "suburb": "Fornebu",
+        "municipality": "Bærum",
+        "county": "Comté d'Akershus",
+        "ISO3166-2-lvl4": "NO-32",
+        "postcode": "1364",
+        "country": "Norvège",
+        "country_code": "no"
+      }
+    },
+    {
+      "coordinates": [
+        "48.8637407",
+        "2.4140311"
+      ],
+      "expected_city": "Montreuil",
+      "actual_city": "Paris",
+      "full_address": "Voie EV/20, Quartier de Charonne, Paris 20e Arrondissement, Paris, Bobigny, Seine-Saint-Denis, Île-de-France, France métropolitaine, 93170, France",
+      "talks": [
+        {
+          "file": "content/talks/2014/2014-07-29-bbl-bnp-paribas-private-event/index.md",
+          "city": "Montreuil",
+          "country": "France",
+          "latitude": "48.8637407",
+          "longitude": "2.4140311",
+          "conference_name": "BBL BNP Paribas (private event)"
+        }
+      ],
+      "address": {
+        "road": "Voie EV/20",
+        "suburb": "Quartier de Charonne",
+        "city_district": "Paris",
+        "city": "Paris",
+        "ISO3166-2-lvl6": "FR-93",
+        "municipality": "Bobigny",
+        "county": "Seine-Saint-Denis",
+        "state": "Île-de-France",
+        "ISO3166-2-lvl4": "FR-IDF",
+        "region": "France métropolitaine",
+        "postcode": "93170",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "40.4378698",
+        "-3.8196218"
+      ],
+      "expected_city": "Madrid",
+      "actual_city": "Pozuelo de Alarcón",
+      "full_address": "4, Calle Isla de Malta, Distrito Municipal I (sin urbanizaciones), Pozuelo de Alarcón, Communauté de Madrid, 28224, Espagne",
+      "talks": [
+        {
+          "file": "content/talks/2014/2014-11-21-codemotion-madrid/index.md",
+          "city": "Madrid",
+          "country": "Spain",
+          "latitude": "40.4378698",
+          "longitude": "-3.8196218",
+          "conference_name": "CodeMotion Madrid"
+        }
+      ],
+      "address": {
+        "house_number": "4",
+        "road": "Calle Isla de Malta",
+        "neighbourhood": "Distrito Municipal I (sin urbanizaciones)",
+        "town": "Pozuelo de Alarcón",
+        "state": "Communauté de Madrid",
+        "ISO3166-2-lvl4": "ES-MD",
+        "postcode": "28224",
+        "country": "Espagne",
+        "country_code": "es"
+      }
+    },
+    {
+      "coordinates": [
+        "51.528308",
+        "-0.3817803"
+      ],
+      "expected_city": "London",
+      "actual_city": "Grand Londres",
+      "full_address": "Grangewood School, Ballinger Way, Grand Union Village, Yeading, Borough londonien de Hillingdon, Grand Londres, Angleterre, UB5 6GG, Royaume-Uni",
+      "talks": [
+        {
+          "file": "content/talks/2014/2014-06-12-devoxx-uk/index.md",
+          "city": "London",
+          "country": "England",
+          "latitude": "51.528308",
+          "longitude": "-0.3817803",
+          "conference_name": "Devoxx UK"
+        }
+      ],
+      "address": {
+        "amenity": "Grangewood School",
+        "road": "Ballinger Way",
+        "residential": "Grand Union Village",
+        "suburb": "Yeading",
+        "city_district": "Borough londonien de Hillingdon",
+        "ISO3166-2-lvl8": "GB-HIL",
+        "city": "Grand Londres",
+        "state": "Angleterre",
+        "ISO3166-2-lvl4": "GB-ENG",
+        "postcode": "UB5 6GG",
+        "country": "Royaume-Uni",
+        "country_code": "gb"
+      }
+    },
+    {
+      "coordinates": [
+        "46.2050242",
+        "6.1090691"
+      ],
+      "expected_city": "Geneva",
+      "actual_city": "Vernier",
+      "full_address": "Carrefour du Pont-Butin, Aïre, Châtelaine, Vernier, Genève, 1219, Suisse",
+      "talks": [
+        {
+          "file": "content/talks/2014/2014-10-24-softshake-2014/index.md",
+          "city": "Geneva",
+          "country": "Switzerland",
+          "latitude": "46.2050242",
+          "longitude": "6.1090691",
+          "conference_name": "SoftShake 2014"
+        },
+        {
+          "file": "content/talks/2015/2015-09-22-jduchess-switzerland/index.md",
+          "city": "Geneva",
+          "country": "Switzerland",
+          "latitude": "46.2050242",
+          "longitude": "6.1090691",
+          "conference_name": "JDuchess Switzerland"
+        }
+      ],
+      "address": {
+        "road": "Carrefour du Pont-Butin",
+        "neighbourhood": "Aïre",
+        "suburb": "Châtelaine",
+        "town": "Vernier",
+        "state": "Genève",
+        "ISO3166-2-lvl4": "CH-GE",
+        "postcode": "1219",
+        "country": "Suisse",
+        "country_code": "ch"
+      }
+    },
+    {
+      "coordinates": [
+        "44.8637065",
+        "-0.6561811"
+      ],
+      "expected_city": "Bordeaux",
+      "actual_city": "Eysines",
+      "full_address": "Avenue René Antoune, Parc d'activités Mermoz, La Forêt, Eysines, Bordeaux, Gironde, Nouvelle-Aquitaine, France métropolitaine, 33320, France",
+      "talks": [
+        {
+          "file": "content/talks/2014/2014-10-17-bdxio/index.md",
+          "city": "Bordeaux",
+          "country": "France",
+          "latitude": "44.8637065",
+          "longitude": "-0.6561811",
+          "conference_name": "BDX.io"
+        },
+        {
+          "file": "content/talks/2015/2015-10-16-bdxio/index.md",
+          "city": "Bordeaux",
+          "country": "France",
+          "latitude": "44.8637065",
+          "longitude": "-0.6561811",
+          "conference_name": "BDX.io"
+        },
+        {
+          "file": "content/talks/2015/2015-07-01-bbl-orange-private-event/index.md",
+          "city": "Bordeaux",
+          "country": "France",
+          "latitude": "44.8637065",
+          "longitude": "-0.6561811",
+          "conference_name": "BBL Orange (private event)"
+        },
+        {
+          "file": "content/talks/2015/2015-07-01-jdev/index.md",
+          "city": "Bordeaux",
+          "country": "France",
+          "latitude": "44.8637065",
+          "longitude": "-0.6561811",
+          "conference_name": "JDEV"
+        },
+        {
+          "file": "content/talks/2015/2015-10-15-bbl-alienor-private-event/index.md",
+          "city": "Bordeaux",
+          "country": "France",
+          "latitude": "44.8637065",
+          "longitude": "-0.6561811",
+          "conference_name": "BBL Alienor (private event)"
+        },
+        {
+          "file": "content/talks/2015/2015-06-30-meetup-bdx/index.md",
+          "city": "Bordeaux",
+          "country": "France",
+          "latitude": "44.8637065",
+          "longitude": "-0.6561811",
+          "conference_name": "Meetup BDX"
+        }
+      ],
+      "address": {
+        "road": "Avenue René Antoune",
+        "industrial": "Parc d'activités Mermoz",
+        "suburb": "La Forêt",
+        "town": "Eysines",
+        "municipality": "Bordeaux",
+        "county": "Gironde",
+        "ISO3166-2-lvl6": "FR-33",
+        "state": "Nouvelle-Aquitaine",
+        "ISO3166-2-lvl4": "FR-NAQ",
+        "region": "France métropolitaine",
+        "postcode": "33320",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "48.8909964",
+        "2.2346106"
+      ],
+      "expected_city": "La Défense",
+      "actual_city": "Puteaux",
+      "full_address": "Les 4 Temps, 15, Le Parvis, La Défense 12, Quartier Boieldieu, Puteaux, Nanterre, Hauts-de-Seine, Île-de-France, France métropolitaine, 92800, France",
+      "talks": [
+        {
+          "file": "content/talks/2014/2014-05-20-solution-linux/index.md",
+          "city": "La Défense",
+          "country": "France",
+          "latitude": "48.8909964",
+          "longitude": "2.2346106",
+          "conference_name": "Solution Linux"
+        },
+        {
+          "file": "content/talks/2014/2014-05-21-solution-linux/index.md",
+          "city": "La Défense",
+          "country": "France",
+          "latitude": "48.8909964",
+          "longitude": "2.2346106",
+          "conference_name": "Solution Linux"
+        }
+      ],
+      "address": {
+        "shop": "Les 4 Temps",
+        "house_number": "15",
+        "road": "Le Parvis",
+        "quarter": "La Défense 12",
+        "hamlet": "Quartier Boieldieu",
+        "town": "Puteaux",
+        "municipality": "Nanterre",
+        "county": "Hauts-de-Seine",
+        "ISO3166-2-lvl6": "FR-92",
+        "state": "Île-de-France",
+        "ISO3166-2-lvl4": "FR-IDF",
+        "region": "France métropolitaine",
+        "postcode": "92800",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "48.8946551",
+        "2.2698914"
+      ],
+      "expected_city": "Levallois",
+      "actual_city": "Neuilly-sur-Seine",
+      "full_address": "72 bis, Boulevard Bourdon, Neuilly-sur-Seine, Nanterre, Hauts-de-Seine, Île-de-France, France métropolitaine, 92200, France",
+      "talks": [
+        {
+          "file": "content/talks/2014/2014-01-23-smile/index.md",
+          "city": "Levallois",
+          "country": "France",
+          "latitude": "48.8946551",
+          "longitude": "2.2698914",
+          "conference_name": "Smile"
+        },
+        {
+          "file": "content/talks/2015/2015-09-11-bbl-hybris-private-event/index.md",
+          "city": "Levallois",
+          "country": "France",
+          "latitude": "48.8946551",
+          "longitude": "2.2698914",
+          "conference_name": "BBL Hybris (private event)"
+        }
+      ],
+      "address": {
+        "house_number": "72 bis",
+        "road": "Boulevard Bourdon",
+        "town": "Neuilly-sur-Seine",
+        "municipality": "Nanterre",
+        "county": "Hauts-de-Seine",
+        "ISO3166-2-lvl6": "FR-92",
+        "state": "Île-de-France",
+        "ISO3166-2-lvl4": "FR-IDF",
+        "region": "France métropolitaine",
+        "postcode": "92200",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "48.8935524",
+        "2.1766583"
+      ],
+      "expected_city": "Paris",
+      "actual_city": "Nanterre",
+      "full_address": "Xylem, 29, Rue du Port, Quartier du Chemin de l'Île, Nanterre, Hauts-de-Seine, Île-de-France, France métropolitaine, 92000, France",
+      "talks": [
+        {
+          "file": "content/talks/2014/2014-12-18-bbl-bnp-paribas-private-event/index.md",
+          "city": "Paris",
+          "country": "France",
+          "latitude": "48.8935524",
+          "longitude": "2.1766583",
+          "conference_name": "BBL BNP Paribas (private event)"
+        }
+      ],
+      "address": {
+        "building": "Xylem",
+        "house_number": "29",
+        "road": "Rue du Port",
+        "suburb": "Quartier du Chemin de l'Île",
+        "town": "Nanterre",
+        "municipality": "Nanterre",
+        "county": "Hauts-de-Seine",
+        "ISO3166-2-lvl6": "FR-92",
+        "state": "Île-de-France",
+        "ISO3166-2-lvl4": "FR-IDF",
+        "region": "France métropolitaine",
+        "postcode": "92000",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "45.0701176",
+        "7.6000492"
+      ],
+      "expected_city": "Turin",
+      "actual_city": "Grugliasco",
+      "full_address": "Via San Gregorio Magno, Borgata Quaglia, Grugliasco, Turin, Piémont, 10195, Italie",
+      "talks": [
+        {
+          "file": "content/talks/2014/2014-04-03-cloudconfit/index.md",
+          "city": "Turin",
+          "country": "Italy",
+          "latitude": "45.0701176",
+          "longitude": "7.6000492",
+          "conference_name": "CloudConf.IT"
+        }
+      ],
+      "address": {
+        "road": "Via San Gregorio Magno",
+        "neighbourhood": "Borgata Quaglia",
+        "town": "Grugliasco",
+        "county": "Turin",
+        "ISO3166-2-lvl6": "IT-TO",
+        "state": "Piémont",
+        "ISO3166-2-lvl4": "IT-21",
+        "postcode": "10195",
+        "country": "Italie",
+        "country_code": "it"
+      }
+    },
+    {
+      "coordinates": [
+        "48.8193761",
+        "2.3175649"
+      ],
+      "expected_city": "Paris",
+      "actual_city": "Montrouge",
+      "full_address": "Avenue Émile-Boutroux, Quartier Portes de Montrouge, Montrouge, Antony, Hauts-de-Seine, Île-de-France, France métropolitaine, 92120, France",
+      "talks": [
+        {
+          "file": "content/talks/2014/2014-10-23-afup-paris-2014/index.md",
+          "city": "Paris",
+          "country": "France",
+          "latitude": "48.8193761",
+          "longitude": "2.3175649",
+          "conference_name": "AFUP Paris 2014"
+        }
+      ],
+      "address": {
+        "road": "Avenue Émile-Boutroux",
+        "suburb": "Quartier Portes de Montrouge",
+        "town": "Montrouge",
+        "municipality": "Antony",
+        "county": "Hauts-de-Seine",
+        "ISO3166-2-lvl6": "FR-92",
+        "state": "Île-de-France",
+        "ISO3166-2-lvl4": "FR-IDF",
+        "region": "France métropolitaine",
+        "postcode": "92120",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "48.9118187",
+        "2.3153474"
+      ],
+      "expected_city": "Saint-Ouen",
+      "actual_city": "Clichy",
+      "full_address": "51, Rue Pierre, Clichy, Nanterre, Hauts-de-Seine, Île-de-France, France métropolitaine, 92110, France",
+      "talks": [
+        {
+          "file": "content/talks/2014/2014-12-09-bbl-rue-du-commerce-private-event/index.md",
+          "city": "Saint-Ouen",
+          "country": "France",
+          "latitude": "48.9118187",
+          "longitude": "2.3153474",
+          "conference_name": "BBL Rue Du Commerce (private event)"
+        },
+        {
+          "file": "content/talks/2015/2015-04-02-bbl-pickup-services-private-event/index.md",
+          "city": "Saint-Ouen",
+          "country": "France",
+          "latitude": "48.9118187",
+          "longitude": "2.3153474",
+          "conference_name": "BBL Pickup Services (private event)"
+        }
+      ],
+      "address": {
+        "house_number": "51",
+        "road": "Rue Pierre",
+        "town": "Clichy",
+        "municipality": "Nanterre",
+        "county": "Hauts-de-Seine",
+        "ISO3166-2-lvl6": "FR-92",
+        "state": "Île-de-France",
+        "ISO3166-2-lvl4": "FR-IDF",
+        "region": "France métropolitaine",
+        "postcode": "92110",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "46.204391",
+        "6.143158"
+      ],
+      "expected_city": "Geneva",
+      "actual_city": "Genève",
+      "full_address": "Place de Bel-Air, Cité, Genève, 1204, Suisse",
+      "talks": [
+        {
+          "file": "content/talks/2022/2022-05-12-devopsdays-geneva/index.md",
+          "city": "Geneva",
+          "country": "Switzerland",
+          "latitude": "46.204391",
+          "longitude": "6.143158",
+          "conference_name": "DevopsDays Geneva"
+        },
+        {
+          "file": "content/talks/2024/2024-05-15-geneva-jug/index.md",
+          "city": "Geneva",
+          "country": "Switzerland",
+          "latitude": "46.204391",
+          "longitude": "6.143158",
+          "conference_name": "Geneva JUG"
+        },
+        {
+          "file": "content/talks/2019/2019-02-22-devopsdays-geneva-2019/index.md",
+          "city": "Geneva",
+          "country": "Switzerland",
+          "latitude": "46.204391",
+          "longitude": "6.143158",
+          "conference_name": "Devopsdays Geneva 2019"
+        }
+      ],
+      "address": {
+        "road": "Place de Bel-Air",
+        "suburb": "Cité",
+        "city": "Genève",
+        "state": "Genève",
+        "ISO3166-2-lvl4": "CH-GE",
+        "postcode": "1204",
+        "country": "Suisse",
+        "country_code": "ch"
+      }
+    },
+    {
+      "coordinates": [
+        "51.507351",
+        "-0.127758"
+      ],
+      "expected_city": "London",
+      "actual_city": "Cité de Westminster",
+      "full_address": "Mileage Central Point of London Plaque, King Charles I Island, Victoria, Cité de Westminster, Grand Londres, Angleterre, WC2N 5DX, Royaume-Uni",
+      "talks": [
+        {
+          "file": "content/talks/2022/2022-05-11-devoxx-uk/index.md",
+          "city": "London",
+          "country": "UK",
+          "latitude": "51.507351",
+          "longitude": "-0.127758",
+          "conference_name": "Devoxx UK"
+        },
+        {
+          "file": "content/talks/2022/2022-05-17-elastic-london-revival/index.md",
+          "city": "London",
+          "country": "UK",
+          "latitude": "51.507351",
+          "longitude": "-0.127758",
+          "conference_name": "Elastic London Revival"
+        },
+        {
+          "file": "content/talks/2019/2019-11-20-google-cloud-next-19-uk/index.md",
+          "city": "London",
+          "country": "UK",
+          "latitude": "51.507351",
+          "longitude": "-0.127758",
+          "conference_name": "Google Cloud Next ’19 UK"
+        }
+      ],
+      "address": {
+        "historic": "Mileage Central Point of London Plaque",
+        "road": "King Charles I Island",
+        "suburb": "Victoria",
+        "city": "Cité de Westminster",
+        "ISO3166-2-lvl8": "GB-WSM",
+        "state": "Angleterre",
+        "ISO3166-2-lvl4": "GB-ENG",
+        "postcode": "WC2N 5DX",
+        "country": "Royaume-Uni",
+        "country_code": "gb"
+      }
+    },
+    {
+      "coordinates": [
+        "49.815273",
+        "6.129583"
+      ],
+      "expected_city": "Luxembourg",
+      "actual_city": "Cruchten",
+      "full_address": "Cruchten, Nommern, Canton Mersch, 7420, Luxembourg",
+      "talks": [
+        {
+          "file": "content/talks/2022/2022-06-21-voxxed-days-luxembourg/index.md",
+          "city": "Luxembourg",
+          "country": "Luxembourg",
+          "latitude": "49.815273",
+          "longitude": "6.129583",
+          "conference_name": "Voxxed Days Luxembourg"
+        },
+        {
+          "file": "content/talks/2024/2024-09-17-yajug-esql/index.md",
+          "city": "Luxembourg",
+          "country": "Luxembourg",
+          "latitude": "49.815273",
+          "longitude": "6.129583",
+          "conference_name": "YaJUG"
+        },
+        {
+          "file": "content/talks/2024/2024-09-17-yajug-ai-search/index.md",
+          "city": "Luxembourg",
+          "country": "Luxembourg",
+          "latitude": "49.815273",
+          "longitude": "6.129583",
+          "conference_name": "YaJUG"
+        }
+      ],
+      "address": {
+        "village": "Cruchten",
+        "county": "Canton Mersch",
+        "ISO3166-2-lvl6": "LU-ME",
+        "postcode": "7420",
+        "country": "Luxembourg",
+        "country_code": "lu"
+      }
+    },
+    {
+      "coordinates": [
+        "47.619668",
+        "-2.918284"
+      ],
+      "expected_city": "Baden",
+      "actual_city": "Vannes",
+      "full_address": "Rue Clair Couriault, Prat Bras, Chapelaine, Baden, Vannes, Morbihan, Bretagne, France métropolitaine, 56870, France",
+      "talks": [
+        {
+          "file": "content/talks/2022/2022-06-09-camping-des-speakers/index.md",
+          "city": "Baden",
+          "country": "France",
+          "latitude": "47.619668",
+          "longitude": "-2.918284",
+          "conference_name": "Camping des speakers"
+        },
+        {
+          "file": "content/talks/2023/2023-06-15-camping-des-speakers/index.md",
+          "city": "Baden",
+          "country": "France",
+          "latitude": "47.619668",
+          "longitude": "-2.918284",
+          "conference_name": "Camping des Speakers"
+        }
+      ],
+      "address": {
+        "road": "Rue Clair Couriault",
+        "neighbourhood": "Prat Bras",
+        "hamlet": "Chapelaine",
+        "village": "Baden",
+        "municipality": "Vannes",
+        "county": "Morbihan",
+        "ISO3166-2-lvl6": "FR-56",
+        "state": "Bretagne",
+        "ISO3166-2-lvl4": "FR-BRE",
+        "region": "France métropolitaine",
+        "postcode": "56870",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "44.426767",
+        "26.102538"
+      ],
+      "expected_city": "Bucharest",
+      "actual_city": "Bucarest",
+      "full_address": "Bulevardul Unirii, Calicilor, Centrul Civic, Sector 3, Bucarest, 040151, Roumanie",
+      "talks": [
+        {
+          "file": "content/talks/2022/2022-06-17-software-architecture-summit/index.md",
+          "city": "Bucharest",
+          "country": "Romania",
+          "latitude": "44.426767",
+          "longitude": "26.102538",
+          "conference_name": "Software Architecture Summit"
+        },
+        {
+          "file": "content/talks/2021/2021-10-21-voxxed-days-romania/index.md",
+          "city": "Bucharest",
+          "country": "Romania",
+          "latitude": "44.426767",
+          "longitude": "26.102538",
+          "conference_name": "Voxxed Days Romania"
+        }
+      ],
+      "address": {
+        "road": "Bulevardul Unirii",
+        "neighbourhood": "Calicilor",
+        "suburb": "Centrul Civic",
+        "city_district": "Sector 3",
+        "city": "Bucarest",
+        "ISO3166-2-lvl4": "RO-B",
+        "postcode": "040151",
+        "country": "Roumanie",
+        "country_code": "ro"
+      }
+    },
+    {
+      "coordinates": [
+        "50.850340",
+        "4.351710"
+      ],
+      "expected_city": "Brussels",
+      "actual_city": "Bruxelles",
+      "full_address": "Quartier du Centre, Pentagone, Bruxelles, Bruxelles-Capitale, 1000, Belgique",
+      "talks": [
+        {
+          "file": "content/talks/2024/2024-11-28-bbl-arhs-private-event/index.md",
+          "city": "Brussels",
+          "country": "Belgium",
+          "latitude": "50.850340",
+          "longitude": "4.351710",
+          "conference_name": "BBL ARHS (private event)"
+        },
+        {
+          "file": "content/talks/2024/2024-11-29-bbl-infrabel-private-event/index.md",
+          "city": "Brussels",
+          "country": "Belgium",
+          "latitude": "50.850340",
+          "longitude": "4.351710",
+          "conference_name": "BBL Infrabel (private event)"
+        },
+        {
+          "file": "content/talks/2024/2024-11-27-bbl-fortis-private-event/index.md",
+          "city": "Brussels",
+          "country": "Belgium",
+          "latitude": "50.850340",
+          "longitude": "4.351710",
+          "conference_name": "BBL Fortis (private event)"
+        },
+        {
+          "file": "content/talks/2024/2024-11-27-brujug/index.md",
+          "city": "Brussels",
+          "country": "Belgium",
+          "latitude": "50.850340",
+          "longitude": "4.351710",
+          "conference_name": "BruJUG"
+        }
+      ],
+      "address": {
+        "neighbourhood": "Quartier du Centre",
+        "suburb": "Pentagone",
+        "city_district": "Bruxelles",
+        "city": "Bruxelles",
+        "county": "Bruxelles-Capitale",
+        "region": "Bruxelles-Capitale",
+        "ISO3166-2-lvl4": "BE-BRU",
+        "postcode": "1000",
+        "country": "Belgique",
+        "country_code": "be"
+      }
+    },
+    {
+      "coordinates": [
+        "49.353976",
+        "0.075122"
+      ],
+      "expected_city": "Deauville",
+      "actual_city": "Lisieux",
+      "full_address": "Rue de Verdun, Deauville, Lisieux, Calvados, Normandie, France métropolitaine, 14800, France",
+      "talks": [
+        {
+          "file": "content/talks/2023/2023-06-20-coter/index.md",
+          "city": "Deauville",
+          "country": "France",
+          "latitude": "49.353976",
+          "longitude": "0.075122",
+          "conference_name": "coTer"
+        }
+      ],
+      "address": {
+        "road": "Rue de Verdun",
+        "village": "Deauville",
+        "municipality": "Lisieux",
+        "county": "Calvados",
+        "ISO3166-2-lvl6": "FR-14",
+        "state": "Normandie",
+        "ISO3166-2-lvl4": "FR-NOR",
+        "region": "France métropolitaine",
+        "postcode": "14800",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "54.352025",
+        "18.646638"
+      ],
+      "expected_city": "Gdańsk",
+      "actual_city": "Dantzig",
+      "full_address": "Targ Drzewny, Stare Miasto, Śródmieście, Dantzig, Voïvodie de Poméranie, 80-853, Pologne",
+      "talks": [
+        {
+          "file": "content/talks/2023/2023-05-24-infoshare/index.md",
+          "city": "Gdańsk",
+          "country": "Poland",
+          "latitude": "54.352025",
+          "longitude": "18.646638",
+          "conference_name": "Infoshare"
+        }
+      ],
+      "address": {
+        "road": "Targ Drzewny",
+        "quarter": "Stare Miasto",
+        "suburb": "Śródmieście",
+        "city_district": "Dantzig",
+        "city": "Dantzig",
+        "state": "Voïvodie de Poméranie",
+        "ISO3166-2-lvl4": "PL-22",
+        "postcode": "80-853",
+        "country": "Pologne",
+        "country_code": "pl"
+      }
+    },
+    {
+      "coordinates": [
+        "48.9121357",
+        "2.2918453"
+      ],
+      "expected_city": "Paris",
+      "actual_city": "Asnières-sur-Seine",
+      "full_address": "Rue des Jardins, Centre-Ville, Asnières-sur-Seine, Nanterre, Hauts-de-Seine, Île-de-France, France métropolitaine, 92600, France",
+      "talks": [
+        {
+          "file": "content/talks/2015/2015-09-21-meetup-es-fr/index.md",
+          "city": "Paris",
+          "country": "France",
+          "latitude": "48.9121357",
+          "longitude": "2.2918453",
+          "conference_name": "Meetup ES FR"
+        }
+      ],
+      "address": {
+        "road": "Rue des Jardins",
+        "neighbourhood": "Centre-Ville",
+        "town": "Asnières-sur-Seine",
+        "municipality": "Nanterre",
+        "county": "Hauts-de-Seine",
+        "ISO3166-2-lvl6": "FR-92",
+        "state": "Île-de-France",
+        "ISO3166-2-lvl4": "FR-IDF",
+        "region": "France métropolitaine",
+        "postcode": "92600",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "48.8670922",
+        "2.4077614"
+      ],
+      "expected_city": "Bagnolet",
+      "actual_city": "Paris",
+      "full_address": "54, Rue du Capitaine Ferber, Quartier Saint-Fargeau, Paris 20e Arrondissement, Paris, Île-de-France, France métropolitaine, 75020, France",
+      "talks": [
+        {
+          "file": "content/talks/2015/2015-05-07-bbl-infotel-private-event/index.md",
+          "city": "Bagnolet",
+          "country": "France",
+          "latitude": "48.8670922",
+          "longitude": "2.4077614",
+          "conference_name": "BBL Infotel (private event)"
+        }
+      ],
+      "address": {
+        "house_number": "54",
+        "road": "Rue du Capitaine Ferber",
+        "city_block": "Quartier Saint-Fargeau",
+        "suburb": "Paris 20e Arrondissement",
+        "city_district": "Paris",
+        "city": "Paris",
+        "ISO3166-2-lvl6": "FR-75C",
+        "state": "Île-de-France",
+        "ISO3166-2-lvl4": "FR-IDF",
+        "region": "France métropolitaine",
+        "postcode": "75020",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "41.0049823",
+        "28.7319906"
+      ],
+      "expected_city": "Istanbul",
+      "actual_city": "Avcılar",
+      "full_address": "Köseler, Firuzköy Mahallesi, Avcılar, Istanbul, Région de Marmara, 34325, Turquie",
+      "talks": [
+        {
+          "file": "content/talks/2015/2015-05-09-voxxed-istanbul/index.md",
+          "city": "Istanbul",
+          "country": "Turkey",
+          "latitude": "41.0049823",
+          "longitude": "28.7319906",
+          "conference_name": "Voxxed Istanbul"
+        }
+      ],
+      "address": {
+        "locality": "Köseler",
+        "suburb": "Firuzköy Mahallesi",
+        "town": "Avcılar",
+        "province": "Istanbul",
+        "ISO3166-2-lvl4": "TR-34",
+        "region": "Région de Marmara",
+        "postcode": "34325",
+        "country": "Turquie",
+        "country_code": "tr"
+      }
+    },
+    {
+      "coordinates": [
+        "52.3545653",
+        "4.7585398"
+      ],
+      "expected_city": "Amsterdam",
+      "actual_city": "Haarlemmermeer",
+      "full_address": "272, Lijnderdijk, Lijnden, Haarlemmermeer, Hollande-Septentrionale, Pays-Bas, 1175 KJ, Pays-Bas",
+      "talks": [
+        {
+          "file": "content/talks/2015/2015-09-22-percona/index.md",
+          "city": "Amsterdam",
+          "country": "Netherlands",
+          "latitude": "52.3545653",
+          "longitude": "4.7585398",
+          "conference_name": "Percona"
+        },
+        {
+          "file": "content/talks/2015/2015-08-24-es-core/index.md",
+          "city": "Amsterdam",
+          "country": "Netherlands",
+          "latitude": "52.3545653",
+          "longitude": "4.7585398",
+          "conference_name": "ES Core"
+        },
+        {
+          "file": "content/talks/2015/2015-08-21-k4-workshop/index.md",
+          "city": "Amsterdam",
+          "country": "Netherlands",
+          "latitude": "52.3545653",
+          "longitude": "4.7585398",
+          "conference_name": "K4 Workshop"
+        },
+        {
+          "file": "content/talks/2015/2015-08-20-elk-workshop/index.md",
+          "city": "Amsterdam",
+          "country": "Netherlands",
+          "latitude": "52.3545653",
+          "longitude": "4.7585398",
+          "conference_name": "ELK Workshop"
+        }
+      ],
+      "address": {
+        "house_number": "272",
+        "road": "Lijnderdijk",
+        "village": "Lijnden",
+        "municipality": "Haarlemmermeer",
+        "state": "Hollande-Septentrionale",
+        "ISO3166-2-lvl4": "NL-NH",
+        "country": "Pays-Bas",
+        "postcode": "1175 KJ",
+        "country_code": "nl"
+      }
+    },
+    {
+      "coordinates": [
+        "48.8159367",
+        "2.2987519"
+      ],
+      "expected_city": "Montrouge",
+      "actual_city": "Malakoff",
+      "full_address": "6, Impasse Pierre Simon, Malakoff, Antony, Hauts-de-Seine, Île-de-France, France métropolitaine, 92240, France",
+      "talks": [
+        {
+          "file": "content/talks/2015/2015-05-19-bbl-les-mousquetaires-private-event/index.md",
+          "city": "Montrouge",
+          "country": "France",
+          "latitude": "48.8159367",
+          "longitude": "2.2987519",
+          "conference_name": "BBL Les Mousquetaires (private event)"
+        }
+      ],
+      "address": {
+        "house_number": "6",
+        "road": "Impasse Pierre Simon",
+        "town": "Malakoff",
+        "municipality": "Antony",
+        "county": "Hauts-de-Seine",
+        "ISO3166-2-lvl6": "FR-92",
+        "state": "Île-de-France",
+        "ISO3166-2-lvl4": "FR-IDF",
+        "region": "France métropolitaine",
+        "postcode": "92240",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "48.8896305",
+        "2.2463149"
+      ],
+      "expected_city": "Paris",
+      "actual_city": "Courbevoie",
+      "full_address": "Voie des Bâtisseurs, La Défense 3, Quartier Gambetta, Courbevoie, Nanterre, Hauts-de-Seine, Île-de-France, France métropolitaine, 92400, France",
+      "talks": [
+        {
+          "file": "content/talks/2015/2015-06-18-bbl-sopra-private-event/index.md",
+          "city": "Paris",
+          "country": "France",
+          "latitude": "48.8896305",
+          "longitude": "2.2463149",
+          "conference_name": "BBL Sopra (private event)"
+        }
+      ],
+      "address": {
+        "road": "Voie des Bâtisseurs",
+        "quarter": "La Défense 3",
+        "suburb": "Quartier Gambetta",
+        "town": "Courbevoie",
+        "municipality": "Nanterre",
+        "county": "Hauts-de-Seine",
+        "ISO3166-2-lvl6": "FR-92",
+        "state": "Île-de-France",
+        "ISO3166-2-lvl4": "FR-IDF",
+        "region": "France métropolitaine",
+        "postcode": "92400",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "49.0487782",
+        "2.0646056"
+      ],
+      "expected_city": "Pontoise",
+      "actual_city": "Cergy",
+      "full_address": "Rue du Palet, Les Arpents, La Plaine, Cergy, Pontoise, Val-d'Oise, France métropolitaine, 95000, France",
+      "talks": [
+        {
+          "file": "content/talks/2015/2015-12-10-bbl-gendarmerie-private-event/index.md",
+          "city": "Pontoise",
+          "country": "France",
+          "latitude": "49.0487782",
+          "longitude": "2.0646056",
+          "conference_name": "BBL Gendarmerie (private event)"
+        }
+      ],
+      "address": {
+        "road": "Rue du Palet",
+        "neighbourhood": "Les Arpents",
+        "suburb": "La Plaine",
+        "town": "Cergy",
+        "municipality": "Pontoise",
+        "county": "Val-d'Oise",
+        "ISO3166-2-lvl6": "FR-95",
+        "region": "France métropolitaine",
+        "postcode": "95000",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "48.8053407",
+        "2.3240356"
+      ],
+      "expected_city": "Arcueil",
+      "actual_city": "Bagneux",
+      "full_address": "Avenue Victor Hugo, Bagneux, Antony, Hauts-de-Seine, Île-de-France, France métropolitaine, 92220, France",
+      "talks": [
+        {
+          "file": "content/talks/2015/2015-04-14-bbl-caisse-des-dépôts-private-event/index.md",
+          "city": "Arcueil",
+          "country": "France",
+          "latitude": "48.8053407",
+          "longitude": "2.3240356",
+          "conference_name": "BBL Caisse des dépôts (private event)"
+        }
+      ],
+      "address": {
+        "road": "Avenue Victor Hugo",
+        "town": "Bagneux",
+        "municipality": "Antony",
+        "county": "Hauts-de-Seine",
+        "ISO3166-2-lvl6": "FR-92",
+        "state": "Île-de-France",
+        "ISO3166-2-lvl4": "FR-IDF",
+        "region": "France métropolitaine",
+        "postcode": "92220",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "47.2382007",
+        "-1.6300961"
+      ],
+      "expected_city": "Nantes",
+      "actual_city": "Saint-Herblain",
+      "full_address": "23, Rue Paul Gauguin, Bergerie-Les Écarts, La Bénetière, Saint-Herblain, Nantes, Loire-Atlantique, Pays de la Loire, France métropolitaine, 44800, France",
+      "talks": [
+        {
+          "file": "content/talks/2015/2015-06-05-web2day-nantes/index.md",
+          "city": "Nantes",
+          "country": "France",
+          "latitude": "47.2382007",
+          "longitude": "-1.6300961",
+          "conference_name": "Web2Day Nantes"
+        },
+        {
+          "file": "content/talks/2015/2015-06-04-web2day-nantes/index.md",
+          "city": "Nantes",
+          "country": "France",
+          "latitude": "47.2382007",
+          "longitude": "-1.6300961",
+          "conference_name": "Web2Day Nantes"
+        }
+      ],
+      "address": {
+        "house_number": "23",
+        "road": "Rue Paul Gauguin",
+        "neighbourhood": "Bergerie-Les Écarts",
+        "hamlet": "La Bénetière",
+        "town": "Saint-Herblain",
+        "municipality": "Nantes",
+        "county": "Loire-Atlantique",
+        "ISO3166-2-lvl6": "FR-44",
+        "state": "Pays de la Loire",
+        "ISO3166-2-lvl4": "FR-PDL",
+        "region": "France métropolitaine",
+        "postcode": "44800",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "50.0466814",
+        "19.8647894"
+      ],
+      "expected_city": "Krakow",
+      "actual_city": "Cracovie",
+      "full_address": "205, Księcia Józefa, Przegorzały, Zwierzyniec, Cracovie, Voïvodie de Petite-Pologne, 30-250, Pologne",
+      "talks": [
+        {
+          "file": "content/talks/2015/2015-06-23-devoxx-pl/index.md",
+          "city": "Krakow",
+          "country": "Poland",
+          "latitude": "50.0466814",
+          "longitude": "19.8647894",
+          "conference_name": "Devoxx PL"
+        },
+        {
+          "file": "content/talks/2015/2015-06-25-devoxx-pl/index.md",
+          "city": "Krakow",
+          "country": "Poland",
+          "latitude": "50.0466814",
+          "longitude": "19.8647894",
+          "conference_name": "Devoxx PL"
+        }
+      ],
+      "address": {
+        "house_number": "205",
+        "road": "Księcia Józefa",
+        "quarter": "Przegorzały",
+        "city_district": "Zwierzyniec",
+        "city": "Cracovie",
+        "state": "Voïvodie de Petite-Pologne",
+        "ISO3166-2-lvl4": "PL-12",
+        "postcode": "30-250",
+        "country": "Pologne",
+        "country_code": "pl"
+      }
+    },
+    {
+      "coordinates": [
+        "48.9267902",
+        "2.330664"
+      ],
+      "expected_city": "Saint-Denis",
+      "actual_city": "Villeneuve-la-Garenne",
+      "full_address": "4, Boulevard Gallieni, Villeneuve-la-Garenne, Nanterre, Hauts-de-Seine, Île-de-France, France métropolitaine, 92390, France",
+      "talks": [
+        {
+          "file": "content/talks/2015/2015-01-13-bbl-sqli-private-event/index.md",
+          "city": "Saint-Denis",
+          "country": "France",
+          "latitude": "48.9267902",
+          "longitude": "2.330664",
+          "conference_name": "BBL SQLi (private event)"
+        },
+        {
+          "file": "content/talks/2015/2015-11-24-bbl-vente-privée-private-event/index.md",
+          "city": "Saint-Denis",
+          "country": "France",
+          "latitude": "48.9267902",
+          "longitude": "2.330664",
+          "conference_name": "BBL Vente-Privée (private event)"
+        }
+      ],
+      "address": {
+        "house_number": "4",
+        "road": "Boulevard Gallieni",
+        "town": "Villeneuve-la-Garenne",
+        "municipality": "Nanterre",
+        "county": "Hauts-de-Seine",
+        "ISO3166-2-lvl6": "FR-92",
+        "state": "Île-de-France",
+        "ISO3166-2-lvl4": "FR-IDF",
+        "region": "France métropolitaine",
+        "postcode": "92390",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "48.8919573",
+        "2.228674"
+      ],
+      "expected_city": "Paris",
+      "actual_city": "Nanterre",
+      "full_address": "Boulevard Aimé Césaire, La Défense 7, Quartier du Parc Nord, Nanterre, Hauts-de-Seine, Île-de-France, France métropolitaine, 92000, France",
+      "talks": [
+        {
+          "file": "content/talks/2015/2015-03-26-meetup-es-fr/index.md",
+          "city": "Paris",
+          "country": "France",
+          "latitude": "48.8919573",
+          "longitude": "2.228674",
+          "conference_name": "Meetup ES FR"
+        }
+      ],
+      "address": {
+        "road": "Boulevard Aimé Césaire",
+        "quarter": "La Défense 7",
+        "suburb": "Quartier du Parc Nord",
+        "town": "Nanterre",
+        "municipality": "Nanterre",
+        "county": "Hauts-de-Seine",
+        "ISO3166-2-lvl6": "FR-92",
+        "state": "Île-de-France",
+        "ISO3166-2-lvl4": "FR-IDF",
+        "region": "France métropolitaine",
+        "postcode": "92000",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "48.8929569",
+        "2.2384426"
+      ],
+      "expected_city": "Paris",
+      "actual_city": "Puteaux",
+      "full_address": "Hilton Paris La Defense, 2, Place de la Défense, La Défense 9, Quartier Boieldieu, Puteaux, Nanterre, Hauts-de-Seine, Île-de-France, France métropolitaine, 92053, France",
+      "talks": [
+        {
+          "file": "content/talks/2017/2017-09-19-xpack-enablement-day/index.md",
+          "city": "Paris",
+          "country": "France",
+          "latitude": "48.8929569",
+          "longitude": "2.2384426",
+          "conference_name": "XPack Enablement Day"
+        }
+      ],
+      "address": {
+        "tourism": "Hilton Paris La Defense",
+        "house_number": "2",
+        "road": "Place de la Défense",
+        "quarter": "La Défense 9",
+        "hamlet": "Quartier Boieldieu",
+        "town": "Puteaux",
+        "municipality": "Nanterre",
+        "county": "Hauts-de-Seine",
+        "ISO3166-2-lvl6": "FR-92",
+        "state": "Île-de-France",
+        "ISO3166-2-lvl4": "FR-IDF",
+        "region": "France métropolitaine",
+        "postcode": "92053",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "48.8932618",
+        "2.2368715"
+      ],
+      "expected_city": "Paris",
+      "actual_city": "Puteaux",
+      "full_address": "La Nef des Collines de l'Arche, La Défense 12, Quartier Boieldieu, Puteaux, Nanterre, Hauts-de-Seine, Île-de-France, France métropolitaine, 92800, France",
+      "talks": [
+        {
+          "file": "content/talks/2017/2017-12-12-bbl-voyages-sncf-private-event/index.md",
+          "city": "Paris",
+          "country": "France",
+          "latitude": "48.8932618",
+          "longitude": "2.2368715",
+          "conference_name": "BBL Voyages SNCF (private event)"
+        }
+      ],
+      "address": {
+        "road": "La Nef des Collines de l'Arche",
+        "quarter": "La Défense 12",
+        "hamlet": "Quartier Boieldieu",
+        "town": "Puteaux",
+        "municipality": "Nanterre",
+        "county": "Hauts-de-Seine",
+        "ISO3166-2-lvl6": "FR-92",
+        "state": "Île-de-France",
+        "ISO3166-2-lvl4": "FR-IDF",
+        "region": "France métropolitaine",
+        "postcode": "92800",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "43.616722",
+        "7.067868"
+      ],
+      "expected_city": "Nice",
+      "actual_city": "Grasse",
+      "full_address": "Route des Lucioles, Sophia Antipolis 2, Les Lucioles, Sophia Antipolis, Biot, Grasse, Alpes-Maritimes, Provence-Alpes-Côte d'Azur, France métropolitaine, 06410, France",
+      "talks": [
+        {
+          "file": "content/talks/2017/2017-06-13-riviera-jug/index.md",
+          "city": "Nice",
+          "country": "France",
+          "latitude": "43.616722",
+          "longitude": "7.067868",
+          "conference_name": "Riviera JUG"
+        }
+      ],
+      "address": {
+        "road": "Route des Lucioles",
+        "commercial": "Sophia Antipolis 2",
+        "neighbourhood": "Les Lucioles",
+        "suburb": "Sophia Antipolis",
+        "village": "Biot",
+        "municipality": "Grasse",
+        "county": "Alpes-Maritimes",
+        "ISO3166-2-lvl6": "FR-06",
+        "state": "Provence-Alpes-Côte d'Azur",
+        "ISO3166-2-lvl4": "FR-PAC",
+        "region": "France métropolitaine",
+        "postcode": "06410",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "46.20949",
+        "6.1330233"
+      ],
+      "expected_city": "Geneva",
+      "actual_city": "Genève",
+      "full_address": "8, Rue de la Poterie, Grottes et Saint-Gervais, Genève, 1202, Suisse",
+      "talks": [
+        {
+          "file": "content/talks/2017/2017-10-26-softshake/index.md",
+          "city": "Geneva",
+          "country": "Switzerland",
+          "latitude": "46.20949",
+          "longitude": "6.1330233",
+          "conference_name": "Softshake"
+        }
+      ],
+      "address": {
+        "house_number": "8",
+        "road": "Rue de la Poterie",
+        "suburb": "Grottes et Saint-Gervais",
+        "city": "Genève",
+        "state": "Genève",
+        "ISO3166-2-lvl4": "CH-GE",
+        "postcode": "1202",
+        "country": "Suisse",
+        "country_code": "ch"
+      }
+    },
+    {
+      "coordinates": [
+        "49.5078538",
+        "6.2783842"
+      ],
+      "expected_city": "Luxembourg",
+      "actual_city": "Ellange",
+      "full_address": "5, Rue Flammang, Brill, Ellange, Mondorf-les-Bains, Canton Remich, 5618, Luxembourg",
+      "talks": [
+        {
+          "file": "content/talks/2017/2017-06-22-voxxed-luxembourg/index.md",
+          "city": "Luxembourg",
+          "country": "Luxembourg",
+          "latitude": "49.5078538",
+          "longitude": "6.2783842",
+          "conference_name": "Voxxed Luxembourg"
+        }
+      ],
+      "address": {
+        "house_number": "5",
+        "road": "Rue Flammang",
+        "hamlet": "Brill",
+        "village": "Ellange",
+        "county": "Canton Remich",
+        "ISO3166-2-lvl6": "LU-RM",
+        "postcode": "5618",
+        "country": "Luxembourg",
+        "country_code": "lu"
+      }
+    },
+    {
+      "coordinates": [
+        "52.2394957",
+        "21.0457909"
+      ],
+      "expected_city": "Warsaw",
+      "actual_city": "Varsovie",
+      "full_address": "1, Aleja Księcia Józefa Poniatowskiego, Kamionek, Praga-Południe, Varsovie, Voïvodie de Mazovie, 03-901, Pologne",
+      "talks": [
+        {
+          "file": "content/talks/2017/2017-05-25-code-europe/index.md",
+          "city": "Warsaw",
+          "country": "Poland",
+          "latitude": "52.2394957",
+          "longitude": "21.0457909",
+          "conference_name": "Code Europe"
+        }
+      ],
+      "address": {
+        "house_number": "1",
+        "road": "Aleja Księcia Józefa Poniatowskiego",
+        "quarter": "Kamionek",
+        "suburb": "Praga-Południe",
+        "city": "Varsovie",
+        "county": "Varsovie",
+        "state": "Voïvodie de Mazovie",
+        "ISO3166-2-lvl4": "PL-14",
+        "postcode": "03-901",
+        "country": "Pologne",
+        "country_code": "pl"
+      }
+    },
+    {
+      "coordinates": [
+        "48.8753685",
+        "2.9773511"
+      ],
+      "expected_city": "Nancy",
+      "actual_city": "Meaux",
+      "full_address": "D 21, Maisoncelles-en-Brie, Meaux, Seine-et-Marne, France métropolitaine, 77580, France",
+      "talks": [
+        {
+          "file": "content/talks/2017/2017-09-17-lorraine-jug/index.md",
+          "city": "Nancy",
+          "country": "France",
+          "latitude": "48.8753685",
+          "longitude": "2.9773511",
+          "conference_name": "Lorraine JUG"
+        }
+      ],
+      "address": {
+        "road": "D 21",
+        "village": "Maisoncelles-en-Brie",
+        "municipality": "Meaux",
+        "county": "Seine-et-Marne",
+        "ISO3166-2-lvl6": "FR-77",
+        "region": "France métropolitaine",
+        "postcode": "77580",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "44.8066376",
+        "-0.6073554"
+      ],
+      "expected_city": "Bordeaux",
+      "actual_city": "Pessac",
+      "full_address": "Clinique mutualiste Arnaud Duben, 46, Avenue du Docteur Albert Schweitzer, Brivazac-Candau, Pessac, Bordeaux, Gironde, Nouvelle-Aquitaine, France métropolitaine, 33600, France",
+      "talks": [
+        {
+          "file": "content/talks/2017/2017-11-10-bdxio/index.md",
+          "city": "Bordeaux",
+          "country": "France",
+          "latitude": "44.8066376",
+          "longitude": "-0.6073554",
+          "conference_name": "BDX.io"
+        }
+      ],
+      "address": {
+        "amenity": "Clinique mutualiste Arnaud Duben",
+        "house_number": "46",
+        "road": "Avenue du Docteur Albert Schweitzer",
+        "suburb": "Brivazac-Candau",
+        "town": "Pessac",
+        "municipality": "Bordeaux",
+        "county": "Gironde",
+        "ISO3166-2-lvl6": "FR-33",
+        "state": "Nouvelle-Aquitaine",
+        "ISO3166-2-lvl4": "FR-NAQ",
+        "region": "France métropolitaine",
+        "postcode": "33600",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "36.6894415",
+        "-4.4474695"
+      ],
+      "expected_city": "Málaga",
+      "actual_city": "Malaga",
+      "full_address": "Camino de La Térmica, Los Guindos, Carretera de Cádiz, Malaga, Málaga-Costa del Sol, Malaga, Andalousie, 29003, Espagne",
+      "talks": [
+        {
+          "file": "content/talks/2017/2017-05-17-j-on-the-beach/index.md",
+          "city": "Málaga",
+          "country": "Spain",
+          "latitude": "36.6894415",
+          "longitude": "-4.4474695",
+          "conference_name": "J On The Beach"
+        },
+        {
+          "file": "content/talks/2016/2016-05-20-j-on-the-beach/index.md",
+          "city": "Málaga",
+          "country": "Spain",
+          "latitude": "36.6894415",
+          "longitude": "-4.4474695",
+          "conference_name": "J On The Beach"
+        }
+      ],
+      "address": {
+        "road": "Camino de La Térmica",
+        "neighbourhood": "Los Guindos",
+        "borough": "Carretera de Cádiz",
+        "city": "Malaga",
+        "county": "Málaga-Costa del Sol",
+        "province": "Malaga",
+        "ISO3166-2-lvl6": "ES-MA",
+        "state": "Andalousie",
+        "ISO3166-2-lvl4": "ES-AN",
+        "postcode": "29003",
+        "country": "Espagne",
+        "country_code": "es"
+      }
+    },
+    {
+      "coordinates": [
+        "50.0478712",
+        "19.9312882"
+      ],
+      "expected_city": "Krakow",
+      "actual_city": "Cracovie",
+      "full_address": "Sala audytoryjna, 17, Marii Konopnickiej, Osiedle Podwawelskie, Ludwinów, Dębniki, Cracovie, Voïvodie de Petite-Pologne, 30-302, Pologne",
+      "talks": [
+        {
+          "file": "content/talks/2017/2017-06-21-devoxx-pl/index.md",
+          "city": "Krakow",
+          "country": "Poland",
+          "latitude": "50.0478712",
+          "longitude": "19.9312882",
+          "conference_name": "Devoxx PL"
+        },
+        {
+          "file": "content/talks/2017/2017-04-26-code-europe/index.md",
+          "city": "Krakow",
+          "country": "Poland",
+          "latitude": "50.0478712",
+          "longitude": "19.9312882",
+          "conference_name": "Code Europe"
+        }
+      ],
+      "address": {
+        "amenity": "Sala audytoryjna",
+        "house_number": "17",
+        "road": "Marii Konopnickiej",
+        "neighbourhood": "Osiedle Podwawelskie",
+        "quarter": "Ludwinów",
+        "city_district": "Dębniki",
+        "city": "Cracovie",
+        "state": "Voïvodie de Petite-Pologne",
+        "ISO3166-2-lvl4": "PL-12",
+        "postcode": "30-302",
+        "country": "Pologne",
+        "country_code": "pl"
+      }
+    },
+    {
+      "coordinates": [
+        "51.1068688",
+        "17.077285"
+      ],
+      "expected_city": "Wroclaw",
+      "actual_city": "Vratislavie",
+      "full_address": "1, Wystawowa, Dąbie, Biskupin-Sępolno-Dąbie-Bartoszowice, Vratislavie, Voïvodie de Basse-Silésie, 51-618, Pologne",
+      "talks": [
+        {
+          "file": "content/talks/2017/2017-05-23-code-europe/index.md",
+          "city": "Wroclaw",
+          "country": "Poland",
+          "latitude": "51.1068688",
+          "longitude": "17.077285",
+          "conference_name": "Code Europe"
+        }
+      ],
+      "address": {
+        "house_number": "1",
+        "road": "Wystawowa",
+        "suburb": "Dąbie",
+        "city_district": "Biskupin-Sępolno-Dąbie-Bartoszowice",
+        "city": "Vratislavie",
+        "state": "Voïvodie de Basse-Silésie",
+        "ISO3166-2-lvl4": "PL-02",
+        "postcode": "51-618",
+        "country": "Pologne",
+        "country_code": "pl"
+      }
+    },
+    {
+      "coordinates": [
+        "48.8925044",
+        "2.2386405"
+      ],
+      "expected_city": "Paris",
+      "actual_city": "Puteaux",
+      "full_address": "Monoprix, 2, Le Parvis, La Défense 12, Quartier Boieldieu, Puteaux, Nanterre, Hauts-de-Seine, Île-de-France, France métropolitaine, 92800, France",
+      "talks": [
+        {
+          "file": "content/talks/2017/2017-10-25-es-ml-seminar/index.md",
+          "city": "Paris",
+          "country": "France",
+          "latitude": "48.8925044",
+          "longitude": "2.2386405",
+          "conference_name": "ES ML Seminar"
+        }
+      ],
+      "address": {
+        "shop": "Monoprix",
+        "house_number": "2",
+        "road": "Le Parvis",
+        "quarter": "La Défense 12",
+        "hamlet": "Quartier Boieldieu",
+        "town": "Puteaux",
+        "municipality": "Nanterre",
+        "county": "Hauts-de-Seine",
+        "ISO3166-2-lvl6": "FR-92",
+        "state": "Île-de-France",
+        "ISO3166-2-lvl4": "FR-IDF",
+        "region": "France métropolitaine",
+        "postcode": "92800",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "46.7833002",
+        "23.4764293"
+      ],
+      "expected_city": "Cluj-Napoca",
+      "actual_city": "Zona Metropolitană Cluj",
+      "full_address": "Suceagu, Baciu, Zona Metropolitană Cluj, Cluj, 407062, Roumanie",
+      "talks": [
+        {
+          "file": "content/talks/2017/2017-11-22-voxxed-cluj-napoca/index.md",
+          "city": "Cluj-Napoca",
+          "country": "Romania",
+          "latitude": "46.7833002",
+          "longitude": "23.4764293",
+          "conference_name": "Voxxed Cluj Napoca"
+        }
+      ],
+      "address": {
+        "village": "Suceagu",
+        "municipality": "Zona Metropolitană Cluj",
+        "county": "Cluj",
+        "ISO3166-2-lvl4": "RO-CJ",
+        "postcode": "407062",
+        "country": "Roumanie",
+        "country_code": "ro"
+      }
+    },
+    {
+      "coordinates": [
+        "41.3894656",
+        "2.1347997"
+      ],
+      "expected_city": "Barcelona",
+      "actual_city": "Barcelone",
+      "full_address": "Uno de 50, 557, Avinguda Diagonal, les Corts, Barcelone, Barcelonais, Barcelone, Catalogne, 08021, Espagne",
+      "talks": [
+        {
+          "file": "content/talks/2017/2017-10-06-polycon/index.md",
+          "city": "Barcelona",
+          "country": "Spain",
+          "latitude": "41.3894656",
+          "longitude": "2.1347997",
+          "conference_name": "Polycon"
+        }
+      ],
+      "address": {
+        "shop": "Uno de 50",
+        "house_number": "557",
+        "road": "Avinguda Diagonal",
+        "suburb": "les Corts",
+        "city": "Barcelone",
+        "county": "Barcelonais",
+        "province": "Barcelone",
+        "ISO3166-2-lvl6": "ES-B",
+        "state": "Catalogne",
+        "ISO3166-2-lvl4": "ES-CT",
+        "postcode": "08021",
+        "country": "Espagne",
+        "country_code": "es"
+      }
+    },
+    {
+      "coordinates": [
+        "45.1561683",
+        "5.7311223"
+      ],
+      "expected_city": "Grenoble",
+      "actual_city": "Échirolles",
+      "full_address": "Place de Valmy, Échirolles, Grenoble, Isère, Auvergne-Rhône-Alpes, France métropolitaine, 38130, France",
+      "talks": [
+        {
+          "file": "content/talks/2026/2026-01-16-snowcamp/index.md",
+          "city": "Grenoble",
+          "country": "France",
+          "latitude": "45.1561683",
+          "longitude": "5.7311223",
+          "conference_name": "Snowcamp"
+        }
+      ],
+      "address": {
+        "road": "Place de Valmy",
+        "town": "Échirolles",
+        "municipality": "Grenoble",
+        "county": "Isère",
+        "ISO3166-2-lvl6": "FR-38",
+        "state": "Auvergne-Rhône-Alpes",
+        "ISO3166-2-lvl4": "FR-ARA",
+        "region": "France métropolitaine",
+        "postcode": "38130",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "48.820567",
+        "2.423655"
+      ],
+      "expected_city": "Saint-Maurice",
+      "actual_city": "Paris",
+      "full_address": "Hôpitaux Paris Est Val-de-Marne - Site Saint-Maurice, Route du Ruisseau, Quartier de Picpus, Paris 12e Arrondissement, Paris, Île-de-France, France métropolitaine, 75012, France",
+      "talks": [
+        {
+          "file": "content/talks/2019/2019-03-29-bbl-veolia-private-event/index.md",
+          "city": "Saint-Maurice",
+          "country": "France",
+          "latitude": "48.820567",
+          "longitude": "2.423655",
+          "conference_name": "BBL Veolia (private event)"
+        }
+      ],
+      "address": {
+        "amenity": "Hôpitaux Paris Est Val-de-Marne - Site Saint-Maurice",
+        "road": "Route du Ruisseau",
+        "city_block": "Quartier de Picpus",
+        "suburb": "Paris 12e Arrondissement",
+        "city_district": "Paris",
+        "city": "Paris",
+        "ISO3166-2-lvl6": "FR-75C",
+        "state": "Île-de-France",
+        "ISO3166-2-lvl4": "FR-IDF",
+        "region": "France métropolitaine",
+        "postcode": "75012",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "1.352083",
+        "103.819836"
+      ],
+      "expected_city": "Singapore",
+      "actual_city": "Singapour",
+      "full_address": "MacRitchie Nature Trail, Central Water Catchment, North Region, Singapour, 576587, Singapour",
+      "talks": [
+        {
+          "file": "content/talks/2019/2019-05-30-elastic-singapore-user-group-meetup/index.md",
+          "city": "Singapore",
+          "country": "Singapore",
+          "latitude": "1.352083",
+          "longitude": "103.819836",
+          "conference_name": "Elastic Singapore User Group Meetup"
+        },
+        {
+          "file": "content/talks/2019/2019-05-31-voxxed-days-singapore-oss-panel/index.md",
+          "city": "Singapore",
+          "country": "Singapore",
+          "latitude": "1.352083",
+          "longitude": "103.819836",
+          "conference_name": "Voxxed Days Singapore"
+        },
+        {
+          "file": "content/talks/2019/2019-05-30-voxxed-days-singapore-monitoring/index.md",
+          "city": "Singapore",
+          "country": "Singapore",
+          "latitude": "1.352083",
+          "longitude": "103.819836",
+          "conference_name": "Voxxed Days Singapore"
+        }
+      ],
+      "address": {
+        "road": "MacRitchie Nature Trail",
+        "neighbourhood": "Central Water Catchment",
+        "suburb": "Central Water Catchment",
+        "borough": "North Region",
+        "city": "Singapour",
+        "postcode": "576587",
+        "country": "Singapour",
+        "country_code": "sg"
+      }
+    },
+    {
+      "coordinates": [
+        "55.755826",
+        "37.617300"
+      ],
+      "expected_city": "Moscow",
+      "actual_city": "Moscou",
+      "full_address": "Musée historique, 1, Place Rouge, 4, Kitaï-gorod, Тверской район, Moscou, District fédéral central, 109012, Russie",
+      "talks": [
+        {
+          "file": "content/talks/2019/2019-10-09-big-data-days-2019/index.md",
+          "city": "Moscow",
+          "country": "Russia",
+          "latitude": "55.755826",
+          "longitude": "37.617300",
+          "conference_name": "Big Data Days 2019"
+        },
+        {
+          "file": "content/talks/2019/2019-10-10-big-data-days-2019/index.md",
+          "city": "Moscow",
+          "country": "Russia",
+          "latitude": "55.755826",
+          "longitude": "37.617300",
+          "conference_name": "Big Data Days 2019"
+        }
+      ],
+      "address": {
+        "tourism": "Musée historique",
+        "house_number": "1",
+        "road": "Place Rouge",
+        "quarter": "4",
+        "neighbourhood": "Kitaï-gorod",
+        "suburb": "Тверской район",
+        "city": "Moscou",
+        "state": "Moscou",
+        "ISO3166-2-lvl4": "RU-MOW",
+        "region": "District fédéral central",
+        "postcode": "109012",
+        "country": "Russie",
+        "country_code": "ru"
+      }
+    },
+    {
+      "coordinates": [
+        "50.064651",
+        "19.944981"
+      ],
+      "expected_city": "Kraków",
+      "actual_city": "Cracovie",
+      "full_address": "Wesoła, Stare Miasto, Cracovie, Voïvodie de Petite-Pologne, 31-156, Pologne",
+      "talks": [
+        {
+          "file": "content/talks/2019/2019-06-24-elastic-krakow-meetup/index.md",
+          "city": "Kraków",
+          "country": "Poland",
+          "latitude": "50.064651",
+          "longitude": "19.944981",
+          "conference_name": "Elastic Krakow Meetup"
+        }
+      ],
+      "address": {
+        "quarter": "Wesoła",
+        "suburb": "Stare Miasto",
+        "city_district": "Stare Miasto",
+        "city": "Cracovie",
+        "state": "Voïvodie de Petite-Pologne",
+        "ISO3166-2-lvl4": "PL-12",
+        "postcode": "31-156",
+        "country": "Pologne",
+        "country_code": "pl"
+      }
+    },
+    {
+      "coordinates": [
+        "48.891796",
+        "2.2281861"
+      ],
+      "expected_city": "Paris",
+      "actual_city": "Nanterre",
+      "full_address": "Boulevard Aimé Césaire, La Défense 7, Quartier du Parc Nord, Nanterre, Hauts-de-Seine, Île-de-France, France métropolitaine, 92000, France",
+      "talks": [
+        {
+          "file": "content/talks/2018/2018-01-09-bbl-société-générale-private-event/index.md",
+          "city": "Paris",
+          "country": "France",
+          "latitude": "48.891796",
+          "longitude": "2.2281861",
+          "conference_name": "BBL Société Générale (private event)"
+        }
+      ],
+      "address": {
+        "road": "Boulevard Aimé Césaire",
+        "quarter": "La Défense 7",
+        "suburb": "Quartier du Parc Nord",
+        "town": "Nanterre",
+        "municipality": "Nanterre",
+        "county": "Hauts-de-Seine",
+        "ISO3166-2-lvl6": "FR-92",
+        "state": "Île-de-France",
+        "ISO3166-2-lvl4": "FR-IDF",
+        "region": "France métropolitaine",
+        "postcode": "92000",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "43.6164273",
+        "7.0615114"
+      ],
+      "expected_city": "Nice",
+      "actual_city": "Grasse",
+      "full_address": "1640, Route des Lucioles, Sophia Antipolis 2, Les Lucioles, Sophia Antipolis, Biot, Grasse, Alpes-Maritimes, Provence-Alpes-Côte d'Azur, France métropolitaine, 06410, France",
+      "talks": [
+        {
+          "file": "content/talks/2018/2018-07-05-sophia-conf/index.md",
+          "city": "Nice",
+          "country": "France",
+          "latitude": "43.6164273",
+          "longitude": "7.0615114",
+          "conference_name": "Sophia Conf"
+        }
+      ],
+      "address": {
+        "house_number": "1640",
+        "road": "Route des Lucioles",
+        "commercial": "Sophia Antipolis 2",
+        "neighbourhood": "Les Lucioles",
+        "suburb": "Sophia Antipolis",
+        "village": "Biot",
+        "municipality": "Grasse",
+        "county": "Alpes-Maritimes",
+        "ISO3166-2-lvl6": "FR-06",
+        "state": "Provence-Alpes-Côte d'Azur",
+        "ISO3166-2-lvl4": "FR-PAC",
+        "region": "France métropolitaine",
+        "postcode": "06410",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "48.8909658",
+        "2.2430674"
+      ],
+      "expected_city": "Paris",
+      "actual_city": "Courbevoie",
+      "full_address": "Rampe d'Accès Esplanade, La Défense 4, Quartier Gambetta, Courbevoie, Nanterre, Hauts-de-Seine, Île-de-France, France métropolitaine, 92400, France",
+      "talks": [
+        {
+          "file": "content/talks/2018/2018-04-05-bbl-hsbc-france-private-event/index.md",
+          "city": "Paris",
+          "country": "France",
+          "latitude": "48.8909658",
+          "longitude": "2.2430674",
+          "conference_name": "BBL HSBC France (private event)"
+        }
+      ],
+      "address": {
+        "road": "Rampe d'Accès Esplanade",
+        "quarter": "La Défense 4",
+        "suburb": "Quartier Gambetta",
+        "town": "Courbevoie",
+        "municipality": "Nanterre",
+        "county": "Hauts-de-Seine",
+        "ISO3166-2-lvl6": "FR-92",
+        "state": "Île-de-France",
+        "ISO3166-2-lvl4": "FR-IDF",
+        "region": "France métropolitaine",
+        "postcode": "92400",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "53.3239919",
+        "-6.5258808"
+      ],
+      "expected_city": "Dublin",
+      "actual_city": "Comté de Kildare",
+      "full_address": "R405, Donaghcumper ED, The Municipal District of Celbridge — Leixlip, Comté de Kildare, Leinster, W23 YY29, Irlande",
+      "talks": [
+        {
+          "file": "content/talks/2018/2018-10-08-dub-jug/index.md",
+          "city": "Dublin",
+          "country": "Ireland",
+          "latitude": "53.3239919",
+          "longitude": "-6.5258808",
+          "conference_name": "Dub JUG"
+        }
+      ],
+      "address": {
+        "road": "R405",
+        "city_district": "Donaghcumper ED",
+        "region": "The Municipal District of Celbridge — Leixlip",
+        "county": "Comté de Kildare",
+        "ISO3166-2-lvl6": "IE-KE",
+        "ISO3166-2-lvl5": "IE-L",
+        "postcode": "W23 YY29",
+        "country": "Irlande",
+        "country_code": "ie"
+      }
+    },
+    {
+      "coordinates": [
+        "52.4026128",
+        "16.9073222"
+      ],
+      "expected_city": "Poznan",
+      "actual_city": "Poznań",
+      "full_address": "Pawilon 12 (Pałac Targowy), 14, Głogowska, Łazarz, Poznań, Voïvodie de Grande-Pologne, 60-702, Pologne",
+      "talks": [
+        {
+          "file": "content/talks/2018/2018-06-12-code-europe/index.md",
+          "city": "Poznan",
+          "country": "Poland",
+          "latitude": "52.4026128",
+          "longitude": "16.9073222",
+          "conference_name": "Code Europe"
+        }
+      ],
+      "address": {
+        "building": "Pawilon 12 (Pałac Targowy)",
+        "house_number": "14",
+        "road": "Głogowska",
+        "suburb": "Łazarz",
+        "city": "Poznań",
+        "state": "Voïvodie de Grande-Pologne",
+        "ISO3166-2-lvl4": "PL-30",
+        "postcode": "60-702",
+        "country": "Pologne",
+        "country_code": "pl"
+      }
+    },
+    {
+      "coordinates": [
+        "48.903117",
+        "2.366287"
+      ],
+      "expected_city": "Paris",
+      "actual_city": "Aubervilliers",
+      "full_address": "Bâtiment 202, 43, Avenue des Magasins Généraux, Parc Les Portes de Paris - ICADE, Landy-Plaine - Marcreus - Pressensé, Aubervilliers, Saint-Denis, Seine-Saint-Denis, Île-de-France, France métropolitaine, 93300, France",
+      "talks": [
+        {
+          "file": "content/talks/2018/2018-12-05-open-source-summit/index.md",
+          "city": "Paris",
+          "country": "France",
+          "latitude": "48.903117",
+          "longitude": "2.366287",
+          "conference_name": "Open Source Summit"
+        }
+      ],
+      "address": {
+        "building": "Bâtiment 202",
+        "house_number": "43",
+        "road": "Avenue des Magasins Généraux",
+        "commercial": "Parc Les Portes de Paris - ICADE",
+        "suburb": "Landy-Plaine - Marcreus - Pressensé",
+        "town": "Aubervilliers",
+        "municipality": "Saint-Denis",
+        "county": "Seine-Saint-Denis",
+        "ISO3166-2-lvl6": "FR-93",
+        "state": "Île-de-France",
+        "ISO3166-2-lvl4": "FR-IDF",
+        "region": "France métropolitaine",
+        "postcode": "93300",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "50.8506314",
+        "4.354171"
+      ],
+      "expected_city": "Brussels",
+      "actual_city": "Bruxelles",
+      "full_address": "Yves Rocher, Rue Neuve, Quartier Marais-Jacqmain, Pentagone, Bruxelles, Bruxelles-Capitale, 1000, Belgique",
+      "talks": [
+        {
+          "file": "content/talks/2018/2018-06-20-brussels-jug/index.md",
+          "city": "Brussels",
+          "country": "Belgium",
+          "latitude": "50.8506314",
+          "longitude": "4.354171",
+          "conference_name": "Brussels JUG"
+        }
+      ],
+      "address": {
+        "shop": "Yves Rocher",
+        "road": "Rue Neuve",
+        "neighbourhood": "Quartier Marais-Jacqmain",
+        "suburb": "Pentagone",
+        "city_district": "Bruxelles",
+        "city": "Bruxelles",
+        "county": "Bruxelles-Capitale",
+        "region": "Bruxelles-Capitale",
+        "ISO3166-2-lvl4": "BE-BRU",
+        "postcode": "1000",
+        "country": "Belgique",
+        "country_code": "be"
+      }
+    },
+    {
+      "coordinates": [
+        "44.8066376",
+        "-0.6051667"
+      ],
+      "expected_city": "Bordeaux",
+      "actual_city": "Talence",
+      "full_address": "Avenue de Collegno, Talence, Bordeaux, Gironde, Nouvelle-Aquitaine, France métropolitaine, 33400, France",
+      "talks": [
+        {
+          "file": "content/talks/2018/2018-11-09-bdxio/index.md",
+          "city": "Bordeaux",
+          "country": "France",
+          "latitude": "44.8066376",
+          "longitude": "-0.6051667",
+          "conference_name": "BDX.io"
+        }
+      ],
+      "address": {
+        "road": "Avenue de Collegno",
+        "town": "Talence",
+        "municipality": "Bordeaux",
+        "county": "Gironde",
+        "ISO3166-2-lvl6": "FR-33",
+        "state": "Nouvelle-Aquitaine",
+        "ISO3166-2-lvl4": "FR-NAQ",
+        "region": "France métropolitaine",
+        "postcode": "33400",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "48.8929779",
+        "2.2455839"
+      ],
+      "expected_city": "Paris",
+      "actual_city": "Courbevoie",
+      "full_address": "47, Avenue Gambetta, La Défense 3, Quartier Gambetta, Courbevoie, Nanterre, Hauts-de-Seine, Île-de-France, France métropolitaine, 92400, France",
+      "talks": [
+        {
+          "file": "content/talks/2018/2018-07-10-bbl-edelia-edf-private-event/index.md",
+          "city": "Paris",
+          "country": "France",
+          "latitude": "48.8929779",
+          "longitude": "2.2455839",
+          "conference_name": "BBL Edelia (EDF) (private event)"
+        }
+      ],
+      "address": {
+        "house_number": "47",
+        "road": "Avenue Gambetta",
+        "quarter": "La Défense 3",
+        "suburb": "Quartier Gambetta",
+        "town": "Courbevoie",
+        "municipality": "Nanterre",
+        "county": "Hauts-de-Seine",
+        "ISO3166-2-lvl6": "FR-92",
+        "state": "Île-de-France",
+        "ISO3166-2-lvl4": "FR-IDF",
+        "region": "France métropolitaine",
+        "postcode": "92400",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "48.8179311",
+        "2.3136775"
+      ],
+      "expected_city": "Paris",
+      "actual_city": "Montrouge",
+      "full_address": "Avenue Jean Jaurès, Quartier Jean Jaurès, Montrouge, Antony, Hauts-de-Seine, Île-de-France, France métropolitaine, 92120, France",
+      "talks": [
+        {
+          "file": "content/talks/2018/2018-06-26-bbl-crédit-agricole-private-event/index.md",
+          "city": "Paris",
+          "country": "France",
+          "latitude": "48.8179311",
+          "longitude": "2.3136775",
+          "conference_name": "BBL Crédit Agricole (private event)"
+        }
+      ],
+      "address": {
+        "road": "Avenue Jean Jaurès",
+        "suburb": "Quartier Jean Jaurès",
+        "town": "Montrouge",
+        "municipality": "Antony",
+        "county": "Hauts-de-Seine",
+        "ISO3166-2-lvl6": "FR-92",
+        "state": "Île-de-France",
+        "ISO3166-2-lvl4": "FR-IDF",
+        "region": "France métropolitaine",
+        "postcode": "92120",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "48.6880756",
+        "6.1384176"
+      ],
+      "expected_city": "Nancy",
+      "actual_city": "Laxou",
+      "full_address": "Chemin des Écoliers, Laxou, Nancy, Meurthe-et-Moselle, Grand Est, France métropolitaine, 54520, France",
+      "talks": [
+        {
+          "file": "content/talks/2018/2018-11-28-lorraine-jug/index.md",
+          "city": "Nancy",
+          "country": "France",
+          "latitude": "48.6880756",
+          "longitude": "6.1384176",
+          "conference_name": "Lorraine JUG"
+        }
+      ],
+      "address": {
+        "road": "Chemin des Écoliers",
+        "town": "Laxou",
+        "municipality": "Nancy",
+        "county": "Meurthe-et-Moselle",
+        "ISO3166-2-lvl6": "FR-54",
+        "state": "Grand Est",
+        "ISO3166-2-lvl4": "FR-GES",
+        "region": "France métropolitaine",
+        "postcode": "54520",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "44.7834857",
+        "-0.655005"
+      ],
+      "expected_city": "Bordeaux",
+      "actual_city": "Pessac",
+      "full_address": "Rue Benjamin Franklin, France Alouette, Pessac, Bordeaux, Gironde, Nouvelle-Aquitaine, France métropolitaine, 33600, France",
+      "talks": [
+        {
+          "file": "content/talks/2018/2018-11-09-bbl-siblu-private-event/index.md",
+          "city": "Bordeaux",
+          "country": "France",
+          "latitude": "44.7834857",
+          "longitude": "-0.655005",
+          "conference_name": "BBL Siblu (private event)"
+        }
+      ],
+      "address": {
+        "road": "Rue Benjamin Franklin",
+        "suburb": "France Alouette",
+        "town": "Pessac",
+        "municipality": "Bordeaux",
+        "county": "Gironde",
+        "ISO3166-2-lvl6": "FR-33",
+        "state": "Nouvelle-Aquitaine",
+        "ISO3166-2-lvl4": "FR-NAQ",
+        "region": "France métropolitaine",
+        "postcode": "33600",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "48.9204656",
+        "2.3411883"
+      ],
+      "expected_city": "Paris",
+      "actual_city": "Saint-Denis",
+      "full_address": "5, Place aux Grumes, Pleyel - Confluence, Saint-Denis, Seine-Saint-Denis, Île-de-France, France métropolitaine, 93200, France",
+      "talks": [
+        {
+          "file": "content/talks/2018/2018-11-20-bbl-edf-private-event/index.md",
+          "city": "Paris",
+          "country": "France",
+          "latitude": "48.9204656",
+          "longitude": "2.3411883",
+          "conference_name": "BBL EDF (private event)"
+        }
+      ],
+      "address": {
+        "house_number": "5",
+        "road": "Place aux Grumes",
+        "suburb": "Pleyel - Confluence",
+        "city": "Saint-Denis",
+        "municipality": "Saint-Denis",
+        "county": "Seine-Saint-Denis",
+        "ISO3166-2-lvl6": "FR-93",
+        "state": "Île-de-France",
+        "ISO3166-2-lvl4": "FR-IDF",
+        "region": "France métropolitaine",
+        "postcode": "93200",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "48.8542522",
+        "2.4159415"
+      ],
+      "expected_city": "Paris",
+      "actual_city": "Montreuil",
+      "full_address": "CGT, 265, Rue de Paris, Quartier de Charonne, Paris 20e Arrondissement, Bas-Montreuil - République, Paris, Montreuil, Bobigny, Seine-Saint-Denis, France métropolitaine, 93100, France",
+      "talks": [
+        {
+          "file": "content/talks/2018/2018-02-01-bbl-bnp-paribas-private-event/index.md",
+          "city": "Paris",
+          "country": "France",
+          "latitude": "48.8542522",
+          "longitude": "2.4159415",
+          "conference_name": "BBL BNP Paribas (private event)"
+        }
+      ],
+      "address": {
+        "office": "CGT",
+        "house_number": "265",
+        "road": "Rue de Paris",
+        "suburb": "Quartier de Charonne",
+        "city_district": "Paris",
+        "city": "Montreuil",
+        "municipality": "Bobigny",
+        "county": "Seine-Saint-Denis",
+        "ISO3166-2-lvl6": "FR-93",
+        "region": "France métropolitaine",
+        "postcode": "93100",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "48.8874803",
+        "2.256449"
+      ],
+      "expected_city": "Paris",
+      "actual_city": "Neuilly-sur-Seine",
+      "full_address": "Boulevard du Général Leclerc, Neuilly-sur-Seine, Nanterre, Hauts-de-Seine, Île-de-France, France métropolitaine, 92200, France",
+      "talks": [
+        {
+          "file": "content/talks/2018/2018-02-16-bbl-sentelis-private-event/index.md",
+          "city": "Paris",
+          "country": "France",
+          "latitude": "48.8874803",
+          "longitude": "2.256449",
+          "conference_name": "BBL Sentelis (private event)"
+        }
+      ],
+      "address": {
+        "road": "Boulevard du Général Leclerc",
+        "town": "Neuilly-sur-Seine",
+        "municipality": "Nanterre",
+        "county": "Hauts-de-Seine",
+        "ISO3166-2-lvl6": "FR-92",
+        "state": "Île-de-France",
+        "ISO3166-2-lvl4": "FR-IDF",
+        "region": "France métropolitaine",
+        "postcode": "92200",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "44.4464349",
+        "26.0967259"
+      ],
+      "expected_city": "Bucharest",
+      "actual_city": "Bucarest",
+      "full_address": "BCR, 43, Bulevardul General Gheorghe Magheru, Romană, Cișmigiu, Sector 1, Bucarest, 010326, Roumanie",
+      "talks": [
+        {
+          "file": "content/talks/2018/2018-03-22-voxxed-days/index.md",
+          "city": "Bucharest",
+          "country": "Romania",
+          "latitude": "44.4464349",
+          "longitude": "26.0967259",
+          "conference_name": "Voxxed Days"
+        }
+      ],
+      "address": {
+        "amenity": "BCR",
+        "house_number": "43",
+        "road": "Bulevardul General Gheorghe Magheru",
+        "neighbourhood": "Romană",
+        "suburb": "Cișmigiu",
+        "city_district": "Sector 1",
+        "city": "Bucarest",
+        "ISO3166-2-lvl4": "RO-B",
+        "postcode": "010326",
+        "country": "Roumanie",
+        "country_code": "ro"
+      }
+    },
+    {
+      "coordinates": [
+        "48.8012274",
+        "2.3289206"
+      ],
+      "expected_city": "Paris",
+      "actual_city": "Arcueil",
+      "full_address": "Oxyl, 19-21, Rue du 8 Mai 1945, Arcueil, L'Haÿ-les-Roses, Val-de-Marne, Île-de-France, France métropolitaine, 94110, France",
+      "talks": [
+        {
+          "file": "content/talks/2018/2018-04-21-devoxx4kids/index.md",
+          "city": "Paris",
+          "country": "France",
+          "latitude": "48.8012274",
+          "longitude": "2.3289206",
+          "conference_name": "Devoxx4Kids"
+        }
+      ],
+      "address": {
+        "office": "Oxyl",
+        "house_number": "19-21",
+        "road": "Rue du 8 Mai 1945",
+        "town": "Arcueil",
+        "municipality": "L'Haÿ-les-Roses",
+        "county": "Val-de-Marne",
+        "ISO3166-2-lvl6": "FR-94",
+        "state": "Île-de-France",
+        "ISO3166-2-lvl4": "FR-IDF",
+        "region": "France métropolitaine",
+        "postcode": "94110",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "51.2457841",
+        "4.4141383"
+      ],
+      "expected_city": "Antwerp",
+      "actual_city": "Anvers",
+      "full_address": "Vosseschijnstraat, Anvers, Flandre, 2030, Belgique",
+      "talks": [
+        {
+          "file": "content/talks/2016/2016-11-07-devoxx-be/index.md",
+          "city": "Antwerp",
+          "country": "Belgium",
+          "latitude": "51.2457841",
+          "longitude": "4.4141383",
+          "conference_name": "Devoxx BE"
+        }
+      ],
+      "address": {
+        "road": "Vosseschijnstraat",
+        "city_district": "Anvers",
+        "city": "Anvers",
+        "county": "Anvers",
+        "state": "Anvers",
+        "ISO3166-2-lvl6": "BE-VAN",
+        "province": "Flandre",
+        "ISO3166-2-lvl4": "BE-VLG",
+        "postcode": "2030",
+        "country": "Belgique",
+        "country_code": "be"
+      }
+    },
+    {
+      "coordinates": [
+        "45.1940368",
+        "5.7656299"
+      ],
+      "expected_city": "Grenoble",
+      "actual_city": "Saint-Martin-d'Hères",
+      "full_address": "740, Rue de la Piscine, Domaine universitaire de Grenoble, Saint-Martin-d'Hères, Grenoble, Isère, Auvergne-Rhône-Alpes, France métropolitaine, 38400, France",
+      "talks": [
+        {
+          "file": "content/talks/2016/2016-04-05-alpes-jug/index.md",
+          "city": "Grenoble",
+          "country": "France",
+          "latitude": "45.1940368",
+          "longitude": "5.7656299",
+          "conference_name": "Alpes JUG"
+        }
+      ],
+      "address": {
+        "house_number": "740",
+        "road": "Rue de la Piscine",
+        "suburb": "Domaine universitaire de Grenoble",
+        "town": "Saint-Martin-d'Hères",
+        "municipality": "Grenoble",
+        "county": "Isère",
+        "ISO3166-2-lvl6": "FR-38",
+        "state": "Auvergne-Rhône-Alpes",
+        "ISO3166-2-lvl4": "FR-ARA",
+        "region": "France métropolitaine",
+        "postcode": "38400",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "49.5074915",
+        "6.2795013"
+      ],
+      "expected_city": "Luxembourg",
+      "actual_city": "Ellange",
+      "full_address": "5, Rue Flammang, Brill, Ellange, Mondorf-les-Bains, Canton Remich, 5618, Luxembourg",
+      "talks": [
+        {
+          "file": "content/talks/2016/2016-06-22-voxxed-luxembourg/index.md",
+          "city": "Luxembourg",
+          "country": "Luxembourg",
+          "latitude": "49.5074915",
+          "longitude": "6.2795013",
+          "conference_name": "Voxxed Luxembourg"
+        }
+      ],
+      "address": {
+        "house_number": "5",
+        "road": "Rue Flammang",
+        "hamlet": "Brill",
+        "village": "Ellange",
+        "county": "Canton Remich",
+        "ISO3166-2-lvl6": "LU-RM",
+        "postcode": "5618",
+        "country": "Luxembourg",
+        "country_code": "lu"
+      }
+    },
+    {
+      "coordinates": [
+        "48.918442",
+        "2.2953263"
+      ],
+      "expected_city": "Gennevilliers",
+      "actual_city": "Asnières-sur-Seine",
+      "full_address": "Avenue Gabriel Péri, Voltaire, Asnières-sur-Seine, Nanterre, Hauts-de-Seine, Île-de-France, France métropolitaine, 92600, France",
+      "talks": [
+        {
+          "file": "content/talks/2016/2016-03-01-bbl-prisma-media-private-event/index.md",
+          "city": "Gennevilliers",
+          "country": "France",
+          "latitude": "48.918442",
+          "longitude": "2.2953263",
+          "conference_name": "BBL Prisma Media (private event)"
+        }
+      ],
+      "address": {
+        "road": "Avenue Gabriel Péri",
+        "neighbourhood": "Voltaire",
+        "town": "Asnières-sur-Seine",
+        "municipality": "Nanterre",
+        "county": "Hauts-de-Seine",
+        "ISO3166-2-lvl6": "FR-92",
+        "state": "Île-de-France",
+        "ISO3166-2-lvl4": "FR-IDF",
+        "region": "France métropolitaine",
+        "postcode": "92600",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "47.3863188",
+        "0.7192819"
+      ],
+      "expected_city": "Tours",
+      "actual_city": "Saint-Pierre-des-Corps",
+      "full_address": "8, Rue Fabienne Landy, La Gare, Saint-Pierre-des-Corps, Tours, Indre-et-Loire, Centre-Val de Loire, France métropolitaine, 37700, France",
+      "talks": [
+        {
+          "file": "content/talks/2016/2016-09-15-bbl-sihm-private-event/index.md",
+          "city": "Tours",
+          "country": "France",
+          "latitude": "47.3863188",
+          "longitude": "0.7192819",
+          "conference_name": "BBL SIHM (private event)"
+        }
+      ],
+      "address": {
+        "house_number": "8",
+        "road": "Rue Fabienne Landy",
+        "hamlet": "La Gare",
+        "town": "Saint-Pierre-des-Corps",
+        "municipality": "Tours",
+        "county": "Indre-et-Loire",
+        "ISO3166-2-lvl6": "FR-37",
+        "state": "Centre-Val de Loire",
+        "ISO3166-2-lvl4": "FR-CVL",
+        "region": "France métropolitaine",
+        "postcode": "37700",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "43.6245435",
+        "7.0583123"
+      ],
+      "expected_city": "Nice",
+      "actual_city": "Grasse",
+      "full_address": "105, Route du Pin Montard, Éganaude, Sophia Antipolis, Biot, Grasse, Alpes-Maritimes, Provence-Alpes-Côte d'Azur, France métropolitaine, 06410, France",
+      "talks": [
+        {
+          "file": "content/talks/2016/2016-05-31-bbl-amadeus-private-event/index.md",
+          "city": "Nice",
+          "country": "France",
+          "latitude": "43.6245435",
+          "longitude": "7.0583123",
+          "conference_name": "BBL Amadeus (private event)"
+        }
+      ],
+      "address": {
+        "house_number": "105",
+        "road": "Route du Pin Montard",
+        "commercial": "Éganaude",
+        "suburb": "Sophia Antipolis",
+        "village": "Biot",
+        "municipality": "Grasse",
+        "county": "Alpes-Maritimes",
+        "ISO3166-2-lvl6": "FR-06",
+        "state": "Provence-Alpes-Côte d'Azur",
+        "ISO3166-2-lvl4": "FR-PAC",
+        "region": "France métropolitaine",
+        "postcode": "06410",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "48.892067",
+        "2.2309241"
+      ],
+      "expected_city": "Paris",
+      "actual_city": "Puteaux",
+      "full_address": "Cours Valmy, La Défense 12, Quartier Boieldieu, Puteaux, Nanterre, Hauts-de-Seine, Île-de-France, France métropolitaine, 92800, France",
+      "talks": [
+        {
+          "file": "content/talks/2016/2016-05-26-bbl-société-générale-private-event/index.md",
+          "city": "Paris",
+          "country": "France",
+          "latitude": "48.892067",
+          "longitude": "2.2309241",
+          "conference_name": "BBL Société Générale (private event)"
+        }
+      ],
+      "address": {
+        "road": "Cours Valmy",
+        "quarter": "La Défense 12",
+        "hamlet": "Quartier Boieldieu",
+        "town": "Puteaux",
+        "municipality": "Nanterre",
+        "county": "Hauts-de-Seine",
+        "ISO3166-2-lvl6": "FR-92",
+        "state": "Île-de-France",
+        "ISO3166-2-lvl4": "FR-IDF",
+        "region": "France métropolitaine",
+        "postcode": "92800",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "45.190652",
+        "5.767197"
+      ],
+      "expected_city": "Grenoble",
+      "actual_city": "Saint-Martin-d'Hères",
+      "full_address": "150, Place du Torrent, Domaine universitaire de Grenoble, Saint-Martin-d'Hères, Grenoble, Isère, Auvergne-Rhône-Alpes, France métropolitaine, 38400, France",
+      "talks": [
+        {
+          "file": "content/talks/2016/2016-01-21-snowcamp/index.md",
+          "city": "Grenoble",
+          "country": "France",
+          "latitude": "45.190652",
+          "longitude": "5.767197",
+          "conference_name": "SnowCamp"
+        }
+      ],
+      "address": {
+        "house_number": "150",
+        "road": "Place du Torrent",
+        "suburb": "Domaine universitaire de Grenoble",
+        "town": "Saint-Martin-d'Hères",
+        "municipality": "Grenoble",
+        "county": "Isère",
+        "ISO3166-2-lvl6": "FR-38",
+        "state": "Auvergne-Rhône-Alpes",
+        "ISO3166-2-lvl4": "FR-ARA",
+        "region": "France métropolitaine",
+        "postcode": "38400",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "48.8880874",
+        "2.231051"
+      ],
+      "expected_city": "Paris",
+      "actual_city": "Puteaux",
+      "full_address": "Place des Marées, La Défense 8, Quartier Boieldieu, Puteaux, Nanterre, Hauts-de-Seine, Île-de-France, France métropolitaine, 92800, France",
+      "talks": [
+        {
+          "file": "content/talks/2016/2016-02-04-bbl-kantar-media-private-event/index.md",
+          "city": "Paris",
+          "country": "France",
+          "latitude": "48.8880874",
+          "longitude": "2.231051",
+          "conference_name": "BBL Kantar Media (private event)"
+        }
+      ],
+      "address": {
+        "road": "Place des Marées",
+        "quarter": "La Défense 8",
+        "hamlet": "Quartier Boieldieu",
+        "town": "Puteaux",
+        "municipality": "Nanterre",
+        "county": "Hauts-de-Seine",
+        "ISO3166-2-lvl6": "FR-92",
+        "state": "Île-de-France",
+        "ISO3166-2-lvl4": "FR-IDF",
+        "region": "France métropolitaine",
+        "postcode": "92800",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "51.5356834",
+        "-0.1081033"
+      ],
+      "expected_city": "London",
+      "actual_city": "Grand Londres",
+      "full_address": "6, Cloudesley Place, Angel, Barnsbury, London Borough of Islington, Grand Londres, Angleterre, N1 0JA, Royaume-Uni",
+      "talks": [
+        {
+          "file": "content/talks/2016/2016-06-10-devoxx-uk/index.md",
+          "city": "London",
+          "country": "England",
+          "latitude": "51.5356834",
+          "longitude": "-0.1081033",
+          "conference_name": "Devoxx UK"
+        },
+        {
+          "file": "content/talks/2016/2016-06-08-devoxx-uk/index.md",
+          "city": "London",
+          "country": "England",
+          "latitude": "51.5356834",
+          "longitude": "-0.1081033",
+          "conference_name": "Devoxx UK"
+        }
+      ],
+      "address": {
+        "house_number": "6",
+        "road": "Cloudesley Place",
+        "quarter": "Angel",
+        "suburb": "Barnsbury",
+        "city_district": "London Borough of Islington",
+        "ISO3166-2-lvl8": "GB-ISL",
+        "city": "Grand Londres",
+        "state": "Angleterre",
+        "ISO3166-2-lvl4": "GB-ENG",
+        "postcode": "N1 0JA",
+        "country": "Royaume-Uni",
+        "country_code": "gb"
+      }
+    },
+    {
+      "coordinates": [
+        "48.8918776",
+        "2.2498821"
+      ],
+      "expected_city": "Paris",
+      "actual_city": "Courbevoie",
+      "full_address": "La Défense 5, Quartier Gambetta, Courbevoie, Nanterre, Hauts-de-Seine, Île-de-France, France métropolitaine, 92400, France",
+      "talks": [
+        {
+          "file": "content/talks/2016/2016-05-03-bbl-cheapset-private-event/index.md",
+          "city": "Paris",
+          "country": "France",
+          "latitude": "48.8918776",
+          "longitude": "2.2498821",
+          "conference_name": "BBL Cheapset (private event)"
+        }
+      ],
+      "address": {
+        "quarter": "La Défense 5",
+        "suburb": "Quartier Gambetta",
+        "town": "Courbevoie",
+        "municipality": "Nanterre",
+        "county": "Hauts-de-Seine",
+        "ISO3166-2-lvl6": "FR-92",
+        "state": "Île-de-France",
+        "ISO3166-2-lvl4": "FR-IDF",
+        "region": "France métropolitaine",
+        "postcode": "92400",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "46.2521574",
+        "6.0312076"
+      ],
+      "expected_city": "Geneva",
+      "actual_city": "Saint-Genis-Pouilly",
+      "full_address": "81, Rue Toussaint Louverture, Saint-Genis-Pouilly, Gex, Ain, Auvergne-Rhône-Alpes, France métropolitaine, 01630, France",
+      "talks": [
+        {
+          "file": "content/talks/2016/2016-02-08-meetup-cern/index.md",
+          "city": "Geneva",
+          "country": "Switzerland",
+          "latitude": "46.2521574",
+          "longitude": "6.0312076",
+          "conference_name": "Meetup CERN"
+        }
+      ],
+      "address": {
+        "house_number": "81",
+        "road": "Rue Toussaint Louverture",
+        "town": "Saint-Genis-Pouilly",
+        "municipality": "Gex",
+        "county": "Ain",
+        "ISO3166-2-lvl6": "FR-01",
+        "state": "Auvergne-Rhône-Alpes",
+        "ISO3166-2-lvl4": "FR-ARA",
+        "region": "France métropolitaine",
+        "postcode": "01630",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "59.7628786",
+        "30.35449"
+      ],
+      "expected_city": "Saint Petersburg",
+      "actual_city": "Chouchary",
+      "full_address": "Петербургское шоссе, Пулковское, Chouchary, Saint-Pétersbourg, District fédéral du Nord-Ouest, 196631, Russie",
+      "talks": [
+        {
+          "file": "content/talks/2016/2016-10-12-joker/index.md",
+          "city": "Saint Petersburg",
+          "country": "Russia",
+          "latitude": "59.7628786",
+          "longitude": "30.35449",
+          "conference_name": "Joker<?>"
+        }
+      ],
+      "address": {
+        "road": "Петербургское шоссе",
+        "suburb": "Пулковское",
+        "town": "Chouchary",
+        "state": "Saint-Pétersbourg",
+        "ISO3166-2-lvl4": "RU-SPE",
+        "region": "District fédéral du Nord-Ouest",
+        "postcode": "196631",
+        "country": "Russie",
+        "country_code": "ru"
+      }
+    },
+    {
+      "coordinates": [
+        "46.1872424",
+        "6.1266637"
+      ],
+      "expected_city": "Geneva",
+      "actual_city": "Lancy",
+      "full_address": "Prêt à manger, 4, Esplanade de Pont-Rouge, Petit-Lancy, Lancy, Genève, 1212, Suisse",
+      "talks": [
+        {
+          "file": "content/talks/2016/2016-10-27-geneva-jug/index.md",
+          "city": "Geneva",
+          "country": "Switzerland",
+          "latitude": "46.1872424",
+          "longitude": "6.1266637",
+          "conference_name": "Geneva JUG"
+        }
+      ],
+      "address": {
+        "amenity": "Prêt à manger",
+        "house_number": "4",
+        "road": "Esplanade de Pont-Rouge",
+        "suburb": "Petit-Lancy",
+        "town": "Lancy",
+        "state": "Genève",
+        "ISO3166-2-lvl4": "CH-GE",
+        "postcode": "1212",
+        "country": "Suisse",
+        "country_code": "ch"
+      }
+    },
+    {
+      "coordinates": [
+        "48.8855176",
+        "2.2570627"
+      ],
+      "expected_city": "Paris",
+      "actual_city": "Neuilly-sur-Seine",
+      "full_address": "Neuilly-sur-Seine, Nanterre, Hauts-de-Seine, Île-de-France, France métropolitaine, 92200, France",
+      "talks": [
+        {
+          "file": "content/talks/2016/2016-03-15-bbl-sacem-private-event/index.md",
+          "city": "Paris",
+          "country": "France",
+          "latitude": "48.8855176",
+          "longitude": "2.2570627",
+          "conference_name": "BBL Sacem (private event)"
+        }
+      ],
+      "address": {
+        "town": "Neuilly-sur-Seine",
+        "municipality": "Nanterre",
+        "county": "Hauts-de-Seine",
+        "ISO3166-2-lvl6": "FR-92",
+        "state": "Île-de-France",
+        "ISO3166-2-lvl4": "FR-IDF",
+        "region": "France métropolitaine",
+        "postcode": "92200",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "46.1827664",
+        "6.1270452"
+      ],
+      "expected_city": "Geneva",
+      "actual_city": "Carouge",
+      "full_address": "Rhenus, Route des Jeunes, La Praille, Carouge, Genève, 1212, Suisse",
+      "talks": [
+        {
+          "file": "content/talks/2016/2016-10-26-meetup-es-ch/index.md",
+          "city": "Geneva",
+          "country": "Switzerland",
+          "latitude": "46.1827664",
+          "longitude": "6.1270452",
+          "conference_name": "Meetup ES CH"
+        }
+      ],
+      "address": {
+        "shop": "Rhenus",
+        "road": "Route des Jeunes",
+        "suburb": "La Praille",
+        "town": "Carouge",
+        "state": "Genève",
+        "ISO3166-2-lvl4": "CH-GE",
+        "postcode": "1212",
+        "country": "Suisse",
+        "country_code": "ch"
+      }
+    },
+    {
+      "coordinates": [
+        "46.2094937",
+        "6.1330233"
+      ],
+      "expected_city": "Geneva",
+      "actual_city": "Genève",
+      "full_address": "8, Rue de la Poterie, Grottes et Saint-Gervais, Genève, 1202, Suisse",
+      "talks": [
+        {
+          "file": "content/talks/2016/2016-10-28-softshake/index.md",
+          "city": "Geneva",
+          "country": "Switzerland",
+          "latitude": "46.2094937",
+          "longitude": "6.1330233",
+          "conference_name": "SoftShake"
+        }
+      ],
+      "address": {
+        "house_number": "8",
+        "road": "Rue de la Poterie",
+        "suburb": "Grottes et Saint-Gervais",
+        "city": "Genève",
+        "state": "Genève",
+        "ISO3166-2-lvl4": "CH-GE",
+        "postcode": "1202",
+        "country": "Suisse",
+        "country_code": "ch"
+      }
+    },
+    {
+      "coordinates": [
+        "44.5218574",
+        "11.3447463"
+      ],
+      "expected_city": "Bologna",
+      "actual_city": "Bologne",
+      "full_address": "27, Via Sario Bassanelli, Due Pozzi, Quartiere Navile, Dozza, Bologne, Bologna, Émilie-Romagne, 40129, Italie",
+      "talks": [
+        {
+          "file": "content/talks/2016/2016-12-03-noslides-conference/index.md",
+          "city": "Bologna",
+          "country": "Italy",
+          "latitude": "44.5218574",
+          "longitude": "11.3447463",
+          "conference_name": "NoSlides Conference"
+        }
+      ],
+      "address": {
+        "house_number": "27",
+        "road": "Via Sario Bassanelli",
+        "neighbourhood": "Due Pozzi",
+        "suburb": "Quartiere Navile",
+        "village": "Dozza",
+        "city": "Bologne",
+        "county": "Bologna",
+        "ISO3166-2-lvl6": "IT-BO",
+        "state": "Émilie-Romagne",
+        "ISO3166-2-lvl4": "IT-45",
+        "postcode": "40129",
+        "country": "Italie",
+        "country_code": "it"
+      }
+    },
+    {
+      "coordinates": [
+        "48.9030782",
+        "2.3637395"
+      ],
+      "expected_city": "Paris",
+      "actual_city": "Saint-Denis",
+      "full_address": "Avenue de l'Est, La Plaine Saint-Denis, La Plaine, Saint-Denis, Seine-Saint-Denis, Île-de-France, France métropolitaine, 93210, France",
+      "talks": [
+        {
+          "file": "content/talks/2016/2016-11-17-open-source-summit/index.md",
+          "city": "Paris",
+          "country": "France",
+          "latitude": "48.9030782",
+          "longitude": "2.3637395",
+          "conference_name": "Open Source Summit"
+        }
+      ],
+      "address": {
+        "road": "Avenue de l'Est",
+        "suburb": "La Plaine Saint-Denis",
+        "city": "Saint-Denis",
+        "municipality": "Saint-Denis",
+        "county": "Seine-Saint-Denis",
+        "ISO3166-2-lvl6": "FR-93",
+        "state": "Île-de-France",
+        "ISO3166-2-lvl4": "FR-IDF",
+        "region": "France métropolitaine",
+        "postcode": "93210",
+        "country": "France",
+        "country_code": "fr"
+      }
+    },
+    {
+      "coordinates": [
+        "48.8891812",
+        "2.247609"
+      ],
+      "expected_city": "Paris",
+      "actual_city": "Courbevoie",
+      "full_address": "Voie des Bâtisseurs, La Défense 3, Quartier Gambetta, Courbevoie, Nanterre, Hauts-de-Seine, Île-de-France, France métropolitaine, 92400, France",
+      "talks": [
+        {
+          "file": "content/talks/2016/2016-04-12-bbl-suez-ocea-smart-building-private-event/index.md",
+          "city": "Paris",
+          "country": "France",
+          "latitude": "48.8891812",
+          "longitude": "2.247609",
+          "conference_name": "BBL Suez - Ocea Smart Building (private event)"
+        }
+      ],
+      "address": {
+        "road": "Voie des Bâtisseurs",
+        "quarter": "La Défense 3",
+        "suburb": "Quartier Gambetta",
+        "town": "Courbevoie",
+        "municipality": "Nanterre",
+        "county": "Hauts-de-Seine",
+        "ISO3166-2-lvl6": "FR-92",
+        "state": "Île-de-France",
+        "ISO3166-2-lvl4": "FR-IDF",
+        "region": "France métropolitaine",
+        "postcode": "92400",
+        "country": "France",
+        "country_code": "fr"
+      }
+    }
+  ]
+}

@@ -6,8 +6,8 @@ conference:
   city: "Strasbourg"
   country: "France"
   country_code: "fr"
-  latitude: "48.8000117"
-  longitude: "2.6418403"
+  latitude: "48.5734053"
+  longitude: "7.7521113"
 author: David Pilato
 avatar: /about/david_pilato.png
 talk: Elasticsearch

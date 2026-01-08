@@ -5,8 +5,8 @@ conference:
   city: "Rennes"
   country: "France"
   country_code: "fr"
-  latitude: "48.6403852"
-  longitude: "-0.9300789"
+  latitude: "48.1173140"
+  longitude: "-1.6777926"
 author: David Pilato
 avatar: /about/david_pilato.png
 talk: Elasticsearch

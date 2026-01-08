@@ -6,8 +6,8 @@ conference:
   city: "Clermont-Ferrand"
   country: "France"
   country_code: "fr"
-  latitude: "47.391194"
-  longitude: "0.2883559"
+  latitude: "45.7774551"
+  longitude: "3.0819427"
 author: David Pilato
 avatar: /about/david_pilato.png
 talk: Elasticsearch
