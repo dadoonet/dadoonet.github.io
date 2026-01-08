@@ -1,5 +1,5 @@
 ---
-title: "Atelier Xebia"
+title: "Elasticsearch in 15 minutes"
 conference: 
   name: "Atelier Xebia"
   city: "Paris"
@@ -9,11 +9,17 @@ conference:
   longitude: "2.3088396"
 author: David Pilato
 avatar: /about/david_pilato.png
-# talk: conferences
+talk: Elasticsearch
 date: 2013-07-02
 nolastmod: true
 draft: false
-pdf: "2013/2013-07-02-atelier-xebia.pdf"
 
+# Speaker specific fields
+pdf: "2013/2013-07-02-atelier-xebia.pdf"
 attendees: 15
+x:
+  - user: dadoonet
+    id: 351756602107371520
 ---
+
+
