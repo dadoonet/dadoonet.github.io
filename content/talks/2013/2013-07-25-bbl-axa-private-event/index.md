@@ -1,14 +1,15 @@
 ---
-title: "Elasticsearch"
+title: "Elasticsearch: le moteur de recherche élastique pour tous"
 conference: 
   name: "BBL AXA (private event)"
   city: "Paris"
   country: "France"
   country_code: "fr"
-  latitude: "48.8716755"
-  longitude: "2.3087966"
+  latitude: "48.8717165"
+  longitude: "2.311039"
 author: David Pilato
 avatar: /about/david_pilato.png
+cover: axa.png
 talk: Elasticsearch
 date: 2013-07-25
 nolastmod: true
