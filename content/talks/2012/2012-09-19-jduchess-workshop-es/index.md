@@ -27,7 +27,7 @@ Venez découvrir comment un moteur de recherche vous aidera à répondre aux que
 Au programme de cet atelier :
 
 * Introduction au principe du moteur de recherche
-* Lancement d’elasticsearch et de Kibana
+* Lancement d’elasticsearch
 * CRUD avec Elasticsearch
 * Search
 * Facettes et le principe de navigation par facettes

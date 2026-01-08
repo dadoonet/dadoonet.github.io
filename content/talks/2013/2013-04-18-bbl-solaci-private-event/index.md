@@ -13,6 +13,7 @@ talk: Elasticsearch
 date: 2013-04-18
 nolastmod: true
 draft: false
+cover: es-logo.png
 
 attendees: 2
 ---

@@ -9,12 +9,11 @@ conference:
   longitude: "2.352222"
 author: David Pilato
 avatar: /about/david_pilato.png
-# talk: conferences
+talk: Elasticsearch Workshop
 date: 2019-10-16
 nolastmod: true
 draft: false
 pdf: "2019/2019-10-16-workshop-ecole-42-private-event.pdf"
-
 
 # Speaker specific fields
 #youtube: ""
