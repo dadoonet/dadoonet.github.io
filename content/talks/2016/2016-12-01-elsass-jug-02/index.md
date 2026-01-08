@@ -10,7 +10,7 @@ conference:
   longitude: "7.7478388"
 author: David Pilato
 avatar: /about/david_pilato.png
-talk: Legacy Search
+talk: Ingest Node
 date: 2016-12-01T20:15:00+01:00
 nolastmod: true
 draft: false

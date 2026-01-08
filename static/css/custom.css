@@ -6,7 +6,9 @@
 
 /* Custom CSS for badge-info (blue - matching conference highlight) */
 .badge-info {
-  --badge-color: oklch(60% 0.2 250);
-  --badge-fg: oklch(100% 0 0);
+  --badge-color: rgb(59, 130, 246);
+  --badge-fg: rgb(255, 255, 255);
+  background-color: rgb(59, 130, 246) !important;
+  color: rgb(255, 255, 255) !important;
 }
 
