@@ -1,4 +1,4 @@
-{{ define "title" }}{{ .Title }}{{ end }}
+{{ define "title" }}{{ .Params.title_en | default .Params.title_fr | default .Title }}{{ end }}
 
 {{ define "css" }}
 
@@ -72,6 +72,40 @@
     color: oklch(var(--pc));
     transition: all 0.2s ease;
   }
+
+  /* W3Schools-style tab bar */
+  .tab-bar {
+    display: flex;
+    background-color: #616161;
+    margin-bottom: 1rem;
+  }
+  .tab-bar .tab-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1rem;
+    background-color: inherit;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    font-size: 0.95rem;
+  }
+  .tab-bar .tab-button:hover {
+    background-color: #757575;
+  }
+  .tab-bar .tab-button.active {
+    background-color: #f44336;
+  }
+  html.dark .tab-bar {
+    background-color: #424242;
+  }
+  html.dark .tab-bar .tab-button:hover {
+    background-color: #616161;
+  }
+  html.dark .tab-bar .tab-button.active {
+    background-color: #e53935;
+  }
 </style>
 
 {{ end }}
@@ -103,6 +137,13 @@
   {{ end }}
 {{ end }}
 
+{{/* Determine if we have multilingual content */}}
+{{ $hasMultilingual := and .Params.title_fr .Params.title_en }}
+{{ $titleFr := .Params.title_fr | default .Title }}
+{{ $titleEn := .Params.title_en | default .Title }}
+{{ $abstractFr := .Params.abstract_fr }}
+{{ $abstractEn := .Params.abstract_en }}
+
 {{/* Main content - same layout as single talk page */}}
 <div class="flex flex-col lg:grid lg:grid-cols-4 gap-4 mt-4 px-4">
   {{/* Left column - empty */}}
@@ -113,6 +154,111 @@
     <article class="mx-auto prose prose-quoteless dark:prose-invert max-w-none lg:max-w-prose" itemscope itemtype="http://schema.org/Article">
       {{ template "_internal/schema.html" . }}
 
+      {{ if $hasMultilingual }}
+      {{/* Multilingual tabs version */}}
+      <div x-data="{ activeTab: 'abstract-en' }">
+        {{/* Title - EN by default, FR as fallback */}}
+        <header class="not-prose">
+          <h1 itemprop="headline" class="text-3xl font-bold mb-1">{{ $titleEn }}</h1>
+        </header>
+
+        {{/* Stats - always in English */}}
+        <div class="flex flex-row flex-wrap gap-2 my-4 not-prose">
+          <div class="flex items-center gap-2 bg-base-200 rounded-lg px-3 py-1.5 text-sm">
+            <ion-icon name="mic" class="text-primary"></ion-icon>
+            <span class="text-base-content/70">Played</span>
+            <span class="font-bold text-primary">{{ $totalPlayed }}</span>
+            <span class="text-base-content/50 text-xs">times</span>
+          </div>
+          {{ if gt $videoCount 0 }}
+          <div class="flex items-center gap-2 bg-base-200 rounded-lg px-3 py-1.5 text-sm">
+            <ion-icon name="logo-youtube" class="text-error"></ion-icon>
+            <span class="text-base-content/70">Videos</span>
+            <span class="font-bold text-error">{{ $videoCount }}</span>
+          </div>
+          {{ end }}
+          <div class="flex items-center gap-2 bg-base-200 rounded-lg px-3 py-1.5 text-sm">
+            <ion-icon name="calendar" class="text-secondary"></ion-icon>
+            <span class="text-base-content/70">First</span>
+            <span class="font-bold text-secondary">{{ .Date | time.Format "Jan 2006" }}</span>
+          </div>
+          {{ if $lastPublicTalk }}
+          <div class="flex items-center gap-2 bg-base-200 rounded-lg px-3 py-1.5 text-sm">
+            <ion-icon name="time" class="text-accent"></ion-icon>
+            <span class="text-base-content/70">Last</span>
+            <span class="font-bold text-accent">{{ $lastPublicTalk.Date | time.Format "Jan 2006" }}</span>
+          </div>
+          {{ end }}
+        </div>
+
+        <div class="divider"></div>
+
+        {{/* Language tabs - W3Schools style */}}
+        <div class="tab-bar not-prose">
+          <button 
+            class="tab-button"
+            :class="activeTab === 'abstract-en' ? 'active' : ''"
+            @click="activeTab = 'abstract-en'"
+          >
+            <span class="fi fi-gb"></span>
+            Abstract EN
+          </button>
+          <button 
+            class="tab-button"
+            :class="activeTab === 'raw-en' ? 'active' : ''"
+            @click="activeTab = 'raw-en'"
+          >
+            <span class="fi fi-gb"></span>
+            Raw EN
+          </button>
+          <button 
+            class="tab-button"
+            :class="activeTab === 'abstract-fr' ? 'active' : ''"
+            @click="activeTab = 'abstract-fr'"
+          >
+            <span class="fi fi-fr"></span>
+            Abstract FR
+          </button>
+          <button 
+            class="tab-button"
+            :class="activeTab === 'raw-fr' ? 'active' : ''"
+            @click="activeTab = 'raw-fr'"
+          >
+            <span class="fi fi-fr"></span>
+            Raw FR
+          </button>
+        </div>
+
+        {{/* Abstract EN */}}
+        <div x-show="activeTab === 'abstract-en'" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100">
+          <h2>{{ $titleEn }}</h2>
+          {{ with $abstractEn }}{{ . | markdownify }}{{ end }}
+        </div>
+
+        {{/* Raw EN - for CFP copy/paste */}}
+        <div x-show="activeTab === 'raw-en'" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100">
+          <h3>Title</h3>
+          <pre class="bg-base-200 p-4 rounded-lg overflow-x-auto"><code>{{ $titleEn }}</code></pre>
+          <h3 class="mt-4">Abstract</h3>
+          <pre class="bg-base-200 p-4 rounded-lg overflow-x-auto whitespace-pre-wrap"><code>{{ with $abstractEn }}{{ . }}{{ end }}</code></pre>
+        </div>
+
+        {{/* Abstract FR */}}
+        <div x-show="activeTab === 'abstract-fr'" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100">
+          <h2>{{ $titleFr }}</h2>
+          {{ with $abstractFr }}{{ . | markdownify }}{{ else }}{{ .Content | emojify }}{{ end }}
+        </div>
+
+        {{/* Raw FR - for CFP copy/paste */}}
+        <div x-show="activeTab === 'raw-fr'" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100">
+          <h3>Title</h3>
+          <pre class="bg-base-200 p-4 rounded-lg overflow-x-auto"><code>{{ $titleFr }}</code></pre>
+          <h3 class="mt-4">Abstract</h3>
+          <pre class="bg-base-200 p-4 rounded-lg overflow-x-auto whitespace-pre-wrap"><code>{{ with $abstractFr }}{{ . }}{{ else }}{{ .RawContent }}{{ end }}</code></pre>
+        </div>
+      </div>
+      {{ else }}
+      {{/* Single language version (backward compatible) */}}
       <header>
         <h1 itemprop="headline" style="margin-bottom: 0.25rem;">{{ .Title }}</h1>
       </header>
@@ -149,6 +295,7 @@
       <div class="divider"></div>
       <h2>Abstract</h2>
       {{ .Content | emojify }}
+      {{ end }}
 
       {{/* Links section if any */}}
       {{- with .Params.links -}}

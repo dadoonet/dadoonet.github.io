@@ -149,12 +149,14 @@
         {{ end }}
       {{ end }}
 
+      {{ $displayTitle := .Params.title_en | default .Params.title_fr | default .Title }}
+      {{ $displayAbstract := .Params.abstract_en | default .Params.abstract_fr | default .Summary }}
       <a href="{{ .RelPermalink }}" class="template-card">
         <div class="template-card-header">
-          <h2 class="template-card-title">{{ .Title }}</h2>
+          <h2 class="template-card-title">{{ $displayTitle }}</h2>
         </div>
         <div class="template-card-body">
-          <p class="template-card-abstract">{{ .Summary | plainify | truncate 150 }}</p>
+          <p class="template-card-abstract">{{ $displayAbstract | plainify | truncate 150 }}</p>
         </div>
         <div class="template-card-footer">
           <div class="template-stat">
