@@ -15,7 +15,7 @@ series:
 date: '2026-01-10'
 nolastmod: true
 cover: cover.png
-draft: true
+draft: false
 ---
 
 13 years at Elastic! 🎉 When I [joined this startup]({{< ref 2013-01-15-once-upon-a-time-dot-dot-dot >}}) back in January 2013, I could never have imagined the journey that awaited me. From a risky decision to leave a comfortable government position in France to becoming part of one of the most exciting tech companies in the world, it has been an incredible ride.
