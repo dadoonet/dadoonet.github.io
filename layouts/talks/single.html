@@ -36,7 +36,10 @@
 {{ with .Params.talk }}
   {{ $currentTalk := . }}
   {{ range where (where site.RegularPages "Section" "talks") ".Params.talk" $currentTalk }}
-    {{ $relatedTalks = $relatedTalks | append . }}
+    {{/* Exclude template pages (they have layout: "template") */}}
+    {{ if ne .Params.layout "template" }}
+      {{ $relatedTalks = $relatedTalks | append . }}
+    {{ end }}
   {{ end }}
 {{ end }}
 
