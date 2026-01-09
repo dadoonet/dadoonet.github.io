@@ -3,7 +3,7 @@ title: "Devoxx UK"
 conference: 
   name: "Devoxx UK"
   city: "London"
-  country: "England"
+  country: "UK"
   country_code: "gb"
   latitude: "51.5356834"
   longitude: "-0.1081033"
