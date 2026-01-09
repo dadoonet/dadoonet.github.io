@@ -241,9 +241,9 @@
         {{ $templateSlug := .Params.talk | urlize }}
         {{ $templatePage := site.GetPage (printf "/talks/templates/%s" $templateSlug) }}
         {{ if $templatePage }}
-        <a href="{{ $templatePage.RelPermalink }}" class="badge badge-sm badge-primary whitespace-nowrap hover:badge-secondary transition-colors">{{ .Params.talk }}</a>
+        <a href="{{ $templatePage.RelPermalink }}" class="badge badge-sm badge-neutral whitespace-nowrap hover:badge-primary transition-colors">{{ .Params.talk }}</a>
         {{ else }}
-        <span class="badge badge-sm badge-primary whitespace-nowrap">{{ .Params.talk }}</span>
+        <span class="badge badge-sm badge-neutral whitespace-nowrap">{{ .Params.talk }}</span>
         {{ end }}
         <span class="badge badge-sm badge-primary">{{ $totalRelated }}</span>
         times
