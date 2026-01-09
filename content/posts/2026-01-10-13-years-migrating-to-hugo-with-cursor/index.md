@@ -36,7 +36,7 @@ You can still find the old website running for a while at [https://noti.st/dadoo
 
 [Noti.st](https://noti.st) has been a fantastic platform for speakers to showcase their talks. I've been using it for years to track all my presentations. But the team did not really improve the project for years and I wanted more control over my data, better integration with my personal website, and the ability to display statistics and maps that matter to me.
 
-My personal website already runs on [Hugo](https://gohugo.io/), a fast static site generator. So the idea was born (actually stolen from my boss [Philipp Krenn](https://xeraa.net/)): 
+My personal website already runs on [Hugo](https://gohugo.io/), a fast static site generator. So the idea was born (actually stolen from my boss [Philipp Krenn](https://xeraa.net/)):
 
 > Why not bring all my speaker data directly into Hugo?
 
