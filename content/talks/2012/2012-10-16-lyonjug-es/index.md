@@ -8,8 +8,12 @@ conference:
   country_code: fr
   latitude: '45.735863'
   longitude: '4.8774829'
-author: David Pilato
-avatar: /about/david_pilato.png
+authors:
+  - author: Tanguy Leroux
+    avatar: /speakers/tanguy_leroux.png
+    link: "https://github.com/tlrx"
+  - author: David Pilato
+    avatar: /about/david_pilato.png
 talk: Elasticsearch
 date: 2012-10-16
 lang: fr
