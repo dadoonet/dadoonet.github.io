@@ -8,8 +8,12 @@ conference:
   url: "https://www.jugsummercamp.org/edition/10"
   latitude: "46.160329"
   longitude: "-1.151139"
-author: David Pilato
-avatar: /about/david_pilato.png
+authors:
+  - author: David Pilato
+    avatar: /about/david_pilato.png
+  - author: Tugdual Grall
+    avatar: /speakers/tugdual_grall.jpg
+    link: https://tgrall.github.io/
 # talk: conferences
 date: 2019-09-13
 lang: fr
@@ -39,5 +43,9 @@ x:
     id: "1172415384462319616"
 aliases:
   - /x959ys
+
+youtube: "19fwPpq6mOY"
 ---
 Rétrospective sur 10 ans de Jug Summer Camp sur à la fois les aspects technologiques mais surtout humains.
+
+Tugdual Grall et David Pilato reviennent sur les 10 éditions du Jug Summer Camp pour se remémorer toutes les bonnes raisons d'aller en conférence !
