@@ -1,17 +1,17 @@
 ---
 title: "Elasticsearch: le moteur de recherche élastique pour tous"
 conference:
-  url: "https://www.meetup.com/elsassjug"
-  name: "Elsass JUG"
-  city: "Strasbourg"
+  url: "https://www.lorrainejug.fr/2013/08/28/soir%C3%A9e-elasticsearch.html"
+  name: "Lorraine JUG"
+  city: "Nancy"
   country: "France"
   country_code: "fr"
-  latitude: "48.5734053"
-  longitude: "7.7521113"
+  latitude: "48.6933749"
+  longitude: "6.1867089"
 author: David Pilato
 avatar: /about/david_pilato.png
 talk: Elasticsearch
-date: 2013-09-18T19:30:00+02:00
+date: 2013-09-17T19:30:00+02:00
 lang: fr
 nolastmod: true
 draft: false
@@ -19,26 +19,18 @@ draft: false
 attendees: 50
 
 x:
-  - user: sebmade
-    id: 380430580238012418
-  - user: valerie_taesch
-    id: 380436261099802626
-  - user: laplagedigitale
-    id: 380401677683396608
-  - user: chrisscholly
-    id: 380389253298917376
-  - user: g_scheibel
-    id: 380389165969334272
-  - user: laplagedigitale
-    id: 380388241804763137
-  - user: valerie_taesch
-    id: 380384433658138624
-  - user: chrisscholly
-    id: 380380960040050688
-  - user: g_scheibel
-    id: 380379873547542528
-  - user: valerie_taesch
-    id: 380378200578064384
+  - user: xavroy
+    id: 380037368020865024
+  - user: xavroy
+    id: 380033492156809216
+  - user: jmdoudoux
+    id: 380037683340648448
+  - user: LorraineJUG
+    id: 380038341212655617
+  - user: xavroy
+    id: 380040107283058690
+  - user: xavroy
+    id: 380041319122358273
 ---
 
 Vous utilisez encore des requêtes SQL pour faire des recherches ? Vos utilisateurs vous reprochent de ne pas pouvoir chercher sur toutes les rubriques ? Votre temps de réponse moyen est supérieur à la demi-seconde avec seulement quelques millions de documents ? Il vous faut 3 jours pour produire des statistiques sur vos données ? Vous rêvez d'offrir une recherche "à la google" sur les données de votre SI ? Ne cherchez plus ! Cette conférence est faite pour vous.
