@@ -24,7 +24,8 @@ attendees: 100
 
 Venez découvrir le nouveau Data Shippers pour Elasticsearch:
 
-Packetbeat : décortiquez les protocoles réseau
-Topbeat: récoltez vos métriques
-Filebeat: analysez vos logs en temps réel ou transmettez les vers logstash pour enrichissement
+* Packetbeat : décortiquez les protocoles réseau
+* Topbeat: récoltez vos métriques
+* Filebeat: analysez vos logs en temps réel ou transmettez les vers logstash pour enrichissement
+
 Et comment contribuer au mix et ajouter vos propres beats avec Libbeat.

@@ -7,7 +7,7 @@ conference:
   url: "https://www.jugsummercamp.org/edition/11/presentations/si4HEEvfcNOR3P36Npy0"
 author: David Pilato
 avatar: /about/david_pilato.png
-# talk: conferences
+talk: SIEM
 date: 2020-09-11
 lang: fr
 nolastmod: true
