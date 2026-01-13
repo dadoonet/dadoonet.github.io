@@ -7,8 +7,12 @@ conference:
   country_code: "fr"
   latitude: "48.8316299"
   longitude: "2.3376006"
-author: David Pilato
-avatar: /about/david_pilato.png
+authors:
+  - author: David Pilato
+    avatar: /about/david_pilato.png
+  - author: Tugdual Grall
+    avatar: /speakers/tugdual_grall.jpg
+    link: https://tgrall.github.io/
 talk: SQL2NoSQL
 date: 2013-03-28
 lang: fr

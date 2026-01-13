@@ -8,8 +8,10 @@ conference:
   country_code: "fr" # online, fr, us, etc.
 #  latitude: ""
 #  longitude: ""
-author: David Pilato
-avatar: /about/david_pilato.png
+authors:
+  - author: David Pilato
+    avatar: /about/david_pilato.png
+ #   link: "https://www.linkedin.com/in/username"
 date: '{{ substr .File.ContentBaseName 0 10 }}'
 lang: fr # fr or en
 nolastmod: true

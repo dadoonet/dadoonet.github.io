@@ -92,7 +92,7 @@
           </p>
         </div>
 
-        {{ $hasAuthor := or .Params.author site.Params.author }}
+        {{ $hasAuthor := or .Params.authors .Params.author site.Params.author }}
         <div class="flex justify-between">
           {{ if $hasAuthor }}
             {{ partial "author.html" (dict "Params" .Params "template" "single") }}
