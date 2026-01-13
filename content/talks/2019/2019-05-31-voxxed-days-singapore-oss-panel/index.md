@@ -7,8 +7,21 @@ conference:
   country_code: "sg"
   latitude: "1.352083"
   longitude: "103.819836"
-author: David Pilato
-avatar: /about/david_pilato.png
+authors:
+  - author: Purnima Kamath
+    avatar: /speakers/purnima_kamath.jpg
+    link: "https://www.linkedin.com/in/purnimakamath/"
+  - author: Juergen Hoeller
+    avatar: /speakers/juergen_hoeller.jpg
+    link: "https://www.linkedin.com/in/juergenhoeller/"
+  - author: Emmanuel Bernard
+    avatar: /speakers/emmanuel_bernard.jpg
+    link: "https://www.emmanuelbernard.com/"
+  - author: Kohsuke Kawaguchi
+    avatar: /speakers/kohsuke_kawaguchi.jpg
+    link: "https://kohsuke.org/"
+  - author: David Pilato
+    avatar: /about/david_pilato.png
 # talk: conferences
 date: 2019-05-31
 lang: en
