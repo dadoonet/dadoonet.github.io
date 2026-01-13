@@ -8,11 +8,11 @@ conference:
   latitude: "47.2171567"
   longitude: "-1.5562077"
 authors:
-  - author: David Pilato
-    avatar: /about/david_pilato.png
   - author: Tugdual Grall
     avatar: /speakers/tugdual_grall.jpg
     link: https://tgrall.github.io/
+  - author: David Pilato
+    avatar: /about/david_pilato.png
 talk: SQL2NoSQL
 date: 2013-11-04
 lang: fr

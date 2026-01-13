@@ -8,11 +8,11 @@ conference:
   latitude: "51.2194475"
   longitude: "4.4024643"
 authors:
-  - author: David Pilato
-    avatar: /about/david_pilato.png
   - author: Tugdual Grall
     avatar: /speakers/tugdual_grall.jpg
     link: https://tgrall.github.io/
+  - author: David Pilato
+    avatar: /about/david_pilato.png
 date: 2013-11-14
 lang: en
 nolastmod: true
