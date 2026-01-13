@@ -15,6 +15,7 @@ series:
 date: '2026-01-26'
 nolastmod: true
 draft: false
+cover: cover.png
 ---
 
 **One hundred meetups!** 🎯
