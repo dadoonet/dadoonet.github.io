@@ -1,7 +1,8 @@
 ---
-title: "Petit Déjeuner"
-conference: 
-  name: "Petit Déjeuner"
+title: "Petit-déjeuner : MongoDB & Elasticsearch"
+conference:
+  url: "https://www.meetup.com/elasticfr/events/154315462/"
+  name: "Klee Group"
   city: "Paris"
   country: "France"
   country_code: "fr"
@@ -9,11 +10,16 @@ conference:
   longitude: "2.331232"
 author: David Pilato
 avatar: /about/david_pilato.png
-# talk: conferences
-date: 2013-12-11
+talk: Elasticsearch
+date: 2013-12-11T09:15:00+01:00
 lang: fr
 nolastmod: true
 draft: false
 
 attendees: 50
+
+x:
+  - user: gnuraph
+    id: 410717841575268352
+
 ---

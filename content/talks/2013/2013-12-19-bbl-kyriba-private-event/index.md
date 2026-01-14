@@ -1,7 +1,7 @@
 ---
-title: "Elasticsearch"
+title: "Elasticsearch: le moteur de recherche élastique pour tous"
 conference: 
-  name: "BBL KYRIBA (private event)"
+  name: "BBL Kyriba (private event)"
   city: "Saint-Cloud"
   country: "France"
   country_code: "fr"
@@ -30,4 +30,3 @@ David présentera au cours du déjeuner pourquoi et comment il est passé de la 
 * L'analyse et le mapping
 * La percolation
 * La communauté
-
