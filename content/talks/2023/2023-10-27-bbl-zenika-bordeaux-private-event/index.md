@@ -25,6 +25,8 @@ notist: "dadoonet/vMyojC"
 x:
   - user: "dadoonet"
     id: "1717846511076188651"
+  - user: "ZenikaBordeaux"
+    id: "1718945846283436036"
 
 links:
   - title: "Demo: Kibana script for BBL"

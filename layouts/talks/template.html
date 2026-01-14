@@ -212,6 +212,39 @@
 {{ $sortedTalks := sort $relatedTalks ".Date" "desc" }}
 {{ $totalPlayed := len $sortedTalks }}
 
+{{/* Build sorted templates list for prev/next navigation */}}
+{{ $currentPermalink := .Permalink }}
+{{ $templatesSection := site.GetPage "/talks/templates" }}
+{{ $allTemplates := $templatesSection.Pages }}
+{{ $allTalksForNav := where (where site.RegularPages "Section" "talks") ".File.Dir" "not in" (slice "talks/templates/") }}
+
+{{ $templatesWithDates := slice }}
+{{ range $allTemplates }}
+  {{ $tName := .Params.talk }}
+  {{ $latestDate := time "1970-01-01" }}
+  {{ range where $allTalksForNav ".Params.talk" $tName }}
+    {{ if gt .Date $latestDate }}
+      {{ $latestDate = .Date }}
+    {{ end }}
+  {{ end }}
+  {{ $templatesWithDates = $templatesWithDates | append (dict "template" . "latestDate" $latestDate) }}
+{{ end }}
+{{ $sortedTemplatesNav := sort $templatesWithDates "latestDate" "desc" }}
+
+{{/* Find prev/next templates */}}
+{{ $prevTemplate := false }}
+{{ $nextTemplate := false }}
+{{ $foundCurrent := false }}
+{{ range $idx, $item := $sortedTemplatesNav }}
+  {{ if eq $item.template.Permalink $currentPermalink }}
+    {{ $foundCurrent = true }}
+  {{ else if not $foundCurrent }}
+    {{ $prevTemplate = $item.template }}
+  {{ else if and $foundCurrent (not $nextTemplate) }}
+    {{ $nextTemplate = $item.template }}
+  {{ end }}
+{{ end }}
+
 {{/* Get last public appearance (most recent past talk) */}}
 {{ $lastPublicTalk := false }}
 {{ range $sortedTalks }}
@@ -241,6 +274,14 @@
   <div class="lg:col-span-2 min-w-0">
     <article class="mx-auto prose prose-quoteless dark:prose-invert max-w-none lg:max-w-prose" itemscope itemtype="http://schema.org/Article">
       {{ template "_internal/schema.html" . }}
+
+      {{/* Back to templates link */}}
+      <div class="not-prose mb-4">
+        <a href="/talks/templates/" class="inline-flex items-center gap-1 text-sm text-base-content/60 hover:text-primary transition-colors">
+          <ion-icon name="arrow-back" class="text-lg"></ion-icon>
+          Back to Templates
+        </a>
+      </div>
 
       {{ if $hasVersions }}
       {{/* Dynamic versions tabs */}}
@@ -401,6 +442,40 @@
         {{- end -}}
       </div>
       {{- end -}}
+
+      {{/* Prev/Next template navigation */}}
+      {{ if or $prevTemplate $nextTemplate }}
+      <div class="divider"></div>
+      <div class="flex flex-col md:flex-row justify-between gap-4 py-4 not-prose">
+        {{ if $prevTemplate }}
+        {{ $prevTitle := $prevTemplate.Title }}
+        {{ with $prevTemplate.Params.versions }}{{ $prevTitle = (index . 0).title }}{{ end }}
+        <a role="button" class="btn btn-outline h-12" href="{{ $prevTemplate.RelPermalink }}" title="{{ $prevTitle }}">
+          <ion-icon name="chevron-back"></ion-icon>
+          <div class="inline-flex flex-col items-start">
+            <span class="text-base-content/60 text-xs font-normal">Previous template</span>
+            <span class="max-w-48 truncate">{{ $prevTitle }}</span>
+          </div>
+        </a>
+        {{ else }}
+        <div></div>
+        {{ end }}
+
+        {{ if $nextTemplate }}
+        {{ $nextTitle := $nextTemplate.Title }}
+        {{ with $nextTemplate.Params.versions }}{{ $nextTitle = (index . 0).title }}{{ end }}
+        <a role="button" class="btn btn-outline h-12" href="{{ $nextTemplate.RelPermalink }}" title="{{ $nextTitle }}">
+          <div class="inline-flex flex-col items-end">
+            <span class="text-base-content/60 text-xs font-normal">Next template</span>
+            <span class="max-w-48 truncate">{{ $nextTitle }}</span>
+          </div>
+          <ion-icon name="chevron-forward"></ion-icon>
+        </a>
+        {{ else }}
+        <div></div>
+        {{ end }}
+      </div>
+      {{ end }}
 
     </article>
   </div>
