@@ -239,7 +239,7 @@
                 <a href="{{ .Params.conference.url }}" target="_blank">
                 <span class="truncate max-w-[60%]" title="{{ .Params.conference.name }}">{{ .Params.conference.name }}</span>
                 </a>
-                <span>{{ .Date | time.Format "Jan 2" }}</span>
+                <span title="{{ .Date | time.Format "January 2, 2006" }}">{{ .Date | time.Format "Jan 2" }}</span>
               </div>
             </div>
           </div>

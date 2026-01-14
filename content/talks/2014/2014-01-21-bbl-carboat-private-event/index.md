@@ -1,7 +1,8 @@
 ---
 title: "Elasticsearch: le moteur de recherche élastique pour tous"
-conference: 
-  name: "BBL Car&Boat (private event)"
+conference:
+  url: "https://www.drivemedia.fr/"
+  name: "BBL La Centrale (private event)"
   city: "Paris"
   country: "France"
   country_code: "fr"
@@ -16,6 +17,10 @@ nolastmod: true
 draft: false
 
 attendees: 10
+
+x:
+  - user: "lpouget"
+    id: "425627991574855680"
 ---
 Vous utilisez encore des requêtes SQL pour faire des recherches ? Vos utilisateurs vous reprochent de ne pas pouvoir chercher sur toutes les rubriques ? Votre temps de réponse moyen est supérieur à la demi-seconde avec seulement quelques millions de documents ? Il vous faut 3 jours pour produire des statistiques sur vos données ? Vous rêvez d'offrir une recherche "à la google" sur les données de votre SI ? Ne cherchez plus ! Cette conférence est faite pour vous.
 
@@ -30,4 +35,3 @@ David présentera au cours du déjeuner pourquoi et comment il est passé de la 
 * L'analyse et le mapping
 * La percolation
 * La communauté
-
