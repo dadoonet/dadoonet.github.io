@@ -1,20 +1,21 @@
 ---
-title: "JUG Summer Camp 2014"
+title: "Advanced search for your Legacy application"
 conference: 
-  name: "JUG Summer Camp 2014"
+  url: "https://www.jugsummercamp.org/edition/5"
+  name: "JUG Summer Camp"
   city: "La Rochelle"
   country: "France"
   country_code: "fr"
-  url: "https://www.jugsummercamp.org/edition/5"
   latitude: "46.1620346"
   longitude: "-1.2463011"
 author: David Pilato
 avatar: /about/david_pilato.png
-# talk: conferences
+talk: Legacy Search
 date: 2014-09-19
 lang: fr
 nolastmod: true
 draft: false
 
 attendees: 80
+pdf: "2014/2014-09-19-jug-summer-camp-2014.pdf"
 ---

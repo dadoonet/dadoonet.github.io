@@ -19,7 +19,7 @@ draft: false
 attendees: 30
 ---
 
-### Let's play with elasticsearch and Kibana
+## Let's play with elasticsearch and Kibana
 
 We will install elasticsearch, Kibana and Marvel and will use that tools to:
 
@@ -29,7 +29,7 @@ We will install elasticsearch, Kibana and Marvel and will use that tools to:
 * build dashboards to make sense of marketing data
 * snapshot your data and restore them
 
-### Intended audience
+## Intended audience
 
 Audience should already know some basics like `JSON` and need to have a laptop with:
 

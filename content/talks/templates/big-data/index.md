@@ -11,14 +11,14 @@ versions:
     flag: "gb"
     title: "Make sense of your (BIG) data!"
     abstract: |
-      What if we could build dashboards based on our needs, right when we need them?
-      
-      In this session, I'll show you how to combine the power of Elasticsearch with the simplicity of Kibana to effortlessly analyze your data, whether it comes from Twitter, your production logs, or your marketing data...
+      Elasticsearch: you know, for search! But you can use it as well to compute information on live data.
+
+      During this session, you will discover how elasticsearch actually works behind the scene and why this great open source software is really more than "search". We will inject marketing data into elasticsearch and build live a dashboard using Kibana, generic and powerful visualisation tool under Apache2 license. In minutes, you will know how to build **YOUR** own dashboard and make sense of **YOUR** data!
   - label: "FR"
     flag: "fr"
     title: "Make sense of your (BIG) data!"
     abstract: |
-      Et si on fabriquait des dashboards selon notre besoin au moment où nous en avons besoin ?
-      
-      Je vous ferai découvrir lors de cette session comment coupler la puissance d'Elasticsearch et la simplicité de Kibana pour analyser sans efforts vos données, qu'elles proviennent de Twitter, de vos logs de Prod ou de vos données marketing...
+      Elasticsearch: vous savez, pour la recherche ! Mais vous pouvez également l'utiliser pour calculer des informations en temps réel sur des données en direct.
+
+      Lors de cette session, vous découvrirez comment fonctionne Elasticsearch. Nous injecterons des données marketing dans Elasticsearch et construirons un tableau de bord en direct à l'aide de Kibana. En quelques minutes, vous saurez comment construire **VOS** propres tableaux de bord et donner du sens à **VOS** données !
 ---

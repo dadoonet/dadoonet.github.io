@@ -13,7 +13,7 @@ authors:
     link: https://tgrall.github.io/
   - author: David Pilato
     avatar: /about/david_pilato.png
-date: 2013-11-14
+date: 2013-11-14T10:00:00+01:00
 lang: en
 nolastmod: true
 draft: false
@@ -22,6 +22,7 @@ draft: false
 youtube: "TC6tZvq_LtI"
 talk: SQL2NoSQL
 
+pdf: "2013/2013-11-14-devoxx-be-elastify-your-app.pdf"
 attendees: 500
 ---
 

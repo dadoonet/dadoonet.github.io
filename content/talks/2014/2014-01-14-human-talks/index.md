@@ -33,6 +33,7 @@ x:
   - user: "remilanoes"
     id: "423169115600470016"
 
+pdf: "2014/2014-01-14-human-talks.pdf"
 ---
 Et si on fabriquait des dashboards selon notre besoin au moment où nous en avons besoin ?
 

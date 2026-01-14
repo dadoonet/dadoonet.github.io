@@ -1,7 +1,7 @@
 ---
-title: "CodeMotion Amsterdam"
+title: "Amsterdam - Make sense of your (BIG) data!"
 conference: 
-  name: "CodeMotion Amsterdam"
+  name: "CodeMotion"
   city: "Amsterdam"
   country: "Netherlands"
   country_code: "nl"
@@ -9,9 +9,9 @@ conference:
   longitude: "4.9182676"
 author: David Pilato
 avatar: /about/david_pilato.png
-# talk: conferences
+talk: Big Data
 date: 2018-05-09
-lang: fr
+lang: en
 nolastmod: true
 draft: false
 

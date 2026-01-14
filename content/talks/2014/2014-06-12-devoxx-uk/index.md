@@ -15,6 +15,7 @@ lang: en
 nolastmod: true
 draft: false
 
+pdf: "2014/2014-06-12-devoxx-uk.pdf"
 attendees: 50
 youtube: "EHknf5mhrYI"
 ---

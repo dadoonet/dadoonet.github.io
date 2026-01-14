@@ -16,6 +16,7 @@ nolastmod: true
 draft: false
 
 attendees: 50
+pdf: "2013/2013-10-25-softshake.pdf"
 ---
 
 Building analytics live Et si on fabriquait des dashboards selon notre besoin au moment où nous en avons besoin ?

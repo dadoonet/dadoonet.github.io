@@ -1,6 +1,7 @@
 ---
 title: "Elasticsearch: le moteur de recherche élastique pour tous"
 conference: 
+  url: "https://www.banque-france.fr/fr"
   name: "BBL Banque de France (private event)"
   city: "Paris"
   country: "France"
@@ -10,7 +11,7 @@ conference:
 author: David Pilato
 avatar: /about/david_pilato.png
 talk: Elasticsearch
-date: 2014-01-23
+date: 2014-01-23T11:30:00+02:00
 lang: fr
 nolastmod: true
 draft: false
@@ -30,4 +31,3 @@ David présentera au cours du déjeuner pourquoi et comment il est passé de la 
 * L'analyse et le mapping
 * La percolation
 * La communauté
-

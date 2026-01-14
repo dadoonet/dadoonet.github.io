@@ -1,5 +1,5 @@
 ---
-title: "ELK Workshop"
+title: "Elasticsearch and Kibana 4 workshop"
 conference: 
   name: "ELK Workshop"
   city: "Paris"
@@ -9,11 +9,12 @@ conference:
   longitude: "2.2900278"
 author: David Pilato
 avatar: /about/david_pilato.png
-# talk: conferences
+talk: Elasticsearch Workshop
 date: 2014-11-17
 lang: fr
 nolastmod: true
 draft: false
-
+pdf: "2014/2014-11-17-elk-workshop.pdf"
 attendees: 15
 ---
+Updated for elasticsearch 1.4.0 and Kibana 4.

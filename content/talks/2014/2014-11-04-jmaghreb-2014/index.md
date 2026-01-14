@@ -1,7 +1,7 @@
 ---
-title: "JMaghreb 2014"
+title: "Elasticsearch Workshop"
 conference: 
-  name: "JMaghreb 2014"
+  name: "Devoxx MA"
   city: "Casablanca"
   country: "Morocco"
   country_code: "ma"
@@ -9,7 +9,7 @@ conference:
   longitude: "-7.7270786"
 author: David Pilato
 avatar: /about/david_pilato.png
-# talk: conferences
+talk: Elasticsearch Workshop
 date: 2014-11-04
 lang: fr
 nolastmod: true

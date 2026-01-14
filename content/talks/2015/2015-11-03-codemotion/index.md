@@ -1,5 +1,5 @@
 ---
-title: "CodeMotion"
+title: "Berlin - Advanced search for your Legacy application"
 conference: 
   name: "CodeMotion"
   city: "Berlin"
@@ -9,9 +9,9 @@ conference:
   longitude: "13.404954"
 author: David Pilato
 avatar: /about/david_pilato.png
-# talk: conferences
+talk: Legacy Search
 date: 2015-11-03
-lang: fr
+lang: en
 nolastmod: true
 draft: false
 
