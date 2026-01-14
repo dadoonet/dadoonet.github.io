@@ -1,5 +1,5 @@
 ---
-title: "Elasticsearch"
+title: "Elastic Stack Overview"
 conference: 
   name: "BBL Crédit Agricole Technologies et Services (Private Event)"
   city: "Montpellier"

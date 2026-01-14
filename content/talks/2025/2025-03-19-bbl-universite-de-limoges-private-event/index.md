@@ -1,5 +1,5 @@
 ---
-title: "Elasticsearch"
+title: "Elasticsearch, you know for Search"
 conference: 
   name: "BBL Université de Limoges (private event)"
   country: "Online"

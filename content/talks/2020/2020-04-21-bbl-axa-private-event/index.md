@@ -1,5 +1,5 @@
 ---
-title: "Elasticsearch"
+title: "Elastic Stack Overview"
 conference: 
   name: "BBL AXA (Private Event)"
   country: "Online"

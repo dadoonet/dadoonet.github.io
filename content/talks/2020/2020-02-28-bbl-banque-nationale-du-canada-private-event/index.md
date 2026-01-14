@@ -1,5 +1,5 @@
 ---
-title: "Elasticsearch"
+title: "Elastic Stack Overview"
 conference: 
   name: "BBL Banque Nationale du Canada (Private Event)"
   city: "Montreal"

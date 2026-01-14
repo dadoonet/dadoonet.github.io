@@ -1,5 +1,5 @@
 ---
-title: "Elasticsearch"
+title: "Elasticsearch: le moteur de recherche élastique pour tous"
 conference: 
   name: "BBL Manuloc (private event)"
   city: "Metz"

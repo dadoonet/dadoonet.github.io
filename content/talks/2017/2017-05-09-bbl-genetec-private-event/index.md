@@ -1,5 +1,5 @@
 ---
-title: "Elasticsearch"
+title: "Elasticsearch: le moteur de recherche élastique pour tous"
 conference: 
   name: "BBL Genetec (private event)"
   city: "Paris"

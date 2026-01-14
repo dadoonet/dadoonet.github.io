@@ -1,5 +1,5 @@
 ---
-title: "Elasticsearch"
+title: "Elasticsearch: le moteur de recherche élastique pour tous"
 conference: 
   name: "BBL Incubateur social.gouv.fr (private event)"
   city: "Paris"

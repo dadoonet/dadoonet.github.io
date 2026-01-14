@@ -1,5 +1,5 @@
 ---
-title: "Elasticsearch"
+title: "Elasticsearch, you know for Search"
 conference: 
   name: "BBL Talan (Private Event)"
   city: "Amiens"

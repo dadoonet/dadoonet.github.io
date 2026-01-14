@@ -1,5 +1,5 @@
 ---
-title: "Elasticsearch"
+title: "Elastic Stack Overview"
 conference: 
   name: "BBL Yves Rocher (private event)"
   city: "Issy-les-Moulineaux"

@@ -1,5 +1,5 @@
 ---
-title: Elasticsearch
+title: "Elasticsearch, you know for Search"
 conference:
   name: BBL Ekino (private event)
   url: 'https://www.ekino.fr/'

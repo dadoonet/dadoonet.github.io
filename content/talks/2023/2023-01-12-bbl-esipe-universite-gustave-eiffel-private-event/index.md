@@ -1,5 +1,5 @@
 ---
-title: "Elasticsearch"
+title: "Elastic Stack Overview"
 conference: 
   name: "BBL ESIPE - Université Gustave Eiffel (Private event)"
   city: "Champs-sur-Marne"

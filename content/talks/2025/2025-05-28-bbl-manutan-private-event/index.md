@@ -1,5 +1,5 @@
 ---
-title: "Elasticsearch"
+title: "Elasticsearch, you know for (AI) Search"
 conference: 
   name: "BBL Manutan (private event)"
   city: "Gonesse"
@@ -41,4 +41,5 @@ produire des statistiques sur vos données ? Vous rêvez d’oﬀrir une recherc
 données de votre SI ?
 
 Ne cherchez plus ! Cette conférence est faite pour vous.
+
 Venez découvrir comment Elasticsearch peut résoudre ces problèmes et bien d’autres lors d’une session basée principalement sur des démonstrations live dont comment trouver la musique qui s’approche le plus d’une musique que nous fredonnons 🎶🎸🎻.

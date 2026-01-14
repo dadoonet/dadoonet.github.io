@@ -1,5 +1,5 @@
 ---
-title: "Elasticsearch"
+title: "Elastic Stack Overview"
 conference: 
   name: "BBL Université Paris 1 Pantheon-Sorbonne (Private Event)"
   url: ""

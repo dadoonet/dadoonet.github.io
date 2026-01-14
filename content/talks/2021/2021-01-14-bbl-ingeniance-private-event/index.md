@@ -1,5 +1,5 @@
 ---
-title: Elasticsearch
+title: "Elastic Stack Overview"
 conference:
   name: BBL Ingeniance (Private Event)
   url: ''
