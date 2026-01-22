@@ -1,9 +1,8 @@
 {{ define "main"}}
 
-{{/* Filter out future posts - only show posts with date <= now */}}
-{{ $now := now }}
+{{/* Filter out future posts in production, show all in development */}}
 {{ $allPosts := where site.RegularPages "Type" "posts" }}
-{{ $pastPosts := where $allPosts ".Date" "<=" $now }}
+{{ $pastPosts := cond (eq hugo.Environment "development") $allPosts (where $allPosts ".Date" "<=" now) }}
 {{ $paginator := .Paginate $pastPosts }}
 
 {{ if site.Params.zenMode }}
