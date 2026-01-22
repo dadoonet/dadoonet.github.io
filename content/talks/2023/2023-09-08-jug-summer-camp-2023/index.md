@@ -1,7 +1,7 @@
 ---
 title: "La recherche à l’ère de l’IA"
 conference: 
-  name: "JUG Summer Camp 2023"
+  name: "JUG Summer Camp"
   city: "La Rochelle"
   country: "France"
   country_code: "fr"
@@ -10,7 +10,7 @@ conference:
   url: "https://www.jugsummercamp.org/edition/14/presentations/oVFqGQVuSwZBRIfpXwVd"
 author: David Pilato
 avatar: /about/david_pilato.png
-# talk: conferences
+talk: AI Search
 date: 2023-09-08
 talk-lang: fr
 nolastmod: true

@@ -10,7 +10,7 @@ conference:
   longitude: '25.279651'
 author: David Pilato
 avatar: /about/david_pilato.png
-# talk: conferences
+talk: AI Search
 date: 2023-11-24
 talk-lang: en
 nolastmod: true

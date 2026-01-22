@@ -10,7 +10,7 @@ conference:
   url: "https://dev.events/conferences/ia-and-data-day-strasbourg-a3ea8lsm"
 author: David Pilato
 avatar: /about/david_pilato.png
-# talk: conferences
+talk: AI Search
 date: 2024-03-21
 talk-lang: fr
 nolastmod: true

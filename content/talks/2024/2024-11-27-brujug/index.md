@@ -10,7 +10,7 @@ conference:
   url: "https://www.meetup.com/brujug/events/304382685/"
 author: David Pilato
 avatar: /about/david_pilato.png
-# talk: conferences
+talk: AI Search
 date: 2024-11-27
 talk-lang: en
 nolastmod: true

@@ -10,7 +10,7 @@ conference:
   url: "https://www.arhs-group.com/"
 author: David Pilato
 avatar: /about/david_pilato.png
-talk: Elasticsearch
+talk: AI Search
 date: 2024-11-28
 talk-lang: en
 nolastmod: true

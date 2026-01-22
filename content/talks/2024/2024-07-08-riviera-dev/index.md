@@ -10,7 +10,7 @@ conference:
   url: "https://rivieradev.fr/"
 author: David Pilato
 avatar: /about/david_pilato.png
-# talk: conferences
+talk: AI Search
 date: 2024-07-08
 talk-lang: fr
 nolastmod: true

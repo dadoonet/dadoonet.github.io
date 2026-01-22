@@ -10,7 +10,7 @@ conference:
   longitude: "5.724524"
 author: David Pilato
 avatar: /about/david_pilato.png
-# talk: conferences
+talk: AI Search
 date: 2024-05-14
 talk-lang: fr
 nolastmod: true

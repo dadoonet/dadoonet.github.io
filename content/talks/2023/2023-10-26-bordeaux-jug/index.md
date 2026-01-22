@@ -10,7 +10,7 @@ conference:
   url: "https://www.meetup.com/BordeauxJUG/events/296632690"
 author: David Pilato
 avatar: /about/david_pilato.png
-# talk: conferences
+talk: AI Search
 date: 2023-10-26
 talk-lang: fr
 nolastmod: true

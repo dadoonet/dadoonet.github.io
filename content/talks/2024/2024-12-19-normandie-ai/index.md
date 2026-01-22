@@ -10,7 +10,7 @@ conference:
   url: "https://normandie.ai/"
 author: David Pilato
 avatar: /about/david_pilato.png
-# talk: conferences
+talk: AI Search
 date: 2024-12-19
 talk-lang: fr
 nolastmod: true

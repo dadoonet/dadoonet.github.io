@@ -10,7 +10,7 @@ conference:
   url: "https://www.malt.fr/"
 author: David Pilato
 avatar: /about/david_pilato.png
-# talk: conferences
+talk: AI Search
 date: 2025-06-18
 talk-lang: fr
 nolastmod: true

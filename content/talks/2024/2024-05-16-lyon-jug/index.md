@@ -10,7 +10,7 @@ conference:
   url: "https://lyonjug.org/2024/05/16/la-recherche-a-lheure-de-l-ia.html"
 author: David Pilato
 avatar: /about/david_pilato.png
-# talk: conferences
+talk: AI Search
 date: 2024-05-16
 talk-lang: fr
 nolastmod: true

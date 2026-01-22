@@ -10,7 +10,7 @@ conference:
   url: "https://www.devoxx.fr/"
 author: David Pilato
 avatar: /about/david_pilato.png
-# talk: conferences
+talk: AI Search
 date: 2024-04-18
 talk-lang: fr
 nolastmod: true

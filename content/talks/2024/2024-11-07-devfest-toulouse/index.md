@@ -10,7 +10,7 @@ conference:
   url: "https://devfesttoulouse.fr/"
 author: David Pilato
 avatar: /about/david_pilato.png
-# talk: conferences
+talk: AI Search
 date: 2024-11-07
 talk-lang: fr
 nolastmod: true

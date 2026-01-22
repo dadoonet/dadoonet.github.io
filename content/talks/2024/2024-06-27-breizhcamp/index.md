@@ -10,7 +10,7 @@ conference:
   url: "https://2024.breizhcamp.org/"
 author: David Pilato
 avatar: /about/david_pilato.png
-# talk: conferences
+talk: AI Search
 date: 2024-06-27
 talk-lang: fr
 nolastmod: true

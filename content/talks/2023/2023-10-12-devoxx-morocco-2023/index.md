@@ -1,7 +1,7 @@
 ---
 title: "La recherche à l’ère de l’IA"
 conference: 
-  name: "Devoxx Morocco 2023"
+  name: "Devoxx Morocco"
   city: "Agadir 80000"
   country: "Morocco"
   country_code: "ma"
@@ -10,7 +10,7 @@ conference:
   url: "https://devoxx.ma/talk/?id=1608"
 author: David Pilato
 avatar: /about/david_pilato.png
-# talk: conferences
+talk: AI Search
 date: 2023-10-12
 talk-lang: fr
 nolastmod: true

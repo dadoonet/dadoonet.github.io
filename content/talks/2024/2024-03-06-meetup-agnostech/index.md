@@ -10,7 +10,7 @@ conference:
   url: "https://www.meetup.com/agnostech-pau/events/299096165"
 author: David Pilato
 avatar: /about/david_pilato.png
-# talk: conferences
+talk: AI Search
 date: 2024-03-06
 talk-lang: fr
 nolastmod: true
