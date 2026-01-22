@@ -2,7 +2,6 @@
 title: "Elasticsearch"
 conference: 
   name: "BBL dev.pro (Private Event)"
-  url: ""
   country: "Online"
   country_code: "Online"
 author: David Pilato

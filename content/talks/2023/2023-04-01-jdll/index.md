@@ -2,7 +2,6 @@
 title: "Advanced (elastic)search for your legacy application"
 conference: 
   name: "JDLL"
-  url: ""
   city: "Lyon"
   country: "France"
   country_code: "fr"

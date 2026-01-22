@@ -2,7 +2,6 @@
 title: "🎹🎻🎸 Searching for similar music tracks 🎼🎶"
 conference: 
   name: "You know, for search, an Elastic podcast"
-  url: ""
   country: "Online"
   country_code: "Online"
 author: David Pilato

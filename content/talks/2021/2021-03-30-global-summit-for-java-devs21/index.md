@@ -2,7 +2,6 @@
 title: Advanced (elastic)search for your legacy application
 conference:
   name: Global Summit for Java Devs’21
-  url: ''
   country: "Online"
   country_code: "Online"
 author: David Pilato
@@ -15,9 +14,6 @@ draft: false
 
 notist: dadoonet/nRD9sE
 links:
-  - title: "Conference website"
-    url: ""
-
   - title: "Live coding"
     url: "https://www.elastic.co/blog/how-to-add-powerful-search-existing-sql-applications-elasticsearch-video-tutorial"
     description: "Those videos are recorded from a live coding session."

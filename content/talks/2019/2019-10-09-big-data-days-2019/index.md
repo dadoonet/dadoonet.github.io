@@ -7,7 +7,6 @@ conference:
   country_code: "ru"
   latitude: "55.755826"
   longitude: "37.617300"
-  url: ""
 author: David Pilato
 avatar: /about/david_pilato.png
 # talk: conferences

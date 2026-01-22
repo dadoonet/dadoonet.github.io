@@ -2,7 +2,6 @@
 title: "Elastic Stack Overview"
 conference: 
   name: "BBL Université Paris 1 Pantheon-Sorbonne (Private Event)"
-  url: ""
   country: "Online"
   country_code: "Online"
 author: David Pilato

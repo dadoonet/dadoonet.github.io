@@ -73,7 +73,7 @@ The final goal is to generate a waveform like this:
 We will use the great Beat generator project which basically creates a skeleton for your beat.
 
 ```sh
-cookiecutter beat-generator
+cookiecutter https://github.com/elastic/beat-generator.git
 ```
 
 The generator is asking some questions:

@@ -2,7 +2,6 @@
 title: "Elastic Stack Overview"
 conference: 
   name: "BBL SNCF (Private Event)"
-  url: ""
   country: "Online"
   country_code: "Online"
 author: David Pilato

@@ -29,9 +29,6 @@ x:
     id: 386139252394049536
 
 links:
-  - title: "Demo: SQL2NoSQL"
-    url: ""
-    description: "This demo shows how you can use SQL2NoSQL to convert a SQL application to a NoSQL application."
   - title: "Feedback La Revue du Digital"
     url: "https://www.larevuedudigital.com/passer-dune-base-sql-a-une-base-nosql-en-40-minutes/"
     description: "This is the official CouchBase website."
