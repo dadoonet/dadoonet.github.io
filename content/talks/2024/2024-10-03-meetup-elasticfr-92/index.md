@@ -1,7 +1,7 @@
 ---
-title: "Elasticsearch Query Language: ES|QL"
+title: "ElasticFR #92: Elasticsearch Query Language: ES|QL"
 conference: 
-  name: "Meetup ElasticFR #92"
+  name: "Meetup ElasticFR"
   city: "Paris"
   country: "France"
   country_code: "fr"

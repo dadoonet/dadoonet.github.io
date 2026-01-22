@@ -1,13 +1,13 @@
 ---
-title: Identifier (et bloquer !) les menaces avec Elastic Security
+title: "ElasticFR #66: Identifier (et bloquer !) les menaces avec Elastic Security"
 conference:
-  name: 'Meetup ElasticFR #66'
-  url: ''
+  name: 'Meetup ElasticFR'
+  url: 'https://www.meetup.com/elasticfr/events/281065381'
   country: "Online"
   country_code: "Online"
 author: David Pilato
 avatar: /about/david_pilato.png
-# talk: conferences
+talk: SIEM
 date: 2021-10-07
 talk-lang: fr
 nolastmod: true
@@ -15,13 +15,11 @@ draft: false
 pdf: "2021/2021-10-07-meetup-elasticfr-66.pdf"
 
 notist: dadoonet/Llif61
+youtube: "oBL2tlp8LUs"
+
 links:
   - title: "Elastic Security Solution"
     url: "https://www.elastic.co/fr/security"
-
-  - title: "Meetup ElasticFR"
-    url: "https://community.elastic.co/e/mzhrxs/"
-
 
 aliases:
 - /Llif61
