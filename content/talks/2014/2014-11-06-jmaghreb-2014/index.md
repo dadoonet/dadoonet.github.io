@@ -1,7 +1,7 @@
 ---
 title: "Make sense of your (BIG) data!"
 conference:
-  url: "https://jmaghreb2014.org/"
+  url: "https://devoxx.ma/"
   name: "Devoxx MA"
   city: "Casablanca"
   country: "Morocco"

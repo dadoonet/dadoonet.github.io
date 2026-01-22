@@ -1,6 +1,7 @@
 ---
 title: "Elasticsearch Workshop"
-conference: 
+conference:
+  url: "https://devoxx.ma/"
   name: "Devoxx MA"
   city: "Casablanca"
   country: "Morocco"
