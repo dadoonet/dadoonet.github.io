@@ -10,7 +10,7 @@ conference:
   url: "https://devfest2024.gdgnantes.com/"
 author: David Pilato
 avatar: /about/david_pilato.png
-# talk: conferences
+talk: AI Search
 date: 2024-10-17
 talk-lang: fr
 nolastmod: true
