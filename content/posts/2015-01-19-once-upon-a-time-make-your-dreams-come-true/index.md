@@ -52,17 +52,17 @@ A lot of babies were born last year, and new ones are coming in 2015. That's sup
 
 As I wrote last year, building company core values is not hard at Elasticsearch, as we talk to each other on a daily basis and all hands company meetups happen every 6 months or so. But for the [last one, in Amsterdam](https://www.elastic.co/blog/world-elasticsearch-esallhands-edition/), it was hard to fit everyone in the same room!
 
-So? What is the solution? Let's create a user conference and bring all the folks there! Welcome to [elastic{ON}](http://www.elasticon.com/)!
+So? What is the solution? Let's create a user conference and bring all the folks there! Welcome to [elastic{ON}](https://www.elastic.co/events/elasticon)!
 
-I am super excited going to San Francisco in March, meeting up again with all the colleagues I already know and seeing all the new comers in real life. And meeting... Users! I love users! They are contributing back so much to our open source projects by submitting code, documentation, issues or simply talking about their use cases at [meetups](http://elasticsearch.meetup.com/)!
+I am super excited going to San Francisco in March, meeting up again with all the colleagues I already know and seeing all the new comers in real life. And meeting... Users! I love users! They are contributing back so much to our open source projects by submitting code, documentation, issues or simply talking about their use cases at [meetups](https://www.meetup.com/pro/elastic/)!
 
 By the way, if you are a meetup organizer, you must see our dedicated [meetup page](http://www.elasticsearch.com/community/meetups/)!
 
-We will give an update on the State of the Community from all of our Developer Advocates at [elastic{ON}](http://www.elasticon.com/), so if you are around, come and meet us!
+We will give an update on the State of the Community from all of our Developer Advocates at [elastic{ON}](https://www.elastic.co/events/elasticon), so if you are around, come and meet us!
 
 ## What's new? What's next?
 
-It's not new, but we're hiring! Want to join us? Have a look at our open positions [here](http://www.elasticsearch.com/about/careers/). Feel free to ask me any questions about these roles and what its like to work at the company!
+It's not new, but we're hiring! Want to join us? Have a look at our open positions [here](https://www.elastic.co/careers). Feel free to ask me any questions about these roles and what its like to work at the company!
 
 Great improvements came to the codebase this year. Elasticsearch is now 1.4.2, Logstash 1.5.0.Beta1 and Kibana 4 is in Beta. Some commercial plugins has been released or announced, such as [Marvel](http://www.elasticsearch.com/products/marvel/) for cluster monitoring and [Shield](http://www.elasticsearch.com/products/shield/) which is all about security. It's great seeing so many people involved on those projects. I think that we probably invest 80 to 90% of our development efforts today on open source projects.
 

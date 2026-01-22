@@ -44,7 +44,7 @@ public class Dossier {
 
 ### Classe DAO
 
-Voir le [blog](http://bit.ly/a05odS) pour l'utilisation des generics de Java5 afin d'éviter d'avoir à coder toujours les mêmes méthodes CRUD.
+Utilisation des generics de Java5 afin d'éviter d'avoir à coder toujours les mêmes méthodes CRUD:
 
 ```java
 @Repository

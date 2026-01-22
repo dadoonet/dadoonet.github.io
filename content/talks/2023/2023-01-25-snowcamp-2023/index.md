@@ -7,7 +7,7 @@ conference:
   country_code: "fr"
   latitude: "45.188529"
   longitude: "5.724524"
-  url: "https://snowcamp.io/fr/"
+  url: "https://snowcamp.io/"
 author: David Pilato
 avatar: /about/david_pilato.png
 # talk: conferences

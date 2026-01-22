@@ -279,7 +279,7 @@ I'm already booked for several events in 2026:
 
 - 🇫🇷 [SnowCamp](https://snowcamp.io/) (Grenoble) - January
 - 🇫🇷 [Touraine Tech](https://touraine.tech/) (Tours) - February
-- 🇫🇷 [AFUP Day](https://afup.org/events/afup-day-2026-lille/) (Lille) - May
+- 🇫🇷 [AFUP Day](https://event.afup.org/afup-day-2026/afup-day-2026-lille/programme/#5471) (Lille) - May
 
 Each of these will be added to my Hugo site with a simple markdown file - no more manual data entry on a third-party platform!
 

@@ -75,7 +75,7 @@ We can use something like the [Google Map API](https://developers.google.com/map
 * We need to communicate with an external service and may be your company policy does not allow sending to an internet service some private data like your customers data.
 * You might suffer from some latency anytime you want to call that external service on which you can't really have any knob to make it faster. Speed light is speed light and crossing the ocean may be will always include some latency.
 
-We need something local then. In France, we are super lucky because we have a public dataset named [BANO](http://openstreetmap.fr/bano) as `Base d'Adresses NatiOnale` (National Address Database) provided under the [Open Street Map](http://openstreetmap.fr) umbrella.
+We need something local then. In France, we are super lucky because we have a public dataset named [BANO](https://bano.openstreetmap.fr/) as `Base d'Adresses NatiOnale` (National Address Database) provided under the [Open Street Map](https://openstreetmap.fr) umbrella.
 
 This project exports everyday [the list of known addresses](http://bano.openstreetmap.fr/data/) anywhere in France. Here is an extraction of what you can have:
 

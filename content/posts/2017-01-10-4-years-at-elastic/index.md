@@ -584,8 +584,6 @@ And a big part of it is close to Paris:
 
 {{< figure src="paris.png" caption="Paris" >}}
 
-You can [open this dashboard](https://73531b275dde9af18f03de55b5d02fca.us-east-1.aws.found.io/app/kibana#/dashboard/Talks) (username: `demo`, password: `elastic`) if you wish and look if I was close to you over the last year 😊
-
 ## Conclusion
 
 Evangelism is part of my activity. It also includes a lot of presence on <https://discuss.elastic.co>:

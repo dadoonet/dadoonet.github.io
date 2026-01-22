@@ -37,7 +37,7 @@ My job consists of two main activities:
 
 As an evangelist, I did **58 talks** in **4 countries**: France of course, plus Switzerland, Luxembourg and Belgium. I spoke in **37 towns** and did about **18 000 kilometers**! W00t! I find it very exciting to meet so many people at conferences and have the opportunity to talk with them.
 
-Some talks and venues were fantastic. For example, for [Devoxx France 2013](http://www.devoxx.com/display/FR13/Elastifiez+votre+application+++du+SQL+au+NoSQL+en+moins+d%27une+heure), the room was packed with about **200 attendees** and [Devoxx Anvers 2013](http://www.devoxx.be/dv13-david-pilato.html?presId=3281) with about **400 attendees**. Very exciting, right?
+Some talks and venues were fantastic. For example, for [Devoxx France 2013]({{< ref "/talks/2013/2013-03-28-devoxx-fr" >}}), the room was packed with about **200 attendees** and [Devoxx Anvers 2013]({{< ref "/talks/2013/2013-11-14-devoxx-be" >}}) with about **400 attendees**. Very exciting, right?
 
 {{< figure src="devoxx_be_2013.jpg" caption="Devoxx 2013: attendees coming..." >}}
 

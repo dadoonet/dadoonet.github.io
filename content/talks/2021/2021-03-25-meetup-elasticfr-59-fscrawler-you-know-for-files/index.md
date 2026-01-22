@@ -1,13 +1,17 @@
 ---
-title: FSCrawler! You know, for files!
+title: "ElasticFR #59 - FSCrawler! You know, for files!"
 conference:
-  name: 'Meetup ElasticFR #59 - FSCrawler! You know, for files!'
-  url: ''
+  name: 'Meetup ElasticFR'
+  url: 'https://www.meetup.com/fr-fr/elasticfr/events/276760001/'
   country: "Online"
   country_code: "Online"
-author: David Pilato
-avatar: /about/david_pilato.png
-# talk: conferences
+authors:
+  - author: David Pilato
+    avatar: /about/david_pilato.png
+  - author: Laetitia Richard
+    avatar: /speakers/laetitia_richard.jpg
+    link: "https://www.linkedin.com/in/laetitia-richard-02291221/"
+talk: FSCrawler
 date: 2021-03-25
 talk-lang: fr
 nolastmod: true
@@ -19,9 +23,7 @@ links:
   - title: "FSCrawler"
     url: "https://fscrawler.readthedocs.io/"
 
-  - title: "Event page"
-    url: "https://community.elastic.co/e/mwydqr/"
-
+youtube: "3-Tj1KutprE"
 
 aliases:
 - /6qhRBL

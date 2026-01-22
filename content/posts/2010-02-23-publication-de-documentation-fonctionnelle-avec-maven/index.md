@@ -28,7 +28,7 @@ Mais, cela reste un nouveau langage à apprendre pour des équipes fonctionnelle
 
 Après avoir tourné et viré, testé quelques solutions, j'en suis arrivé à la conclusion que le plus pratique est de laisser les concepteurs utiliser leurs outils office ([Microsoft](http://www.microsoft.com/france/office/) ou [oOo](http://fr.openoffice.org/)) et de transformer ces documents en PDF lors de la fabrication du site.
 
-Pour cela, un petit plugin miracle ([jodconverter-maven-plugin](http://artofsolving.com/opensource/jodconverter/guide)) couplé à oOo permet de faire le travail.
+Pour cela, un petit plugin miracle (`jodconverter-maven-plugin`) couplé à oOo permet de faire le travail.
 
 Tout d'abord, il faut lancer oOo en mode serveur. Sous Linux, ça se fait comme ça :
 

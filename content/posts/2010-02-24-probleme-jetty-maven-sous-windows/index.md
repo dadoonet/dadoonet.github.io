@@ -24,7 +24,7 @@ java.net.URISyntaxException: Illegal character in path at index 18: file:/C:/Doc
 
 <!--more-->
 
-Ce problème n’est résolu que sous [Maven 3](http://maven.apache.org/release-notes-3.0.x.html).
+Ce problème n’est résolu que sous [Maven 3](https://maven.apache.org/docs/3.0/release-notes.html).
 
 Pour ceux qui souhaitent rester sous Maven 2 (Maven 3 est encore en version alpha), il faut modifier l'emplacement de la repository pour éviter le souci du caractère ESPACE présent dans le chemin `C:\Documents and settings\USER\.m2\repository` (chemin par défaut).
 

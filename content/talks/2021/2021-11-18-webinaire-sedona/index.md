@@ -2,12 +2,16 @@
 title: Indexer ses documents bureautique avec la suite Elastic et FSCrawler
 conference:
   name: Webinaire Sedona
-  url: ''
+  url: 'https://sedona.fr/elastic/'
   country: "Online"
   country_code: "Online"
-author: David Pilato
-avatar: /about/david_pilato.png
-# talk: conferences
+authors:
+  - author: David Pilato
+    avatar: /about/david_pilato.png
+  - author: Thomas Cucchietti
+    avatar: /speakers/thomas_cucchietti.jpg
+    link: "https://www.linkedin.com/in/tcucchietti/"
+talk: FSCrawler
 date: 2021-11-18
 talk-lang: fr
 nolastmod: true
@@ -16,12 +20,10 @@ pdf: "2021/2021-11-18-webinaire-sedona.pdf"
 
 notist: dadoonet/dTVWXj
 links:
-  - title: "Event page"
-    url: "https://app.livestorm.co/sedona-1/decouvrez-comment-ameliorer-la-pertinence-de-vos-resultats-avec-elasticsearch"
-
   - title: "FSCrawler"
     url: "https://fscrawler.readthedocs.io/"
 
+youtube: "-xvW2lwdW3M"
 
 aliases:
 - /dTVWXj
@@ -37,12 +39,18 @@ x:
 - user: dadoonet
   id: '1466333417830858754'
 ---
-Vous avez sous la main des tonnes de documents Open Office, Microsoft Office, PDF voire des images… Et vous aimeriez être capable de chercher dans leurs meta-données et dans le contenu lui-même.
+Ce webinar dédié à Elasticsearch va vous permettre d’aller plus loin avec ce populaire moteur de recherche. Il se déroule en deux temps:
 
-Comment faire ? Surtout depuis l’annonce de la fin de Google Search Appliance.
+## Améliorer la pertinence de vos résultats
 
-Dans cette session, David expliquera comment Apache Tika peut fournir ce service et comment combiner cette fantastique librairie avec elasticsearch :
+La pertinence est un sujet central des moteurs de recherche : obtenir les meilleurs résultats en premier est capital.
+Mais sur quoi se base Elasticsearch pour définir la pertinence d’un document ?
+Quels sont les « outils » fournis par Elasticsearch pour travailler sur la pertinence ?
 
-* Elasticsearch [ingest-attachment plugin](https://www.elastic.co/guide/en/elasticsearch/plugins/current/ingest-attachment.html)
-* [FSCrawler](https://github.com/dadoonet/fscrawler)
-* Connecteur [Workplace Search](https://www.elastic.co/workplace-search) pour FSCrawler afin de disposer sur étagère d’une interface utilisateur puissante pour vos documents
+Dans cette première partie Thomas Cucchietti, expert certifié Elastic @Sedona, vous présente quelques techniques simples (et moins simples) pour améliorer la qualité de ses résultats de recherche.
+
+## Indexer ses documents bureautiques avec la suite Elastic et FSCrawler
+
+Vous avez sous la main des tonnes de documents Open Office, Microsoft Office, PDF voire des images?... et vous aimeriez être capable de chercher dans leurs métadonnées et dans le contenu lui-même. Comment faire ?
+  
+Dans cette seconde partie David Pilato, Développeur Evangéliste @Elastic explique comment Apache Tika peut fournir ce service et comment combiner cette fantastique librairie avec Elasticsearch. Il vous présente également son projet perso sur FSCrawler.
