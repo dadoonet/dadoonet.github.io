@@ -10,7 +10,7 @@ conference:
   longitude: "3.0600182"
 author: David Pilato
 avatar: /about/david_pilato.png
-talk: A NoSQL search engine
+talk: Search Find
 date: 2016-12-15
 talk-lang: fr
 nolastmod: true

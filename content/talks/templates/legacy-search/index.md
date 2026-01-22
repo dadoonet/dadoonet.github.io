@@ -4,6 +4,7 @@ layout: "template"
 talk: Legacy Search
 nolastmod: true
 draft: false
+cover: "cover.jpg"
 
 versions:
   - label: "EN"
