@@ -2,7 +2,6 @@
 title: "Search: a new era"
 layout: "template"
 talk: AI Search
-date: 2023-11-15
 nolastmod: true
 draft: false
 

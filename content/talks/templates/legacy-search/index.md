@@ -2,7 +2,6 @@
 title: "Advanced (elastic)search for your legacy application"
 layout: "template"
 talk: Legacy Search
-date: 2014-05-07
 nolastmod: true
 draft: false
 

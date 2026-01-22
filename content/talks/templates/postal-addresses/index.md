@@ -2,7 +2,6 @@
 title: "Enriching postal addresses with Elastic stack"
 layout: "template"
 talk: Postal Addresses
-date: 2019-04-12
 nolastmod: true
 draft: false
 

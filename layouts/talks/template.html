@@ -253,6 +253,15 @@
   {{ end }}
 {{ end }}
 
+{{/* Get first public appearance (oldest talk) */}}
+{{ $firstPublicTalk := false }}
+{{ $reverseSortedTalks := sort $relatedTalks ".Date" "asc" }}
+{{ range $reverseSortedTalks }}
+  {{ if not $firstPublicTalk }}
+    {{ $firstPublicTalk = . }}
+  {{ end }}
+{{ end }}
+
 {{/* Count videos */}}
 {{ $videoCount := 0 }}
 {{ range $sortedTalks }}
@@ -306,11 +315,13 @@
             <span class="font-bold text-error">{{ $videoCount }}</span>
           </div>
           {{ end }}
+          {{ if $firstPublicTalk }}
           <div class="flex items-center gap-2 bg-base-200 rounded-lg px-3 py-1.5 text-sm">
             <ion-icon name="calendar" class="text-secondary"></ion-icon>
             <span class="text-base-content/70">First</span>
-            <span class="font-bold text-secondary">{{ .Date | time.Format "Jan 2006" }}</span>
+            <span class="font-bold text-secondary">{{ $firstPublicTalk.Date | time.Format "Jan 2006" }}</span>
           </div>
+          {{ end }}
           {{ if $lastPublicTalk }}
           <div class="flex items-center gap-2 bg-base-200 rounded-lg px-3 py-1.5 text-sm">
             <ion-icon name="time" class="text-accent"></ion-icon>
@@ -404,11 +415,13 @@
           <span class="font-bold text-error">{{ $videoCount }}</span>
         </div>
         {{ end }}
+        {{ if $firstPublicTalk }}
         <div class="flex items-center gap-2 bg-base-200 rounded-lg px-3 py-1.5 text-sm">
           <ion-icon name="calendar" class="text-secondary"></ion-icon>
           <span class="text-base-content/70">First</span>
-          <span class="font-bold text-secondary">{{ .Date | time.Format "Jan 2006" }}</span>
+          <span class="font-bold text-secondary">{{ $firstPublicTalk.Date | time.Format "Jan 2006" }}</span>
         </div>
+        {{ end }}
         {{ if $lastPublicTalk }}
         <div class="flex items-center gap-2 bg-base-200 rounded-lg px-3 py-1.5 text-sm">
           <ion-icon name="time" class="text-accent"></ion-icon>
@@ -485,29 +498,38 @@
 </div>
 
 {{/* Conference list - full width with year grouping */}}
+{{ if gt (len $sortedTalks) 0 }}
 <div class="mt-8 px-4" style="max-width: 1600px; margin: 0 auto;">
   <div class="divider my-8"></div>
   <h2 class="text-2xl font-bold mb-4">Conferences</h2>
   
-  {{/* Group talks by year */}}
-  {{ $groups := $sortedTalks | group "Date.Year" }}
-  {{ $sortedGroups := slice }}
-  {{ range $sortedTalks.GroupByDate "2006" }}
-    {{ $sortedGroups = $sortedGroups | append . }}
+  {{/* Group talks by year using scratch */}}
+  {{ $yearScratch := newScratch }}
+  {{ $yearScratch.Set "years" slice }}
+  {{ range $sortedTalks }}
+    {{ $year := .Date.Format "2006" }}
+    {{ if not ($yearScratch.Get $year) }}
+      {{ $yearScratch.Set $year slice }}
+      {{ $yearScratch.Add "years" $year }}
+    {{ end }}
+    {{ $yearScratch.Add $year (slice .) }}
   {{ end }}
+  {{ $sortedYears := sort ($yearScratch.Get "years") "value" "desc" }}
 
-  {{ range $sortedGroups }}
-  <section id="year-{{ .Key }}" class="mb-12">
+  {{ range $sortedYears }}
+  {{ $year := . }}
+  {{ $yearTalks := $yearScratch.Get $year }}
+  <section id="year-{{ $year }}" class="mb-12">
     <div class="flex items-center gap-4 mb-6">
       <div class="year-badge">
-        <span class="text-xl font-black">{{ .Key }}</span>
+        <span class="text-xl font-black">{{ $year }}</span>
       </div>
       <div class="year-line"></div>
-      <span class="badge badge-lg badge-ghost year-pill">{{ len .Pages }} talks</span>
+      <span class="badge badge-lg badge-ghost year-pill">{{ len $yearTalks }} talks</span>
     </div>
 
     <div class="talks-grid">
-      {{ range .Pages.ByDate.Reverse }}
+      {{ range $yearTalks }}
       <article class="card bg-base-200 shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 group">
         {{ $cover := "" }}
         {{ if .Params.cover }}
@@ -566,6 +588,8 @@
   {{ end }}
 
 </div>
+{{ end }}
+
 {{ end }}
 
 {{ define "js" }}

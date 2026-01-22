@@ -2,7 +2,6 @@
 title: "Elastify your app: from SQL to NoSQL"
 layout: "template"
 talk: SQL2NoSQL
-date: 2013-03-28
 nolastmod: true
 draft: false
 

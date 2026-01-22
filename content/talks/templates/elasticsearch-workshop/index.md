@@ -2,7 +2,6 @@
 title: "Hands on elasticsearch / Kibana"
 layout: "template"
 talk: Elasticsearch Workshop
-date: 2012-09-19
 nolastmod: true
 draft: false
 

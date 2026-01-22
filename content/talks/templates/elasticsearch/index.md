@@ -2,7 +2,6 @@
 title: "Elasticsearch"
 layout: "template"
 talk: Elasticsearch
-date: 2012-04-19
 nolastmod: true
 draft: false
 

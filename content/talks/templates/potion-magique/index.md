@@ -2,7 +2,6 @@
 title: "Want to boost your career? Open source yourself!"
 layout: "template"
 talk: Potion Magique
-date: 2022-06-09
 nolastmod: true
 draft: false
 

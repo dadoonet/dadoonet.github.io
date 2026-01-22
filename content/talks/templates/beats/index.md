@@ -2,7 +2,6 @@
 title: "And the beats go on !"
 layout: "template"
 talk: Beats
-date: 2016-03-24
 nolastmod: true
 draft: false
 

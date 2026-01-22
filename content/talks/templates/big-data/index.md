@@ -2,7 +2,6 @@
 title: "Make sense of your (BIG) data!"
 layout: "template"
 talk: Big Data
-date: 2013-06-11
 nolastmod: true
 draft: false
 

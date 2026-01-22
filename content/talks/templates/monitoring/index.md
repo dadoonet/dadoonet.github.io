@@ -2,7 +2,6 @@
 title: "Monitor Your Java Applications with the Elastic Stack: Logs, Metrics, Pings, and Traces"
 layout: "template"
 talk: Monitoring
-date: 2018-09-14
 nolastmod: true
 draft: false
 

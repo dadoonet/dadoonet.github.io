@@ -2,7 +2,6 @@
 title: "FSCrawler! You know, for files!"
 layout: "template"
 talk: FSCrawler
-date: 2021-03-25
 nolastmod: true
 draft: false
 

@@ -2,7 +2,6 @@
 title: "Elasticsearch Query Language: ES|QL"
 layout: "template"
 talk: ES|QL
-date: 2024-05-21
 nolastmod: true
 draft: false
 

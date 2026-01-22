@@ -2,7 +2,6 @@
 title: "do MORE with stateLESS Elasticsearch"
 layout: "template"
 talk: Serverless
-date: 2025-09-05
 nolastmod: true
 draft: false
 

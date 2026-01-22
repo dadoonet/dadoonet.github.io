@@ -2,7 +2,6 @@
 title: "Identifier les menaces avec Elastic SIEM"
 layout: "template"
 talk: SIEM
-date: 2020-09-11
 nolastmod: true
 draft: false
 

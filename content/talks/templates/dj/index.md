@@ -2,7 +2,6 @@
 title: "The Art of DeeJaying in Practice"
 layout: "template"
 talk: DJ
-date: 2023-06-15
 nolastmod: true
 draft: false
 

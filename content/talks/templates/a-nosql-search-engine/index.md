@@ -2,7 +2,6 @@
 title: "A NoSQL search engine for searching^H^H^H^H^H^H^H^H finding..."
 layout: "template"
 talk: A NoSQL search engine
-date: 2016-12-15
 nolastmod: true
 draft: false
 

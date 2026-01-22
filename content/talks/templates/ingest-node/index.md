@@ -2,7 +2,6 @@
 title: "Ingest node: (re)index and enrich documents in Elasticsearch"
 layout: "template"
 talk: Ingest Node
-date: 2016-12-01
 nolastmod: true
 draft: false
 

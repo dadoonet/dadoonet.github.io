@@ -2,7 +2,6 @@
 title: "Managing your black Friday logs"
 layout: "template"
 talk: Black Friday
-date: 2017-12-14
 nolastmod: true
 draft: false
 
