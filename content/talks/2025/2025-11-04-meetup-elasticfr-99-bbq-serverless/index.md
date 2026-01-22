@@ -1,7 +1,7 @@
 ---
-title: "do MORE with stateLESS Elasticsearch"
+title: "ElasticFR #99: do MORE with stateLESS Elasticsearch"
 conference: 
-  name: "Meetup ElasticFR #99 - BBQ & Serverless"
+  name: "Meetup ElasticFR"
   city: "Paris"
   country: "France"
   country_code: "fr"

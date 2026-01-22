@@ -1,7 +1,7 @@
 ---
-title: "🎹🎻🎸 Et si nous cherchions des morceaux de musique 🎼🎶 ?"
+title: "ElasticFR #88: 🎹🎻🎸 Et si nous cherchions des morceaux de musique 🎼🎶 ?"
 conference: 
-  name: "Meetup ElasticFR #88"
+  name: "Meetup ElasticFR"
   url: "https://www.meetup.com/elasticfr/events/296809690"
   city: "Paris"
   country: "France"

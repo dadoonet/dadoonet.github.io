@@ -230,7 +230,7 @@
     {{ end }}
 
     {{/* See also section - other conferences with the same talk */}}
-    {{ if gt (len $relatedTalks) 1 }}
+    {{ if gt (len $relatedTalks) 0 }}
     {{ $totalRelated := len $relatedTalks }}
     {{ $sortedRelated := sort $relatedTalks ".Date" "desc" }}
     {{ $displayLimit := 7 }}
