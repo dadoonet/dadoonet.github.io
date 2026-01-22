@@ -135,6 +135,8 @@ Even though Shay couldn't join us this time, the spirit of that first meetup liv
 
 ## Thank you! 🙏
 
+{{< youtube GYDkfGDJd5U >}}
+
 To everyone who made these 100 meetups possible:
 
 - **The 150+ speakers** who took time to share their knowledge with the community 💡
@@ -143,11 +145,9 @@ To everyone who made these 100 meetups possible:
 - **My devrel team** at Elastic who is giving me the needed budget and specifically **Adrienne Vries** for managing all the logistics to make the meetups possible 📦
 - **Alkoda On Air** for providing high quality recordings 🎥
 - **Elastic** for building always evolving pieces of software and sponsoring the meetups 💚
-- Special thanks to **Shay Banon** for his support over the years 🎉
+- Special thanks to **Shay Banon** for writing this lovely piece of software which is Elasticsearch and his support over the years 🎉
 
 Here's to the next 100 meetups! 🥂
-
-{{< youtube GYDkfGDJd5U >}}
 
 ---
 
