@@ -374,7 +374,7 @@
 {{/* Recent talks = first 3 past talks */}}
 {{ $recentTalks := first 3 $pastTalks }}
 {{/* Older talks = past talks after the first 3, limited to 25 */}}
-{{ $olderTalks := first 25 (after 3 $pastTalks) }}
+{{ $olderTalks := first 10 (after 3 $pastTalks) }}
 {{/* Recent videos = first 4 talks with video */}}
 {{ $recentVideos := first 4 $talksWithVideo }}
 
