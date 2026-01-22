@@ -10,7 +10,7 @@ versions:
     flag: "gb"
     title: "A NoSQL search engine for searching^H^H^H^H^H^H^H^H finding..."
     abstract: |
-      You are still searching in your data with SELECT * FROM person WHERE name like '%david%pilato%" ?
+      You are still searching in your data with `SELECT * FROM person WHERE name like '%david%pilato%"` ?
       
       Beyond the performance gains, are you sure you are returning the most relevant results for your users first?
       
@@ -18,9 +18,9 @@ versions:
 
   - label: "FR"
     flag: "fr"
-    title: "Elasticsearch"
+    title: "Un moteur de recherche NoSQL pour chercher^H^H^H^H^H^H^H^H trouver..."
     abstract: |
-      Vous cherchez toujours dans vos données avec des SELECT * FROM person WHERE name like '%david%pilato%" ?
+      Vous cherchez toujours dans vos données avec des `SELECT * FROM person WHERE name like '%david%pilato%"` ?
       
       Au delà des performances obtenues, êtes-vous certain de renvoyer les résultats les plus pertinents pour vos utilisateurs d'abord ?
       
