@@ -174,7 +174,6 @@ content/talks/templates/
 title: "Elasticsearch Query Language: ES|QL"
 layout: "template"            # REQUIRED - uses layouts/talks/template.html
 talk: ES|QL                   # REQUIRED - must match the talks
-date: 2024-09-17              # Template creation date (often 1st occurrence)
 nolastmod: true
 draft: false
 
