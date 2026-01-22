@@ -544,7 +544,24 @@
     {{ $templatesSection := site.GetPage "/talks/templates" }}
     {{ if $templatesSection }}
     {{ $templates := $templatesSection.Pages }}
-    {{ $sortedTemplates := sort $templates ".Date" "desc" }}
+    {{/* Build a slice of maps with template and its latest played date */}}
+    {{ $templatesWithDates := slice }}
+    {{/* Get all talks excluding templates */}}
+    {{ $allTalksForTemplates := where (where site.RegularPages "Section" "talks") ".File.Dir" "not in" (slice "talks/templates/") }}
+    {{ range $templates }}
+      {{ $talkName := .Params.talk }}
+      {{ $latestDate := time "1970-01-01" }}
+      {{ $playedCount := 0 }}
+      {{ range where $allTalksForTemplates ".Params.talk" $talkName }}
+        {{ $playedCount = add $playedCount 1 }}
+        {{ if gt .Date $latestDate }}
+          {{ $latestDate = .Date }}
+        {{ end }}
+      {{ end }}
+      {{ $templatesWithDates = $templatesWithDates | append (dict "template" . "latestDate" $latestDate "playedCount" $playedCount) }}
+    {{ end }}
+    {{/* Sort by latestDate descending (most recent first) */}}
+    {{ $sortedTemplates := sort $templatesWithDates "latestDate" "desc" }}
     {{ $recentTemplates := first 4 $sortedTemplates }}
     {{ if $recentTemplates }}
     <div class="section-divider">
@@ -554,25 +571,22 @@
     <section class="mb-12">
       <div class="video-grid">
         {{ range $recentTemplates }}
-        {{ $talkName := .Params.talk }}
-        {{/* Count how many times this talk was played */}}
-        {{ $playedCount := 0 }}
-        {{ range where (where site.RegularPages "Section" "talks") ".Params.talk" $talkName }}
-          {{ $playedCount = add $playedCount 1 }}
-        {{ end }}
-        <a href="{{ .RelPermalink }}" class="template-preview-card">
+        {{ $template := .template }}
+        {{ $playedCount := .playedCount }}
+        {{ $latestDate := .latestDate }}
+        <a href="{{ $template.RelPermalink }}" class="template-preview-card">
           <div class="template-preview-header">
-            <h3 class="template-preview-title">{{ .Title }}</h3>
+            <h3 class="template-preview-title">{{ $template.Title }}</h3>
           </div>
           <div class="template-preview-body">
-            <p class="template-preview-abstract">{{ .Summary | plainify | truncate 100 }}</p>
+            <p class="template-preview-abstract">{{ $template.Summary | plainify | truncate 100 }}</p>
           </div>
           <div class="template-preview-footer">
             <span class="template-preview-count">
               <ion-icon name="mic"></ion-icon>
               {{ $playedCount }} times
             </span>
-            <span class="template-preview-date">Since {{ .Date | time.Format "2006" }}</span>
+            <span class="template-preview-date">{{ if gt $playedCount 0 }}Last {{ $latestDate | time.Format "Jan 2006" }}{{ else }}Never played{{ end }}</span>
           </div>
         </a>
         {{ end }}
