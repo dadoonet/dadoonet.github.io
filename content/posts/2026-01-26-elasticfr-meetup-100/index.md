@@ -147,7 +147,7 @@ To everyone who made these 100 meetups possible:
 
 Here's to the next 100 meetups! 🥂
 
-**TODO: Add the Meetup 100 thank you video.**
+{{< youtube GYDkfGDJd5U >}}
 
 ---
 
