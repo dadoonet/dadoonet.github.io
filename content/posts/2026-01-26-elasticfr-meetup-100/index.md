@@ -20,7 +20,7 @@ cover: cover.png
 
 When I started the [ElasticFR meetup group](https://www.meetup.com/ElasticFR/) back in 2013, I had no idea we would reach this milestone. What began as a small gathering of curious developers exploring a new search engine has grown into one of the most active Elastic user groups in the world, with **over 150 recorded talks** on our [YouTube playlist](https://youtube.com/playlist?list=PL_mJOmq4zsHa9mB1DU8BWjdLsUj4AiP9k&si=89HLBoUow3N5ttlb), tracking the technical evolution and enterprise adoption of the Elastic Stack across French-speaking companies.
 
-Today, as we gather at **BNP Paribas** for this special 100th meetup with **Shay Banon** himself - the founder of Elasticsearch - it's time to look back at this incredible journey.
+Today, as we gather at **BNP Paribas** for this special 100th meetup, it's time to look back at this incredible journey. **Shay Banon** - the founder of Elasticsearch - was originally planned to join us, but unfortunately couldn't make it. We're honored to have **Baha Azarmi**, Elastic's Observability GM and long-time supporter of the French community, stepping in to represent Elastic's leadership.
 
 <!--more-->
 
@@ -127,11 +127,11 @@ A big thank you to all the hosts with a special thank you to the ones who suppor
 
 For this landmark event, we're honored to gather at **BNP Paribas** (Bivwak!, 3 Rue Rossini, Paris) with an exceptional program:
 
-- **Shay Banon & Raquel Tabuyo** - The founder returns for the 100th celebration and Raquel will be running very nice demos about Agents and Workflows!
+- **Baha Azarmi & Raquel Tabuyo** - Baha, who has already spoken at ElasticFR meetups in the past, will share insights about Elastic's vision while Raquel will be running very nice demos about Agents and Workflows!
 - **Guillaume Nocent & Jean Daniel Zoro** - "Troubleshooting and planning performance at scale in BNP Paribas"
 - **Yui Mikuriya** - "Building secure, agent-powered intelligence"
 
-The presence of Shay Banon at meetup #100 beautifully bookends our journey - he was there at meetup #01 at Zenika in January 2013, and here he is again, 13 years later, still passionate about search and always volunteering to meet the community and hear from the users.
+Even though Shay couldn't join us this time, the spirit of that first meetup lives on. Baha Azarmi is no stranger to our community - he has already spoken at ElasticFR meetups in the past, and his presence at meetup #100 shows Elastic's continued commitment to the French-speaking community.
 
 ## Thank you! 🙏
 
