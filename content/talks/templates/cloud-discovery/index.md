@@ -2,7 +2,7 @@
 title: "Node discovery in Cloud environment"
 layout: "template"
 talk: Cloud Discovery
-date: 2014-02-13
+date: 2015-01-22
 nolastmod: true
 draft: false
 

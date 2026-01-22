@@ -2,7 +2,7 @@
 title: "Randomized testing: Gotta Catch 'Em All"
 layout: "template"
 talk: Randomized Testing
-date: 2026-01-30
+date: 2016-03-25
 nolastmod: true
 draft: false
 

@@ -2,7 +2,7 @@
 title: "🎹🎻🎸 Searching for similar music tracks 🎼🎶"
 layout: "template"
 talk: Music Search
-date: 2024-09-17
+date: 2023-11-15
 nolastmod: true
 draft: false
 

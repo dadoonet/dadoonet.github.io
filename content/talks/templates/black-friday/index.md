@@ -2,19 +2,19 @@
 title: "Managing your black Friday logs"
 layout: "template"
 talk: Black Friday
-date: 2014-02-13
+date: 2017-12-14
 nolastmod: true
 draft: false
 
 versions:
   - label: "EN"
     flag: "gb"
-    title: "Cloud Discovery"
+    title: "Managing your black Friday logs"
     abstract: |
       TODO: add abstract
   - label: "FR"
     flag: "fr"
-    title: "Cloud Discovery"
+    title: "Les vendredis noirs ? Même pas peur !"
     abstract: |
       TODO: add abstract
 ---
