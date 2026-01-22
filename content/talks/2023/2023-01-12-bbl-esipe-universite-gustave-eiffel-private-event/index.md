@@ -24,19 +24,12 @@ notist: "dadoonet/v8tARM"
 youtube: "7yr2CC_ZlHs"
 
 links:
-  - title: "Une ancienne vidéo (2015) sur le même sujet"
-    url: "https://vimeo.com/129781775"
-    description: "An old video (2015) on the same topic"
   - title: "Demo: Kibana script for BBL"
     url: "https://gist.github.com/dadoonet/f911291c4dd19b0802031db3064c648f"
     description: "This is the Kibana script I’m starting from when doing the talk"
   - title: "Demo: One Million Tweet Map"
     url: "https://onemilliontweetmap.com/"
     description: "This demo shows how you can use One Million Tweet Map to visualize tweets"
-  - title: "Video: Elasticsearch (in french)"
-    url: "https://youtu.be/7yr2CC_ZlHs"
-    description: "A video (in french) on the same topic"
-
 aliases:
   - /v8tARM
 ---

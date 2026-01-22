@@ -38,10 +38,6 @@ links:
   - title: "Demo: One Million Tweet Map"
     url: "https://onemilliontweetmap.com/"
     description: "This demo shows how you can use One Million Tweet Map to visualize tweets"
-  - title: "A video (in french) on the same topic"
-    url: "https://youtu.be/7yr2CC_ZlHs"
-    description: "A video (in french) on the same topic"
-
 aliases:
   - /1GUvVD
 ---

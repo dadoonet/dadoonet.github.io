@@ -24,9 +24,6 @@ links:
     url: "https://gist.github.com/dadoonet/f911291c4dd19b0802031db3064c648f"
     description: "This is the Kibana script I’m starting from when doing the talk"
 
-  - title: "A video (in french) on the same topic"
-    url: "https://youtu.be/ctQki1Qdrvk"
-
   - title: "SNCF"
     url: "https://sncf.com/"
 
