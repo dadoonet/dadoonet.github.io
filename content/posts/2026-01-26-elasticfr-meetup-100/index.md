@@ -105,6 +105,8 @@ I'm meeting a lot of people in the IT but lot of them are hesitating to speak in
 >
 > Don't be shy. It will be always a success. And don't think you won't share interesting content. After [13 years at Elastic]({{< ref 2026-01-10-13-years-migrating-to-hugo-with-cursor >}}), I'm **always** learning a thing at every single talk.
 
+Apply now! The [CFP is always opened](https://ela.st/cfp-elasticfr).
+
 ## The hosts who made it possible 🏢
 
 A meetup needs a venue, and we've been incredibly fortunate to have **40+ companies** open their doors over the years:
@@ -119,7 +121,7 @@ A meetup needs a venue, and we've been incredibly fortunate to have **40+ compan
 | **2023-2024** | Lab'Innov CISIRH, Les-Tilleuls.coop, Scaleway, Zenika, Sedona, Google, Liferay, Microsoft, Canal+, Radès, Renault Digital, Peritis |
 | **2025-2026** | Criteo, Deezer, Crème de la crème, Gigamon, Pyl.Tech, Zenika, BNP Paribas                                                          |
 
-A big thank you to all the hosts with a special thank you to the ones who supported us multiple times and sponsored the video recording! We could not have done it without you!
+A big thank you to all the hosts with a special thank you to the ones who supported us multiple times and sponsored the video recording! We could not have done it without you! And if you want to be (again) a future host, please [contact me]({{< ref "about" >}}) and we will discuss the details.
 
 ## Today: meetup #100 at BNP Paribas 🏦
 
