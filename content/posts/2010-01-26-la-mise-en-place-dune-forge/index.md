@@ -60,4 +60,4 @@ sudo ln -s ../mods-available/rewrite.load rewrite.load
 sudo service apache2 start
 ```
 
-Finalement, Adullact a annoncé vouloir passer sous [FusionForge](http://fusionforge.org/) qui est un fork de GForge afin de conserver la forge dans le monde open-source. La team FusionForge travaille en ce moment sur la version 5.0 mais elle n'est pas encore stabilisée. Nous allons donc installer la [version 4.8.3](http://fusionforge.org/frs/?group_id=6).
+Finalement, Adullact a annoncé vouloir passer sous [FusionForge](https://fr.wikipedia.org/wiki/FusionForge) qui est un fork de GForge afin de conserver la forge dans le monde open-source. La team FusionForge travaille en ce moment sur la version 5.0 mais elle n'est pas encore stabilisée. Nous allons donc installer la version 4.8.3.

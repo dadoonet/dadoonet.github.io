@@ -124,7 +124,7 @@ organized!
   * 🇫🇷 - [Conference - AI and Data Day: La recherche à l’ère de l’IA](https://dev.events/conferences/ia-and-data-day-strasbourg-a3ea8lsm) - 50 attendees.
 * April:
   * 🇫🇷 - [Training - Elastic Observability Engineer](https://www.elastic.co/training/elastic-observability-engineer) - 10 attendees.
-  * 🇫🇷 - [Conference - DevoxxFR: La recherche à l’ère de l’IA](https://mobile.devoxx.com/events/devoxxfr2024/talks/4178/details) - 200 attendees.
+  * 🇫🇷 - [Conference - DevoxxFR: La recherche à l’ère de l’IA]({{< ref "talks/2024/2024-04-18-devoxx-france-2024" >}}) - 200 attendees.
   * 🌍 - [Meetup - Virtual: Elastic Extensions for Importance Ranking and Data Exploration](https://www.youtube.com/watch?v=IHaTzB77eC4) - 19 attendees online. I was just the "host" for this one.
 * May:
   * 🇫🇷 - [Meetup - AlpesJUG: La recherche à l’ère de l’IA](https://www.meetup.com/alpesjug/events/299609510/) - 20 attendees.

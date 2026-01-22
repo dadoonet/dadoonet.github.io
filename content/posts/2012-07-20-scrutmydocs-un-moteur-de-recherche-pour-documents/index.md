@@ -44,6 +44,4 @@ Télécharger la webapp <https://github.com/downloads/scrutmydocs/scrutmydocs/sc
 
 La documentation est sur la repository [GitHub](https://github.com/scrutmydocs/scrutmydocs).
 
-Plus de détails et une démo sur le site web : <http://www.scrutmydocs.org>
-
 Les commentaires sur le projet, les demandes d’évolution, les rapports de bug et les pull requests sont évidemment les bienvenus !

@@ -49,7 +49,7 @@ proxy=http://adresseipproxy:port/
 
 ### Téléchargement de la distribution fusionforge
 
-Les packages à télécharger pour installer la forge sont disponibles à l'adresse : <http://fusionforge.org/frs/?group_id=6>.
+Les packages à télécharger pour installer la forge sont disponibles à l'adresse : <https://fr.wikipedia.org/wiki/FusionForge>.
 
 > [!NOTE]
 > Le document présent est basé sur la version 5.0 de la forge. Il est conseillé de prendre la version notée « allinone ».
@@ -173,8 +173,3 @@ La forge doit gérer elle-même ses DNS afin de pouvoir déclarer chaque nouveau
 Pour cela, une délégation de DNS doit être réalisée par le DNS principal du domaine `mondomaine` pour laisser le service BIND de la forge gérer le sous-domaine `maforge.mondomaine`.
 
 Il faut donc également installer le service BIND sur la forge et le configurer.
-
-> [!NOTE]
-> A compléter
->
-> Voir aussi : <https://fusionforge.org/docman/view.php/6/1/gforge_manual.plain.html#id2623367>
