@@ -13,7 +13,7 @@ authors:
     avatar: /about/david_pilato.png
  #   link: "https://www.linkedin.com/in/username"
 date: '{{ substr .File.ContentBaseName 0 10 }}'
-lang: fr # fr or en
+talk-lang: fr # fr or en
 nolastmod: true
 draft: true
 pdf: "{{ substr .File.ContentBaseName 0 4 }}/{{ .File.ContentBaseName }}.pdf"
