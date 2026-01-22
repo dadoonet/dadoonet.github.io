@@ -12,7 +12,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 # talk: conferences
 date: 2023-12-06
-lang: fr
+talk-lang: fr
 nolastmod: true
 draft: false
 pdf: "2023/2023-12-06-open-source-experience.pdf"

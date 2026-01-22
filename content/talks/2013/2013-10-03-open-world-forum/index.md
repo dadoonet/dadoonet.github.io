@@ -16,7 +16,7 @@ authors:
     link: https://x.com/emmanuelkeller
 talk: Elasticsearch Workshop
 date: 2013-10-03
-lang: fr
+talk-lang: fr
 nolastmod: true
 draft: false
 

@@ -12,7 +12,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 talk: Black Friday
 date: 2018-04-11
-lang: en
+talk-lang: en
 nolastmod: true
 draft: false
 pdf: "2018/2018-04-11-cloudconfit.pdf"

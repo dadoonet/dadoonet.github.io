@@ -9,7 +9,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 # talk: conferences
 date: 2021-04-01
-lang: en
+talk-lang: en
 nolastmod: true
 draft: false
 pdf: "2021/2021-04-01-elastic-saudi-arabia-user-group.pdf"

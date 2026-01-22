@@ -12,7 +12,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 # talk: conferences
 date: 2019-10-09
-lang: en
+talk-lang: en
 nolastmod: true
 draft: false
 

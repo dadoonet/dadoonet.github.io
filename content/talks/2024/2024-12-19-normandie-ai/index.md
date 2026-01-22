@@ -12,7 +12,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 # talk: conferences
 date: 2024-12-19
-lang: fr
+talk-lang: fr
 nolastmod: true
 draft: false
 pdf: "2024/2024-12-19-normandie-ai.pdf"

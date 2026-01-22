@@ -9,7 +9,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 # talk: conferences
 date: 2021-03-30
-lang: en
+talk-lang: en
 nolastmod: true
 draft: false
 

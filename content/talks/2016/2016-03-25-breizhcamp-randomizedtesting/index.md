@@ -12,7 +12,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 talk: Randomized Testing
 date: 2016-03-24
-lang: fr
+talk-lang: fr
 nolastmod: true
 draft: false
 

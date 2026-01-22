@@ -11,7 +11,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 talk: Elasticsearch
 date: 2012-04-19
-lang: fr
+talk-lang: fr
 nolastmod: true
 draft: false
 pdf: "2012/2012-04-19-elasticsearch-devoxx-france-2012.pdf"

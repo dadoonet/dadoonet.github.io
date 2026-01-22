@@ -11,7 +11,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 talk: Legacy Search
 date: 2014-06-12
-lang: en
+talk-lang: en
 nolastmod: true
 draft: false
 

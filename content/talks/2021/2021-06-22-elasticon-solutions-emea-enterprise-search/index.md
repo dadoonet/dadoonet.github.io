@@ -9,7 +9,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 # talk: conferences
 date: 2021-06-22
-lang: fr
+talk-lang: fr
 nolastmod: true
 draft: false
 pdf: "2021/2021-06-22-elasticon-solutions-emea-enterprise-search.pdf"

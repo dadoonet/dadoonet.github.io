@@ -12,7 +12,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 talk: Monitoring
 date: 2018-09-14
-lang: fr
+talk-lang: fr
 nolastmod: true
 draft: false
 

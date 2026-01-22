@@ -9,7 +9,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 # talk: conferences
 date: 2022-11-24
-lang: en
+talk-lang: en
 nolastmod: true
 draft: false
 pdf: "2022/2022-11-24-jcon-2022.pdf"

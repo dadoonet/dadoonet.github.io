@@ -11,7 +11,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 talk: Big Data
 date: 2018-05-09
-lang: en
+talk-lang: en
 nolastmod: true
 draft: false
 

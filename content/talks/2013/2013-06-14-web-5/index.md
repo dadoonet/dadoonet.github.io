@@ -16,7 +16,7 @@ authors:
     avatar: /about/david_pilato.png
 talk: SQL2NoSQL
 date: 2013-06-14
-lang: en
+talk-lang: en
 nolastmod: true
 draft: false
 

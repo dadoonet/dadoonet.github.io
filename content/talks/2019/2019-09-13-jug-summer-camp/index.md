@@ -16,7 +16,7 @@ authors:
     avatar: /about/david_pilato.png
 # talk: conferences
 date: 2019-09-13
-lang: fr
+talk-lang: fr
 nolastmod: true
 draft: false
 pdf: "2019/2019-09-13-jug-summer-camp.pdf"

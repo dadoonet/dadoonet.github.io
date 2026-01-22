@@ -11,7 +11,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 # talk: conferences
 date: 2018-10-02
-lang: fr
+talk-lang: fr
 nolastmod: true
 draft: false
 pdf: "2018/2018-10-02-open-source-talks.pdf"

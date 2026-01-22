@@ -15,7 +15,7 @@ authors:
     avatar: /about/david_pilato.png
 talk: Big Data
 date: 2015-04-08
-lang: fr
+talk-lang: fr
 nolastmod: true
 draft: false
 

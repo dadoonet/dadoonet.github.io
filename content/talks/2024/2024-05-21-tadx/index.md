@@ -12,7 +12,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 talk: ES|QL
 date: 2024-05-21
-lang: fr
+talk-lang: fr
 nolastmod: true
 draft: false
 pdf: "2024/2024-05-21-tadx.pdf"

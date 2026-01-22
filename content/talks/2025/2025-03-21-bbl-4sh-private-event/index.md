@@ -12,7 +12,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 talk: Elasticsearch
 date: 2025-03-21
-lang: fr
+talk-lang: fr
 nolastmod: true
 draft: false
 pdf: "2025/2025-03-21-bbl-4sh-private-event.pdf"

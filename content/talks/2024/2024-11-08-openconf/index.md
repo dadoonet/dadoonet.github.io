@@ -9,7 +9,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 talk: Music Search
 date: 2024-11-08
-lang: en
+talk-lang: en
 nolastmod: true
 draft: false
 pdf: "2024/2024-11-08-openconf.pdf"

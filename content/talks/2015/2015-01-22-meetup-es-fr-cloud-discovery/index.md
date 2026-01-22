@@ -12,7 +12,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 talk: Cloud Discovery
 date: 2015-01-22
-lang: fr
+talk-lang: fr
 nolastmod: true
 draft: false
 youtube: "h0PRyHj9Iig"

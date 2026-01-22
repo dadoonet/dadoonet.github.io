@@ -15,7 +15,7 @@ authors:
     avatar: /about/david_pilato.png
 talk: Elasticsearch Workshop
 date: 2014-04-16
-lang: fr
+talk-lang: fr
 nolastmod: true
 draft: false
 

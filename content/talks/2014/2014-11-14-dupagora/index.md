@@ -15,7 +15,7 @@ authors:
     link: "https://www.linkedin.com/in/florianlemoing"
 # talk: conferences
 date: 2014-11-14
-lang: fr
+talk-lang: fr
 nolastmod: true
 draft: false
 

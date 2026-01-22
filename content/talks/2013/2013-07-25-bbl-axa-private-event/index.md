@@ -12,7 +12,7 @@ avatar: /about/david_pilato.png
 cover: axa.png
 talk: Elasticsearch
 date: 2013-07-25
-lang: fr
+talk-lang: fr
 nolastmod: true
 draft: false
 

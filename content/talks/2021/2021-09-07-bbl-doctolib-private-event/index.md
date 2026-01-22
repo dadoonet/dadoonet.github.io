@@ -9,7 +9,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 talk: Elasticsearch
 date: 2021-09-07
-lang: fr
+talk-lang: fr
 nolastmod: true
 draft: false
 pdf: "2021/2021-09-07-bbl-doctolib-private-event.pdf"

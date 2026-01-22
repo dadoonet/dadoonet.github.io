@@ -9,7 +9,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 talk: Postal Addresses
 date: 2020-09-24
-lang: en
+talk-lang: en
 nolastmod: true
 draft: false
 

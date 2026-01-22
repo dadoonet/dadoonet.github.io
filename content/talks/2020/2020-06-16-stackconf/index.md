@@ -8,7 +8,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 # talk: conferences
 date: 2020-06-16
-lang: en
+talk-lang: en
 nolastmod: true
 draft: false
 pdf: "2020/2020-06-16-stackconf.pdf"

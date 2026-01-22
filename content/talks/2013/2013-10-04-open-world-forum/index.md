@@ -16,7 +16,7 @@ authors:
     link: https://tgrall.github.io/
 talk: SQL2NoSQL
 date: 2013-10-04
-lang: fr
+talk-lang: fr
 nolastmod: true
 draft: false
 

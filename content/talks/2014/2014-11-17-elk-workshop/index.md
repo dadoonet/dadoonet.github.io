@@ -11,7 +11,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 talk: Elasticsearch Workshop
 date: 2014-11-17
-lang: fr
+talk-lang: fr
 nolastmod: true
 draft: false
 pdf: "2014/2014-11-17-elk-workshop.pdf"

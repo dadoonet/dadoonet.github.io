@@ -12,7 +12,7 @@ conference:
 author: David Pilato
 avatar: /about/david_pilato.png
 date: 2025-12-05
-lang: fr
+talk-lang: fr
 nolastmod: true
 draft: false
 pdf: "2025/2025-12-05-devfest-dijon-2025.pdf"

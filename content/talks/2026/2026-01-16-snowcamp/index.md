@@ -12,7 +12,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 talk: Randomized Testing
 date: '2026-01-30'
-lang: fr
+talk-lang: fr
 nolastmod: true
 draft: false
 pdf: "2026/2026-01-30 - SnowCamp - Randomized Testing.pdf"

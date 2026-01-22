@@ -11,7 +11,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 talk: Elasticsearch
 date: 2013-03-21
-lang: fr
+talk-lang: fr
 nolastmod: true
 draft: false
 pdf: "2013/2013-03-21-lausanne-jug.pdf"

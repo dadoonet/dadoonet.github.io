@@ -24,7 +24,7 @@ authors:
     avatar: /about/david_pilato.png
 # talk: conferences
 date: 2019-05-31
-lang: en
+talk-lang: en
 nolastmod: true
 draft: false
 

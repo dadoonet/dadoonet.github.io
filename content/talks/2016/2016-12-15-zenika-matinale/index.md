@@ -12,7 +12,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 talk: A NoSQL search engine
 date: 2016-12-15
-lang: fr
+talk-lang: fr
 nolastmod: true
 draft: false
 

@@ -12,7 +12,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 # talk: conferences
 date: 2019-02-26
-lang: fr
+talk-lang: fr
 nolastmod: true
 draft: false
 pdf: "2019/2019-02-26-duchess-lunch.pdf"

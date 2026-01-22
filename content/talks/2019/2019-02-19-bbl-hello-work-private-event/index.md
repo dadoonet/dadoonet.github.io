@@ -11,7 +11,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 talk: Elasticsearch
 date: 2019-02-19
-lang: fr
+talk-lang: fr
 nolastmod: true
 draft: false
 pdf: "2019/2019-02-19-bbl-hello-work-private-event.pdf"

@@ -14,7 +14,7 @@ authors:
   - author: David Pilato
     avatar: /about/david_pilato.png
 date: 2013-11-14T10:00:00+01:00
-lang: en
+talk-lang: en
 nolastmod: true
 draft: false
 

@@ -11,7 +11,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 talk: Elasticsearch
 date: 2020-02-07
-lang: fr
+talk-lang: fr
 nolastmod: true
 draft: false
 pdf: "2020/2020-02-07-bbl-universite-paris-1-pantheon-sorbonne-private-event.pdf"

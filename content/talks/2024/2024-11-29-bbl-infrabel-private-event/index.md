@@ -12,7 +12,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 talk: ES|QL
 date: 2024-11-29
-lang: en
+talk-lang: en
 nolastmod: true
 draft: false
 pdf: "2024/2024-11-29-bbl-infrabel-private-event.pdf"

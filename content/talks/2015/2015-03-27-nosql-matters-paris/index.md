@@ -11,7 +11,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 talk: Legacy Search
 date: 2015-03-27
-lang: fr
+talk-lang: fr
 nolastmod: true
 draft: false
 pdf: "2015/2015-03-27-nosql-matters-paris.pdf"

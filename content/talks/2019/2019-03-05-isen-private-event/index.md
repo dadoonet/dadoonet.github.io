@@ -11,7 +11,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 # talk: conferences
 date: 2019-03-05
-lang: fr
+talk-lang: fr
 nolastmod: true
 draft: false
 pdf: "2019/2019-03-05-isen-private-event.pdf"

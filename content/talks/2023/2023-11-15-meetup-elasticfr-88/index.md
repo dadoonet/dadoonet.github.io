@@ -12,7 +12,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 talk: Music Search
 date: 2023-11-15
-lang: fr
+talk-lang: fr
 nolastmod: true
 draft: false
 pdf: "2023/2023-11-15-meetup-elasticfr-88.pdf"

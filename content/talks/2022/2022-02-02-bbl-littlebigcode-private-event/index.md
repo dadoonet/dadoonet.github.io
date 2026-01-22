@@ -9,7 +9,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 talk: Elasticsearch
 date: 2022-02-02
-lang: fr
+talk-lang: fr
 nolastmod: true
 draft: false
 pdf: "2022/2022-02-02-bbl-littlebigcode-private-event.pdf"

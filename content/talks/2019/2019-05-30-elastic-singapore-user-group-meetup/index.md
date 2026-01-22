@@ -12,7 +12,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 talk: Postal Addresses
 date: 2019-05-30
-lang: en
+talk-lang: en
 nolastmod: true
 draft: false
 

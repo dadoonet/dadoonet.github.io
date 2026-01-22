@@ -12,7 +12,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 # talk: conferences
 date: 2018-04-20
-lang: fr
+talk-lang: fr
 nolastmod: true
 draft: false
 pdf: "2018/2018-04-20-devvoxx-france.pdf"

@@ -9,7 +9,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 talk: Elasticsearch
 date: 2020-02-06
-lang: fr
+talk-lang: fr
 nolastmod: true
 draft: false
 pdf: "2020/2020-02-06-bbl-beastiejob.pdf"

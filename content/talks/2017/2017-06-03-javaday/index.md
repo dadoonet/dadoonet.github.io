@@ -11,7 +11,7 @@ conference:
 author: David Pilato
 avatar: /about/david_pilato.png
 date: 2017-06-03
-lang: en
+talk-lang: en
 nolastmod: true
 draft: false
 

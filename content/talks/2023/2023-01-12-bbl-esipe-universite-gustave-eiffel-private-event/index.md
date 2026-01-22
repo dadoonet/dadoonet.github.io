@@ -12,7 +12,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 talk: Elasticsearch
 date: 2023-01-12
-lang: fr
+talk-lang: fr
 nolastmod: true
 draft: false
 pdf: "2023/2023-01-12-bbl-esipe-universite-gustave-eiffel-private-event.pdf"

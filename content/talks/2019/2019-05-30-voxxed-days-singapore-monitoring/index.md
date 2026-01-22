@@ -12,7 +12,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 talk: Monitoring
 date: 2019-05-30
-lang: en
+talk-lang: en
 nolastmod: true
 draft: false
 pdf: "2019/2019-05-30-voxxed-days-singapore-monitoring.pdf"

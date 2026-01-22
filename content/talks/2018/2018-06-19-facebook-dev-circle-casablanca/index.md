@@ -11,7 +11,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 talk: A NoSQL search engine
 date: 2018-06-19
-lang: fr
+talk-lang: fr
 nolastmod: true
 draft: false
 pdf: "2018/2018-06-19-facebook-dev-circle-casablanca.pdf"

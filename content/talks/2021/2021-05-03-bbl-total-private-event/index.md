@@ -9,7 +9,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 talk: Elasticsearch
 date: 2021-05-03
-lang: fr
+talk-lang: fr
 nolastmod: true
 draft: false
 pdf: "2021/2021-05-03-bbl-total-private-event.pdf"

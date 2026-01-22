@@ -12,7 +12,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 # talk: conferences
 date: 2024-05-28
-lang: en
+talk-lang: en
 nolastmod: true
 draft: false
 pdf: "2024/2024-05-28-elastic-sofia-meetup.pdf"

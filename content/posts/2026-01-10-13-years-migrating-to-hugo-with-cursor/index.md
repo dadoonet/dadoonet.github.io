@@ -147,7 +147,7 @@ conference:
   longitude: "1.444209"
   url: "https://devfesttoulouse.fr/"
 date: 2024-11-07
-lang: fr
+talk-lang: fr
 talk: "Music Search"
 pdf: "2024/2024-11-07-devfest-toulouse.pdf"
 youtube: "FPW8nO0VGVg"

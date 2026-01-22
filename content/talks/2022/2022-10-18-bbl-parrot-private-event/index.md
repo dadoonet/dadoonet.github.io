@@ -12,7 +12,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 talk: Elasticsearch
 date: 2022-10-18
-lang: fr
+talk-lang: fr
 nolastmod: true
 draft: false
 pdf: "2022/2022-10-18-bbl-parrot-private-event.pdf"

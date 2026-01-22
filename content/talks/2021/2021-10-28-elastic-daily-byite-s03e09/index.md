@@ -8,7 +8,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 # talk: conferences
 date: 2021-10-28
-lang: en
+talk-lang: en
 nolastmod: true
 draft: false
 pdf: "2021/2021-10-28-elastic-daily-byite-s03e09.pdf"

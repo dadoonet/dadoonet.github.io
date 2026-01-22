@@ -8,7 +8,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 talk: Elasticsearch
 date: 2020-04-21
-lang: fr
+talk-lang: fr
 nolastmod: true
 draft: false
 pdf: "2020/2020-04-21-bbl-axa-private-event.pdf"

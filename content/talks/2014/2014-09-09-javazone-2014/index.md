@@ -12,7 +12,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 talk: Elasticsearch Workshop
 date: 2014-09-09
-lang: en
+talk-lang: en
 nolastmod: true
 draft: false
 

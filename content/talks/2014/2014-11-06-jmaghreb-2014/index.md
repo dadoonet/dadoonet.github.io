@@ -12,7 +12,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 talk: Big Data
 date: 2014-11-06
-lang: fr
+talk-lang: fr
 nolastmod: true
 draft: false
 

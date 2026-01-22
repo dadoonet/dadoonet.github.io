@@ -12,7 +12,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 talk: Elasticsearch
 date: 2025-05-28
-lang: fr
+talk-lang: fr
 nolastmod: true
 draft: false
 pdf: "2025/2025-05-28-bbl-manutan-private-event.pdf"

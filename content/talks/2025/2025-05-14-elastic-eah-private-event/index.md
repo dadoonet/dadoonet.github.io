@@ -11,7 +11,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 talk: Randomized Testing
 date: 2025-05-14
-lang: en
+talk-lang: en
 nolastmod: true
 draft: false
 pdf: "2025/2025-05-14-elastic-eah-private-event.pdf"

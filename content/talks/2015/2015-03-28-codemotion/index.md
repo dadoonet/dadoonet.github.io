@@ -12,7 +12,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 talk: Legacy Search
 date: 2015-03-28
-lang: en
+talk-lang: en
 nolastmod: true
 draft: false
 pdf: "2015/2015-03-28-codemotion.pdf"

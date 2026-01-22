@@ -12,7 +12,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 talk: Serverless
 date: 2025-11-04
-lang: fr
+talk-lang: fr
 nolastmod: true
 draft: false
 pdf: "2025/2025-11-04-meetup-elasticfr-99-bbq-serverless.pdf"

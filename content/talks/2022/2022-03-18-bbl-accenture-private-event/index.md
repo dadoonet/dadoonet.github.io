@@ -12,7 +12,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 talk: Elasticsearch
 date: 2022-03-18
-lang: en
+talk-lang: en
 nolastmod: true
 draft: false
 pdf: "2022/2022-03-18-bbl-accenture-private-event.pdf"

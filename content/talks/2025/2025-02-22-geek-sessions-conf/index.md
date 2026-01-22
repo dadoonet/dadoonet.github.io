@@ -12,7 +12,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 # talk: conferences
 date: 2025-02-22
-lang: en
+talk-lang: en
 nolastmod: true
 draft: false
 pdf: "2025/2025-02-22-geek-sessions-conf.pdf"

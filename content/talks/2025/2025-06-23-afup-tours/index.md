@@ -12,7 +12,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 talk: ES|QL
 date: 2025-06-23
-lang: fr
+talk-lang: fr
 nolastmod: true
 draft: false
 pdf: "2025/2025-06-23-afup-tours.pdf"

@@ -11,7 +11,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 talk: Elasticsearch
 date: 2012-11-21
-lang: fr
+talk-lang: fr
 nolastmod: true
 draft: false
 pdf: "2012/2012-11-21-montpellierjug-es.pdf"

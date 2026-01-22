@@ -1,4 +1,4 @@
-{{ $lang := .Params.lang | default "fr" }}
+{{ $lang := index .Params "talk-lang" | default "fr" }}
 {{ if eq $lang "en" }}
 <span class="badge badge-sm border-0" style="background-color: #e5e7eb; color: #4b5563;" title="English">en</span>
 {{ else }}

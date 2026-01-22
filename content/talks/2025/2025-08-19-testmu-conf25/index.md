@@ -9,7 +9,7 @@ author: David Pilato
 avatar: /about/david_pilato.png
 talk: Randomized Testing
 date: 2025-08-19
-lang: en
+talk-lang: en
 nolastmod: true
 draft: false
 pdf: "2025/2025-08-19-testmu-conf25.pdf"
