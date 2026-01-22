@@ -24,13 +24,13 @@ Description de la mise en place de la forge GForge pour les besoins de mon centr
 
 Pour les besoins internes de la douane, j'ai proposé la mise en place d'une forge afin de consolider nos moyens de développement et de gestion de projets.
 
-Histoire d'être cohérent avec d'autres choix faits par l'administration, [projet Adullact](http://adullact.net/), j'ai retenu la forge [GFORGE](http://gforge.org/).
+Histoire d'être cohérent avec d'autres choix faits par l'administration, [projet Adullact](https://adullact.net/), j'ai retenu la forge [GFORGE](https://gforge.com/).
 
 Je vais décrire ici le processus d'installation que je vais suivre afin de partager cette information avec d'autres personnes qui pourraient être intéressés par cette démarche.
 
 ## Installation de la Forge sur Ubuntu 9.10
 
-Tout d'abord, il faut télécharger les [sources de la forge](http://gforgegroup.com/es/download.php). Je me suis basé sur la dernière version connue à ce moment : [5.7b2 Community Edition](http://gforgegroup.com/dl/install-gforge-ce-57b2-src.zip).
+Tout d'abord, il faut télécharger les [sources de la forge](https://gforge.com/downloads/). Je me suis basé sur la dernière version connue à ce moment : [5.7b2 Community Edition](https://gforge.com/legacy-downloads/).
 
 ### Correction du problème avec Postgresql
 

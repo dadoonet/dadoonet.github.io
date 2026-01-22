@@ -19,7 +19,7 @@ aliases:
   - /blog/2015-05-09-advanced-search-for-your-legacy-application/
 ---
 
-I gave recently a [talk at Voxxed Istanbul 2015](http://sched.co/2p7l) and I'd like to share here the story of this talk.
+I gave recently a [talk at Voxxed Istanbul 2015]({{< ref "talks/2015/2015-05-09-voxxed-istanbul" >}}) and I'd like to share here the story of this talk.
 
 The talk was about adding a real search engine for your legacy application.
 Here "legacy" means an application which is still using SQL statements to execute search requests.

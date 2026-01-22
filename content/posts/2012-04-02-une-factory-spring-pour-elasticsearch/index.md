@@ -29,7 +29,7 @@ Mon besoin est de faire quasiment la même chose avec Elasticsearch. C'est à di
 
 <!--more-->
 
-En me basant sur le projet développé par [Erez Mazor](http://techo-ecco.com/blog/elasticsearch-with-spring/), j'ai donc développé une[factory Spring](https://github.com/dadoonet/spring-elasticsearch) visant à démarrer des clients (voire des noeuds) Elasticsearch.
+En me basant sur le projet développé par Erez Mazor, j'ai donc développé une[factory Spring](https://github.com/dadoonet/spring-elasticsearch) visant à démarrer des clients (voire des noeuds) Elasticsearch.
 
 ## La solution
 

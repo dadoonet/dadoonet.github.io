@@ -71,7 +71,7 @@ I think I spoke for more than **2 500 attendees**! I'm super happy on this becau
 
 {{< figure src="google-trends.png" caption="Google Trends" >}}
 
-On a side note, I also helped at [Devoxx4Kids France](http://www.devoxx4kids.org/france/). My children really enjoyed it and they are asking me every month about the next event! Count on me Devoxx4Kids team!
+On a side note, I also helped at [Devoxx4Kids France](https://www.devoxx4kids.org/france/). My children really enjoyed it and they are asking me every month about the next event! Count on me Devoxx4Kids team!
 
 {{< figure src="devoxx4kids.jpg" caption="Devoxx4Kids" >}}
 

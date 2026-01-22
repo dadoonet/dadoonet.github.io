@@ -23,7 +23,7 @@ Elasticsearch, un projet mature en quelques mois... A suivre de très près !
 
 <!--more-->
 
-En cherchant un bout de code pour rendre la couche [Hibernate Search](http://docs.jboss.org/hibernate/stable/search/reference/en-US/html/search-configuration.html#jms-backend) facilement distribuable sur un cluster de machines JBoss, je suis tombé sur le projet [Elasticsearch](https://www.elastic.co).
+En cherchant un bout de code pour rendre la couche [Hibernate Search](https://docs.hibernate.org/search/3.4/reference/en-US/html/search-configuration.html#jms-backend) facilement distribuable sur un cluster de machines JBoss, je suis tombé sur le projet [Elasticsearch](https://www.elastic.co).
 
 Au début, un peu interloqué... Puis, je me lance...
 

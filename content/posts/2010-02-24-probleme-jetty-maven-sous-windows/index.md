@@ -16,7 +16,7 @@ aliases:
   - /blog/2010-02-24-probleme-jetty-maven-sous-windows/
 ---
 
-Lorsqu'on souhaite lancer une WebApp avec le plugin [Jetty](http://docs.codehaus.org/display/JETTY/Maven+Jetty+Plugin) sous Maven 2 depuis un PC sous windows on obtient une erreur référencée sous JIRA [#JETTY-1063](http://jira.codehaus.org/browse/JETTY-1063) :
+Lorsqu'on souhaite lancer une WebApp avec le plugin [Jetty](https://jetty.org/docs/jetty/12.1/programming-guide/maven-jetty/jetty-maven-plugin.html) sous Maven 2 depuis un PC sous windows on obtient une erreur référencée sous JIRA `#JETTY-1063` :
 
 ```txt
 java.net.URISyntaxException: Illegal character in path at index 18: file:/C:/Documents and Settings/USER/.m2/repository/org/mortbay/jetty/jetty-maven-plugin/7.0.0.1beta2/jetty-maven-plugin-7.0.0.1beta2.jar

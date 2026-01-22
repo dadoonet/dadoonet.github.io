@@ -19,14 +19,14 @@ aliases:
 
 This article is based on [Recommender System with Mahout and Elasticsearch tutorial](https://www.mapr.com/products/mapr-sandbox-hadoop/tutorials/recommender-tutorial) created by [MapR](https://www.mapr.com).
 
-It now uses the [20M MovieLens dataset](http://grouplens.org/datasets/movielens/) which contains: 20 million ratings and 465 000 tag applications applied to 27 000 movies by 138 000 users and was released in 4/2015.
+It now uses the [20M MovieLens dataset](https://grouplens.org/datasets/movielens/) which contains: 20 million ratings and 465 000 tag applications applied to 27 000 movies by 138 000 users and was released in 4/2015.
 The format with this recent version has changed a bit so I needed to adapt the existing scripts to the new format.
 
 <!--more-->
 
 ## Prerequisites
 
-* Download the [20M MovieLens dataset](http://grouplens.org/datasets/movielens/). Unzip it. You'll get a `ml-20m` dir.
+* Download the [20M MovieLens dataset](https://grouplens.org/datasets/movielens/). Unzip it. You'll get a `ml-20m` dir.
 * Install [elasticsearch](https://www.elastic.co/guide/en/elasticsearch/guide/current/index.html)
 * Install [Mahout](https://mahout.apache.org/)
 * Install [MapR sandbox](https://www.mapr.com/products/mapr-sandbox-hadoop) (optional)

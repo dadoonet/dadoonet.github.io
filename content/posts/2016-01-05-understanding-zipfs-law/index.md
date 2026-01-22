@@ -22,7 +22,7 @@ I just discovered a nice video which explains the [Zipf's law](https://en.wikipe
 
 {{< youtube fCn8zs912OE >}}
 
-I'm wondering if I can index the [french lexique from Université de Savoie](http://www.lexique.org/) and find some funny things based on that...
+I'm wondering if I can index the french lexique from [Université de Savoie](https://www.univ-smb.fr/) and find some funny things based on that...
 
 <!--more-->
 

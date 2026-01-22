@@ -109,6 +109,6 @@ On modifie le `web.xml` :
 </filter-mapping>
 ```
 
-Dans cette configuration, le filtre [OpenSessionInViewFilter](http://static.springsource.org/spring/docs/2.5.x/api/org/springframework/orm/hibernate3/support/OpenSessionInViewFilter.html) mis sur tous les appels `*.do` va déclencher une ouverture de session hibernate jusqu'à la restitution de la vue.
+Dans cette configuration, le filtre [OpenSessionInViewFilter](https://docs.spring.io/spring-framework/docs/2.5.x/javadoc-api/org/springframework/orm/hibernate3/support/OpenSessionInViewFilter.html) mis sur tous les appels `*.do` va déclencher une ouverture de session hibernate jusqu'à la restitution de la vue.
 Ainsi, si dans la JSP, on trouve une itération de l'attribut cols du bean `Dossier`, un appel à la base de données via Hibernate sera déclenché à ce moment là (et seulement à ce moment là).
 Autrement dit, si pour une autre JSP vous n'avez pas besoin d'afficher la collection, l'appel à la base ne sera pas réalisé.

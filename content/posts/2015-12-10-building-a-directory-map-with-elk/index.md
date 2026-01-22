@@ -82,7 +82,7 @@ metadata contains:
 
 ### Grok it
 
-I'm using [GROK Constructor](http://grokconstructor.appspot.com/) to incrementally build the grok pattern.
+I'm using [GROK Constructor](https://grokconstructor.appspot.com/) to incrementally build the grok pattern.
 
 I'm ending up with:
 

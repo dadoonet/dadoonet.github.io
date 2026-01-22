@@ -330,10 +330,10 @@ And I already have booked part of my 2018 year (from January to July). I know I'
 * [Bucharest](https://voxxeddays.com/romania/bucharest/2018-03-22/)
 * [Turin](https://2018.cloudconf.it/)
 * [Devoxx FR 2018](https://www.devoxx.fr/)
-* [Bangalore](http://www.developermarch.com/developersummit/)
-* [Nice](http://www.sophiaconf.fr/)
+* [Bangalore](https://developersummit.com/)
+* [Nice](https://rivieradev.fr)
 
-So if you are around, please come and meet! If you want to organize a BBL in your company, just [ping me on Twitter](https://twitter.com/dadoonet)!
+So if you are around, please come and meet! If you want to organize a BBL in your company, just [ping me on Twitter](https://x.com/dadoonet)!
 
 Happy 2018!
 

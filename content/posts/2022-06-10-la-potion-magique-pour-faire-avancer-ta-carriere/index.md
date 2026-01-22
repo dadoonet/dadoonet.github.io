@@ -62,7 +62,7 @@ On me parle de GIT ? Mais je fais du CVS moi !!! Comment peut fonctionner ce tru
 
 Début 2011, je cherche à voir comment stocker mes index dans une base de données plutôt que sur le disque local. Car j'ai deux serveurs JBoss en équilibrage de charge. Et chacun ne voit que la moitié des données quand je cherche.
 
-J'ai bien vu qu'Emmanuel Bernard dit dans un post que c'est pas bien... Mais je suis têtu. Je veux tester... Je cherche un bout de code... Merci l'open-source, je tombe sur la [classe JdbcDirectory](http://www.compass-project.org/docs/2.0.1/api/org/apache/lucene/store/jdbc/JdbcDirectory.html) du projet Compass. J'essaye d'utiliser cette classe, de l'adapter. Je n'y arrive pas.
+J'ai bien vu qu'Emmanuel Bernard dit dans un post que c'est pas bien... Mais je suis têtu. Je veux tester... Je cherche un bout de code... Merci l'open-source, je tombe sur la `classe JdbcDirectory` du projet Compass. J'essaye d'utiliser cette classe, de l'adapter. Je n'y arrive pas.
 
 ## Elasticsearch
 

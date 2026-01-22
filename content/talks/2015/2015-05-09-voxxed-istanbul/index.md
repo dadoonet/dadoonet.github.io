@@ -2,6 +2,7 @@
 title: "Advanced (elastic)search for your legacy application"
 conference: 
   name: "Voxxed Istanbul"
+  url: "https://voxxeddaysistanbul2015.sched.com/event/2p7l"
   city: "Avcılar"
   country: "Turkey"
   country_code: "tr"
@@ -14,6 +15,8 @@ date: 2015-05-09
 talk-lang: en
 nolastmod: true
 draft: false
+
+pdf: "2015/2015-05-09-voxxed-istanbul.pdf"
 
 attendees: 60
 ---

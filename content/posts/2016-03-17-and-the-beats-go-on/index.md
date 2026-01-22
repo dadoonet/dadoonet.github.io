@@ -143,7 +143,7 @@ If you run `make` again, it will compile and build your binary `soundbeat`.
 
 ### libsox sound library
 
-The [SoX library](http://sox.sourceforge.net/) provides all the tool we need for our use case.
+The [SoX library](https://sourceforge.net/projects/sox/) provides all the tool we need for our use case.
 You have different ways for installing the library. On my mac, I used:
 
 ```sh

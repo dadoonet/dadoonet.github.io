@@ -26,7 +26,7 @@ Au début, j'ai regardé le [format APT](https://maven.apache.org/doxia/referenc
 
 Mais, cela reste un nouveau langage à apprendre pour des équipes fonctionnelles et le format APT est trop limité pour permettre un travail efficace par les équipes de conception ou d'analyse.
 
-Après avoir tourné et viré, testé quelques solutions, j'en suis arrivé à la conclusion que le plus pratique est de laisser les concepteurs utiliser leurs outils office ([Microsoft](http://www.microsoft.com/france/office/) ou [oOo](http://www.openoffice.org/fr/)) et de transformer ces documents en PDF lors de la fabrication du site.
+Après avoir tourné et viré, testé quelques solutions, j'en suis arrivé à la conclusion que le plus pratique est de laisser les concepteurs utiliser leurs outils office ([Microsoft](https://www.microsoft.com/microsoft-365/microsoft-office) ou [oOo](https://www.openoffice.org/fr/)) et de transformer ces documents en PDF lors de la fabrication du site.
 
 Pour cela, un petit plugin miracle (`jodconverter-maven-plugin`) couplé à oOo permet de faire le travail.
 
@@ -89,6 +89,6 @@ Dans l'exemple suivant, le fichier source `MonDoc.odt` se trouve dans `/src/site
 </body>
 ```
 
-Dans le cadre des projets que je gère, j'ai mis en place [Hudson](http://hudson-ci.org/) qui me reconstruit toutes les nuits une vision documentaire de mes projets. Ainsi, lorsqu'un concepteur valide dans CVS ou SVN pendant la journée un document, il est automatiquement publié la nuit sur le site Maven correspondant.
+Dans le cadre des projets que je gère, j'ai mis en place [Hudson](https://fr.wikipedia.org/wiki/Hudson_(logiciel)) qui me reconstruit toutes les nuits une vision documentaire de mes projets. Ainsi, lorsqu'un concepteur valide dans CVS ou SVN pendant la journée un document, il est automatiquement publié la nuit sur le site Maven correspondant.
 
 Autre intérêt : à chaque livraison ([release](https://maven.apache.org/plugins/maven-release-plugin/)), une photographie complète de l'état de la documentation au moment de la fabrication des livrables est générée. Il est ainsi possible de retrouver facilement le contexte fonctionnel d'une version particulière...

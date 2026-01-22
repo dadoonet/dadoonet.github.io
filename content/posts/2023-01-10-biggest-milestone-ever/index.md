@@ -17,7 +17,7 @@ aliases:
   - /blog/2023-01-10-the-biggest-milestone-ever-10-years-at-elastic/
 ---
 
-Would I have been able to imagine such a thing when 10+ years ago [I met Shay at Devoxx Belgium](https://twitter.com/dadoonet/status/269556386541760512) after [his talk "Search, the Final Frontier"](https://www.youtube.com/watch?v=Can7u_FNvqo)?
+Would I have been able to imagine such a thing when 10+ years ago [I met Shay at Devoxx Belgium](https://x.com/dadoonet/status/269556386541760512) after [his talk "Search, the Final Frontier"](https://www.youtube.com/watch?v=Can7u_FNvqo)?
 
 10 years! I have been working 10 years at Elastic. I have never working so long for a company. That's my biggest work milestone ever!
 
@@ -25,7 +25,7 @@ Would I have been able to imagine such a thing when 10+ years ago [I met Shay at
 
 {{< youtube "LeiFF0gvqcc?start=227" >}}
 
-Have you noticed that I'm frequently using a music in my blog posts. Well, it makes sense as I'm often [DeeJaying](http://djdadoo.pilato.fr/) for friends so music is everywhere in my life.
+Have you noticed that I'm frequently using a music in my blog posts. Well, it makes sense as I'm often [DeeJaying](https://instagram.com/dj_elky) for friends so music is everywhere in my life.
 
 Anyway, I [met Shay]({{< ref "2013-01-15-once-upon-a-time-dot-dot-dot" >}}) and we agreed that it would make sense for me to join this amazing group of talented people. When [I actually joined](https://www.elastic.co/fr/blog/welcome-david), there was if I recall correctly 10 employees plus the 4 founders:
 

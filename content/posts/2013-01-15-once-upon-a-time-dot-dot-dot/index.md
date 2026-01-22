@@ -26,7 +26,7 @@ aliases:
 
 In fact 2 years ago, I was looking for a way to make Hibernate search distributed on multiple nodes. My first idea was to store indexes in a single database shared by my nodes. Yes, it’s a stupid idea in term of performances but I would like to try to build it.
 
-Digging for source code, I came to the [JdbcDirectory class](http://www.compass-project.org/docs/2.0.1/api/org/apache/lucene/store/jdbc/JdbcDirectory.html) from the compass project. And I saw on the compass front page something talking about the future of Compass and Elasticsearch.
+Digging for source code, I came to the `JdbcDirectory` class from the compass project. And I saw on the compass front page something talking about the future of Compass and Elasticsearch.
 
 {{< figure src="es1.png" caption="The future of Compass and Elasticsearch" >}}
 

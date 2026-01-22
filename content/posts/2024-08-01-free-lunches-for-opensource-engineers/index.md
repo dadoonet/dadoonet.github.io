@@ -49,7 +49,7 @@ So I started a day after with a Tweet saying that I'd love to steal David's idea
 
 {{< x user="dadoonet" id="275486949924548609" >}}
 
-And [Romain Linsolas](https://github.com/linsolas) answered me that [he would be ok hosting a session about Elasticsearch!](https://twitter.com/romaintaz/status/275502151487332353).
+And [Romain Linsolas](https://github.com/linsolas) answered me that [he would be ok hosting a session about Elasticsearch!](https://x.com/romaintaz/status/275502151487332353).
 
 {{< x user="romaintaz" id="275502151487332353" >}}
 
@@ -57,7 +57,7 @@ Deal!
 
 ## The 1st BBL at SocGen
 
-So I gave [my very 1st BBL](https://twitter.com/romaintaz/status/288968491892088832). We were something like 15-20 attendees. It was a similar session of the one I gave at [Devoxx France a year before](https://www.youtube.com/watch?v=sxWTPruEWRU).
+So I gave [my very 1st BBL](https://x.com/romaintaz/status/288968491892088832). We were something like 15-20 attendees. It was a similar session of the one I gave at [Devoxx France a year before]({{< ref "talks/2012/2012-04-19-elasticsearch-devoxx-france-2012" >}}).
 
 Feedback has been very positive and I found out 4 key points:
 
@@ -70,7 +70,7 @@ Feedback has been very positive and I found out 4 key points:
 
 Some other people started as well to run BBL in France. At some point [Romain Linsolas](https://github.com/linsolas), [Nathaniel Richand](https://github.com/nrichand), [Fran&#xE7;ois Sarradin](https://github.com/fsarradin) and myself found that we should have a website to reference all the speakers/sessions so companies would be able to contact us.
 
-[brownbaglunch.fr](http://www.brownbaglunch.fr/) started that way. It&apos;s super easy to add a talk&#x2026; Well, it&apos;s super easy as soon as you are a developer because you need to `git commit` on GitHub a JSON document. :)
+[brownbaglunch.fr](https://www.brownbaglunch.fr/) started that way. It&apos;s super easy to add a talk&#x2026; Well, it&apos;s super easy as soon as you are a developer because you need to `git commit` on GitHub a JSON document. :)
 
 The website helped a lot with getting more visibility. I think I&apos;m getting 15 to 20% of my contacts through it.
 

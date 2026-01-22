@@ -31,7 +31,7 @@ Of course, I'm still enjoying going to conferences. You don't need to be a rock 
 
 {{< figure src="snowcamp.jpeg" caption="SnowCamp 2023: <https://snowcamp.io/>" >}}
 
-Sometimes, you attend "non standard" conferences. I really enjoyed the [Camping Des Speakers](https://camping-speakers.fr/) conference in Baden, France. I was pleased to share a bit about my other passion: the [art of DeeJaying](http://djdadoo.pilato.fr/). It creates a different kind of connection with the audience.
+Sometimes, you attend "non standard" conferences. I really enjoyed the [Camping Des Speakers](https://camping-speakers.fr/) conference in Baden, France. I was pleased to share a bit about my other passion: the [art of DeeJaying](https://instagram.com/dj_elky). It creates a different kind of connection with the audience.
 
 {{< figure src="campingdesspeakers.jpeg" caption="Deejay Workshop" >}}
 

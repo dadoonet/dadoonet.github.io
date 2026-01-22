@@ -36,13 +36,13 @@ Let's assume that you have already elasticsearch 1.5.2, Logstash 1.5.0 and Kiban
 
 ## Twitter application
 
-Create first your [Twitter application](https://apps.twitter.com/) and open the "Keys and Access Tokens" tab.
+Create first your [Twitter application](https://developer.x.com/apps) and open the "Keys and Access Tokens" tab.
 Note your `consumer_key` and `consumer_secret` (generate them if needed).
 Note also your `access_token` and `access_token_secret` (generate them if needed).
 
 ## Logstash configuration
 
-First define your twitter input to track whatever term you want. Let's say here that I will collect data for [dotScale conference](http://www.dotscale.io/) (Elastic sponsors it so if you are around come to say hello at our booth!):
+First define your twitter input to track whatever term you want. Let's say here that I will collect data for the dotScale conference (Elastic sponsors it so if you are around come to say hello at our booth!):
 
 ```ruby
 input {

@@ -41,7 +41,7 @@ Some talks and venues were fantastic. For example, for [Devoxx France 2013]({{< 
 
 {{< figure src="devoxx_be_2013.jpg" caption="Devoxx 2013: attendees coming..." >}}
 
-In addition to these talks, our French speaking community is getting more and more members: from almost 0 to **more than 400 members** in our [Elasticsearch-fr meetup group](https://www.meetup.com/elasticsearchfr/) in just one year! Plus, all of our meetups are packed with **80 to 100 attendees** for each session. That's really great.
+In addition to these talks, our French speaking community is getting more and more members: from almost 0 to **more than 400 members** in our [Elasticsearch-fr meetup group](https://www.meetup.com/elasticfr/) in just one year! Plus, all of our meetups are packed with **80 to 100 attendees** for each session. That's really great.
 
 I'm always very proud to talk about Elasticsearch's products: [Elasticsearch](https://www.elastic.co/elasticsearch), [Kibana](https://www.elastic.co/kibana) and [Logstash](https://www.elastic.co/logstash). These are fantastic open source tools and each developer around the earth should at least know about them. Of course, I think it would be wonderful if everyone also used them. :-)
 
