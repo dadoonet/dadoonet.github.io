@@ -1,110 +1,110 @@
-# Documentation du projet
+# Project Documentation
 
-Ce fichier décrit la structure et les conventions du blog personnel de David Pilato, accessible sur [david.pilato.fr](https://david.pilato.fr).
+This file describes the structure and conventions of David Pilato's personal blog, accessible at [david.pilato.fr](https://david.pilato.fr).
 
-## Stack technique
+## Tech Stack
 
-- **Générateur** : [Hugo](https://gohugo.io)
-- **Thème** : [Dream](https://g1en.site/hugo-theme-dream/) avec des personnalisations locales
-- **Hébergement** : GitHub Pages
-- **Stockage PDF** : Google Cloud Storage (`gs://dadoonet-talks/slides/`)
+- **Generator**: [Hugo](https://gohugo.io)
+- **Theme**: [Dream](https://g1en.site/hugo-theme-dream/) with local customizations
+- **Hosting**: GitHub Pages
+- **PDF Storage**: Google Cloud Storage (`gs://dadoonet-talks/slides/`)
 
-## Structure du projet
+## Project Structure
 
 ```shell
 .
-├── archetypes/          # Templates pour créer du contenu (posts, talks)
+├── archetypes/          # Templates for creating content (posts, talks)
 ├── content/
-│   ├── about/           # Pages "À propos" (multiples fichiers .md combinés)
-│   ├── posts/           # Articles de blog
+│   ├── about/           # "About" pages (multiple .md files combined)
+│   ├── posts/           # Blog articles
 │   └── talks/
-│       ├── YYYY/        # Talks par année (YYYY-MM-DD-conference-name/)
-│       └── templates/   # Templates d'abstracts multilingues
-├── data/                # Données JSON/TOML (icons, countries, socials)
+│       ├── YYYY/        # Talks by year (YYYY-MM-DD-conference-name/)
+│       └── templates/   # Multilingual abstract templates
+├── data/                # JSON/TOML data (icons, countries, socials)
 ├── layouts/
-│   ├── about/           # Layout personnalisé pour la page About
-│   ├── partials/        # Fragments réutilisables (pdf.html, author.html...)
-│   ├── shortcodes/      # Shortcodes personnalisés (speakerdeck, x)
-│   └── talks/           # Templates spécifiques aux talks (single, template)
+│   ├── about/           # Custom layout for the About page
+│   ├── partials/        # Reusable fragments (pdf.html, author.html...)
+│   ├── shortcodes/      # Custom shortcodes (speakerdeck, x)
+│   └── talks/           # Talk-specific templates (single, template)
 ├── static/
-│   ├── speakers/        # Photos des co-speakers (prenom_nom.jpg)
-│   └── ...              # Autres assets statiques (favicon, images)
-├── themes/dream/        # Thème Hugo (submodule git)
-└── hugo.toml            # Configuration principale
+│   ├── speakers/        # Co-speaker photos (firstname_lastname.jpg)
+│   └── ...              # Other static assets (favicon, images)
+├── themes/dream/        # Hugo theme (git submodule)
+└── hugo.toml            # Main configuration
 ```
 
 ---
 
 ## Talks (`content/talks/`)
 
-Les talks sont organisés par année dans des sous-dossiers : `content/talks/YYYY/YYYY-MM-DD-conference-name/`
+Talks are organized by year in subfolders: `content/talks/YYYY/YYYY-MM-DD-conference-name/`
 
-### Structure d'un talk
+### Talk Structure
 
-Chaque talk est un dossier contenant :
+Each talk is a folder containing:
 
-- `index.md` : Le fichier principal avec le frontmatter et l'abstract
-- `cover.*` : Image de couverture (png, jpg, jpeg, avif, webp...) - détectée automatiquement
+- `index.md`: The main file with frontmatter and abstract
+- `cover.*`: Cover image (png, jpg, jpeg, avif, webp...) - automatically detected
 
-### Frontmatter d'un talk
+### Talk Frontmatter
 
 ```yaml
 ---
-title: "Titre du talk"
+title: "Talk Title"
 conference: 
-  name: "Nom de la conférence"
-  city: "Ville"
-  country: "Pays"
-  country_code: "fr"          # Code ISO du pays (fr, us, online...)
-  url: "https://..."          # URL de l'événement (optionnel)
-  latitude: "48.856614"       # Coordonnées pour la carte (optionnel)
+  name: "Conference Name"
+  city: "City"
+  country: "Country"
+  country_code: "fr"          # ISO country code (fr, us, online...)
+  url: "https://..."          # Event URL (optional)
+  latitude: "48.856614"       # Coordinates for the map (optional)
   longitude: "2.352222"
 
-# Speakers - Format moderne (liste d'auteurs)
+# Speakers - Modern format (list of authors)
 authors:
   - author: David Pilato
     avatar: /about/david_pilato.png
-    link: "https://linkedin.com/in/dadoonet"  # Optionnel
+    link: "https://linkedin.com/in/dadoonet"  # Optional
   - author: "Co-speaker Name"
-    avatar: /speakers/cospeaker.jpg           # Optionnel
-    link: "https://..."                       # Optionnel
+    avatar: /speakers/cospeaker.jpg           # Optional
+    link: "https://..."                       # Optional
 
-# OU format legacy (un seul auteur - rétro-compatible)
+# OR legacy format (single author - backward compatible)
 # author: David Pilato
 # avatar: /about/david_pilato.png
 
 date: YYYY-MM-DD
-talk-lang: fr                 # Langue de la présentation (fr ou en)
-nolastmod: true               # Ne pas afficher la date de modification
-draft: false                  # true = non publié
+talk-lang: fr                 # Presentation language (fr or en)
+nolastmod: true               # Don't display modification date
+draft: false                  # true = unpublished
 
-# Optionnel - Slides PDF
-pdf: "YYYY/YYYY-MM-DD-conference-name.pdf"  # Chemin relatif sur GCS
+# Optional - PDF Slides
+pdf: "YYYY/YYYY-MM-DD-conference-name.pdf"  # Relative path on GCS
 
-# Optionnel - Image de couverture explicite
-cover: "cover.png"            # Par défaut, cherche cover.*
+# Optional - Explicit cover image
+cover: "cover.png"            # By default, looks for cover.*
 
-# Optionnel - Template de talk (pour la sidebar "Played X times")
-talk: "AI Search"             # Regroupe les talks sur le même sujet
+# Optional - Talk template (for "Played X times" sidebar)
+talk: "AI Search"             # Groups talks on the same topic
 
-# Optionnel - Vidéo YouTube
-youtube: "dQw4w9WgXcQ"        # ID de la vidéo
+# Optional - YouTube video
+youtube: "dQw4w9WgXcQ"        # Video ID
 
-# Optionnel - Ressources complémentaires
+# Optional - Additional resources
 links:
-  - title: "Titre du lien"
+  - title: "Link Title"
     url: "https://..."
-    description: "Description du lien"
+    description: "Link description"
 
-# Optionnel - Tweets/Posts X
+# Optional - X Tweets/Posts
 x:
   - user: "dadoonet"
     id: "1234567890"
 
-# Optionnel - Nombre de participants
+# Optional - Number of attendees
 attendees: 200
 
-# Optionnel - Alias d'URL
+# Optional - URL alias
 aliases:
   - /WlpZdt
 ---
@@ -112,9 +112,9 @@ aliases:
 
 ### Co-speakers
 
-Les images des co-speakers sont stockées dans `static/speakers/`. Utiliser le format `prenom_nom.jpg` ou `.png`.
+Co-speaker images are stored in `static/speakers/`. Use the format `firstname_lastname.jpg` or `.png`.
 
-Exemple avec plusieurs speakers :
+Example with multiple speakers:
 
 ```yaml
 authors:
@@ -125,25 +125,25 @@ authors:
     link: "https://linkedin.com/in/tgrall"
 ```
 
-### Sidebar "Played X times"
+### "Played X times" Sidebar
 
-Quand plusieurs talks partagent la même valeur `talk:` dans le frontmatter, une sidebar apparaît à droite listant toutes les occurrences de ce talk. Cela permet de voir toutes les conférences où le même sujet a été présenté.
+When multiple talks share the same `talk:` value in the frontmatter, a sidebar appears on the right listing all occurrences of that talk. This allows seeing all conferences where the same topic was presented.
 
-**Exemple** : `talk: "ES|QL"` regroupera tous les talks portant sur ES|QL.
+**Example**: `talk: "ES|QL"` will group all talks about ES|QL.
 
-Si une page template existe pour ce talk (voir section Templates ci-dessous), un lien vers la page template est affiché.
+If a template page exists for this talk (see Templates section below), a link to the template page is displayed.
 
-### Sidebar "At this conference"
+### "At this conference" Sidebar
 
-Quand plusieurs talks ont le même `conference.name`, une seconde sidebar apparaît listant tous les talks donnés à cette conférence. Utile pour les conférences où vous avez présenté plusieurs sessions.
+When multiple talks have the same `conference.name`, a second sidebar appears listing all talks given at that conference. Useful for conferences where you presented multiple sessions.
 
-### Créer un nouveau talk
+### Creating a New Talk
 
 ```sh
 hugo new talks/YYYY/YYYY-MM-DD-conference-name/index.md
 ```
 
-Puis uploader le PDF sur GCS :
+Then upload the PDF to GCS:
 
 ```sh
 gsutil cp YYYY-MM-DD-conference-name.pdf gs://dadoonet-talks/slides/YYYY/YYYY-MM-DD-conference-name.pdf
@@ -151,37 +151,37 @@ gsutil cp YYYY-MM-DD-conference-name.pdf gs://dadoonet-talks/slides/YYYY/YYYY-MM
 
 ---
 
-## Templates de talks (`content/talks/templates/`)
+## Talk Templates (`content/talks/templates/`)
 
-Les templates permettent de centraliser les abstracts multilingues d'un talk récurrent. Ils sont affichés sur une page dédiée avec statistiques et liste de toutes les occurrences.
+Templates allow centralizing multilingual abstracts for a recurring talk. They are displayed on a dedicated page with statistics and a list of all occurrences.
 
-### Structure d'un template
+### Template Structure
 
 ```shell
 content/talks/templates/
-├── _index.md                 # Page liste des templates
+├── _index.md                 # Templates list page
 ├── esql/
-│   └── index.md              # Template ES|QL
+│   └── index.md              # ES|QL template
 ├── serverless/
-│   └── index.md              # Template Serverless
+│   └── index.md              # Serverless template
 └── ...
 ```
 
-### Frontmatter d'un template
+### Template Frontmatter
 
 ```yaml
 ---
 title: "Elasticsearch Query Language: ES|QL"
-layout: "template"            # OBLIGATOIRE - utilise layouts/talks/template.html
-talk: ES|QL                   # OBLIGATOIRE - doit correspondre aux talks
-date: 2024-09-17              # Date de création du template (souvent 1ère occurrence)
+layout: "template"            # REQUIRED - uses layouts/talks/template.html
+talk: ES|QL                   # REQUIRED - must match the talks
+date: 2024-09-17              # Template creation date (often 1st occurrence)
 nolastmod: true
 draft: false
 
-# Versions multilingues de l'abstract
+# Multilingual versions of the abstract
 versions:
-  - label: "EN"               # Label affiché dans l'onglet
-    flag: "gb"                # Code du drapeau (gb, fr, us...)
+  - label: "EN"               # Label displayed in the tab
+    flag: "gb"                # Flag code (gb, fr, us...)
     title: "English Title"
     abstract: |
       English abstract text...
@@ -189,9 +189,9 @@ versions:
     flag: "fr"
     title: "Titre en français"
     abstract: |
-      Texte de l'abstract en français...
+      French abstract text...
 
-# Optionnel - Ressources liées au talk
+# Optional - Resources related to the talk
 links:
   - title: "Demo code"
     url: "https://github.com/..."
@@ -199,69 +199,69 @@ links:
 ---
 ```
 
-### Créer un nouveau template
+### Creating a New Template
 
-1. Créer le dossier `content/talks/templates/nom-du-talk/`
-2. Créer `index.md` avec le frontmatter ci-dessus
-3. S'assurer que `talk:` correspond à la valeur utilisée dans les talks individuels
+1. Create the folder `content/talks/templates/talk-name/`
+2. Create `index.md` with the frontmatter above
+3. Ensure `talk:` matches the value used in individual talks
 
-La page template affiche :
+The template page displays:
 
-- Statistiques (nombre de présentations, vidéos disponibles, dates)
-- Onglets pour chaque version linguistique avec vue "Talk" et "Raw" (pour copier-coller dans les CFP)
-- Liste chronologique de toutes les conférences avec cards visuelles
+- Statistics (number of presentations, available videos, dates)
+- Tabs for each language version with "Talk" and "Raw" views (for copy-pasting into CFPs)
+- Chronological list of all conferences with visual cards
 
 ---
 
-## Page About (`content/about/`)
+## About Page (`content/about/`)
 
-La page About utilise un layout personnalisé qui combine plusieurs fichiers Markdown.
+The About page uses a custom layout that combines multiple Markdown files.
 
 ### Structure
 
 ```shell
 content/about/
-├── index.md              # Page principale (frontmatter minimal)
-├── 10-me.md              # Section "Who am I?"
-├── 20-details.md         # Section détails additionnels
-└── david_pilato.png      # Avatar principal
+├── index.md              # Main page (minimal frontmatter)
+├── 10-me.md              # "Who am I?" section
+├── 20-details.md         # Additional details section
+└── david_pilato.png      # Main avatar
 ```
 
-### Fonctionnement
+### How It Works
 
-Le layout `layouts/about/single.html` :
+The `layouts/about/single.html` layout:
 
-1. Affiche d'abord les liens sociaux (depuis `data/socials.toml`)
-2. Charge tous les fichiers `*.md` du dossier, triés par nom (d'où les préfixes 10-, 20-)
-3. Affiche chaque fichier comme une section avec son titre (`title` du frontmatter)
+1. First displays social links (from `data/socials.toml`)
+2. Loads all `*.md` files from the folder, sorted by name (hence the 10-, 20- prefixes)
+3. Displays each file as a section with its title (`title` from frontmatter)
 
-### Exemple de fichier section
+### Section File Example
 
 ```yaml
 ---
 title: Who am I?
 ---
 
-Contenu Markdown de la section...
+Markdown content of the section...
 ```
 
 ---
 
 ## Posts (`content/posts/`)
 
-Les articles de blog sont dans `content/posts/YYYY-MM-DD-title/`
+Blog articles are in `content/posts/YYYY-MM-DD-title/`
 
-### Structure d'un post
+### Post Structure
 
-- `index.md` : Contenu avec frontmatter
-- Images et assets directement dans le dossier
+- `index.md`: Content with frontmatter
+- Images and assets directly in the folder
 
-### Frontmatter d'un post
+### Post Frontmatter
 
 ```yaml
 ---
-title: "Titre de l'article"
-description: "Description courte"
+title: "Article Title"
+description: "Short description"
 author: David Pilato
 avatar: /about/david_pilato.png
 tags:
@@ -273,18 +273,18 @@ series:
   - serie
 date: YYYY-MM-DD
 nolastmod: true
-cover: image.png              # Image de couverture (optionnel)
+cover: image.png              # Cover image (optional)
 draft: false
 ---
 
-Contenu avant le "more"...
+Content before the "more"...
 
 <!--more-->
 
-Suite du contenu...
+Rest of the content...
 ```
 
-### Créer un nouveau post
+### Creating a New Post
 
 ```sh
 hugo new posts/YYYY-MM-DD-something-awesome/index.md
@@ -292,35 +292,35 @@ hugo new posts/YYYY-MM-DD-something-awesome/index.md
 
 ---
 
-## Shortcodes personnalisés
+## Custom Shortcodes
 
-### Embed X (Twitter)
+### X (Twitter) Embed
 
 ```hugo
 {{</* x user="dadoonet" id="1234567890" */>}}
 ```
 
-### Embed Speakerdeck
+### Speakerdeck Embed
 
 ```hugo
 {{</* speakerdeck "slide_id" "wide" */>}}
 ```
 
-Le second paramètre (`wide`) est optionnel et change le ratio d'aspect.
+The second parameter (`wide`) is optional and changes the aspect ratio.
 
-### Figure (Hugo natif)
+### Figure (Hugo native)
 
 ```hugo
-{{</* figure src="image.png" caption="Légende" */>}}
+{{</* figure src="image.png" caption="Caption" */>}}
 ```
 
-### YouTube (Hugo natif)
+### YouTube (Hugo native)
 
 ```hugo
 {{</* youtube VIDEO_ID */>}}
 ```
 
-### Référence interne
+### Internal Reference
 
 ```hugo
 {{</* ref "YYYY-MM-DD-post-name" */>}}
@@ -330,40 +330,40 @@ Le second paramètre (`wide`) est optionnel et change le ratio d'aspect.
 
 ## Taxonomies
 
-Le site utilise plusieurs taxonomies définies dans `hugo.toml` :
+The site uses several taxonomies defined in `hugo.toml`:
 
-- `categories` : Catégories d'articles
-- `tags` : Tags/mots-clés
-- `series` : Séries d'articles liés
-- `cities` : Villes (pour les talks)
-- `languages` : Langues des présentations
+- `categories`: Article categories
+- `tags`: Tags/keywords
+- `series`: Related article series
+- `cities`: Cities (for talks)
+- `languages`: Presentation languages
 
 ---
 
-## Développement local
+## Local Development
 
-### Installation des dépendances
+### Installing Dependencies
 
 ```sh
 [[ -f package-lock.json || -f npm-shrinkwrap.json ]] && npm ci || true
 ```
 
-### Lancer le serveur de développement
+### Running the Development Server
 
 ```sh
 hugo server --buildFuture --buildDrafts -D
 ```
 
-- `--buildFuture` : Inclut les contenus datés dans le futur
-- `--buildDrafts` / `-D` : Inclut les brouillons
+- `--buildFuture`: Includes content dated in the future
+- `--buildDrafts` / `-D`: Includes drafts
 
-### Build production
+### Production Build
 
 ```sh
 hugo
 ```
 
-### Mettre à jour le thème
+### Updating the Theme
 
 ```sh
 git submodule update --rebase --remote
@@ -371,88 +371,86 @@ git submodule update --rebase --remote
 
 ---
 
-## Layouts personnalisés
+## Custom Layouts
 
-### Single talk
+### Single Talk
 
-Dans `layouts/talks/single.html`, template principal pour l'affichage d'un talk individuel. Gère :
+In `layouts/talks/single.html`, main template for displaying an individual talk. Handles:
 
-- L'affichage des informations de conférence avec drapeau du pays
-- L'affichage des speakers (un ou plusieurs avec avatars)
-- L'embed du PDF avec navigation
-- La vidéo YouTube
-- Les liens/ressources
-- Les embeds X
-- La sidebar "Played X times" (talks similaires avec lien vers template)
-- La sidebar "At this conference" (autres talks à la même conférence)
-- La navigation prev/next
+- Conference information display with country flag
+- Speakers display (one or multiple with avatars)
+- PDF embed with navigation
+- YouTube video
+- Links/resources
+- X embeds
+- "Played X times" sidebar (similar talks with link to template)
+- "At this conference" sidebar (other talks at the same conference)
+- Prev/next navigation
 
-### Talk templates
+### Talk Templates
 
-Dans `layouts/talks/template.html`, template pour les pages de templates de talks. Affiche :
+In `layouts/talks/template.html`, template for talk template pages. Displays:
 
-- Statistiques du talk (nombre de présentations, vidéos, dates)
-- Onglets pour chaque version linguistique
-- Vue "Talk" (abstract formaté) et "Raw" (pour CFP)
-- Liste chronologique des conférences avec cards
-- Navigation entre templates
+- Talk statistics (number of presentations, videos, dates)
+- Tabs for each language version
+- "Talk" view (formatted abstract) and "Raw" view (for CFP)
+- Chronological list of conferences with cards
+- Navigation between templates
 
-### About page
+### About Page
 
-In `layouts/about/single.html`, template pour la page About. Combine les liens sociaux avec les fichiers Markdown du dossier `content/about/`.
+In `layouts/about/single.html`, template for the About page. Combines social links with Markdown files from the `content/about/` folder.
 
-Template pour la page About. Combine les liens sociaux avec les fichiers Markdown du dossier `content/about/`.
+### Author Partial
 
-### Author partial
+In `layouts/partials/author.html`, handles speaker display. Supports:
 
-In `layouts/partials/author.html`, gère l'affichage des speakers. Supporte :
+- Modern format: `authors` (list of authors with avatar and link)
+- Legacy format: `author` + `avatar` (single author)
 
-- Format moderne : `authors` (liste d'auteurs avec avatar et lien)
-- Format legacy : `author` + `avatar` (un seul auteur)
+### PDF Partial
 
-### PDF partial
+In `layouts/partials/pdf.html`, displays an interactive PDF viewer with slides. Uses pdf.js for rendering.
 
-In `layouts/partials/pdf.html`, affiche un viewer PDF interactif avec les slides. Utilise pdf.js pour le rendu.
+### Country Flag Partial
 
-### Country flag partial
+In `layouts/partials/countryFlag.html`, displays the country flag based on `country_code`.
 
-In `layouts/partials/countryFlag.html`, affiche le drapeau du pays basé sur le `country_code`.
+### Lang Label Partial
 
-### Lang label partial
+In `layouts/partials/langLabel.html`, displays a badge indicating the talk language (`talk-lang: fr` or `en`).
 
-In `layouts/partials/langLabel.html`, affiche un badge indiquant la langue du talk (`talk-lang: fr` ou `en`).
+### Slides Label Partial
 
-### Slides label partial
+In `layouts/partials/slidesLabel.html`, displays a badge if the talk has PDF slides available.
 
-In `layouts/partials/slidesLabel.html`, affiche un badge si le talk a des slides PDF disponibles.
+### Video Label Partial
 
-### Video label partial
+In `layouts/partials/videoLabel.html`, displays a badge if the talk has a YouTube video available.
 
-In `layouts/partials/videoLabel.html`, affiche un badge si le talk a une vidéo YouTube disponible.
+### X Embed Partial
 
-### X embed partial
-
-In `layouts/partials/x-embed.html`, embed de posts X (Twitter).
+In `layouts/partials/x-embed.html`, embeds X (Twitter) posts.
 
 ---
 
-## Conventions de nommage
+## Naming Conventions
 
-- **Talks** : `YYYY-MM-DD-conference-name-optional-details`
-  - Exemples : `2024-04-18-devoxx-france-2024`, `2024-09-12-chti-jug-esql`
-- **Posts** : `YYYY-MM-DD-title-in-kebab-case`
-- **BBL (Brown Bag Lunch)** : Inclure `-bbl-` et `-private-event` si c'est un événement privé
-  - Exemple : `2024-05-23-bbl-talan-private-event`
+- **Talks**: `YYYY-MM-DD-conference-name-optional-details`
+  - Examples: `2024-04-18-devoxx-france-2024`, `2024-09-12-chti-jug-esql`
+- **Posts**: `YYYY-MM-DD-title-in-kebab-case`
+- **BBL (Brown Bag Lunch)**: Include `-bbl-` and `-private-event` if it's a private event
+  - Example: `2024-05-23-bbl-talan-private-event`
 
 ---
 
 ## Configuration (`hugo.toml`)
 
-Points clés de la configuration :
+Key configuration points:
 
-- `baseURL` : `https://david.pilato.fr`
-- `theme` : dream
-- `params.talks.pdf_base_url` : URL de base pour les PDFs sur GCS
-- `params.showTableOfContents` : Table des matières activée
-- `params.imageZoomableInPost` : Zoom sur les images au clic
-- `params.showPrevNextPost` : Navigation entre talks/posts
+- `baseURL`: `https://david.pilato.fr`
+- `theme`: dream
+- `params.talks.pdf_base_url`: Base URL for PDFs on GCS
+- `params.showTableOfContents`: Table of contents enabled
+- `params.imageZoomableInPost`: Click to zoom on images
+- `params.showPrevNextPost`: Navigation between talks/posts
