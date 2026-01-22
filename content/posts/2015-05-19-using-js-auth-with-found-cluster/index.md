@@ -20,7 +20,7 @@ aliases:
 
 Using [Found by elastic](https://www.found.no/) cluster helps a lot to have a ready to use and managed elasticsearch cluster.
 
-I started my own cluster yesterday to power [brownbaglunch.fr](http://www.brownbaglunch.fr/) website (work in progress) and it was ready to use after some clicks!
+I started my own cluster yesterday to power [brownbaglunch.fr](https://www.brownbaglunch.fr/) website (work in progress) and it was ready to use after some clicks!
 
 **It's a kind of magic!**
 
