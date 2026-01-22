@@ -331,6 +331,22 @@
           {{ end }}
         </div>
 
+        {{/* Cover image - auto-detect cover.* file */}}
+        {{ $cover := "" }}
+        {{ if $.Params.cover }}
+          {{ $cover = $.Resources.GetMatch $.Params.cover }}
+        {{ else }}
+          {{ $cover = $.Resources.GetMatch "cover.*" }}
+        {{ end }}
+        {{ if $cover }}
+        <figure class="my-4">
+          <img class="rounded-lg shadow-lg w-full" src="{{ $cover.RelPermalink }}" alt="{{ $firstVersion.title }}" />
+          {{ with $.Params.covercaption }}
+            <figcaption class="text-sm italic text-center mt-2">{{ . }}</figcaption>
+          {{ end }}
+        </figure>
+        {{ end }}
+
         <div class="divider"></div>
 
         {{/* Main tabs - Version labels (EN, FR, etc.) */}}
@@ -430,6 +446,22 @@
         </div>
         {{ end }}
       </div>
+
+      {{/* Cover image - auto-detect cover.* file */}}
+      {{ $cover := "" }}
+      {{ if .Params.cover }}
+        {{ $cover = .Resources.GetMatch .Params.cover }}
+      {{ else }}
+        {{ $cover = .Resources.GetMatch "cover.*" }}
+      {{ end }}
+      {{ if $cover }}
+      <figure class="my-4">
+        <img class="rounded-lg shadow-lg w-full" src="{{ $cover.RelPermalink }}" alt="{{ .Title }}" />
+        {{ with .Params.covercaption }}
+          <figcaption class="text-sm italic text-center mt-2">{{ . }}</figcaption>
+        {{ end }}
+      </figure>
+      {{ end }}
 
       <div class="divider"></div>
       <h2>Abstract</h2>
