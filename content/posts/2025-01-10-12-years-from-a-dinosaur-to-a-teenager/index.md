@@ -202,7 +202,7 @@ Although the list of expected events is yet quite long:
 * Paris, France, for the [ElasticON Paris 2025 community track](https://www.meetup.com/elasticfr/events/303824133) and then for the [ElasticON Paris 2025 conference](https://www.elastic.co/events/elasticon/paris). If you don't have your ticket yet, you can still register to both events. It's free!
 * Grenoble, France, for the [SnowCamp](https://snowcamp.io/) conference where I'll be manning the Elastic booth.
 * Tours, France, for the [Touraine Tech](https://touraine.tech/) conference. I'll be giving a talk about "ES|QL: the new way to query Elasticsearch" and I'll be deejaying again.
-* Bordeaux, France, for the [BordeauxJUG](http://www.bordeauxjug.org/) meetup with again a talk about ES|QL.
+* Bordeaux, France, for the [BordeauxJUG](https://www.bordeauxjug.org/) meetup with again a talk about ES|QL.
 * Nantes, France, for the ENI Tech fest event with my talk about the new era for search.
 * Las Vegas, NV, USA, for the Elastic engineering all hands, where I'll be meeting my amazing colleagues,
 from the developper relations team but also the rest of the engineering team.

@@ -20,7 +20,7 @@ aliases:
   - /blog/2011-09-14-mon-premier-plugin-elasticsearch-rss-river/
 ---
 
-Il existe dans [elasticsearch](http://www.elasticsearch.org/) la notion de [river](http://www.elasticsearch.org/guide/reference/river/) (rivière) qui comme son nom le laisse supposer permet de voir s'écouler des données depuis une source jusqu'à elasticsearch.
+Il existe dans [elasticsearch](https://www.elastic.co/) la notion de [river](https://www.elastic.co/guide/en/elasticsearch/reference/1.6/river.html) (rivière) qui comme son nom le laisse supposer permet de voir s'écouler des données depuis une source jusqu'à elasticsearch.
 
 Au fur et à mesure que les données arrivent, la rivière les transporte et les envoie à l'indexation dans elasticsearch.
 
@@ -52,13 +52,13 @@ Là, il ne reste plus qu'à implémenter :
 
 Oui... J'y viens...
 
-Au fait, tout le monde sait ce qu'est un flux RSS ? La spécification officielle est [ici](http://www.rssboard.org/rss-specification).
+Au fait, tout le monde sait ce qu'est un flux RSS ? La spécification officielle est [ici](https://www.rssboard.org/rss-specification).
 
 Je reprends donc le plugin [CouchDB River](https://github.com/elasticsearch/elasticsearch/tree/master/plugins/river/couchdb), je le mavenise (ouais, je ne suis pas encore super fan de Gradle), et je l'adapte à mes besoins.
 
 Pour faire simple, je vais suivre la mécanique suivante :
 
-* Toutes les x minutes, je télécharge le flux RSS demandé que je transforme en POJO en me basant sur le travail fait par [Lars Vogel](http://www.vogella.de/articles/RSSFeed/article.html)
+* Toutes les x minutes, je télécharge le flux RSS demandé que je transforme en POJO en me basant sur le travail fait par [Lars Vogel](https://www.vogella.com/tutorials/RSSFeed/article.html)
 * Je compare la date du flux (balise pubDate) avec la dernière date de flux (que j'avais stockée dans elasticsearch)
 * Si le flux est plus récent, je parcours tous les éléments du flux (item)
 * Je fabrique un identifiant de l'item basé sur un encodage du champ description. Pour cela, je me sers de ce qui est [déjà présent dans ES](https://github.com/elasticsearch/elasticsearch/blob/master/modules/elasticsearch/src/main/java/org/elasticsearch/common/UUID.java).

@@ -181,7 +181,7 @@ Launch again and it now gives one event per table line:
 }
 ```
 
-Sounds like we have now a CSV structure... We can either use a [CSV filter](http://www.elastic.co/guide/en/logstash/current/plugins-filters-csv.html) or a [GROK filter](http://www.elastic.co/guide/en/logstash/current/plugins-filters-grok.html).
+Sounds like we have now a CSV structure... We can either use a [CSV filter](https://www.elastic.co/guide/en/logstash/current/plugins-filters-csv.html) or a [GROK filter](https://www.elastic.co/guide/en/logstash/current/plugins-filters-grok.html).
 
 Grok gives more flexibility because it helps to define the right data type you want for each field. The CSV filter can not directly do it [at the moment](https://github.com/logstash-plugins/logstash-filter-csv/pull/7). Grok can do it but it's based on regular expressions and it's a way slower than the CSV filter which is optimized to parse CSV content. So I'm trading here flexibility and ease to use for performance.
 

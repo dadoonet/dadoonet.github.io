@@ -52,7 +52,7 @@ est devenue
 
 ### Correction du problème avec la distribution Apache pour Ubuntu (Rewrite)
 
-La gestion de la configuration Apache n'est pas "standard" sur Ubuntu. J'ai donc suivi les recommandations du [blog de Josh Street](http://josh.st/2005/03/06/ubuntu-apache-and-making-mod_rewrite-happy/) pour corriger le problème.
+La gestion de la configuration Apache n'est pas "standard" sur Ubuntu. J'ai donc suivi les recommandations du [blog de Josh Street](https://josh.st/2005/03/06/ubuntu-apache-and-making-mod_rewrite-happy/) pour corriger le problème.
 
 ```sh
 cd /etc/apache2/mods-enabled

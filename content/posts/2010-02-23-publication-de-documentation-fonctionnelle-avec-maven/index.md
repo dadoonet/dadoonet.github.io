@@ -22,11 +22,11 @@ Voici une astuce permettant de laisser les analystes ou concepteurs utiliser leu
 
 Lorsqu'on utilise Maven, se pose souvent la question de génération de documents à intégrer dans le site web généré par Maven.
 
-Au début, j'ai regardé le [format APT](http://maven.apache.org/doxia/references/apt-format.html) qui a l'avantage certain de générer du contenu directement consultable sous forme de page Web. Il existe de plus un plugin qui permet de fabriquer un PDF en regroupant les fichiers APT souhaités.
+Au début, j'ai regardé le [format APT](https://maven.apache.org/doxia/references/apt-format.html) qui a l'avantage certain de générer du contenu directement consultable sous forme de page Web. Il existe de plus un plugin qui permet de fabriquer un PDF en regroupant les fichiers APT souhaités.
 
 Mais, cela reste un nouveau langage à apprendre pour des équipes fonctionnelles et le format APT est trop limité pour permettre un travail efficace par les équipes de conception ou d'analyse.
 
-Après avoir tourné et viré, testé quelques solutions, j'en suis arrivé à la conclusion que le plus pratique est de laisser les concepteurs utiliser leurs outils office ([Microsoft](http://www.microsoft.com/france/office/) ou [oOo](http://fr.openoffice.org/)) et de transformer ces documents en PDF lors de la fabrication du site.
+Après avoir tourné et viré, testé quelques solutions, j'en suis arrivé à la conclusion que le plus pratique est de laisser les concepteurs utiliser leurs outils office ([Microsoft](http://www.microsoft.com/france/office/) ou [oOo](http://www.openoffice.org/fr/)) et de transformer ces documents en PDF lors de la fabrication du site.
 
 Pour cela, un petit plugin miracle (`jodconverter-maven-plugin`) couplé à oOo permet de faire le travail.
 
@@ -91,4 +91,4 @@ Dans l'exemple suivant, le fichier source `MonDoc.odt` se trouve dans `/src/site
 
 Dans le cadre des projets que je gère, j'ai mis en place [Hudson](http://hudson-ci.org/) qui me reconstruit toutes les nuits une vision documentaire de mes projets. Ainsi, lorsqu'un concepteur valide dans CVS ou SVN pendant la journée un document, il est automatiquement publié la nuit sur le site Maven correspondant.
 
-Autre intérêt : à chaque livraison ([release](http://maven.apache.org/plugins/maven-release-plugin/)), une photographie complète de l'état de la documentation au moment de la fabrication des livrables est générée. Il est ainsi possible de retrouver facilement le contexte fonctionnel d'une version particulière...
+Autre intérêt : à chaque livraison ([release](https://maven.apache.org/plugins/maven-release-plugin/)), une photographie complète de l'état de la documentation au moment de la fabrication des livrables est générée. Il est ainsi possible de retrouver facilement le contexte fonctionnel d'une version particulière...

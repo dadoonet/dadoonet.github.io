@@ -24,7 +24,7 @@ aliases:
 
 Some months ago, I published a recipe on how to [index Twitter with Logstash and Elasticsearch]({{< ref "2015-06-01-indexing-twitter-with-logstash-and-elasticsearch" >}}).
 
-I have the same need today as I want to monitor Twitter when we run the [elastic FR meetup](http://meetup.com/elasticfr) (join us by the way if you are in France!).
+I have the same need today as I want to monitor Twitter when we run the [elastic FR meetup](https://www.meetup.com/elasticfr) (join us by the way if you are in France!).
 
 Well, this recipe can be really simplified and actually I don't want to waste my time anymore on building and managing elasticsearch and Kibana clusters anymore.
 

@@ -29,6 +29,6 @@ Problème : avec la version 7 de Jetty, il faut gérer l'authentification. Sinon
 java.lang.IllegalStateException: No LoginService for org.eclipse.jetty.security.authentication.BasicAuthenticator@4095c5ec in ConstraintSecurityHandler@28f52a14@
 ```
 
-J'ai trouvé la solution à ce problème sur le blog de [Max Berger](http://blog.max.berger.name/2010/02/jetty-7-maven-plugin-authentication.html).
+J'ai trouvé la solution à ce problème sur le blog de [Max Berger](https://blog.max.berger.name/2010/02/jetty-7-maven-plugin-authentication.html).
 
 A SUIVRE

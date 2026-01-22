@@ -77,7 +77,7 @@ We can use something like the [Google Map API](https://developers.google.com/map
 
 We need something local then. In France, we are super lucky because we have a public dataset named [BANO](https://bano.openstreetmap.fr/) as `Base d'Adresses NatiOnale` (National Address Database) provided under the [Open Street Map](https://openstreetmap.fr) umbrella.
 
-This project exports everyday [the list of known addresses](http://bano.openstreetmap.fr/data/) anywhere in France. Here is an extraction of what you can have:
+This project exports everyday [the list of known addresses](https://bano.openstreetmap.fr/data/) anywhere in France. Here is an extraction of what you can have:
 
 ```sh
 -rw-r--r--@ 1 dpilato  staff   11183891 27 nov 02:03 bano-88.csv

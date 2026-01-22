@@ -62,7 +62,7 @@ So it's a CSV file containing some information that might worth to explore:
 
 ## Processing with logstash
 
-Let's start with a blank logstash configuration file `station.conf` which will process our [standard input](http://www.elastic.co/guide/en/logstash/current/plugins-inputs-stdin.html) and print it on [standard output](http://www.elastic.co/guide/en/logstash/current/plugins-outputs-stdout.html) using [ruby debug codec](http://www.elastic.co/guide/en/logstash/current/plugins-codecs-rubydebug.html):
+Let's start with a blank logstash configuration file `station.conf` which will process our [standard input](https://www.elastic.co/guide/en/logstash/current/plugins-inputs-stdin.html) and print it on [standard output](https://www.elastic.co/guide/en/logstash/current/plugins-outputs-stdout.html) using [ruby debug codec](https://www.elastic.co/guide/en/logstash/current/plugins-codecs-rubydebug.html):
 
 ```rb
 input {
@@ -104,7 +104,7 @@ Logstash shutdown completed
 
 ### CSV parsing
 
-We have a CSV file so we should use here the [CSV filter plugin](http://www.elastic.co/guide/en/logstash/current/plugins-filters-csv.html) and define [`separator`](http://www.elastic.co/guide/en/logstash/current/plugins-filters-csv.html#plugins-filters-csv-separator) as `;` instead of default `,` and also define the name of fields we want to generate instead of default `column_1`, `column_2`... using [`columns` parameter](http://www.elastic.co/guide/en/logstash/current/plugins-filters-csv.html#plugins-filters-csv-columns):
+We have a CSV file so we should use here the [CSV filter plugin](https://www.elastic.co/guide/en/logstash/current/plugins-filters-csv.html) and define [`separator`](https://www.elastic.co/guide/en/logstash/current/plugins-filters-csv.html#plugins-filters-csv-separator) as `;` instead of default `,` and also define the name of fields we want to generate instead of default `column_1`, `column_2`... using [`columns` parameter](https://www.elastic.co/guide/en/logstash/current/plugins-filters-csv.html#plugins-filters-csv-columns):
 
 ```rb
 csv {
@@ -206,7 +206,7 @@ Logstash startup completed
 
 ### Skip header
 
-We can see that we are still parsing the header so it will be sent to elasticsearch which is obviously something we dont want. We can use [Logstash conditionals](http://www.elastic.co/guide/en/logstash/current/configuration.html#conditionals) for that and [Drop filter plugin](http://www.elastic.co/guide/en/logstash/current/plugins-filters-drop.html):
+We can see that we are still parsing the header so it will be sent to elasticsearch which is obviously something we dont want. We can use [Logstash conditionals](https://www.elastic.co/guide/en/logstash/current/configuration.html#conditionals) for that and [Drop filter plugin](https://www.elastic.co/guide/en/logstash/current/plugins-filters-drop.html):
 
 ```rb
 if [id] == "id" {
@@ -229,7 +229,7 @@ We can see that we have some duplicated contents and some fields are not really 
       "host" => "MacBook-Air-de-David-2.local"
 ```
 
- So we can remove `message`, `@version` and `@timestamp` using [Mutate filter plugin](http://www.elastic.co/guide/en/logstash/current/plugins-filters-mutate.html) and its [remove_field](http://www.elastic.co/guide/en/logstash/current/plugins-filters-mutate.html#plugins-filters-mutate-remove_field). You can put that in the `else` part:
+ So we can remove `message`, `@version` and `@timestamp` using [Mutate filter plugin](https://www.elastic.co/guide/en/logstash/current/plugins-filters-mutate.html) and its [remove_field](https://www.elastic.co/guide/en/logstash/current/plugins-filters-mutate.html#plugins-filters-mutate-remove_field). You can put that in the `else` part:
 
 ```rb
 mutate {
@@ -246,7 +246,7 @@ We have seen that the CSV plugin has generated `latitude` and `longitude` fields
  "latitude" => "44.0817900000",
 ```
 
-Using the mutate filter, we can [convert](http://www.elastic.co/guide/en/logstash/current/plugins-filters-mutate.html#plugins-filters-mutate-convert) our fields to `float`:
+Using the mutate filter, we can [convert](https://www.elastic.co/guide/en/logstash/current/plugins-filters-mutate.html#plugins-filters-mutate-convert) our fields to `float`:
 
 ```rb
 mutate {
@@ -264,7 +264,7 @@ This will now output:
 
 ### Build a location data structure
 
-Elasticsearch uses a specific data structure called [geo_point](http://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-geo-point-type.html) to deal with geographic location coordinates.
+Elasticsearch uses a specific data structure called [geo_point](https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-geo-point-type.html) to deal with geographic location coordinates.
 
 So a point should look like:
 
@@ -275,7 +275,7 @@ So a point should look like:
 }
 ```
 
-It means that we need to change our `latitude` and `longitude` fields to inner fields inside a new `location` field. We can use `mutate` [`rename` parameter](http://www.elastic.co/guide/en/logstash/current/plugins-filters-mutate.html#plugins-filters-mutate-rename) for this:
+It means that we need to change our `latitude` and `longitude` fields to inner fields inside a new `location` field. We can use `mutate` [`rename` parameter](https://www.elastic.co/guide/en/logstash/current/plugins-filters-mutate.html#plugins-filters-mutate-rename) for this:
 
 ```rb
 mutate {
@@ -309,9 +309,9 @@ We have a lot of fields which looks as boolean fields like:
 
 Sadly, the mutate convert parameter does not support yet `boolean` option. It will be merged really soon with [#22](https://github.com/logstash-plugins/logstash-filter-mutate/pull/22).
 
-For now, we are going to use [elasticsearch boolean parsing](http://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-core-types.html#boolean) which can detect a `false` value if provided as `"false"`, `"off"` and `"no"`.
+For now, we are going to use [elasticsearch boolean parsing](https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-core-types.html#boolean) which can detect a `false` value if provided as `"false"`, `"off"` and `"no"`.
 
-To do that, we can use [`gsub` mutate parameter](http://www.elastic.co/guide/en/logstash/current/plugins-filters-mutate.html#plugins-filters-mutate-gsub):
+To do that, we can use [`gsub` mutate parameter](https://www.elastic.co/guide/en/logstash/current/plugins-filters-mutate.html#plugins-filters-mutate-gsub):
 
 ```rb
 mutate {
@@ -401,7 +401,7 @@ bin/elasticsearch
 
 ### Defining our mapping
 
-We need to create the right mapping to define our fields. As we have a lot of fields named with `*_is_enabled` or `is_*` we can use an [index template](http://www.elastic.co/guide/en/elasticsearch/reference/current/indices-templates.html) to define those automatically as booleans when field name is `*is_*`.
+We need to create the right mapping to define our fields. As we have a lot of fields named with `*_is_enabled` or `is_*` we can use an [index template](https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-templates.html) to define those automatically as booleans when field name is `*is_*`.
 Also, it's definitely better to use `not_analyzed` strings to do aggregations so we can define a sub field `raw` which is not analyzed at index time for each string field.
 
 This would lead us to the following index template `stations_template.json`:
@@ -457,7 +457,7 @@ This would lead us to the following index template `stations_template.json`:
 
 ### Connect logstash and elasticsearch
 
-We are going to obviously use [elasticsearch output plugin](http://www.elastic.co/guide/en/logstash/current/plugins-outputs-elasticsearch.html) to send our data to elasticsearch cluster. We will:
+We are going to obviously use [elasticsearch output plugin](https://www.elastic.co/guide/en/logstash/current/plugins-outputs-elasticsearch.html) to send our data to elasticsearch cluster. We will:
 
 * use `http` protocol
 * index our data in `stations` index and use `station` type
@@ -547,7 +547,7 @@ curl "http://localhost:9200/stations/station/_search?pretty"
 ### Inject them all
 
 It's now time to inject all data we have.
-Instead of debugging each line, we can change the `stdout` codec to [`dots`](http://www.elastic.co/guide/en/logstash/current/plugins-codecs-dots.html) instead of `rubydebug`.
+Instead of debugging each line, we can change the `stdout` codec to [`dots`](https://www.elastic.co/guide/en/logstash/current/plugins-codecs-dots.html) instead of `rubydebug`.
 
 At the end, here is our logstash configuration file:
 

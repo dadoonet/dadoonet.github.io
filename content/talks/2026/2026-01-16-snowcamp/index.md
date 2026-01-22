@@ -25,7 +25,7 @@ links:
     url: "https://github.com/dadoonet/randomizedtesting-demo"
     description: "The source code for the demo project"
   - title: "RandomizedTesting framework"
-    url: "http://labs.carrotsearch.com/randomizedtesting-concept.html"
+    url: "https://labs.carrotsearch.com/randomizedtesting-concept.html"
     description: "The framework provided by Carrot Search"
   - title: "Ariane 5 launch video"
     url: "https://www.esa.int/ESA_Multimedia/Videos/1996/06/Ariane_501_recording_launch_pad_before_and_at_launch"

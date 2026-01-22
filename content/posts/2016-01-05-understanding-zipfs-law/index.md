@@ -113,7 +113,7 @@ Logstash shutdown completed
 
 ### Parse CSV lines
 
-We have a CSV file so we should use here the [CSV filter plugin](http://www.elastic.co/guide/en/logstash/current/plugins-filters-csv.html):
+We have a CSV file so we should use here the [CSV filter plugin](https://www.elastic.co/guide/en/logstash/current/plugins-filters-csv.html):
 
 ```ruby
 csv {

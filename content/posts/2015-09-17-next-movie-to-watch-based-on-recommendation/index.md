@@ -27,8 +27,8 @@ The format with this recent version has changed a bit so I needed to adapt the e
 ## Prerequisites
 
 * Download the [20M MovieLens dataset](http://grouplens.org/datasets/movielens/). Unzip it. You'll get a `ml-20m` dir.
-* Install [elasticsearch](http://www.elastic.co/guide/en/elasticsearch/guide/current/index.html)
-* Install [Mahout](http://mahout.apache.org/)
+* Install [elasticsearch](https://www.elastic.co/guide/en/elasticsearch/guide/current/index.html)
+* Install [Mahout](https://mahout.apache.org/)
 * Install [MapR sandbox](https://www.mapr.com/products/mapr-sandbox-hadoop) (optional)
 
 ## Step 1: generate Mahout dataset with recommandations

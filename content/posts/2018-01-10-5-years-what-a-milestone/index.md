@@ -321,15 +321,15 @@ And I already have booked part of my 2018 year (from January to July). I know I'
 
 * Orléans
 * [Montpellier](https://www.jug-montpellier.org/)
-* [Grenoble](http://snowcamp.io/fr/)
+* [Grenoble](https://snowcamp.io/fr/)
 * [Elastic{ON} Paris](https://www.elastic.co/elasticon/tour/2017/paris)
 * [Elastic{ON} Munich](https://www.elastic.co/elasticon/tour/2017/munich)
 * [Stockholm](https://www.jfokus.se/jfokus/)
 * [Elastic{ON} San Francisco](https://www.elastic.co/elasticon/conf/2018/sf)
 * [Montréal](https://confoo.ca/en/yul2018/)
 * [Bucharest](https://voxxeddays.com/romania/bucharest/2018-03-22/)
-* [Turin](http://2018.cloudconf.it/)
-* [Devoxx FR 2018](http://devoxx.fr/)
+* [Turin](https://2018.cloudconf.it/)
+* [Devoxx FR 2018](https://www.devoxx.fr/)
 * [Bangalore](http://www.developermarch.com/developersummit/)
 * [Nice](http://www.sophiaconf.fr/)
 

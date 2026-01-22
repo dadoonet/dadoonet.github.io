@@ -19,11 +19,11 @@ aliases:
 
 Bonjour,
 
-C'est avec une certaine émotion et fierté que j'ai appris samedi dernier la sélection de mon [talk sur Elasticsearch](http://www.devoxx.com/display/FR12/ElasticSearch+++moteur+de+recherche+NoSQL+REST+JSON+taille+pour+le+cloud) à [Devoxx France](http://www.devoxx.com/display/FR12/Accueil).
+C'est avec une certaine émotion et fierté que j'ai appris samedi dernier la sélection de mon [talk sur Elasticsearch](https://www.devoxx.com/display/FR12/ElasticSearch+++moteur+de+recherche+NoSQL+REST+JSON+taille+pour+le+cloud) à [Devoxx France](https://www.devoxx.com/display/FR12/Accueil).
 
 <!--more-->
 
-[Devoxx France](http://www.devoxx.com/display/FR12/Accueil) est une conférence organisée du 18 au 20 avril 2012 à Paris, pour les Développeurs. Y faire parti au milieu de talents incroyables est vraiment un honneur.
+[Devoxx France](https://www.devoxx.com/display/FR12/Accueil) est une conférence organisée du 18 au 20 avril 2012 à Paris, pour les Développeurs. Y faire parti au milieu de talents incroyables est vraiment un honneur.
 
 Je suis d'autant plus comblé que je vais pouvoir parler du sujet qui me passionne depuis maintenant 1 an : **Elasticsearch**.
 
@@ -34,7 +34,7 @@ A l'origine, Shay Banon devait venir lui-même nous parler de l'analyse des donn
 
 {{< figure src="elasticsearchfr.jpeg" caption="Elasticsearch FR user group" >}}
 
-Mon objectif pour ce talk est de vous faire partager mon enthousiasme pour ce projet magnifique, de faire décoller la communauté française [@ElasticFR](http://www.twitter.com/elasticfr) et de susciter des engouements à utiliser, forker et contribuer !
+Mon objectif pour ce talk est de vous faire partager mon enthousiasme pour ce projet magnifique, de faire décoller la communauté française [@ElasticFR](https://x.com/elasticfr) et de susciter des engouements à utiliser, forker et contribuer !
 
 Je vais principalement présenter les fonctionnalités d'Elasticsearch que j'utilise tous les jours, parler un peu architecture, insister sur la partie facette (navigation par facettes) et faire quelques démos live... Je vais d'ailleurs avoir besoin de votre concours pour faire un "maximum de bruit" sur Twitter pendant la conf !
 

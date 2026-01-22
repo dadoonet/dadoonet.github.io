@@ -19,7 +19,7 @@ aliases:
   - /blog/2011-05-13-couchdb/
 ---
 
-Après avoir testé [Elasticsearch]({{< ref "2011-03-09-la-recherche-elastique" >}}), me voici parti pour regarder ce monde étrange qu'on appelle le [NoSQL](http://fr.wikipedia.org/wiki/Nosql)...
+Après avoir testé [Elasticsearch]({{< ref "2011-03-09-la-recherche-elastique" >}}), me voici parti pour regarder ce monde étrange qu'on appelle le [NoSQL](https://fr.wikipedia.org/wiki/Nosql)...
 
 <!--more-->
 
@@ -27,7 +27,7 @@ A dire vrai, j'ai entendu ce mot il y a quelques années, sans jamais vraiment m
 
 Puis, à force de cotoyer le monde d'Elasticsearch et les technos JSon et REST, je me lance.
 
-Pour des raisons très pratiques, je choisis [CouchDB](http://couchdb.apache.org/) de Apache. D'une part, il est directement intégrable avec Elasticsearch, et à la lecture rapide de sa [documentation](http://guide.couchdb.org/editions/1/fr/index.html), il semble répondre à un des besoins auquel une équipe de mon pôle de développement est confrontée.
+Pour des raisons très pratiques, je choisis [CouchDB](https://couchdb.apache.org/) de Apache. D'une part, il est directement intégrable avec Elasticsearch, et à la lecture rapide de sa [documentation](https://guide.couchdb.org/editions/1/fr/index.html), il semble répondre à un des besoins auquel une équipe de mon pôle de développement est confrontée.
 
 ## Notre besoin (résumé)
 
@@ -96,7 +96,7 @@ Alors, nous décidons de lancer un noeud Elasticsearch sur une machine et d'y aj
 
 Nous avons donc au final, au bout d'une demi journée d'efforts surhumains (fallait quand même développer le batch initial), atteint nos objectifs.
 
-Reste à regarder cette histoire de flux RSS (sorte d'inscription aux nouveautés de la base). Cela est nativement porté par la fonction [_changes](http://guide.couchdb.org/editions/1/fr/notifications.html) de CouchDB. C'est absolument génial. Comme si vous aviez un trigger permanent et automatique sur chaque modification apportée dans la base. Avec la possibilité de faire un appel à _changes en précisant là où nous en étions la dernière fois que nous y avons fait appel ([gestion différentielle](http://guide.couchdb.org/editions/1/fr/notifications.html#polling)), ou encore mieux, [de façon continue](http://guide.couchdb.org/editions/1/fr/notifications.html#continuous), de laisser en permanence un flux HTTP ouvert dans lequel se déverse au fil de l'eau chaque changement apporté...
+Reste à regarder cette histoire de flux RSS (sorte d'inscription aux nouveautés de la base). Cela est nativement porté par la fonction [_changes](https://guide.couchdb.org/editions/1/fr/notifications.html) de CouchDB. C'est absolument génial. Comme si vous aviez un trigger permanent et automatique sur chaque modification apportée dans la base. Avec la possibilité de faire un appel à _changes en précisant là où nous en étions la dernière fois que nous y avons fait appel ([gestion différentielle](https://guide.couchdb.org/editions/1/fr/notifications.html#polling)), ou encore mieux, [de façon continue](https://guide.couchdb.org/editions/1/fr/notifications.html#continuous), de laisser en permanence un flux HTTP ouvert dans lequel se déverse au fil de l'eau chaque changement apporté...
 
 C'est vraiment bluffant et simplissime à l'usage.
 

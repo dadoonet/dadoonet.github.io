@@ -31,7 +31,7 @@ links:
 aliases:
   - /PA2kUs
 ---
-> Come and learn how you can enrich your existing data with normalized postal addresses with geo location points thanks to open data and [BANO project](http://bano.openstreetmap.fr/data/).
+> Come and learn how you can enrich your existing data with normalized postal addresses with geo location points thanks to open data and [BANO project](https://bano.openstreetmap.fr/data/).
 
 Most of the time postal addresses from our customers or users are not very well formatted or defined in our information systems. And it can become a nightmare if you are a call center employee for example and want to find a customer by its address.
 Imagine as well how a sales service could easily put on a map where are located the customers and where they can open a new shop…

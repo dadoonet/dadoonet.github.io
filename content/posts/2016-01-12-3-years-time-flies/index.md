@@ -54,7 +54,7 @@ I traveled. A lot. I gave less talks but I did 2 000 kilometers more than last y
 
 It was also time to reveal the new identity of the company and `elasticsearch` became `elastic`.
 
-It was my first time at San Francisco and I could enjoy visiting [our amazing new office in Mountain View](http://retaildesignblog.net/2015/05/30/elastic-office-by-garcia-tamjidi-architecture-design-mountain-view-california/comment-page-1/) and also do some sight seeing in SFO where my wife and I finally saw the well known "la maison bleue".
+It was my first time at San Francisco and I could enjoy visiting [our amazing new office in Mountain View](https://retaildesignblog.net/2015/05/30/elastic-office-by-garcia-tamjidi-architecture-design-mountain-view-california/comment-page-1/) and also do some sight seeing in SFO where my wife and I finally saw the well known "la maison bleue".
 
 {{< youtube tDtXXlD98kw >}}
 
@@ -62,12 +62,12 @@ Well, I guess it's well known only in France! 😄
 
 * 1 Webinar: [Advanced Search for your Legacy Application (French)](https://www.elastic.co/videos/advanced-search-legacy-application-french)
 * 1 conference as a sponsor
-* 7 [trainings](https://www.elastic.co/training). Don't miss our [next sessions in Paris](http://training.elastic.co/?courseId=0&city=PARIS)! I'll give the [Kibana 4 Workshop](http://training.elastic.co/class/Kibana/Paris/Feb06) with another colleague.
-* 5 [meetups](http://www.meetup.com/elasticfr/). Come and say hello for [the next one](http://www.meetup.com/fr-FR/ElasticFR/events/227882863/)! We are now more than 1600 members!
+* 7 [trainings](https://www.elastic.co/training). Don't miss our [next sessions in Paris](https://www.elastic.co/training)! I'll give the [Kibana 4 Workshop](https://www.elastic.co/training) with another colleague.
+* 5 [meetups](https://www.meetup.com/elasticfr/). Come and say hello for [the next one](https://www.meetup.com/fr-FR/ElasticFR/events/227882863/)! We are now more than 1600 members!
 * 26 [BBLs](https://www.brownbaglunch.fr/). Still one of my favorite moment. By the way, I started adding elasticsearch on the web site. Stay tuned! 😄
-* 23 talks. Lot of conferences, including [Devoxx FR](http://www.devoxx.fr/), [Code Motion](http://www.codemotionworld.com/), [BDX.io](www.bdx.io)...
+* 23 talks. Lot of conferences, including [Devoxx FR](https://www.devoxx.fr/), [Code Motion](https://www.codemotion.com/), [BDX.io](www.bdx.io)...
 
-I think I spoke for more than **2 500 attendees**! I'm super happy on this because results are clearly visible in the company when we look for example at the requests on the web site per region or the [Google trends](http://www.google.fr/trends/explore?q=Elasticsearch#q=Elasticsearch&geo=FR%2C%20US%2C%20GB&date=1%2F2015%2012m&cmpt=geo&tz=Etc%2FGMT-1):
+I think I spoke for more than **2 500 attendees**! I'm super happy on this because results are clearly visible in the company when we look for example at the requests on the web site per region or the [Google trends](https://trends.google.fr/trends/explore?q=Elasticsearch#q=Elasticsearch&geo=FR%2C%20US%2C%20GB&date=1%2F2015%2012m&cmpt=geo&tz=Etc%2FGMT-1):
 
 {{< figure src="google-trends.png" caption="Google Trends" >}}
 
@@ -131,7 +131,7 @@ I can't wait for elastic{ON}'16! Super excited to meet again all my coworkers an
 
 And of course, I will enjoy the good balance I have between work time and family time and will continue to say to myself how much lucky I am.
 
-I wish you fellows a very nice 2016 year and hope that 2016 will be more peaceful than 2015... But [the news today in Istanbul](http://www.bbc.com/news/world-europe-35290760) don't seem to prove me right. [I spoke there last year](https://voxxeddays.com/istanbul15/david-pilato-advanced-search-for-legacy-application-with-elasticsearch/), visited this historical and fantastic place... I'm so sad this is happening...
+I wish you fellows a very nice 2016 year and hope that 2016 will be more peaceful than 2015... But [the news today in Istanbul](https://www.bbc.com/news/world-europe-35290760) don't seem to prove me right. [I spoke there last year](https://voxxeddays.com/istanbul15/david-pilato-advanced-search-for-legacy-application-with-elasticsearch/), visited this historical and fantastic place... I'm so sad this is happening...
 
 {{< figure src="istanbul.jpg" caption="😢" >}}
 

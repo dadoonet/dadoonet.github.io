@@ -7,7 +7,7 @@ conference:
   country_code: "fr"
   latitude: "44.837789"
   longitude: "-0.579180"
-  url: "http://www.bordeauxjug.org/meetings/20250320-elasticsearch_query_language:_es_ql"
+  url: "https://www.bordeauxjug.org/meetings/20250320-elasticsearch_query_language:_es_ql"
 author: David Pilato
 avatar: /about/david_pilato.png
 talk: ES|QL

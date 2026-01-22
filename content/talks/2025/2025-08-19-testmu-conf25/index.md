@@ -26,7 +26,7 @@ links:
     url: "https://github.com/dadoonet/randomizedtesting-demo"
     description: "The source code for the demo project"
   - title: "RandomizedTesting framework"
-    url: "http://labs.carrotsearch.com/randomizedtesting-concept.html"
+    url: "https://labs.carrotsearch.com/randomizedtesting-concept.html"
     description: "The framework provided by Carrot Search"
   - title: "A weird CI error in FSCrawler"
     url: "https://github.com/dadoonet/fscrawler/actions/runs/14357866984/job/40251514398#step:4:296"

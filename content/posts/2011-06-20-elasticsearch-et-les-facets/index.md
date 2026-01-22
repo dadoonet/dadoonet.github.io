@@ -69,11 +69,11 @@ En passant une requête de ce type, on obtiendra la consolidation et le comptage
 
 Il existe d'autres types de facettes très intéressantes :
 
-* les facettes [RANGE](http://www.elastic.co/guide/en/elasticsearch/reference/0.90/search-facets-range-facet.html) : pour donner une distribution sur un intervale de valeurs. Par exemple, pour reprendre notre exemple de site marchand, vous pouvez utiliser la facette RANGE pour donner la distribution des prix pour les intervales de 0 à 10 €, de 10 à 20 €, de 20 à 50 € et au delà de 50 €.
+* les facettes [RANGE](https://www.elastic.co/guide/en/elasticsearch/reference/0.90/search-facets-range-facet.html) : pour donner une distribution sur un intervale de valeurs. Par exemple, pour reprendre notre exemple de site marchand, vous pouvez utiliser la facette RANGE pour donner la distribution des prix pour les intervales de 0 à 10 €, de 10 à 20 €, de 20 à 50 € et au delà de 50 €.
 
-* les facettes [DATE HISTOGRAM](http://www.elastic.co/guide/en/elasticsearch/reference/0.90/search-facets-date-histogram-facet.html) : pour donner un comptage avec un axe X des temps (période à décider : jour, mois, année, ...). Par exemple, le nombre de vente par mois pour un produit donné.
+* les facettes [DATE HISTOGRAM](https://www.elastic.co/guide/en/elasticsearch/reference/0.90/search-facets-date-histogram-facet.html) : pour donner un comptage avec un axe X des temps (période à décider : jour, mois, année, ...). Par exemple, le nombre de vente par mois pour un produit donné.
 
-La liste complète est disponible sur le site [d'elasticsearch](http://www.elastic.co/guide/en/elasticsearch/reference/0.90/search-facets.html).
+La liste complète est disponible sur le site [d'elasticsearch](https://www.elastic.co/guide/en/elasticsearch/reference/0.90/search-facets.html).
 
 ## Et les résultats ?
 

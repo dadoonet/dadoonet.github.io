@@ -429,11 +429,11 @@ In the inverted index, for the first name `Joe`, we have actually indexed `joe`.
 
 Same goes for advanced search. Searching for a country `fran` won't match but the full term `france` would match.
 
-If you want to learn more about the analysis process, I'd suggest you read the fantastic [Mapping and Analysis chapter](http://www.elastic.co/guide/en/elasticsearch/guide/current/mapping-analysis.html) of the official elasticsearch user guide.
+If you want to learn more about the analysis process, I'd suggest you read the fantastic [Mapping and Analysis chapter](https://www.elastic.co/guide/en/elasticsearch/guide/current/mapping-analysis.html) of the official elasticsearch user guide.
 
 > Can we fix that?
 
-For sure, we can use a [wildcard query](http://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-wildcard-query.html) or a [prefix query](http://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-prefix-query.html) but this is really inefficient! Please, don't do that! :)
+For sure, we can use a [wildcard query](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-wildcard-query.html) or a [prefix query](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-prefix-query.html) but this is really inefficient! Please, don't do that! :)
 
 ## Fix the mapping
 
@@ -531,9 +531,9 @@ It gives
 }
 ```
 
-As you can imagine, we are using here all defaults to elasticsearch. So we are using a [standard analyzer](http://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-standard-analyzer.html) for example to analyze our text.
+As you can imagine, we are using here all defaults to elasticsearch. So we are using a [standard analyzer](https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-standard-analyzer.html) for example to analyze our text.
 
-Let's say that instead of indexing `joe`, we want also to index `j` and `jo`. We can do that using a [edge ngram tokenfilter](http://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-edgengram-tokenizer.html). To do that, you need to create your own analyzer. It can be done when you create your index by providing settings:
+Let's say that instead of indexing `joe`, we want also to index `j` and `jo`. We can do that using a [edge ngram tokenfilter](https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-edgengram-tokenizer.html). To do that, you need to create your own analyzer. It can be done when you create your index by providing settings:
 
 ```json
 {
@@ -586,7 +586,7 @@ But at search time, searching for `joe` will also return unexpected results such
 `joe` is once again analyzed at search time and produces `j`, `jo` and `joe`.
 `jane` has been indexed as `j`, `ja`, `jan` and `jane`. `j` from `joe` equals `j` from `jane`!
 
-In this use case, a user who enters `joe` is probably looking for someone named `joe` so we should only use a `lowercase` filter. The [simple analyzer](http://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-simple-analyzer.html) does that perfectly. Let's use it:
+In this use case, a user who enters `joe` is probably looking for someone named `joe` so we should only use a `lowercase` filter. The [simple analyzer](https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-simple-analyzer.html) does that perfectly. Let's use it:
 
 ```json
 "name": {
@@ -617,7 +617,7 @@ And you can do that for all other fields...
 
 > Why not indexing all fields in a single field?
 
-Instead of searching in `name`, `address.country`, `address.city` and `gender` fields, we can create at index time a new field on the fly using the very cool [copy_to feature](http://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-core-types.html#copy-to):
+Instead of searching in `name`, `address.country`, `address.city` and `gender` fields, we can create at index time a new field on the fly using the very cool [copy_to feature](https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-core-types.html#copy-to):
 
 ```json
 "name": {
@@ -864,7 +864,7 @@ It means that basically elasticsearch won't slow down that much your process.
 
 ## Faceted navigation
 
-Let's do something even more interesting. Let's try to add a [faceted navigation](http://en.wikipedia.org/wiki/Faceted_search).
+Let's do something even more interesting. Let's try to add a [faceted navigation](https://en.wikipedia.org/wiki/Faceted_search).
 We want to display our result set broken per 10 years (`by_year`) and also get the repartition of our result set per country (`by_country`).
 
 Everything was [already coded on the interface](https://github.com/dadoonet/legacy-search/blob/01-direct/src/main/webapp/partials/search.html#L27-60). So we just have to provide the aggregation result now...
@@ -1004,10 +1004,10 @@ So we have migrated our search part of our application to a search engine instea
 
 What would happen in case of failure? For example, let say you want to stop your elasticsearch cluster for whatever reason. All index operation will failed and you will have to deal with that by yourself.
 
-If you want to introduce an asynchronous indexing process, you could image to push your JSON documents to a message queue system and instead of writing by yourself the code which will read from the message queue, push to elasticsearch, deal with failures, you can use [Logstash](https://www.elastic.co/products/logstash) and one of its [input plugins](http://www.elastic.co/guide/en/logstash/current/input-plugins.html), for example:
+If you want to introduce an asynchronous indexing process, you could image to push your JSON documents to a message queue system and instead of writing by yourself the code which will read from the message queue, push to elasticsearch, deal with failures, you can use [Logstash](https://www.elastic.co/products/logstash) and one of its [input plugins](https://www.elastic.co/guide/en/logstash/current/input-plugins.html), for example:
 
-* [Kafka](http://www.elastic.co/guide/en/logstash/current/plugins-inputs-kafka.html)
-* [RabbitMQ](http://www.elastic.co/guide/en/logstash/current/plugins-inputs-rabbitmq.html)
-* [Redis](http://www.elastic.co/guide/en/logstash/current/plugins-inputs-redis.html)
+* [Kafka](https://www.elastic.co/guide/en/logstash/current/plugins-inputs-kafka.html)
+* [RabbitMQ](https://www.elastic.co/guide/en/logstash/current/plugins-inputs-rabbitmq.html)
+* [Redis](https://www.elastic.co/guide/en/logstash/current/plugins-inputs-redis.html)
 
 You can also scale out Logstash on multiple nodes if you need more injection power.

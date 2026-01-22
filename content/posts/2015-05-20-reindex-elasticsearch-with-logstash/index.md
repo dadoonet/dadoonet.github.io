@@ -201,7 +201,7 @@ curl -XGET "http://localhost:9201/person/person/AU1wqyQWZJKU8OibfxgH"
 }
 ```
 
-Logstash has just added `@version` and `@timestamp` fields. We might want to filter them out using [Mutate filter plugin](http://www.elastic.co/guide/en/logstash/current/plugins-filters-mutate.html) and its [remove_field](http://www.elastic.co/guide/en/logstash/current/plugins-filters-mutate.html#plugins-filters-mutate-remove_field):
+Logstash has just added `@version` and `@timestamp` fields. We might want to filter them out using [Mutate filter plugin](https://www.elastic.co/guide/en/logstash/current/plugins-filters-mutate.html) and its [remove_field](https://www.elastic.co/guide/en/logstash/current/plugins-filters-mutate.html#plugins-filters-mutate-remove_field):
 
 ```ruby
 filter {

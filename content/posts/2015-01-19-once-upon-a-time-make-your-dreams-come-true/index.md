@@ -26,7 +26,7 @@ After the first year, [I wrote]({{< ref "2014-01-10-once-upon-a-time-a-year-late
 
 <!--more-->
 
-This year, I spoke **78 times**! Around 2 talks per week! I did around **48 000 kilometers**. **8 000 km** more than the [earth's circumference](http://en.wikipedia.org/wiki/Earth)! I still can't believe it... 12 countries. And no need to say that I love giving talks and sharing my enthusiasm about Elasticsearch!
+This year, I spoke **78 times**! Around 2 talks per week! I did around **48 000 kilometers**. **8 000 km** more than the [earth's circumference](https://en.wikipedia.org/wiki/Earth)! I still can't believe it... 12 countries. And no need to say that I love giving talks and sharing my enthusiasm about Elasticsearch!
 
 I think that I'll put all this data together in Elasticsearch in the coming year, then create a Kibana dashboard to have a better overview of the talks I'm giving. 😀
 
@@ -35,10 +35,10 @@ I think that I'll put all this data together in Elasticsearch in the coming year
 ## What did I do this year?
 
 * 5 elasticsearch or partner events
-* 5 [trainings](http://training.elasticsearch.com/). Don't miss our next sessions in Paris! [Hands On Workshop ELK](http://purchases.elasticsearch.com/class/elasticsearch/GSW/paris/2015-01-21) and [Core elasticsearch](http://purchases.elasticsearch.com/class/elasticsearch/core/paris/2015-01-22).
-* 6 [meetups](http://www.meetup.com/elasticsearchfr/). I really encourage people to come to the [next one](http://www.meetup.com/elasticsearchfr/events/219274450/) in Paris, January 22nd.
+* 5 [trainings](https://www.elastic.co/training). Don't miss our next sessions in Paris! [Hands On Workshop ELK](http://purchases.elasticsearch.com/class/elasticsearch/GSW/paris/2015-01-21) and [Core elasticsearch](http://purchases.elasticsearch.com/class/elasticsearch/core/paris/2015-01-22).
+* 6 [meetups](https://www.meetup.com/elasticsearchfr/). I really encourage people to come to the [next one](https://www.meetup.com/elasticsearchfr/events/219274450/) in Paris, January 22nd.
 * 28 [BBLs]({{< ref "2024-08-01-free-lunches-for-opensource-engineers" >}}). I love doing talks at companies. It's a very nice way to understand our users' needs. I talk about course about the ELK stack but you can find many different speakers now on the [brownbaglunch.fr](https://www.brownbaglunch.fr/) web site. I'm also thinking of adding Elasticsearch to provide search features for the website. Let's hope I can find some spare time for this project. 😁
-* 34 talks. Lot of conferences, including [Devoxx](http://www.devoxx.com/), [Code Motion](http://www.codemotionworld.com/), [Sofshake](http://soft-shake.ch/), [Drupagora](http://www.drupagora.com/), [DotScale](http://www.dotscale.io/), [JMaghreb](http://www.jmaghreb.io/), [JavaZone](https://gist.github.com/dadoonet/javazone.no), [BreizhCamp](http://www.breizhcamp.org/), [BDX.io](https://gist.github.com/dadoonet/www.bdx.io), [Solution Linux](http://www.solutionslinux.fr/), [Microsoft Tech Days](https://techdays.microsoft.fr/) and some Java User Groups.
+* 34 talks. Lot of conferences, including [Devoxx](https://www.devoxx.com/), [Code Motion](https://www.codemotion.com/), [Sofshake](https://soft-shake.ch/), [Drupagora](http://www.drupagora.com/), [DotScale](http://www.dotscale.io/), [JMaghreb](http://www.jmaghreb.io/), [JavaZone](https://gist.github.com/dadoonet/javazone.no), [BreizhCamp](https://www.breizhcamp.org/), [BDX.io](https://gist.github.com/dadoonet/www.bdx.io), [Solution Linux](http://www.solutionslinux.fr/), [Microsoft Tech Days](https://techdays.microsoft.fr/) and some Java User Groups.
 
 There are always a lot of nice folks to meet at each event: speakers, organizers and attendees. I come away from these events with a lot of good vibes and energy.
 
@@ -56,7 +56,7 @@ So? What is the solution? Let's create a user conference and bring all the folks
 
 I am super excited going to San Francisco in March, meeting up again with all the colleagues I already know and seeing all the new comers in real life. And meeting... Users! I love users! They are contributing back so much to our open source projects by submitting code, documentation, issues or simply talking about their use cases at [meetups](https://www.meetup.com/pro/elastic/)!
 
-By the way, if you are a meetup organizer, you must see our dedicated [meetup page](http://www.elasticsearch.com/community/meetups/)!
+By the way, if you are a meetup organizer, you must see our dedicated [meetup page](https://www.meetup.com/pro/elastic/)!
 
 We will give an update on the State of the Community from all of our Developer Advocates at [elastic{ON}](https://www.elastic.co/events/elasticon), so if you are around, come and meet us!
 
@@ -64,7 +64,7 @@ We will give an update on the State of the Community from all of our Developer A
 
 It's not new, but we're hiring! Want to join us? Have a look at our open positions [here](https://www.elastic.co/careers). Feel free to ask me any questions about these roles and what its like to work at the company!
 
-Great improvements came to the codebase this year. Elasticsearch is now 1.4.2, Logstash 1.5.0.Beta1 and Kibana 4 is in Beta. Some commercial plugins has been released or announced, such as [Marvel](http://www.elasticsearch.com/products/marvel/) for cluster monitoring and [Shield](http://www.elasticsearch.com/products/shield/) which is all about security. It's great seeing so many people involved on those projects. I think that we probably invest 80 to 90% of our development efforts today on open source projects.
+Great improvements came to the codebase this year. Elasticsearch is now 1.4.2, Logstash 1.5.0.Beta1 and Kibana 4 is in Beta. Some commercial plugins has been released or announced, such as [Marvel](https://www.elastic.co/elasticsearch/monitoring) for cluster monitoring and [Shield](https://www.elastic.co/elastic-stack/security) which is all about security. It's great seeing so many people involved on those projects. I think that we probably invest 80 to 90% of our development efforts today on open source projects.
 
 Of course, when you start to release commercial products, you always getting some feedback, such as: "Hey, it must be free!". We actually don't have a specific Elasticsearch, Logstash or Kibana version for customers and a community version - our stack is the same for all using it. And that's something really important in my opinion. It means that people can create plugins on top of Elasticsearch & the ELK stack and provide same services to their users.
 

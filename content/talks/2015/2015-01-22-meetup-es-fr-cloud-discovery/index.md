@@ -1,7 +1,7 @@
 ---
 title: "ElasticFR #12 - Node discovery in Cloud environment"
 conference:
-  url: "http://www.meetup.com/elasticfr/events/219274450/"
+  url: "https://www.meetup.com/elasticfr/events/219274450/"
   name: "Meetup ElasticFR"
   city: "Boulogne-Billancourt"
   country: "France"

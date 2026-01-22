@@ -340,7 +340,7 @@ For each tweet coming, you will see a dot printed.
 
 We can now build our Kibana dashboard which represents our logs.
 
-The funny thing with this demo is that we are tracking everything about `elk`. But ELK does not only mean Elasticsearch, Logstash and Kibana. It's also [an animal](http://en.wikipedia.org/wiki/Elk)!
+The funny thing with this demo is that we are tracking everything about `elk`. But ELK does not only mean Elasticsearch, Logstash and Kibana. It's also [an animal](https://en.wikipedia.org/wiki/Elk)!
 
 {{< figure src="Rocky_Mountain_Bull_Elk.jpg" caption="ELK" >}}
 

@@ -11,7 +11,7 @@ versions:
     flag: "gb"
     title: "Enriching postal addresses with Elastic stack"
     abstract: |
-      > Come and learn how you can enrich your existing data with normalized postal addresses with geo location points thanks to open data and [BANO project](http://bano.openstreetmap.fr/data/).
+      > Come and learn how you can enrich your existing data with normalized postal addresses with geo location points thanks to open data and [BANO project](https://bano.openstreetmap.fr/data/).
       
       Most of the time postal addresses from our customers or users are not very well formatted or defined in our information systems. And it can become a nightmare if you are a call center employee for example and want to find a customer by its address.
       Imagine as well how a sales service could easily put on a map where are located the customers and where they can open a new shop…
@@ -47,7 +47,7 @@ versions:
     flag: "fr"
     title: "Enrichir les adresses postales avec la suite Elastic"
     abstract: |
-      > Venez apprendre comment enrichir vos données existantes avec des adresses postales normalisées et des points de géolocalisation grâce à l'open data et au [projet BANO](http://bano.openstreetmap.fr/data/).
+      > Venez apprendre comment enrichir vos données existantes avec des adresses postales normalisées et des points de géolocalisation grâce à l'open data et au [projet BANO](https://bano.openstreetmap.fr/data/).
       
       La plupart du temps, les adresses postales de nos clients ou utilisateurs ne sont pas très bien formatées ou définies dans nos systèmes d'information. Et cela peut devenir un cauchemar si vous êtes un employé de centre d'appel par exemple et que vous voulez trouver un client par son adresse.
       Imaginez également comment un service commercial pourrait facilement mettre sur une carte où sont situés les clients et où ils peuvent ouvrir un nouveau magasin…

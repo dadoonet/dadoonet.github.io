@@ -95,7 +95,7 @@ Pour le moment, je consomme le forum... Je ne produis rien.
 
 Elasticsearch met à disposition un système de plugins. Il devient donc facile de créer quelque chose sans connaitre tout le détail. Elasticsearch utilise Gradle (déjà en 2011), alors que je suis encore sur Maven et que le reste de la Douane est sur Ant.
 
-Je créé le plugin [RSS River](http://david.pilato.fr/rssriver/), qui indexe un contenu RSS régulièrement.
+Je créé le plugin [RSS River](https://david.pilato.fr/rssriver/), qui indexe un contenu RSS régulièrement.
 
 {{< figure src="rss-river.png" caption="RSS River" >}}
 

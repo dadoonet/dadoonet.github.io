@@ -26,7 +26,7 @@ Elasticsearch 5.0 [switched to Gradle in October 2015](https://github.com/elasti
 You can obviously write a plugin using Gradle if you wish and you could benefit from all the goodies elasticsearch team wrote
 when it comes to integration tests and so on.
 
-My colleague, Alexander Reelsen aka [Spinscale on Twitter](http://twitter.com/spinscale), wrote
+My colleague, Alexander Reelsen aka [Spinscale on Twitter](https://x.com/spinscale), wrote
 [a super nice template](https://github.com/spinscale/cookiecutter-elasticsearch-ingest-processor) if
 you wish to create an Ingest plugin for 5.0.
 

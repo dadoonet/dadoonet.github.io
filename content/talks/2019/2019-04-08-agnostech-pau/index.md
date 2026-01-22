@@ -27,7 +27,7 @@ x:
 
 links:
   - title: "Blog: Advanced search for your legacy application"
-    url: "http://david.pilato.fr/blog/2015/05/09/advanced-search-for-your-legacy-application/"
+    url: "https://david.pilato.fr/blog/2015/05/09/advanced-search-for-your-legacy-application/"
     description: "This blog post describes the major steps I’m doing while on stage. It has not been updated though so it’s better to check out the real code on github."
   - title: "Code: legacy-search"
     url: "https://github.com/dadoonet/legacy-search"
