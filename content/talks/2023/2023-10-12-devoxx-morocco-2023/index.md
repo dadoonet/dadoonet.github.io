@@ -1,7 +1,7 @@
 ---
 title: "La recherche à l’ère de l’IA"
 conference: 
-  name: "Devoxx Morocco"
+  name: "Devoxx MA"
   city: "Agadir 80000"
   country: "Morocco"
   country_code: "ma"
