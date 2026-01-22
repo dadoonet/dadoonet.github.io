@@ -20,7 +20,7 @@ aliases:
   - /blog/2011-09-14-mon-premier-plugin-elasticsearch-rss-river/
 ---
 
-Il existe dans [elasticsearch](https://www.elastic.co/) la notion de [river](https://www.elastic.co/guide/en/elasticsearch/reference/1.6/river.html) (rivière) qui comme son nom le laisse supposer permet de voir s'écouler des données depuis une source jusqu'à elasticsearch.
+Il existe dans [elasticsearch](https://www.elastic.co/) la notion de "river" (rivière) qui comme son nom le laisse supposer permet de voir s'écouler des données depuis une source jusqu'à elasticsearch.
 
 Au fur et à mesure que les données arrivent, la rivière les transporte et les envoie à l'indexation dans elasticsearch.
 
@@ -37,10 +37,10 @@ En standard, il existe 4 rivières :
 
 J'ai commencé par bidouiller un peu la rivière CouchDB pour y apporter quelques fonctionnalités dont mes collègues avaient besoin :
 
-* désactivation du champ _attachement. Voir [Pull Request 1283](https://github.com/elasticsearch/elasticsearch/pull/1283).
-* récupération du contenu d'une vue plutôt que le document original lui même. Voir [Pull Request 1258](https://github.com/elasticsearch/elasticsearch/pull/1258).
+* désactivation du champ `_attachement`. Voir [Pull Request 1283](https://github.com/elastic/elasticsearch/pull/1283).
+* récupération du contenu d'une vue plutôt que le document original lui même. Voir [Pull Request 1258](https://github.com/elastic/elasticsearch/pull/1258).
 
-Finalement, le principe se révèle assez simple. Il faut une classe qui implémente [River](https://github.com/elasticsearch/elasticsearch/blob/master/modules/elasticsearch/src/main/java/org/elasticsearch/river/River.java) et qui hérite de [AbstractRiverComponent](https://github.com/elasticsearch/elasticsearch/blob/master/modules/elasticsearch/src/main/java/org/elasticsearch/river/AbstractRiverComponent.java).
+Finalement, le principe se révèle assez simple. Il faut une classe qui implémente [River](https://github.com/elastic/elasticsearch/blob/0.15/modules/elasticsearch/src/main/java/org/elasticsearch/river/River.java) et qui hérite de [AbstractRiverComponent](https://github.com/elastic/elasticsearch/blob/0.15/modules/elasticsearch/src/main/java/org/elasticsearch/river/AbstractRiverComponent.java).
 
 Là, il ne reste plus qu'à implémenter :
 
@@ -54,14 +54,14 @@ Oui... J'y viens...
 
 Au fait, tout le monde sait ce qu'est un flux RSS ? La spécification officielle est [ici](https://www.rssboard.org/rss-specification).
 
-Je reprends donc le plugin [CouchDB River](https://github.com/elasticsearch/elasticsearch/tree/master/plugins/river/couchdb), je le mavenise (ouais, je ne suis pas encore super fan de Gradle), et je l'adapte à mes besoins.
+Je reprends donc le plugin [CouchDB River](https://github.com/elastic/elasticsearch/tree/0.15/plugins/river/couchdb), je le mavenise (ouais, je ne suis pas encore super fan de Gradle), et je l'adapte à mes besoins.
 
 Pour faire simple, je vais suivre la mécanique suivante :
 
 * Toutes les x minutes, je télécharge le flux RSS demandé que je transforme en POJO en me basant sur le travail fait par [Lars Vogel](https://www.vogella.com/tutorials/RSSFeed/article.html)
 * Je compare la date du flux (balise pubDate) avec la dernière date de flux (que j'avais stockée dans elasticsearch)
 * Si le flux est plus récent, je parcours tous les éléments du flux (item)
-* Je fabrique un identifiant de l'item basé sur un encodage du champ description. Pour cela, je me sers de ce qui est [déjà présent dans ES](https://github.com/elasticsearch/elasticsearch/blob/master/modules/elasticsearch/src/main/java/org/elasticsearch/common/UUID.java).
+* Je fabrique un identifiant de l'item basé sur un encodage du champ description. Pour cela, je me sers de ce qui est [déjà présent dans ES](https://github.com/elastic/elasticsearch/blob/0.15/modules/elasticsearch/src/main/java/org/elasticsearch/common/UUID.java).
 * Si cet identifiant a déjà été envoyé à elasticsearch, alors on ignore cet item.
 * Sinon, on le pousse vers elasticsearch dans un document de type "page"
 

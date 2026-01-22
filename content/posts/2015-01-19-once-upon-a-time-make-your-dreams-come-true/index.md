@@ -38,15 +38,15 @@ I think that I'll put all this data together in Elasticsearch in the coming year
 * 5 [trainings](https://www.elastic.co/training). Don't miss our next sessions in Paris!
 * 6 [meetups](https://www.meetup.com/elasticfr/). I really encourage people to come to the [next one](https://www.meetup.com/elasticfr/events/219274450/) in Paris, January 22nd.
 * 28 [BBLs]({{< ref "2024-08-01-free-lunches-for-opensource-engineers" >}}). I love doing talks at companies. It's a very nice way to understand our users' needs. I talk about course about the ELK stack but you can find many different speakers now on the [brownbaglunch.fr](https://www.brownbaglunch.fr/) web site. I'm also thinking of adding Elasticsearch to provide search features for the website. Let's hope I can find some spare time for this project. 😁
-* 34 talks. Lot of conferences, including [Devoxx](https://www.devoxx.com/), [Code Motion](https://www.codemotion.com/), [Sofshake](https://soft-shake.ch/), Drupagora, DotScale, [JMaghreb - now Devoxx Morocco](https://devoxx.ma/), [JavaZone](https://javazone.no), [BreizhCamp](https://www.breizhcamp.org/), [BDX.io](https://gist.github.com/dadoonet/www.bdx.io), Solution Linux, Microsoft Tech Days and some Java User Groups.
+* 34 talks. Lot of conferences, including [Devoxx](https://www.devoxx.com/), [Code Motion](https://www.codemotion.com/), [Sofshake](https://soft-shake.ch/), Drupagora, DotScale, [JMaghreb - now Devoxx Morocco](https://devoxx.ma/), [JavaZone](https://javazone.no), [BreizhCamp](https://www.breizhcamp.org/), [BDXio](https://bdxio.fr/), Solution Linux, Microsoft Tech Days and some Java User Groups.
 
 There are always a lot of nice folks to meet at each event: speakers, organizers and attendees. I come away from these events with a lot of good vibes and energy.
 
-The French community grew a lot as well this year and we have now the fantastic [Livia](livia.froelicher@elasticsearch.com) on board to organize all the things. So if you want to give a talk to the French speaking community, please contact her!
+The French community grew a lot as well this year and we have now the fantastic Livia on board to organize all the things. So if you want to give a talk to the French speaking community, please contact her!
 
 ## From a 10 person company to more than 100
 
-Elasticsearch clusters scale horizontally very well. Documents are distributed within the cluster. I feel the company functions this same way. We are a distributed team, all around the world and we are adding more and more brain power to our company. And what additions! We are building a very strong team in every single field in the organization. The hard part now is to recall everyone's name or job function! I guess I'll need to add more memory to my own brain really soonish! :)
+Elasticsearch clusters scale horizontally very well. Documents are distributed within the cluster. I feel the company functions this same way. We are a distributed team, all around the world and we are adding more and more brain power to our company. And what additions! We are building a very strong team in every single field in the organization. The hard part now is to recall everyone's name or job function! I guess I'll need to add more memory to my own brain really soonish! 😀
 
 A lot of babies were born last year, and new ones are coming in 2015. That's super great. We love families and babies at Elasticsearch! We can always find a good balance between our personal life and job duties. That's an important part of our company spirit.
 

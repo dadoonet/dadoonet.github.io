@@ -7,7 +7,7 @@ conference:
   country_code: "fr"
   latitude: "43.610769"
   longitude: "3.876716"
-  url: "https://sunny-tech.io/speakers/david_pilato/"
+  url: "https://sunny-tech.io/"
 author: David Pilato
 avatar: /about/david_pilato.png
 # talk: conferences

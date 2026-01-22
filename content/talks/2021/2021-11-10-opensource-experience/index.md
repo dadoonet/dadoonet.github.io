@@ -7,7 +7,7 @@ conference:
   country_code: "fr"
   latitude: "48.856614"
   longitude: "2.352222"
-  url: "https://www.sido-osxp.com/fr/session/e55fd218-1e28-ec11-ae72-a04a5e7d345e"
+  url: ""
 author: David Pilato
 avatar: /about/david_pilato.png
 # talk: conferences

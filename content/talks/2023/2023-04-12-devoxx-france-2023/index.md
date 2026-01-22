@@ -7,7 +7,7 @@ conference:
   country_code: "fr"
   latitude: "48.856614"
   longitude: "2.352222"
-  url: "https://cfp.devoxx.fr/2023/talk/SPD-7040/Un_moteur_de_recherche_de_documents_d'entreprise"
+  url: "https://www.devoxx.fr/"
 author: David Pilato
 avatar: /about/david_pilato.png
 # talk: conferences

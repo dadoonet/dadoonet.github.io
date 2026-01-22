@@ -40,7 +40,7 @@ Avec Malloum, nous venons de publier notre premier projet open-source commun: Sc
 
 ## Comment démarrer ?
 
-Télécharger la webapp <https://github.com/downloads/scrutmydocs/scrutmydocs/scrutmydocs-0.1.0.war> et la déployer dans votre conteneur favori (testé sur Tomcat et Jetty).
+Télécharger la webapp et la déployer dans votre conteneur favori (testé sur Tomcat et Jetty).
 
 La documentation est sur la repository [GitHub](https://github.com/scrutmydocs/scrutmydocs).
 

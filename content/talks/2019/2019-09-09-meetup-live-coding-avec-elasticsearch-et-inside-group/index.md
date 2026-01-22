@@ -27,7 +27,7 @@ x:
 
 links:
   - title: "Vidéo analogue"
-    url: "https://speaker.pilato.fr/AsJxO2"
+    url: "/AsJxO2"
     description: "Voici une vidéo enregistrée quelques mois plus tôt avec le même type de contenu."
   - title: "Code: legacy-search"
     url: "https://github.com/dadoonet/legacy-search"

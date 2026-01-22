@@ -244,7 +244,7 @@ I just have to launch filebeat now and let it work:
 
 ## Kibana analysis
 
-I'm changing a bit the [Kibana dashboard](https://73531b275dde9af18f03de55b5d02fca.us-east-1.aws.found.io:9243/app/kibana#/dashboard/Talks) (demo / elastic). Well, 6.x is providing new cool features, so let's use that.
+I'm changing a bit the Kibana dashboard. Well, 6.x is providing new cool features, so let's use that.
 
 By the way, I'm changing my own made `kibana_reader` role for the `demo` user to the official `kibana_dashboard_only_user` role.
 This is a super cool "Read Only mode" feature provided by X-Pack as it removes all the buttons you don't have access to anyway.
@@ -261,7 +261,7 @@ The last 5 years, I spent more than 265 000 kilometers in traveling to meet the 
 
 {{< figure src="kibana2-events-km.png" caption="Events and Kilometers" >}}
 
-What we can see is that the number of events per year is almost the same (around 75 per year" >}} but I traveled more than 92 000 kilometers in 2017!
+What we can see is that the number of events per year is almost the same (around 75 per year) but I traveled more than 92 000 kilometers in 2017!
 
 {{< figure src="kibana2-type.png" caption="Type of event" >}}
 
@@ -320,11 +320,11 @@ We celebrated the [5th anniversary of BBLs]({{< ref "2024-08-01-free-lunches-for
 And I already have booked part of my 2018 year (from January to July). I know I'll be going this year to:
 
 * Orléans
-* [Montpellier](https://www.jug-montpellier.org/)
-* [Grenoble](https://snowcamp.io/fr/)
+* [Montpellier](https://www.youtube.com/@MontpellierTechHub)
+* [Grenoble](https://snowcamp.io/)
 * [Elastic{ON} Paris](https://www.elastic.co/elasticon/tour/2017/paris)
-* [Elastic{ON} Munich](https://www.elastic.co/elasticon/tour/2017/munich)
-* [Stockholm](https://www.jfokus.se/jfokus/)
+* [Elastic{ON} Munich](https://www.elastic.co/events/elasticon)
+* [Stockholm](https://www.jfokus.se/)
 * [Elastic{ON} San Francisco](https://www.elastic.co/elasticon/conf/2018/sf)
 * [Montréal](https://confoo.ca/en/yul2018/)
 * [Bucharest](https://voxxeddays.com/romania/bucharest/2018-03-22/)

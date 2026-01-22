@@ -7,7 +7,7 @@ conference:
   country_code: "mu"
   latitude: "-20.219524"
   longitude: "57.502332"
-  url: "https://conference.mscc.mu/session/76180"
+  url: "https://conference.mscc.mu/"
 author: David Pilato
 avatar: /about/david_pilato.png
 talk: Postal Addresses

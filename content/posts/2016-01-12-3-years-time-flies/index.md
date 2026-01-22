@@ -48,7 +48,7 @@ It is so helpful when you can focus on solving your issues. I'm really thankful 
 
 I traveled. A lot. I gave less talks but I did 2 000 kilometers more than last year. Yeah. **50 000 kilometers** for 2015... Still a lot if you think that most of my traveling were in France or in Europe...
 
-* 2 elastic events: [elastic{ON}'15](https://www.elastic.co/elasticon/2015/sf/highlights-reel) and [elastic{ON} Tour Paris'15](https://www.elastic.co/elasticon/tour/2015/paris).
+* 2 elastic events: [elastic{ON}'15](https://www.elastic.co/events/elasticon) and [elastic{ON} Tour Paris'15](https://www.elastic.co/elasticon/tour/2015/paris).
 
 **Both were fantastic**. When you are working on technical side you are far away from event organization. It was clearly a success, not by mistake, but because very talented people made all that happen. That was months of preparation for the team. It went super well.
 
@@ -67,7 +67,7 @@ Well, I guess it's well known only in France! 😄
 * 26 [BBLs](https://www.brownbaglunch.fr/). Still one of my favorite moment. By the way, I started adding elasticsearch on the web site. Stay tuned! 😄
 * 23 talks. Lot of conferences, including [Devoxx FR](https://www.devoxx.fr/), [Code Motion](https://www.codemotion.com/), [BDX.io](www.bdx.io)...
 
-I think I spoke for more than **2 500 attendees**! I'm super happy on this because results are clearly visible in the company when we look for example at the requests on the web site per region or the [Google trends](https://trends.google.fr/trends/explore?q=Elasticsearch#q=Elasticsearch&geo=FR%2C%20US%2C%20GB&date=1%2F2015%2012m&cmpt=geo&tz=Etc%2FGMT-1):
+I think I spoke for more than **2 500 attendees**! I'm super happy on this because results are clearly visible in the company when we look for example at the requests on the web site per region or the [Google trends](https://trends.google.fr/trends/explore?date=2015-01-01%202015-12-31,2015-01-01%202015-12-31,2015-01-01%202015-12-31&geo=FR,US,GB&q=Elasticsearch,Elasticsearch,Elasticsearch):
 
 {{< figure src="google-trends.png" caption="Google Trends" >}}
 
@@ -93,7 +93,7 @@ Bringing modularity in elasticsearch repo was a great thing and thanks to all my
 
 I also worked a lot on splitting the packages in their [own distribution modules](https://github.com/elastic/elasticsearch/pull/11523).
 
-I tried also to enhance the [Java API documentation](https://www.elastic.co/guide/en/elasticsearch/client/java-api/current/index.html). Well, step by step, I'm trying to add some content. For example, I added recently some documentation about the [AdminClient](https://www.elastic.co/guide/en/elasticsearch/client/java-api/master/java-admin.html). More to come!
+I tried also to enhance the [Java API documentation](https://www.elastic.co/guide/en/elasticsearch/client/java-api/current/index.html). Well, step by step, I'm trying to add some content. For example, I added recently some documentation about the AdminClient. More to come!
 
 ## The devangelist team
 
@@ -111,7 +111,7 @@ We all met in Barcelona in September. Was great time!
 
 Growing from 10 to 300 people is something I never experienced before. It's a super interesting moment. And it's not that easy when you think about a distributed company with different countries and different cultures.
 
-At the end [it works pretty well](https://www.glassdoor.fr/Avis/Elastic-Avis-E751551.htm?&countryRedirect=true) at elastic.
+At the end [it works pretty well](https://www.glassdoor.fr/Avis/Elastic-Avis-E751551.htm) at elastic.
 
 The language barrier is still a problem even after 3 years. Of course, I can understand better my colleagues; it basically depends on their accent! :P from 30% to 100%...
 
@@ -131,7 +131,7 @@ I can't wait for elastic{ON}'16! Super excited to meet again all my coworkers an
 
 And of course, I will enjoy the good balance I have between work time and family time and will continue to say to myself how much lucky I am.
 
-I wish you fellows a very nice 2016 year and hope that 2016 will be more peaceful than 2015... But [the news today in Istanbul](https://www.bbc.com/news/world-europe-35290760) don't seem to prove me right. [I spoke there last year](https://voxxeddays.com/istanbul15/david-pilato-advanced-search-for-legacy-application-with-elasticsearch/), visited this historical and fantastic place... I'm so sad this is happening...
+I wish you fellows a very nice 2016 year and hope that 2016 will be more peaceful than 2015... But [the news today in Istanbul](https://www.bbc.com/news/world-europe-35290760) don't seem to prove me right. [I spoke there last year]({{< ref "talks/2015/2015-05-09-voxxed-istanbul" >}}), visited this historical and fantastic place... I'm so sad this is happening...
 
 {{< figure src="istanbul.jpg" caption="😢" >}}
 

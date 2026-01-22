@@ -77,7 +77,7 @@ For the December Fest event, at Elastic office I was also invited to play some m
 
 {{< x user="dadoonet" id="1865468090416353572" >}}
 
-It was one of my best DeeJay set ever which you can listen from [here](https://podcasts.apple.com/fr/podcast/davids-mix-2024-12-05-elastic-decemberfest-2024/id505824965?i=1000679503377).
+It was one of my best DeeJay set ever which you can listen from [Apple Podcasts](https://podcasts.apple.com/fr/podcast/davids-mix-2024-12-05-elastic-decemberfest-2024/id959495351?i=1000679502746).
 
 The Elastic design team created a nice design for a t-shirt or a poster I will use for my next events.
 
@@ -113,12 +113,12 @@ organized!
   * 🇫🇷 - [Meetup - ElasticFR #89 - Bloom / Liferay](https://www.meetup.com/elasticfr/events/296837031/) - I had to cancel my participation to this one as I was sick.
   * 🇫🇷 - [SnowCamp](https://snowcamp.io/) - I was manning the Elastic booth.
 * February:
-  * 🇫🇷 - [Conference - Touraine Tech: La recherche à l’ère de l’IA](https://touraine.tech/talk/oVFqGQVuSwZBRIfpXwVd) - 80 attendees
+  * 🇫🇷 - [Conference - Touraine Tech: La recherche à l’ère de l’IA](https://touraine.tech/) - 80 attendees
   * 🇨🇦 - [Meetup - Montreal JUG - 🎹🎻🎸 Et si nous cherchions des morceaux de musique 🎼🎶](https://www.meetup.com/montreal-jug/events/298437494/) - 60 attendees. This one was funny because I was in Montreal just for holidays with my family and it was at the same time as Confoo.
   * 🇨🇿 - Elastic Engineering All Hands in Prague, Czech Republic
 * March:
   * 🇫🇷 - [Meetup - AgnosTech Pau: La recherche à l’ère de l’IA](https://www.meetup.com/agnostech-pau/events/299096165/)	- 15 attendees.
-  * 🌍 - [BBL - Gravitee: Search: a new era](https://speaker.pilato.fr/dRVohX)	- 15 attendees online.
+  * 🌍 - [BBL - Gravitee: Search: a new era](/dRVohX)	- 15 attendees online.
   * 🇫🇷 - [Conference - Azure Day with Kubernetes: Search a new era](https://azureday.eventbuilder.com/event/81082) - 200 attendees.
   * 🇫🇷 - [Meetup - ElasticFR #90 - KubeCon Edition](https://www.meetup.com/elasticfr/events/296837084/) - 30 attendees at Microsoft France.
   * 🇫🇷 - [Conference - AI and Data Day: La recherche à l’ère de l’IA](https://dev.events/conferences/ia-and-data-day-strasbourg-a3ea8lsm) - 50 attendees.
@@ -131,7 +131,7 @@ organized!
   * 🇨🇭 - [Meetup - GenevaJUG: La recherche à l’ère de l’IA](https://genevajug.ch/) - 50 attendees.
   * 🇫🇷 - [Meetup - LyonJUG: La recherche à l’ère de l’IA](https://www.meetup.com/lyonjug/events/300674391/) - 32 attendees.
   * 🇫🇷 - [Meetup - TadX: Elasticsearch Query Language: ES|QL](https://www.eventbrite.fr/e/billets-tadx-elasticsearch-query-language-esql-898049850277) - 20 attendees.
-  * 🇫🇷 - [BBL - Talan](https://speaker.pilato.fr/Op8xGg) - 30 attendees online.
+  * 🇫🇷 - [BBL - Talan](/Op8xGg) - 30 attendees online.
   * 🇧🇬 - [Meetup - Elastic Sofia: Vector Search & ES|QL @ FFW](https://www.meetup.com/elasticsearch-bulgaria-user-group/events/299653357/) - 15 attendees, with Piotr.
   * 🇧🇬 - [Conference - JPrime: Search: a new era](https://jprime.io/) - 600 attendees.
 * June:
@@ -141,11 +141,11 @@ organized!
   * 🇫🇷 - [Conference - Breizhcamp: La recherche à l'ère de l'IA](https://www.breizhcamp.org/conference/) - 100 attendees.
   * 🇫🇷 - [Conference - Breizhcamp: Elasticsearch Query Language: ES|QL](https://www.breizhcamp.org/conference/) - 80 attendees.
   * 🇩🇪 - [Conference - Developer Week: Advanced (elastic)search for your legacy application](https://www.developer-week.de/programm/#/talk/advanced-elasticsearch-for-your-legacy-application) - 40 attendees.
-  * 🇫🇷 - [Conference - SunnyTech: La recherche à l’ère de l’IA](https://sunny-tech.io/sessions/la-recherche-a-lere-de-lia) - 40 attendees.
+  * 🇫🇷 - [Conference - SunnyTech: La recherche à l’ère de l’IA](https://sunny-tech.io/) - 40 attendees.
 * July:
-  * 🇫🇷 - [Conference - Riviera Dev: La recherche à l’ère de l’IA](https://rivieradev.fr/session/259) - 60 attendees.
+  * 🇫🇷 - [Conference - Riviera Dev: La recherche à l’ère de l’IA](https://rivieradev.fr/) - 60 attendees.
 * September:
-  * 🌍 - [Podcast - 🎹🎻🎸 Searching for similar music tracks 🎼🎶](https://speaker.pilato.fr/fZF2Ui) - not released yet.
+  * 🌍 - [Podcast - 🎹🎻🎸 Searching for similar music tracks 🎼🎶](/fZF2Ui) - not released yet.
   * 🇫🇷 - [Conference - JUG Summer Camp: Elasticsearch Query Language: ES|QL](https://www.jugsummercamp.org/edition/15/presentations/GxmHLbTOhV23O4y88B1Z) - 40 attendees.
   * 🇫🇷 - [Meetup - ChtiJUG: La recherche à l’ère de l’IA + ES|QL](https://www.meetup.com/chtijug/events/303211426/) - 50 attendees.
   * 🇫🇷 - [Meetup - YaJUG: La recherche à l’ère de l’IA + ES|QL](https://yajug.lu/session/la-recherche-a-lere-de-l-ia/) - 30 attendees.
@@ -155,8 +155,8 @@ organized!
   * 🇫🇷 - [Meetup - ElasticFR #92 - Radès, Kafka, ES|QL](https://www.meetup.com/elasticfr/events/303048962) - 30 attendees.
   * 🇫🇷 - [ForumPHP](https://event.afup.org/forum-php-2024/programme/) - I was manning the Elastic booth.
   * 🇫🇷 - [Training - Elastic Engineer](https://www.elastic.co/training/elasticsearch-engineer) - 10 attendees. This course is my favorite one. I love when I have a chance to run it.
-  * 🇫🇷 - [Conference - DevFest Nantes: La météorite GPT annonce t'elle la disparition des dinosaures "moteur de recherche" ?](https://devfest.gdgnantes.com/sessions/la_meteorite_gpt_annonce_t_elle_la_disparition_des_dinosaures__moteur_de_recherche___/) - 400 attendees.
-  * 🌍 - [BBL - Kpler: 🎹🎻🎸 Searching for similar music tracks 🎼🎶](https://speaker.pilato.fr/fgcTwf) - 110 attendees online.
+  * 🇫🇷 - [Conference - DevFest Nantes: La météorite GPT annonce t'elle la disparition des dinosaures "moteur de recherche" ?](https://devfest.gdgnantes.com/) - 400 attendees.
+  * 🌍 - [BBL - Kpler: 🎹🎻🎸 Searching for similar music tracks 🎼🎶](/fgcTwf) - 110 attendees online.
 * November:
   * 🇫🇷 - [Conference - DevFest Toulouse: La recherche à l’ère de l’IA](https://devfesttoulouse.fr/) - 300 attendees.
   * 🇬🇷 - [Conference - OpenConf: 🎹🎻🎸 Searching for similar music tracks 🎼🎶](https://www.open-conf.gr/) - it was a recording for the pre-event of the conference.
@@ -166,11 +166,11 @@ organized!
   * 🇳🇱 - [ElasticON Amsterdam 2024: Community track](https://www.elastic.co/events/elasticon/amsterdam). I was managing the community track with my colleague Iulia.
   * 🇧🇪 - [BBL - Fortis: Ai Search + ES|QL](https://noti.st/events/Wf7Mo0) - 8 attendees.
   * 🇧🇪 - [Meetup - BruJUG: Search, a new era](https://www.meetup.com/brujug/events/304382685/) - 18 attendees.
-  * 🇧🇪 - [BBL - ARHS: Search, a new era](https://speaker.pilato.fr/7bwbwj) - 20 attendees.
-  * 🇧🇪 - [BBL - Infrabel: ES|QL](https://speaker.pilato.fr/eqJ9Aw) - 15 attendees.
+  * 🇧🇪 - [BBL - ARHS: Search, a new era](/7bwbwj) - 20 attendees.
+  * 🇧🇪 - [BBL - Infrabel: ES|QL](/eqJ9Aw) - 15 attendees.
 * December:
   * 🇫🇷 - [Devops REX](https://www.devopsrex.fr/) - I was manning the Elastic booth.
-  * 🌍 - [BBL - Ekino](https://speaker.pilato.fr/asppSL) - 25 attendees online.
+  * 🌍 - [BBL - Ekino](/asppSL) - 25 attendees online.
   * 🇫🇷 - [meetup - FinistDev: La recherche à l’ère de l’IA + ES|QL](https://www.meetup.com/finistdevs/events/304808245) - 30 attendees.
   * 🇫🇷 - [BBL - CleverCloud : ES|QL](https://my.weezevent.com/bbl-ES%7CQL) - 10 attendees.
   * 🇫🇷 - [Conference - Normandie AI: La recherche à l'ère de l'IA](https://normandie.ai/) - 190 attendees.

@@ -16,7 +16,7 @@ draft: false
 notist: dadoonet/EzjiuN
 links:
   - title: "Conference website"
-    url: "https://devdays.lt/David-Pilato/"
+    url: "https://devdays.lt/2022/David-Pilato/index.html"
 
   - title: "Live coding"
     url: "https://www.elastic.co/blog/how-to-add-powerful-search-existing-sql-applications-elasticsearch-video-tutorial"

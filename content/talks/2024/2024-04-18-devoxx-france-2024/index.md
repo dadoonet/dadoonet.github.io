@@ -7,7 +7,7 @@ conference:
   country_code: "fr"
   latitude: "48.856614"
   longitude: "2.352222"
-  url: "https://mobile.devoxx.com/events/devoxxfr2024/talks/4178/details"
+  url: "https://www.devoxx.fr/"
 author: David Pilato
 avatar: /about/david_pilato.png
 # talk: conferences

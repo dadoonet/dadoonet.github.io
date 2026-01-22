@@ -54,7 +54,7 @@ links:
     url: "https://podcasts.apple.com/fr/podcast/dj-elky-mixes/id959495351"
     description: "This is the DJ Elky podcast."
   - title: "Podcast: Camping Des Speakers DJ Set"
-    url: "https://podcasts.apple.com/fr/podcast/dj-dadoo-net-mixes/id505824965?i=1000617303592"
+    url: "https://podcasts.apple.com/fr/podcast/davids-mix-2023-06-13-le-camping-des-speakers/id959495351?i=1000617304169"
     description: "This is the DJ Elky set from the Camping Des Speakers event."
 
 aliases:
@@ -73,9 +73,9 @@ Nous tenterons à la fin de faire un mix à plusieurs mains pour mettre en prati
 Matériel principalement utilisé :
 
 * deux [Pioneer CDJ-3000](https://www.pioneerdj.com/fr-fr/product/player/cdj-3000/black/overview/)
-* une [Pioneer DJM-900 Nexus 2 White](https://www.pioneerdj.com/fr-fr/product/mixer/archive/djm-900nxs2/white/overview/) ou une [Pioneer DJM-V10LF](https://www.pioneerdj.com/fr-fr/product/mixer/djm-v10-lf/black/overview/)
-* une enceinte amplifiée [FBT - X-Pro 112MA](https://www.fbt.it/en/products/x-pro/x-pro-112ma/)
+* une [Pioneer DJM-V10LF](https://www.pioneerdj.com/fr-fr/product/mixer/djm-v10-lf/black/overview/)
+* une enceinte amplifiée [FBT - X-Pro 112MA](https://www.fbt.it/product/x-pro-112-ma/)
 * un enregistreur
-* une table [AmericanDJ Pro Event table II](https://www.americandj.eu/fr/pro-event-table-ii-mb.html)
+* une table [AmericanDJ Pro Event table II](https://www.adj.eu/pro-event-tbl-2)
 
 Aucune connaissance en musique requise. Juste un bon moment à passer en poussant des boutons.

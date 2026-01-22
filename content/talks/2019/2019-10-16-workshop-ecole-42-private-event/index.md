@@ -19,11 +19,6 @@ pdf: "2019/2019-10-16-workshop-ecole-42-private-event.pdf"
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/BtuDBd"
-links:
-  - title: "Demo code"
-    url: "https://gist.github.com/dadoonet/f3c67bebf2cf604df02f78ac2cb2fbde"
-
-
 
 aliases:
   - /BtuDBd

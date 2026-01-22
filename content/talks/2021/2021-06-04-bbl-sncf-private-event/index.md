@@ -25,7 +25,7 @@ links:
     description: "This is the Kibana script I’m starting from when doing the talk"
 
   - title: "SNCF"
-    url: "https://sncf.com/"
+    url: "https://www.groupe-sncf.com/"
 
 
 

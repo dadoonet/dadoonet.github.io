@@ -2,7 +2,7 @@
 title: "Le hasard fait bien les tests"
 conference: 
   name: "DevFest Toulouse"
-  url: "https://devfest.gdgtoulouse.com/"
+  url: "https://devfesttoulouse.fr/"
   city: "Toulouse"
   country: "France"
   country_code: "fr"

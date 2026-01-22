@@ -30,7 +30,7 @@ x:
 
 links:
   - title: "Demo: SQL2NoSQL"
-    url: "https://github.com/dadoonet/sql2nosql-demo"
+    url: ""
     description: "This demo shows how you can use SQL2NoSQL to convert a SQL application to a NoSQL application."
   - title: "Feedback La Revue du Digital"
     url: "https://www.larevuedudigital.com/passer-dune-base-sql-a-une-base-nosql-en-40-minutes/"

@@ -7,7 +7,7 @@ conference:
   country_code: "fr"
   latitude: "48.852775"
   longitude: "2.602651"
-  url: "https://www.vitrine-technologique.gouv.qc.ca/vitrine%20technologique.nsf/Activit%C3%A9s/A40C2E69E95370178525839000558DA7?OpenDocument&SessionID=undefined"
+  url: "https://www.esiee.fr/"
 author: David Pilato
 avatar: /about/david_pilato.png
 talk: Elasticsearch

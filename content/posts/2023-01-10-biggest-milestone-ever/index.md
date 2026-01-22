@@ -27,7 +27,7 @@ Would I have been able to imagine such a thing when 10+ years ago [I met Shay at
 
 Have you noticed that I'm frequently using a music in my blog posts. Well, it makes sense as I'm often [DeeJaying](https://instagram.com/dj_elky) for friends so music is everywhere in my life.
 
-Anyway, I [met Shay]({{< ref "2013-01-15-once-upon-a-time-dot-dot-dot" >}}) and we agreed that it would make sense for me to join this amazing group of talented people. When [I actually joined](https://www.elastic.co/fr/blog/welcome-david), there was if I recall correctly 10 employees plus the 4 founders:
+Anyway, I [met Shay]({{< ref "2013-01-15-once-upon-a-time-dot-dot-dot" >}}) and we agreed that it would make sense for me to join this amazing group of talented people. When I actually joined, there was if I recall correctly 10 employees plus the 4 founders:
 
 * Shay Banon
 * Simon Willnauer

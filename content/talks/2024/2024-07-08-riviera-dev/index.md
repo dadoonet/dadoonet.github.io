@@ -7,7 +7,7 @@ conference:
   country_code: "fr"
   latitude: "43.710173"
   longitude: "7.261953"
-  url: "https://rivieradev.fr/session/259"
+  url: "https://rivieradev.fr/"
 author: David Pilato
 avatar: /about/david_pilato.png
 # talk: conferences

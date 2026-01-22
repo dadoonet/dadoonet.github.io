@@ -51,7 +51,7 @@ You need to have:
 * JDK7 or higher
 * Postgresql up and running
 
-Modify [src/main/resources/hibernate.cfg.xml](src/main/resources/hibernate.cfg.xml) file to reflect your own postgresql settings:
+Modify `src/main/resources/hibernate.cfg.xml` file to reflect your own postgresql settings:
 
 ```xml
 <!-- Database connection settings -->
@@ -433,7 +433,7 @@ If you want to learn more about the analysis process, I'd suggest you read the f
 
 > Can we fix that?
 
-For sure, we can use a [wildcard query](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-wildcard-query.html) or a [prefix query](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-prefix-query.html) but this is really inefficient! Please, don't do that! :)
+For sure, we can use a [wildcard query](https://www.elastic.co/docs/reference/query-languages/query-dsl/query-dsl-wildcard-query) or a [prefix query](https://www.elastic.co/docs/reference/query-languages/query-dsl/query-dsl-prefix-query) but this is really inefficient! Please, don't do that! 😀
 
 ## Fix the mapping
 
@@ -531,9 +531,9 @@ It gives
 }
 ```
 
-As you can imagine, we are using here all defaults to elasticsearch. So we are using a [standard analyzer](https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-standard-analyzer.html) for example to analyze our text.
+As you can imagine, we are using here all defaults to elasticsearch. So we are using a [standard analyzer](https://www.elastic.co/docs/reference/text-analysis/analysis-standard-analyzer) for example to analyze our text.
 
-Let's say that instead of indexing `joe`, we want also to index `j` and `jo`. We can do that using a [edge ngram tokenfilter](https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-edgengram-tokenizer.html). To do that, you need to create your own analyzer. It can be done when you create your index by providing settings:
+Let's say that instead of indexing `joe`, we want also to index `j` and `jo`. We can do that using a [edge ngram tokenfilter](https://www.elastic.co/docs/reference/text-analysis/analysis-edgengram-tokenizer). To do that, you need to create your own analyzer. It can be done when you create your index by providing settings:
 
 ```json
 {
@@ -586,7 +586,7 @@ But at search time, searching for `joe` will also return unexpected results such
 `joe` is once again analyzed at search time and produces `j`, `jo` and `joe`.
 `jane` has been indexed as `j`, `ja`, `jan` and `jane`. `j` from `joe` equals `j` from `jane`!
 
-In this use case, a user who enters `joe` is probably looking for someone named `joe` so we should only use a `lowercase` filter. The [simple analyzer](https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-simple-analyzer.html) does that perfectly. Let's use it:
+In this use case, a user who enters `joe` is probably looking for someone named `joe` so we should only use a `lowercase` filter. The [simple analyzer](https://www.elastic.co/docs/reference/text-analysis/analysis-simple-analyzer) does that perfectly. Let's use it:
 
 ```json
 "name": {
@@ -867,7 +867,7 @@ It means that basically elasticsearch won't slow down that much your process.
 Let's do something even more interesting. Let's try to add a [faceted navigation](https://en.wikipedia.org/wiki/Faceted_search).
 We want to display our result set broken per 10 years (`by_year`) and also get the repartition of our result set per country (`by_country`).
 
-Everything was [already coded on the interface](https://github.com/dadoonet/legacy-search/blob/01-direct/src/main/webapp/partials/search.html#L27-60). So we just have to provide the aggregation result now...
+Everything was [already coded on the interface](https://github.com/dadoonet/legacy-search/blob/202bbb3d3b02aa648ec05e47e14155297be9ceb6/src/main/frontend/src/components/Search.tsx#L152). So we just have to provide the aggregation result now...
 
 Let's modify `ElasticsearchDao#search` method:
 

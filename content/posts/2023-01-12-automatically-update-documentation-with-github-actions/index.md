@@ -190,7 +190,7 @@ So we have one single commit:
 
 {{< figure src="pr-initial-commit.png" caption="One single commit" >}}
 
-When the [Github Actions workflow starts](https://github.com/dadoonet/demo-automatic-doc/actions/runs/3906707095/jobs/6675166018), it updates the code, commits it and pushes it to our branch which is now updated:
+When the [Github Actions workflow starts](https://github.com/dadoonet/demo-automatic-doc/actions), it updates the code, commits it and pushes it to our branch which is now updated:
 
 {{< figure src="pr-commits.png" caption="With the additional commit" >}}
 

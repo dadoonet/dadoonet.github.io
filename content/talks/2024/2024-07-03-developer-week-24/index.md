@@ -7,7 +7,7 @@ conference:
   country_code: "de"
   latitude: "49.452102"
   longitude: "11.076665"
-  url: "https://www.developer-week.de/en/program/#/talk/advanced-elasticsearch-for-your-legacy-application"
+  url: "https://www.developer-world.com/dwx"
 author: David Pilato
 avatar: /about/david_pilato.png
 # talk: conferences

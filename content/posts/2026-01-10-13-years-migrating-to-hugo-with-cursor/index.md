@@ -30,7 +30,7 @@ If you want to skip the technical details about Hugo, jump directly to the ["AI:
 
 ## Migration from speaker.pilato.fr
 
-You can still find the old website running for a while at [https://noti.st/dadoonet](https://noti.st/dadoonet). It might disappear at some point.
+You can still find the old website running for a while at <https://noti.st/dadoonet>. It might disappear at some point.
 
 ### Why migrate from noti.st?
 
@@ -71,7 +71,7 @@ The `pdf.html` partial then builds the full URL dynamically.
 
 #### Hugo partials for reusable components
 
-Hugo's [partial templates](https://gohugo.io/templates/partials/) are powerful. We created 13 custom partials to keep the code DRY:
+Hugo's [partial templates](https://gohugo.io/templates/types/#partial) are powerful. We created 13 custom partials to keep the code DRY:
 
 | Partial | Purpose |
 |---------|---------|

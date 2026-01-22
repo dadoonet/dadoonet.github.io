@@ -77,8 +77,8 @@ So 2024 will be still about this: meeting people, sharing with them, learning fr
 
 For what is planned so far, I'll be in:
 
-* Paris, France, for the [Elastic Cruise](https://events.elastic.co/2024-01-11-rservezvotreplaceelasticrencon) event
-* Tours, France, for the [TADx](https://www.tadx.fr/2024-01-23-44-eme-event) meetup
+* Paris, France, for the [Elastic Cruise](https://www.elastic.co/events) event
+* Tours, France, for the [TADx](https://www.tadx.fr/) meetup
 * Grenoble, France, for the [SnowCamp](https://snowcamp.io/) conference
 * Tours, France, for the [Touraine Tech](https://touraine.tech/) conference
 * Prague, Czech Republic, for the Elastic Engineering All Hands

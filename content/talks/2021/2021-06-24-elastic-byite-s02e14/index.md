@@ -20,7 +20,7 @@ notist: "dadoonet/CU8BpK"
 
 links:
   - title: "Demo Repository"
-    url: "https://github.com/dadoonet/demo-kibana-snapshots"
+    url: "https://github.com/dadoonet/s02e14-snapshots"
 
 
 x:

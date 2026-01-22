@@ -7,7 +7,7 @@ conference:
   country_code: "fr"
   latitude: "48.856614"
   longitude: "2.352222"
-  url: "https://malt.fr/"
+  url: "https://www.malt.fr/"
 author: David Pilato
 avatar: /about/david_pilato.png
 # talk: conferences

@@ -16,7 +16,7 @@ draft: false
 notist: dadoonet/nRD9sE
 links:
   - title: "Conference website"
-    url: "https://java.geekle.us/"
+    url: ""
 
   - title: "Live coding"
     url: "https://www.elastic.co/blog/how-to-add-powerful-search-existing-sql-applications-elasticsearch-video-tutorial"

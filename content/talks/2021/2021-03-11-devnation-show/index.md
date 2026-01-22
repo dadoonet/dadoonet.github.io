@@ -2,7 +2,7 @@
 title: 'DevNation: The Show with David from Elastic'
 conference:
   name: DevNation Show
-  url: ''
+  url: 'https://developers.redhat.com/devnation/'
   country: "Online"
   country_code: "Online"
 author: David Pilato
@@ -17,12 +17,6 @@ draft: false
 # Speaker specific fields
 youtube: "tpvRmI2UN4k?t=125"
 notist: dadoonet/UWydIw
-
-links:
-  - title: "Event page"
-    url: "https://developers.redhat.com/devnation/the-show"
-    description: "Join us as we discuss today’s hottest technologies impacting developers and architects — and have a lot of fun Join the DevNation every other Thursday (alternating with Tech Talks) for an hour-long live chat show for all things Kubernetes, Java, and Linux. We will deliver the latest developer news you need and interview guests with specialized tech expertise. We will also feature ways for you to be involved, like live Q&A and special quizzes, polls, and contests. Tune in every other Thursday at 17:00 UTC / 12:00 ET"
-
 
 aliases:
 - /UWydIw
@@ -40,6 +34,6 @@ x:
 ---
 Join us as we discuss today’s hottest technologies impacting developers and architects — and have a lot of fun
 
-Join the DevNation every other Thursday (alternating with [Tech Talks](https://developers.redhat.com/devnation/tech-talks)) for an hour-long live chat show for all things Kubernetes, Java, and Linux. We will deliver the latest developer news you need and interview guests with specialized tech expertise. We will also feature ways for you to be involved, like live Q&A and special quizzes, polls, and contests.
+Join the DevNation every other Thursday (alternating with [Tech Talks](https://developers.redhat.com/devnation/)) for an hour-long live chat show for all things Kubernetes, Java, and Linux. We will deliver the latest developer news you need and interview guests with specialized tech expertise. We will also feature ways for you to be involved, like live Q&A and special quizzes, polls, and contests.
 
 Tune in every other Thursday at 17:00 UTC / 12:00 ET, and watch previous editions of [DevNation: The Show on-demand](https://www.youtube.com/playlist?list=PLf3vm0UK6HKpbZvVaYjOmnvnVXBkHPvms)!

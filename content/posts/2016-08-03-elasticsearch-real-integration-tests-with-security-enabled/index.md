@@ -49,7 +49,7 @@ First, let's add elastic maven repository in our `pom.xml`.
     <repository>
         <id>elastic-releases</id>
         <name>Elastic Maven Repository</name>
-        <url>http://artifacts.elastic.co/maven/</url>
+        <url>https://artifacts.elastic.co/maven/</url>
     </repository>
 </repositories>
 ```

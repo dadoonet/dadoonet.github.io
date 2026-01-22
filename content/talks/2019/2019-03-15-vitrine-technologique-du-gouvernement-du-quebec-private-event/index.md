@@ -7,7 +7,7 @@ conference:
   country_code: "ca"
   latitude: "46.813878"
   longitude: "-71.207981"
-  url: "https://www.vitrine-technologique.gouv.qc.ca/vitrine%20technologique.nsf/Activit%C3%A9s/A40C2E69E95370178525839000558DA7?OpenDocument&SessionID=undefined"
+  url: "https://www.quebec.ca/gouvernement/faire-affaire-gouvernement/presenter-services-produits-technologiques-ministeres-organismes"
 author: David Pilato
 avatar: /about/david_pilato.png
 # talk: conferences
