@@ -16,7 +16,7 @@ nolastmod: true
 draft: false
 pdf: "2012/2012-04-19-elasticsearch-devoxx-france-2012.pdf"
 
-youtube: sxWTPruEWRU
+youtube: "sxWTPruEWRU"
 notist: dadoonet/ubjdxo
 x:
 - user: agnes_crepet
