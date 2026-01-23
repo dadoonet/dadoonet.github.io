@@ -14,6 +14,7 @@ date: 2016-06-14
 talk-lang: fr
 nolastmod: true
 draft: false
+pdf: "2016/2016-06-14-cci-le-havre.pdf"
 
 attendees: 10
 ---

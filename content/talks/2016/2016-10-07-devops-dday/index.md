@@ -14,6 +14,7 @@ date: 2016-10-07
 talk-lang: fr
 nolastmod: true
 draft: false
+pdf: "2016/2016-10-07-devops-dday.pdf"
 
 attendees: 150
 ---

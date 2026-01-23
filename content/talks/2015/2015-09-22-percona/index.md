@@ -14,6 +14,7 @@ date: 2015-09-22
 talk-lang: fr
 nolastmod: true
 draft: false
+pdf: "2015/2015-09-22-percona.pdf"
 
 attendees: 30
 ---

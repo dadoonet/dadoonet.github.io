@@ -14,6 +14,7 @@ date: 2016-04-05
 talk-lang: fr
 nolastmod: true
 draft: false
+pdf: "2016/2016-04-05-bbl-sari-private-event.pdf"
 
 attendees: 60
 ---

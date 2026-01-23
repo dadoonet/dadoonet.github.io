@@ -15,7 +15,7 @@ talk-lang: fr
 nolastmod: true
 draft: false
 
-pdf: "2018/2018-02-23-tnt-Managing_Black_Friday_Logs.pdf"
+pdf: "2018/2018-02-23-touraine-tech.pdf"
 attendees: 60
 ---
 

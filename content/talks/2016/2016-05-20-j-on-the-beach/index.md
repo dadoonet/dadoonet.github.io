@@ -14,6 +14,7 @@ date: 2016-05-20
 talk-lang: en
 nolastmod: true
 draft: false
+pdf: "2016/2016-05-20-j-on-the-beach.pdf"
 
 attendees: 100
 ---

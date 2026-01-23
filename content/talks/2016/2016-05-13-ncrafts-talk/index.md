@@ -14,6 +14,7 @@ date: 2016-05-13
 talk-lang: fr
 nolastmod: true
 draft: false
+pdf: "2016/2016-05-13-ncrafts-talk.pdf"
 
 attendees: 100
 ---

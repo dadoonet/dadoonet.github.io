@@ -14,6 +14,7 @@ date: 2015-06-04
 talk-lang: fr
 nolastmod: true
 draft: false
+pdf: "2015/2015-06-04-web2day-nantes.pdf"
 
 attendees: 50
 ---

@@ -14,6 +14,7 @@ date: 2016-11-09
 talk-lang: en
 nolastmod: true
 draft: false
+pdf: "2016/2016-11-09-elasticon-paris.pdf"
 
 attendees: 150
 ---

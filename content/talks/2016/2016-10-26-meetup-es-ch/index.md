@@ -14,6 +14,7 @@ date: 2016-10-26
 talk-lang: fr
 nolastmod: true
 draft: false
+pdf: "2016/2016-10-26-meetup-es-ch.pdf"
 
 attendees: 20
 ---

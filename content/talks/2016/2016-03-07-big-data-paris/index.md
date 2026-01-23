@@ -14,6 +14,7 @@ date: 2016-03-07
 talk-lang: en
 nolastmod: true
 draft: false
+pdf: "2016/2016-03-07-big-data-paris.pdf"
 
 attendees: 300
 ---

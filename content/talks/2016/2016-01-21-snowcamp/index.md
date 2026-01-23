@@ -14,6 +14,7 @@ date: 2016-01-21
 talk-lang: fr
 nolastmod: true
 draft: false
+pdf: "2016/2016-01-21-snowcamp.pdf"
 
 attendees: 50
 ---

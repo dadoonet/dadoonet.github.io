@@ -14,6 +14,7 @@ date: 2017-11-10
 talk-lang: fr
 nolastmod: true
 draft: false
+pdf: "2017/2017-11-10-bdxio.pdf"
 
 attendees: 60
 ---

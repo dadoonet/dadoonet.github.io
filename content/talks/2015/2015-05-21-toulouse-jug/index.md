@@ -14,6 +14,7 @@ date: 2015-05-21
 talk-lang: fr
 nolastmod: true
 draft: false
+pdf: "2015/2015-05-21-toulouse-jug.pdf"
 
 attendees: 150
 ---

@@ -15,6 +15,7 @@ date: 2016-09-16
 talk-lang: fr
 nolastmod: true
 draft: false
+pdf: "2016/2016-09-16-jug-summer-camp.pdf"
 
 attendees: 50
 

@@ -15,7 +15,7 @@ date: 2013-09-20
 talk-lang: fr
 nolastmod: true
 draft: false
-pdf: "2013/2013-09-20-FromSQL2NoSQL-JUGSummerCamp.pdf"
+pdf: "2013/2013-09-20-jug-summer-camp.pdf"
 attendees: 50
 
 x:

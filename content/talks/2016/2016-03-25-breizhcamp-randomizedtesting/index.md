@@ -16,7 +16,7 @@ talk-lang: fr
 nolastmod: true
 draft: false
 
-pdf: "2016/2016-03-25 - Le_Hasard_Fait_Bien_Les_Tests.pdf"
+pdf: "2016/2016-03-25-breizhcamp-randomizedtesting.pdf"
 attendees: 100
 ---
 

@@ -15,6 +15,7 @@ date: 2016-12-01T20:15:00+01:00
 talk-lang: fr
 nolastmod: true
 draft: false
+pdf: "2016/2016-12-01-elsass-jug-02.pdf"
 
 attendees: 25
 ---

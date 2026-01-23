@@ -14,6 +14,7 @@ date: 2015-10-16
 talk-lang: fr
 nolastmod: true
 draft: false
+pdf: "2015/2015-10-16-bdxio.pdf"
 
 attendees: 40
 ---

@@ -14,6 +14,7 @@ date: 2015-11-03
 talk-lang: en
 nolastmod: true
 draft: false
+pdf: "2015/2015-11-03-codemotion.pdf"
 
 attendees: 50
 ---
