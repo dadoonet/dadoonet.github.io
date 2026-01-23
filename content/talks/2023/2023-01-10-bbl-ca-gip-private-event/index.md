@@ -21,7 +21,6 @@ pdf: "2023/2023-01-10-bbl-ca-gip-private-event.pdf"
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/gVRYgY"
-youtube: "7yr2CC_ZlHs"
 
 x:
   - user: "dadoonet"

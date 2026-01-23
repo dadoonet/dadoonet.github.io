@@ -21,7 +21,6 @@ pdf: "2024/2024-02-20-montreal-jug.pdf"
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/95YNWI"
-youtube: "h8XIj55jPPY"
 
 x:
   - user: "montrealjug"

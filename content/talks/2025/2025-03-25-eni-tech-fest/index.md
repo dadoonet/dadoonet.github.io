@@ -21,7 +21,6 @@ pdf: "2025/2025-03-25-eni-tech-fest.pdf"
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/bAPRcD"
-youtube: "h8XIj55jPPY"
 
 links:
   - title: "Demo: Humming search"

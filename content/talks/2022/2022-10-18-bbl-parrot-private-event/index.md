@@ -21,7 +21,6 @@ pdf: "2022/2022-10-18-bbl-parrot-private-event.pdf"
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/5xysrX"
-youtube: "7yr2CC_ZlHs"
 
 x:
   - user: "dadoonet"

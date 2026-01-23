@@ -19,9 +19,7 @@ pdf: "2022/2022-09-13-bbl-leboncoin-private-event.pdf"
 
 
 # Speaker specific fields
-#youtube: ""
 notist: "dadoonet/1GUvVD"
-youtube: "7yr2CC_ZlHs"
 
 x:
   - user: "dadoonet"

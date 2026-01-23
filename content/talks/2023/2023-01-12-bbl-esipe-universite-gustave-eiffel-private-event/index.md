@@ -21,7 +21,6 @@ pdf: "2023/2023-01-12-bbl-esipe-universite-gustave-eiffel-private-event.pdf"
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/v8tARM"
-youtube: "7yr2CC_ZlHs"
 
 links:
   - title: "Demo: Kibana script for BBL"
