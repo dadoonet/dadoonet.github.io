@@ -21,7 +21,7 @@ aliases:
   - /blog/2015-05-02-devoxx-france-2015/
 ---
 
-I gave recently a [talk at Devoxx France 2015]( {{< ref "talks/2015/2015-04-08-devoxx-fr" >}} ) with [Colin Surprenant](https://twitter.com/@colinsurprenant) and I'd like to share here some of the examples we used for the talk.
+I gave recently a [talk at Devoxx France 2015]( {{< ref "talks/2015/2015-04-08-devoxxfr-toolinaction-elk" >}} ) with [Colin Surprenant](https://twitter.com/@colinsurprenant) and I'd like to share here some of the examples we used for the talk.
 
 The talk was about "what my data look like?".
 

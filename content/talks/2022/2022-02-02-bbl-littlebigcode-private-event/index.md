@@ -2,7 +2,7 @@
 title: "Elastic Stack Overview"
 conference:
   name: BBL LittleBigCode (Private Event)
-  url: ''
+  url: "https://littlebigcode.fr/"
   country: "Online"
   country_code: "Online"
 author: David Pilato
@@ -13,16 +13,13 @@ talk-lang: fr
 nolastmod: true
 draft: false
 pdf: "2022/2022-02-02-bbl-littlebigcode-private-event.pdf"
+youtube: "7yr2CC_ZlHs"
 
 notist: dadoonet/pdV5rO
 links:
   - title: "Kibana Demo Script"
     url: "https://gist.github.com/dadoonet/f911291c4dd19b0802031db3064c648f"
     description: "This is the Kibana script I’m starting from when doing the talk"
-
-  - title: "Little Big Code"
-    url: "https://littlebigcode.fr/"
-
 
 aliases:
 - /pdV5rO

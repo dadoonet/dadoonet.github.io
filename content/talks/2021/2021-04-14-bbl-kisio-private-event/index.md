@@ -1,6 +1,7 @@
 ---
 title: "Elastic Stack Overview"
 conference: 
+  url: "https://kisio.com/"
   name: "BBL Kisio (Private Event)"
   country: "Online"
   country_code: "Online"
@@ -17,16 +18,11 @@ pdf: "2021/2021-04-14-bbl-kisio-private-event.pdf"
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/uT1jHj"
-# youtube: ""
+youtube: "SkB0f8ZVQsA"
 links:
   - title: "Kibana Demo Script"
     url: "https://gist.github.com/dadoonet/f911291c4dd19b0802031db3064c648f"
     description: "This is the Kibana script I’m starting from when doing the talk"
-
-  - title: "Kisio"
-    url: "https://kisio.com/"
-
-
 
 aliases:
   - /uT1jHj

@@ -12,7 +12,7 @@ date: 2022-02-17
 talk-lang: fr
 nolastmod: true
 draft: false
-
+youtube: "apXB6b6wGAw"
 notist: dadoonet/RxDtjn
 links:
   - title: "Repository used for the demo"
