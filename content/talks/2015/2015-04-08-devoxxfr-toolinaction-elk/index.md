@@ -20,7 +20,7 @@ nolastmod: true
 draft: false
 
 attendees: 300
-pdf: "2015/2015-04-08-devoxx-fr.pdf"
+pdf: "2015/2015-04-08-DevoxxFR-ToolInAction_ELK.pdf"
 youtube: "e88Q0TRWqjQ"
 ---
 

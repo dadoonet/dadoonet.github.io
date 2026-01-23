@@ -14,7 +14,7 @@ date: '2017-01-31'
 talk-lang: fr
 nolastmod: true
 draft: false
-pdf: "2017/2017-01-31-elasticon-paris.pdf"
+pdf: "2017/2017-01-31-elasticonparis-ingest.pdf"
 #cover: "cover.png"
 
 # Speaker specific fields

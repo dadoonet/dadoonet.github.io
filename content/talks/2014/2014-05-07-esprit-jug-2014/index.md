@@ -16,7 +16,7 @@ nolastmod: true
 draft: false
 
 attendees: 80
-pdf: "2014/2014-05-07-esprit-jug-2014-advanced-search.pdf"
+pdf: "2014/2014-05-07-esprit-jug-2014.pdf"
 ---
 How do you mix SQL and NoSQL worlds without starting a messy revolution?
 
