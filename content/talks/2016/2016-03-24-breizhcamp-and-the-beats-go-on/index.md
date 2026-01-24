@@ -16,7 +16,7 @@ talk-lang: fr
 nolastmod: true
 draft: false
 
-pdf: "2016/2016-03-24 - And_The_Beats_Go_On.pdf"
+pdf: "2016/2016-03-24-And_The_Beats_Go_On-BREIZHCAMP.pdf"
 attendees: 100
 ---
 

@@ -10,6 +10,8 @@ versions:
     flag: "gb"
     title: "And the beats go on !"
     abstract: |
+      <https://youtu.be/fOaxEa5ONJw>
+
       Discover the new Data Shippers for Elasticsearch :
 
       * Packetbeat : sniff network protocols
@@ -21,6 +23,8 @@ versions:
     flag: "fr"
     title: "And the beats go on !"
     abstract: |
+      <https://youtu.be/fOaxEa5ONJw>
+
       Venez découvrir les nouveaux Data Shippers pour Elasticsearch :
 
       * Packetbeat : décortiquez les protocoles réseau
