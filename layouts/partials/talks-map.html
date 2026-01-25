@@ -104,6 +104,7 @@
 {{ $scratch.Set "uniqueCities" dict }}
 {{ $scratch.Set "uniqueCountries" dict }}
 {{ $scratch.Set "totalTalks" 0 }}
+{{ $scratch.Set "onlineTalks" 0 }}
 
 {{ range $allTalks }}
   {{ $lat := .Params.conference.latitude }}
@@ -122,6 +123,13 @@
   {{ if $endDateParsed }}
     {{ if gt $talkDate $endDateParsed }}
       {{ $includeTalk = false }}
+    {{ end }}
+  {{ end }}
+  
+  {{/* Count online talks separately */}}
+  {{ if $includeTalk }}
+    {{ if or (eq $country "Online") (eq $countryCode "Online") }}
+      {{ $scratch.Add "onlineTalks" 1 }}
     {{ end }}
   {{ end }}
   
@@ -158,6 +166,8 @@
 {{ $uniqueCities := $scratch.Get "uniqueCities" }}
 {{ $uniqueCountries := $scratch.Get "uniqueCountries" }}
 {{ $totalTalks := $scratch.Get "totalTalks" }}
+{{ $onlineTalks := $scratch.Get "onlineTalks" }}
+{{ $grandTotalTalks := add $totalTalks $onlineTalks }}
 
 <div class="map-info">
   <div class="map-stats">
@@ -169,7 +179,7 @@
     {{ $countryNames = sort $countryNames }}
     {{ $countriesList := delimit $countryNames ", " }}
     <div class="stat-item" style="flex: 1;">
-      <span class="stat-value" style="font-size: 1rem; font-weight: 600;">{{ $totalTalks }} Talks - {{ len $uniqueCities }} Cities - {{ len $uniqueCountries }} Countries{{ if $countriesList }} ({{ $countriesList }}){{ end }}</span>
+      <span class="stat-value" style="font-size: 1rem; font-weight: 600;">{{ $grandTotalTalks }} Talks - {{ len $uniqueCities }} Cities - {{ len $uniqueCountries }} Countries{{ if $countriesList }} ({{ $countriesList }}){{ end }}{{ if gt $onlineTalks 0 }} - {{ $onlineTalks }} online{{ end }}</span>
     </div>
   </div>
 </div>
