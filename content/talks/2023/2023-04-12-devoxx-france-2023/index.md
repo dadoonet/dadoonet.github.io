@@ -10,7 +10,7 @@ conference:
   url: "https://www.devoxx.fr/"
 author: David Pilato
 avatar: /about/david_pilato.png
-# talk: conferences
+talk: FSCrawler
 date: 2023-04-12
 talk-lang: fr
 nolastmod: true

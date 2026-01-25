@@ -2,12 +2,11 @@
 title: Indexing your office documents with Elastic stack and FSCrawler
 conference:
   name: Elastic Saudi Arabia User Group
-  url: ''
   country: "Online"
   country_code: "Online"
 author: David Pilato
 avatar: /about/david_pilato.png
-# talk: conferences
+talk: FSCrawler
 date: 2021-04-01
 talk-lang: en
 nolastmod: true
@@ -16,9 +15,6 @@ pdf: "2021/2021-04-01-elastic-saudi-arabia-user-group.pdf"
 
 notist: dadoonet/sDFpQX
 links:
-  - title: "Event page"
-    url: "https://community.elastic.co/events/details/elastic-saudi-arabia-presents-indexing-your-office-documents-with-elastic-stack-and-fscrawler/#/"
-
   - title: "FSCrawler"
     url: "https://fscrawler.readthedocs.io/"
 

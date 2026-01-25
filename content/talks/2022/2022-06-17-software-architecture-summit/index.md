@@ -10,7 +10,7 @@ conference:
   url: "https://www.techweek.ro/software-architecture-summit"
 author: David Pilato
 avatar: /about/david_pilato.png
-# talk: conferences
+talk: FSCrawler
 date: 2022-06-17
 talk-lang: en
 nolastmod: true
@@ -35,9 +35,12 @@ x:
     id: "1543972927116296194"
 
 links:
+  - title: "Demo: FSCrawler"
+    url: "https://github.com/dadoonet/demo-fscrawler"
+    description: "This repository contains the code for the FSCrawler demo."
   - title: "Documentation: FSCrawler"
     url: "https://fscrawler.readthedocs.io/"
-    description: "This is the official FSCrawler documentation."
+    description: "The official FSCrawler documentation"
 
 aliases:
   - /64HZzX
@@ -46,11 +49,6 @@ You have plenty of Open Office, Microsoft Office, PDF, images… documents and y
 
 In this talk, David will explain how Apache Tika can be used for that and how to combine this fantastic library with Elastic Stack:
 
-*
-Elasticsearch [ingest-attachment plugin](https://www.elastic.co/guide/en/elasticsearch/plugins/current/ingest-attachment.html)
-
-*
-[FSCrawler](https://github.com/dadoonet/fscrawler)
-
-*
-[Workplace Search](https://www.elastic.co/workplace-search) connector for FSCrawler to have a ready to use and powerful user interface for your documents.
+* Elasticsearch [ingest-attachment plugin](https://www.elastic.co/guide/en/elasticsearch/plugins/current/ingest-attachment.html)
+* [FSCrawler](https://github.com/dadoonet/fscrawler)
+* [Workplace Search](https://www.elastic.co/workplace-search) connector for FSCrawler to have a ready to use and powerful user interface for your documents.

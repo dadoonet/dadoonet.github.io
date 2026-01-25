@@ -10,7 +10,7 @@ conference:
   url: "https://cfp.capitoledulibre.org/cdl-2022/talk/SAGLQM/"
 author: David Pilato
 avatar: /about/david_pilato.png
-# talk: conferences
+talk: FSCrawler
 date: 2022-11-19
 talk-lang: fr
 nolastmod: true
@@ -37,8 +37,5 @@ Comment faire ? Surtout depuis l’annonce de la fin de Google Search Appliance.
 Dans cette session, David expliquera comment Apache Tika peut fournir ce service et comment combiner cette fantastique librairie avec elasticsearch :
 
 * Elasticsearch [ingest-attachment plugin](https://www.elastic.co/guide/en/elasticsearch/plugins/current/ingest-attachment.html)
-
-*
-[FSCrawler](https://github.com/dadoonet/fscrawler)
-
+* [FSCrawler](https://github.com/dadoonet/fscrawler)
 * Connecteur [Workplace Search](https://www.elastic.co/workplace-search) pour FSCrawler afin de disposer sur étagère d’une interface utilisateur puissante pour vos documents

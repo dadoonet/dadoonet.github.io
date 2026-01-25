@@ -29,4 +29,13 @@ versions:
       
       * Elasticsearch [ingest-attachment plugin](https://www.elastic.co/guide/en/elasticsearch/plugins/current/ingest-attachment.html)
       * [FSCrawler](https://github.com/dadoonet/fscrawler)
+
+links:
+  - title: "Demo: FSCrawler"
+    url: "https://github.com/dadoonet/demo-fscrawler"
+    description: "This repository contains the code for the FSCrawler demo."
+  - title: "Documentation: FSCrawler"
+    url: "https://fscrawler.readthedocs.io/"
+    description: "The official FSCrawler documentation"
+
 ---
