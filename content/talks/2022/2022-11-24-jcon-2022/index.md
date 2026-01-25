@@ -2,29 +2,27 @@
 title: Indexing your office documents with Elastic stack and FSCrawler
 conference:
   name: JCon 2022
-  url: ''
+  url: "https://www.techweek.ro/software-architecture-summit"
   country: "Online"
   country_code: "Online"
 author: David Pilato
 avatar: /about/david_pilato.png
-# talk: conferences
+talk: FSCrawler
 date: 2022-11-24
 talk-lang: en
 nolastmod: true
 draft: false
 pdf: "2022/2022-11-24-jcon-2022.pdf"
+youtube: "1twNrML4hxk"
 
 notist: dadoonet/K6AjsW
 links:
-  - title: "Event page"
-    url: "https://www.techweek.ro/software-architecture-summit"
-
   - title: "FSCrawler"
     url: "https://fscrawler.readthedocs.io/"
 
-
 aliases:
 - /K6AjsW
+
 x:
 - user: dadoonet
   id: '1592127445821685763'
