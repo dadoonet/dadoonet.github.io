@@ -20,7 +20,7 @@ cover: cover.png
 
 When I started the [ElasticFR meetup group](https://www.meetup.com/ElasticFR/) back in 2013, I had no idea we would reach this milestone. What began as a small gathering of curious developers exploring a new search engine has grown into one of the most active Elastic user groups in the world, with **over 150 recorded talks** on our [YouTube playlist](https://youtube.com/playlist?list=PL_mJOmq4zsHa9mB1DU8BWjdLsUj4AiP9k&si=89HLBoUow3N5ttlb), tracking the technical evolution and enterprise adoption of the Elastic Stack across French-speaking companies.
 
-Today, as we gather at **BNP Paribas** for this special 100th meetup, it's time to look back at this incredible journey. **Shay Banon** - the founder of Elasticsearch - was originally planned to join us, but unfortunately couldn't make it. We're honored to have **Baha Azarmi**, Elastic's Observability GM and long-time supporter of the French community, stepping in to represent Elastic's leadership.
+Today, as we gather at **BNP Paribas** for this special 100th meetup, it's time to look back at this incredible journey. **Shay Banon** - the founder of Elasticsearch - was originally planned to join us, but unfortunately couldn't make it. We're honored to have **Frédéric Maussion**, long-time supporter of the French community, stepping in to run a very nice demo about the new features of Elasticsearch 9.3 (not released yet).
 
 <!--more-->
 
@@ -96,7 +96,6 @@ I'm also very proud that even if the tech community is not very diverse yet, we 
 - **Mandy Andress** - [Securing the Elastic Way](https://youtu.be/8gEr5hKnM8c) at meetup #83
 - **Anne L'Hôte** shared insights on [percolation for data alignment](https://youtu.be/D0JApkNlTfQ) at meetup #88
 - **Lucia Cerchie** presented [Visualizing Realtime Stock Data with Streamlit, Apache Kafka and Apache Flink](https://youtu.be/6xB1aT31PJE) at meetup #97
-- **Raquel Tabuyo** will be running very nice demos about Agents and Workflows at meetup #100
 - **Yui Mikuriya** is going to give a talk on building secure, agent-powered intelligence at meetup #100
 
 I'm meeting a lot of people in the IT but lot of them are hesitating to speak in public. There's like a glass ceiling mixed with the imposter syndrome which is preventing it to happen. So message to everyone who is using Elasticsearch, whatever your gender, your origin or your background are:
@@ -127,11 +126,11 @@ A big thank you to all the hosts with a special thank you to the ones who suppor
 
 For this landmark event, we're honored to gather at **BNP Paribas** (Bivwak!, 3 Rue Rossini, Paris) with an exceptional program:
 
-- **Baha Azarmi & Raquel Tabuyo** - Baha, who has already spoken at ElasticFR meetups in the past, will share insights about Elastic's vision while Raquel will be running very nice demos about Agents and Workflows!
-- **Guillaume Nocent & Jean Daniel Zoro** - "Troubleshooting and planning performance at scale in BNP Paribas"
-- **Yui Mikuriya** - "Building secure, agent-powered intelligence"
+- **Frédéric Maussion** - Agent Builder and Workflows
+- **Guillaume Nocent & Jean Daniel Zoro** - Troubleshooting and planning performance at scale in BNP Paribas
+- **Yui Mikuriya** - Responsible AI with Microsoft & Elastic: building secure, agent-powered intelligence
 
-Even though Shay couldn't join us this time, the spirit of that first meetup lives on. Baha Azarmi is no stranger to our community - he has already spoken at ElasticFR meetups in the past, and his presence at meetup #100 shows Elastic's continued commitment to the French-speaking community.
+Even though Shay couldn't join us this time, the spirit of that first meetup lives on. Frédéric Maussion is no stranger to our community - he has already spoken at ElasticFR meetups in the past, and his presence at meetup #100 shows Elastic's continued commitment to the French-speaking community.
 
 ## Thank you! 🙏
 
