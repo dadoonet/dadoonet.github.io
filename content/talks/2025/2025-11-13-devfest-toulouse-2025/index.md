@@ -19,7 +19,7 @@ pdf: "2025/2025-11-13-devfest-toulouse-2025.pdf"
 
 
 # Speaker specific fields
-#youtube: "sxWTPruEWRU"
+youtube: "bJqIfKFYDpE"
 notist: "dadoonet/qC8sMm"
 links:
   - title: "Demo project"
