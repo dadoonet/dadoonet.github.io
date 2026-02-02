@@ -49,6 +49,7 @@ links:
 
 aliases:
   - /qC8sMm
+  - /devfest-toulouse-2025
 ---
 > Le hasard fait bien les choses.
 
