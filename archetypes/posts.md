@@ -2,7 +2,7 @@
 title: '{{ replace .File.ContentBaseName "-" " " | title }}'
 description: "CONTENT"
 author: David Pilato
-avatar: /about/david_pilato.png
+avatar: /about/david_pilato.webp
 tags:
   - TAG
 categories:
@@ -11,7 +11,7 @@ series:
   - SERIE
 date: '{{ .Date }}'
 nolastmod: true
-#cover: image.png
+#cover: image.webp
 draft: true
 ---
 

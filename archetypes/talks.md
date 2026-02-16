@@ -10,14 +10,14 @@ conference:
 #  longitude: ""
 authors:
   - author: David Pilato
-    avatar: /about/david_pilato.png
+    avatar: /about/david_pilato.webp
  #   link: "https://www.linkedin.com/in/username"
 date: '{{ substr .File.ContentBaseName 0 10 }}'
 talk-lang: fr # fr or en
 nolastmod: true
 draft: true
 pdf: "{{ substr .File.ContentBaseName 0 4 }}/{{ .File.ContentBaseName }}.pdf"
-#cover: "cover.png"
+#cover: "cover.webp"
 
 # talk: Talk template name (like black friday, ES|QL, Serverless, etc.)
 

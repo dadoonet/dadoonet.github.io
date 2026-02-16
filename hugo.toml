@@ -28,7 +28,7 @@ images = ["me/background.jpg"]
  
 author = "David Pilato"
 description = "Developer | Evangelist"
-avatar = "/about/david_pilato.png"
+avatar = "/about/david_pilato.webp"
 headerTitle = "David Pilato"
 motto = "Developer | Evangelist"
 

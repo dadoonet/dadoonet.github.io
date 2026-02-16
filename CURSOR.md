@@ -63,15 +63,15 @@ conference:
 # Speakers - Modern format (list of authors)
 authors:
   - author: David Pilato
-    avatar: /about/david_pilato.png
+    avatar: /about/david_pilato.webp
     link: "https://linkedin.com/in/dadoonet"  # Optional
   - author: "Co-speaker Name"
-    avatar: /speakers/cospeaker.jpg           # Optional
+    avatar: /speakers/cospeaker.webp           # Optional
     link: "https://..."                       # Optional
 
 # OR legacy format (single author - backward compatible)
 # author: David Pilato
-# avatar: /about/david_pilato.png
+# avatar: /about/david_pilato.webp
 
 date: YYYY-MM-DD
 talk-lang: fr                 # Presentation language (fr or en)
@@ -82,7 +82,7 @@ draft: false                  # true = unpublished
 pdf: "YYYY/YYYY-MM-DD-conference-name.pdf"  # Relative path on GCS
 
 # Optional - Explicit cover image
-cover: "cover.png"            # By default, looks for cover.*
+cover: "cover.webp"            # By default, looks for cover.*
 
 # Optional - Talk template (for "Played X times" sidebar)
 talk: "AI Search"             # Groups talks on the same topic
@@ -112,16 +112,16 @@ aliases:
 
 ### Co-speakers
 
-Co-speaker images are stored in `static/speakers/`. Use the format `firstname_lastname.jpg` or `.png`.
+Co-speaker images are stored in `static/speakers/`. Use the format `firstname_lastname.webp`.
 
 Example with multiple speakers:
 
 ```yaml
 authors:
   - author: David Pilato
-    avatar: /about/david_pilato.png
+    avatar: /about/david_pilato.webp
   - author: Tugdual Grall
-    avatar: /speakers/tugdual_grall.jpg
+    avatar: /speakers/tugdual_grall.webp
     link: "https://linkedin.com/in/tgrall"
 ```
 
@@ -223,7 +223,7 @@ content/about/
 ├── index.md              # Main page (minimal frontmatter)
 ├── 10-me.md              # "Who am I?" section
 ├── 20-details.md         # Additional details section
-└── david_pilato.png      # Main avatar
+└── david_pilato.webp     # Main avatar
 ```
 
 ### How It Works
@@ -262,7 +262,7 @@ Blog articles are in `content/posts/YYYY-MM-DD-title/`
 title: "Article Title"
 description: "Short description"
 author: David Pilato
-avatar: /about/david_pilato.png
+avatar: /about/david_pilato.webp
 tags:
   - tag1
   - tag2
@@ -272,7 +272,7 @@ series:
   - serie
 date: YYYY-MM-DD
 nolastmod: true
-cover: image.png              # Cover image (optional)
+cover: image.webp              # Cover image (optional)
 draft: false
 ---
 
@@ -310,7 +310,7 @@ The second parameter (`wide`) is optional and changes the aspect ratio.
 ### Figure (Hugo native)
 
 ```hugo
-{{</* figure src="image.png" caption="Caption" */>}}
+{{</* figure src="image.webp" caption="Caption" */>}}
 ```
 
 ### YouTube (Hugo native)
