@@ -1,5 +1,5 @@
 ---
-title: 'The Augmented Developer: My Journey with Cursor CLI'
+title: '🤖 The Augmented Developer: My Journey with Cursor CLI'
 description: "From reluctant to hooked—how Cursor CLI became my daily coding companion on FSCrawler, and the addictive side and pressure that come with it."
 author: David Pilato
 avatar: /about/david_pilato.webp
