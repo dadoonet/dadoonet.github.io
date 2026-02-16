@@ -6,7 +6,7 @@ conference:
   country_code: "Online"
   url: "https://www.meetup.com/NisJUG/events/272577175/"
 author: David Pilato
-avatar: /about/david_pilato.png
+avatar: /about/david_pilato.webp
 # talk: conferences
 date: 2020-09-08
 talk-lang: en

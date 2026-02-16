@@ -2,7 +2,7 @@
 title: "ScrutMyDocs : un moteur de recherche pour documents"
 description: "Avec Malloum, nous venons de publier notre premier projet open-source commun: Scrut My Docs !"
 author: David Pilato
-avatar: /about/david_pilato.png
+avatar: /about/david_pilato.webp
 tags:
   - elasticsearch
   - java
@@ -12,7 +12,7 @@ categories:
   - projects
 date: 2012-07-20 23:38:00 +0200
 nolastmod: true
-cover: scrutmydocs.png
+cover: scrutmydocs.webp
 draft: false
 aliases:
   - /blog/2012/07/20/scrutmydocs-un-moteur-de-recherche-pour-documents/
@@ -21,7 +21,7 @@ aliases:
 
 Avec Malloum, nous venons de publier notre premier projet open-source commun: Scrut My Docs !
 
-{{< figure src="technical1.jpg" caption="Technical overview" >}}
+{{< figure src="technical1.webp" caption="Technical overview" >}}
 
 <!--more-->
 

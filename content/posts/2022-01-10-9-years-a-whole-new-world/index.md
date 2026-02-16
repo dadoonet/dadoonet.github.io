@@ -2,7 +2,7 @@
 title: 9 years! A whole new world.
 description: "I have been missing you as last year, I have not been able to publish my anniversary blog post as I'm used to do every year since I joined Elastic 9 years ago."
 author: David Pilato
-avatar: /about/david_pilato.png
+avatar: /about/david_pilato.webp
 tags:
   - career
   - culture
@@ -13,7 +13,7 @@ series:
   - career at elastic
 date: 2022-01-10 09:00:00 +01:00
 nolastmod: true
-cover: featured.png
+cover: featured.webp
 draft: false
 aliases:
   - /blog/2022-01-10-9-years-a-whole-new-world
@@ -90,4 +90,4 @@ If we have a chance to meet again, please don't be a stranger and come to say "H
 
 And remember that behind the mask, there's a smile! 😉
 
-{{< figure src="mask.png" caption="Elastic Mask" >}}
+{{< figure src="mask.webp" caption="Elastic Mask" >}}

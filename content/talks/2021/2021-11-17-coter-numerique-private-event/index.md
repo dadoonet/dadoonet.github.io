@@ -9,7 +9,7 @@ conference:
   longitude: "2.352222"
   url: "https://coter-club.org/"
 author: David Pilato
-avatar: /about/david_pilato.png
+avatar: /about/david_pilato.webp
 # talk: conferences
 date: 2021-11-17
 talk-lang: fr

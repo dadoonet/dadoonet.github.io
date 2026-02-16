@@ -7,7 +7,7 @@ Becoming a public company did not change a lot my daily activities.
 
 I'm still on the road meeting/building the community, specifically in France and making sure people are sharing the same love that we have internally for the products we are building."
 author: David Pilato
-avatar: /about/david_pilato.png
+avatar: /about/david_pilato.webp
 tags:
   - career
   - culture
@@ -19,7 +19,7 @@ series:
 date: '2020-01-10'
 nolastmod: true
 draft: false
-cover: featured.jpg
+cover: featured.webp
 aliases:
   - /blog/2020/01/10/7-years-finding-the-right-balance/
   - /blog/2020-01-10-7-years-finding-the-right-balance/

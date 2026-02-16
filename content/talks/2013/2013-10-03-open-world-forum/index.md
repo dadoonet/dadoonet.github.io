@@ -10,9 +10,9 @@ conference:
   longitude: "2.3174475"
 authors:
   - author: David Pilato
-    avatar: /about/david_pilato.png
+    avatar: /about/david_pilato.webp
   - author: Emmanuel Keller
-    avatar: /speakers/emmanuel_keller.jpg
+    avatar: /speakers/emmanuel_keller.webp
     link: https://x.com/emmanuelkeller
 talk: Elasticsearch Workshop
 date: 2013-10-03

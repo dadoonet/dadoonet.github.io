@@ -9,7 +9,7 @@ conference:
   longitude: "-0.127758"
   url: "https://cloud.withgoogle.com/next/uk/speakers?session=DZ105"
 author: David Pilato
-avatar: /about/david_pilato.png
+avatar: /about/david_pilato.webp
 # talk: conferences
 date: 2019-11-20
 talk-lang: en

@@ -2,7 +2,7 @@
 title: "Using JS Auth with found cluster"
 description: "Using Found by elastic cluster helps a lot to have a ready to use and managed elasticsearch cluster. But I ran into an issue when you secure it and use the elasticsearch javascript client."
 author: David Pilato
-avatar: /about/david_pilato.png
+avatar: /about/david_pilato.webp
 tags:
   - elasticsearch
   - found
@@ -12,7 +12,7 @@ categories:
 date: 2015-05-19 17:06:22 +0200
 nolastmod: true
 draft: false
-cover: featured.png
+cover: featured.webp
 aliases:
   - /blog/2015/05/19/using-js-auth-with-found-cluster/
   - /blog/2015-05-19-using-js-auth-with-found-cluster/
@@ -32,7 +32,7 @@ But I ran into an issue when you secure it and use the [elasticsearch javascript
 
 ## Creating your cluster
 
-{{< figure src="found-1.png" caption="Found Console" >}}
+{{< figure src="found-1.webp" caption="Found Console" >}}
 
 ## Adding ACL
 

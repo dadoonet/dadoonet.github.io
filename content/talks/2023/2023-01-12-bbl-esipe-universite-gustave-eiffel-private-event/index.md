@@ -9,7 +9,7 @@ conference:
   longitude: "2.602651"
   url: "https://www.esiee.fr/"
 author: David Pilato
-avatar: /about/david_pilato.png
+avatar: /about/david_pilato.webp
 talk: Elasticsearch
 date: 2023-01-12
 talk-lang: fr

@@ -2,7 +2,7 @@
 title: "Enriching your postal addresses with Elastic stack - part 2"
 description: "In this blog post, we will see how to lookup for addresses in Bano index."
 author: David Pilato
-avatar: /about/david_pilato.png
+avatar: /about/david_pilato.webp
 tags:
   - logstash
   - elasticsearch
@@ -13,7 +13,7 @@ series:
 date: 2018-03-23 10:20:28 +0200
 nolastmod: true
 draft: false
-cover: featured.png
+cover: featured.webp
 aliases:
   - /blog/2018/03/23/enriching-your-postal-addresses-with-elastic-stack-part-2/
   - /blog/2018-03-23-enriching-your-postal-addresses-with-elastic-stack-part-2/

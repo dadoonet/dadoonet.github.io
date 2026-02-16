@@ -2,7 +2,7 @@
 title: "Indexing Twitter with Logstash and Elasticsearch"
 description: "How to index Twitter with Logstash and Elasticsearch"
 author: David Pilato
-avatar: /about/david_pilato.png
+avatar: /about/david_pilato.webp
 tags:
   - elasticsearch
   - logstash
@@ -14,7 +14,7 @@ series:
   - indexing twitter
 date: 2015-06-01 16:23:03 +0200
 nolastmod: true
-cover: featured.png
+cover: featured.webp
 draft: false
 aliases:
   - /blog/2015/06/01/indexing-twitter-with-logstash-and-elasticsearch/
@@ -159,7 +159,7 @@ This should give you some tweets back.
 
 And now you can play with Kibana!
 
-{{< figure src="kibana-twitter.png" caption="Twitter dataset" >}}
+{{< figure src="kibana-twitter.webp" caption="Twitter dataset" >}}
 
 ## Open your data (but secure them first)
 
@@ -216,4 +216,4 @@ Set your password. And now you should be able to connect to Kibana4 using your u
 
 I finally got this result after one day at dotScale.
 
-{{< figure src="kibana-twitter-final.png" caption="Twitter dataset" >}}
+{{< figure src="kibana-twitter-final.webp" caption="Twitter dataset" >}}

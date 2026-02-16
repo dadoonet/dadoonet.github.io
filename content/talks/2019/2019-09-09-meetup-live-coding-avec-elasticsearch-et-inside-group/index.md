@@ -9,7 +9,7 @@ conference:
   longitude: "-0.579180"
   url: "https://www.meetup.com/Meetup-IT-Inside-Bordeaux/events/263861965/"
 author: David Pilato
-avatar: /about/david_pilato.png
+avatar: /about/david_pilato.webp
 # talk: conferences
 date: 2019-09-09
 talk-lang: fr

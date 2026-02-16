@@ -9,7 +9,7 @@ conference:
   longitude: "2.352222"
   url: "https://www.orpea.com/"
 author: David Pilato
-avatar: /about/david_pilato.png
+avatar: /about/david_pilato.webp
 talk: Elasticsearch
 date: 2022-06-01
 talk-lang: fr

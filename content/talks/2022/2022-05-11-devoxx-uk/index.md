@@ -9,7 +9,7 @@ conference:
   longitude: "-0.127758"
   url: "https://www.devoxx.co.uk/"
 author: David Pilato
-avatar: /about/david_pilato.png
+avatar: /about/david_pilato.webp
 talk: FSCrawler
 date: 2022-05-11
 talk-lang: en

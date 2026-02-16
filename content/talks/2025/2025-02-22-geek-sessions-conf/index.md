@@ -9,7 +9,7 @@ conference:
   longitude: "-7.935198"
   url: "https://geeksessionsconf.pt/"
 author: David Pilato
-avatar: /about/david_pilato.png
+avatar: /about/david_pilato.webp
 # talk: conferences
 date: 2025-02-22
 talk-lang: en

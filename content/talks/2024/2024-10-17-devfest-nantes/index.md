@@ -9,7 +9,7 @@ conference:
   longitude: "-1.553621"
   url: "https://devfest2024.gdgnantes.com/"
 author: David Pilato
-avatar: /about/david_pilato.png
+avatar: /about/david_pilato.webp
 talk: AI Search
 date: 2024-10-17
 talk-lang: fr

@@ -9,14 +9,14 @@ conference:
   longitude: "0.684840"
   url: "https://touraine.tech/talk/cmi15i4ad00901eqwb4h2epxz"
 author: David Pilato
-avatar: /about/david_pilato.png
+avatar: /about/david_pilato.webp
 talk: Randomized Testing
 date: '2026-02-12'
 talk-lang: fr
 nolastmod: true
 draft: false
 pdf: "2026/2026-02-12 - Touraine Tech - Randomized Testing.pdf"
-cover: "cover.png"
+cover: "cover.webp"
 
 # Speaker specific fields
 #youtube: ""      # ID de la vidéo YouTube (ex: dQw4w9WgXcQ)

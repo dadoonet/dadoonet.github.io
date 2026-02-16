@@ -2,7 +2,7 @@
 title: 'The Augmented Developer: My Journey with Cursor CLI'
 description: "From reluctant to hooked—how Cursor CLI became my daily coding companion on FSCrawler, and the addictive side and pressure that come with it."
 author: David Pilato
-avatar: /about/david_pilato.png
+avatar: /about/david_pilato.webp
 tags:
   - cursor
   - ai
@@ -11,7 +11,7 @@ categories:
 date: '2026-02-16T13:03:00+01:00'
 nolastmod: true
 cover: cover.webp
-draft: true
+draft: false
 ---
 
 A few weeks ago I wrote about [using Cursor to migrate my speaker page to Hugo]({{< ref "2026-01-10-13-years-migrating-to-hugo-with-cursor" >}}). That was the IDE, pair programming inside the editor. This time it's different: I've stepped into another dimension with **Cursor CLI** on my [FSCrawler](https://fscrawler.readthedocs.io/) project. I was reluctant at first; now it's my companion on the road. Here's the experience—including the addictive side and the pressure I feel.

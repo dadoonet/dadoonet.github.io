@@ -2,7 +2,7 @@
 title: "From a startup to a listed company. 6 years of fun!"
 description: "When I joined Elastic (formerly Elasticsearch) it was a startup with 10 employees + the founders. As one of those first employees I was invited (with #elkie and my wife) to the NYSE event where Elastic went listed as ESTC symbol."
 author: David Pilato
-avatar: /about/david_pilato.png
+avatar: /about/david_pilato.webp
 tags:
   - career
   - elasticsearch
@@ -14,7 +14,7 @@ series:
 date: '2019-01-10'
 nolastmod: true
 draft: false
-cover: featured.jpg
+cover: featured.webp
 aliases:
   - /blog/2019/01/10/from-a-startup-to-a-listed-company-6-years-of-fun/
   - /blog/2019-01-10-from-a-startup-to-a-listed-company-6-years-of-fun/
@@ -51,7 +51,7 @@ Let's use that now!
 
 As usual, let's start by upgrading the cluster... Well, just few clics and I'm all set for `6.5.3`...
 
-{{< figure src="cloud.jpg" caption="Upgrade to 6.5.3" >}}
+{{< figure src="cloud.webp" caption="Upgrade to 6.5.3" >}}
 
 ## Importing Bano dataset
 
@@ -224,11 +224,11 @@ output {
 
 If we create a simple visualization to compare `city` and `city_after`, we can see that some transformation happened.
 
-{{< figure src="kibana-city-fix.jpg" caption="Fix cities" >}}
+{{< figure src="kibana-city-fix.webp" caption="Fix cities" >}}
 
 If we zoom a bit to `Paris`, we can see that actually Paris was Paris but also Saint-Cloud, Poissy...
 
-{{< figure src="kibana-city-fix-paris.jpg" caption="Fix cities Paris" >}}
+{{< figure src="kibana-city-fix-paris.webp" caption="Fix cities Paris" >}}
 
 Also `Carrières-sous-poissy`... But wait. I never spoke there!
 
@@ -238,27 +238,27 @@ Lot of geo points were wrong in my dataset meaning that after applying the trans
 
 After some manual modifications, I ended up with this list of new cities when Paris was defined:
 
-{{< figure src="kibana-city-fix-paris-2.jpg" caption="Fix cities Paris" >}}
+{{< figure src="kibana-city-fix-paris-2.webp" caption="Fix cities Paris" >}}
 
 Here is a list for cities in France which are not Paris:
 
-{{< figure src="kibana-city-fix-paris-not.jpg" caption="Fix cities Not Paris" >}}
+{{< figure src="kibana-city-fix-paris-not.webp" caption="Fix cities Not Paris" >}}
 
 ## Analyzing data
 
 Let's have a final look at this 6th year of speaker activities...
 
-{{< figure src="kibana-talks-distance.jpg" caption="Talks and distance" >}}
+{{< figure src="kibana-talks-distance.webp" caption="Talks and distance" >}}
 
 I gave less talks this year but covered even more kilometers.
 
 This is mainly due because I went to San Francisco (US), New York (US), Montreal (CA) and  Bangalore (IN) to name a few.
 
-{{< figure src="kibana-where.jpg" caption="Where in the world" >}}
+{{< figure src="kibana-where.webp" caption="Where in the world" >}}
 
 Note that when I'm recording a distance, I'm recording the real distance I made to get there and not the distance to France. For example, when I went to Montreal, because I was in San Francisco, the distance I entered in my spreadsheet is only the distance from Montreal to France and not both ways added as I was yet in USA.
 
-{{< figure src="kibana-countries-distance.jpg" caption="Distance and countries" >}}
+{{< figure src="kibana-countries-distance.webp" caption="Distance and countries" >}}
 
 ## How did I feel it?
 
@@ -268,7 +268,7 @@ It does not mean that you can't have any pressure but it can't be a constant pre
 
 So I looked back at the Kibana dashboard:
 
-{{< figure src="kibana-per-week.jpg" caption="Talks per week" >}}
+{{< figure src="kibana-per-week.webp" caption="Talks per week" >}}
 
 I've not been travelling that much but I was like one or two days per week not sleeping at home in 2018. And while I was speaking to other speakers, I realized that this was the cause of my strain. Also, my son started saying that I was not really at home to help him...
 

@@ -2,7 +2,7 @@
 title: "Index Twitter on found"
 description: "Index Twitter with Logstash and Elasticsearch on a Found cluster"
 author: David Pilato
-avatar: /about/david_pilato.png
+avatar: /about/david_pilato.webp
 tags:
   - elasticsearch
   - logstash
@@ -15,7 +15,7 @@ series:
   - indexing twitter
 date: 2015-11-17 11:51:43 +0100
 nolastmod: true
-cover: featured.png
+cover: featured.webp
 draft: false
 aliases:
   - /blog/2015/11/17/index-twitter-on-found/
@@ -42,7 +42,7 @@ Found is always up to date with all the latest elasticsearch versions so here I'
 In the configuration tab, just activate Kibana 4 and you're done with Kibana! :D
 Same here, Kibana is always up to date so I'm using here Kibana 4.2.1 which has just been released yesterday evening!
 
-{{< figure src="activate_kibana.png" caption="Activate Kibana 4" >}}
+{{< figure src="activate_kibana.webp" caption="Activate Kibana 4" >}}
 
 ## Create Shield users
 
@@ -251,4 +251,4 @@ Well, just open your Kibana 4 instance which is running on found and build as us
 
 Our tweet is here!
 
-{{< figure src="kibana_tweet.png" caption="Tweet is here" >}}
+{{< figure src="kibana_tweet.webp" caption="Tweet is here" >}}

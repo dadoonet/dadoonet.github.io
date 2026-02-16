@@ -2,7 +2,7 @@
 title: Publication de documentation fonctionnelle avec Maven
 description: "Voici une astuce permettant de laisser les analystes ou concepteurs utiliser leurs logiciels habituels de documentation (oOo ou Word), tout en permettant de publier automatiquement avec la génération du site un document PDF lisible par tous."
 author: David Pilato
-avatar: /about/david_pilato.png
+avatar: /about/david_pilato.webp
 tags:
   - maven
   - documentation

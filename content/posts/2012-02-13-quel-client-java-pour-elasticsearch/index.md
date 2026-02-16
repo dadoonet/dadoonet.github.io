@@ -2,7 +2,7 @@
 title: Quel client Java pour elasticsearch ?
 description: "Il existe deux modes d'accès à elasticsearch en Java : inscrire un noeud client dans le cluster elasticsearch ou utiliser un client simple."
 author: David Pilato
-avatar: /about/david_pilato.png
+avatar: /about/david_pilato.webp
 tags:
   - elasticsearch
   - java

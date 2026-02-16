@@ -9,7 +9,7 @@ conference:
   longitude: "-0.127758"
   url: "https://www.meetup.com/London-Elastic-Fantastics/events/285591510/"
 author: David Pilato
-avatar: /about/david_pilato.png
+avatar: /about/david_pilato.webp
 talk: FSCrawler
 date: 2022-05-17
 talk-lang: en

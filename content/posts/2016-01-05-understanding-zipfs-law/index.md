@@ -2,7 +2,7 @@
 title: "Understanding Zipf's law"
 description: "I just discovered a nice video which explains the Zipf's law. I'm wondering if I can index the french lexique from Université de Savoie and find some funny things based on that..."
 author: David Pilato
-avatar: /about/david_pilato.png
+avatar: /about/david_pilato.webp
 tags:
   - elasticsearch
   - logstash
@@ -11,7 +11,7 @@ categories:
   - tutorial
 date: 2016-01-05 12:13:02 +0100
 nolastmod: true
-cover: featured.png
+cover: featured.webp
 draft: false
 aliases:
   - /blog/2016/01/05/understanding-zipfs-law/
@@ -184,7 +184,7 @@ Received an event that has a different character encoding than you configured. {
 
 Looking at what the browser detected it looks like we have "Windows-1252" encoding here:
 
-{{< figure src="chrome.png" caption="Encoding" >}}
+{{< figure src="chrome.webp" caption="Encoding" >}}
 
 So we need to tell logstash how to parse stdin:
 
@@ -256,17 +256,17 @@ cat liste_mots.txt | logstash-2.1.1/bin/logstash -f zipf.conf
 
 According to this dataset, we can extract some information with Kibana:
 
-{{< figure src="all-terms.png" caption="All french terms" >}}
+{{< figure src="all-terms.webp" caption="All french terms" >}}
 
 We can see that obviously terms like `de`, `la` and `et` are very frequent but we use rarely the terms `compassions`, `croulante` and `croulantes`.
 
 What? We have almost no "compassion" in France? Actually we do, but we use really often the singular form not the plural! Searching for `compassion*` in Kibana shows it:
 
-{{< figure src="compassion.png" caption="compassion* terms" >}}
+{{< figure src="compassion.webp" caption="compassion* terms" >}}
 
 I also looked at terms starting with `ch`. It gives:
 
-{{< figure src="starts-with-ch.png" caption="ch* terms" >}}
+{{< figure src="starts-with-ch.webp" caption="ch* terms" >}}
 
 `chez`, `chaque` and `chose` are really common terms. I don't know what `chabler`, `chaboisseaux` and `chabots` actually mean! :D
 
@@ -274,11 +274,11 @@ I also looked at terms starting with `ch`. It gives:
 
 Let's build a final visualization and see if we can have a curve like the one exposed in the video.
 
-{{< figure src="zipf.png" caption="Zipf's Law" >}}
+{{< figure src="zipf.webp" caption="Zipf's Law" >}}
 
 I changed the graph options and used a log Y Axis scale and also increased the number of terms to 1000.
 
-{{< figure src="zipf-log.png" caption="Zipf's Law Log Axis" >}}
+{{< figure src="zipf-log.webp" caption="Zipf's Law Log Axis" >}}
 
 Well. It looks close.
 

@@ -9,10 +9,10 @@ conference:
   longitude: "2.2812517"
 authors:
   - author: Colin Surprenant
-    avatar: /speakers/colin_surprenant.jpg
+    avatar: /speakers/colin_surprenant.webp
     link: "https://linktr.ee/colinsurprenant"
   - author: David Pilato
-    avatar: /about/david_pilato.png
+    avatar: /about/david_pilato.webp
 talk: Big Data
 date: 2015-04-08
 talk-lang: fr

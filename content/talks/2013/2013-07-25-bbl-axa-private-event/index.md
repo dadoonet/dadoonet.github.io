@@ -8,8 +8,8 @@ conference:
   latitude: "48.8717165"
   longitude: "2.311039"
 author: David Pilato
-avatar: /about/david_pilato.png
-cover: axa.png
+avatar: /about/david_pilato.webp
+cover: axa.webp
 talk: Elasticsearch
 date: 2013-07-25
 talk-lang: fr

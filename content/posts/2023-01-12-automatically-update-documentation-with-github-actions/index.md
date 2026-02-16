@@ -7,7 +7,7 @@ description:
   
   This post describes how you can do this automatically using Github Actions, Maven and Dependabot.
 author: David Pilato
-avatar: /about/david_pilato.png
+avatar: /about/david_pilato.webp
 tags:
   - github
   - documentation
@@ -17,7 +17,7 @@ categories:
   - tips
 date: 2023-01-12T10:47:07+01:00
 nolastmod: true
-cover: overview.png
+cover: overview.webp
 draft: false
 aliases:
   - /blog/2023-01-12-automatically-update-documentation-with-github-actions/
@@ -184,21 +184,21 @@ Let's update the `pom.xml` and update Elasticsearch version to `8.5.2`:
 
 Then commit it and push it to a branch. And finally create [a PR](https://github.com/dadoonet/demo-automatic-doc/pull/1):
 
-{{< figure src="pr-overview.png" caption="Update the version manually" >}}
+{{< figure src="pr-overview.webp" caption="Update the version manually" >}}
 
 So we have one single commit:
 
-{{< figure src="pr-initial-commit.png" caption="One single commit" >}}
+{{< figure src="pr-initial-commit.webp" caption="One single commit" >}}
 
 When the [Github Actions workflow starts](https://github.com/dadoonet/demo-automatic-doc/actions), it updates the code, commits it and pushes it to our branch which is now updated:
 
-{{< figure src="pr-commits.png" caption="With the additional commit" >}}
+{{< figure src="pr-commits.webp" caption="With the additional commit" >}}
 
 ## Using Dependabot to update our versions
 
 If you are using [Dependabot](https://docs.github.com/en/code-security/dependabot/) to automatically update your libraries, the same update process should happen. If you don't, go to the repository settings and enable Dependabot version updates:
 
-{{< figure src="dependabot-enable.png" caption="Enable Dependabot" >}}
+{{< figure src="dependabot-enable.webp" caption="Enable Dependabot" >}}
 
 So we have the following `.github/dependabot.yml` file:
 
@@ -219,11 +219,11 @@ When we commit the changes, it does not trigger another github action call. This
 
 So we need to create a new Personal Access Token (PAT) instead of the default `GITHUB_TOKEN`. Open your [Github Developper Settings](https://github.com/settings/apps) and create a new Personal Access Token. It needs to have the `repo` and `workflow` scopes:
 
-{{< figure src="settings-add-pat.png" caption="Create your Personal Access Token" >}}
+{{< figure src="settings-add-pat.webp" caption="Create your Personal Access Token" >}}
 
 Note the generated token and store it as a secret in the repository.
 
-{{< figure src="secrets-add-pat.png" caption="Add your new secret" >}}
+{{< figure src="secrets-add-pat.webp" caption="Add your new secret" >}}
 
 Then pass the new token to the checkout step:
 
@@ -249,15 +249,15 @@ Actually, when the code is running automatically from Dependabot, you can also u
 
 Here is what happens when [dependabot creates a PR](https://github.com/dadoonet/demo-automatic-doc/pull/2).
 
-{{< figure src="dependabot-overview.png" caption="The PR" >}}
+{{< figure src="dependabot-overview.webp" caption="The PR" >}}
 
 Note that few seconds after Dependabot has created the PR, it has been updated by our job:
 
-{{< figure src="dependabot-build-details.png" caption="Build details" >}}
+{{< figure src="dependabot-build-details.webp" caption="Build details" >}}
 
 And we can see the details of the commit that has been added by Github Actions on behalf of Dependabot:
 
-{{< figure src="dependabot-last-commit.png" caption="Automatically added commit" >}}
+{{< figure src="dependabot-last-commit.webp" caption="Automatically added commit" >}}
 
 ## External Pull Requests
 

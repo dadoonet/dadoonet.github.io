@@ -6,7 +6,7 @@ conference:
   country_code: "online"
   url: "https://jdd.org.pl/lecture/#id=62927"
 author: David Pilato
-avatar: /about/david_pilato.png
+avatar: /about/david_pilato.webp
 # talk: conferences
 date: 2020-10-14
 talk-lang: en

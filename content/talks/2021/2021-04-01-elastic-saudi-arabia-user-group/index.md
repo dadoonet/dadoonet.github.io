@@ -5,7 +5,7 @@ conference:
   country: "Online"
   country_code: "Online"
 author: David Pilato
-avatar: /about/david_pilato.png
+avatar: /about/david_pilato.webp
 talk: FSCrawler
 date: 2021-04-01
 talk-lang: en

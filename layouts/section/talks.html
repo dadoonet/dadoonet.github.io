@@ -419,10 +419,7 @@
           {{ if $talk.Params.cover }}
             {{ $cover = $talk.Resources.GetMatch $talk.Params.cover }}
           {{ else }}
-            {{ $cover = $talk.Resources.GetMatch "cover.jpg" }}
-            {{ if not $cover }}
-              {{ $cover = $talk.Resources.GetMatch "cover.png" }}
-            {{ end }}
+            {{ $cover = $talk.Resources.GetMatch "cover.*" }}
           {{ end }}
           {{ if $cover }}
           <img src="{{ $cover.RelPermalink }}" alt="{{ $talk.Title }}" loading="lazy" />

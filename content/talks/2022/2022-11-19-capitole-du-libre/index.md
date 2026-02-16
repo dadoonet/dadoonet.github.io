@@ -9,7 +9,7 @@ conference:
   longitude: "1.444209"
   url: "https://cfp.capitoledulibre.org/cdl-2022/talk/SAGLQM/"
 author: David Pilato
-avatar: /about/david_pilato.png
+avatar: /about/david_pilato.webp
 talk: FSCrawler
 date: 2022-11-19
 talk-lang: fr

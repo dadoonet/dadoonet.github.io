@@ -2,7 +2,7 @@
 title: "And the beats go on!"
 description: "Creating a new beat: soundbeat"
 author: David Pilato
-avatar: /about/david_pilato.png
+avatar: /about/david_pilato.webp
 tags:
   - beats
   - elasticsearch
@@ -12,7 +12,7 @@ categories:
   - tutorial
 date: 2016-03-17 17:35:39 +0100
 nolastmod: true
-cover: featured.png
+cover: featured.webp
 draft: false
 aliases:
   - /blog/2016/03/17/and-the-beats-go-on/
@@ -28,7 +28,7 @@ for my friends.
 
 But today, I want to speak about another kind of beats. Elastic beats!
 
-{{< figure src="beats.png" caption="Elastic Beats" >}}
+{{< figure src="beats.webp" caption="Elastic Beats" >}}
 
 <!--more-->
 
@@ -66,7 +66,7 @@ The `soundbeat` will read a MP3 file, then extract the sound level for left and 
 
 The final goal is to generate a waveform like this:
 
-{{< figure src="TheWhispers-AndTheBeatGoesOn.png" caption="And the beat goes on" >}}
+{{< figure src="TheWhispers-AndTheBeatGoesOn.webp" caption="And the beat goes on" >}}
 
 ### Generate a beat from a template
 
@@ -568,11 +568,11 @@ But remember that we used a `zoom` factor of `10x` for a better rendering in Kib
 
 So here, I'll look at data from `2016-03-18 14:54:30` to `2016-03-18 15:03:30` for the begining of the music.
 
-{{< figure src="kibana1.png" caption="Select time range" >}}
+{{< figure src="kibana1.webp" caption="Select time range" >}}
 
 Let's create a Timeseries visualization!
 
-{{< figure src="kibana2.png" caption="Timeseries visualization" >}}
+{{< figure src="kibana2.webp" caption="Timeseries visualization" >}}
 
 Then, we define interval to `1s` and set the Timelion expression:
 
@@ -580,7 +580,7 @@ Then, we define interval to `1s` and set the Timelion expression:
 .es(index="soundbeat-*",metric="min:left").bars(1)
 ```
 
-{{< figure src="kibana3.png" caption="Left waveform" >}}
+{{< figure src="kibana3.webp" caption="Left waveform" >}}
 
 We can also add the right channel:
 
@@ -588,7 +588,7 @@ We can also add the right channel:
 .es(index="soundbeat-*",metric="min:left").bars(1),.es(index="soundbeat-*",metric="min:right").bars(1)
 ```
 
-{{< figure src="kibana4.png" caption="With Right waveform" >}}
+{{< figure src="kibana4.webp" caption="With Right waveform" >}}
 
 But this will overlap. So let's fix that by negative by `1` the left channel:
 
@@ -598,7 +598,7 @@ But this will overlap. So let's fix that by negative by `1` the left channel:
 
 We now have something which looks like the waveform we are looking for!
 
-{{< figure src="kibana5.png" caption="Final waveform" >}}
+{{< figure src="kibana5.webp" caption="Final waveform" >}}
 
 ## Resources
 

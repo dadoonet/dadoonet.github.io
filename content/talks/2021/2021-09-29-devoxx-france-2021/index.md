@@ -9,7 +9,7 @@ conference:
   longitude: "2.352222"
   url: "https://www.devoxx.fr/"
 author: David Pilato
-avatar: /about/david_pilato.png
+avatar: /about/david_pilato.webp
 # talk: conferences
 date: 2021-09-29
 talk-lang: fr

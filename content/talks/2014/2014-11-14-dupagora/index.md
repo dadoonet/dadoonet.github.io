@@ -9,9 +9,9 @@ conference:
   longitude: "2.3701049"
 authors:
   - author: David Pilato
-    avatar: /about/david_pilato.png
+    avatar: /about/david_pilato.webp
   - author: Florian Le Moing
-    avatar: /speakers/florian_lemoing.jpg
+    avatar: /speakers/florian_lemoing.webp
     link: "https://www.linkedin.com/in/florianlemoing"
 # talk: conferences
 date: 2014-11-14

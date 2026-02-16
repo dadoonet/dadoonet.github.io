@@ -4,7 +4,7 @@ description: "Nativement, Elasticsearch expose l'ensemble de ses services
   sans aucune authentification et donc une commande du type curl -XDELETE
   http://localhost:9200/myindex peut faire de nombreux dégâts non désirés."
 author: David Pilato
-avatar: /about/david_pilato.png
+avatar: /about/david_pilato.webp
 tags:
   - elasticsearch
   - jetty

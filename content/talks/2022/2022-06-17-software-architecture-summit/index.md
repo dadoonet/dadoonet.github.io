@@ -9,7 +9,7 @@ conference:
   longitude: "26.102538"
   url: "https://www.techweek.ro/software-architecture-summit"
 author: David Pilato
-avatar: /about/david_pilato.png
+avatar: /about/david_pilato.webp
 talk: FSCrawler
 date: 2022-06-17
 talk-lang: en

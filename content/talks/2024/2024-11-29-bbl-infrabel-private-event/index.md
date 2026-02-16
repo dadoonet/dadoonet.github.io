@@ -9,7 +9,7 @@ conference:
   longitude: "4.351710"
   url: "https://infrabel.be/"
 author: David Pilato
-avatar: /about/david_pilato.png
+avatar: /about/david_pilato.webp
 talk: ES|QL
 date: 2024-11-29
 talk-lang: en

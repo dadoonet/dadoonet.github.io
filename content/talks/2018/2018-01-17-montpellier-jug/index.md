@@ -8,7 +8,7 @@ conference:
   latitude: "43.6327433"
   longitude: "3.8604066"
 author: David Pilato
-avatar: /about/david_pilato.png
+avatar: /about/david_pilato.webp
 # talk: conferences
 date: 2018-01-17
 talk-lang: fr

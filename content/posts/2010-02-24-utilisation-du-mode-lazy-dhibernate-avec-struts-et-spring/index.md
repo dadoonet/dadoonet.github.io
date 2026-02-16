@@ -2,7 +2,7 @@
 title: Utilisation du mode Lazy d'Hibernate avec Struts et Spring
 description: "Lorsqu'on utilise Hibernate pour déléguer la gestion de la persistence, se pose alors le classique problème de l'exception LazyInitialisationException."
 author: David Pilato
-avatar: /about/david_pilato.png
+avatar: /about/david_pilato.webp
 tags:
   - java
   - hibernate

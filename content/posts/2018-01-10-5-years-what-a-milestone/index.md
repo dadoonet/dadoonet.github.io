@@ -3,7 +3,7 @@ title: "5 years. What a milestone!"
 description: "What a milestone! Can you imagine how changed the company in the last 5 years?
 From 10 employees when I joined to more than 700 now!"
 author: David Pilato
-avatar: /about/david_pilato.png
+avatar: /about/david_pilato.webp
 tags:
   - culture
   - career
@@ -18,7 +18,7 @@ series:
   - career at elastic
 date: 2018-01-10 09:00:00 +0100
 nolastmod: true
-cover: featured.png
+cover: featured.webp
 draft: false
 aliases:
   - /blog/2018/01/10/5-years-what-a-milestone/
@@ -45,31 +45,31 @@ Before speaking about what happened the last 5 years for me, let's modify a bit 
 What I'd like to see now, is my activity over years. But first of all, I want to upgrade my existing cloud instance to the lastest version available: `6.1.1`.
 Because, I've been using `5.2.2`, I first need to upgrade to `5.6.5`.
 
-{{< figure src="upgrade1.png" caption="Choosing version 5.6.5" >}}
+{{< figure src="upgrade1.webp" caption="Choosing version 5.6.5" >}}
 
 Kind of magic, elastic cloud is starting a new instance, with elasticsearch 5.6.5, moving my old data to this new cluster and then switching off the old cluster.
 
-{{< figure src="upgrade2.png" caption="Upgrade in progress" >}}
+{{< figure src="upgrade2.webp" caption="Upgrade in progress" >}}
 
 I just have to click one other button to upgrade Kibana as well to the right version.
 
-{{< figure src="upgrade3.png" caption="Upgrading Kibana" >}}
+{{< figure src="upgrade3.webp" caption="Upgrading Kibana" >}}
 
 Just go to the Upgrade Assistant and apply what is recommended.
 
-{{< figure src="upgrade4.png" caption="Upgrade assistant" >}}
+{{< figure src="upgrade4.webp" caption="Upgrade assistant" >}}
 
 The reindex helper helps a lot doing that in one click.
 
-{{< figure src="upgrade5.png" caption="Reindex helper" >}}
+{{< figure src="upgrade5.webp" caption="Reindex helper" >}}
 
 And now I'm ready for the big jump!
 
-{{< figure src="upgrade6.png" caption="Choosing version 6.1.1" >}}
+{{< figure src="upgrade6.webp" caption="Choosing version 6.1.1" >}}
 
 Et voilà!
 
-{{< figure src="upgrade7.png" caption="Ready for 6.1.1" >}}
+{{< figure src="upgrade7.webp" caption="Ready for 6.1.1" >}}
 
 ## Changing the ingestion layer
 
@@ -249,56 +249,56 @@ I'm changing a bit the Kibana dashboard. Well, 6.x is providing new cool feature
 By the way, I'm changing my own made `kibana_reader` role for the `demo` user to the official `kibana_dashboard_only_user` role.
 This is a super cool "Read Only mode" feature provided by X-Pack as it removes all the buttons you don't have access to anyway.
 
-{{< figure src="kibana1.png" caption="Kibana read only mode" >}}
+{{< figure src="kibana1.webp" caption="Kibana read only mode" >}}
 
 ### 5 years of evangelism
 
 Let's deep dive a bit now...
 
-{{< figure src="kibana2-summary.png" caption="Summary" >}}
+{{< figure src="kibana2-summary.webp" caption="Summary" >}}
 
 The last 5 years, I spent more than 265 000 kilometers in traveling to meet the community and share my passion with more than 16 000 persons. Probably more as I don't count the number of views of the videos you can watch on internet.
 
-{{< figure src="kibana2-events-km.png" caption="Events and Kilometers" >}}
+{{< figure src="kibana2-events-km.webp" caption="Events and Kilometers" >}}
 
 What we can see is that the number of events per year is almost the same (around 75 per year) but I traveled more than 92 000 kilometers in 2017!
 
-{{< figure src="kibana2-type.png" caption="Type of event" >}}
+{{< figure src="kibana2-type.webp" caption="Type of event" >}}
 
 It's super obvious that I'm spending a lot of time doing BBLs. I wrote this year [a blog post about it]({{< ref "2024-08-01-free-lunches-for-opensource-engineers" >}}). It's super time consuming, you meet a few people, but it is really worth it as you reach a part of the community you don't normally meet at conferences. Obviously, you reach much more people when you give talks at conferences.
 
-{{< figure src="kibana2-attendees-and-type.png" caption="Distribution of attendees per type of event" >}}
+{{< figure src="kibana2-attendees-and-type.webp" caption="Distribution of attendees per type of event" >}}
 
 By the way, in my dataset, I'm using `Conference` type of event when I'm maning the booth and `Talk` when I'm giving a public talk.
 
 Let's filter the dataset to see only my BBL activity:
 
-{{< figure src="kibana2-bbl-only.png" caption="BBL only" >}}
+{{< figure src="kibana2-bbl-only.webp" caption="BBL only" >}}
 
 We can see that I reduced that a bit this year which kind of make sense as the last 5 years I already spoke in almost 130 companies, mostly in France. I probably need to reach now companies I never spoke to or other territories.
 
-{{< figure src="kibana2-bbl-location.png" caption="BBL locations" >}}
+{{< figure src="kibana2-bbl-location.webp" caption="BBL locations" >}}
 
 This chart represents the farest countries I've been to and the number of events I attended there.
 
-{{< figure src="kibana2-distance.png" caption="Events by distance" >}}
+{{< figure src="kibana2-distance.webp" caption="Events by distance" >}}
 
 No real surprise here. I'm speaking mostly in France. But wait... What is this `United Arab Emirates` with 0 kilometers?
 Actually I gave a talk remotely for a [Hadoop United Arab Emirates User Group](https://www.meetup.com/Hadoop-User-Group-UAE/events/219512233/?_cookie-check=5nTt5MFXvQbSB29Z). That was from home... :D
 
 ### Focus on 2017
 
-{{< figure src="kibana3-2017-overview.png" caption="Overview of 2017" >}}
+{{< figure src="kibana3-2017-overview.webp" caption="Overview of 2017" >}}
 
 In 2017, I spoke to around 3 250 person at 72 events. Almost 2 events per week. And because of very long trips, the average number of kilometers per trip has been more than 1 200 kilometers...
 
-{{< figure src="kibana3-2017.png" caption="2017" >}}
+{{< figure src="kibana3-2017.webp" caption="2017" >}}
 
 I gave 4 talks in Poland, 3 in Canada, 2 in Belarus, Morocco and Netherlands. The "orange" vertical bar chart does not include obviously France. 😉
 
 Here are the main locations I've been to in Europe this year.
 
-{{< figure src="kibana3-2017-europe.png" caption="2017 in Europe" >}}
+{{< figure src="kibana3-2017-europe.webp" caption="2017 in Europe" >}}
 
 ### Is it only pleasant?
 

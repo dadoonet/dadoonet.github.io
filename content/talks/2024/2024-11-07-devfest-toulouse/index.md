@@ -9,7 +9,7 @@ conference:
   longitude: "1.444209"
   url: "https://devfesttoulouse.fr/"
 author: David Pilato
-avatar: /about/david_pilato.png
+avatar: /about/david_pilato.webp
 talk: AI Search
 date: 2024-11-07
 talk-lang: fr

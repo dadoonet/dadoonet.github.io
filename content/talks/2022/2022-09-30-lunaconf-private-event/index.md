@@ -9,7 +9,7 @@ conference:
   longitude: "4.477733"
   url: "https://www.lunatech.fr/"
 author: David Pilato
-avatar: /about/david_pilato.png
+avatar: /about/david_pilato.webp
 # talk: conferences
 date: 2022-09-30
 talk-lang: en

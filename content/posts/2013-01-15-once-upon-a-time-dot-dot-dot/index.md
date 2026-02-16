@@ -4,7 +4,7 @@ description: "2 years ago, I was looking for a way to make Hibernate search dist
 
 Digging for source code, I came to the JdbcDirectory class from the compass project. And I saw on the compass front page something talking about the future of Compass and Elasticsearch."
 author: David Pilato
-avatar: /about/david_pilato.png
+avatar: /about/david_pilato.webp
 tags:
   - career
   - culture
@@ -15,7 +15,7 @@ series:
   - career at elastic
 date: 2013-01-15 20:00:00 +0200
 nolastmod: true
-cover: es1.png
+cover: es1.webp
 draft: false
 aliases:
   - /blog/2013/01/15/once-upon-a-time-dot-dot-dot/
@@ -28,7 +28,7 @@ In fact 2 years ago, I was looking for a way to make Hibernate search distribute
 
 Digging for source code, I came to the `JdbcDirectory` class from the compass project. And I saw on the compass front page something talking about the future of Compass and Elasticsearch.
 
-{{< figure src="es1.png" caption="The future of Compass and Elasticsearch" >}}
+{{< figure src="es1.webp" caption="The future of Compass and Elasticsearch" >}}
 
 <!--more-->
 
@@ -38,7 +38,7 @@ At this point, I was looking to contribute back to the project. But, I was not a
 
 I met Shay Banon the first time in June 2011 for a conference in Paris. He was doing a no-slide no-bullshit talk. Very impressive. It just works! I told him that as I can not contribute on the core project, I can try to talk about the project in France. He agreed and the French user group was born!
 
-{{< figure src="es2.png" caption="Elasticsearch French Community" >}}
+{{< figure src="es2.webp" caption="Elasticsearch French Community" >}}
 
 One year later, [my talk for Devoxx France](https://www.devoxx.com/display/FR12/ElasticSearch+++moteur+de+recherche+NoSQL+REST+JSON+taille+pour+le+cloud) was accepted and everything really started from here. The French user group grows now each day.
 

@@ -2,7 +2,7 @@
 title: Installation FusionForge 5.0 sur Redhat 5
 description: "Voici la suite de l'article sur l'installation d'une forge. Finalement, le temps d'obtenir une machine sous Redhat 5 a laissé le temps à la team FusionForge de sortir une release finale de la version 5.0."
 author: David Pilato
-avatar: /about/david_pilato.png
+avatar: /about/david_pilato.webp
 tags:
   - fusionforge
 categories:
@@ -12,7 +12,7 @@ series:
 date: 2010-05-11 22:23:27 +00:00
 nolastmod: true
 draft: false
-cover: maforge.png
+cover: maforge.webp
 aliases:
   - /blog/2010/05/11/installation-fusionforge-5-0-sur-redhat-5/
   - /blog/2010-05-11-installation-fusionforge-5-0-sur-redhat-5/
@@ -94,7 +94,7 @@ Lors de l'installation, le script demande d'entrer le nom de l'utilisateur admin
 
 Une fois ces opérations menées, il doit être possible d'ouvrir un navigateur web à l'adresse : <http://maforge.mondomaine/>
 
-{{< figure src="maforge.png" caption="Page d'accueil de la forge" >}}
+{{< figure src="maforge.webp" caption="Page d'accueil de la forge" >}}
 
 ## Processus post-installation
 

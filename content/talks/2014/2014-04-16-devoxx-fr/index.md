@@ -9,10 +9,10 @@ conference:
   longitude: "2.3375774"
 authors:
   - author: Adrien Grand
-    avatar: /speakers/adrien_grand.jpg
+    avatar: /speakers/adrien_grand.webp
     link: "https://www.linkedin.com/in/adriengrand/"
   - author: David Pilato
-    avatar: /about/david_pilato.png
+    avatar: /about/david_pilato.webp
 talk: Elasticsearch Workshop
 date: 2014-04-16
 talk-lang: fr

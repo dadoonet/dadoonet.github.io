@@ -9,7 +9,7 @@ conference:
   latitude: "48.856614"
   longitude: "2.352222"
 author: David Pilato
-avatar: /about/david_pilato.png
+avatar: /about/david_pilato.webp
 talk: Testcontainers
 date: 2018-09-20
 talk-lang: fr

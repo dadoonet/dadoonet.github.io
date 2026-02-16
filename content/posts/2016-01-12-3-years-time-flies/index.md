@@ -2,7 +2,7 @@
 title: "3 years! Time flies!"
 description: "3 years! Can you imagine that? Already 3 years spent working at elastic? Time flies! 2015 has been an uncommon year for me."
 author: David Pilato
-avatar: /about/david_pilato.png
+avatar: /about/david_pilato.webp
 tags:
   - career
   - culture
@@ -13,7 +13,7 @@ series:
   - career at elastic
 date: 2016-01-12 08:37:00 +0100
 nolastmod: true
-cover: featured.jpg
+cover: featured.webp
 draft: false
 aliases:
   - /blog/2016/01/12/3-years-time-flies/
@@ -69,11 +69,11 @@ Well, I guess it's well known only in France! 😄
 
 I think I spoke for more than **2 500 attendees**! I'm super happy on this because results are clearly visible in the company when we look for example at the requests on the web site per region or the [Google trends](https://trends.google.fr/trends/explore?date=2015-01-01%202015-12-31,2015-01-01%202015-12-31,2015-01-01%202015-12-31&geo=FR,US,GB&q=Elasticsearch,Elasticsearch,Elasticsearch):
 
-{{< figure src="google-trends.png" caption="Google Trends" >}}
+{{< figure src="google-trends.webp" caption="Google Trends" >}}
 
 On a side note, I also helped at [Devoxx4Kids France](https://www.devoxx4kids.org/france/). My children really enjoyed it and they are asking me every month about the next event! Count on me Devoxx4Kids team!
 
-{{< figure src="devoxx4kids.jpg" caption="Devoxx4Kids" >}}
+{{< figure src="devoxx4kids.webp" caption="Devoxx4Kids" >}}
 
 {{< youtube wzr6xXwCEKU >}}
 
@@ -105,7 +105,7 @@ Well, my email signature is `Dev | Evangelist`. `|` is actually here the [Linux 
 
 We all met in Barcelona in September. Was great time!
 
-{{< figure src="devangelist.jpg" caption="The devangelist team - Sept 2015" >}}
+{{< figure src="devangelist.webp" caption="The devangelist team - Sept 2015" >}}
 
 ## The company
 
@@ -133,8 +133,8 @@ And of course, I will enjoy the good balance I have between work time and family
 
 I wish you fellows a very nice 2016 year and hope that 2016 will be more peaceful than 2015... But [the news today in Istanbul](https://www.bbc.com/news/world-europe-35290760) don't seem to prove me right. [I spoke there last year]({{< ref "talks/2015/2015-05-09-voxxed-istanbul" >}}), visited this historical and fantastic place... I'm so sad this is happening...
 
-{{< figure src="istanbul.jpg" caption="😢" >}}
+{{< figure src="istanbul.webp" caption="😢" >}}
 
 Of course, I'm also thinking of all people who died in 2015 in Paris and of all the wounded ones and their families.
 
-{{< figure src="france.jpg" caption="😢" >}}
+{{< figure src="france.webp" caption="😢" >}}

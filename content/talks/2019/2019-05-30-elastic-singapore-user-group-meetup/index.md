@@ -9,7 +9,7 @@ conference:
   longitude: "103.819836"
   url: "https://www.meetup.com/Singapore-Elastic-Fantastics/events/261221284/"
 author: David Pilato
-avatar: /about/david_pilato.png
+avatar: /about/david_pilato.webp
 talk: Postal Addresses
 date: 2019-05-30
 talk-lang: en

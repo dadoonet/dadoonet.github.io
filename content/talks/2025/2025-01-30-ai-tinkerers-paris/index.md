@@ -9,7 +9,7 @@ conference:
   longitude: "2.352222"
   url: "https://paris.aitinkerers.org/p/ai-tinkerers-paris-meetup-on-january-30th"
 author: David Pilato
-avatar: /about/david_pilato.png
+avatar: /about/david_pilato.webp
 # talk: conferences
 date: 2025-01-30
 talk-lang: en

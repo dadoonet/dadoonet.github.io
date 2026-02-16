@@ -9,7 +9,7 @@ conference:
   longitude: "-73.567256"
   url: "https://www.meetup.com/Elasticsearch-Montreal/events/268675767/"
 author: David Pilato
-avatar: /about/david_pilato.png
+avatar: /about/david_pilato.webp
 talk: Postal Addresses
 date: 2020-02-26
 talk-lang: fr

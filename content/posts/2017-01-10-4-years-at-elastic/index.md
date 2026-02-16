@@ -5,7 +5,7 @@ description: "This post is starting to become a long series 😊
 Yeah! That's amazing! I just spent 4 years working at elastic and I'm starting
 my happy 5th year! 🎉"
 author: David Pilato
-avatar: /about/david_pilato.png
+avatar: /about/david_pilato.webp
 tags:
   - culture
   - career
@@ -21,7 +21,7 @@ series:
 date: 2017-01-09 18:15:00 +0100
 nolastmod: true
 draft: false
-cover: featured.png
+cover: featured.webp
 aliases:
   - /blog/2017/01/10/4-years-at-elastic/
   - /blog/2017-01-10-4-years-at-elastic/
@@ -51,7 +51,7 @@ To build my yearly report, I'm actually collecting in a Numbers document (Number
 
 Basically, I have a document which looks like this.
 
-{{< figure src="numbers.png" caption="Talks Trips in 2016" >}}
+{{< figure src="numbers.webp" caption="Talks Trips in 2016" >}}
 
 It would be better if I can get from it some statistics, or display on a map where I'm speaking the most frequently, or may be filter by [BBL]({{< ref "2024-08-01-free-lunches-for-opensource-engineers" >}}) type of event...
 
@@ -562,37 +562,37 @@ cat ../talks_2016.csv | ./filebeat -e
 
 First we need to create our index pattern:
 
-{{< figure src="index-pattern.png" caption="Index Pattern" >}}
+{{< figure src="index-pattern.webp" caption="Index Pattern" >}}
 
 In Kibana, we can see some activity already over 2016:
 
-{{< figure src="discover-2016.png" caption="Discover 2016" >}}
+{{< figure src="discover-2016.webp" caption="Discover 2016" >}}
 
 We can easily notice that I totally stopped doing evangelism during the summer. I think that if we look at the number of commits in GitHub we can probably find an inverted diagram. 😊
 
 We can now create a dashboard:
 
-{{< figure src="dashboard.png" caption="Dashboard" >}}
+{{< figure src="dashboard.webp" caption="Dashboard" >}}
 
 Neat, right?
 
 My main activity is in Europe:
 
-{{< figure src="europe.png" caption="Europe" >}}
+{{< figure src="europe.webp" caption="Europe" >}}
 
 And a big part of it is close to Paris:
 
-{{< figure src="paris.png" caption="Paris" >}}
+{{< figure src="paris.webp" caption="Paris" >}}
 
 ## Conclusion
 
 Evangelism is part of my activity. It also includes a lot of presence on <https://discuss.elastic.co>:
 
-{{< figure src="discuss.png" caption="Discuss activity the last years" >}}
+{{< figure src="discuss.webp" caption="Discuss activity the last years" >}}
 
 The other part is of course code, specifically on [elasticsearch](https://github.com/elastic/elasticsearch).
 
-{{< figure src="github.png" caption="Git commits for elasticsearch in 2016" >}}
+{{< figure src="github.webp" caption="Git commits for elasticsearch in 2016" >}}
 
 The company has now more than 400 employees. It's becoming harder and harder if not impossible to recall all people names.
 
@@ -602,7 +602,7 @@ We have a great success and our stack is now used almost everywhere. When I'm do
 
 And that's just begining I'm telling you!
 
-{{< figure src="keep-calm.png" caption="Keep Calm" >}}
+{{< figure src="keep-calm.webp" caption="Keep Calm" >}}
 
 ## Complete filebeat.yml file
 

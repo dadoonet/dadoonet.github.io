@@ -2,7 +2,7 @@
 title: CouchDB
 description: "Après avoir testé Elasticsearch, me voici parti pour regarder ce monde étrange qu'on appelle le NoSQL... Découvrons aujourd'hui CouchDB."
 author: David Pilato
-avatar: /about/david_pilato.png
+avatar: /about/david_pilato.webp
 tags:
   - couchdb
   - elasticsearch

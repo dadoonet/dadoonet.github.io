@@ -9,7 +9,7 @@ conference:
   longitude: "0.684840"
   url: "https://www.tadx.fr/2024-05-21-47-eme-event"
 author: David Pilato
-avatar: /about/david_pilato.png
+avatar: /about/david_pilato.webp
 talk: ES|QL
 date: 2024-05-21
 talk-lang: fr

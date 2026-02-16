@@ -9,7 +9,7 @@ conference:
   longitude: "-0.579180"
   url: "https://www.4sh.fr/"
 author: David Pilato
-avatar: /about/david_pilato.png
+avatar: /about/david_pilato.webp
 talk: Elasticsearch
 date: 2025-03-21
 talk-lang: fr

@@ -8,7 +8,7 @@ conference:
   latitude: "49.4770958"
   longitude: "1.0893741"
 author: David Pilato
-avatar: /about/david_pilato.png
+avatar: /about/david_pilato.webp
 talk: Elasticsearch
 date: 2013-02-12
 talk-lang: fr
@@ -33,4 +33,4 @@ David présentera pourquoi et comment il est passé de la recherche SQL à Elast
 * La percolation
 * La communauté
 
-![Présentation Normandy JUG](pic.jpg)
+![Présentation Normandy JUG](pic.webp)

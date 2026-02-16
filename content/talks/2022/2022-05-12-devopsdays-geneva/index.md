@@ -9,7 +9,7 @@ conference:
   longitude: "6.143158"
   url: "https://devopsdays.org/events/2022-geneva/"
 author: David Pilato
-avatar: /about/david_pilato.png
+avatar: /about/david_pilato.webp
 # talk: conferences
 date: 2022-05-12
 talk-lang: en

@@ -9,7 +9,7 @@ conference:
   longitude: "3.057256"
   url: "https://www.meetup.com/GDG-Lille/events/245130596/"
 author: David Pilato
-avatar: /about/david_pilato.png
+avatar: /about/david_pilato.webp
 # talk: conferences
 date: 2017-12-14
 talk-lang: fr

@@ -5,7 +5,7 @@ conference:
   country: "Online"
   country_code: "online"
 author: David Pilato
-avatar: /about/david_pilato.png
+avatar: /about/david_pilato.webp
 date: 2015-01-27
 talk-lang: fr
 nolastmod: true

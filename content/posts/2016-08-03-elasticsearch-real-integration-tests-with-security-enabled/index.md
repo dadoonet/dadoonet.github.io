@@ -2,7 +2,7 @@
 title: "Elasticsearch real integration tests with security enabled"
 description: "How to create real Elasticsearch integration tests with security enabled"
 author: David Pilato
-avatar: /about/david_pilato.png
+avatar: /about/david_pilato.webp
 tags:
   - java
   - maven

@@ -9,7 +9,7 @@ conference:
   longitude: "26.102538"
   url: "https://romania.voxxeddays.com/talk/?id=5852"
 author: David Pilato
-avatar: /about/david_pilato.png
+avatar: /about/david_pilato.webp
 # talk: conferences
 date: 2021-10-21
 talk-lang: en

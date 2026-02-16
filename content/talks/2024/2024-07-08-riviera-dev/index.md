@@ -9,7 +9,7 @@ conference:
   longitude: "7.261953"
   url: "https://rivieradev.fr/"
 author: David Pilato
-avatar: /about/david_pilato.png
+avatar: /about/david_pilato.webp
 talk: AI Search
 date: 2024-07-08
 talk-lang: fr

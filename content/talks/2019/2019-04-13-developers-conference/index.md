@@ -9,7 +9,7 @@ conference:
   longitude: "57.502332"
   url: "https://conference.mscc.mu/"
 author: David Pilato
-avatar: /about/david_pilato.png
+avatar: /about/david_pilato.webp
 # talk: conferences
 date: 2019-04-13
 talk-lang: fr

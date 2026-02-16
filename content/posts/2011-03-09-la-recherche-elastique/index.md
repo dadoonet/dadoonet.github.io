@@ -2,7 +2,7 @@
 title: La recherche élastique...
 description: "Elasticsearch, un projet mature en quelques mois... A suivre de très près !"
 author: David Pilato
-avatar: /about/david_pilato.png
+avatar: /about/david_pilato.webp
 tags:
   - elasticsearch
   - hibernate

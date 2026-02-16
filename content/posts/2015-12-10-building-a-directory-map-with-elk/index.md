@@ -2,7 +2,7 @@
 title: "Building a directory map with ELK"
 description: "How to build a directory map with Elasticsearch, Logstash and Kibana."
 author: David Pilato
-avatar: /about/david_pilato.png
+avatar: /about/david_pilato.webp
 tags:
   - elasticsearch
   - logstash
@@ -11,7 +11,7 @@ categories:
   - tutorial
 date: 2015-12-10 09:28:15 +0100
 nolastmod: true
-cover: featured.png
+cover: featured.webp
 draft: false
 aliases:
   - /blog/2015/12/10/building-a-directory-map-with-elk/
@@ -419,7 +419,7 @@ find ~/Public -type f -print0 | xargs -0 gls -l --time-style="+%Y-%m-%dT%H:%M:%S
 
 And finally, I can build my visualization...
 
-{{< figure src="kibana1.png" caption="My hard disk" >}}
+{{< figure src="kibana1.webp" caption="My hard disk" >}}
 
 Please don't tell to my boss that I have more music files than work files (in term of disk space)! :D
 

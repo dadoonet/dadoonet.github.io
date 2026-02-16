@@ -9,13 +9,13 @@ conference:
   latitude: "50.6297842"
   longitude: "3.0571838"
 author: David Pilato
-avatar: /about/david_pilato.png
+avatar: /about/david_pilato.webp
 date: '2026-05-22'
 talk-lang: fr
 nolastmod: true
 draft: false
 #pdf: "2026/2026-05-22-afup-day-lille.pdf"
-cover: "cover.png"
+cover: "cover.webp"
 
 # Speaker specific fields
 #youtube: ""      # ID de la vidéo YouTube (ex: dQw4w9WgXcQ)

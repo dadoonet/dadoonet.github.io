@@ -5,7 +5,7 @@ d'essayer et de construire ce modèle.
 
 Après avoir cherché du code source, je suis finalement tombé sur la classe JdbcDirectory du projet Compass. Et sur la page d'accueil du projet, j'aperçois quelque chose qui parle du future de Compass et d'Elasticsearch."
 author: David Pilato
-avatar: /about/david_pilato.png
+avatar: /about/david_pilato.webp
 tags:
   - career
   - culture
@@ -16,7 +16,7 @@ series:
   - career at elastic
 date: 2013-01-15 19:00:13 +02:00
 nolastmod: true
-cover: es1.png
+cover: es1.webp
 draft: false
 aliases:
   - /blog/2013/01/15/il-etait-une-fois-un-conte-de-fees-elastique/
@@ -29,7 +29,7 @@ En fait, il y a 2 ans, je cherchais un moyen pour distribuer Hibernate search su
 
 Après avoir cherché du code source, je suis finalement tombé sur la classe `JdbcDirectory` du projet Compass. Et sur la page d'accueil du projet, j'aperçois quelque chose qui parle du future de Compass et d'Elasticsearch.
 
-{{< figure src="es1.png" caption="Le futur de Compass et Elasticsearch" >}}
+{{< figure src="es1.webp" caption="Le futur de Compass et Elasticsearch" >}}
 
 <!--more-->
 
@@ -39,7 +39,7 @@ A partir de ce moment, j'ai cherché comment contribuer en retour sur le projet.
 
 J'ai rencontré Shay Banon la première fois en Juin 2011 pour une conférence donnée à Paris. Il donnait un talk sans slides comme il sait les faire. Très impressionnant ! It just works ! Je lui ai alors dit que comme je ne pouvais pas directement contribuer au coeur du projet, je pouvais essayer de promouvoir le projet en France. Il a immédiatement accepté. La communauté française était née !
 
-{{< figure src="es2.png" caption="Communauté française Elasticsearch" >}}
+{{< figure src="es2.webp" caption="Communauté française Elasticsearch" >}}
 
 Une année plus tard, [mon talk pour Devoxx France](https://www.devoxx.com/display/FR12/ElasticSearch+++moteur+de+recherche+NoSQL+REST+JSON+taille+pour+le+cloud) était accepté et tout allait vraiment démarrer à partir de là. Le groupe français n'a pas cessé de grossir depuis, de jour en jour.
 
