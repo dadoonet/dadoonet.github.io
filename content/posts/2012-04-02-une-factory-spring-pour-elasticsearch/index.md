@@ -3,7 +3,7 @@ title: Une factory Spring pour Elasticsearch
 description: "Il existe dans Hibernate une fonctionnalité que j'aime beaucoup : la mise à jour automatique du schéma de la base en fonction des entités manipulées.
 Mon besoin est de faire quasiment la même chose avec Elasticsearch. C'est à dire que je souhaite pouvoir appliquer un mapping pour un type donné à chaque fois que je démarre mon projet (en l’occurrence une webapp)."
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 tags:
   - elasticsearch
   - java

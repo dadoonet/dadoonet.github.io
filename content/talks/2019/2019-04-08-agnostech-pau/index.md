@@ -9,7 +9,7 @@ conference:
   longitude: "-0.370797"
   url: "https://www.meetup.com/AgnosTech-Pau/events/258559231/"
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 # talk: conferences
 date: 2019-04-08
 talk-lang: fr

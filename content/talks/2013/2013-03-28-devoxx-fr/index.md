@@ -9,10 +9,10 @@ conference:
   longitude: "2.3376006"
 authors:
   - author: Tugdual Grall
-    avatar: /speakers/tugdual_grall.webp
+    avatar: /speakers/tugdual_grall.avif
     link: https://tgrall.github.io/
   - author: David Pilato
-    avatar: /about/david_pilato.webp
+    avatar: /about/david_pilato.avif
 talk: SQL2NoSQL
 date: 2013-03-28
 talk-lang: fr
@@ -39,4 +39,4 @@ Les thèmes abordés seront :
 
 Notre plan diabolique est de vous convertir au NoSQL à tel point que vous ne puissiez faire autrement que de le mettre chez vous (et chez vos amis) ! Niark ! Niark ! Niark ! (rire satanique)
 
-![Article Programmez!](programmez.webp)
+![Article Programmez!](programmez.avif)

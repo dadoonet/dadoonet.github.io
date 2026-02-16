@@ -2,7 +2,7 @@
 title: '🎉 ElasticFR Meetup #100: 13 years of meetups'
 description: "Celebrating 100 meetups of the ElasticFR community! A journey from a recipe search application to enterprise-scale AI, featuring 150+ speakers, 40+ hosts, and a passionate French-speaking community."
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 tags:
   - elasticsearch
   - meetup
@@ -15,7 +15,7 @@ series:
 date: '2026-01-26'
 nolastmod: true
 draft: false
-cover: cover.webp
+cover: cover.avif
 ---
 
 When I started the [ElasticFR meetup group](https://www.meetup.com/ElasticFR/) back in 2013, I had no idea we would reach this milestone. What began as a small gathering of curious developers exploring a new search engine has grown into one of the most active Elastic user groups in the world, with **over 150 recorded talks** on our [YouTube playlist](https://youtube.com/playlist?list=PL_mJOmq4zsHa9mB1DU8BWjdLsUj4AiP9k&si=89HLBoUow3N5ttlb), tracking the technical evolution and enterprise adoption of the Elastic Stack across French-speaking companies.
@@ -34,7 +34,7 @@ One hundred meetups later, we're discussing **real-time anomaly detection** and 
 
 At [meetup #01 at Zenika](https://www.meetup.com/elasticfr/events/96022622/), Shay Banon kicked things off with a session about sizing Elasticsearch in front of 100+ attendees.
 
-{{< figure src="01-shay.webp" caption="Shay Banon presenting at ElasticFR Meetup #01" >}}
+{{< figure src="01-shay.avif" caption="Shay Banon presenting at ElasticFR Meetup #01" >}}
 
 And then we have been super lucky as a community to hear, often for the very first time in the world about new features and technologies. And just to name a few (there's much more than that!):
 
@@ -61,7 +61,7 @@ Also, I'm always givng an update when we start every meetup with some exclusive 
 
 The numbers speak for themselves: we have had 100 meetups and 185 talks over the years. With incredible talks from our community. And actually, most of the talks were given by the community, for the community.
 
-{{< figure src="meetups.webp" caption="Meetups numbers" >}}
+{{< figure src="meetups.avif" caption="Meetups numbers" >}}
 
 And because that involvment is priceless, we are investing a lot in the meetup video recording and production (around 1.3k€ per meetup).
 Thanks to our sponsors who are generously supporting this effort.
@@ -76,7 +76,7 @@ And now (both the content and the video are great):
 
 If you look at what's happening  in the backend to make this possible, you will notice that we have multiple cameras, multiple microphones, and a professional video production setup provided by [Alkoda On Air](https://alkoda-onair.com/).
 
-{{< figure src="alkoda-on-air.webp" caption="Alkoda on air setup at Deezer - Meetup #98" >}}
+{{< figure src="alkoda-on-air.avif" caption="Alkoda on air setup at Deezer - Meetup #98" >}}
 
 That way, we can share with the rest of the community what we are doing, specifically in France 🇫🇷.
 

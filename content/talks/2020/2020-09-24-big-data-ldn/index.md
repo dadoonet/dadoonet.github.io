@@ -6,7 +6,7 @@ conference:
   country_code: "Online"
   url: "https://bigdataldn.com/speakers/"
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 talk: Postal Addresses
 date: 2020-09-24
 talk-lang: en

@@ -8,13 +8,13 @@ conference:
   latitude: "48.7704787"
   longitude: "1.9371804"
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 talk: Elasticsearch
 date: 2018-03-19
 talk-lang: fr
 nolastmod: true
 draft: false
-cover: logo-saur.webp
+cover: logo-saur.avif
 attendees: 40
 ---
 Vous utilisez encore des requêtes SQL pour faire des recherches ? Vos utilisateurs vous reprochent de ne pas pouvoir chercher sur toutes les rubriques ? Votre temps de réponse moyen est supérieur à la demi-seconde avec seulement quelques millions de documents ? Il vous faut 3 jours pour produire des statistiques sur vos données ? Vous rêvez d'offrir une recherche "à la google" sur les données de votre SI ? Ne cherchez plus ! Cette conférence est faite pour vous.

@@ -9,7 +9,7 @@ conference:
   longitude: "-1.553621"
   url: "https://www.eni-service.fr/eni-tech-fest-levenement-incontournable-pour-les-professionnels-du-numerique/"
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 talk: Music Search
 date: 2025-03-25
 talk-lang: fr

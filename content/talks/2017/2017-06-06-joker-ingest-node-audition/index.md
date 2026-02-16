@@ -7,12 +7,12 @@ conference:
   country_code: "online" # online, fr, us, etc.
 authors:
   - author: David Pilato
-    avatar: /about/david_pilato.webp
+    avatar: /about/david_pilato.avif
 date: '2017-06-06'
 talk-lang: en # fr or en
 nolastmod: true
 draft: false
-#cover: "cover.webp"
+#cover: "cover.avif"
 
 talk: Ingest Node
 

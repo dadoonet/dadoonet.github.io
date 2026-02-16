@@ -9,7 +9,7 @@ conference:
   longitude: "4.835659"
   url: "https://lyonjug.org/2024/05/16/la-recherche-a-lheure-de-l-ia.html"
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 talk: AI Search
 date: 2024-05-16
 talk-lang: fr

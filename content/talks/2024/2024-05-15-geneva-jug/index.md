@@ -9,7 +9,7 @@ conference:
   longitude: "6.143158"
   url: "https://www.meetup.com/alpesjug/events/299609510/"
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 talk: AI Search
 date: 2024-05-15
 talk-lang: fr

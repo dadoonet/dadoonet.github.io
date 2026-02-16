@@ -9,7 +9,7 @@ conference:
   longitude: "2.295753"
   url: "https://talan.com/"
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 talk: Elasticsearch
 date: 2024-05-23
 talk-lang: fr

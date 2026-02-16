@@ -9,13 +9,13 @@ conference:
 #  latitude: ""
 #  longitude: ""
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 date: '2017-12-14'
 talk-lang: fr
 nolastmod: true
 draft: true
 pdf: "2017/2017-12-14-netsecuredays.pdf"
-#cover: "cover.webp"
+#cover: "cover.avif"
 
 talk: Black Friday
 

@@ -2,7 +2,7 @@
 title: "Reindex elasticsearch with Logstash"
 description: "How to reindex your data from one cluster to another with Logstash"
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 tags:
   - elasticsearch
   - logstash
@@ -11,7 +11,7 @@ categories:
   - tutorial
 date: 2015-05-20 11:03:29 +0200
 nolastmod: true
-cover: featured.webp
+cover: featured.avif
 draft: false
 aliases:
   - /blog/2015/05/20/reindex-elasticsearch-with-logstash/
@@ -38,7 +38,7 @@ bin/elasticsearch --cluster.name=old
 
 The cluster has an existing index named `person`. It has 5 shards and 1 million documents.
 
-{{< figure src="sense01.webp" caption="sense" >}}
+{{< figure src="sense01.avif" caption="sense" >}}
 
 ## The new cluster
 
@@ -489,7 +489,7 @@ And now, you can reindex your data again!
 bin/logstash -f logstash.conf
 ```
 
-{{< figure src="sense02.webp" caption="sense" >}}
+{{< figure src="sense02.avif" caption="sense" >}}
 
 ## Changing index or type names
 

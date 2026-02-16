@@ -9,7 +9,7 @@ conference:
   longitude: "-0.579180"
   url: "https://www.bordeauxjug.org/meetings/20250320-elasticsearch_query_language:_es_ql"
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 talk: ES|QL
 date: 2025-03-20
 talk-lang: fr

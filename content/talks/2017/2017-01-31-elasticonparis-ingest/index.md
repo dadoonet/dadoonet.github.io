@@ -9,13 +9,13 @@ conference:
 #  latitude: ""
 #  longitude: ""
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 date: '2017-01-31'
 talk-lang: fr
 nolastmod: true
 draft: false
 pdf: "2017/2017-01-31-elasticonparis-ingest.pdf"
-#cover: "cover.webp"
+#cover: "cover.avif"
 
 # Speaker specific fields
 #youtube: ""      # ID de la vidéo YouTube (ex: dQw4w9WgXcQ)

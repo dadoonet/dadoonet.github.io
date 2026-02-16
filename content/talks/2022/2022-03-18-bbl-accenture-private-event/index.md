@@ -9,7 +9,7 @@ conference:
   longitude: "4.895168"
   url: "https://www.accenture.com/nl-en"
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 talk: Elasticsearch
 date: 2022-03-18
 talk-lang: en

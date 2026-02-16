@@ -8,14 +8,14 @@ conference:
   latitude: "48.824531"
   longitude: "2.274342"
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 talk: Elasticsearch
 date: 2019-04-04
 talk-lang: fr
 nolastmod: true
 draft: false
 pdf: "2019/2019-04-04-bbl-yves-rocher-private-event.pdf"
-cover: deck-bbl-generic.webp
+cover: deck-bbl-generic.avif
 
 # Speaker specific fields
 #youtube: ""

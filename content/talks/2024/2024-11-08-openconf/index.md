@@ -6,7 +6,7 @@ conference:
   country_code: "online"
   url: "https://www.open-conf.gr/"
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 talk: Music Search
 date: 2024-11-08
 talk-lang: en

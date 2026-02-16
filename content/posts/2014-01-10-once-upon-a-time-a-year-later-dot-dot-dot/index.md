@@ -2,7 +2,7 @@
 title: "Once upon a time: a year later..."
 description: "After the first year, I did 58 talks in 4 countries, 37 towns for about 18 000 kilometers traveled. I was pretty sure that things would continue to grow."
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 tags:
   - career
   - culture
@@ -13,7 +13,7 @@ series:
   - career at elastic
 date: 2014-01-10 09:30:11 +0200
 nolastmod: true
-cover: featured.webp
+cover: featured.avif
 draft: false
 aliases:
   - /blog/2014/01/10/once-upon-a-time-a-year-later-dot-dot-dot/
@@ -39,7 +39,7 @@ As an evangelist, I did **58 talks** in **4 countries**: France of course, plus 
 
 Some talks and venues were fantastic. For example, for [Devoxx France 2013]({{< ref "/talks/2013/2013-03-28-devoxx-fr" >}}), the room was packed with about **200 attendees** and [Devoxx Anvers 2013]({{< ref "/talks/2013/2013-11-14-devoxx-be" >}}) with about **400 attendees**. Very exciting, right?
 
-{{< figure src="devoxx_be_2013.webp" caption="Devoxx 2013: attendees coming..." >}}
+{{< figure src="devoxx_be_2013.avif" caption="Devoxx 2013: attendees coming..." >}}
 
 In addition to these talks, our French speaking community is getting more and more members: from almost 0 to **more than 400 members** in our [Elasticsearch-fr meetup group](https://www.meetup.com/elasticfr/) in just one year! Plus, all of our meetups are packed with **80 to 100 attendees** for each session. That's really great.
 
@@ -49,7 +49,7 @@ But let's focus on France: I'm not such a fan of comparing Elasticsearch to othe
 
 Starting in October 2013, in France, for the very first time, the number of searches about Elasticsearch (blue) was above the number of searches for Solr (red).
 
-{{< figure src="google-trends.webp Google trends" >}}
+{{< figure src="google-trends.avif Google trends" >}}
 
 More than that, France is one of the top countries which downloads Elasticsearch. I really like to think that theses numbers could be related to my evangelist work! 😊
 

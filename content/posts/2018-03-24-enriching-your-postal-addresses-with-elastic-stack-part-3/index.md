@@ -2,7 +2,7 @@
 title: "Enriching your postal addresses with Elastic stack - part 3"
 description: "In this blog post, we will see how to enrich an existing dataset with Bano."
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 tags:
   - beats
   - logstash
@@ -14,7 +14,7 @@ series:
 date: '2018-03-24'
 nolastmod: true
 draft: false
-cover: featured.webp
+cover: featured.avif
 aliases:
   - /blog/2018/03/24/enriching-your-postal-addresses-with-elastic-stack-part-3/
   - /blog/2018-03-24-enriching-your-postal-addresses-with-elastic-stack-part-3/
@@ -135,13 +135,13 @@ Not that bad.
 
 If we look at the Logstash monitoring, we can see that the event latency is around 20-40ms.
 
-{{< figure src="ls-monitoring.webp" caption="Logstash Monitoring" >}}
+{{< figure src="ls-monitoring.avif" caption="Logstash Monitoring" >}}
 
-{{< figure src="ls-pipeline.webp" caption="Logstash Pipeline" >}}
+{{< figure src="ls-pipeline.avif" caption="Logstash Pipeline" >}}
 
 We can easily spot the bottleneck.
 
-{{< figure src="ls-es-filter.webp" caption="Elasticsearch Filter Plugin" >}}
+{{< figure src="ls-es-filter.avif" caption="Elasticsearch Filter Plugin" >}}
 
  Doing lookups in Elasticsearch is indeed slowing down our process here but not that much I would say (34ms per event in average). Pretty much acceptable for an ETL operation. That's one of the reason doing slow operations in Logstash is much better than doing that in Elasticsearch directly as an ingest pipeline as the ingest pipeline is called during the indexing operation and having long running index operation will probably start to fill up the indexing queue of elasticsearch.
 

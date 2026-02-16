@@ -44,7 +44,7 @@ Talks are organized by year in subfolders: `content/talks/YYYY/YYYY-MM-DD-confer
 Each talk is a folder containing:
 
 - `index.md`: The main file with frontmatter and abstract
-- `cover.*`: Cover image (png, jpg, jpeg, avif, webp...) - automatically detected
+- `cover.*`: Cover image (png, jpg, jpeg, **avif**, webp...) - automatically detected
 
 ### Talk Frontmatter
 
@@ -63,15 +63,15 @@ conference:
 # Speakers - Modern format (list of authors)
 authors:
   - author: David Pilato
-    avatar: /about/david_pilato.webp
+    avatar: /about/david_pilato.avif
     link: "https://linkedin.com/in/dadoonet"  # Optional
   - author: "Co-speaker Name"
-    avatar: /speakers/cospeaker.webp           # Optional
+    avatar: /speakers/cospeaker.avif           # Optional
     link: "https://..."                       # Optional
 
 # OR legacy format (single author - backward compatible)
 # author: David Pilato
-# avatar: /about/david_pilato.webp
+# avatar: /about/david_pilato.avif
 
 date: YYYY-MM-DD
 talk-lang: fr                 # Presentation language (fr or en)
@@ -82,7 +82,7 @@ draft: false                  # true = unpublished
 pdf: "YYYY/YYYY-MM-DD-conference-name.pdf"  # Relative path on GCS
 
 # Optional - Explicit cover image
-cover: "cover.webp"            # By default, looks for cover.*
+cover: "cover.avif"            # By default, looks for cover.*
 
 # Optional - Talk template (for "Played X times" sidebar)
 talk: "AI Search"             # Groups talks on the same topic
@@ -112,16 +112,16 @@ aliases:
 
 ### Co-speakers
 
-Co-speaker images are stored in `static/speakers/`. Use the format `firstname_lastname.webp`.
+Co-speaker images are stored in `static/speakers/`. Use the format `firstname_lastname.avif`.
 
 Example with multiple speakers:
 
 ```yaml
 authors:
   - author: David Pilato
-    avatar: /about/david_pilato.webp
+    avatar: /about/david_pilato.avif
   - author: Tugdual Grall
-    avatar: /speakers/tugdual_grall.webp
+    avatar: /speakers/tugdual_grall.avif
     link: "https://linkedin.com/in/tgrall"
 ```
 
@@ -223,7 +223,7 @@ content/about/
 ├── index.md              # Main page (minimal frontmatter)
 ├── 10-me.md              # "Who am I?" section
 ├── 20-details.md         # Additional details section
-└── david_pilato.webp     # Main avatar
+└── david_pilato.avif     # Main avatar
 ```
 
 ### How It Works
@@ -262,7 +262,7 @@ Blog articles are in `content/posts/YYYY-MM-DD-title/`
 title: "Article Title"
 description: "Short description"
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 tags:
   - tag1
   - tag2
@@ -272,7 +272,7 @@ series:
   - serie
 date: YYYY-MM-DD
 nolastmod: true
-cover: image.webp              # Cover image (optional)
+cover: image.avif              # Cover image (optional)
 draft: false
 ---
 
@@ -310,7 +310,7 @@ The second parameter (`wide`) is optional and changes the aspect ratio.
 ### Figure (Hugo native)
 
 ```hugo
-{{</* figure src="image.webp" caption="Caption" */>}}
+{{</* figure src="image.avif" caption="Caption" */>}}
 ```
 
 ### YouTube (Hugo native)

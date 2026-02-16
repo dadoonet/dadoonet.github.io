@@ -10,9 +10,9 @@ conference:
   longitude: "2.3174475"
 authors:
   - author: David Pilato
-    avatar: /about/david_pilato.webp
+    avatar: /about/david_pilato.avif
   - author: Tugdual Grall
-    avatar: /speakers/tugdual_grall.webp
+    avatar: /speakers/tugdual_grall.avif
     link: https://tgrall.github.io/
 talk: SQL2NoSQL
 date: 2013-10-04

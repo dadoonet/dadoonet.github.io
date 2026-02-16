@@ -9,7 +9,7 @@ conference:
   latitude: "48.1169497"
   longitude: "-1.6413873"
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 talk: Randomized Testing
 date: 2016-03-24
 talk-lang: fr

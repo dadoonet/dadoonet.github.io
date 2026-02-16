@@ -9,7 +9,7 @@ conference:
   longitude: "7.752111"
   url: "https://dev.events/conferences/ia-and-data-day-strasbourg-a3ea8lsm"
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 talk: AI Search
 date: 2024-03-21
 talk-lang: fr

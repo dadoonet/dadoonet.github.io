@@ -10,10 +10,10 @@ conference:
 
 authors:
   - name: David Pilato
-    avatar: /about/david_pilato.webp
+    avatar: /about/david_pilato.avif
   - name: Thomas Conté
-    avatar: /speakers/thomas_conte.webp
-avatar: /about/david_pilato.webp
+    avatar: /speakers/thomas_conte.avif
+avatar: /about/david_pilato.avif
 talk: Big Data
 date: 2014-02-13
 talk-lang: fr

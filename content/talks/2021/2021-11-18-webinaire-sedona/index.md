@@ -7,9 +7,9 @@ conference:
   country_code: "Online"
 authors:
   - author: David Pilato
-    avatar: /about/david_pilato.webp
+    avatar: /about/david_pilato.avif
   - author: Thomas Cucchietti
-    avatar: /speakers/thomas_cucchietti.webp
+    avatar: /speakers/thomas_cucchietti.avif
     link: "https://www.linkedin.com/in/tcucchietti/"
 talk: FSCrawler
 date: 2021-11-18

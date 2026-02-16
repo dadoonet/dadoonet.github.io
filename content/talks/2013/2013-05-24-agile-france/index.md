@@ -8,7 +8,7 @@ conference:
   latitude: "48.838331"
   longitude: "2.458934"
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 talk: SQL2NoSQL
 date: 2013-05-24
 talk-lang: fr

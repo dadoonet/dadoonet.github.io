@@ -9,7 +9,7 @@ conference:
   longitude: "6.131935"
   url: "https://voxxeddays.com/luxembourg/"
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 # talk: conferences
 date: 2018-06-22
 talk-lang: fr

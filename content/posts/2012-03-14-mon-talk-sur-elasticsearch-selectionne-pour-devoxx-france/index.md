@@ -2,7 +2,7 @@
 title: Mon talk sur Elasticsearch sélectionné pour Devoxx France
 description: "C'est avec une certaine émotion et fierté que j'ai appris samedi dernier la sélection de mon talk sur Elasticsearch à Devoxx France."
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 tags:
   - elasticsearch
   - conference
@@ -10,7 +10,7 @@ categories:
   - speaker
 date: 2012-03-14 14:54:42 +00:00
 nolastmod: true
-cover: devoxxfr.webp
+cover: devoxxfr.avif
 draft: false
 aliases:
   - /blog/2012/03/14/mon-talk-sur-elasticsearch-selectionne-pour-devoxx-france/
@@ -32,7 +32,7 @@ A l'origine, Shay Banon devait venir lui-même nous parler de l'analyse des donn
 * Le moins : vous n'avez pas en face de vous le BIG BOSS ! 🙁
 * Le plus : la conférence est en français 😉
 
-{{< figure src="elasticsearchfr.webp" caption="Elasticsearch FR user group" >}}
+{{< figure src="elasticsearchfr.avif" caption="Elasticsearch FR user group" >}}
 
 Mon objectif pour ce talk est de vous faire partager mon enthousiasme pour ce projet magnifique, de faire décoller la communauté française [@ElasticFR](https://x.com/elasticfr) et de susciter des engouements à utiliser, forker et contribuer !
 
@@ -42,4 +42,4 @@ Pour le moment, le slot de la conférence est le jeudi 19 avril à partir de 11H
 
 Réservez votre journée ! Venez nombreux !
 
-{{< figure src="devoxxfr.webp" caption="Devoxx France 2012" >}}
+{{< figure src="devoxxfr.avif" caption="Devoxx France 2012" >}}

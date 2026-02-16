@@ -9,7 +9,7 @@ conference:
   longitude: "2.352222"
   url: "https://www.meetup.com/Duchess-France-Meetup/events/259185974/"
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 # talk: conferences
 date: 2019-02-26
 talk-lang: fr

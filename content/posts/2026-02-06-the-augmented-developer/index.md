@@ -2,7 +2,7 @@
 title: '🤖 The Augmented Developer: My Journey with Cursor CLI'
 description: "From reluctant to hooked—how Cursor CLI became my daily coding companion on FSCrawler, and the addictive side and pressure that come with it."
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 tags:
   - cursor
   - ai
@@ -10,7 +10,7 @@ categories:
   - ai
 date: '2026-02-16T13:03:00+01:00'
 nolastmod: true
-cover: cover.webp
+cover: cover.avif
 draft: false
 ---
 
@@ -30,13 +30,13 @@ As my first project was far above my expectations, I decided to continue and exp
 
 I don't think I can explain yet why I feel this tool is so different from Cursor IDE. I suspect that's because it looks like a simple search bar, and you know, for search... 😅
 
-{{< figure src="cursor-ask-french.webp" caption="Asking Cursor, in 🇫🇷" >}}
+{{< figure src="cursor-ask-french.avif" caption="Asking Cursor, in 🇫🇷" >}}
 
 You can even "speak" with it in your native language. And to be honest, that's something that might not seem noticeable but after some days I feel that not having to process architectural decisions in English is helping me a lot.
 
 Here I asked if implementing a new plugin in FSCrawler is doable.
 
-{{< figure src="cursor-ask-answer.webp" caption="Cursor's answer, in 🇫🇷" >}}
+{{< figure src="cursor-ask-answer.avif" caption="Cursor's answer, in 🇫🇷" >}}
 
 Cursor analyzed the project and told me what I'd need to do for this. The answer is in French, with some arguments on how to implement it correctly.
 
@@ -46,7 +46,7 @@ Of course, I knew the answer before asking but that's a way for me to start the 
 
 My next step, depending on the size of the expected modification, is to ask for a detailed plan. Normally with all the needed steps to be performed.
 
-{{< figure src="cursor-plan.webp" caption="What's your plan Cursor?" >}}
+{{< figure src="cursor-plan.avif" caption="What's your plan Cursor?" >}}
 
 And of course, don't take it for granted. You have to discuss with the agent and adjust whatever you think should be done differently.
 
@@ -64,7 +64,7 @@ After several weeks on FSCrawler, the CLI has become my go-to. I used it for:
 
 There's also a funny chicken and egg story. I'm using Cursor CLI to fix issues, and push the code to Github and open a Pull Request. On Github, the Cursor bot is finding issues I did not find myself when I reviewed the code. I then copy/paste the error report in Cursor CLI to fix the bug it introduced previously.
 
-{{< figure src="chicken-and-egg.webp" caption="Cursor speaking with Cursor" >}}
+{{< figure src="chicken-and-egg.avif" caption="Cursor speaking with Cursor" >}}
 
 The bot is fixing the agent's mistakes. It's like having a seatbelt.
 
@@ -99,7 +99,7 @@ At some point, I was asking Cursor CLI to "commit the changes". But I can obviou
 
 I'm lazy, for sure. When something can do it for me, I normally prefer to let it do it. But then, I always have my Cursor dashboard open in a tab.
 
-{{< figure src="cursor-usage.webp" caption="Cursor usage dashboard" >}}
+{{< figure src="cursor-usage.avif" caption="Cursor usage dashboard" >}}
 
 As an example, it's the 5th day of February 2026 and I've already used more than **700** requests on the **1000 requests per month** quota Elastic is giving me. And this creates **quota anxiety**.
 
@@ -115,7 +115,7 @@ If I slow down a bit my usage, I'll be able to finish the month with a few reque
 
 But do you see what I'm saying here? I'm **like a drug addict** who is afraid of running out of his favorite drugs. And I don't have any addiction. I don't want to start to have one with AI.
 
-{{< figure src="drug_addict.webp" caption="AI Drug addict" >}}
+{{< figure src="drug_addict.avif" caption="AI Drug addict" >}}
 
 ## Feed the machine
 
@@ -127,7 +127,7 @@ I'm feeling that I **MUST** feed the machine, always. The AI is depending on me 
 
 Like the railwayman who is feeding the steam engine with coal to keep it running.
 
-{{< figure src="coal.webp" caption="Railwayman feeding the steam engine" >}}
+{{< figure src="coal.avif" caption="Railwayman feeding the steam engine" >}}
 
 The feedback loop is so fast that it's changing how you work. It took me some days to realize that I can totally stop using AI for a while and switch to the other tasks, like writing this post.
 

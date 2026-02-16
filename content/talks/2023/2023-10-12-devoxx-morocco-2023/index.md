@@ -9,7 +9,7 @@ conference:
   longitude: "-9.598107"
   url: "https://devoxx.ma/talk/?id=1608"
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 talk: AI Search
 date: 2023-10-12
 talk-lang: fr

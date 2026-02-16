@@ -9,7 +9,7 @@ conference:
   latitude: "54.687156"
   longitude: "25.279651"
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 talk: Postal Addresses
 date: 2023-11-21
 talk-lang: en

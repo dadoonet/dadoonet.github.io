@@ -9,7 +9,7 @@ conference:
   longitude: "19.944981"
   url: "https://www.meetup.com/Elastic-Krakow/events/262282793/"
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 talk: Postal Addresses
 date: 2019-06-24
 talk-lang: en

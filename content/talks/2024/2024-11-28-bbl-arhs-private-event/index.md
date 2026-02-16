@@ -9,7 +9,7 @@ conference:
   longitude: "4.351710"
   url: "https://www.arhs-group.com/"
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 talk: AI Search
 date: 2024-11-28
 talk-lang: en

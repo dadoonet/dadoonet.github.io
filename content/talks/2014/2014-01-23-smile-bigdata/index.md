@@ -8,7 +8,7 @@ conference:
   latitude: "48.8946551"
   longitude: "2.2698914"
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 talk: Big Data
 date: 2014-01-23T09:00:00+02:00
 talk-lang: fr

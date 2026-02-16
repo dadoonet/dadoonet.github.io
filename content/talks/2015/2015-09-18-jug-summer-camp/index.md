@@ -10,10 +10,10 @@ conference:
   longitude: "-1.2463011"
 authors:
   - author: Tugdual Grall
-    avatar: /speakers/tugdual_grall.webp
+    avatar: /speakers/tugdual_grall.avif
     link: https://tgrall.github.io/
   - author: David Pilato
-    avatar: /about/david_pilato.webp
+    avatar: /about/david_pilato.avif
 # talk: conferences
 date: 2015-09-18
 talk-lang: fr

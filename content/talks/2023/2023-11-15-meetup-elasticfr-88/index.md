@@ -9,7 +9,7 @@ conference:
   latitude: "48.856614"
   longitude: "2.352222"
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 talk: Music Search
 date: 2023-11-15
 talk-lang: fr

@@ -10,10 +10,10 @@ conference:
   longitude: '4.8774829'
 authors:
   - author: Tanguy Leroux
-    avatar: /speakers/tanguy_leroux.webp
+    avatar: /speakers/tanguy_leroux.avif
     link: "https://github.com/tlrx"
   - author: David Pilato
-    avatar: /about/david_pilato.webp
+    avatar: /about/david_pilato.avif
 talk: Elasticsearch
 date: 2012-10-16
 talk-lang: fr

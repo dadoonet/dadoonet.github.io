@@ -2,7 +2,7 @@
 title: "Importing from a database without a database"
 description: "Recently, I got a database MySQL dump and I was thinking of importing it into elasticsearch. The first idea which pops up was: install MySQL, import the database, read the database with Logstash and import into elasticsearch, drop the database, uninstall MySQL. Well. I found that some of the steps are really not needed."
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 tags:
   - elasticsearch
   - logstash

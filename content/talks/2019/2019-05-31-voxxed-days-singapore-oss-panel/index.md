@@ -9,19 +9,19 @@ conference:
   longitude: "103.819836"
 authors:
   - author: Purnima Kamath
-    avatar: /speakers/purnima_kamath.webp
+    avatar: /speakers/purnima_kamath.avif
     link: "https://www.linkedin.com/in/purnimakamath/"
   - author: Juergen Hoeller
-    avatar: /speakers/juergen_hoeller.webp
+    avatar: /speakers/juergen_hoeller.avif
     link: "https://www.linkedin.com/in/juergenhoeller/"
   - author: Emmanuel Bernard
-    avatar: /speakers/emmanuel_bernard.webp
+    avatar: /speakers/emmanuel_bernard.avif
     link: "https://www.emmanuelbernard.com/"
   - author: Kohsuke Kawaguchi
-    avatar: /speakers/kohsuke_kawaguchi.webp
+    avatar: /speakers/kohsuke_kawaguchi.avif
     link: "https://kohsuke.org/"
   - author: David Pilato
-    avatar: /about/david_pilato.webp
+    avatar: /about/david_pilato.avif
 # talk: conferences
 date: 2019-05-31
 talk-lang: en

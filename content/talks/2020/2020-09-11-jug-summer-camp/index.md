@@ -6,7 +6,7 @@ conference:
   country_code: "Online"
   url: "https://www.jugsummercamp.org/edition/11/presentations/si4HEEvfcNOR3P36Npy0"
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 talk: SIEM
 date: 2020-09-11
 talk-lang: fr

@@ -2,7 +2,7 @@
 title: "Creating Elasticsearch Transport Action"
 description: "This blog post is part of a series which will teach you how to write a plugin for Elasticsearch 5.0 using Maven. We are covering today the Transport Action classes."
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 tags:
   - java
   - elasticsearch

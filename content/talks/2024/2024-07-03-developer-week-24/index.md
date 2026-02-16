@@ -9,7 +9,7 @@ conference:
   longitude: "11.076665"
   url: "https://www.developer-world.com/dwx"
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 # talk: conferences
 date: 2024-07-03
 talk-lang: en

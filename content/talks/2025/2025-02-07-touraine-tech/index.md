@@ -9,7 +9,7 @@ conference:
   longitude: "0.684840"
   url: "https://touraine.tech"
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 talk: ES|QL
 date: 2025-02-07
 talk-lang: fr

@@ -9,7 +9,7 @@ conference:
   longitude: "1.099971"
   url: "https://normandie.ai/"
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 talk: AI Search
 date: 2024-12-19
 talk-lang: fr

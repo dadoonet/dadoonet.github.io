@@ -9,7 +9,7 @@ conference:
   longitude: "-2.918284"
   url: "https://camping-speakers.fr/"
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 talk: Potion Magique
 date: 2022-06-09
 talk-lang: fr

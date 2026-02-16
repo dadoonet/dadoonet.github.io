@@ -5,7 +5,7 @@ conference:
   country: "Online"
   country_code: "Online"
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 # talk: conferences
 date: 2024-08-21
 talk-lang: en

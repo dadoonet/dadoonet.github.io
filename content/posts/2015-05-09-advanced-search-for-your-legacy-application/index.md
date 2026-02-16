@@ -2,7 +2,7 @@
 title: "Advanced search for your Legacy application"
 description: "How to add a real search engine for your legacy application"
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 tags:
   - elasticsearch
   - hibernate
@@ -12,7 +12,7 @@ categories:
   - tutorial
 date: 2015-05-09 14:15:05 +0300
 nolastmod: true
-cover: featured.webp
+cover: featured.avif
 draft: false
 aliases:
   - /blog/2015/05/09/advanced-search-for-your-legacy-application/
@@ -30,11 +30,11 @@ Here "legacy" means an application which is still using SQL statements to execut
 
 Our current CRM application can visualize our customers. Each person is represented as a `Person` bean and have some properties like `name`, `dateOfBirth`, `children`, `country`, `city` and some metrics related to the number of clicks each person did on the `car` or `food` buttons on our mobile application (center of interests that is).
 
-{{< figure src="beans.webp" caption="Java Beans" >}}
+{{< figure src="beans.avif" caption="Java Beans" >}}
 
 Our database schema is quite similar.
 
-{{< figure src="tables.webp" caption="Database tables" >}}
+{{< figure src="tables.avif" caption="Database tables" >}}
 
 ## Running the existing code
 
@@ -71,19 +71,19 @@ Then open your browser at <http://0.0.0.0:8080/>. You should see that our databa
 
 Click on the [init tab](http://0.0.0.0:8080/#/init) and inject 10000 random persons.
 
-{{< figure src="00-inject.webp" caption="Injecting 10 000 documents" >}}
+{{< figure src="00-inject.avif" caption="Injecting 10 000 documents" >}}
 
 [Home page](http://0.0.0.0:8080/#/) now gives you your 10 000 persons back.
 
-{{< figure src="00-search-all.webp" caption="Searching all" >}}
+{{< figure src="00-search-all.avif" caption="Searching all" >}}
 
 Note that you can search within `name`, `country` and `city` fields.
 
-{{< figure src="00-search-jo.webp" caption="Searching for jo" >}}
+{{< figure src="00-search-jo.avif" caption="Searching for jo" >}}
 
 The [Advanced Search tab](http://0.0.0.0:8080/#/advanced) allows to run more specific searches using a more classic search form with 3 fields.
 
-{{< figure src="00-search-advanced.webp" caption="Searching for joe, england, plymouth" >}}
+{{< figure src="00-search-advanced.avif" caption="Searching for joe, england, plymouth" >}}
 
 ## Connecting to elasticsearch
 
@@ -417,7 +417,7 @@ elasticsearch-1.5.2/bin/elasticsearch
 
 [Initialize 10000 persons](http://0.0.0.0:8080/#/init) and look at the effect in [marvel](http://127.0.0.1:9200/_plugin/marvel/).
 
-{{< figure src="02-marvel.webp" caption="Marvel 10k documents" >}}
+{{< figure src="02-marvel.avif" caption="Marvel 10k documents" >}}
 
 Try now [to search for](http://0.0.0.0:8080/) `j`, `jo` or `joe`. What's wrong?
 Searching for `j` or `jo` does not match any document but `joe` gives expected results.
@@ -833,7 +833,7 @@ DELETE person
 
 And restart the application, inject 10 000 documents and search for `j` and then for `joe`.
 
-{{< figure src="03-search-j.webp" caption="Searching for J" >}}
+{{< figure src="03-search-j.avif" caption="Searching for J" >}}
 
 It works as it was working before we started! `\o/`
 
@@ -897,7 +897,7 @@ public SearchResponse search(QueryBuilder query, Integer from, Integer size) {
 
 Relaunching will now give you the following.
 
-{{< figure src="04-faceted-1.webp" caption="Faceted results" >}}
+{{< figure src="04-faceted-1.avif" caption="Faceted results" >}}
 
 Let say you now want to click on a country to filter results or on a decade.
 
@@ -939,7 +939,7 @@ public String search(String q, String f_country, String f_date, Integer from, In
 
 You can now filter your results!
 
-{{< figure src="04-faceted-2.webp" caption="Filtered results" >}}
+{{< figure src="04-faceted-2.avif" caption="Filtered results" >}}
 
 ## Understand your dataset
 
@@ -996,7 +996,7 @@ mvn jetty:run
 
 Opening [Compute tab](http://0.0.0.0:8080/#/compute) now gives you more knowledge about your dataset.
 
-{{< figure src="05-compute.webp" caption="Compute results" >}}
+{{< figure src="05-compute.avif" caption="Compute results" >}}
 
 ## Conclusion
 

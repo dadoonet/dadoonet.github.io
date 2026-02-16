@@ -8,14 +8,14 @@ conference:
   latitude: "48.820567"
   longitude: "2.423655"
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 talk: Elasticsearch
 date: 2019-03-29
 talk-lang: fr
 nolastmod: true
 draft: false
 pdf: "2019/2019-03-29-bbl-veolia-private-event.pdf"
-cover: deck-bbl-generic.webp
+cover: deck-bbl-generic.avif
 
 # Speaker specific fields
 #youtube: ""

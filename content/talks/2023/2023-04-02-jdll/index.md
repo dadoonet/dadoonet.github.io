@@ -9,7 +9,7 @@ conference:
   longitude: "4.835659"
   url: "https://jdll.org/programme"
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 talk: FSCrawler
 date: 2023-04-02
 talk-lang: fr

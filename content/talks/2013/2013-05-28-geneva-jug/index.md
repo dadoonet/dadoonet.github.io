@@ -8,7 +8,7 @@ conference:
   latitude: "46.2043907"
   longitude: "6.1431577"
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 talk: Elasticsearch
 date: 2013-05-28
 talk-lang: fr
@@ -32,4 +32,4 @@ David présentera au cours du déjeuner pourquoi et comment il est passé de la 
 * La percolation
 * La communauté
 
-![Présentation Geneva JUG](pic.webp)
+![Présentation Geneva JUG](pic.avif)

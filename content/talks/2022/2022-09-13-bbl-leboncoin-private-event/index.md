@@ -9,7 +9,7 @@ conference:
   longitude: "2.352222"
   url: "https://www.leboncoin.fr/"
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 talk: Elasticsearch
 date: 2022-09-13
 talk-lang: fr

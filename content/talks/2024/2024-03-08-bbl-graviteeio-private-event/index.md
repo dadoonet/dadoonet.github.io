@@ -6,7 +6,7 @@ conference:
   country: "Online"
   country_code: "Online"
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 talk: AI Search
 date: 2024-03-08
 talk-lang: en

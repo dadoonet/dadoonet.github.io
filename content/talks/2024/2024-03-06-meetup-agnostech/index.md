@@ -9,7 +9,7 @@ conference:
   longitude: "-0.370797"
   url: "https://www.meetup.com/agnostech-pau/events/299096165"
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 talk: AI Search
 date: 2024-03-06
 talk-lang: fr

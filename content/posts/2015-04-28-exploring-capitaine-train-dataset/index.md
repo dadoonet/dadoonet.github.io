@@ -2,7 +2,7 @@
 title: "Exploring Capitaine Train dataset"
 description: "How to explore Capitaine Train dataset with ELK stack"
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 tags:
   - elasticsearch
   - logstash
@@ -12,7 +12,7 @@ categories:
   - tutorial
 date: 2015-04-28 13:31:34 +0200
 nolastmod: true
-cover: featured.webp
+cover: featured.avif
 draft: false
 aliases:
   - /blog/2015/04/28/exploring-capitaine-train-dataset/
@@ -666,47 +666,47 @@ Start your kibana instance, [open kibana](http://0.0.0.0:5601).
 
 Configure your `stations` index:
 
-{{< figure src="settings-set-index.webp" caption="Set index name" >}}
+{{< figure src="settings-set-index.avif" caption="Set index name" >}}
 
 ### Discover your data
 
 If not already set, define in `discover` your `stations` index:
 
-{{< figure src="discover-set-index.webp" caption="Set index name" >}}
+{{< figure src="discover-set-index.avif" caption="Set index name" >}}
 
 Then choose fields you want to display:
 
-{{< figure src="discover-set-fields.webp" caption="Set fields" >}}
+{{< figure src="discover-set-fields.avif" caption="Set fields" >}}
 
 And save your search:
 
-{{< figure src="discover-save-search.webp" caption="Save your search" >}}
+{{< figure src="discover-save-search.avif" caption="Save your search" >}}
 
 ### Visualize your data
 
 Create a new visualization and choose `Pie chart`:
 
-{{< figure src="visualize-pie-chart.webp" caption="Create visualisation" >}}
+{{< figure src="visualize-pie-chart.avif" caption="Create visualisation" >}}
 
 Select your saved search:
 
-{{< figure src="visualize-pie-choose-search.webp" caption="Select saved search" >}}
+{{< figure src="visualize-pie-choose-search.avif" caption="Select saved search" >}}
 
 Split the slices using `country.raw` field so you will display number of train stations broken per country code.
 
-{{< figure src="visualize-pie-final.webp" caption="Final Pie" >}}
+{{< figure src="visualize-pie-final.avif" caption="Final Pie" >}}
 
 Save your visualization and create a new `Pie chart` on `idtgv_is_enabled` field:
 
-{{< figure src="visualize-pie-idtgv.webp" caption="IDTGV stations" >}}
+{{< figure src="visualize-pie-idtgv.avif" caption="IDTGV stations" >}}
 
 Save your visualization and create a new `Tile map`:
 
-{{< figure src="visualize-tile.webp" caption="Create visualization" >}}
+{{< figure src="visualize-tile.avif" caption="Create visualization" >}}
 
 Select a `Geohash` aggregation on `location` field and increase `Precision` to `4`:
 
-{{< figure src="visualize-tile-final.webp" caption="Tile map" >}}
+{{< figure src="visualize-tile-final.avif" caption="Tile map" >}}
 
 Don't forget to save it!
 
@@ -716,16 +716,16 @@ You can build as many visualization you need.
 
 Open `Dashboard` and add all your visualizations:
 
-{{< figure src="dashboard-add-vis.webp" caption="Select visualizations" >}}
+{{< figure src="dashboard-add-vis.avif" caption="Select visualizations" >}}
 
 And your saved search:
 
-{{< figure src="dashboard-add-search.webp" caption="Add a saved search" >}}
+{{< figure src="dashboard-add-search.avif" caption="Add a saved search" >}}
 
 Arrange your dashboard and play with it!
 
-{{< figure src="dashboard-final-1.webp" caption="The final dashboard" >}}
+{{< figure src="dashboard-final-1.avif" caption="The final dashboard" >}}
 
 For example, if you click on `FR` in the country pie and then select `T` on IDTGV pie, you will be able to display all IDTGV stations located in France.
 
-{{< figure src="dashboard-idtgv.webp" caption="IDTGV stations in France" >}}
+{{< figure src="dashboard-idtgv.avif" caption="IDTGV stations in France" >}}

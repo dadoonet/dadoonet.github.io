@@ -9,7 +9,7 @@ conference:
   longitude: "-0.370797"
   url: "https://www.meetup.com/ElasticFR/events/260241960/"
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 talk: Elasticsearch
 date: 2019-04-09
 talk-lang: fr

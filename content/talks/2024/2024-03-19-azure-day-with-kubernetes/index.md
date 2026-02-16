@@ -9,7 +9,7 @@ conference:
   longitude: "2.352222"
   url: "https://azureday.eventbuilder.com/event/81082"
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 # talk: conferences
 date: 2024-03-19
 talk-lang: en

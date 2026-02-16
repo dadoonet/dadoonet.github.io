@@ -2,7 +2,7 @@
 title: Elasticsearch et les "facets"
 description: "Les facettes (facets) avec Elasticsearch"
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 tags:
   - elasticsearch
   - java

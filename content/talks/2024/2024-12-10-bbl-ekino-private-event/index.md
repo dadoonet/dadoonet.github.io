@@ -6,7 +6,7 @@ conference:
   country: "Online"
   country_code: "Online"
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 talk: Elasticsearch
 date: 2024-12-10
 talk-lang: fr

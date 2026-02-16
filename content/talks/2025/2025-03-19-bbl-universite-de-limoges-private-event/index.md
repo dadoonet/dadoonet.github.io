@@ -6,7 +6,7 @@ conference:
   country_code: "Online"
   url: "https://www.unilim.fr/"
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 talk: Elasticsearch
 date: 2025-03-19
 talk-lang: fr

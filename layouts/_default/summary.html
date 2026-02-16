@@ -2,7 +2,7 @@
   {{ if .Params.cover }}
   <figure>
     {{ with .Resources.Get .Params.cover }}
-    {{ if eq .MediaType.SubType "svg" }}
+    {{ if or (eq .MediaType.SubType "svg") (eq .MediaType.SubType "avif") }}
       <img src="{{ .RelPermalink }}" alt="{{ .Title }}" />
     {{ else }}
       {{ $webp := .Resize (printf "%dx%d webp" .Width .Height) }}

@@ -2,7 +2,7 @@
 title: '🎂 12 years: from a dinosaur to a teenager'
 description: "Celebrating my 🎂 12 years anniversary at elastic. The dinosaur is becoming a teenager."
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 tags:
   - career
 categories:
@@ -11,7 +11,7 @@ series:
   - career at elastic
 date: '2025-01-10'
 nolastmod: true
-cover: trex.webp
+cover: trex.avif
 draft: false
 ---
 
@@ -23,7 +23,7 @@ We are not a lot of people who can say that we are working for Elastic for 12 ye
 
 Ninja Turtles: Teenage Years is a 1989 arcade game produced by Konami. It is a scrolling beat 'em up type game based mainly on the 1987 animated series Teenage Mutant Ninja Turtles. The game was ported to the NES in 1990, retitled Teenage Mutant Ninja Turtles II: The Arcade Game, and released in 1991. In 2009, the NES version was re-released for the Wii's Virtual Console in Europe and Australia.
 
-{{< figure src="tmnt.webp" caption="Teenage Mutant Ninja Turtles" >}}
+{{< figure src="tmnt.avif" caption="Teenage Mutant Ninja Turtles" >}}
 
 I'm not a Ninja Turtle but I'm a teenager. I'm still learning every day. I'm still making mistakes every day. I'm still growing every day. I'm still having fun every day. I'm still enjoying every day. I'm still sharing every day. I'm still helping every day. I'm still loving every day. I'm still Elastic every day.
 
@@ -40,11 +40,11 @@ I'm not a Ninja Turtle but I'm a teenager. I'm still learning every day. I'm sti
 I'm really enjoying playing this talk as it explains in very simple words what are vectors and why
 they are so important in the search world.
 
-{{< figure src="ai-starwars.webp" caption="Vectors" >}}
+{{< figure src="ai-starwars.avif" caption="Vectors" >}}
 
 I'm even sharing some basic maths so people can "easily" understand what is happening behind the scene.
 
-{{< figure src="ai-cosinus.webp" caption="Cosinus" >}}
+{{< figure src="ai-cosinus.avif" caption="Cosinus" >}}
 
 But the funniest part of the talk is when I'm showing how to use those principles with sound, to
 search for similar musics. It's super connected to my other passion: the art of DeeJaying.
@@ -81,7 +81,7 @@ It was one of my best DeeJay set ever which you can listen from [Apple Podcasts]
 
 The Elastic design team created a nice design for a t-shirt or a poster I will use for my next events.
 
-{{< figure src="djelkie.webp" caption="DJ Elkie" >}}
+{{< figure src="djelkie.avif" caption="DJ Elkie" >}}
 
 ## Elkie was also having fun
 
@@ -179,7 +179,7 @@ organized!
 
 Something weird happened in November. As you can see in the list above, I travelled A LOT this month. My mental load was so high that I made one of the biggest mistake of my entire life. I was travelling back from Amsterdam to Brussels by train with my luggage, my backpack and a very small flight case with some video recorders that a friend of mine lent me for the ElasticON Amsterdam conference.
 
-{{< figure src="flightcase.webp" caption="Flightcase" >}}
+{{< figure src="flightcase.avif" caption="Flightcase" >}}
 
 I was so tired that I forgot the flight case at the central train station. I realized that when I was in the train on my way to Brussels. I heard then a voice asking if someone left a luggage at the station. I told the
 train agent that it was me. He asked me some questions about it as they closed the station.
@@ -213,6 +213,6 @@ And it's not including yet the other proposals I applied to. Speaking of that, i
 So if you have a chance to be nearby, and even if we don't know each other, please come and say hi!
 I don't really look like a teenager but the t-shirt and the ripped jeans but more like a dinosaur as my colleagues like to call me.
 
-{{< figure src="trex.webp" caption="3D Monster Maze on ZX81" >}}
+{{< figure src="trex.avif" caption="3D Monster Maze on ZX81" >}}
 
 But I won't eat you! Instead, there will always be a smile for you! ♥️

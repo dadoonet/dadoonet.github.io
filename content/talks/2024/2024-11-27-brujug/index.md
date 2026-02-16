@@ -9,7 +9,7 @@ conference:
   longitude: "4.351710"
   url: "https://www.meetup.com/brujug/events/304382685/"
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 talk: AI Search
 date: 2024-11-27
 talk-lang: en

@@ -10,10 +10,10 @@ conference:
   url: "https://www.devoxx.fr/"
 authors:
   - author: Guillaume Laforge
-    avatar: /speakers/guillaume_laforge.webp
+    avatar: /speakers/guillaume_laforge.avif
     link: "https://glaforge.dev/"
   - author: David Pilato
-    avatar: /about/david_pilato.webp
+    avatar: /about/david_pilato.avif
 # talk: conferences
 date: 2022-04-20
 talk-lang: fr

@@ -9,7 +9,7 @@ conference:
   longitude: "23.321868"
   url: "https://www.meetup.com/elasticsearch-bulgaria-user-group/events/299653357/"
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 # talk: conferences
 date: 2024-05-28
 talk-lang: en

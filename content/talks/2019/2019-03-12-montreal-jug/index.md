@@ -9,7 +9,7 @@ conference:
   longitude: "-73.567256"
   url: "https://www.meetup.com/montreal-jug/events/259314381/"
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 # talk: conferences
 date: 2019-03-12
 talk-lang: fr

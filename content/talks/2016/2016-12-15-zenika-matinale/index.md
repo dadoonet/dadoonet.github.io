@@ -9,7 +9,7 @@ conference:
   latitude: "50.6362935"
   longitude: "3.0600182"
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 talk: Search Find
 date: 2016-12-15
 talk-lang: fr

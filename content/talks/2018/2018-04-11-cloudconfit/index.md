@@ -9,7 +9,7 @@ conference:
   latitude: "45.070339"
   longitude: "7.686864"
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 talk: Black Friday
 date: 2018-04-11
 talk-lang: en

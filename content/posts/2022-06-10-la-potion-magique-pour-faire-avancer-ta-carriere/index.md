@@ -2,7 +2,7 @@
 title: "La potion magique pour faire avancer ta carrière"
 description: "Voici la transcription d'une présentation que j'ai eu le plaisir à donner lors du Camping des speakers 2022, dont il s'agissait de la première édition."
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 tags:
   - career
   - culture
@@ -12,7 +12,7 @@ series:
   - career at elastic
 date: 2022-06-10 11:00:00 +01:00
 nolastmod: true
-cover: featured.webp
+cover: featured.avif
 draft: false
 aliases:
   - /blog/2022-06-10-la-potion-magique-pour-faire-avancer-ta-carriere/
@@ -53,7 +53,7 @@ Nous consommons beaucoup d'open-source au final mais en temps qu'utilisateur seu
 
 Fin 2010, un de mes collègues me parle du [Paris Java User Group (Paris JUG)](https://www.parisjug.org/) et m'y entraine. J'y découvre des passionnés qui partagent **gratuitement** leurs savoirs et leurs connaissances.
 
-{{< figure src="parisjug.webp" caption="Paris JUG" >}}
+{{< figure src="parisjug.avif" caption="Paris JUG" >}}
 
 Au début, j'ai mal de crâne car je n'y comprends pas grand chose. Pas à cause d'un abus de Chouchen.
 On me parle de GIT ? Mais je fais du CVS moi !!! Comment peut fonctionner ce truc, sans serveur centralisé ?
@@ -68,7 +68,7 @@ J'ai bien vu qu'Emmanuel Bernard dit dans un post que c'est pas bien... Mais je 
 
 Je me souviens que sur la page d'accueil du projet Compass, il y a une référence au "futur" de Compass : Elasticsearch...
 
-{{< figure src="es1.webp" caption="Le futur de Compass et Elasticsearch" >}}
+{{< figure src="es1.avif" caption="Le futur de Compass et Elasticsearch" >}}
 
 Je clique... **Le clic le plus disruptif de ma vie** !
 
@@ -97,7 +97,7 @@ Elasticsearch met à disposition un système de plugins. Il devient donc facile 
 
 Je créé le plugin [RSS River](https://david.pilato.fr/rssriver/), qui indexe un contenu RSS régulièrement.
 
-{{< figure src="rss-river.webp" caption="RSS River" >}}
+{{< figure src="rss-river.avif" caption="RSS River" >}}
 
 J'en parle en privé avec [Shay Banon](https://twitter.com/kimchy), l'auteur d'Elasticsearch, qui me dit :
 
@@ -150,7 +150,7 @@ Ce grand jour est arrivé. 200 personnes. Moi qui n'ait jamais parlé en public,
 
 Les retours sont excellents ! Et comme je faisais une démo live sur Twitter, même Shay et les autres membres de la communauté ont vu "le bruit" que nous faisions avec le hashtag [#Elasticsearch](https://twitter.com/search?q=until%3A2012-04-22%20since%3A2012-04-20%20%23elasticsearch&src=typed_query&f=top). A nouveau, entrainant une reconnaissance des membres de la communauté...
 
-{{< figure src="devoxx-tweets.webp" caption="Tweets pendant Devoxx France" >}}
+{{< figure src="devoxx-tweets.avif" caption="Tweets pendant Devoxx France" >}}
 
 ## Forum Elasticsearch
 
@@ -191,7 +191,7 @@ Savez-vous quel est l'ingrédient secret de ma potion magique ? Pour quelle rais
 
 Pour l'**amour**...
 
-{{< figure src="heart-stickers.webp" caption="All you need is love..." >}}
+{{< figure src="heart-stickers.avif" caption="All you need is love..." >}}
 
 L'amour que vous ressentez en tant que membre de la communauté qui aide les autres.
 
@@ -222,10 +222,10 @@ En conclusion, les ingrédients nécessaires pour la recette de la potion magiqu
 
 Voici quelques photographies prises pendant ma session. Nous avions choisi un endroit à côté de la piscine, avec un bruit d'eau très apaisant. La session durait 15 minutes, mais nous sommes restés 15 minutes de plus à échanger et débattre sur ces sujets.
 
-{{< figure src="attendees.webp" caption="Participants" >}}
+{{< figure src="attendees.avif" caption="Participants" >}}
 
-{{< figure src="selfie-pool.webp" caption="Vue piscine" >}}
+{{< figure src="selfie-pool.avif" caption="Vue piscine" >}}
 
-{{< figure src="selfie-public.webp" caption="Vue participants" >}}
+{{< figure src="selfie-public.avif" caption="Vue participants" >}}
 
-{{< figure src="talking-white-noise.webp" caption="Avec la piscine" >}}
+{{< figure src="talking-white-noise.avif" caption="Avec la piscine" >}}

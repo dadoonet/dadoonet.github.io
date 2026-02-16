@@ -2,7 +2,7 @@
 title: "Devoxx France 2015"
 description: "I gave recently a talk at Devoxx France 2015 about making sense of your data with Elasticsearch, Logstash and Kibana"
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 tags:
   - elasticsearch
   - logstash
@@ -14,7 +14,7 @@ categories:
   - tutorial
 date: 2015-05-02 01:30:00 +0200
 nolastmod: true
-cover: featured.webp
+cover: featured.avif
 draft: false
 aliases:
   - /blog/2015/05/02/devoxx-france-2015/
@@ -155,7 +155,7 @@ curl -XGET localhost:9200/persons/person/_count?pretty
 
 We can also build our Kibana dashboard which represents our customers:
 
-{{< figure src="dashboard-crm.webp" caption="CRM dashboard" >}}
+{{< figure src="dashboard-crm.avif" caption="CRM dashboard" >}}
 
 ## Service usage
 
@@ -257,7 +257,7 @@ gzcat nginx-logs/* | bin/logstash -f nginx.conf
 
 We can now build our Kibana dashboard which represents our logs:
 
-{{< figure src="dashboard-logs.webp" caption="LOGS dashboard" >}}
+{{< figure src="dashboard-logs.avif" caption="LOGS dashboard" >}}
 
 ## Twitter tracking
 
@@ -342,8 +342,8 @@ We can now build our Kibana dashboard which represents our logs.
 
 The funny thing with this demo is that we are tracking everything about `elk`. But ELK does not only mean Elasticsearch, Logstash and Kibana. It's also [an animal](https://en.wikipedia.org/wiki/Elk)!
 
-{{< figure src="Rocky_Mountain_Bull_Elk.webp" caption="ELK" >}}
+{{< figure src="Rocky_Mountain_Bull_Elk.avif" caption="ELK" >}}
 
 So when US is awake, we often get tweets with other terms like `hunt`, `hunting` and so on. But with Kibana, it's easy to add a "negative" filter on those terms so we can easily get information on what we are actually looking for!
 
-{{< figure src="dashboard-twitter.webp" caption="Twitter dashboard" >}}
+{{< figure src="dashboard-twitter.avif" caption="Twitter dashboard" >}}

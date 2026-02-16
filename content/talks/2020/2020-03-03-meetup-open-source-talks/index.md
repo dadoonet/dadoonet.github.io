@@ -9,7 +9,7 @@ conference:
   longitude: "3.876716"
   url: "https://www.meetup.com/Open-Source_Talks/events/268883657/"
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 # talk: conferences
 date: 2020-03-03
 talk-lang: fr

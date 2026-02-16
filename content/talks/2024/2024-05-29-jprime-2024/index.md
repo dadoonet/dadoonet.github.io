@@ -9,7 +9,7 @@ conference:
   longitude: "23.321868"
   url: "https://jprime.io/"
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 talk: AI Search
 date: 2024-05-29
 talk-lang: en

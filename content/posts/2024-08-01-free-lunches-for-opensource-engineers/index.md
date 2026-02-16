@@ -2,7 +2,7 @@
 title: "Free Lunches for Opensource Engineers"
 description: "When I started at elastic some years ago, we were a few people in the company and I was feeling pretty much alone in France. I found a way to share my passion, meet new people and help them to get started with Elasticsearch. That's called BBLs."
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 tags:
   - bbl
   - brownbaglunch
@@ -13,7 +13,7 @@ categories:
   - culture
 date: 2024-08-01
 nolastmod: true
-cover: bbl.webp
+cover: bbl.avif
 draft: false
 aliases:
   - /blog/2024-08-01-free-lunches-for-opensource-engineers/
@@ -92,7 +92,7 @@ I was super excited to speak there for a very personal reason. In 2004, after a 
 
 You can find a picture of Max searching for logs here!
 
-{{< figure src="max.webp" caption="Max searching for logs" >}}
+{{< figure src="max.avif" caption="Max searching for logs" >}}
 
 One of the BBL attendees was working at Meetic in 2004 so I was super thankful and it was a great pleasure to share my knowledge with the team.
 I heard later that [Meetic is now using Elasticsearch](https://event.afup.org/forumphp2017-interview-sebastien-le-gall/), which is even better!

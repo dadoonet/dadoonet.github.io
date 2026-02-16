@@ -9,7 +9,7 @@ conference:
   longitude: "-71.207981"
   url: "https://www.quebec.ca/gouvernement/faire-affaire-gouvernement/presenter-services-produits-technologiques-ministeres-organismes"
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 # talk: conferences
 date: 2019-03-15
 talk-lang: fr

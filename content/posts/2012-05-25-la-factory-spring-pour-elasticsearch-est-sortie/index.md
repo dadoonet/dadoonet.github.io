@@ -2,7 +2,7 @@
 title: La factory Spring pour Elasticsearch est sortie !
 description: "Et voilà, la première release de la factory spring pour Elasticsearch vient d'être faite."
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 tags:
   - elasticsearch
   - java

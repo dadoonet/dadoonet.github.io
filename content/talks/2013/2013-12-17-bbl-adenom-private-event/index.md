@@ -8,13 +8,13 @@ conference:
   latitude: "48.8787843"
   longitude: "2.2843208"
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 talk: Elasticsearch
 date: 2013-12-17
 talk-lang: fr
 nolastmod: true
 draft: false
-cover: es-logo.webp
+cover: es-logo.avif
 
 attendees: 5
 ---

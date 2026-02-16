@@ -9,7 +9,7 @@ conference:
   longitude: "2.352222"
   url: "https://www.opensource-experience.com/"
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 # talk: conferences
 date: 2023-12-06
 talk-lang: fr

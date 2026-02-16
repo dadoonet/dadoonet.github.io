@@ -2,7 +2,7 @@
 title: '🎂 13 years: Migrating my speaker page with AI'
 description: "Celebrating my 🎂 13 years anniversary at Elastic by sharing how I migrated my talks from noti.st to Hugo with the help of AI."
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 tags:
   - career
   - cursor
@@ -14,7 +14,7 @@ series:
   - career at elastic
 date: '2026-01-10'
 nolastmod: true
-cover: cover.webp
+cover: cover.avif
 draft: false
 ---
 
@@ -127,7 +127,7 @@ talk: "ES|QL"
 
 The template then queries all pages with the same `talk` value and displays them chronologically with visual indicators for slides and video availability.
 
-![Screenshot: Sidebar showing ES|QL played X times](esql-example.webp)
+![Screenshot: Sidebar showing ES|QL played X times](esql-example.avif)
 
 #### Frontmatter as a static database
 
@@ -199,7 +199,7 @@ One of the very positive outcome is my learning curve. The AI model is showing y
 
 But more than this, it helps me to solve my UI/JS/CSS lack of skills. I'm not a frontend developer. Of course I can learn, but this project would probably take me a year to complete if I did it alone. And to be honest, this is something I wanted to do for years but I never had the courage to start it.
 
-{{< figure src="david-and-ai.webp" caption="David and AI: The perfect pair" >}}
+{{< figure src="david-and-ai.avif" caption="David and AI: The perfect pair" >}}
 
 But AI is not autonomous. It really needs the human creativity. Otherwise it's just giving a result which might not fit the way you imagine solving the business problem.
 
@@ -224,15 +224,15 @@ Now that all my talks are in Hugo, let's look at what 13 years of evangelism loo
 
 Here's how my speaking activity evolved over the years:
 
-{{< figure src="talks-per-year.webp" caption="Talks per year" >}}
+{{< figure src="talks-per-year.avif" caption="Talks per year" >}}
 
 The peak years were 2013-2014 when I was doing an incredible amount of BBLs (Brown Bag Lunches) across France. The dip in 2019-2020 corresponds to... well, you know what happened in 2020! 🦠
 
 ### Talks per location
 
-{{< figure src="talks-per-zone.webp" caption="Talks per zone" >}}
+{{< figure src="talks-per-zone.avif" caption="Talks per zone" >}}
 
-{{< figure src="talks-per-country.webp" caption="Talks per country (log scale)" >}}
+{{< figure src="talks-per-country.avif" caption="Talks per country (log scale)" >}}
 
 France dominates (obviously, as I'm French!), but I'm proud to have spoken in 32 different countries over these 13 years.
 
@@ -287,6 +287,6 @@ If you're a speaker thinking about managing your own talk portfolio, or if you'r
 
 And as I have been saying in [my last talk]({{< ref "talks/2025/2025-12-05-devfest-dijon-2025/" >}}) about "Want to boost your career? Open source yourself!": the main driver for all of this for me is love. The love you can feel when you meet the community, the love you can feel when you share your knowledge, the love you can feel when you help someone else.
 
-{{< figure src="love.webp" caption="Community ❤️" >}}
+{{< figure src="love.avif" caption="Community ❤️" >}}
 
 Thank you all for this! ❤️

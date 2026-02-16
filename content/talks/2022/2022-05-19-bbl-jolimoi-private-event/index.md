@@ -9,7 +9,7 @@ conference:
   longitude: "2.352222"
   url: "https://www.jolimoi.com/"
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 talk: Elasticsearch
 date: 2022-05-19
 talk-lang: fr

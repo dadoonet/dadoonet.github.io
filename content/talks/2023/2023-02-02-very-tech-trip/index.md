@@ -8,7 +8,7 @@ conference:
   latitude: "48.856614"
   longitude: "2.352222"
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 talk: Potion Magique
 date: 2023-02-02
 talk-lang: fr

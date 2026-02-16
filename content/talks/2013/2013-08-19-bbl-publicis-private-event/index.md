@@ -8,7 +8,7 @@ conference:
   latitude: "48.8726182"
   longitude: "2.2951376"
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 talk: Elasticsearch
 date: 2013-08-19
 talk-lang: fr

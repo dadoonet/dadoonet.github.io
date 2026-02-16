@@ -9,7 +9,7 @@ conference:
   longitude: "-1.151139"
   url: "https://www.jugsummercamp.org/edition/14/presentations/oVFqGQVuSwZBRIfpXwVd"
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 talk: AI Search
 date: 2023-09-08
 talk-lang: fr

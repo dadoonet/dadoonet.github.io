@@ -7,9 +7,9 @@ conference:
   country_code: "Online"
 authors:
   - author: David Pilato
-    avatar: /about/david_pilato.webp
+    avatar: /about/david_pilato.avif
   - author: Laetitia Richard
-    avatar: /speakers/laetitia_richard.webp
+    avatar: /speakers/laetitia_richard.avif
     link: "https://www.linkedin.com/in/laetitia-richard-02291221/"
 talk: FSCrawler
 date: 2021-03-25

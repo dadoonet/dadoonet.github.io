@@ -9,7 +9,7 @@ conference:
   longitude: "0.684840"
   url: "https://www.meetup.com/afup-tours-php/events/307931669/"
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 talk: ES|QL
 date: 2025-06-23
 talk-lang: fr

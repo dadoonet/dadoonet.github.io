@@ -9,7 +9,7 @@ conference:
   longitude: "-0.579180"
   url: "https://www.zenika.fr"
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 talk: Elasticsearch
 date: 2023-10-27
 talk-lang: fr

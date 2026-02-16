@@ -9,7 +9,7 @@ conference:
   longitude: "2.352222"
   url: "https://www.programmez.com/page-devcon/devcon-23-securite-qualite-du-code"
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 # talk: conferences
 date: 2024-11-14
 talk-lang: fr

@@ -2,7 +2,7 @@
 title: "Enriching your postal addresses with Elastic stack - part 1"
 description: "In this blog post, we will see how to import Bano dataset with Logstash."
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 tags:
   - logstash
   - elasticsearch
@@ -13,7 +13,7 @@ series:
 date: 2018-03-22 15:31:49 +0100
 nolastmod: true
 draft: false
-cover: featured.webp
+cover: featured.avif
 aliases:
   - /blog/2018/03/22/enriching-your-postal-addresses-with-elastic-stack-part-1/
   - /blog/2018-03-22-enriching-your-postal-addresses-with-elastic-stack-part-1/
@@ -503,15 +503,15 @@ So we have `16.402.853` addresses.
 
 Let's look at that from Kibana. Here I built really simple visualizations.
 
-{{< figure src="bano-regions.webp" caption="Distribution of Bano addresses by department number" >}}
+{{< figure src="bano-regions.avif" caption="Distribution of Bano addresses by department number" >}}
 
-{{< figure src="bano-fr.webp" caption="Map of Bano addresses for France Metropolitan" >}}
+{{< figure src="bano-fr.avif" caption="Map of Bano addresses for France Metropolitan" >}}
 
-{{< figure src="bano-dom.webp" caption="Map of Bano addresses for some France Overseas Departments" >}}
+{{< figure src="bano-dom.avif" caption="Map of Bano addresses for some France Overseas Departments" >}}
 
-{{< figure src="bano-lr.webp" caption="Map of Bano addresses near by La Rochelle" >}}
+{{< figure src="bano-lr.avif" caption="Map of Bano addresses near by La Rochelle" >}}
 
-{{< figure src="bano-cities.webp" caption="Top cities (in number of known addresses" >}}
+{{< figure src="bano-cities.avif" caption="Top cities (in number of known addresses" >}}
 
 No surprise in this list. It's common to say that biggest cities in term of population are:
 

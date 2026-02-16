@@ -9,7 +9,7 @@ conference:
   longitude: "18.646638"
   url: "https://infoshare.pl/conference/agenda/#talk698-5"
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 # talk: conferences
 date: 2023-05-24
 talk-lang: en

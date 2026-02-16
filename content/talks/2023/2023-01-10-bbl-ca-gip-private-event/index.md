@@ -9,7 +9,7 @@ conference:
   longitude: "2.075323"
   url: "https://www.credit-agricole.com/"
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 talk: Elasticsearch
 date: 2023-01-10
 talk-lang: fr

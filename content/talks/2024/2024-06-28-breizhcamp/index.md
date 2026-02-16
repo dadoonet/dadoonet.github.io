@@ -9,7 +9,7 @@ conference:
   longitude: "-1.677793"
   url: "https://2024.breizhcamp.org/"
 author: David Pilato
-avatar: /about/david_pilato.webp
+avatar: /about/david_pilato.avif
 talk: ES|QL
 date: 2024-06-28
 talk-lang: fr
