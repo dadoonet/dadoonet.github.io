@@ -19,7 +19,7 @@ pdf: "2026/2026-02-12 - Touraine Tech - Randomized Testing.pdf"
 cover: "cover.avif"
 
 # Speaker specific fields
-#youtube: ""      # ID de la vidéo YouTube (ex: dQw4w9WgXcQ)
+youtube: "3AqqS9q27tY"      # ID de la vidéo YouTube (ex: dQw4w9WgXcQ)
 links:
   - title: "Demo project"
     url: "https://github.com/dadoonet/randomizedtesting-demo"
@@ -40,9 +40,9 @@ links:
     url: "https://github.com/gestalt-config/gestalt/issues/242"
     description: "The issue I opened after my findings"
 
-#x:
-#  - user: "USERNAME"
-#    id: "TWEET_ID"
+x:
+  - user: "dadoonet"
+    id: "2018274464362906110"
 
 aliases:
   - /tnt26
