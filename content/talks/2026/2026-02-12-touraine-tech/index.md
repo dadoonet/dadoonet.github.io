@@ -16,7 +16,6 @@ talk-lang: fr
 nolastmod: true
 draft: false
 pdf: "2026/2026-02-12 - Touraine Tech - Randomized Testing.pdf"
-cover: "cover.avif"
 
 # Speaker specific fields
 youtube: "3AqqS9q27tY"      # ID de la vidéo YouTube (ex: dQw4w9WgXcQ)
