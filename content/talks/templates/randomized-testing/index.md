@@ -22,7 +22,7 @@ versions:
       ```
       
       This can generate `-2147483648`... which is quite unexpected for an absolute value! 😉  
-      Randomized tests can uncover these twisted edge cases... That's what the Elasticsearch team has been doing for years using the [RandomizedTesting](https://labs.carrotsearch.com/randomizedtesting.html) framework to test all their Java code.
+      Randomized tests can uncover these twisted edge cases... That's what the Elasticsearch team has been doing for years using the [RandomizedTesting](https://github.com/randomizedtesting/randomizedtesting-jupiter) framework to test all their Java code.
       
       Add to that real integration tests using [TestContainers](https://java.testcontainers.org/modules/elasticsearch/), and you'll have a complete approach to tests that *regularly fail*!
       
@@ -43,7 +43,7 @@ versions:
       ```
       
       Peut générer `-2147483648`... Ce qui est assez inattendu pour une valeur absolue ! 😉
-      Les tests aléatoires peuvent découvrir ces cas tordus... C'est ce que l'équipe elasticsearch a mis en place depuis plusieurs années à l'aide du framework [RandomizedTesting](https://labs.carrotsearch.com/randomizedtesting.html) pour tester tout le code Java.
+      Les tests aléatoires peuvent découvrir ces cas tordus... C'est ce que l'équipe elasticsearch a mis en place depuis plusieurs années à l'aide du framework [RandomizedTesting](https://github.com/randomizedtesting/randomizedtesting-jupiter) pour tester tout le code Java.
       
       Ajoutez à ça de vrais tests d'intégration à l'aide de [TestContainers](https://java.testcontainers.org/modules/elasticsearch/) et vous aurez une approche complète pour des tests qui échouent régulièrement ! 
       
@@ -54,7 +54,7 @@ links:
     url: "https://github.com/dadoonet/randomizedtesting-demo"
     description: "The source code for the demo project"
   - title: "RandomizedTesting framework"
-    url: "https://labs.carrotsearch.com/randomizedtesting-concept.html"
+    url: "https://github.com/randomizedtesting/randomizedtesting-jupiter"
     description: "The framework provided by Carrot Search"
   - title: "FSCrawler project"
     url: "https://github.com/dadoonet/fscrawler/"

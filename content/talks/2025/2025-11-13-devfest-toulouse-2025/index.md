@@ -27,7 +27,7 @@ links:
     description: "The source code for the demo project"
 
   - title: "RandomizedTesting framework"
-    url: "https://labs.carrotsearch.com/randomizedtesting-concept.html"
+    url: "https://github.com/randomizedtesting/randomizedtesting"
     description: "The framework provided by Carrot Search"
 
   - title: "Ariane 5 launch video"
