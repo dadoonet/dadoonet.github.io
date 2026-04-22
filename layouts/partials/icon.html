@@ -1,7 +1,7 @@
-{{- if isset .ctx.Site.Data.m10c.icons .name -}}
+{{- if isset hugo.Data.m10c.icons .name -}}
 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-svg{{ .name }}">
   <title>{{ .name }}</title>
-  {{ safeHTML (index .ctx.Site.Data.m10c.icons .name) }}
+  {{ safeHTML (index hugo.Data.m10c.icons .name) }}
 </svg>
 {{- else if fileExists (printf "/assets/img/simpleicons/%s.svg" .name) -}}
 <span class="icon">
