@@ -7,7 +7,7 @@ conference:
   country_code: "es"
   latitude: "41.3718342"
   longitude: "2.1808756"
-  url: "https://www.devbcn.com/2026/talks/1152879"
+  url: "https://www.devbcn.com/2026/"
 author: David Pilato
 avatar: /about/david_pilato.avif
 talk: Randomized Testing
@@ -15,7 +15,7 @@ date: '2026-06-16'
 talk-lang: en
 nolastmod: true
 draft: false
-#pdf: "2026/2026-06-16 - Dev Bcn - Randomized Testing.pdf"
+pdf: "2026/2026-06-16-devbcn.pdf"
 
 # Speaker specific fields
 #youtube: "3AqqS9q27tY"      # ID de la vidéo YouTube (ex: dQw4w9WgXcQ)
