@@ -7,7 +7,7 @@ conference:
   country_code: "fr"
   latitude: "48.117266"
   longitude: "-1.677793"
-  url: "https://breizhcamp.org/"
+  url: "https://www.breizhcamp.org/programme/session/1179394"
 author: David Pilato
 avatar: /about/david_pilato.avif
 talk: Randomized Testing
@@ -15,7 +15,7 @@ date: '2026-06-24'
 talk-lang: fr
 nolastmod: true
 draft: false
-#pdf: "2026/2026-06-24 - BreizhCamp - Randomized Testing.pdf"
+pdf: "2026/2026-06-24-breizhcamp.pdf"
 
 # Speaker specific fields
 #youtube: "3AqqS9q27tY"      # ID de la vidéo YouTube (ex: dQw4w9WgXcQ)
