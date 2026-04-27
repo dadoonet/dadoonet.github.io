@@ -15,7 +15,7 @@ date: '2026-07-07'
 talk-lang: fr
 nolastmod: true
 draft: false
-#pdf: "2026/2026-07-04 - Riviera Dev - Randomized Testing.pdf"
+pdf: "2026/2026-07-07-riviera-dev.pdf"
 
 # Speaker specific fields
 #youtube: "3AqqS9q27tY"      # ID de la vidéo YouTube (ex: dQw4w9WgXcQ)
