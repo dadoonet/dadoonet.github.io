@@ -14,7 +14,7 @@ date: '2026-05-22'
 talk-lang: fr
 nolastmod: true
 draft: false
-#pdf: "2026/2026-05-22-afup-day-lille.pdf"
+pdf: "2026/2026-05-22-afup-day-lille.pdf"
 
 # Speaker specific fields
 #youtube: ""      # ID de la vidéo YouTube (ex: dQw4w9WgXcQ)
