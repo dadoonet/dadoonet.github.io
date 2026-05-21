@@ -7,7 +7,7 @@ conference:
   country_code: "fr"
   latitude: "43.6133295"
   longitude: "7.0562551"
-  url: "https://rivieradev.fr/"
+  url: "https://rivieradev.fr/session/983"
 author: David Pilato
 avatar: /about/david_pilato.avif
 talk: Randomized Testing
