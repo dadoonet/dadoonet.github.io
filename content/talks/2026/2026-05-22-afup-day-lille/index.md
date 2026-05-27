@@ -23,10 +23,16 @@ links:
   - title: "Demo: Humming search"
     url: "https://github.com/dadoonet/music-search"
     description: "This demo shows how you can search for similar music tracks, using another music track as an input."
+  - title: "AFUP Day Lille 2026 : notre retour sur la conférence"
+    url: "https://les-tilleuls.coop/blog/afup-day-lille-2026-notre-retour-sur-la-conference"
+    description: "Article de retour sur la conférence par Les Tilleuls, avec un résumé de la session et des liens vers les ressources présentées."
+  - title: "OpenFeedback"
+    url: "https://openfeedback.io/afupday2026lille/2026-05-22/5471"
+    description: "L'open feedback de la session"
 
-#x:
-#  - user: "USERNAME"
-#    id: "TWEET_ID"
+x:
+  - user: "dadoonet"
+    id: "2057902353588559912"
 
 aliases:
   - /afupdaylille26
