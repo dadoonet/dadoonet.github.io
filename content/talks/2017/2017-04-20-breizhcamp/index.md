@@ -1,8 +1,8 @@
 ---
-title: "Breizhcamp"
+title: "BreizhCamp"
 conference: 
   url: "https://2017.breizhcamp.org/"
-  name: "Breizhcamp"
+  name: "BreizhCamp"
   city: "Rennes"
   country: "France"
   country_code: "fr"

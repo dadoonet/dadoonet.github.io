@@ -2,7 +2,7 @@
 title: "Le hasard fait bien les tests"
 conference: 
   url: "https://2016.breizhcamp.org/"
-  name: "Breizhcamp"
+  name: "BreizhCamp"
   city: "Rennes"
   country: "France"
   country_code: "fr"
