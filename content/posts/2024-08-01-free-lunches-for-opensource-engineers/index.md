@@ -70,11 +70,11 @@ Feedback has been very positive and I found out 4 key points:
 
 Some other people started as well to run BBL in France. At some point [Romain Linsolas](https://github.com/linsolas), [Nathaniel Richand](https://github.com/nrichand), [Fran&#xE7;ois Sarradin](https://github.com/fsarradin) and myself found that we should have a website to reference all the speakers/sessions so companies would be able to contact us.
 
-[brownbaglunch.fr](https://www.brownbaglunch.fr/) started that way. It&apos;s super easy to add a talk&#x2026; Well, it&apos;s super easy as soon as you are a developer because you need to `git commit` on GitHub a JSON document. :)
+[brownbaglunch.org](https://www.brownbaglunch.org/) started that way. It&apos;s super easy to add a talk&#x2026; Well, it&apos;s super easy as soon as you are a developer because you need to `git commit` on GitHub a JSON document. :)
 
 The website helped a lot with getting more visibility. I think I&apos;m getting 15 to 20% of my contacts through it.
 
-We started to [enhance it](https://github.com/brownbaglunch/BrownBagLunch/pull/342) a bit as the number of speakers/talks have been growing dramatically. Sadly, I did not find time to finish the job yet but thanks to [CleverCloud](https://www.clever-cloud.com/) and [Elastic](https://elastic.co/) we have a [NodeJS GitHub hook](https://github.com/brownbaglunch/webhook) running on CleverCloud and anytime a PR is merged the NodeJS hook fetch the data, transform it and upload that inside [elastic cloud](https://cloud.elastic.co/). The goal is to add a cool search engine on top of brownbaglunch.fr capable to deal with typos, find speakers around you using geolocation features, filter by label, using faceted navigation, giving autocompletion&#x2026;
+We started to [enhance it](https://github.com/brownbaglunch/BrownBagLunch/pull/342) a bit as the number of speakers/talks have been growing dramatically. Sadly, I did not find time to finish the job yet but thanks to [CleverCloud](https://www.clever-cloud.com/) and [Elastic](https://elastic.co/) we have a [NodeJS GitHub hook](https://github.com/brownbaglunch/webhook) running on CleverCloud and anytime a PR is merged the NodeJS hook fetch the data, transform it and upload that inside [elastic cloud](https://cloud.elastic.co/). The goal is to add a cool search engine on top of brownbaglunch.org capable to deal with typos, find speakers around you using geolocation features, filter by label, using faceted navigation, giving autocompletion&#x2026;
 
 ## 5 years later&#x2026;
 

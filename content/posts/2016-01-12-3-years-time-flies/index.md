@@ -64,7 +64,7 @@ Well, I guess it's well known only in France! 😄
 * 1 conference as a sponsor
 * 7 [trainings](https://www.elastic.co/training). Don't miss our [next sessions in Paris](https://www.elastic.co/training)! I'll give the [Kibana 4 Workshop](https://www.elastic.co/training) with another colleague.
 * 5 [meetups](https://www.meetup.com/elasticfr/). Come and say hello for [the next one](https://www.meetup.com/fr-FR/ElasticFR/events/227882863/)! We are now more than 1600 members!
-* 26 [BBLs](https://www.brownbaglunch.fr/). Still one of my favorite moment. By the way, I started adding elasticsearch on the web site. Stay tuned! 😄
+* 26 [BBLs](https://www.brownbaglunch.org/). Still one of my favorite moment. By the way, I started adding elasticsearch on the web site. Stay tuned! 😄
 * 23 talks. Lot of conferences, including [Devoxx FR](https://www.devoxx.fr/), [Code Motion](https://www.codemotion.com/), [BDX.io](www.bdx.io)...
 
 I think I spoke for more than **2 500 attendees**! I'm super happy on this because results are clearly visible in the company when we look for example at the requests on the web site per region or the [Google trends](https://trends.google.fr/trends/explore?date=2015-01-01%202015-12-31,2015-01-01%202015-12-31,2015-01-01%202015-12-31&geo=FR,US,GB&q=Elasticsearch,Elasticsearch,Elasticsearch):
