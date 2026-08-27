@@ -13,7 +13,7 @@ categories:
 cover: cover.avif
 date: '2026-08-26T18:00:00+02:00'
 nolastmod: true
-draft: true
+draft: false
 ---
 
 It's happening. **FSCrawler 3.0** is out!
