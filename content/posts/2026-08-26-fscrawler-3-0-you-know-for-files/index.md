@@ -48,7 +48,7 @@ For context, 2.9 was a modest release (Tika 2.2.1, Elasticsearch 7.16.2, a few W
 
 ## What a difference 4.5 years make
 
-When 2.9 shipped, Elasticsearch 8 had just appeared. ChatGPT did not exist. Tika 4 was a distant dream. We still shipped **separate FSCrawler distributions per Elasticsearch major version**. Docker images required you to pass the `fscrawler` binary explicitly. Job settings were created implicitly on first run.
+When 2.9 shipped, Elasticsearch 8 was not even there. ChatGPT did not exist. Tika 4 was a distant dream. We still shipped **separate FSCrawler distributions per Elasticsearch major version**. Docker images required you to pass the `fscrawler` binary explicitly. Job settings were created implicitly on first run.
 
 3.0 throws all of that out the window — on purpose. This is a **fresh install** release: there is no in-place upgrade from 2.9. Install 3.0, run `--setup`, reindex. The [upgrade guide](https://fscrawler.readthedocs.io/en/fscrawler-3.0/user/upgrade.html) walks you through it.
 
