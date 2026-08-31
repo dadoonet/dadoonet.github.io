@@ -5,7 +5,7 @@ conference:
   city: "La Rochelle"
   country: "France"
   country_code: "fr"
-  url: "https://www.jugsummercamp.org/edition/17"
+  url: "https://www.jugsummercamp.org/edition/17/presentations/lu1ivMlpXcAJ0i6FIKtEaqnPvdcmuDu7rwCCo3x8fQZH0VUPmwkGQCHaapT57wWO"
   latitude: "46.160329"
   longitude: "-1.151139"
 author: David Pilato
@@ -38,6 +38,9 @@ links:
   - title: "Gestalt issue 242"
     url: "https://github.com/gestalt-config/gestalt/issues/242"
     description: "The issue I opened after my findings"
+  - title: "Elasticsearch and Kibana tests using Testcontainers"
+    url: "https://github.com/dadoonet/elasticsearch-java-client-demo/"
+    description: "A demo project showing how to run Elasticsearch and Kibana tests using Testcontainers"
 
 #x:
 #  - user: "dadoonet"
