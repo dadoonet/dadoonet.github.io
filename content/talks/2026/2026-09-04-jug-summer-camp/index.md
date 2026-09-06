@@ -42,9 +42,13 @@ links:
     url: "https://github.com/dadoonet/elasticsearch-java-client-demo/"
     description: "A demo project showing how to run Elasticsearch and Kibana tests using Testcontainers"
 
-#x:
-#  - user: "dadoonet"
-#    id: "2018274464362906110"
+x:
+  - user: "dadoonet"
+    id: "2095849248780616171"
+
+bluesky:
+  - user: "klf37.bsky.social"
+    id: "3muol6taevk2h"
 
 aliases:
   - /jsc26
