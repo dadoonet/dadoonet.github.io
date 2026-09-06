@@ -657,13 +657,15 @@
   {{ .Page.Store.Set "hasMathjax" true }}
 {{ end }}
 
-{{ with where .Params.social "type" "x" }}
-  {{ if not site.Config.Privacy.X.Disable }}
+{{ with .Params.social }}
+  {{ with where . "type" "x" }}
+    {{ if not site.Config.Privacy.X.Disable }}
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    {{ end }}
   {{ end }}
-{{ end }}
-{{ with where .Params.social "type" "bluesky" }}
+  {{ with where . "type" "bluesky" }}
 <script async src="https://embed.bsky.app/embed.js" charset="utf-8"></script>
+  {{ end }}
 {{ end }}
 
 {{ end }}
