@@ -1,0 +1,14 @@
+{{- $type := .type -}}
+{{- $user := .user -}}
+{{- $id := .id -}}
+{{- if not (and $type $user $id) -}}
+  {{- errorf "The social-embed partial requires type, user, and id. Got type=%v, user=%v, id=%v" $type $user $id -}}
+{{- else if eq $type "x" -}}
+  {{- partial "x-embed.html" (dict "id" $id "user" $user "ctx" .ctx) -}}
+{{- else if eq $type "bluesky" -}}
+  {{- partial "bluesky-embed.html" (dict "id" $id "user" $user "ctx" .ctx) -}}
+{{- else if eq $type "linkedin" -}}
+  {{- partial "linkedin-embed.html" (dict "id" $id "user" $user "ctx" .ctx) -}}
+{{- else -}}
+  {{- errorf "The social-embed partial got unknown type %q. Expected x, bluesky, or linkedin." $type -}}
+{{- end -}}

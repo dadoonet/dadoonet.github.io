@@ -163,12 +163,12 @@
 
       <div class="post-content">
 
-        {{- with .Params.x -}}
-        <div class="x-embeds">
+        {{- with .Params.social -}}
+        <div class="social-embeds">
           <h2>Buzz et feedback</h2>
           <p>Here's what was said about this presentation on social media.</p>
           {{- range . -}}
-            {{- partial "x-embed.html" (dict "id" .id "user" .user) -}}
+            {{- partial "social-embed.html" (dict "type" .type "id" .id "user" .user) -}}
           {{- end -}}
         </div>
         {{- end -}}
@@ -657,8 +657,13 @@
   {{ .Page.Store.Set "hasMathjax" true }}
 {{ end }}
 
-{{ with .Params.x }}
+{{ with where .Params.social "type" "x" }}
+  {{ if not site.Config.Privacy.X.Disable }}
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+  {{ end }}
+{{ end }}
+{{ with where .Params.social "type" "bluesky" }}
+<script async src="https://embed.bsky.app/embed.js" charset="utf-8"></script>
 {{ end }}
 
 {{ end }}
