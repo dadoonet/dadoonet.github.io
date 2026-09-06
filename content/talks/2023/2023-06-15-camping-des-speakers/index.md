@@ -16,39 +16,50 @@ talk-lang: fr
 nolastmod: true
 draft: false
 
-
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/qZrOqw"
 
-x:
-  - user: "dadoonet"
+social:
+  - type: x
+    user: "dadoonet"
     id: "1636757833663299585"
-  - user: "ponceto91"
+  - type: x
+    user: "ponceto91"
     id: "1669039641440182284"
-  - user: "ponceto91"
+  - type: x
+    user: "ponceto91"
     id: "1669040601331818512"
-  - user: "thomas_rannou"
+  - type: x
+    user: "thomas_rannou"
     id: "1669067965453545473"
-  - user: "ShirleyAlmCh"
+  - type: x
+    user: "ShirleyAlmCh"
     id: "1669082272274739200"
-  - user: "FinistSeb"
+  - type: x
+    user: "FinistSeb"
     id: "1669219141666873347"
-  - user: "JPhi_Baconnais"
+  - type: x
+    user: "JPhi_Baconnais"
     id: "1669430917960552457"
-  - user: "elisahauet"
+  - type: x
+    user: "elisahauet"
     id: "1669431114950123521"
-  - user: "nicolasbejean"
+  - type: x
+    user: "nicolasbejean"
     id: "1669446415049805824"
-  - user: "wildagsx"
+  - type: x
+    user: "wildagsx"
     id: "1669449088918536195"
-  - user: "ShirleyAlmCh"
+  - type: x
+    user: "ShirleyAlmCh"
     id: "1669695790548234241"
-  - user: "JPhi_Baconnais"
+  - type: x
+    user: "JPhi_Baconnais"
     id: "1669791464316870660"
-  - user: "dadoonet"
+  - type: x
+    user: "dadoonet"
     id: "1669788001876975625"
-
 links:
   - title: "Podcast: DJ Elky"
     url: "https://podcasts.apple.com/fr/podcast/dj-elky-mixes/id959495351"

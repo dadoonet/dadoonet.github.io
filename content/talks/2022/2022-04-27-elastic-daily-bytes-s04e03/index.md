@@ -13,15 +13,14 @@ talk-lang: en
 nolastmod: true
 draft: false
 
-
 # Speaker specific fields
 youtube: "CvdVbBEEhAE"
 notist: "dadoonet/cnOMTv"
 
-x:
-- user: dadoonet
-  id: '1518545201249333248'
-
+social:
+  - type: x
+    user: "dadoonet"
+    id: "1518545201249333248"
 links:
   - title: "Script of the talk"
     url: "https://github.com/dadoonet/s04e03-agent"

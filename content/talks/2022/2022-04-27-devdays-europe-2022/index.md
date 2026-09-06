@@ -30,14 +30,15 @@ links:
     url: "https://david.pilato.fr/blog/2015/05/09/advanced-search-for-your-legacy-application/"
     description: "This blog post describes the major steps I’m doing while on stage. It has not been updated though so it’s better to check out the real code on github."
 
-
 aliases:
 - /EzjiuN
-x:
-- user: dadoonet
-  id: '1519285532899090432'
-- user: dadoonet
-  id: '1519591132249968640'
+social:
+  - type: x
+    user: "dadoonet"
+    id: "1519285532899090432"
+  - type: x
+    user: "dadoonet"
+    id: "1519591132249968640"
 ---
 How do you mix SQL and NoSQL worlds without starting a messy revolution?
 

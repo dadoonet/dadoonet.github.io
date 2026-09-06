@@ -16,15 +16,14 @@ nolastmod: true
 draft: false
 pdf: "2019/2019-03-05-isen-private-event.pdf"
 
-
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/1dYDNJ"
 
-x:
-  - user: "dadoonet"
+social:
+  - type: x
+    user: "dadoonet"
     id: "1102909356109115398"
-
 links:
   - title: "Demo: Kibana script for BBL"
     url: "https://gist.github.com/dadoonet/f911291c4dd19b0802031db3064c648f"

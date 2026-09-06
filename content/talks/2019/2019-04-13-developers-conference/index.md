@@ -16,21 +16,23 @@ talk-lang: fr
 nolastmod: true
 draft: false
 
-
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/5Hhw01"
 
-x:
-  - user: "dadoonet"
+social:
+  - type: x
+    user: "dadoonet"
     id: "1116986432223088642"
-  - user: "dadoonet"
+  - type: x
+    user: "dadoonet"
     id: "1116978098531074048"
-  - user: "dadoonet"
+  - type: x
+    user: "dadoonet"
     id: "1116959232115580928"
-  - user: "dadoonet"
+  - type: x
+    user: "dadoonet"
     id: "1116341860606328833"
-
 links:
   - title: "Blog: Advanced search for your legacy application"
     url: "https://david.pilato.fr/blog/2015/05/09/advanced-search-for-your-legacy-application/"

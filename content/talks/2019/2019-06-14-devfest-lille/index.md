@@ -15,19 +15,20 @@ talk-lang: fr
 nolastmod: true
 draft: false
 
-
 # Speaker specific fields
 youtube: "hlfy1EDAP4U"
 notist: "dadoonet/L5rDwO"
 
-x:
-  - user: "dadoonet"
+social:
+  - type: x
+    user: "dadoonet"
     id: "1139509930002735106"
-  - user: "fdelbrayelle"
+  - type: x
+    user: "fdelbrayelle"
     id: "1139544412952940544"
-  - user: "mattmasztalir"
+  - type: x
+    user: "mattmasztalir"
     id: "1139544445039370246"
-
 links:
   - title: "Demo: elasticsearch-integration-tests repository"
     url: "https://github.com/dadoonet/elasticsearch-integration-tests"

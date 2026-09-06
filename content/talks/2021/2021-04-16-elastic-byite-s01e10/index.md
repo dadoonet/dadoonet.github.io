@@ -14,17 +14,17 @@ nolastmod: true
 draft: false
 pdf: "2021/2021-04-16-elastic-byite-s01e10.pdf"
 
-
 # Speaker specific fields
 youtube: "TfP1Yjed99o"
 notist: "dadoonet/KAJwMc"
 
-x:
-- user: dadoonet
-  id: '1372860398890856451'
-- user: dadoonet
-  id: '1372483163084132353'
-
+social:
+  - type: x
+    user: "dadoonet"
+    id: "1372860398890856451"
+  - type: x
+    user: "dadoonet"
+    id: "1372483163084132353"
 links:
   - title: "Repository Demo"
     url: "https://github.com/dadoonet/demo-ingest-processors"

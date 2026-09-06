@@ -18,22 +18,28 @@ draft: false
 
 attendees: 100
 pdf: "2014/2014-04-03-cloudconfit.pdf"
-x:
-  - user: "gionn"
+social:
+  - type: x
+    user: "gionn"
     id: "451646144641499136"
-  - user: "stefanobaghino"
+  - type: x
+    user: "stefanobaghino"
     id: "451651731060162560"
-  - user: "_CloudConf_"
+  - type: x
+    user: "_CloudConf_"
     id: "451645949363093504"
-  - user: "Coguara"
+  - type: x
+    user: "Coguara"
     id: "451680507244589056"
-  - user: "massic"
+  - type: x
+    user: "massic"
     id: "451759949472079872"
-  - user: "stefanobaghino"
+  - type: x
+    user: "stefanobaghino"
     id: "451761521971195904"
-  - user: "aparo77"
+  - type: x
+    user: "aparo77"
     id: "451651579087949825"
-
 ---
 Elasticsearch is a search server based on Lucene. It provides a distributed, multitenant-capable full-text search engine with a RESTful web interface and schema-free JSON documents. You can use it as well to compute information on live data.
 Kibana is a full web application built with AngularJS. It's a generic and powerful visualisation tool for your data.

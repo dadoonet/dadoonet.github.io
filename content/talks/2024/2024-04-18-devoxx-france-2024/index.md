@@ -17,21 +17,23 @@ nolastmod: true
 draft: false
 pdf: "2024/2024-04-18-devoxx-france-2024.pdf"
 
-
 # Speaker specific fields
 youtube: "ZtfDkkJNjL0"
 notist: "dadoonet/WlpZdt"
 
-x:
-  - user: "dadoonet"
+social:
+  - type: x
+    user: "dadoonet"
     id: "1767512736164917700"
-  - user: "dadoonet"
+  - type: x
+    user: "dadoonet"
     id: "1780915696592978097"
-  - user: "bluxte"
+  - type: x
+    user: "bluxte"
     id: "1780899191050342759"
-  - user: "AurrelH95"
+  - type: x
+    user: "AurrelH95"
     id: "1780905823620714719"
-
 links:
   - title: "Demo: Humming search"
     url: "https://github.com/dadoonet/music-search"

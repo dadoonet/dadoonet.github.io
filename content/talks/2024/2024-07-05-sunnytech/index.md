@@ -17,17 +17,17 @@ nolastmod: true
 draft: false
 pdf: "2024/2024-07-05-sunnytech.pdf"
 
-
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/45pZO2"
 
-x:
-  - user: "SunnyTech_MTP"
+social:
+  - type: x
+    user: "SunnyTech_MTP"
     id: "1805515034094612948"
-  - user: "dadoonet"
+  - type: x
+    user: "dadoonet"
     id: "1809193818660778077"
-
 links:
   - title: "Demo: Music search"
     url: "https://github.com/dadoonet/music-search"

@@ -17,7 +17,6 @@ nolastmod: true
 draft: false
 pdf: "2023/2023-11-24-big-data-conference-europe.pdf"
 
-
 # Speaker specific fields
 youtube: "RbdIdSnXbA4"
 notist: dadoonet/tfHOrn
@@ -29,12 +28,12 @@ links:
   - title: "Music Search demo code"
     url: "https://github.com/dadoonet/music-search"
 
-
 aliases:
 - /tfHOrn
-x:
-- user: dadoonet
-  id: '1726958270148137073'
+social:
+  - type: x
+    user: "dadoonet"
+    id: "1726958270148137073"
 ---
 Search is not just traditional TF/IDF any more but the current trend of machine learning and models has opened another dimension for search.
 

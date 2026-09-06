@@ -21,25 +21,31 @@ nolastmod: true
 draft: false
 pdf: "2019/2019-09-13-jug-summer-camp.pdf"
 
-
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/x959ys"
 
-x:
-  - user: "altolabs"
+social:
+  - type: x
+    user: "altolabs"
     id: "1172417711525126146"
-  - user: "SerliFr"
+  - type: x
+    user: "SerliFr"
     id: "1172417393362030593"
-  - user: "jeromepetit"
+  - type: x
+    user: "jeromepetit"
     id: "1172415259589529601"
-  - user: "jugsummercamp"
+  - type: x
+    user: "jugsummercamp"
     id: "1172414593332678657"
-  - user: "dadoonet"
+  - type: x
+    user: "dadoonet"
     id: "1172492208563507202"
-  - user: "julienviet"
+  - type: x
+    user: "julienviet"
     id: "1173506905429422081"
-  - user: "oriannetisseuil"
+  - type: x
+    user: "oriannetisseuil"
     id: "1172415384462319616"
 aliases:
   - /x959ys

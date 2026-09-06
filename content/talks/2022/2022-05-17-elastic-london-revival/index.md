@@ -17,19 +17,20 @@ nolastmod: true
 draft: false
 pdf: "2022/2022-05-17-elastic-london-revival.pdf"
 
-
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/k195XM"
 
-x:
-  - user: "elastic_london"
+social:
+  - type: x
+    user: "elastic_london"
     id: "1524018650080022529"
-  - user: "elastic_london"
+  - type: x
+    user: "elastic_london"
     id: "1526555816295268353"
-  - user: "dadoonet"
+  - type: x
+    user: "dadoonet"
     id: "1526507302949363718"
-
 links:
   - title: "Demo: FSCrawler"
     url: "https://github.com/dadoonet/demo-fscrawler"

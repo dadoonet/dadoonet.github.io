@@ -16,21 +16,23 @@ nolastmod: true
 draft: false
 pdf: "2020/2020-03-03-bbl-credit-agricole-technologies-et-services-private-event.pdf"
 
-
 # Speaker specific fields
 # youtube: ""
 notist: "dadoonet/UyKuSq"
 
-x:
-  - user: "dadoonet"
+social:
+  - type: x
+    user: "dadoonet"
     id: "1234707940633989121"
-  - user: "dadoonet"
+  - type: x
+    user: "dadoonet"
     id: "1234722433493585920"
-  - user: "dadoonet"
+  - type: x
+    user: "dadoonet"
     id: "1234814423979765762"
-  - user: "dadoonet"
+  - type: x
+    user: "dadoonet"
     id: "1234887306177327108"
-
 links:
   - title: "Demo: One Million Tweet Map"
     url: "https://onemilliontweetmap.com/"

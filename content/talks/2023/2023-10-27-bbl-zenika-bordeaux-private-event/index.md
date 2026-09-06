@@ -17,17 +17,17 @@ nolastmod: true
 draft: false
 pdf: "2023/2023-10-27-bbl-zenika-bordeaux-private-event.pdf"
 
-
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/vMyojC"
 
-x:
-  - user: "dadoonet"
+social:
+  - type: x
+    user: "dadoonet"
     id: "1717846511076188651"
-  - user: "ZenikaBordeaux"
+  - type: x
+    user: "ZenikaBordeaux"
     id: "1718945846283436036"
-
 links:
   - title: "Demo: Kibana script for BBL"
     url: "https://gist.github.com/dadoonet/f911291c4dd19b0802031db3064c648f"

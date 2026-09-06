@@ -17,25 +17,29 @@ nolastmod: true
 draft: false
 pdf: "2025/2025-02-07-touraine-tech.pdf"
 
-
 # Speaker specific fields
 youtube: "Uwf2fe20ILo"
 notist: "dadoonet/UuLUmS"
 
-x:
-  - user: "dadoonet"
+social:
+  - type: x
+    user: "dadoonet"
     id: "1896926491528552938"
-  - user: "dadoonet"
+  - type: x
+    user: "dadoonet"
     id: "1888073441225429268"
-  - user: "tourainetech"
+  - type: x
+    user: "tourainetech"
     id: "1887806922948030878"
-  - user: "ju_hnny5"
+  - type: x
+    user: "ju_hnny5"
     id: "1887793742049927352"
-  - user: "dadoonet"
+  - type: x
+    user: "dadoonet"
     id: "1886790251462459646"
-  - user: "tourainetech"
+  - type: x
+    user: "tourainetech"
     id: "1874138596074021243"
-
 links:
   - title: "Demo: ES|QL"
     url: "https://github.com/dadoonet/esql-demo"

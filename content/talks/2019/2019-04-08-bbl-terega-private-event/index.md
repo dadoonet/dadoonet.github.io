@@ -16,15 +16,14 @@ nolastmod: true
 draft: false
 pdf: "2019/2019-04-08-bbl-terega-private-event.pdf"
 
-
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/wEsLdE"
 
-x:
-  - user: "dadoonet"
+social:
+  - type: x
+    user: "dadoonet"
     id: "1115183520719228929"
-
 links:
   - title: "Une ancienne vidéo (2015) sur le même sujet"
     url: "https://vimeo.com/129781775"

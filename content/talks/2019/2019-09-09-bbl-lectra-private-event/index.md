@@ -16,19 +16,20 @@ nolastmod: true
 draft: false
 pdf: "2019/2019-09-09-bbl-lectra-private-event.pdf"
 
-
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/LKc6qI"
 
-x:
-  - user: "dadoonet"
+social:
+  - type: x
+    user: "dadoonet"
     id: "1170997223485784065"
-  - user: "_sjoss"
+  - type: x
+    user: "_sjoss"
     id: "1171038216478167041"
-  - user: "dadoonet"
+  - type: x
+    user: "dadoonet"
     id: "1171059043630288896"
-
 links:
   - title: "Demo: Kibana script for BBL"
     url: "https://gist.github.com/dadoonet/f911291c4dd19b0802031db3064c648f"

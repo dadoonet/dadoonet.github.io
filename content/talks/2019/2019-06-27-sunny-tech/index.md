@@ -16,21 +16,23 @@ talk-lang: fr
 nolastmod: true
 draft: false
 
-
 # Speaker specific fields
 youtube: "0Zsuae0LWas"
 notist: "dadoonet/AsJxO2"
 
-x:
-  - user: "SunnyTech_MTP"
+social:
+  - type: x
+    user: "SunnyTech_MTP"
     id: "1144159745894486016"
-  - user: "seb_express"
+  - type: x
+    user: "seb_express"
     id: "1144158720290689031"
-  - user: "dadoonet"
+  - type: x
+    user: "dadoonet"
     id: "1144142488812302340"
-  - user: "dadoonet"
+  - type: x
+    user: "dadoonet"
     id: "1144177838888771586"
-
 links:
   - title: "Feedbacks"
     url: "https://openfeedback.io/3xWvprYgxf1Tzmsj6J51/2019-06-27/50"

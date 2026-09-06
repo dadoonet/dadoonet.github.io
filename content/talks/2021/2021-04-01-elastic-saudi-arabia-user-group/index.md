@@ -18,14 +18,15 @@ links:
   - title: "FSCrawler"
     url: "https://fscrawler.readthedocs.io/"
 
-
 aliases:
 - /sDFpQX
-x:
-- user: dadoonet
-  id: '1377713638384013315'
-- user: ienjreny
-  id: '1377704809185345539'
+social:
+  - type: x
+    user: "dadoonet"
+    id: "1377713638384013315"
+  - type: x
+    user: "ienjreny"
+    id: "1377704809185345539"
 ---
 You have plenty of Open Office, Microsoft Office, PDF, images… documents and you may want to be able to search for their metadata and content. How can you do that?
 

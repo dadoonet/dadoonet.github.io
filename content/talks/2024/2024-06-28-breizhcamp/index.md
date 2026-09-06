@@ -17,19 +17,20 @@ nolastmod: true
 draft: false
 pdf: "2024/2024-06-28-breizhcamp.pdf"
 
-
 # Speaker specific fields
 youtube: "jcIDh5LR8_Y"
 notist: "dadoonet/pSNxdE"
 
-x:
-  - user: "dadoonet"
+social:
+  - type: x
+    user: "dadoonet"
     id: "1805508048858849526"
-  - user: "dadoonet"
+  - type: x
+    user: "dadoonet"
     id: "1806589600355549534"
-  - user: "dadoonet"
+  - type: x
+    user: "dadoonet"
     id: "1806688935277404408"
-
 links:
   - title: "Demo: ES|QL"
     url: "https://github.com/dadoonet/esql-demo"

@@ -17,19 +17,20 @@ nolastmod: true
 draft: false
 pdf: "2021/2021-09-29-devoxx-france-2021.pdf"
 
-
 # Speaker specific fields
 youtube: "4tQDLAs5HpM"
 notist: "dadoonet/h0HniU"
 
-x:
-  - user: "dadoonet"
+social:
+  - type: x
+    user: "dadoonet"
     id: "1434789692684263428"
-  - user: "dadoonet"
+  - type: x
+    user: "dadoonet"
     id: "1440246734047776768"
-  - user: "dadoonet"
+  - type: x
+    user: "dadoonet"
     id: "1443222996131401729"
-
 links:
   - title: "Elastic Security Solution"
     url: "https://www.elastic.co/fr/security"

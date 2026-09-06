@@ -17,27 +17,32 @@ nolastmod: true
 draft: false
 pdf: "2023/2023-01-25-snowcamp-2023.pdf"
 
-
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/UGtHAu"
 
-x:
-  - user: "ponceto91"
+social:
+  - type: x
+    user: "ponceto91"
     id: "1618546896926314496"
-  - user: "mupsigraphy"
+  - type: x
+    user: "mupsigraphy"
     id: "1618547196655464450"
-  - user: "dadideo"
+  - type: x
+    user: "dadideo"
     id: "1618550368245551107"
-  - user: "dadoonet"
+  - type: x
+    user: "dadoonet"
     id: "1618529295173050368"
-  - user: "dadoonet"
+  - type: x
+    user: "dadoonet"
     id: "1614989473837629442"
-  - user: "dadoonet"
+  - type: x
+    user: "dadoonet"
     id: "1611365091995275266"
-  - user: "dadoonet"
+  - type: x
+    user: "dadoonet"
     id: "1618564206521110529"
-
 links:
   - title: "Demo: FSCrawler"
     url: "https://github.com/dadoonet/demo-fscrawler"

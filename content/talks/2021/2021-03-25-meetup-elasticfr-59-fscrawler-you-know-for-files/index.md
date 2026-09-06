@@ -27,17 +27,22 @@ youtube: "3-Tj1KutprE"
 
 aliases:
 - /6qhRBL
-x:
-- user: ElasticFR
-  id: '1369938646611021826'
-- user: ElasticFR
-  id: '1372550607513423872'
-- user: ElasticFR
-  id: '1374664285150908416'
-- user: ElasticFR
-  id: '1374996222306447361'
-- user: ElasticFR
-  id: '1375153007046836230'
+social:
+  - type: x
+    user: "ElasticFR"
+    id: "1369938646611021826"
+  - type: x
+    user: "ElasticFR"
+    id: "1372550607513423872"
+  - type: x
+    user: "ElasticFR"
+    id: "1374664285150908416"
+  - type: x
+    user: "ElasticFR"
+    id: "1374996222306447361"
+  - type: x
+    user: "ElasticFR"
+    id: "1375153007046836230"
 ---
 Avez-vous déjà rêvé de pouvoir indexer vos fichiers locaux, genre PDF, OpenOffice, images et autres dans la suite Elastic pour pouvoir en rechercher facilement le contenu ou les meta-données ? C’est toute la promesse du projet open-source [FSCrawler](https://fscrawler.readthedocs.io/).
 

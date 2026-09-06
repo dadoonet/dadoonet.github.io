@@ -17,24 +17,27 @@ nolastmod: true
 draft: false
 pdf: "2018/2018-06-22-voxxed-days-luxembourg.pdf"
 
-
 # Speaker specific fields
 youtube: "xNy4kLm43UA"
 notist: "dadoonet/NscrTQ"
 attendees: 140
 
-x:
-  - user: "voxxed_lu"
+social:
+  - type: x
+    user: "voxxed_lu"
     id: "1010075039000072192"
-  - user: "dadoonet"
+  - type: x
+    user: "dadoonet"
     id: "1010108423697059841"
-  - user: "dadoonet"
+  - type: x
+    user: "dadoonet"
     id: "1011848627243929600"
-  - user: "dadoonet"
+  - type: x
+    user: "dadoonet"
     id: "1009741910154543105"
-  - user: "voxxed_lu"
+  - type: x
+    user: "voxxed_lu"
     id: "1010050188323540992"
-
 links:
   - title: "Blog: Le Touilleur Express - Voxxed Days Luxembourg 2018"
     url: "https://touilleur-express.fr/2018/06/25/voxxed-luxembourg-2018/"

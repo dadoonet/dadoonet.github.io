@@ -13,24 +13,28 @@ talk-lang: en
 nolastmod: true
 draft: false
 
-
 # Speaker specific fields
 youtube: "tpvRmI2UN4k?t=125"
 notist: dadoonet/UWydIw
 
 aliases:
 - /UWydIw
-x:
-- user: dadoonet
-  id: '1370076162802786305'
-- user: rhdevelopers
-  id: '1369931604420857859'
-- user: rhdevelopers
-  id: '1370283170961195008'
-- user: sebi2706
-  id: '1368997439072579589'
-- user: sebi2706
-  id: '1369997650645417988'
+social:
+  - type: x
+    user: "dadoonet"
+    id: "1370076162802786305"
+  - type: x
+    user: "rhdevelopers"
+    id: "1369931604420857859"
+  - type: x
+    user: "rhdevelopers"
+    id: "1370283170961195008"
+  - type: x
+    user: "sebi2706"
+    id: "1368997439072579589"
+  - type: x
+    user: "sebi2706"
+    id: "1369997650645417988"
 ---
 Join us as we discuss today’s hottest technologies impacting developers and architects — and have a lot of fun
 

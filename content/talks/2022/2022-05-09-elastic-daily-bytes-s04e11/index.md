@@ -13,7 +13,6 @@ talk-lang: en
 nolastmod: true
 draft: false
 
-
 # Speaker specific fields
 youtube: "g3_YddGpMrs"
 notist: "dadoonet/TkYm78"
@@ -22,10 +21,10 @@ links:
   - title: "Elastic Community event"
     url: "https://community.elastic.co/e/m9kpn6/"
 
-x:
-- user: dadoonet
-  id: '1523580347258388480'
-
+social:
+  - type: x
+    user: "dadoonet"
+    id: "1523580347258388480"
 aliases:
   - /TkYm78
 ---

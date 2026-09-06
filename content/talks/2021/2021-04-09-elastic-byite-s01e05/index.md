@@ -13,7 +13,6 @@ talk-lang: en
 nolastmod: true
 draft: false
 
-
 # Speaker specific fields
 youtube: "9U9OBWfxC-M"
 notist: "dadoonet/jAQF3k"
@@ -22,10 +21,10 @@ links:
   - title: "Repository Demo"
     url: "https://github.com/dadoonet/demo-index-split-shrink-rollover"
 
-x:
-  - user: dadoonet
-    id: '1369569967432208391'
-
+social:
+  - type: x
+    user: "dadoonet"
+    id: "1369569967432208391"
 aliases:
   - /jAQF3k
 ---

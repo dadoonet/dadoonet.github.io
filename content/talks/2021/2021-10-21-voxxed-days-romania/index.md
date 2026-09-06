@@ -17,19 +17,20 @@ nolastmod: true
 draft: false
 pdf: "2021/2021-10-21-voxxed-days-romania.pdf"
 
-
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/zWe0zu"
 
-x:
-  - user: "dadoonet"
+social:
+  - type: x
+    user: "dadoonet"
     id: "1450094653022289928"
-  - user: "VoxxedBucharest"
+  - type: x
+    user: "VoxxedBucharest"
     id: "1450464014929178641"
-  - user: "dadoonet"
+  - type: x
+    user: "dadoonet"
     id: "1451520492104523779"
-
 links:
   - title: "Elastic Security Solution"
     url: "https://www.elastic.co/security"

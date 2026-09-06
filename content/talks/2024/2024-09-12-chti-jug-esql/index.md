@@ -17,7 +17,6 @@ nolastmod: true
 draft: false
 pdf: "2024/2024-09-12-chti-jug-esql.pdf"
 
-
 # Speaker specific fields
 youtube: "7xoxYx10QBw"
 notist: dadoonet/xSy3aM
@@ -39,17 +38,19 @@ links:
     url: "https://github.com/dadoonet/elasticsearch-java-client-demo"
     description: "The Java demo for ES|QL"
 
-
 aliases:
 - /C6PfLA
 
-x:
-- user: chtijug
-  id: '1830957835527823468'
-- user: dadoonet
-  id: '1831686218561536048'
-- user: jak78
-  id: '1834130746140672357'
+social:
+  - type: x
+    user: "chtijug"
+    id: "1830957835527823468"
+  - type: x
+    user: "dadoonet"
+    id: "1831686218561536048"
+  - type: x
+    user: "jak78"
+    id: "1834130746140672357"
 ---
 Dans cette session sans slides, nous découvrirons par la pratique ce qu’apporte le nouveau language `ES|QL` pour aller fouiller dans nos données indexées dans Elasticsearch et ce, de façon interactive et visuelle.
 

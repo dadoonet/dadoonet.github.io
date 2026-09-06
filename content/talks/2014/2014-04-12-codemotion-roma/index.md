@@ -20,18 +20,24 @@ attendees: 100
 
 pdf: "2014/2014-04-12-codemotion-roma.pdf"
 
-x:
-  - user: "altolabs"
+social:
+  - type: x
+    user: "altolabs"
     id: "454960190157488128"
-  - user: "diegopizzocaro"
+  - type: x
+    user: "diegopizzocaro"
     id: "454956105680965633"
-  - user: "f_lombardo"
+  - type: x
+    user: "f_lombardo"
     id: "454966392115429376"
-  - user: "sincandela"
+  - type: x
+    user: "sincandela"
     id: "454977946965798912"
-  - user: "matteocollina"
+  - type: x
+    user: "matteocollina"
     id: "455098143051628544"
-  - user: "Giuliano84"
+  - type: x
+    user: "Giuliano84"
     id: "455107158406070272"
 ---
 

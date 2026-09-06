@@ -13,7 +13,6 @@ talk-lang: en
 nolastmod: true
 draft: false
 
-
 # Speaker specific fields
 youtube: "hc6V-1aR33E"
 notist: "dadoonet/CU8BpK"
@@ -22,11 +21,10 @@ links:
   - title: "Demo Repository"
     url: "https://github.com/dadoonet/s02e14-snapshots"
 
-
-x:
-- user: dadoonet
-  id: '1407974609631186945'
-
+social:
+  - type: x
+    user: "dadoonet"
+    id: "1407974609631186945"
 aliases:
   - /CU8BpK
 ---

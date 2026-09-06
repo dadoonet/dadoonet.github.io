@@ -17,19 +17,20 @@ nolastmod: true
 draft: false
 pdf: "2024/2024-09-06-jug-summer-camp.pdf"
 
-
 # Speaker specific fields
 youtube: "Fa6ICBs1KM0"
 notist: "dadoonet/CzXjMr"
 
-x:
-  - user: "dadoonet"
+social:
+  - type: x
+    user: "dadoonet"
     id: "1827998166865637459"
-  - user: "dadoonet"
+  - type: x
+    user: "dadoonet"
     id: "1830635264806621289"
-  - user: "jugsummercamp"
+  - type: x
+    user: "jugsummercamp"
     id: "1829150830089646215"
-
 links:
   - title: "Demo: ES|QL"
     url: "https://github.com/dadoonet/esql-demo"

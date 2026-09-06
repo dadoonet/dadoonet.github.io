@@ -17,15 +17,14 @@ nolastmod: true
 draft: false
 pdf: "2023/2023-04-02-jdll.pdf"
 
-
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/D5Qumy"
 
-x:
-  - user: "dadoonet"
+social:
+  - type: x
+    user: "dadoonet"
     id: "1638567651847929861"
-
 links:
   - title: "Workshop instructions"
     url: "https://github.com/dadoonet/JDLL"

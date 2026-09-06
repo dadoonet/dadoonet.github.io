@@ -17,15 +17,14 @@ nolastmod: true
 draft: false
 pdf: "2024/2024-11-29-bbl-infrabel-private-event.pdf"
 
-
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/eqJ9Aw"
 
-x:
-  - user: "dadoonet"
+social:
+  - type: x
+    user: "dadoonet"
     id: "1862514892042915845"
-
 links:
   - title: "Demo: ES|QL"
     url: "https://github.com/dadoonet/esql-demo"

@@ -18,18 +18,24 @@ draft: false
 
 attendees: 150
 
-x:
-  - user: "bleskes"
+social:
+  - type: x
+    user: "bleskes"
     id: "433306971887124480"
-  - user: "GeromeEgron"
+  - type: x
+    user: "GeromeEgron"
     id: "433315747922968576"
-  - user: "_mdulac"
+  - type: x
+    user: "_mdulac"
     id: "433316089272221697"
-  - user: "gbitaudeau"
+  - type: x
+    user: "gbitaudeau"
     id: "433316931962408961"
-  - user: "nhelleringer"
+  - type: x
+    user: "nhelleringer"
     id: "433319931325976576"
-  - user: "thierryleriche"
+  - type: x
+    user: "thierryleriche"
     id: "433527758367371266"
 pdf: "2014/2014-02-11-paris-jug.pdf"
 ---

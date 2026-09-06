@@ -27,17 +27,22 @@ youtube: "-xvW2lwdW3M"
 
 aliases:
 - /dTVWXj
-x:
-- user: SedonaFR
-  id: '1460621101701246977'
-- user: SedonaFR
-  id: '1460621168088596480'
-- user: SedonaFR
-  id: '1461653975237808131'
-- user: dadoonet
-  id: '1466057432719835137'
-- user: dadoonet
-  id: '1466333417830858754'
+social:
+  - type: x
+    user: "SedonaFR"
+    id: "1460621101701246977"
+  - type: x
+    user: "SedonaFR"
+    id: "1460621168088596480"
+  - type: x
+    user: "SedonaFR"
+    id: "1461653975237808131"
+  - type: x
+    user: "dadoonet"
+    id: "1466057432719835137"
+  - type: x
+    user: "dadoonet"
+    id: "1466333417830858754"
 ---
 Ce webinar dédié à Elasticsearch va vous permettre d’aller plus loin avec ce populaire moteur de recherche. Il se déroule en deux temps:
 

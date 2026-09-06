@@ -17,19 +17,20 @@ nolastmod: true
 draft: false
 pdf: "2019/2019-02-26-duchess-lunch.pdf"
 
-
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/EKXWMo"
 
-x:
-  - user: "MathildeLemee"
+social:
+  - type: x
+    user: "MathildeLemee"
     id: "1100361190872625154"
-  - user: "nicokosi"
+  - type: x
+    user: "nicokosi"
     id: "1100630170971582464"
-  - user: "dadoonet"
+  - type: x
+    user: "dadoonet"
     id: "1100349635305050112"
-
 links:
   - title: "Demo: Kibana script for BBL"
     url: "https://gist.github.com/dadoonet/f911291c4dd19b0802031db3064c648f"

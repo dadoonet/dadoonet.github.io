@@ -17,15 +17,14 @@ nolastmod: true
 draft: false
 pdf: "2025/2025-03-20-bordeaux-jug.pdf"
 
-
 # Speaker specific fields
 youtube: "yqpM3FVxjGg"
 notist: "dadoonet/ASbj3g"
 
-x:
-  - user: "dadoonet"
+social:
+  - type: x
+    user: "dadoonet"
     id: "1899491715959992658"
-
 links:
   - title: "Demo: ES|QL"
     url: "https://github.com/dadoonet/esql-demo"

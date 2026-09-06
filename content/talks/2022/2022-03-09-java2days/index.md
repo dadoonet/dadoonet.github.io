@@ -14,17 +14,17 @@ nolastmod: true
 draft: false
 pdf: "2022/2022-03-09-java2days.pdf"
 
-
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/A6Jbu7"
 
-x:
-- user: Java2Days
-  id: '1500060100437979142'
-- user: dadoonet
-  id: '1501447005914214403'
-
+social:
+  - type: x
+    user: "Java2Days"
+    id: "1500060100437979142"
+  - type: x
+    user: "dadoonet"
+    id: "1501447005914214403"
 links:
   - title: "Documentation: FSCrawler"
     url: "https://fscrawler.readthedocs.io/"

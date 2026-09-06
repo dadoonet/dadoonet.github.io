@@ -16,15 +16,14 @@ talk-lang: en
 nolastmod: true
 draft: false
 
-
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/0rheh6"
 
-x:
-  - user: "dadoonet"
+social:
+  - type: x
+    user: "dadoonet"
     id: "1883838115988509071"
-
 links:
   - title: "Demo: Music search"
     url: "https://github.com/dadoonet/music-search/"

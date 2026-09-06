@@ -17,15 +17,14 @@ nolastmod: true
 draft: false
 pdf: "2024/2024-07-08-riviera-dev.pdf"
 
-
 # Speaker specific fields
 youtube: "DM-urSmsdbc"
 notist: "dadoonet/gPYNGR"
 
-x:
-  - user: "RivieraDEV"
+social:
+  - type: x
+    user: "RivieraDEV"
     id: "1805137532293616010"
-
 links:
   - title: "Demo: Music search"
     url: "https://github.com/dadoonet/music-search"

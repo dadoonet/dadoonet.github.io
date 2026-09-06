@@ -15,17 +15,17 @@ talk-lang: en
 nolastmod: true
 draft: false
 
-
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/Diz4Uz"
 
-x:
-  - user: "dadoonet"
+social:
+  - type: x
+    user: "dadoonet"
     id: "1181525167568232449"
-  - user: "dadoonet"
+  - type: x
+    user: "dadoonet"
     id: "1181841539808550912"
-
 links:
   - title: "Code: legacy-search"
     url: "https://github.com/dadoonet/legacy-search"

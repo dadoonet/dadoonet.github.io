@@ -22,17 +22,22 @@ links:
     description: "This is the Kibana script I’m starting from when doing the talk"
 aliases:
 - /n405CQ
-x:
-- user: beastiejob
-  id: '1219495744538845184'
-- user: beastiejob
-  id: '1220784120776876032'
-- user: beastiejob
-  id: '1222533810883104769'
-- user: beastiejob
-  id: '1227628527765393408'
-- user: dadoonet
-  id: '1225374806775824386'
+social:
+  - type: x
+    user: "beastiejob"
+    id: "1219495744538845184"
+  - type: x
+    user: "beastiejob"
+    id: "1220784120776876032"
+  - type: x
+    user: "beastiejob"
+    id: "1222533810883104769"
+  - type: x
+    user: "beastiejob"
+    id: "1227628527765393408"
+  - type: x
+    user: "dadoonet"
+    id: "1225374806775824386"
 ---
 Vous utilisez encore des requêtes SQL pour faire des recherches ? Vos utilisateurs vous reprochent de ne pas pouvoir chercher sur toutes les rubriques ? Votre temps de réponse moyen est supérieur à la demi-seconde avec seulement quelques millions de documents ? Il vous faut 3 jours pour produire des statistiques sur vos données ? Vous rêvez d’offrir une recherche “à la google” sur les données de votre SI ?
 

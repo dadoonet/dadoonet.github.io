@@ -16,37 +16,47 @@ talk-lang: fr
 nolastmod: true
 draft: false
 
-
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/0MI79Z"
 
-x:
-  - user: "dadoonet"
+social:
+  - type: x
+    user: "dadoonet"
     id: "1535292239622070275"
-  - user: "dadideo"
+  - type: x
+    user: "dadideo"
     id: "1535278383810191361"
-  - user: "dadideo"
+  - type: x
+    user: "dadideo"
     id: "1535279460546752516"
-  - user: "dadideo"
+  - type: x
+    user: "dadideo"
     id: "1535273724898836480"
-  - user: "dadideo"
+  - type: x
+    user: "dadideo"
     id: "1535256169899499521"
-  - user: "dadoonet"
+  - type: x
+    user: "dadoonet"
     id: "1535192114639753216"
-  - user: "mathieupassenau"
+  - type: x
+    user: "mathieupassenau"
     id: "1535179536052240385"
-  - user: "dadoonet"
+  - type: x
+    user: "dadoonet"
     id: "1535164971172102144"
-  - user: "dadoonet"
+  - type: x
+    user: "dadoonet"
     id: "1534948333411782657"
-  - user: "dadoonet"
+  - type: x
+    user: "dadoonet"
     id: "1534911297447505920"
-  - user: "dadoonet"
+  - type: x
+    user: "dadoonet"
     id: "1534560993879146496"
-  - user: "CampingSpeakers"
+  - type: x
+    user: "CampingSpeakers"
     id: "1531281778593472513"
-
 links:
   - title: "Blog: La potion magique pour faire progresser ta carrière"
     url: "/blog/2022-06-10-la-potion-magique-pour-faire-avancer-ta-carriere/"

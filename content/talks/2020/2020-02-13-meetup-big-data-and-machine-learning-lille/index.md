@@ -16,17 +16,17 @@ nolastmod: true
 draft: false
 pdf: "2020/2020-02-13-meetup-big-data-and-machine-learning-lille.pdf"
 
-
 # Speaker specific fields
 youtube: "_NXhiQM3Cl8"
 notist: "dadoonet/LvVK63"
 
-x:
-  - user: "dadoonet"
+social:
+  - type: x
+    user: "dadoonet"
     id: "1228349290403303424"
-  - user: "MeetupDataLille"
+  - type: x
+    user: "MeetupDataLille"
     id: "1227620844211441664"
-
 links:
   - title: "AuditD Rules"
     url: "https://github.com/linux-audit/audit-userspace/tree/master/rules"

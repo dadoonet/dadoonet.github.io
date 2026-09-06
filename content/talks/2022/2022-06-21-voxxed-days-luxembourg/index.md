@@ -17,19 +17,20 @@ nolastmod: true
 draft: false
 pdf: "2022/2022-06-21-voxxed-days-luxembourg.pdf"
 
-
 # Speaker specific fields
 youtube: "ozMF8ddY75g"
 notist: "dadoonet/MKrtPl"
 
-x:
-  - user: "voxxed_lu"
+social:
+  - type: x
+    user: "voxxed_lu"
     id: "1538172189047934977"
-  - user: "dadoonet"
+  - type: x
+    user: "dadoonet"
     id: "1539211376526254081"
-  - user: "dadoonet"
+  - type: x
+    user: "dadoonet"
     id: "1539210577121255425"
-
 links:
   - title: "Documentation: FSCrawler"
     url: "https://fscrawler.readthedocs.io/"

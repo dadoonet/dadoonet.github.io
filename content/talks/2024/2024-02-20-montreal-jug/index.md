@@ -17,17 +17,17 @@ nolastmod: true
 draft: false
 pdf: "2024/2024-02-20-montreal-jug.pdf"
 
-
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/95YNWI"
 
-x:
-  - user: "montrealjug"
+social:
+  - type: x
+    user: "montrealjug"
     id: "1757537779922141190"
-  - user: "dadoonet"
+  - type: x
+    user: "dadoonet"
     id: "1759599463780294975"
-
 links:
   - title: "Demo: Humming search"
     url: "https://github.com/dadoonet/music-search"

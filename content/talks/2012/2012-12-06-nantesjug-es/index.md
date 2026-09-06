@@ -17,14 +17,16 @@ nolastmod: true
 draft: false
 pdf: "2012/2012-12-06-nantesjug-es.pdf"
 
-
 # Speaker specific fields
-x:
-  - user: "dadoonet"
+social:
+  - type: x
+    user: "dadoonet"
     id: "273853624004784128"
-  - user: "clescot"
+  - type: x
+    user: "clescot"
     id: "276776502018854912"
-  - user: "clescot"
+  - type: x
+    user: "clescot"
     id: "276750841346678784"
 ---
 Cette soirée est faite pour vous si :

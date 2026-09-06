@@ -13,19 +13,20 @@ nolastmod: true
 draft: false
 pdf: "2020/2020-06-16-stackconf.pdf"
 
-
 # Speaker specific fields
 youtube: "BGVPV8CcLEg"
 notist: "dadoonet/oBt281"
 
-x:
-  - user: "NetwaysEvents"
+social:
+  - type: x
+    user: "NetwaysEvents"
     id: "1229687755699040256"
-  - user: "NetwaysEvents"
+  - type: x
+    user: "NetwaysEvents"
     id: "1226084515854024704"
-  - user: "dadoonet"
+  - type: x
+    user: "dadoonet"
     id: "1272806273826856960"
-
 links:
   - title: "AuditD Rules"
     url: "https://github.com/linux-audit/audit-userspace/tree/master/rules"

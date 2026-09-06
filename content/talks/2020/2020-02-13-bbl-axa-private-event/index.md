@@ -16,21 +16,23 @@ nolastmod: true
 draft: false
 pdf: "2020/2020-02-13-bbl-axa-private-event.pdf"
 
-
 # Speaker specific fields
 # youtube: ""
 notist: "dadoonet/jbmWDe"
 
-x:
-  - user: "M4kn4sh"
+social:
+  - type: x
+    user: "M4kn4sh"
     id: "1227923584095526913"
-  - user: "dadoonet"
+  - type: x
+    user: "dadoonet"
     id: "1227903232086769664"
-  - user: "dadoonet"
+  - type: x
+    user: "dadoonet"
     id: "1227876396892139520"
-  - user: "dadoonet"
+  - type: x
+    user: "dadoonet"
     id: "1227975436971495426"
-
 links:
   - title: "Demo: Kibana script for BBL"
     url: "https://gist.github.com/dadoonet/f911291c4dd19b0802031db3064c648f"

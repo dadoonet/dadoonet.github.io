@@ -30,10 +30,10 @@ links:
     url: "https://openfeedback.io/afupday2026lille/2026-05-22/5471"
     description: "L'open feedback de la session"
 
-x:
-  - user: "dadoonet"
+social:
+  - type: x
+    user: "dadoonet"
     id: "2057902353588559912"
-
 aliases:
   - /afupdaylille26
 ---

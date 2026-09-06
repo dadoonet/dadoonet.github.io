@@ -17,23 +17,26 @@ nolastmod: true
 draft: false
 pdf: "2019/2019-04-09-bbl-helioparc.pdf"
 
-
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/YYb9Vd"
 
-x:
-  - user: "ElasticFR"
+social:
+  - type: x
+    user: "ElasticFR"
     id: "1112642239656808448"
-  - user: "dadoonet"
+  - type: x
+    user: "dadoonet"
     id: "1113127769590894594"
-  - user: "dadoonet"
+  - type: x
+    user: "dadoonet"
     id: "1115523935410511873"
-  - user: "dadoonet"
+  - type: x
+    user: "dadoonet"
     id: "1115545496611971072"
-  - user: "dadoonet"
+  - type: x
+    user: "dadoonet"
     id: "1115549903583891456"
-
 links:
   - title: "Une ancienne vidéo (2015) sur le même sujet"
     url: "https://vimeo.com/129781775"

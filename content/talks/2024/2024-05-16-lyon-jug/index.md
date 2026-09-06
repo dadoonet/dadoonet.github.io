@@ -17,23 +17,26 @@ nolastmod: true
 draft: false
 pdf: "2024/2024-05-16-lyon-jug.pdf"
 
-
 # Speaker specific fields
 youtube: "VzZd51c6vn8"
 notist: "dadoonet/2IUh0h"
 
-x:
-  - user: "dadoonet"
+social:
+  - type: x
+    user: "dadoonet"
     id: "1785216266212430010"
-  - user: "dadoonet"
+  - type: x
+    user: "dadoonet"
     id: "1785251597490024745"
-  - user: "dadoonet"
+  - type: x
+    user: "dadoonet"
     id: "1791382609504657642"
-  - user: "LyonJUG"
+  - type: x
+    user: "LyonJUG"
     id: "1791171551770947950"
-  - user: "dadoonet"
+  - type: x
+    user: "dadoonet"
     id: "1791149498963804593"
-
 links:
   - title: "Demo: Music search"
     url: "https://github.com/dadoonet/music-search"

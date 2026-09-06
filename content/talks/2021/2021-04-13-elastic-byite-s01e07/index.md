@@ -13,7 +13,6 @@ talk-lang: en
 nolastmod: true
 draft: false
 
-
 # Speaker specific fields
 youtube: "DddClSrRTm4"
 notist: "dadoonet/8z5taa"
@@ -22,12 +21,13 @@ links:
   - title: "Repository Demo"
     url: "https://github.com/dadoonet/demo-reindex-aliases"
 
-x:
-- user: dadoonet
-  id: '1371393264377589762'
-- user: dadoonet
-  id: '1371773235365347332'
-
+social:
+  - type: x
+    user: "dadoonet"
+    id: "1371393264377589762"
+  - type: x
+    user: "dadoonet"
+    id: "1371773235365347332"
 aliases:
   - /8z5taa
 ---

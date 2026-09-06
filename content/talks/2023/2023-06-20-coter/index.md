@@ -16,15 +16,16 @@ nolastmod: true
 draft: false
 pdf: "2023/2023-06-20-coter.pdf"
 
-
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/StaCjL"
 
-x:
-  - user: "dadoonet"
+social:
+  - type: x
+    user: "dadoonet"
     id: "1671185836690341888"
-  - user: "dadoonet"
+  - type: x
+    user: "dadoonet"
     id: "1671103754186227716"
 aliases:
   - /StaCjL

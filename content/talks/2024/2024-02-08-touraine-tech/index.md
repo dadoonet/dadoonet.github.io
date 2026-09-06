@@ -17,15 +17,14 @@ nolastmod: true
 draft: false
 pdf: "2024/2024-02-08-touraine-tech.pdf"
 
-
 # Speaker specific fields
 youtube: "ugvhva91GIs"
 notist: "dadoonet/XH5KNi"
 
-x:
-  - user: "tourainetech"
+social:
+  - type: x
+    user: "tourainetech"
     id: "1745717440724586899"
-
 links:
   - title: "Demo: Music search"
     url: "https://github.com/dadoonet/music-search"

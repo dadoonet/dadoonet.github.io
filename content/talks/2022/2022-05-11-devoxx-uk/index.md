@@ -17,19 +17,20 @@ nolastmod: true
 draft: false
 pdf: "2022/2022-05-11-devoxx-uk.pdf"
 
-
 # Speaker specific fields
 youtube: "iD9k9pnUwYY"
 notist: "dadoonet/95o6QT"
 
-x:
-  - user: "dadoonet"
+social:
+  - type: x
+    user: "dadoonet"
     id: "1503711055608004608"
-  - user: "DevoxxUK"
+  - type: x
+    user: "DevoxxUK"
     id: "1507331474135076865"
-  - user: "DevoxxUK"
+  - type: x
+    user: "DevoxxUK"
     id: "1541738182714220544"
-
 links:
   - title: "Documentation: FSCrawler"
     url: "https://fscrawler.readthedocs.io/"

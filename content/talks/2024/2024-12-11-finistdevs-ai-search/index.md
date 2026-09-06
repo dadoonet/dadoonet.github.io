@@ -17,22 +17,23 @@ nolastmod: true
 draft: false
 pdf: "2024/2024-12-11-finistdevs-ai-search.pdf"
 
-
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/jvfPp8"
 
-
-x:
-- user: FinistDevs
-  id: '1862009997942497506'
-- user: FinistDevs
-  id: '1866821061746057452'
-- user: dadoonet
-  id: '1866958763883630617'
-- user: clever_cloudFR
-  id: '1866152632815145462'
-
+social:
+  - type: x
+    user: "FinistDevs"
+    id: "1862009997942497506"
+  - type: x
+    user: "FinistDevs"
+    id: "1866821061746057452"
+  - type: x
+    user: "dadoonet"
+    id: "1866958763883630617"
+  - type: x
+    user: "clever_cloudFR"
+    id: "1866152632815145462"
 links:
   - title: "Notebook demo Hummingsearch"
     url: "https://github.com/dadoonet/music-search"

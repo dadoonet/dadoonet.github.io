@@ -13,15 +13,14 @@ talk-lang: en
 nolastmod: true
 draft: false
 
-
 # Speaker specific fields
 youtube: "DFbFMJ4p2vM"
 notist: dadoonet/qToQd7
 
-x:
-- user: dadoonet
-  id: '1455807270386810880'
-
+social:
+  - type: x
+    user: "dadoonet"
+    id: "1455807270386810880"
 aliases:
 - /bqMosJ
 ---

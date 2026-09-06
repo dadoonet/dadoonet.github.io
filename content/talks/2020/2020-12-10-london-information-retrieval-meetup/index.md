@@ -24,18 +24,21 @@ links:
   - title: "Blog post part 3"
     url: "https://www.elastic.co/blog/enriching-your-postal-addresses-with-the-elastic-stack-part-3"
 
-
 aliases:
 - /UAqIx5
-x:
-- user: dadoonet
-  id: '1331552826418401280'
-- user: dadoonet
-  id: '1336933668552466435'
-- user: dadoonet
-  id: '1337095379012247553'
-- user: dadoonet
-  id: '1337117531493031936'
+social:
+  - type: x
+    user: "dadoonet"
+    id: "1331552826418401280"
+  - type: x
+    user: "dadoonet"
+    id: "1336933668552466435"
+  - type: x
+    user: "dadoonet"
+    id: "1337095379012247553"
+  - type: x
+    user: "dadoonet"
+    id: "1337117531493031936"
 ---
 > Come and learn how you can enrich your existing data with normalized postal addresses with geo location points thanks to open data and [BANO project](https://bano.openstreetmap.fr/data/).
 

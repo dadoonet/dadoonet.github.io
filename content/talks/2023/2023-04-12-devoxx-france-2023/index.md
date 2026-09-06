@@ -17,17 +17,17 @@ nolastmod: true
 draft: false
 pdf: "2023/2023-04-12-devoxx-france-2023.pdf"
 
-
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/dnEdLV"
 
-x:
-  - user: "dadoonet"
+social:
+  - type: x
+    user: "dadoonet"
     id: "1626194106346094592"
-  - user: "dadoonet"
+  - type: x
+    user: "dadoonet"
     id: "1621486584032907265"
-
 links:
   - title: "Workshop instructions"
     url: "https://github.com/dadoonet/DevoxxFR-2023"

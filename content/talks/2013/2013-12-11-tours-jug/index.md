@@ -17,17 +17,22 @@ draft: false
 
 attendees: 30
 
-x:
-  - user: BitardMichael
-    id: 410839500437598208
-  - user: jollivetc
-    id: 410838390817710080
-  - user: ptitbob
-    id: 410849187526627328
-  - user: toursjug
-    id: 410934289266933761
-  - user: Cedric_Gatay
-    id: 411038842066849792
+social:
+  - type: x
+    user: "BitardMichael"
+    id: "410839500437598208"
+  - type: x
+    user: "jollivetc"
+    id: "410838390817710080"
+  - type: x
+    user: "ptitbob"
+    id: "410849187526627328"
+  - type: x
+    user: "toursjug"
+    id: "410934289266933761"
+  - type: x
+    user: "Cedric_Gatay"
+    id: "411038842066849792"
 ---
 
 Vous utilisez encore des requêtes SQL pour faire des recherches ? Vos utilisateurs vous reprochent de ne pas pouvoir chercher sur toutes les rubriques ? Votre temps de réponse moyen est supérieur à la demi-seconde avec seulement quelques millions de documents ? Il vous faut 3 jours pour produire des statistiques sur vos données ? Vous rêvez d'offrir une recherche "à la google" sur les données de votre SI ? Ne cherchez plus ! Cette conférence est faite pour vous.

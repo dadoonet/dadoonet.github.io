@@ -17,21 +17,23 @@ nolastmod: true
 draft: false
 pdf: "2024/2024-05-14-alpes-jug.pdf"
 
-
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/Pylt8I"
 
-x:
-  - user: "dadoonet"
+social:
+  - type: x
+    user: "dadoonet"
     id: "1783870344308171086"
-  - user: "dadoonet"
+  - type: x
+    user: "dadoonet"
     id: "1789934043665973739"
-  - user: "shacharmirkin"
+  - type: x
+    user: "shacharmirkin"
     id: "1790443359175102919"
-  - user: "shacharmirkin"
+  - type: x
+    user: "shacharmirkin"
     id: "1790474993119137813"
-
 links:
   - title: "Page de l’évènement"
     url: "https://www.meetup.com/alpesjug/events/299609510/"

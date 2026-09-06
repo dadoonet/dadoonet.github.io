@@ -30,18 +30,21 @@ links:
     url: "https://david.pilato.fr/blog/2015/05/09/advanced-search-for-your-legacy-application/"
     description: "This blog post describes the major steps I’m doing while on stage. It has not been updated though so it’s better to check out the real code on github."
 
-
 aliases:
 - /2IKuCz
-x:
-- user: dadoonet
-  id: '1315956406533619717'
-- user: dadoonet
-  id: '1315956407938752513'
-- user: dadoonet
-  id: '1316051980410859525'
-- user: progmag
-  id: '1312040274424602625'
+social:
+  - type: x
+    user: "dadoonet"
+    id: "1315956406533619717"
+  - type: x
+    user: "dadoonet"
+    id: "1315956407938752513"
+  - type: x
+    user: "dadoonet"
+    id: "1316051980410859525"
+  - type: x
+    user: "progmag"
+    id: "1312040274424602625"
 ---
 Comment mixer SQL et NoSQL sans faire la révolution ?
 

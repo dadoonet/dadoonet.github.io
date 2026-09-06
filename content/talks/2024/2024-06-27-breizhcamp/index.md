@@ -17,23 +17,26 @@ nolastmod: true
 draft: false
 pdf: "2024/2024-06-27-breizhcamp.pdf"
 
-
 # Speaker specific fields
 youtube: "mzK6kym03K8"
 notist: "dadoonet/Rm6lVd"
 
-x:
-  - user: "dadoonet"
+social:
+  - type: x
+    user: "dadoonet"
     id: "1805508048858849526"
-  - user: "dadoonet"
+  - type: x
+    user: "dadoonet"
     id: "1806327210854228388"
-  - user: "hlepesant"
+  - type: x
+    user: "hlepesant"
     id: "1806307410572611766"
-  - user: "dadoonet"
+  - type: x
+    user: "dadoonet"
     id: "1805946110566912303"
-  - user: "dadoonet"
+  - type: x
+    user: "dadoonet"
     id: "1806258672676360285"
-
 links:
   - title: "Demo: Music search"
     url: "https://github.com/dadoonet/music-search"

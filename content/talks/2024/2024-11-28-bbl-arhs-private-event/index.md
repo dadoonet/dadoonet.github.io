@@ -17,15 +17,14 @@ nolastmod: true
 draft: false
 pdf: "2024/2024-11-28-bbl-arhs-private-event.pdf"
 
-
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/7bwbwj"
 
-x:
-  - user: "dadoonet"
+social:
+  - type: x
+    user: "dadoonet"
     id: "1862255418023493771"
-
 links:
   - title: "Demo: Music search"
     url: "https://github.com/dadoonet/music-search"

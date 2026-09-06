@@ -17,21 +17,23 @@ nolastmod: true
 draft: false
 pdf: "2024/2024-05-15-geneva-jug.pdf"
 
-
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/ecDUt6"
 
-x:
-  - user: "GenevaJUG"
+social:
+  - type: x
+    user: "GenevaJUG"
     id: "1788111257741951235"
-  - user: "dadoonet"
+  - type: x
+    user: "dadoonet"
     id: "1790304795753947142"
-  - user: "dadoonet"
+  - type: x
+    user: "dadoonet"
     id: "1790880213884076524"
-  - user: "dadoonet"
+  - type: x
+    user: "dadoonet"
     id: "1790871185216929808"
-
 links:
   - title: "Demo: Music search"
     url: "https://github.com/dadoonet/music-search"

@@ -16,17 +16,17 @@ talk-lang: en
 nolastmod: true
 draft: false
 
-
 # Speaker specific fields
 youtube: "zJjVnp1davo"
 notist: "dadoonet/TN5yX9"
 
-x:
-  - user: "dadoonet"
+social:
+  - type: x
+    user: "dadoonet"
     id: "1724109443783082295"
-  - user: "dadoonet"
+  - type: x
+    user: "dadoonet"
     id: "1727277492808085806"
-
 links:
   - title: "Blog: Enriching Your Postal Addresses With the Elastic Stack - Part 1"
     url: "https://www.elastic.co/blog/enriching-your-postal-addresses-with-the-elastic-stack-part-1"

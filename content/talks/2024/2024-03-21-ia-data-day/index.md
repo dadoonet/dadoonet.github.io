@@ -17,17 +17,17 @@ nolastmod: true
 draft: false
 pdf: "2024/2024-03-21-ia-data-day.pdf"
 
-
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/7t6iOi"
 
-x:
-  - user: "CapitaleDev"
+social:
+  - type: x
+    user: "CapitaleDev"
     id: "1763140301978214751"
-  - user: "dadoonet"
+  - type: x
+    user: "dadoonet"
     id: "1767507163696484432"
-
 links:
   - title: "Demo: Music search"
     url: "https://github.com/dadoonet/music-search"

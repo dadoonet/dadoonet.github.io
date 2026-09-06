@@ -17,31 +17,38 @@ nolastmod: true
 draft: false
 pdf: "2024/2024-05-21-tadx.pdf"
 
-
 # Speaker specific fields
 youtube: "bOQlpOwiRdk"
 notist: "dadoonet/snE5A3"
 
-x:
-  - user: "TADx_group"
+social:
+  - type: x
+    user: "TADx_group"
     id: "1792918275078373843"
-  - user: "TADx_group"
+  - type: x
+    user: "TADx_group"
     id: "1792888067550044424"
-  - user: "dadoonet"
+  - type: x
+    user: "dadoonet"
     id: "1785247060444278853"
-  - user: "dadoonet"
+  - type: x
+    user: "dadoonet"
     id: "1785971031154327666"
-  - user: "dadoonet"
+  - type: x
+    user: "dadoonet"
     id: "1787406711357124760"
-  - user: "TADx_group"
+  - type: x
+    user: "TADx_group"
     id: "1787421450300760147"
-  - user: "TADx_group"
+  - type: x
+    user: "TADx_group"
     id: "1790636400687157639"
-  - user: "TADx_group"
+  - type: x
+    user: "TADx_group"
     id: "1792450183047025005"
-  - user: "dadoonet"
+  - type: x
+    user: "dadoonet"
     id: "1792820717891011049"
-
 links:
   - title: "Demo: ES|QL"
     url: "https://github.com/dadoonet/esql-demo"

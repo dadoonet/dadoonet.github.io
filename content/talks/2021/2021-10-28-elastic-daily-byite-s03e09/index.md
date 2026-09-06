@@ -13,15 +13,14 @@ nolastmod: true
 draft: false
 pdf: "2021/2021-10-28-elastic-daily-byite-s03e09.pdf"
 
-
 # Speaker specific fields
 youtube: "_vEAX28IcDg"
 notist: "dadoonet/EA5cki"
 
-x:
-- user: dadoonet
-  id: '1453649083902709763'
-
+social:
+  - type: x
+    user: "dadoonet"
+    id: "1453649083902709763"
 aliases:
   - /EA5cki
 ---

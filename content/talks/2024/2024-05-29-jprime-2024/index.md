@@ -17,19 +17,20 @@ nolastmod: true
 draft: false
 pdf: "2024/2024-05-29-jprime-2024.pdf"
 
-
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/NizzH6"
 
-x:
-  - user: "dadoonet"
+social:
+  - type: x
+    user: "dadoonet"
     id: "1795423218313912325"
-  - user: "piotrprz"
+  - type: x
+    user: "piotrprz"
     id: "1795743726465355921"
-  - user: "jPrimeConf"
+  - type: x
+    user: "jPrimeConf"
     id: "1759498858676056236"
-
 links:
   - title: "Demo: Music search"
     url: "https://github.com/dadoonet/music-search"

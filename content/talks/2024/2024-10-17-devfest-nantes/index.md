@@ -17,21 +17,23 @@ nolastmod: true
 draft: false
 pdf: "2024/2024-10-17-devfest-nantes.pdf"
 
-
 # Speaker specific fields
 youtube: "UW2ajjz3u9E"
 notist: "dadoonet/mQrRCI"
 
-x:
-  - user: "dadoonet"
+social:
+  - type: x
+    user: "dadoonet"
     id: "1803800821144097219"
-  - user: "dadoonet"
+  - type: x
+    user: "dadoonet"
     id: "1847174036712812915"
-  - user: "dadoonet"
+  - type: x
+    user: "dadoonet"
     id: "1851676231617634419"
-  - user: "dadoonet"
+  - type: x
+    user: "dadoonet"
     id: "1843247405610963165"
-
 links:
   - title: "Demo: Humming search"
     url: "https://github.com/dadoonet/music-search"
