@@ -28,9 +28,16 @@ pdf: "{{ substr .File.ContentBaseName 0 4 }}/{{ .File.ContentBaseName }}.pdf"
 #    url: ""
 #    description: ""
 
-#x:
-#  - user: "USERNAME"
+#social:
+#  - type: x
+#    user: "USERNAME"
 #    id: "TWEET_ID"
+#  - type: bluesky
+#    user: "HANDLE.bsky.social"
+#    id: "POST_RKEY"
+#  - type: linkedin
+#    user: "VANITY-SLUG"
+#    id: "ACTIVITY_ID"
 ---
 
 Write your abstract here.

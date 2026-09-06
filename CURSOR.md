@@ -96,10 +96,17 @@ links:
     url: "https://..."
     description: "Link description"
 
-# Optional - X Tweets/Posts
-x:
-  - user: "dadoonet"
+# Optional - Social posts (X, Bluesky, LinkedIn)
+social:
+  - type: x
+    user: "dadoonet"
     id: "1234567890"
+  - type: bluesky
+    user: "klf37.bsky.social"
+    id: "3muol6taevk2h"
+  - type: linkedin
+    user: "jug-summer-camp"
+    id: "7501648269345812481"
 
 # Optional - Number of attendees
 attendees: 200
@@ -427,9 +434,13 @@ In `layouts/partials/slidesLabel.html`, displays a badge if the talk has PDF sli
 
 In `layouts/partials/videoLabel.html`, displays a badge if the talk has a YouTube video available.
 
-### X Embed Partial
+### Social Embed Partials
 
-In `layouts/partials/x-embed.html`, embeds X (Twitter) posts.
+`layouts/partials/social-embed.html` dispatches a talk `social:` item by `type`.
+
+- `layouts/partials/x-embed.html` — X/Twitter oEmbed
+- `layouts/partials/bluesky-embed.html` — Bluesky oEmbed
+- `layouts/partials/linkedin-embed.html` — LinkedIn iframe (`urn:li:activity:{id}`)
 
 ---
 
