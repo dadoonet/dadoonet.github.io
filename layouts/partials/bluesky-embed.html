@@ -20,7 +20,7 @@
       {{- end -}}
     {{- else with .Value -}}
       {{- $html := (. | transform.Unmarshal).html -}}
-      {{- $html = $html | replaceRE `<script[^>]*src="https://embed\.bsky\.app/embed\.js"[^>]*>\s*</script>` "" -}}
+      {{- $html = $html | replaceRE `<script[^>]*src="https://embed\.bsky\.app/[^"]*embed\.js"[^>]*>\s*</script>` "" -}}
       {{- $html | safeHTML -}}
     {{- else -}}
       {{- if $.ctx -}}

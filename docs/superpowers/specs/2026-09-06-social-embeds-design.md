@@ -66,11 +66,11 @@ Same pattern as X, without Hugo privacy config (none exists for Bluesky):
 1. Post URL: `https://bsky.app/profile/{user}/post/{id}`
 2. `GET https://embed.bsky.app/oembed?url={post URL}`
 3. Unmarshal JSON, take `.html`.
-4. Strip any `<script … src="https://embed.bsky.app/embed.js"…>` from that HTML so the script is not repeated per post.
+4. Strip any `<script … src="https://embed.bsky.app/…embed.js"…>` from that HTML so the script is not repeated per post.
 5. Output the remaining HTML as `safeHTML`.
 6. oEmbed failure: `warnidf`, build continues.
 
-Load `https://embed.bsky.app/embed.js` once in the talk page `js` block if at least one item has `type: bluesky`.
+Load `https://embed.bsky.app/static/embed.js` once in the talk page `js` block if at least one item has `type: bluesky`. The oEmbed payload uses that URL (`/static/embed.js`), not `/embed.js`.
 
 ### `layouts/partials/linkedin-embed.html`
 
@@ -105,7 +105,7 @@ No LinkedIn script tag.
 Replace `{{ with .Params.x }} … widgets.js` with scans of `.Params.social`:
 
 - Any `type: x` → `https://platform.twitter.com/widgets.js` (same as today)
-- Any `type: bluesky` → `https://embed.bsky.app/embed.js`
+- Any `type: bluesky` → `https://embed.bsky.app/static/embed.js`
 - LinkedIn → nothing
 
 Honor `site.Config.Privacy.X.Disable` for the widgets.js include as well.

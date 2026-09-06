@@ -15,7 +15,7 @@
 - Display order is the list order. One « Buzz et feedback » block. Wrapper class `social-embeds`.
 - Heading/intro copy unchanged: « Buzz et feedback » / « Here's what was said about this presentation on social media. »
 - X: keep `publish.x.com/oembed` + `widgets.js`. Honor `site.Config.Privacy.X.Disable`.
-- Bluesky: `embed.bsky.app/oembed` for `https://bsky.app/profile/{user}/post/{id}`. Strip per-item `embed.js`. Load `embed.js` once on the page if any `type: bluesky`.
+- Bluesky: `embed.bsky.app/oembed` for `https://bsky.app/profile/{user}/post/{id}`. Strip per-item `embed.js`. Load `https://embed.bsky.app/static/embed.js` once on the page if any `type: bluesky`.
 - LinkedIn: iframe `https://www.linkedin.com/embed/feed/update/urn:li:activity:{id}` only. No oEmbed, no script, no fallback link. CSS: wrapper max-width 550px, centered; iframe width 100%, min-height 600px, border 0.
 - Blog shortcode `{{< x >}}` is unchanged.
 - JUG Summer Camp 2026 social list is exactly: X `dadoonet`/`2095849248780616171`, Bluesky `klf37.bsky.social`/`3muol6taevk2h`, LinkedIn `jug-summer-camp`/`7501648269345812481`, LinkedIn `jug-summer-camp`/`7501560302577025025`.
@@ -59,7 +59,7 @@
       {{- end -}}
     {{- else with .Value -}}
       {{- $html := (. | transform.Unmarshal).html -}}
-      {{- $html = $html | replaceRE `<script[^>]*src="https://embed\.bsky\.app/embed\.js"[^>]*>\s*</script>` "" -}}
+      {{- $html = $html | replaceRE `<script[^>]*src="https://embed\.bsky\.app/[^"]*embed\.js"[^>]*>\s*</script>` "" -}}
       {{- $html | safeHTML -}}
     {{- else -}}
       {{- if $.ctx -}}
@@ -201,7 +201,7 @@ New:
     {{ end }}
   {{ end }}
   {{ with where . "type" "bluesky" }}
-<script async src="https://embed.bsky.app/embed.js" charset="utf-8"></script>
+<script async src="https://embed.bsky.app/static/embed.js" charset="utf-8"></script>
   {{ end }}
 {{ end }}
 ```
