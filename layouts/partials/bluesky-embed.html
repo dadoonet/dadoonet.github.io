@@ -1,0 +1,35 @@
+{{- /*
+  Partial pour afficher un embed Bluesky
+  Paramètres attendus :
+    - id: la rkey du post
+    - user: le handle (ex: klf37.bsky.social)
+    - ctx: (optionnel) le contexte pour les messages d'erreur
+*/ -}}
+{{- $id := .id -}}
+{{- $user := .user -}}
+{{- if and $id $user -}}
+  {{- $url := printf "https://bsky.app/profile/%v/post/%v" $user $id -}}
+  {{- $query := querify "url" $url -}}
+  {{- $request := printf "https://embed.bsky.app/oembed?%s" $query -}}
+  {{- with try (resources.GetRemote $request) -}}
+    {{- with .Err -}}
+      {{- if $.ctx -}}
+        {{- warnidf "bluesky-embed-getremote" "The bluesky-embed partial was unable to retrieve the remote data: %s. See %s" . $.ctx.Position -}}
+      {{- else -}}
+        {{- warnidf "bluesky-embed-getremote" "The bluesky-embed partial was unable to retrieve the remote data: %s" . -}}
+      {{- end -}}
+    {{- else with .Value -}}
+      {{- $html := (. | transform.Unmarshal).html -}}
+      {{- $html = $html | replaceRE `<script[^>]*src="https://embed\.bsky\.app/embed\.js"[^>]*>\s*</script>` "" -}}
+      {{- $html | safeHTML -}}
+    {{- else -}}
+      {{- if $.ctx -}}
+        {{- warnidf "bluesky-embed-getremote" "The bluesky-embed partial was unable to retrieve the remote data for %s. See %s" $url $.ctx.Position -}}
+      {{- else -}}
+        {{- warnidf "bluesky-embed-getremote" "The bluesky-embed partial was unable to retrieve the remote data for %s" $url -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- else -}}
+  {{- errorf "The bluesky-embed partial requires two parameters: user and id. Got user=%v, id=%v" $user $id -}}
+{{- end -}}

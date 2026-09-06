@@ -1,0 +1,19 @@
+{{- /*
+  Partial pour afficher un embed LinkedIn
+  Paramètres attendus :
+    - id: l'activity id
+    - user: le slug vanity (requis par le contrat, non utilisé dans l'iframe)
+*/ -}}
+{{- $id := .id -}}
+{{- $user := .user -}}
+{{- if and $id $user -}}
+<div class="linkedin-embed">
+  <iframe
+    src="https://www.linkedin.com/embed/feed/update/urn:li:activity:{{ $id }}"
+    title="LinkedIn post"
+    loading="lazy"
+    allowfullscreen></iframe>
+</div>
+{{- else -}}
+  {{- errorf "The linkedin-embed partial requires two parameters: user and id. Got user=%v, id=%v" $user $id -}}
+{{- end -}}
