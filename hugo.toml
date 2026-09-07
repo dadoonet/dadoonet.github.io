@@ -1,12 +1,14 @@
 baseURL = 'https://david.pilato.fr'
 title = 'David Pilato'
 
-languageCode = 'en-us'
+locale = 'en-us'
 defaultContentLanguage = "en"
 
-theme = "dream"
-
 enableRobotsTXT = true
+
+[module]
+  [[module.imports]]
+    path = "github.com/dadoonet/hugo-theme-devrel"
 
 [taxonomies]
 category = "categories"
@@ -74,6 +76,12 @@ online = "🌎"
 [params.talks]
 # PDF base URL for external storage (Google Cloud Storage)
 pdf_base_url = "https://storage.googleapis.com/dadoonet-talks/slides/"
+
+[params.search]
+endpoint = "https://api.querybox.dev/david.pilato.fr/v1"
+title = "Search my pages"
+primaryColor = "#000000"
+theme = "auto"
 
 [params.advanced]
 customCSS = ["css/custom.css"]
