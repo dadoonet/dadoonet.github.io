@@ -17,19 +17,14 @@ nolastmod: true
 draft: false
 pdf: "2022/2022-03-18-bbl-accenture-private-event.pdf"
 
-
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/OjlDev"
 
-x:
-  - user: "dadoonet"
-    id: "1504474921715466259"
-  - user: "dadoonet"
-    id: "1504770694818963458"
-  - user: "dadoonet"
-    id: "1504799847735562241"
-
+social:
+  - "https://x.com/dadoonet/status/1504474921715466259"
+  - "https://x.com/dadoonet/status/1504770694818963458"
+  - "https://x.com/dadoonet/status/1504799847735562241"
 links:
   - title: "Demo: Kibana script for BBL"
     url: "https://gist.github.com/dadoonet/f911291c4dd19b0802031db3064c648f"

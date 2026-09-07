@@ -18,19 +18,13 @@ draft: false
 
 attendees: 150
 
-x:
-  - user: "bleskes"
-    id: "433306971887124480"
-  - user: "GeromeEgron"
-    id: "433315747922968576"
-  - user: "_mdulac"
-    id: "433316089272221697"
-  - user: "gbitaudeau"
-    id: "433316931962408961"
-  - user: "nhelleringer"
-    id: "433319931325976576"
-  - user: "thierryleriche"
-    id: "433527758367371266"
+social:
+  - "https://x.com/bleskes/status/433306971887124480"
+  - "https://x.com/GeromeEgron/status/433315747922968576"
+  - "https://x.com/_mdulac/status/433316089272221697"
+  - "https://x.com/gbitaudeau/status/433316931962408961"
+  - "https://x.com/nhelleringer/status/433319931325976576"
+  - "https://x.com/thierryleriche/status/433527758367371266"
 pdf: "2014/2014-02-11-paris-jug.pdf"
 ---
 Et si on fabriquait des dashboards selon notre besoin au moment où nous en avons besoin ?

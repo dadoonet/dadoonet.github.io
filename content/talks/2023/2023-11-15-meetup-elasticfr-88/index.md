@@ -17,7 +17,6 @@ nolastmod: true
 draft: false
 pdf: "2023/2023-11-15-meetup-elasticfr-88.pdf"
 
-
 # Speaker specific fields
 youtube: "h8XIj55jPPY"
 notist: "dadoonet/lJdisl"
@@ -26,22 +25,14 @@ links:
   - title: "Notebook demo Hummingsearch"
     url: "https://github.com/dadoonet/music-search"
 
-x:
-  - user: "ElasticFR"
-    id: "1720464601035505856"
-  - user: "ElasticFR"
-    id: "1725174766582018088"
-  - user: "dadoonet"
-    id: "1725174636860649499"
-  - user: "ElasticFR"
-    id: "1722186194971238506"
-  - user: "ElasticFR"
-    id: "1724421171788071347"
-  - user: "ElasticFR"
-    id: "1724854060501585947"
-  - user: "dadoonet"
-    id: "1725059241818361961"
-
+social:
+  - "https://x.com/ElasticFR/status/1720464601035505856"
+  - "https://x.com/ElasticFR/status/1725174766582018088"
+  - "https://x.com/dadoonet/status/1725174636860649499"
+  - "https://x.com/ElasticFR/status/1722186194971238506"
+  - "https://x.com/ElasticFR/status/1724421171788071347"
+  - "https://x.com/ElasticFR/status/1724854060501585947"
+  - "https://x.com/dadoonet/status/1725059241818361961"
 aliases:
   - /lJdisl
 ---

@@ -13,7 +13,6 @@ talk-lang: en
 nolastmod: true
 draft: false
 
-
 # Speaker specific fields
 youtube: "pEV4yNlD5wI"
 notist: "dadoonet/Shtlza"
@@ -22,12 +21,9 @@ links:
   - title: "Repository Demo"
     url: "https://github.com/dadoonet/demo-text-analysis"
 
-x:
-- user: dadoonet
-  id: '1373935935230988288'
-- user: dadoonet
-  id: '1374309950118195205'
-
+social:
+  - "https://x.com/dadoonet/status/1373935935230988288"
+  - "https://x.com/dadoonet/status/1374309950118195205"
 aliases:
   - /Shtlza
 ---

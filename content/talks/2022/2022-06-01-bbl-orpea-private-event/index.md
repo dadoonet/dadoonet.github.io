@@ -17,17 +17,13 @@ nolastmod: true
 draft: false
 pdf: "2022/2022-06-01-bbl-orpea-private-event.pdf"
 
-
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/BmH2pV"
 
-x:
-  - user: "dadoonet"
-    id: "1531930362372308994"
-  - user: "dadoonet"
-    id: "1531936364161277958"
-
+social:
+  - "https://x.com/dadoonet/status/1531930362372308994"
+  - "https://x.com/dadoonet/status/1531936364161277958"
 links:
   - title: "Demo: Kibana script for BBL"
     url: "https://gist.github.com/dadoonet/f911291c4dd19b0802031db3064c648f"

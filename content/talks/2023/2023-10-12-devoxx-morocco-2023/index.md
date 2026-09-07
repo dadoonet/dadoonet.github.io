@@ -17,19 +17,14 @@ nolastmod: true
 draft: false
 pdf: "2023/2023-10-12-devoxx-morocco-2023.pdf"
 
-
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/r3NAek"
 
-x:
-  - user: "dadoonet"
-    id: "1710213302750748751"
-  - user: "dadoonet"
-    id: "1712049950169715066"
-  - user: "dadoonet"
-    id: "1712470259595379174"
-
+social:
+  - "https://x.com/dadoonet/status/1710213302750748751"
+  - "https://x.com/dadoonet/status/1712049950169715066"
+  - "https://x.com/dadoonet/status/1712470259595379174"
 links:
   - title: "Blog: ChatGPT and Elasticsearch: OpenAI meets private data"
     url: "https://www.elastic.co/blog/chatgpt-elasticsearch-openai-meets-private-data"

@@ -14,7 +14,6 @@ nolastmod: true
 draft: false
 pdf: "2021/2021-10-20-elastic-daily-byite-s03e03.pdf"
 
-
 # Speaker specific fields
 youtube: "PNkyniADrmk"
 notist: dadoonet/qToQd7
@@ -22,11 +21,9 @@ notist: dadoonet/qToQd7
 aliases:
 - /bqMosJ
 
-x:
-- user: dadoonet
-  id: '1450469176301264902'
-- user: dadoonet
-  id: '1450758690672234496'
+social:
+  - "https://x.com/dadoonet/status/1450469176301264902"
+  - "https://x.com/dadoonet/status/1450758690672234496"
 #- user: spinscale
 #  id: '1450752411166023683'
 ---

@@ -17,17 +17,13 @@ nolastmod: true
 draft: false
 pdf: "2022/2022-05-19-bbl-jolimoi-private-event.pdf"
 
-
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/N9RFFT"
 
-x:
-  - user: "dadoonet"
-    id: "1527214291576926208"
-  - user: "dadoonet"
-    id: "1527226605990469632"
-
+social:
+  - "https://x.com/dadoonet/status/1527214291576926208"
+  - "https://x.com/dadoonet/status/1527226605990469632"
 links:
   - title: "Demo: Kibana script for BBL"
     url: "https://gist.github.com/dadoonet/f911291c4dd19b0802031db3064c648f"

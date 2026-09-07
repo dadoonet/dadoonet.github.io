@@ -17,21 +17,15 @@ nolastmod: true
 draft: false
 pdf: "2024/2024-12-11-finistdevs-esql.pdf"
 
-
 # Speaker specific fields
 # youtube: ""
 notist: dadoonet/yZ71Zw
 
-x:
-- user: FinistDevs
-  id: '1862009997942497506'
-- user: FinistDevs
-  id: '1866821061746057452'
-- user: dadoonet
-  id: '1866958763883630617'
-- user: clever_cloudFR
-  id: '1866152632815145462'
-
+social:
+  - "https://x.com/FinistDevs/status/1862009997942497506"
+  - "https://x.com/FinistDevs/status/1866821061746057452"
+  - "https://x.com/dadoonet/status/1866958763883630617"
+  - "https://x.com/clever_cloudFR/status/1866152632815145462"
 links:
   - title: "Demo code"
     url: "https://github.com/dadoonet/esql-demo"
@@ -48,7 +42,6 @@ links:
   - title: "Java Demo code"
     url: "https://github.com/dadoonet/elasticsearch-java-client-demo"
     description: "The Java demo for ES|QL"
-
 
 aliases:
 - /yZ71Zw

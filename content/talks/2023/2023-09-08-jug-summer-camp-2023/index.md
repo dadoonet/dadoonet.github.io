@@ -17,23 +17,16 @@ nolastmod: true
 draft: false
 pdf: "2023/2023-09-08-jug-summer-camp-2023.pdf"
 
-
 # Speaker specific fields
 youtube: "VQLIn2-juzE"
 notist: "dadoonet/cPvYtw"
 
-x:
-  - user: "dadoonet"
-    id: "1698614376654414172"
-  - user: "wildagsx"
-    id: "1700126203070357548"
-  - user: "Lilian_Benoit"
-    id: "1700126177585774779"
-  - user: "jugsummercamp"
-    id: "1700129379555188943"
-  - user: "taalaran"
-    id: "1710211066024661079"
-
+social:
+  - "https://x.com/dadoonet/status/1698614376654414172"
+  - "https://x.com/wildagsx/status/1700126203070357548"
+  - "https://x.com/Lilian_Benoit/status/1700126177585774779"
+  - "https://x.com/jugsummercamp/status/1700129379555188943"
+  - "https://x.com/taalaran/status/1710211066024661079"
 links:
   - title: "Blog: ChatGPT and Elasticsearch: OpenAI meets private data"
     url: "https://www.elastic.co/blog/chatgpt-elasticsearch-openai-meets-private-data"

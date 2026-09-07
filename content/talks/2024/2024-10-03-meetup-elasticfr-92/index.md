@@ -17,23 +17,16 @@ nolastmod: true
 draft: false
 pdf: "2024/2024-10-03-meetup-elasticfr-92.pdf"
 
-
 # Speaker specific fields
 youtube: "-YhZ4w0hqRA"
 notist: "dadoonet/wlm9Cb"
 
-x:
-  - user: "ElasticFR"
-    id: "1836752110928453788"
-  - user: "ElasticFR"
-    id: "1837129598741402044"
-  - user: "ElasticFR"
-    id: "1840737674988011733"
-  - user: "dadoonet"
-    id: "1841748805303021600"
-  - user: "ElasticFR"
-    id: "1843207134567440484"
-
+social:
+  - "https://x.com/ElasticFR/status/1836752110928453788"
+  - "https://x.com/ElasticFR/status/1837129598741402044"
+  - "https://x.com/ElasticFR/status/1840737674988011733"
+  - "https://x.com/dadoonet/status/1841748805303021600"
+  - "https://x.com/ElasticFR/status/1843207134567440484"
 links:
   - title: "Demo: ES|QL"
     url: "https://github.com/dadoonet/esql-demo"

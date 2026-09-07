@@ -17,7 +17,6 @@ nolastmod: true
 draft: false
 pdf: "2024/2024-09-12-chti-jug-ai-search.pdf"
 
-
 # Speaker specific fields
 youtube: "Z1UlUf2g4_A"
 notist: "dadoonet/C6PfLA"
@@ -26,14 +25,10 @@ links:
   - title: "Notebook demo Hummingsearch"
     url: "https://github.com/dadoonet/music-search"
 
-x:
-- user: chtijug
-  id: '1830957835527823468'
-- user: dadoonet
-  id: '1831686218561536048'
-- user: jak78
-  id: '1834130746140672357'
-
+social:
+  - "https://x.com/chtijug/status/1830957835527823468"
+  - "https://x.com/dadoonet/status/1831686218561536048"
+  - "https://x.com/jak78/status/1834130746140672357"
 aliases:
   - /C6PfLA
 ---

@@ -16,15 +16,12 @@ talk-lang: fr
 nolastmod: true
 draft: false
 
-
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/xeKuih"
 
-x:
-  - user: "dadoonet"
-    id: "1171094462212296704"
-
+social:
+  - "https://x.com/dadoonet/status/1171094462212296704"
 links:
   - title: "Vidéo analogue"
     url: "/AsJxO2"

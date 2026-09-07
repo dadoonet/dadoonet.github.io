@@ -13,17 +13,13 @@ nolastmod: true
 draft: false
 pdf: "2020/2020-04-21-bbl-axa-private-event.pdf"
 
-
 # Speaker specific fields
 # youtube: ""
 notist: "dadoonet/sec6aR"
 
-x:
-  - user: "dadoonet"
-    id: "1252505305965039616"
-  - user: "dadoonet"
-    id: "1252520227319025664"
-
+social:
+  - "https://x.com/dadoonet/status/1252505305965039616"
+  - "https://x.com/dadoonet/status/1252520227319025664"
 links:
   - title: "Demo: Kibana script for BBL"
     url: "https://gist.github.com/dadoonet/f911291c4dd19b0802031db3064c648f"

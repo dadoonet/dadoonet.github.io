@@ -25,12 +25,9 @@ youtube: "ctxpPd7lSnA"
 pdf: "2013/2013-06-14-web-5.pdf"
 attendees: 100
 
-x:
-  - user: dadoonet
-    id: 346345104333750272
-  - user: dadoonet
-    id: 345889595923263488
-
+social:
+  - "https://x.com/dadoonet/status/346345104333750272"
+  - "https://x.com/dadoonet/status/345889595923263488"
 ---
 
 During this live coding session, Tugdual and David will take a classic full SQL application and rewrite it to NoSQL in 45 minutes.

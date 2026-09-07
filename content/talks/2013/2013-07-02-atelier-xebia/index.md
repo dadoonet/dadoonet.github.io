@@ -18,9 +18,8 @@ draft: false
 # Speaker specific fields
 pdf: "2013/2013-07-02-atelier-xebia.pdf"
 attendees: 15
-x:
-  - user: dadoonet
-    id: 351756602107371520
+social:
+  - "https://x.com/dadoonet/status/351756602107371520"
 ---
 
 

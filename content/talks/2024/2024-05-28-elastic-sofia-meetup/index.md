@@ -17,15 +17,12 @@ nolastmod: true
 draft: false
 pdf: "2024/2024-05-28-elastic-sofia-meetup.pdf"
 
-
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/D8f9kp"
 
-x:
-  - user: "dadoonet"
-    id: "1795528472749838482"
-
+social:
+  - "https://x.com/dadoonet/status/1795528472749838482"
 links:
   - title: "Demo: Humming search"
     url: "https://github.com/dadoonet/music-search"

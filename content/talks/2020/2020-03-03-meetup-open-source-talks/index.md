@@ -17,19 +17,14 @@ nolastmod: true
 draft: false
 pdf: "2020/2020-03-03-meetup-open-source-talks.pdf"
 
-
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/N3OH1e"
 
-x:
-  - user: "dadoonet"
-    id: "1230893564311326721"
-  - user: "dadoonet"
-    id: "1234959715043545089"
-  - user: "dadoonet"
-    id: "1234948440779624454"
-
+social:
+  - "https://x.com/dadoonet/status/1230893564311326721"
+  - "https://x.com/dadoonet/status/1234959715043545089"
+  - "https://x.com/dadoonet/status/1234948440779624454"
 links:
   - title: "AuditD Rules"
     url: "https://github.com/linux-audit/audit-userspace/tree/master/rules"

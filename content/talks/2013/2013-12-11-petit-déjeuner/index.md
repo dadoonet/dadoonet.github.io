@@ -18,8 +18,6 @@ draft: false
 
 attendees: 50
 
-x:
-  - user: gnuraph
-    id: 410717841575268352
-
+social:
+  - "https://x.com/gnuraph/status/410717841575268352"
 ---

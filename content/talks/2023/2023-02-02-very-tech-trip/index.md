@@ -16,17 +16,13 @@ nolastmod: true
 draft: false
 pdf: "2023/2023-02-02-very-tech-trip.pdf"
 
-
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/MyZpvU"
 
-x:
-  - user: "dadoonet"
-    id: "1611244392907522048"
-  - user: "dadoonet"
-    id: "1613080645844041729"
-
+social:
+  - "https://x.com/dadoonet/status/1611244392907522048"
+  - "https://x.com/dadoonet/status/1613080645844041729"
 links:
 
 aliases:

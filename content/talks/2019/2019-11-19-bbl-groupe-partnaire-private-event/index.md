@@ -16,15 +16,12 @@ nolastmod: true
 draft: false
 pdf: "2019/2019-11-19-bbl-groupe-partnaire-private-event.pdf"
 
-
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/EyFSsX"
 
-x:
-  - user: "dadoonet"
-    id: "1196742564424167424"
-
+social:
+  - "https://x.com/dadoonet/status/1196742564424167424"
 links:
   - title: "Demo: Kibana script for BBL"
     url: "https://gist.github.com/dadoonet/f911291c4dd19b0802031db3064c648f"

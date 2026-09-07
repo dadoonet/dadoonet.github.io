@@ -28,9 +28,10 @@ pdf: "{{ substr .File.ContentBaseName 0 4 }}/{{ .File.ContentBaseName }}.pdf"
 #    url: ""
 #    description: ""
 
-#x:
-#  - user: "USERNAME"
-#    id: "TWEET_ID"
+#social:
+#  - "https://x.com/USERNAME/status/TWEET_ID"
+#  - "https://bsky.app/profile/HANDLE.bsky.social/post/POST_RKEY"
+#  - "https://www.linkedin.com/embed/feed/update/urn:li:activity:ACTIVITY_ID"
 ---
 
 Write your abstract here.

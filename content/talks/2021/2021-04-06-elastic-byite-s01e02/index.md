@@ -14,7 +14,6 @@ nolastmod: true
 draft: false
 pdf: "2021/2021-04-06-elastic-byite-s01e02.pdf"
 
-
 # Speaker specific fields
 youtube: "egIKOjQi8JE"
 notist: dadoonet/nwSuc3
@@ -23,14 +22,10 @@ links:
   - title: "Repository Demo"
     url: "https://github.com/dadoonet/demo-index-templates-v2"
 
-x:
-- user: dadoonet
-  id: '1367879641415946249'
-- user: dadoonet
-  id: '1369236636173746178'
-- user: dadoonet
-  id: '1369259812933009409'
-
+social:
+  - "https://x.com/dadoonet/status/1367879641415946249"
+  - "https://x.com/dadoonet/status/1369236636173746178"
+  - "https://x.com/dadoonet/status/1369259812933009409"
 aliases:
 - /jTjq9d
 ---

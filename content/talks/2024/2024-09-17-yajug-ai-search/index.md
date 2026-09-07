@@ -17,15 +17,12 @@ nolastmod: true
 draft: false
 pdf: "2024/2024-09-17-yajug-ai-search.pdf"
 
-
 # Speaker specific fields
 # youtube: ""
 notist: dadoonet/yM67c3
 
-x:
-- user: dadoonet
-  id: '1833445549715923127'
-
+social:
+  - "https://x.com/dadoonet/status/1833445549715923127"
 links:
   - title: "Notebook demo Hummingsearch"
     url: "https://github.com/dadoonet/music-search"

@@ -17,19 +17,14 @@ nolastmod: true
 draft: false
 pdf: "2023/2023-01-10-bbl-ca-gip-private-event.pdf"
 
-
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/gVRYgY"
 
-x:
-  - user: "dadoonet"
-    id: "1612739209697132546"
-  - user: "dadoonet"
-    id: "1612789172846067712"
-  - user: "dadoonet"
-    id: "1612803234267029504"
-
+social:
+  - "https://x.com/dadoonet/status/1612739209697132546"
+  - "https://x.com/dadoonet/status/1612789172846067712"
+  - "https://x.com/dadoonet/status/1612803234267029504"
 links:
   - title: "Demo: Kibana script for BBL"
     url: "https://gist.github.com/dadoonet/f911291c4dd19b0802031db3064c648f"

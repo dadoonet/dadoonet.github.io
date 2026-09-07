@@ -16,17 +16,13 @@ nolastmod: true
 draft: false
 pdf: "2021/2021-11-10-opensource-experience.pdf"
 
-
 # Speaker specific fields
 youtube: "J03D9OeXC2Q"
 notist: "dadoonet/57G2Nv"
 
-x:
-  - user: "dadoonet"
-    id: "1452966886472364037"
-  - user: "dadoonet"
-    id: "1458424405139279879"
-
+social:
+  - "https://x.com/dadoonet/status/1452966886472364037"
+  - "https://x.com/dadoonet/status/1458424405139279879"
 links:
   - title: "Documentation: FSCrawler"
     url: "https://fscrawler.readthedocs.io/"

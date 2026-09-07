@@ -17,17 +17,13 @@ nolastmod: true
 draft: false
 pdf: "2024/2024-11-07-devfest-toulouse.pdf"
 
-
 # Speaker specific fields
 youtube: "FPW8nO0VGVg"
 notist: "dadoonet/NQl8VA"
 
-x:
-  - user: "DevFestToulouse"
-    id: "1836372857158267036"
-  - user: "dadoonet"
-    id: "1853821935882211798"
-
+social:
+  - "https://x.com/DevFestToulouse/status/1836372857158267036"
+  - "https://x.com/dadoonet/status/1853821935882211798"
 links:
   - title: "Demo: Music search"
     url: "https://github.com/dadoonet/music-search"

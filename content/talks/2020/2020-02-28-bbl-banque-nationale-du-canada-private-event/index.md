@@ -16,19 +16,14 @@ nolastmod: true
 draft: false
 pdf: "2020/2020-02-28-bbl-banque-nationale-du-canada-private-event.pdf"
 
-
 # Speaker specific fields
 youtube: "ctQki1Qdrvk"
 notist: "dadoonet/7I3iLF"
 
-x:
-  - user: "dadoonet"
-    id: "1233484259672772608"
-  - user: "dadoonet"
-    id: "1233434952613662722"
-  - user: "dadoonet"
-    id: "1233388201437515784"
-
+social:
+  - "https://x.com/dadoonet/status/1233484259672772608"
+  - "https://x.com/dadoonet/status/1233434952613662722"
+  - "https://x.com/dadoonet/status/1233388201437515784"
 links:
   - title: "Demo: One Million Tweet Map"
     url: "https://onemilliontweetmap.com/"

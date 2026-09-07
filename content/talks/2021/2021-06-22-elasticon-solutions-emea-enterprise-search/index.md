@@ -13,8 +13,6 @@ nolastmod: true
 draft: false
 pdf: "2021/2021-06-22-elasticon-solutions-emea-enterprise-search.pdf"
 
-
-
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/2w2qii"
@@ -22,12 +20,8 @@ links:
   - title: "Webinar on Demand"
     url: "https://www.elastic.co/fr/elasticon/archive/2021/solution-series/emea/welcome-to-a-new-state-of-find"
 
-
-
-x:
-  - user: "dadoonet"
-    id:  "1414520303972139011"
-
+social:
+  - "https://x.com/dadoonet/status/1414520303972139011"
 aliases:
   - /2w2qii
 ---

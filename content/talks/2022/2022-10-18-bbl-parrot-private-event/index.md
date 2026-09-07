@@ -17,15 +17,12 @@ nolastmod: true
 draft: false
 pdf: "2022/2022-10-18-bbl-parrot-private-event.pdf"
 
-
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/5xysrX"
 
-x:
-  - user: "dadoonet"
-    id: "1583399558796623873"
-
+social:
+  - "https://x.com/dadoonet/status/1583399558796623873"
 links:
   - title: "Demo: Kibana script for BBL"
     url: "https://gist.github.com/dadoonet/f911291c4dd19b0802031db3064c648f"

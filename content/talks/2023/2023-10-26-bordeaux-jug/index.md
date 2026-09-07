@@ -17,21 +17,15 @@ nolastmod: true
 draft: false
 pdf: "2023/2023-10-26-bordeaux-jug.pdf"
 
-
 # Speaker specific fields
 youtube: "OV-uI8yPGX8"
 notist: "dadoonet/3nBCuD"
 
-x:
-  - user: "BordeauxJUG"
-    id: "1711281253947687408"
-  - user: "dadoonet"
-    id: "1713976056279871575"
-  - user: "dadoonet"
-    id: "1716362068360917139"
-  - user: "dadoonet"
-    id: "1717609539300991328"
-
+social:
+  - "https://x.com/BordeauxJUG/status/1711281253947687408"
+  - "https://x.com/dadoonet/status/1713976056279871575"
+  - "https://x.com/dadoonet/status/1716362068360917139"
+  - "https://x.com/dadoonet/status/1717609539300991328"
 links:
   - title: "Demo: Music search"
     url: "https://colab.research.google.com/github/dadoonet/music-search/blob/main/elastic_music_search.ipynb"

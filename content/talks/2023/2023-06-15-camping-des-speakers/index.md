@@ -16,39 +16,24 @@ talk-lang: fr
 nolastmod: true
 draft: false
 
-
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/qZrOqw"
 
-x:
-  - user: "dadoonet"
-    id: "1636757833663299585"
-  - user: "ponceto91"
-    id: "1669039641440182284"
-  - user: "ponceto91"
-    id: "1669040601331818512"
-  - user: "thomas_rannou"
-    id: "1669067965453545473"
-  - user: "ShirleyAlmCh"
-    id: "1669082272274739200"
-  - user: "FinistSeb"
-    id: "1669219141666873347"
-  - user: "JPhi_Baconnais"
-    id: "1669430917960552457"
-  - user: "elisahauet"
-    id: "1669431114950123521"
-  - user: "nicolasbejean"
-    id: "1669446415049805824"
-  - user: "wildagsx"
-    id: "1669449088918536195"
-  - user: "ShirleyAlmCh"
-    id: "1669695790548234241"
-  - user: "JPhi_Baconnais"
-    id: "1669791464316870660"
-  - user: "dadoonet"
-    id: "1669788001876975625"
-
+social:
+  - "https://x.com/dadoonet/status/1636757833663299585"
+  - "https://x.com/ponceto91/status/1669039641440182284"
+  - "https://x.com/ponceto91/status/1669040601331818512"
+  - "https://x.com/thomas_rannou/status/1669067965453545473"
+  - "https://x.com/ShirleyAlmCh/status/1669082272274739200"
+  - "https://x.com/FinistSeb/status/1669219141666873347"
+  - "https://x.com/JPhi_Baconnais/status/1669430917960552457"
+  - "https://x.com/elisahauet/status/1669431114950123521"
+  - "https://x.com/nicolasbejean/status/1669446415049805824"
+  - "https://x.com/wildagsx/status/1669449088918536195"
+  - "https://x.com/ShirleyAlmCh/status/1669695790548234241"
+  - "https://x.com/JPhi_Baconnais/status/1669791464316870660"
+  - "https://x.com/dadoonet/status/1669788001876975625"
 links:
   - title: "Podcast: DJ Elky"
     url: "https://podcasts.apple.com/fr/podcast/dj-elky-mixes/id959495351"

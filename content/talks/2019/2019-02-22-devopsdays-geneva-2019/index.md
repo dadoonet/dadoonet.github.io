@@ -16,20 +16,15 @@ nolastmod: true
 draft: false
 pdf: "2019/2019-02-22-devopsdays-geneva-2019.pdf"
 
-
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/lYu3b1"
 youtube: "h7R79ypXJsI"
 
-x:
-  - user: "DevopsdaysGe"
-    id: "1098905223337250817"
-  - user: "dadoonet"
-    id: "1098926966814715904"
-  - user: "mathieu_b"
-    id: "1098902999773138945"
-
+social:
+  - "https://x.com/DevopsdaysGe/status/1098905223337250817"
+  - "https://x.com/dadoonet/status/1098926966814715904"
+  - "https://x.com/mathieu_b/status/1098902999773138945"
 links:
   - title: "Conference:Quantitative Cluster Sizing"
     url: "https://www.elastic.co/fr/elasticon/conf/2016/sf/quantitative-cluster-sizing"

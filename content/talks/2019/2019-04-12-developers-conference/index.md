@@ -16,31 +16,20 @@ talk-lang: fr
 nolastmod: true
 draft: false
 
-
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/tibZw7"
 
-x:
-  - user: "MSCraftsman"
-    id: "1116654694561193985"
-  - user: "dadoonet"
-    id: "1116959232115580928"
-  - user: "dadoonet"
-    id: "1116986432223088642"
-  - user: "dadoonet"
-    id: "1116341860606328833"
-  - user: "nashcsshtml"
-    id: "1116658341982425089"
-  - user: "kevanmoothien"
-    id: "1116638121897148416"
-  - user: "VanessaChellen"
-    id: "1116661036529143808"
-  - user: "rishiabee"
-    id: "1116681930060312577"
-  - user: "dadoonet"
-    id: "1116676391184080896"
-
+social:
+  - "https://x.com/MSCraftsman/status/1116654694561193985"
+  - "https://x.com/dadoonet/status/1116959232115580928"
+  - "https://x.com/dadoonet/status/1116986432223088642"
+  - "https://x.com/dadoonet/status/1116341860606328833"
+  - "https://x.com/nashcsshtml/status/1116658341982425089"
+  - "https://x.com/kevanmoothien/status/1116638121897148416"
+  - "https://x.com/VanessaChellen/status/1116661036529143808"
+  - "https://x.com/rishiabee/status/1116681930060312577"
+  - "https://x.com/dadoonet/status/1116676391184080896"
 links:
   - title: "Blog: Enrichir ses adresses postales avec la suite Elastic - Part 1"
     url: "https://www.elastic.co/blog/enriching-your-postal-addresses-with-the-elastic-stack-part-1"

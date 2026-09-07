@@ -30,14 +30,11 @@ links:
     url: "https://david.pilato.fr/blog/2015/05/09/advanced-search-for-your-legacy-application/"
     description: "This blog post describes the major steps I’m doing while on stage. It has not been updated though so it’s better to check out the real code on github."
 
-
 aliases:
 - /netISB
-x:
-- user: jcon_conference
-  id: '1310866909949116417'
-- user: jcon_conference
-  id: '1321398805263044608'
+social:
+  - "https://x.com/jcon_conference/status/1310866909949116417"
+  - "https://x.com/jcon_conference/status/1321398805263044608"
 ---
 How do you mix SQL and NoSQL worlds without starting a messy revolution?
 

@@ -39,10 +39,8 @@ links:
     url: "https://github.com/gestalt-config/gestalt/issues/242"
     description: "The issue I opened after my findings"
 
-x:
-  - user: "dadoonet"
-    id: "2018274464362906110"
-
+social:
+  - "https://x.com/dadoonet/status/2018274464362906110"
 aliases:
   - /tnt26
 ---

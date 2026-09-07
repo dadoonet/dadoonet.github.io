@@ -16,17 +16,13 @@ nolastmod: true
 draft: false
 pdf: "2019/2019-02-19-bbl-hello-work-private-event.pdf"
 
-
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/aV3SGw"
 
-x:
-  - user: "dadoonet"
-    id: "1097954040913317889"
-  - user: "dadoonet"
-    id: "1097807990441340929"
-
+social:
+  - "https://x.com/dadoonet/status/1097954040913317889"
+  - "https://x.com/dadoonet/status/1097807990441340929"
 links:
   - title: "Demo: Kibana script for BBL" 
     url: "https://gist.github.com/dadoonet/f911291c4dd19b0802031db3064c648f"

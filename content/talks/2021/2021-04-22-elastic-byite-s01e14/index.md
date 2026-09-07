@@ -13,7 +13,6 @@ talk-lang: en
 nolastmod: true
 draft: false
 
-
 # Speaker specific fields
 youtube: "nN6JNP9i3qQ"
 notist: "dadoonet/jTjq9d"
@@ -22,10 +21,8 @@ links:
   - title: "Repository Demo"
     url: "https://github.com/dadoonet/demo-searchable-snapshots"
 
-x:
-- user: dadoonet
-  id: '1374390316405432324'
-
+social:
+  - "https://x.com/dadoonet/status/1374390316405432324"
 aliases:
   - /jTjq9d
 ---

@@ -57,6 +57,25 @@ hugo
 The theme used for this blog is [Dream](https://g1en.site/hugo-theme-dream/).
 Plus my own modifications (templates) for talks.
 
+### Social posts on a talk (X, Bluesky, LinkedIn)
+
+Talk pages can embed public posts in the **Buzz et feedback** section. Paste the post URLs in a `social:` list. Items are rendered in that order and can mix networks. Query strings (`?ref_src=…`) are ignored.
+
+```yaml
+social:
+  - "https://x.com/dadoonet/status/2095849248780616171"
+  - "https://bsky.app/profile/klf37.bsky.social/post/3muol6taevk2h"
+  - "https://www.linkedin.com/embed/feed/update/urn:li:activity:7501648269345812481"
+```
+
+Accepted URL shapes:
+
+- **X:** `https://x.com/{user}/status/{id}` or `https://twitter.com/{user}/status/{id}`
+- **Bluesky:** `https://bsky.app/profile/{handle-or-did}/post/{id}`
+- **LinkedIn:** the official embed URL `https://www.linkedin.com/embed/feed/update/urn:li:activity:{id}`, a feed URL with the same URN, or a regular post URL that contains `-activity-{id}-`. The LinkedIn post must be public or the iframe will be empty.
+
+Quote URLs that contain `&` or other YAML-special characters. Blog posts still use the `{{< x user="…" id="…" >}}` shortcode; they do not use `social:`.
+
 ## Convert an image to AVIF
 
 AVIF is a modern image format with significantly better compression than PNG or JPEG. To convert an image using `ffmpeg`:

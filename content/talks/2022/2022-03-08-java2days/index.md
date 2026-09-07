@@ -27,15 +27,12 @@ links:
     url: "https://david.pilato.fr/blog/2015/05/09/advanced-search-for-your-legacy-application/"
     description: "This blog post describes the major steps I’m doing while on stage. It has not been updated though so it’s better to check out the real code on github."
 
-
 aliases:
 - /Xmao1i
 
-x:
-- user: Java2Days
-  id: '1500060100437979142'
-- user: dadoonet
-  id: '1501218291955769353'
+social:
+  - "https://x.com/Java2Days/status/1500060100437979142"
+  - "https://x.com/dadoonet/status/1501218291955769353"
 ---
 How do you mix SQL and NoSQL worlds without starting a messy revolution?
 

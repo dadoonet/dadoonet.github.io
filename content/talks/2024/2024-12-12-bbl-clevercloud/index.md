@@ -16,17 +16,13 @@ nolastmod: true
 draft: false
 pdf: "2024/2024-12-12-bbl-clevercloud.pdf"
 
-
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/MFODhX"
 
-x:
-  - user: "clever_cloudFR"
-    id: "1866152629719703633"
-  - user: "dadoonet"
-    id: "1866153339307630987"
-
+social:
+  - "https://x.com/clever_cloudFR/status/1866152629719703633"
+  - "https://x.com/dadoonet/status/1866153339307630987"
 links:
   - title: "Demo: ES|QL"
     url: "https://github.com/dadoonet/esql-demo"

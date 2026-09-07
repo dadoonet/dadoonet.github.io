@@ -18,44 +18,24 @@ draft: false
 
 attendees: 40
 
-x:
-  - user: dadoonet
-    id: 335082433458360321
-  - user: dadoonet
-    id: 335081188840570880
-  - user: MaLainDa
-    id: 335089676778102784
-  - user: danielpetisme
-    id: 335087701755834368
-  - user: cireme63
-    id: 335089645769609216
-  - user: danielpetisme
-    id: 335145091834462208
-  - user: danielpetisme
-    id: 335089886572969984
-  - user: l_lexxx
-    id: 335087622412181505
-  - user: MaLainDa
-    id: 335093292037451776
-  - user: lavajug
-    id: 335087386683916288
-  - user: danielpetisme
-    id: 335336879601881088
-  - user: lapsus63
-    id: 335124203382648833
-  - user: coupelon
-    id: 335092740905897985
-  - user: ClaudusD
-    id: 335088355547152385
-  - user: lavajug
-    id: 335081577212174337
-  - user: Pinguet62
-    id: 335090856690335744
-  - user: coupelon
-    id: 335095209299943424
-
-
-
+social:
+  - "https://x.com/dadoonet/status/335082433458360321"
+  - "https://x.com/dadoonet/status/335081188840570880"
+  - "https://x.com/MaLainDa/status/335089676778102784"
+  - "https://x.com/danielpetisme/status/335087701755834368"
+  - "https://x.com/cireme63/status/335089645769609216"
+  - "https://x.com/danielpetisme/status/335145091834462208"
+  - "https://x.com/danielpetisme/status/335089886572969984"
+  - "https://x.com/l_lexxx/status/335087622412181505"
+  - "https://x.com/MaLainDa/status/335093292037451776"
+  - "https://x.com/lavajug/status/335087386683916288"
+  - "https://x.com/danielpetisme/status/335336879601881088"
+  - "https://x.com/lapsus63/status/335124203382648833"
+  - "https://x.com/coupelon/status/335092740905897985"
+  - "https://x.com/ClaudusD/status/335088355547152385"
+  - "https://x.com/lavajug/status/335081577212174337"
+  - "https://x.com/Pinguet62/status/335090856690335744"
+  - "https://x.com/coupelon/status/335095209299943424"
 ---
 
 Vous utilisez encore des requêtes SQL pour faire des recherches ? Vos utilisateurs vous reprochent de ne pas pouvoir chercher sur toutes les rubriques ? Votre temps de réponse moyen est supérieur à la demi-seconde avec seulement quelques millions de documents ? Il vous faut 3 jours pour produire des statistiques sur vos données ? Vous rêvez d'offrir une recherche "à la google" sur les données de votre SI ? Ne cherchez plus ! Cette conférence est faite pour vous.

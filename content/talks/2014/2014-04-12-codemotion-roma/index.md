@@ -20,19 +20,13 @@ attendees: 100
 
 pdf: "2014/2014-04-12-codemotion-roma.pdf"
 
-x:
-  - user: "altolabs"
-    id: "454960190157488128"
-  - user: "diegopizzocaro"
-    id: "454956105680965633"
-  - user: "f_lombardo"
-    id: "454966392115429376"
-  - user: "sincandela"
-    id: "454977946965798912"
-  - user: "matteocollina"
-    id: "455098143051628544"
-  - user: "Giuliano84"
-    id: "455107158406070272"
+social:
+  - "https://x.com/altolabs/status/454960190157488128"
+  - "https://x.com/diegopizzocaro/status/454956105680965633"
+  - "https://x.com/f_lombardo/status/454966392115429376"
+  - "https://x.com/sincandela/status/454977946965798912"
+  - "https://x.com/matteocollina/status/455098143051628544"
+  - "https://x.com/Giuliano84/status/455107158406070272"
 ---
 
 Elasticsearch is a search server based on Lucene. It provides a distributed, multitenant-capable full-text search engine with a RESTful web interface and schema-free JSON documents. You can use it as well to compute information on live data.

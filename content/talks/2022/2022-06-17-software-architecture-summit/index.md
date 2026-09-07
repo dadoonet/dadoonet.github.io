@@ -17,23 +17,16 @@ nolastmod: true
 draft: false
 pdf: "2022/2022-06-17-software-architecture-summit.pdf"
 
-
 # Speaker specific fields
 youtube: "D6dpQ-avd0g"
 notist: "dadoonet/64HZzX"
 
-x:
-  - user: "dadoonet"
-    id: "1533828626499747841"
-  - user: "iemejia"
-    id: "1537719880652398592"
-  - user: "dadoonet"
-    id: "1537787842109313025"
-  - user: "dadoonet"
-    id: "1537791722989707264"
-  - user: "dadoonet"
-    id: "1543972927116296194"
-
+social:
+  - "https://x.com/dadoonet/status/1533828626499747841"
+  - "https://x.com/iemejia/status/1537719880652398592"
+  - "https://x.com/dadoonet/status/1537787842109313025"
+  - "https://x.com/dadoonet/status/1537791722989707264"
+  - "https://x.com/dadoonet/status/1543972927116296194"
 links:
   - title: "Demo: FSCrawler"
     url: "https://github.com/dadoonet/demo-fscrawler"

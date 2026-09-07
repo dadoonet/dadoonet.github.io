@@ -26,11 +26,8 @@ links:
   - title: "Music Search demo"
     url: "https://github.com/dadoonet/music-search"
 
-
-x:
-- user: dadoonet
-  id: '1866139000349544468'
-
+social:
+  - "https://x.com/dadoonet/status/1866139000349544468"
 aliases:
 - /asppSL
 ---

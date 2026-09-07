@@ -13,7 +13,6 @@ talk-lang: en
 nolastmod: true
 draft: false
 
-
 # Speaker specific fields
 youtube: "bKlU2nrSCMk"
 notist: "dadoonet/ALjjQ5"
@@ -22,14 +21,10 @@ links:
   - title: "Demo Repository"
     url: "https://github.com/dadoonet/demo-kibana-maps"
 
-x:
-- user: dadoonet
-  id: '1405457907056103424'
-- user: dadoonet
-  id: '1405558354303455238'
-- user: dadoonet
-  id: '1405550804161990665'
-
+social:
+  - "https://x.com/dadoonet/status/1405457907056103424"
+  - "https://x.com/dadoonet/status/1405558354303455238"
+  - "https://x.com/dadoonet/status/1405550804161990665"
 aliases:
   - /ALjjQ5
 ---

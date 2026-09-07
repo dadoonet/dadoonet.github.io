@@ -13,7 +13,6 @@ talk-lang: en
 nolastmod: true
 draft: false
 
-
 # Speaker specific fields
 youtube: "p0KcxhipvbU"
 notist: "dadoonet/cLMqhx"
@@ -24,12 +23,9 @@ links:
   - title: "Deep pagination documentation"
     url: "https://www.elastic.co/guide/en/elasticsearch/reference/8.10/paginate-search-results.html"
 
-x:
-- user: dadoonet
-  id: '1707813022947799511'
-- user: dadoonet
-  id: '1708779605530980428'
-
+social:
+  - "https://x.com/dadoonet/status/1707813022947799511"
+  - "https://x.com/dadoonet/status/1708779605530980428"
 aliases:
   - /cLMqhx
 ---

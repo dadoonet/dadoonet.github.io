@@ -19,12 +19,10 @@ links:
   - title: "Demo code for Humming Search"
     url: "https://github.com/dadoonet/music-search"
 
-
 aliases:
 - /dRVohX
-x:
-- user: dadoonet
-  id: '1766067349864546662'
+social:
+  - "https://x.com/dadoonet/status/1766067349864546662"
 ---
 Search is not just traditional TF/IDF any more but the current trend of machine learning and models has opened another dimension for search.
 

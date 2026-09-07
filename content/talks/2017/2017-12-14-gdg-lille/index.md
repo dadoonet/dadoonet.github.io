@@ -17,25 +17,17 @@ nolastmod: true
 draft: false
 pdf: "2017/2017-12-14-gdg-lille.pdf"
 
-
 # Speaker specific fields
 #youtube: ""
 notist: "dadoonet/tlQJC5"
 
-x:
-  - user: "_abarbare"
-    id: "941364493396914176"
-  - user: "LudovicBorie"
-    id: "940857659351359488"
-  - user: "dadoonet"
-    id: "941416788730023938"
-  - user: "dadoonet"
-    id: "941416363456974849"
-  - user: "dadoonet"
-    id: "941374288535392256"
-  - user: "gui_gillon"
-    id: "941377671740710912"
-
+social:
+  - "https://x.com/_abarbare/status/941364493396914176"
+  - "https://x.com/LudovicBorie/status/940857659351359488"
+  - "https://x.com/dadoonet/status/941416788730023938"
+  - "https://x.com/dadoonet/status/941416363456974849"
+  - "https://x.com/dadoonet/status/941374288535392256"
+  - "https://x.com/gui_gillon/status/941377671740710912"
 links:
 
 aliases:
