@@ -1,6 +1,6 @@
 # david.pilato.fr
 
-Built with [Hugo](https://gohugo.io) based on the [eureka theme](https://github.com/wangchucheng/hugo-eureka).
+Built with [Hugo](https://gohugo.io) using the [devrel](https://github.com/dadoonet/hugo-theme-devrel) overlay on [Dream](https://github.com/g1eny0ung/hugo-theme-dream).
 
 ## Create a New Blog Post
 
@@ -29,7 +29,15 @@ gsutil cp YYYY-MM-DD-conference-name.pdf gs://dadoonet-talks/slides/YYYY/YYYY-MM
 ## Update the Theme
 
 ```sh
-git submodule update --rebase --remote
+hugo mod get -u github.com/dadoonet/hugo-theme-devrel
+hugo mod tidy
+```
+
+For local development against a clone of the theme:
+
+```toml
+# go.mod
+replace github.com/dadoonet/hugo-theme-devrel => ../hugo-theme-devrel
 ```
 
 ## Run locally
@@ -38,6 +46,7 @@ On fresh new install, before running the build, you need to install the dependen
 
 ```sh
 [[ -f package-lock.json || -f npm-shrinkwrap.json ]] && npm ci || true
+hugo mod tidy
 ```
 
 Then you can run hugo:
@@ -54,12 +63,21 @@ hugo
 
 ## Theme
 
-The theme used for this blog is [Dream](https://g1en.site/hugo-theme-dream/).
-Plus my own modifications (templates) for talks.
+Layouts live in [hugo-theme-devrel](https://github.com/dadoonet/hugo-theme-devrel) (Dream overlay). This repo keeps personal content, identity, and integrations (Utterances, GCS PDF base URL). Search uses [Pagefind](https://pagefind.app).
+
+## Search (Pagefind)
+
+```sh
+npm ci
+npm run build   # hugo + pagefind
+# or during development:
+hugo server --buildFuture --buildDrafts -D
+# after a production build, reuse the index locally via the public/pagefind mount
+```
 
 ### Social posts on a talk (X, Bluesky, LinkedIn)
 
-Talk pages can embed public posts in the **Buzz et feedback** section. Paste the post URLs in a `social:` list. Items are rendered in that order and can mix networks. Query strings (`?ref_src=…`) are ignored.
+Talk pages can embed public posts in the **Buzz and feedback** section. Paste the post URLs in a `social:` list. Items are rendered in that order and can mix networks. Query strings (`?ref_src=…`) are ignored.
 
 ```yaml
 social:

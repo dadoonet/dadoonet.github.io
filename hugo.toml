@@ -1,12 +1,28 @@
 baseURL = 'https://david.pilato.fr'
 title = 'David Pilato'
 
-languageCode = 'en-us'
+locale = 'en-us'
 defaultContentLanguage = "en"
 
-theme = "dream"
-
 enableRobotsTXT = true
+
+[module]
+  [[module.imports]]
+    path = "github.com/dadoonet/hugo-theme-devrel"
+  [[module.mounts]]
+    source = "content"
+    target = "content"
+  [[module.mounts]]
+    source = "static"
+    target = "static"
+  [[module.mounts]]
+    source = "data"
+    target = "data"
+  # Reuse Pagefind index during local `hugo server`
+  [[module.mounts]]
+    source = "public/pagefind"
+    target = "static/pagefind"
+    disableWatch = true
 
 [taxonomies]
 category = "categories"
@@ -16,47 +32,29 @@ city = "cities"
 language = "languages"
 
 [params]
-# zenMode = true
- 
 lightTheme = "emerald"
 darkTheme = "forest"
- 
-# backgroundImage = "me/background.jpg"
-# backgroundImageDark = ""
- 
+
 images = ["me/background.jpg"]
- 
+
 author = "David Pilato"
 description = "Developer | Evangelist"
 avatar = "/about/david_pilato.avif"
 headerTitle = "David Pilato"
 motto = "Developer | Evangelist"
 
-# footerBottomText = ""
- 
 rss = true
- 
+
 utterancesRepo = "dadoonet/dadoonet.github.io"
- 
-# valine = true
-# LEANCLOUD_APP_ID = ""
-# LEANCLOUD_APP_KEY = ""
- 
-# waline = true
-# walineServer = ""
- 
+
 email = "david+blog@pilato.fr"
- 
+
 siteStartYear = 2010
- 
+
 favicon = "favicon.ico"
- 
-# Syntax highlighting
-# customSyntaxHighlighting = true
- 
-# options
+
 stickyNav = true
-reorderNavItems = ["posts", "talks", "about_me"]
+reorderNavItems = ["search", "posts", "talks", "about_me"]
 collapseNavItems = ["categories", "tags", "rss"]
 noDefaultSummaryCover = true
 showTableOfContents = true
@@ -72,20 +70,13 @@ about_me = { href = "/about", icon = "body", title = "About me" }
 online = "🌎"
 
 [params.talks]
-# PDF base URL for external storage (Google Cloud Storage)
 pdf_base_url = "https://storage.googleapis.com/dadoonet-talks/slides/"
+
+[params.search]
+enabled = true
 
 [params.advanced]
 customCSS = ["css/custom.css"]
-# customJS = []
- 
-[params.experimental]
-#jsDate = true
-#jsDateFormat = "yyyy/MM/dd"
-
-#[services]
-#[services.googleAnalytics]
-#ID = "UA-62381049-1"
 
 [markup]
   [markup.goldmark]
