@@ -1,9 +1,9 @@
 {{- /*
-  Partial pour afficher un embed Bluesky
-  Paramètres attendus :
-    - id: la rkey du post
-    - user: le handle (ex: klf37.bsky.social)
-    - ctx: (optionnel) le contexte pour les messages d'erreur
+  Embed a Bluesky post via oEmbed.
+  Expected parameters:
+    - id: post rkey from https://bsky.app/profile/{user}/post/{id}
+    - user: Bluesky handle (e.g. klf37.bsky.social or a custom domain)
+    - ctx: (optional) shortcode/page context for error positions
 */ -}}
 {{- $id := .id -}}
 {{- $user := .user -}}

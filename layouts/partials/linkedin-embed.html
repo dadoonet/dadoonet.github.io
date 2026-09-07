@@ -1,8 +1,10 @@
 {{- /*
-  Partial pour afficher un embed LinkedIn
-  Paramètres attendus :
-    - id: l'activity id
-    - user: le slug vanity (requis par le contrat, non utilisé dans l'iframe)
+  Embed a LinkedIn post via the official iframe.
+  Expected parameters:
+    - id: activity id from …-activity-{id}-… in the post URL
+      (used in urn:li:activity:{id})
+    - user: vanity slug from /posts/{user}_… (required by the social:
+      contract; not used in the iframe)
 */ -}}
 {{- $id := .id -}}
 {{- $user := .user -}}

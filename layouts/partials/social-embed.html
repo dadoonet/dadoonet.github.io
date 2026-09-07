@@ -1,3 +1,11 @@
+{{- /*
+  Dispatch a talk social: item to the matching embed partial.
+  Expected parameters:
+    - type: x | bluesky | linkedin
+    - user: network-specific handle or vanity slug
+    - id: network-specific post id
+    - ctx: (optional) shortcode/page context for error positions
+*/ -}}
 {{- $type := .type -}}
 {{- $user := .user -}}
 {{- $id := .id -}}
