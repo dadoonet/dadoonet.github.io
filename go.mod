@@ -2,4 +2,4 @@ module github.com/dadoonet/dadoonet.github.io
 
 go 1.22.2
 
-require github.com/dadoonet/hugo-theme-devrel v0.0.0-20260907141408-21ba951be266 // indirect
+require github.com/dadoonet/hugo-theme-devrel v0.0.0-20260907143950-0a3f9108bb58 // indirect
