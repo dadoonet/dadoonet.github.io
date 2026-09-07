@@ -19,7 +19,7 @@ This file describes the structure and conventions of David Pilato's personal blo
 │   └── talks/
 │       ├── YYYY/        # Talks by year (YYYY-MM-DD-conference-name/)
 │       └── templates/   # Multilingual abstract templates
-├── data/                # Personal data (socials, countries)
+├── data/                # Personal data (socials)
 ├── static/
 │   ├── speakers/        # Co-speaker photos (firstname_lastname.jpg)
 │   └── ...              # Favicon, CNAME, etc.
@@ -191,7 +191,7 @@ hugo new posts/YYYY-MM-DD-something-awesome/index.md
 - `baseURL`, identity (`author`, `avatar`, `email`, Utterances)
 - Module import: `github.com/dadoonet/hugo-theme-devrel` (pulls Dream)
 - `params.talks.pdf_base_url`: GCS slides prefix
-- `params.search.endpoint`: QueryBox API
+- `params.search.enabled`: Pagefind UI (`/search` + Ctrl/Cmd+K)
 - Taxonomies: categories, tags, series, cities, languages
 
 ### Updating the theme
@@ -199,6 +199,14 @@ hugo new posts/YYYY-MM-DD-something-awesome/index.md
 ```sh
 hugo mod get -u github.com/dadoonet/hugo-theme-devrel
 hugo mod tidy
+```
+
+### Search index
+
+```sh
+npm ci
+hugo --minify --buildFuture
+npx pagefind --site public
 ```
 
 ---

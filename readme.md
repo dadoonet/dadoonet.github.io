@@ -63,7 +63,17 @@ hugo
 
 ## Theme
 
-Layouts live in [hugo-theme-devrel](https://github.com/dadoonet/hugo-theme-devrel) (Dream overlay). This repo keeps personal content, identity, and integrations (Utterances, QueryBox, GCS PDF base URL).
+Layouts live in [hugo-theme-devrel](https://github.com/dadoonet/hugo-theme-devrel) (Dream overlay). This repo keeps personal content, identity, and integrations (Utterances, GCS PDF base URL). Search uses [Pagefind](https://pagefind.app).
+
+## Search (Pagefind)
+
+```sh
+npm ci
+npm run build   # hugo + pagefind
+# or during development:
+hugo server --buildFuture --buildDrafts -D
+# after a production build, reuse the index locally via the public/pagefind mount
+```
 
 ### Social posts on a talk (X, Bluesky, LinkedIn)
 
