@@ -18,12 +18,8 @@ draft: false
 attendees: 15
 
 social:
-  - type: x
-    user: "matelliservices"
-    id: "440822156419944448"
-  - type: x
-    user: "mmetesreau"
-    id: "440882209302388736"
+  - "https://x.com/matelliservices/status/440822156419944448"
+  - "https://x.com/mmetesreau/status/440882209302388736"
 ---
 Vous utilisez encore des requêtes SQL pour faire des recherches ? Vos utilisateurs vous reprochent de ne pas pouvoir chercher sur toutes les rubriques ? Votre temps de réponse moyen est supérieur à la demi-seconde avec seulement quelques millions de documents ? Il vous faut 3 jours pour produire des statistiques sur vos données ? Vous rêvez d'offrir une recherche "à la google" sur les données de votre SI ? Ne cherchez plus ! Cette conférence est faite pour vous.
 

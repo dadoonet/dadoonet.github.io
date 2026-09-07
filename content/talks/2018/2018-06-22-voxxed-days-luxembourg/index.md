@@ -23,21 +23,11 @@ notist: "dadoonet/NscrTQ"
 attendees: 140
 
 social:
-  - type: x
-    user: "voxxed_lu"
-    id: "1010075039000072192"
-  - type: x
-    user: "dadoonet"
-    id: "1010108423697059841"
-  - type: x
-    user: "dadoonet"
-    id: "1011848627243929600"
-  - type: x
-    user: "dadoonet"
-    id: "1009741910154543105"
-  - type: x
-    user: "voxxed_lu"
-    id: "1010050188323540992"
+  - "https://x.com/voxxed_lu/status/1010075039000072192"
+  - "https://x.com/dadoonet/status/1010108423697059841"
+  - "https://x.com/dadoonet/status/1011848627243929600"
+  - "https://x.com/dadoonet/status/1009741910154543105"
+  - "https://x.com/voxxed_lu/status/1010050188323540992"
 links:
   - title: "Blog: Le Touilleur Express - Voxxed Days Luxembourg 2018"
     url: "https://touilleur-express.fr/2018/06/25/voxxed-luxembourg-2018/"

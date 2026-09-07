@@ -22,9 +22,7 @@ youtube: "DM-urSmsdbc"
 notist: "dadoonet/gPYNGR"
 
 social:
-  - type: x
-    user: "RivieraDEV"
-    id: "1805137532293616010"
+  - "https://x.com/RivieraDEV/status/1805137532293616010"
 links:
   - title: "Demo: Music search"
     url: "https://github.com/dadoonet/music-search"

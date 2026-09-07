@@ -33,12 +33,8 @@ links:
 aliases:
 - /netISB
 social:
-  - type: x
-    user: "jcon_conference"
-    id: "1310866909949116417"
-  - type: x
-    user: "jcon_conference"
-    id: "1321398805263044608"
+  - "https://x.com/jcon_conference/status/1310866909949116417"
+  - "https://x.com/jcon_conference/status/1321398805263044608"
 ---
 How do you mix SQL and NoSQL worlds without starting a messy revolution?
 

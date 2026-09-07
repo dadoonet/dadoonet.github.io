@@ -22,24 +22,12 @@ youtube: "qbJtfv2VNow"
 notist: "dadoonet/cW4TEE"
 
 social:
-  - type: x
-    user: "dadoonet"
-    id: "979240306276294656"
-  - type: x
-    user: "dadoonet"
-    id: "979336410728751104"
-  - type: x
-    user: "dadoonet"
-    id: "979414592110645248"
-  - type: x
-    user: "loicknuchel"
-    id: "979615283009740800"
-  - type: x
-    user: "dadoonet"
-    id: "979626581667799040"
-  - type: x
-    user: "dadoonet"
-    id: "979732282947796993"
+  - "https://x.com/dadoonet/status/979240306276294656"
+  - "https://x.com/dadoonet/status/979336410728751104"
+  - "https://x.com/dadoonet/status/979414592110645248"
+  - "https://x.com/loicknuchel/status/979615283009740800"
+  - "https://x.com/dadoonet/status/979626581667799040"
+  - "https://x.com/dadoonet/status/979732282947796993"
 aliases:
   - /cW4TEE
 ---

@@ -21,9 +21,7 @@ draft: false
 notist: "dadoonet/p8V41k"
 
 social:
-  - type: x
-    user: "dadoonet"
-    id: "1115373953269280768"
+  - "https://x.com/dadoonet/status/1115373953269280768"
 links:
   - title: "Blog: Advanced search for your legacy application"
     url: "https://david.pilato.fr/blog/2015/05/09/advanced-search-for-your-legacy-application/"

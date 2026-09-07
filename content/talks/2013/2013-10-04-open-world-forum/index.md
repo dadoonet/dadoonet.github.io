@@ -23,12 +23,8 @@ draft: false
 attendees: 30
 
 social:
-  - type: x
-    user: "anthonny_q"
-    id: "386059891988627456"
-  - type: x
-    user: "loicknuchel"
-    id: "386139252394049536"
+  - "https://x.com/anthonny_q/status/386059891988627456"
+  - "https://x.com/loicknuchel/status/386139252394049536"
 links:
   - title: "Feedback La Revue du Digital"
     url: "https://www.larevuedudigital.com/passer-dune-base-sql-a-une-base-nosql-en-40-minutes/"

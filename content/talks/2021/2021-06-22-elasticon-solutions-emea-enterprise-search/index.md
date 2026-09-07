@@ -21,9 +21,7 @@ links:
     url: "https://www.elastic.co/fr/elasticon/archive/2021/solution-series/emea/welcome-to-a-new-state-of-find"
 
 social:
-  - type: x
-    user: "dadoonet"
-    id: "1414520303972139011"
+  - "https://x.com/dadoonet/status/1414520303972139011"
 aliases:
   - /2w2qii
 ---

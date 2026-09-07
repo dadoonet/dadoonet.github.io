@@ -21,9 +21,7 @@ draft: false
 notist: "dadoonet/xeKuih"
 
 social:
-  - type: x
-    user: "dadoonet"
-    id: "1171094462212296704"
+  - "https://x.com/dadoonet/status/1171094462212296704"
 links:
   - title: "Vidéo analogue"
     url: "/AsJxO2"

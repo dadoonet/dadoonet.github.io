@@ -22,15 +22,9 @@ notist: "dadoonet/lYu3b1"
 youtube: "h7R79ypXJsI"
 
 social:
-  - type: x
-    user: "DevopsdaysGe"
-    id: "1098905223337250817"
-  - type: x
-    user: "dadoonet"
-    id: "1098926966814715904"
-  - type: x
-    user: "mathieu_b"
-    id: "1098902999773138945"
+  - "https://x.com/DevopsdaysGe/status/1098905223337250817"
+  - "https://x.com/dadoonet/status/1098926966814715904"
+  - "https://x.com/mathieu_b/status/1098902999773138945"
 links:
   - title: "Conference:Quantitative Cluster Sizing"
     url: "https://www.elastic.co/fr/elasticon/conf/2016/sf/quantitative-cluster-sizing"

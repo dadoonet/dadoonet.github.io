@@ -23,15 +23,9 @@ links:
     url: "https://github.com/dadoonet/demo-index-templates-v2"
 
 social:
-  - type: x
-    user: "dadoonet"
-    id: "1367879641415946249"
-  - type: x
-    user: "dadoonet"
-    id: "1369236636173746178"
-  - type: x
-    user: "dadoonet"
-    id: "1369259812933009409"
+  - "https://x.com/dadoonet/status/1367879641415946249"
+  - "https://x.com/dadoonet/status/1369236636173746178"
+  - "https://x.com/dadoonet/status/1369259812933009409"
 aliases:
 - /jTjq9d
 ---

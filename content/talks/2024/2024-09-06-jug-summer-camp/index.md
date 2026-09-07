@@ -22,15 +22,9 @@ youtube: "Fa6ICBs1KM0"
 notist: "dadoonet/CzXjMr"
 
 social:
-  - type: x
-    user: "dadoonet"
-    id: "1827998166865637459"
-  - type: x
-    user: "dadoonet"
-    id: "1830635264806621289"
-  - type: x
-    user: "jugsummercamp"
-    id: "1829150830089646215"
+  - "https://x.com/dadoonet/status/1827998166865637459"
+  - "https://x.com/dadoonet/status/1830635264806621289"
+  - "https://x.com/jugsummercamp/status/1829150830089646215"
 links:
   - title: "Demo: ES|QL"
     url: "https://github.com/dadoonet/esql-demo"

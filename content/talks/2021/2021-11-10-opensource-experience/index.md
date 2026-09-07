@@ -21,12 +21,8 @@ youtube: "J03D9OeXC2Q"
 notist: "dadoonet/57G2Nv"
 
 social:
-  - type: x
-    user: "dadoonet"
-    id: "1452966886472364037"
-  - type: x
-    user: "dadoonet"
-    id: "1458424405139279879"
+  - "https://x.com/dadoonet/status/1452966886472364037"
+  - "https://x.com/dadoonet/status/1458424405139279879"
 links:
   - title: "Documentation: FSCrawler"
     url: "https://fscrawler.readthedocs.io/"

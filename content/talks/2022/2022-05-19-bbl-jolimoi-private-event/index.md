@@ -22,12 +22,8 @@ pdf: "2022/2022-05-19-bbl-jolimoi-private-event.pdf"
 notist: "dadoonet/N9RFFT"
 
 social:
-  - type: x
-    user: "dadoonet"
-    id: "1527214291576926208"
-  - type: x
-    user: "dadoonet"
-    id: "1527226605990469632"
+  - "https://x.com/dadoonet/status/1527214291576926208"
+  - "https://x.com/dadoonet/status/1527226605990469632"
 links:
   - title: "Demo: Kibana script for BBL"
     url: "https://gist.github.com/dadoonet/f911291c4dd19b0802031db3064c648f"

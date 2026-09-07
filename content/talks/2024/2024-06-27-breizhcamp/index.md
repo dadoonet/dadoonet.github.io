@@ -22,21 +22,11 @@ youtube: "mzK6kym03K8"
 notist: "dadoonet/Rm6lVd"
 
 social:
-  - type: x
-    user: "dadoonet"
-    id: "1805508048858849526"
-  - type: x
-    user: "dadoonet"
-    id: "1806327210854228388"
-  - type: x
-    user: "hlepesant"
-    id: "1806307410572611766"
-  - type: x
-    user: "dadoonet"
-    id: "1805946110566912303"
-  - type: x
-    user: "dadoonet"
-    id: "1806258672676360285"
+  - "https://x.com/dadoonet/status/1805508048858849526"
+  - "https://x.com/dadoonet/status/1806327210854228388"
+  - "https://x.com/hlepesant/status/1806307410572611766"
+  - "https://x.com/dadoonet/status/1805946110566912303"
+  - "https://x.com/dadoonet/status/1806258672676360285"
 links:
   - title: "Demo: Music search"
     url: "https://github.com/dadoonet/music-search"

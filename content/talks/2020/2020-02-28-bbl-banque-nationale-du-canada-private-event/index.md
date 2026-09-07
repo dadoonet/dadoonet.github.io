@@ -21,15 +21,9 @@ youtube: "ctQki1Qdrvk"
 notist: "dadoonet/7I3iLF"
 
 social:
-  - type: x
-    user: "dadoonet"
-    id: "1233484259672772608"
-  - type: x
-    user: "dadoonet"
-    id: "1233434952613662722"
-  - type: x
-    user: "dadoonet"
-    id: "1233388201437515784"
+  - "https://x.com/dadoonet/status/1233484259672772608"
+  - "https://x.com/dadoonet/status/1233434952613662722"
+  - "https://x.com/dadoonet/status/1233388201437515784"
 links:
   - title: "Demo: One Million Tweet Map"
     url: "https://onemilliontweetmap.com/"

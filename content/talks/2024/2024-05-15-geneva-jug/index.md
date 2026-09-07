@@ -22,18 +22,10 @@ pdf: "2024/2024-05-15-geneva-jug.pdf"
 notist: "dadoonet/ecDUt6"
 
 social:
-  - type: x
-    user: "GenevaJUG"
-    id: "1788111257741951235"
-  - type: x
-    user: "dadoonet"
-    id: "1790304795753947142"
-  - type: x
-    user: "dadoonet"
-    id: "1790880213884076524"
-  - type: x
-    user: "dadoonet"
-    id: "1790871185216929808"
+  - "https://x.com/GenevaJUG/status/1788111257741951235"
+  - "https://x.com/dadoonet/status/1790304795753947142"
+  - "https://x.com/dadoonet/status/1790880213884076524"
+  - "https://x.com/dadoonet/status/1790871185216929808"
 links:
   - title: "Demo: Music search"
     url: "https://github.com/dadoonet/music-search"

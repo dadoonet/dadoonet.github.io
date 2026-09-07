@@ -19,12 +19,8 @@ pdf: "2022/2022-03-09-java2days.pdf"
 notist: "dadoonet/A6Jbu7"
 
 social:
-  - type: x
-    user: "Java2Days"
-    id: "1500060100437979142"
-  - type: x
-    user: "dadoonet"
-    id: "1501447005914214403"
+  - "https://x.com/Java2Days/status/1500060100437979142"
+  - "https://x.com/dadoonet/status/1501447005914214403"
 links:
   - title: "Documentation: FSCrawler"
     url: "https://fscrawler.readthedocs.io/"

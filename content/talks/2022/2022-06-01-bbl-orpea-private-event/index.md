@@ -22,12 +22,8 @@ pdf: "2022/2022-06-01-bbl-orpea-private-event.pdf"
 notist: "dadoonet/BmH2pV"
 
 social:
-  - type: x
-    user: "dadoonet"
-    id: "1531930362372308994"
-  - type: x
-    user: "dadoonet"
-    id: "1531936364161277958"
+  - "https://x.com/dadoonet/status/1531930362372308994"
+  - "https://x.com/dadoonet/status/1531936364161277958"
 links:
   - title: "Demo: Kibana script for BBL"
     url: "https://gist.github.com/dadoonet/f911291c4dd19b0802031db3064c648f"

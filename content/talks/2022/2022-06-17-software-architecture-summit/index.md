@@ -22,21 +22,11 @@ youtube: "D6dpQ-avd0g"
 notist: "dadoonet/64HZzX"
 
 social:
-  - type: x
-    user: "dadoonet"
-    id: "1533828626499747841"
-  - type: x
-    user: "iemejia"
-    id: "1537719880652398592"
-  - type: x
-    user: "dadoonet"
-    id: "1537787842109313025"
-  - type: x
-    user: "dadoonet"
-    id: "1537791722989707264"
-  - type: x
-    user: "dadoonet"
-    id: "1543972927116296194"
+  - "https://x.com/dadoonet/status/1533828626499747841"
+  - "https://x.com/iemejia/status/1537719880652398592"
+  - "https://x.com/dadoonet/status/1537787842109313025"
+  - "https://x.com/dadoonet/status/1537791722989707264"
+  - "https://x.com/dadoonet/status/1543972927116296194"
 links:
   - title: "Demo: FSCrawler"
     url: "https://github.com/dadoonet/demo-fscrawler"

@@ -21,9 +21,7 @@ youtube: "8bw81NIkH60"
 notist: "dadoonet/NXTLL3"
 
 social:
-  - type: x
-    user: "dadoonet"
-    id: "1899853405696217567"
+  - "https://x.com/dadoonet/status/1899853405696217567"
 links:
   - title: "Demo: ES|QL"
     url: "https://github.com/dadoonet/esql-demo"

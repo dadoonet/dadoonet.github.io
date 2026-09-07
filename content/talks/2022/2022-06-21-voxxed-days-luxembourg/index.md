@@ -22,15 +22,9 @@ youtube: "ozMF8ddY75g"
 notist: "dadoonet/MKrtPl"
 
 social:
-  - type: x
-    user: "voxxed_lu"
-    id: "1538172189047934977"
-  - type: x
-    user: "dadoonet"
-    id: "1539211376526254081"
-  - type: x
-    user: "dadoonet"
-    id: "1539210577121255425"
+  - "https://x.com/voxxed_lu/status/1538172189047934977"
+  - "https://x.com/dadoonet/status/1539211376526254081"
+  - "https://x.com/dadoonet/status/1539210577121255425"
 links:
   - title: "Documentation: FSCrawler"
     url: "https://fscrawler.readthedocs.io/"

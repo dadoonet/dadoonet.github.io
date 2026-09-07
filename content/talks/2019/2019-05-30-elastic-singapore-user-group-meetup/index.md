@@ -21,9 +21,7 @@ draft: false
 notist: "dadoonet/uxryJf"
 
 social:
-  - type: x
-    user: "dadoonet"
-    id: "1134113250939789312"
+  - "https://x.com/dadoonet/status/1134113250939789312"
 links:
   - title: "Blog: Enriching Your Postal Addresses With the Elastic Stack - Part 1"
     url: "https://www.elastic.co/blog/enriching-your-postal-addresses-with-the-elastic-stack-part-1"

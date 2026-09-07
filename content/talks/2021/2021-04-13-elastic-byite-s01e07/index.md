@@ -22,12 +22,8 @@ links:
     url: "https://github.com/dadoonet/demo-reindex-aliases"
 
 social:
-  - type: x
-    user: "dadoonet"
-    id: "1371393264377589762"
-  - type: x
-    user: "dadoonet"
-    id: "1371773235365347332"
+  - "https://x.com/dadoonet/status/1371393264377589762"
+  - "https://x.com/dadoonet/status/1371773235365347332"
 aliases:
   - /8z5taa
 ---

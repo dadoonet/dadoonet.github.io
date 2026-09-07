@@ -19,36 +19,16 @@ draft: false
 attendees: 50
 
 social:
-  - type: x
-    user: "sebmade"
-    id: "380430580238012418"
-  - type: x
-    user: "valerie_taesch"
-    id: "380436261099802626"
-  - type: x
-    user: "laplagedigitale"
-    id: "380401677683396608"
-  - type: x
-    user: "chrisscholly"
-    id: "380389253298917376"
-  - type: x
-    user: "g_scheibel"
-    id: "380389165969334272"
-  - type: x
-    user: "laplagedigitale"
-    id: "380388241804763137"
-  - type: x
-    user: "valerie_taesch"
-    id: "380384433658138624"
-  - type: x
-    user: "chrisscholly"
-    id: "380380960040050688"
-  - type: x
-    user: "g_scheibel"
-    id: "380379873547542528"
-  - type: x
-    user: "valerie_taesch"
-    id: "380378200578064384"
+  - "https://x.com/sebmade/status/380430580238012418"
+  - "https://x.com/valerie_taesch/status/380436261099802626"
+  - "https://x.com/laplagedigitale/status/380401677683396608"
+  - "https://x.com/chrisscholly/status/380389253298917376"
+  - "https://x.com/g_scheibel/status/380389165969334272"
+  - "https://x.com/laplagedigitale/status/380388241804763137"
+  - "https://x.com/valerie_taesch/status/380384433658138624"
+  - "https://x.com/chrisscholly/status/380380960040050688"
+  - "https://x.com/g_scheibel/status/380379873547542528"
+  - "https://x.com/valerie_taesch/status/380378200578064384"
 ---
 
 Vous utilisez encore des requêtes SQL pour faire des recherches ? Vos utilisateurs vous reprochent de ne pas pouvoir chercher sur toutes les rubriques ? Votre temps de réponse moyen est supérieur à la demi-seconde avec seulement quelques millions de documents ? Il vous faut 3 jours pour produire des statistiques sur vos données ? Vous rêvez d'offrir une recherche "à la google" sur les données de votre SI ? Ne cherchez plus ! Cette conférence est faite pour vous.

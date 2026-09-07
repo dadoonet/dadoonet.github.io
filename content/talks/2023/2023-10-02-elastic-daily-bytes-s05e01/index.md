@@ -24,12 +24,8 @@ links:
     url: "https://www.elastic.co/guide/en/elasticsearch/reference/8.10/paginate-search-results.html"
 
 social:
-  - type: x
-    user: "dadoonet"
-    id: "1707813022947799511"
-  - type: x
-    user: "dadoonet"
-    id: "1708779605530980428"
+  - "https://x.com/dadoonet/status/1707813022947799511"
+  - "https://x.com/dadoonet/status/1708779605530980428"
 aliases:
   - /cLMqhx
 ---

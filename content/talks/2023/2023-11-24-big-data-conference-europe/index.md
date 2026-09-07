@@ -31,9 +31,7 @@ links:
 aliases:
 - /tfHOrn
 social:
-  - type: x
-    user: "dadoonet"
-    id: "1726958270148137073"
+  - "https://x.com/dadoonet/status/1726958270148137073"
 ---
 Search is not just traditional TF/IDF any more but the current trend of machine learning and models has opened another dimension for search.
 

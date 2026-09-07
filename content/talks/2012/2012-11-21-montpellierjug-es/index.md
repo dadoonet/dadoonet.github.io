@@ -18,27 +18,13 @@ pdf: "2012/2012-11-21-montpellierjug-es.pdf"
 
 # Speaker specific fields
 social:
-  - type: x
-    user: "CamilleRoux"
-    id: "271322018132156418"
-  - type: x
-    user: "CamilleRoux"
-    id: "271311588546457600"
-  - type: x
-    user: "tgrall"
-    id: "271249241085710336"
-  - type: x
-    user: "etaix"
-    id: "268258412830273536"
-  - type: x
-    user: "julien_lafont"
-    id: "270547718965956608"
-  - type: x
-    user: "sfui"
-    id: "270800223549399040"
-  - type: x
-    user: "a_castelltort"
-    id: "271380667508617216"
+  - "https://x.com/CamilleRoux/status/271322018132156418"
+  - "https://x.com/CamilleRoux/status/271311588546457600"
+  - "https://x.com/tgrall/status/271249241085710336"
+  - "https://x.com/etaix/status/268258412830273536"
+  - "https://x.com/julien_lafont/status/270547718965956608"
+  - "https://x.com/sfui/status/270800223549399040"
+  - "https://x.com/a_castelltort/status/271380667508617216"
 ---
 David Pilato présentera au cours de la soirée pourquoi et comment il est passé de la recherche SQL à Elasticsearch en détaillant les apports de ce moteur par rapport à une solution pure Lucene :
 

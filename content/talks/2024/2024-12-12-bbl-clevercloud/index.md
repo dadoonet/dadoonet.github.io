@@ -21,12 +21,8 @@ pdf: "2024/2024-12-12-bbl-clevercloud.pdf"
 notist: "dadoonet/MFODhX"
 
 social:
-  - type: x
-    user: "clever_cloudFR"
-    id: "1866152629719703633"
-  - type: x
-    user: "dadoonet"
-    id: "1866153339307630987"
+  - "https://x.com/clever_cloudFR/status/1866152629719703633"
+  - "https://x.com/dadoonet/status/1866153339307630987"
 links:
   - title: "Demo: ES|QL"
     url: "https://github.com/dadoonet/esql-demo"

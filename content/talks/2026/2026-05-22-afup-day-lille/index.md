@@ -31,9 +31,7 @@ links:
     description: "L'open feedback de la session"
 
 social:
-  - type: x
-    user: "dadoonet"
-    id: "2057902353588559912"
+  - "https://x.com/dadoonet/status/2057902353588559912"
 aliases:
   - /afupdaylille26
 ---

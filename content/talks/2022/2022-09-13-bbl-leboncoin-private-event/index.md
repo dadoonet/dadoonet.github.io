@@ -21,15 +21,9 @@ pdf: "2022/2022-09-13-bbl-leboncoin-private-event.pdf"
 notist: "dadoonet/1GUvVD"
 
 social:
-  - type: x
-    user: "dadoonet"
-    id: "1569621100505571329"
-  - type: x
-    user: "dadoonet"
-    id: "1569700077513412612"
-  - type: x
-    user: "grillatg"
-    id: "1569700766981525517"
+  - "https://x.com/dadoonet/status/1569621100505571329"
+  - "https://x.com/dadoonet/status/1569700077513412612"
+  - "https://x.com/grillatg/status/1569700766981525517"
 links:
   - title: "Demo: Kibana script for BBL"
     url: "https://gist.github.com/dadoonet/f911291c4dd19b0802031db3064c648f"

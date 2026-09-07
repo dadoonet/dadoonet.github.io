@@ -19,12 +19,8 @@ youtube: "TfP1Yjed99o"
 notist: "dadoonet/KAJwMc"
 
 social:
-  - type: x
-    user: "dadoonet"
-    id: "1372860398890856451"
-  - type: x
-    user: "dadoonet"
-    id: "1372483163084132353"
+  - "https://x.com/dadoonet/status/1372860398890856451"
+  - "https://x.com/dadoonet/status/1372483163084132353"
 links:
   - title: "Repository Demo"
     url: "https://github.com/dadoonet/demo-ingest-processors"

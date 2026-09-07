@@ -21,18 +21,10 @@ pdf: "2020/2020-03-03-bbl-credit-agricole-technologies-et-services-private-event
 notist: "dadoonet/UyKuSq"
 
 social:
-  - type: x
-    user: "dadoonet"
-    id: "1234707940633989121"
-  - type: x
-    user: "dadoonet"
-    id: "1234722433493585920"
-  - type: x
-    user: "dadoonet"
-    id: "1234814423979765762"
-  - type: x
-    user: "dadoonet"
-    id: "1234887306177327108"
+  - "https://x.com/dadoonet/status/1234707940633989121"
+  - "https://x.com/dadoonet/status/1234722433493585920"
+  - "https://x.com/dadoonet/status/1234814423979765762"
+  - "https://x.com/dadoonet/status/1234887306177327108"
 links:
   - title: "Demo: One Million Tweet Map"
     url: "https://onemilliontweetmap.com/"

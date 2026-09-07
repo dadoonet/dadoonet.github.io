@@ -18,9 +18,7 @@ youtube: "DFbFMJ4p2vM"
 notist: dadoonet/qToQd7
 
 social:
-  - type: x
-    user: "dadoonet"
-    id: "1455807270386810880"
+  - "https://x.com/dadoonet/status/1455807270386810880"
 aliases:
 - /bqMosJ
 ---

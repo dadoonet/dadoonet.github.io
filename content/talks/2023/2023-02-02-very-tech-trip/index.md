@@ -21,12 +21,8 @@ pdf: "2023/2023-02-02-very-tech-trip.pdf"
 notist: "dadoonet/MyZpvU"
 
 social:
-  - type: x
-    user: "dadoonet"
-    id: "1611244392907522048"
-  - type: x
-    user: "dadoonet"
-    id: "1613080645844041729"
+  - "https://x.com/dadoonet/status/1611244392907522048"
+  - "https://x.com/dadoonet/status/1613080645844041729"
 links:
 
 aliases:

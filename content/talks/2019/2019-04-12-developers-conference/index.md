@@ -21,33 +21,15 @@ draft: false
 notist: "dadoonet/tibZw7"
 
 social:
-  - type: x
-    user: "MSCraftsman"
-    id: "1116654694561193985"
-  - type: x
-    user: "dadoonet"
-    id: "1116959232115580928"
-  - type: x
-    user: "dadoonet"
-    id: "1116986432223088642"
-  - type: x
-    user: "dadoonet"
-    id: "1116341860606328833"
-  - type: x
-    user: "nashcsshtml"
-    id: "1116658341982425089"
-  - type: x
-    user: "kevanmoothien"
-    id: "1116638121897148416"
-  - type: x
-    user: "VanessaChellen"
-    id: "1116661036529143808"
-  - type: x
-    user: "rishiabee"
-    id: "1116681930060312577"
-  - type: x
-    user: "dadoonet"
-    id: "1116676391184080896"
+  - "https://x.com/MSCraftsman/status/1116654694561193985"
+  - "https://x.com/dadoonet/status/1116959232115580928"
+  - "https://x.com/dadoonet/status/1116986432223088642"
+  - "https://x.com/dadoonet/status/1116341860606328833"
+  - "https://x.com/nashcsshtml/status/1116658341982425089"
+  - "https://x.com/kevanmoothien/status/1116638121897148416"
+  - "https://x.com/VanessaChellen/status/1116661036529143808"
+  - "https://x.com/rishiabee/status/1116681930060312577"
+  - "https://x.com/dadoonet/status/1116676391184080896"
 links:
   - title: "Blog: Enrichir ses adresses postales avec la suite Elastic - Part 1"
     url: "https://www.elastic.co/blog/enriching-your-postal-addresses-with-the-elastic-stack-part-1"

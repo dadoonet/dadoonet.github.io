@@ -25,14 +25,8 @@ aliases:
 - /UZnMYu
 
 social:
-  - type: x
-    user: "dadoonet"
-    id: "1406915077215821825"
-  - type: x
-    user: "dadoonet"
-    id: "1407000355968221188"
-  - type: x
-    user: "dadoonet"
-    id: "1407009163943714816"
+  - "https://x.com/dadoonet/status/1406915077215821825"
+  - "https://x.com/dadoonet/status/1407000355968221188"
+  - "https://x.com/dadoonet/status/1407009163943714816"
 ---
 Discover how to manage your ingest pipelines in Kibana with this 8 minutes session.

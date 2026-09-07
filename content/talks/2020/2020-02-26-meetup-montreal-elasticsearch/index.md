@@ -21,12 +21,8 @@ draft: false
 notist: "dadoonet/W6DrOR"
 
 social:
-  - type: x
-    user: "dadoonet"
-    id: "1230526309102706689"
-  - type: x
-    user: "dadoonet"
-    id: "1230829244646903808"
+  - "https://x.com/dadoonet/status/1230526309102706689"
+  - "https://x.com/dadoonet/status/1230829244646903808"
 links:
   - title: "Blog: Enrichir ses adresses postales avec la suite Elastic - Part 1"
     url: "https://www.elastic.co/blog/enriching-your-postal-addresses-with-the-elastic-stack-part-1"

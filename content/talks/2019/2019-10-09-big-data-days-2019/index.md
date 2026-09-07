@@ -20,12 +20,8 @@ draft: false
 notist: "dadoonet/Diz4Uz"
 
 social:
-  - type: x
-    user: "dadoonet"
-    id: "1181525167568232449"
-  - type: x
-    user: "dadoonet"
-    id: "1181841539808550912"
+  - "https://x.com/dadoonet/status/1181525167568232449"
+  - "https://x.com/dadoonet/status/1181841539808550912"
 links:
   - title: "Code: legacy-search"
     url: "https://github.com/dadoonet/legacy-search"

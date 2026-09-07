@@ -27,9 +27,7 @@ links:
     url: "https://github.com/dadoonet/music-search"
 
 social:
-  - type: x
-    user: "dadoonet"
-    id: "1866139000349544468"
+  - "https://x.com/dadoonet/status/1866139000349544468"
 aliases:
 - /asppSL
 ---

@@ -21,18 +21,10 @@ draft: false
 notist: "dadoonet/UFYnwm"
 
 social:
-  - type: x
-    user: "developer_week"
-    id: "1796455589700423932"
-  - type: x
-    user: "raffaeler"
-    id: "1808427920718721521"
-  - type: x
-    user: "dadoonet"
-    id: "1808451265635954777"
-  - type: x
-    user: "dadoonet"
-    id: "1807693122463228320"
+  - "https://x.com/developer_week/status/1796455589700423932"
+  - "https://x.com/raffaeler/status/1808427920718721521"
+  - "https://x.com/dadoonet/status/1808451265635954777"
+  - "https://x.com/dadoonet/status/1807693122463228320"
 links:
   - title: "Video: Advanced (elastic)search for your legacy application"
     url: "https://www.elastic.co/blog/how-to-add-powerful-search-existing-sql-applications-elasticsearch-video-tutorial"

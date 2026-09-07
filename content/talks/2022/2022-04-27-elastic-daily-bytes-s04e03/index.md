@@ -18,9 +18,7 @@ youtube: "CvdVbBEEhAE"
 notist: "dadoonet/cnOMTv"
 
 social:
-  - type: x
-    user: "dadoonet"
-    id: "1518545201249333248"
+  - "https://x.com/dadoonet/status/1518545201249333248"
 links:
   - title: "Script of the talk"
     url: "https://github.com/dadoonet/s04e03-agent"

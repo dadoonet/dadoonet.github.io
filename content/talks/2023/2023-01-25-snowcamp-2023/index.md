@@ -22,27 +22,13 @@ pdf: "2023/2023-01-25-snowcamp-2023.pdf"
 notist: "dadoonet/UGtHAu"
 
 social:
-  - type: x
-    user: "ponceto91"
-    id: "1618546896926314496"
-  - type: x
-    user: "mupsigraphy"
-    id: "1618547196655464450"
-  - type: x
-    user: "dadideo"
-    id: "1618550368245551107"
-  - type: x
-    user: "dadoonet"
-    id: "1618529295173050368"
-  - type: x
-    user: "dadoonet"
-    id: "1614989473837629442"
-  - type: x
-    user: "dadoonet"
-    id: "1611365091995275266"
-  - type: x
-    user: "dadoonet"
-    id: "1618564206521110529"
+  - "https://x.com/ponceto91/status/1618546896926314496"
+  - "https://x.com/mupsigraphy/status/1618547196655464450"
+  - "https://x.com/dadideo/status/1618550368245551107"
+  - "https://x.com/dadoonet/status/1618529295173050368"
+  - "https://x.com/dadoonet/status/1614989473837629442"
+  - "https://x.com/dadoonet/status/1611365091995275266"
+  - "https://x.com/dadoonet/status/1618564206521110529"
 links:
   - title: "Demo: FSCrawler"
     url: "https://github.com/dadoonet/demo-fscrawler"

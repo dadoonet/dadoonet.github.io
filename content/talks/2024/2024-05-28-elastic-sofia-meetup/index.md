@@ -22,9 +22,7 @@ pdf: "2024/2024-05-28-elastic-sofia-meetup.pdf"
 notist: "dadoonet/D8f9kp"
 
 social:
-  - type: x
-    user: "dadoonet"
-    id: "1795528472749838482"
+  - "https://x.com/dadoonet/status/1795528472749838482"
 links:
   - title: "Demo: Humming search"
     url: "https://github.com/dadoonet/music-search"

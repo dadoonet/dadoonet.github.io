@@ -21,9 +21,7 @@ pdf: "2019/2019-03-05-isen-private-event.pdf"
 notist: "dadoonet/1dYDNJ"
 
 social:
-  - type: x
-    user: "dadoonet"
-    id: "1102909356109115398"
+  - "https://x.com/dadoonet/status/1102909356109115398"
 links:
   - title: "Demo: Kibana script for BBL"
     url: "https://gist.github.com/dadoonet/f911291c4dd19b0802031db3064c648f"

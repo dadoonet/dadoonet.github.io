@@ -22,21 +22,11 @@ pdf: "2019/2019-04-09-bbl-helioparc.pdf"
 notist: "dadoonet/YYb9Vd"
 
 social:
-  - type: x
-    user: "ElasticFR"
-    id: "1112642239656808448"
-  - type: x
-    user: "dadoonet"
-    id: "1113127769590894594"
-  - type: x
-    user: "dadoonet"
-    id: "1115523935410511873"
-  - type: x
-    user: "dadoonet"
-    id: "1115545496611971072"
-  - type: x
-    user: "dadoonet"
-    id: "1115549903583891456"
+  - "https://x.com/ElasticFR/status/1112642239656808448"
+  - "https://x.com/dadoonet/status/1113127769590894594"
+  - "https://x.com/dadoonet/status/1115523935410511873"
+  - "https://x.com/dadoonet/status/1115545496611971072"
+  - "https://x.com/dadoonet/status/1115549903583891456"
 links:
   - title: "Une ancienne vidéo (2015) sur le même sujet"
     url: "https://vimeo.com/129781775"

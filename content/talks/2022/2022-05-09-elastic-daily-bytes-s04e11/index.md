@@ -22,9 +22,7 @@ links:
     url: "https://community.elastic.co/e/m9kpn6/"
 
 social:
-  - type: x
-    user: "dadoonet"
-    id: "1523580347258388480"
+  - "https://x.com/dadoonet/status/1523580347258388480"
 aliases:
   - /TkYm78
 ---

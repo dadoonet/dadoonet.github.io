@@ -22,12 +22,8 @@ links:
     url: "https://github.com/dadoonet/demo-text-analysis"
 
 social:
-  - type: x
-    user: "dadoonet"
-    id: "1373935935230988288"
-  - type: x
-    user: "dadoonet"
-    id: "1374309950118195205"
+  - "https://x.com/dadoonet/status/1373935935230988288"
+  - "https://x.com/dadoonet/status/1374309950118195205"
 aliases:
   - /Shtlza
 ---

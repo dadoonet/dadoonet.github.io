@@ -31,12 +31,8 @@ aliases:
 - /Xmao1i
 
 social:
-  - type: x
-    user: "Java2Days"
-    id: "1500060100437979142"
-  - type: x
-    user: "dadoonet"
-    id: "1501218291955769353"
+  - "https://x.com/Java2Days/status/1500060100437979142"
+  - "https://x.com/dadoonet/status/1501218291955769353"
 ---
 How do you mix SQL and NoSQL worlds without starting a messy revolution?
 

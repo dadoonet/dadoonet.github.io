@@ -19,15 +19,9 @@ pdf: "2012/2012-12-06-nantesjug-es.pdf"
 
 # Speaker specific fields
 social:
-  - type: x
-    user: "dadoonet"
-    id: "273853624004784128"
-  - type: x
-    user: "clescot"
-    id: "276776502018854912"
-  - type: x
-    user: "clescot"
-    id: "276750841346678784"
+  - "https://x.com/dadoonet/status/273853624004784128"
+  - "https://x.com/clescot/status/276776502018854912"
+  - "https://x.com/clescot/status/276750841346678784"
 ---
 Cette soirée est faite pour vous si :
 

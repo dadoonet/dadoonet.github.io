@@ -22,12 +22,8 @@ aliases:
 - /bqMosJ
 
 social:
-  - type: x
-    user: "dadoonet"
-    id: "1450469176301264902"
-  - type: x
-    user: "dadoonet"
-    id: "1450758690672234496"
+  - "https://x.com/dadoonet/status/1450469176301264902"
+  - "https://x.com/dadoonet/status/1450758690672234496"
 #- user: spinscale
 #  id: '1450752411166023683'
 ---

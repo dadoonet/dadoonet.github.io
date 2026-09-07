@@ -26,27 +26,13 @@ pdf: "2019/2019-09-13-jug-summer-camp.pdf"
 notist: "dadoonet/x959ys"
 
 social:
-  - type: x
-    user: "altolabs"
-    id: "1172417711525126146"
-  - type: x
-    user: "SerliFr"
-    id: "1172417393362030593"
-  - type: x
-    user: "jeromepetit"
-    id: "1172415259589529601"
-  - type: x
-    user: "jugsummercamp"
-    id: "1172414593332678657"
-  - type: x
-    user: "dadoonet"
-    id: "1172492208563507202"
-  - type: x
-    user: "julienviet"
-    id: "1173506905429422081"
-  - type: x
-    user: "oriannetisseuil"
-    id: "1172415384462319616"
+  - "https://x.com/altolabs/status/1172417711525126146"
+  - "https://x.com/SerliFr/status/1172417393362030593"
+  - "https://x.com/jeromepetit/status/1172415259589529601"
+  - "https://x.com/jugsummercamp/status/1172414593332678657"
+  - "https://x.com/dadoonet/status/1172492208563507202"
+  - "https://x.com/julienviet/status/1173506905429422081"
+  - "https://x.com/oriannetisseuil/status/1172415384462319616"
 aliases:
   - /x959ys
 

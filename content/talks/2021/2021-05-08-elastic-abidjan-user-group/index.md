@@ -18,21 +18,11 @@ pdf: "2021/2021-05-08-elastic-abidjan-user-group.pdf"
 notist: "dadoonet/TdqZHF"
 
 social:
-  - type: x
-    user: "GDGCloudAbidjan"
-    id: "1389685022442115077"
-  - type: x
-    user: "GDGCloudAbidjan"
-    id: "1389200335051317249"
-  - type: x
-    user: "jeanluckoffi14"
-    id: "1387445684945707008"
-  - type: x
-    user: "dadoonet"
-    id: "1390927620750123009"
-  - type: x
-    user: "dadoonet"
-    id: "1390996222530424833"
+  - "https://x.com/GDGCloudAbidjan/status/1389685022442115077"
+  - "https://x.com/GDGCloudAbidjan/status/1389200335051317249"
+  - "https://x.com/jeanluckoffi14/status/1387445684945707008"
+  - "https://x.com/dadoonet/status/1390927620750123009"
+  - "https://x.com/dadoonet/status/1390996222530424833"
 aliases:
   - /TdqZHF
 ---

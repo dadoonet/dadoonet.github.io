@@ -19,24 +19,12 @@ draft: false
 attendees: 50
 
 social:
-  - type: x
-    user: "xavroy"
-    id: "380037368020865024"
-  - type: x
-    user: "xavroy"
-    id: "380033492156809216"
-  - type: x
-    user: "jmdoudoux"
-    id: "380037683340648448"
-  - type: x
-    user: "LorraineJUG"
-    id: "380038341212655617"
-  - type: x
-    user: "xavroy"
-    id: "380040107283058690"
-  - type: x
-    user: "xavroy"
-    id: "380041319122358273"
+  - "https://x.com/xavroy/status/380037368020865024"
+  - "https://x.com/xavroy/status/380033492156809216"
+  - "https://x.com/jmdoudoux/status/380037683340648448"
+  - "https://x.com/LorraineJUG/status/380038341212655617"
+  - "https://x.com/xavroy/status/380040107283058690"
+  - "https://x.com/xavroy/status/380041319122358273"
 ---
 
 Vous utilisez encore des requêtes SQL pour faire des recherches ? Vos utilisateurs vous reprochent de ne pas pouvoir chercher sur toutes les rubriques ? Votre temps de réponse moyen est supérieur à la demi-seconde avec seulement quelques millions de documents ? Il vous faut 3 jours pour produire des statistiques sur vos données ? Vous rêvez d'offrir une recherche "à la google" sur les données de votre SI ? Ne cherchez plus ! Cette conférence est faite pour vous.

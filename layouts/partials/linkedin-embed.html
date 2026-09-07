@@ -1,14 +1,10 @@
 {{- /*
   Embed a LinkedIn post via the official iframe.
   Expected parameters:
-    - id: activity id from …-activity-{id}-… in the post URL
-      (used in urn:li:activity:{id})
-    - user: vanity slug from /posts/{user}_… (required by the social:
-      contract; not used in the iframe)
+    - id: activity id (urn:li:activity:{id})
 */ -}}
 {{- $id := .id -}}
-{{- $user := .user -}}
-{{- if and $id $user -}}
+{{- if $id -}}
 <div class="linkedin-embed">
   <iframe
     src="https://www.linkedin.com/embed/feed/update/urn:li:activity:{{ $id }}"
@@ -17,5 +13,5 @@
     allowfullscreen></iframe>
 </div>
 {{- else -}}
-  {{- errorf "The linkedin-embed partial requires two parameters: user and id. Got user=%v, id=%v" $user $id -}}
+  {{- errorf "The linkedin-embed partial requires an id. Got id=%v" $id -}}
 {{- end -}}

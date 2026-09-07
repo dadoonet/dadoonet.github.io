@@ -22,24 +22,12 @@ pdf: "2017/2017-12-14-gdg-lille.pdf"
 notist: "dadoonet/tlQJC5"
 
 social:
-  - type: x
-    user: "_abarbare"
-    id: "941364493396914176"
-  - type: x
-    user: "LudovicBorie"
-    id: "940857659351359488"
-  - type: x
-    user: "dadoonet"
-    id: "941416788730023938"
-  - type: x
-    user: "dadoonet"
-    id: "941416363456974849"
-  - type: x
-    user: "dadoonet"
-    id: "941374288535392256"
-  - type: x
-    user: "gui_gillon"
-    id: "941377671740710912"
+  - "https://x.com/_abarbare/status/941364493396914176"
+  - "https://x.com/LudovicBorie/status/940857659351359488"
+  - "https://x.com/dadoonet/status/941416788730023938"
+  - "https://x.com/dadoonet/status/941416363456974849"
+  - "https://x.com/dadoonet/status/941374288535392256"
+  - "https://x.com/gui_gillon/status/941377671740710912"
 links:
 
 aliases:

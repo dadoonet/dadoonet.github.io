@@ -22,9 +22,7 @@ links:
     url: "https://github.com/dadoonet/demo-searchable-snapshots"
 
 social:
-  - type: x
-    user: "dadoonet"
-    id: "1374390316405432324"
+  - "https://x.com/dadoonet/status/1374390316405432324"
 aliases:
   - /jTjq9d
 ---

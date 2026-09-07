@@ -22,15 +22,9 @@ pdf: "2024/2024-05-29-jprime-2024.pdf"
 notist: "dadoonet/NizzH6"
 
 social:
-  - type: x
-    user: "dadoonet"
-    id: "1795423218313912325"
-  - type: x
-    user: "piotrprz"
-    id: "1795743726465355921"
-  - type: x
-    user: "jPrimeConf"
-    id: "1759498858676056236"
+  - "https://x.com/dadoonet/status/1795423218313912325"
+  - "https://x.com/piotrprz/status/1795743726465355921"
+  - "https://x.com/jPrimeConf/status/1759498858676056236"
 links:
   - title: "Demo: Music search"
     url: "https://github.com/dadoonet/music-search"

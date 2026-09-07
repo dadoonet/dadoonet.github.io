@@ -22,12 +22,8 @@ youtube: "FPW8nO0VGVg"
 notist: "dadoonet/NQl8VA"
 
 social:
-  - type: x
-    user: "DevFestToulouse"
-    id: "1836372857158267036"
-  - type: x
-    user: "dadoonet"
-    id: "1853821935882211798"
+  - "https://x.com/DevFestToulouse/status/1836372857158267036"
+  - "https://x.com/dadoonet/status/1853821935882211798"
 links:
   - title: "Demo: Music search"
     url: "https://github.com/dadoonet/music-search"

@@ -33,18 +33,10 @@ links:
 aliases:
 - /2IKuCz
 social:
-  - type: x
-    user: "dadoonet"
-    id: "1315956406533619717"
-  - type: x
-    user: "dadoonet"
-    id: "1315956407938752513"
-  - type: x
-    user: "dadoonet"
-    id: "1316051980410859525"
-  - type: x
-    user: "progmag"
-    id: "1312040274424602625"
+  - "https://x.com/dadoonet/status/1315956406533619717"
+  - "https://x.com/dadoonet/status/1315956407938752513"
+  - "https://x.com/dadoonet/status/1316051980410859525"
+  - "https://x.com/progmag/status/1312040274424602625"
 ---
 Comment mixer SQL et NoSQL sans faire la révolution ?
 

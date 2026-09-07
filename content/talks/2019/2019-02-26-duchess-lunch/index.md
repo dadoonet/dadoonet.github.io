@@ -22,15 +22,9 @@ pdf: "2019/2019-02-26-duchess-lunch.pdf"
 notist: "dadoonet/EKXWMo"
 
 social:
-  - type: x
-    user: "MathildeLemee"
-    id: "1100361190872625154"
-  - type: x
-    user: "nicokosi"
-    id: "1100630170971582464"
-  - type: x
-    user: "dadoonet"
-    id: "1100349635305050112"
+  - "https://x.com/MathildeLemee/status/1100361190872625154"
+  - "https://x.com/nicokosi/status/1100630170971582464"
+  - "https://x.com/dadoonet/status/1100349635305050112"
 links:
   - title: "Demo: Kibana script for BBL"
     url: "https://gist.github.com/dadoonet/f911291c4dd19b0802031db3064c648f"

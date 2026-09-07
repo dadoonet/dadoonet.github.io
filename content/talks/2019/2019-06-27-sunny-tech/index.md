@@ -21,18 +21,10 @@ youtube: "0Zsuae0LWas"
 notist: "dadoonet/AsJxO2"
 
 social:
-  - type: x
-    user: "SunnyTech_MTP"
-    id: "1144159745894486016"
-  - type: x
-    user: "seb_express"
-    id: "1144158720290689031"
-  - type: x
-    user: "dadoonet"
-    id: "1144142488812302340"
-  - type: x
-    user: "dadoonet"
-    id: "1144177838888771586"
+  - "https://x.com/SunnyTech_MTP/status/1144159745894486016"
+  - "https://x.com/seb_express/status/1144158720290689031"
+  - "https://x.com/dadoonet/status/1144142488812302340"
+  - "https://x.com/dadoonet/status/1144177838888771586"
 links:
   - title: "Feedbacks"
     url: "https://openfeedback.io/3xWvprYgxf1Tzmsj6J51/2019-06-27/50"

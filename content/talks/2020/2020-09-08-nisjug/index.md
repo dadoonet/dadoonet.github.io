@@ -18,15 +18,9 @@ draft: false
 notist: "dadoonet/cyv0Py"
 
 social:
-  - type: x
-    user: "nisjug"
-    id: "1298868419920617472"
-  - type: x
-    user: "dadoonet"
-    id: "1303394157025689600"
-  - type: x
-    user: "nisjug"
-    id: "1302914866316013568"
+  - "https://x.com/nisjug/status/1298868419920617472"
+  - "https://x.com/dadoonet/status/1303394157025689600"
+  - "https://x.com/nisjug/status/1302914866316013568"
 links:
   - title: "Video: Advanced (elastic)search for your legacy application"
     url: "https://www.elastic.co/blog/how-to-add-powerful-search-existing-sql-applications-elasticsearch-video-tutorial"

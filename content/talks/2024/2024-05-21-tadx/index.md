@@ -22,33 +22,15 @@ youtube: "bOQlpOwiRdk"
 notist: "dadoonet/snE5A3"
 
 social:
-  - type: x
-    user: "TADx_group"
-    id: "1792918275078373843"
-  - type: x
-    user: "TADx_group"
-    id: "1792888067550044424"
-  - type: x
-    user: "dadoonet"
-    id: "1785247060444278853"
-  - type: x
-    user: "dadoonet"
-    id: "1785971031154327666"
-  - type: x
-    user: "dadoonet"
-    id: "1787406711357124760"
-  - type: x
-    user: "TADx_group"
-    id: "1787421450300760147"
-  - type: x
-    user: "TADx_group"
-    id: "1790636400687157639"
-  - type: x
-    user: "TADx_group"
-    id: "1792450183047025005"
-  - type: x
-    user: "dadoonet"
-    id: "1792820717891011049"
+  - "https://x.com/TADx_group/status/1792918275078373843"
+  - "https://x.com/TADx_group/status/1792888067550044424"
+  - "https://x.com/dadoonet/status/1785247060444278853"
+  - "https://x.com/dadoonet/status/1785971031154327666"
+  - "https://x.com/dadoonet/status/1787406711357124760"
+  - "https://x.com/TADx_group/status/1787421450300760147"
+  - "https://x.com/TADx_group/status/1790636400687157639"
+  - "https://x.com/TADx_group/status/1792450183047025005"
+  - "https://x.com/dadoonet/status/1792820717891011049"
 links:
   - title: "Demo: ES|QL"
     url: "https://github.com/dadoonet/esql-demo"

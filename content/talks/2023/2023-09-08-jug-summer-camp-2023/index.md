@@ -22,21 +22,11 @@ youtube: "VQLIn2-juzE"
 notist: "dadoonet/cPvYtw"
 
 social:
-  - type: x
-    user: "dadoonet"
-    id: "1698614376654414172"
-  - type: x
-    user: "wildagsx"
-    id: "1700126203070357548"
-  - type: x
-    user: "Lilian_Benoit"
-    id: "1700126177585774779"
-  - type: x
-    user: "jugsummercamp"
-    id: "1700129379555188943"
-  - type: x
-    user: "taalaran"
-    id: "1710211066024661079"
+  - "https://x.com/dadoonet/status/1698614376654414172"
+  - "https://x.com/wildagsx/status/1700126203070357548"
+  - "https://x.com/Lilian_Benoit/status/1700126177585774779"
+  - "https://x.com/jugsummercamp/status/1700129379555188943"
+  - "https://x.com/taalaran/status/1710211066024661079"
 links:
   - title: "Blog: ChatGPT and Elasticsearch: OpenAI meets private data"
     url: "https://www.elastic.co/blog/chatgpt-elasticsearch-openai-meets-private-data"

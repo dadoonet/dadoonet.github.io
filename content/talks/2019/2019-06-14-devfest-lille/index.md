@@ -20,15 +20,9 @@ youtube: "hlfy1EDAP4U"
 notist: "dadoonet/L5rDwO"
 
 social:
-  - type: x
-    user: "dadoonet"
-    id: "1139509930002735106"
-  - type: x
-    user: "fdelbrayelle"
-    id: "1139544412952940544"
-  - type: x
-    user: "mattmasztalir"
-    id: "1139544445039370246"
+  - "https://x.com/dadoonet/status/1139509930002735106"
+  - "https://x.com/fdelbrayelle/status/1139544412952940544"
+  - "https://x.com/mattmasztalir/status/1139544445039370246"
 links:
   - title: "Demo: elasticsearch-integration-tests repository"
     url: "https://github.com/dadoonet/elasticsearch-integration-tests"

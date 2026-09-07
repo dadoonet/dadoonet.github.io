@@ -21,12 +21,8 @@ pdf: "2019/2019-03-12-bbl-desjardins-private-event.pdf"
 notist: "dadoonet/PJpPUu"
 
 social:
-  - type: x
-    user: "Dev_Rion"
-    id: "1105566439438774273"
-  - type: x
-    user: "dadoonet"
-    id: "1105497514919239680"
+  - "https://x.com/Dev_Rion/status/1105566439438774273"
+  - "https://x.com/dadoonet/status/1105497514919239680"
 links:
   - title: "Demo: Kibana script for BBL"
     url: "https://gist.github.com/dadoonet/f911291c4dd19b0802031db3064c648f"

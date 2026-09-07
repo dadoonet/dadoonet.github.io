@@ -18,15 +18,9 @@ draft: false
 pdf: "2012/2012-12-11-finistjug-es.pdf"
 
 social:
-  - type: x
-    user: "FinistDevs"
-    id: "278563151161720832"
-  - type: x
-    user: "FinistDevs"
-    id: "278571460111515648"
-  - type: x
-    user: "FinistDevs"
-    id: "278565888960110592"
+  - "https://x.com/FinistDevs/status/278563151161720832"
+  - "https://x.com/FinistDevs/status/278571460111515648"
+  - "https://x.com/FinistDevs/status/278565888960110592"
 ---
 Le mardi 11 décembre nous organisons une nouvelle soirée FinistJUG dont le sujet principal sera ElasticSearch. Nous recevrons la visite de David Pilato, l’un des piliers de la communauté française autour de ElasticSearch, auteur du plugin River RSS ainsi que d’une factory Spring pour Elasticsearch, et un ancien de l’[ENIB](https://enib.fr/) en plus !
 

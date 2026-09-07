@@ -21,12 +21,8 @@ pdf: "2019/2019-02-19-bbl-hello-work-private-event.pdf"
 notist: "dadoonet/aV3SGw"
 
 social:
-  - type: x
-    user: "dadoonet"
-    id: "1097954040913317889"
-  - type: x
-    user: "dadoonet"
-    id: "1097807990441340929"
+  - "https://x.com/dadoonet/status/1097954040913317889"
+  - "https://x.com/dadoonet/status/1097807990441340929"
 links:
   - title: "Demo: Kibana script for BBL" 
     url: "https://gist.github.com/dadoonet/f911291c4dd19b0802031db3064c648f"

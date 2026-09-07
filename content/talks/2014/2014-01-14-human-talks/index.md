@@ -18,27 +18,13 @@ draft: false
 attendees: 30
 
 social:
-  - type: x
-    user: "scharrier"
-    id: "422771619644579840"
-  - type: x
-    user: "sebclick"
-    id: "423164793194049536"
-  - type: x
-    user: "remilanoes"
-    id: "423165106122661889"
-  - type: x
-    user: "scharrier"
-    id: "423165290780688384"
-  - type: x
-    user: "Maine_Labs"
-    id: "423165709859180544"
-  - type: x
-    user: "sebclick"
-    id: "423168424832159744"
-  - type: x
-    user: "remilanoes"
-    id: "423169115600470016"
+  - "https://x.com/scharrier/status/422771619644579840"
+  - "https://x.com/sebclick/status/423164793194049536"
+  - "https://x.com/remilanoes/status/423165106122661889"
+  - "https://x.com/scharrier/status/423165290780688384"
+  - "https://x.com/Maine_Labs/status/423165709859180544"
+  - "https://x.com/sebclick/status/423168424832159744"
+  - "https://x.com/remilanoes/status/423169115600470016"
 pdf: "2014/2014-01-14-human-talks.pdf"
 ---
 Et si on fabriquait des dashboards selon notre besoin au moment où nous en avons besoin ?

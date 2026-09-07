@@ -21,18 +21,10 @@ draft: false
 notist: "dadoonet/5Hhw01"
 
 social:
-  - type: x
-    user: "dadoonet"
-    id: "1116986432223088642"
-  - type: x
-    user: "dadoonet"
-    id: "1116978098531074048"
-  - type: x
-    user: "dadoonet"
-    id: "1116959232115580928"
-  - type: x
-    user: "dadoonet"
-    id: "1116341860606328833"
+  - "https://x.com/dadoonet/status/1116986432223088642"
+  - "https://x.com/dadoonet/status/1116978098531074048"
+  - "https://x.com/dadoonet/status/1116959232115580928"
+  - "https://x.com/dadoonet/status/1116341860606328833"
 links:
   - title: "Blog: Advanced search for your legacy application"
     url: "https://david.pilato.fr/blog/2015/05/09/advanced-search-for-your-legacy-application/"

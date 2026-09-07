@@ -30,12 +30,8 @@ links:
 aliases:
 - /K8ZxQb
 social:
-  - type: x
-    user: "anienib"
-    id: "1450384490854031361"
-  - type: x
-    user: "dadoonet"
-    id: "1454044385876877321"
+  - "https://x.com/anienib/status/1450384490854031361"
+  - "https://x.com/dadoonet/status/1454044385876877321"
 ---
 Vous utilisez encore des requêtes SQL pour faire des recherches ? Vos utilisateurs vous reprochent de ne pas pouvoir chercher sur toutes les rubriques ? Votre temps de réponse moyen est supérieur à la demi-seconde avec seulement quelques millions de documents ? Il vous faut 3 jours pour produire des statistiques sur vos données ? Vous rêvez d’offrir une recherche “à la google” sur les données de votre SI ?
 

@@ -22,9 +22,7 @@ pdf: "2023/2023-04-02-jdll.pdf"
 notist: "dadoonet/D5Qumy"
 
 social:
-  - type: x
-    user: "dadoonet"
-    id: "1638567651847929861"
+  - "https://x.com/dadoonet/status/1638567651847929861"
 links:
   - title: "Workshop instructions"
     url: "https://github.com/dadoonet/JDLL"

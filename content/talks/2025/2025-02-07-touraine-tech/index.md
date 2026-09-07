@@ -22,24 +22,12 @@ youtube: "Uwf2fe20ILo"
 notist: "dadoonet/UuLUmS"
 
 social:
-  - type: x
-    user: "dadoonet"
-    id: "1896926491528552938"
-  - type: x
-    user: "dadoonet"
-    id: "1888073441225429268"
-  - type: x
-    user: "tourainetech"
-    id: "1887806922948030878"
-  - type: x
-    user: "ju_hnny5"
-    id: "1887793742049927352"
-  - type: x
-    user: "dadoonet"
-    id: "1886790251462459646"
-  - type: x
-    user: "tourainetech"
-    id: "1874138596074021243"
+  - "https://x.com/dadoonet/status/1896926491528552938"
+  - "https://x.com/dadoonet/status/1888073441225429268"
+  - "https://x.com/tourainetech/status/1887806922948030878"
+  - "https://x.com/ju_hnny5/status/1887793742049927352"
+  - "https://x.com/dadoonet/status/1886790251462459646"
+  - "https://x.com/tourainetech/status/1874138596074021243"
 links:
   - title: "Demo: ES|QL"
     url: "https://github.com/dadoonet/esql-demo"

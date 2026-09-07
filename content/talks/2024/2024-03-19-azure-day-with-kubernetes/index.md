@@ -22,12 +22,8 @@ pdf: "2024/2024-03-19-azure-day-with-kubernetes.pdf"
 notist: "dadoonet/z9aj7o"
 
 social:
-  - type: x
-    user: "dadoonet"
-    id: "1770117242178457837"
-  - type: x
-    user: "whaakman"
-    id: "1770114563440103875"
+  - "https://x.com/dadoonet/status/1770117242178457837"
+  - "https://x.com/whaakman/status/1770114563440103875"
 links:
   - title: "Demo: Music search"
     url: "https://github.com/dadoonet/music-search"

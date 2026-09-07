@@ -26,27 +26,13 @@ links:
     url: "https://github.com/dadoonet/music-search"
 
 social:
-  - type: x
-    user: "ElasticFR"
-    id: "1720464601035505856"
-  - type: x
-    user: "ElasticFR"
-    id: "1725174766582018088"
-  - type: x
-    user: "dadoonet"
-    id: "1725174636860649499"
-  - type: x
-    user: "ElasticFR"
-    id: "1722186194971238506"
-  - type: x
-    user: "ElasticFR"
-    id: "1724421171788071347"
-  - type: x
-    user: "ElasticFR"
-    id: "1724854060501585947"
-  - type: x
-    user: "dadoonet"
-    id: "1725059241818361961"
+  - "https://x.com/ElasticFR/status/1720464601035505856"
+  - "https://x.com/ElasticFR/status/1725174766582018088"
+  - "https://x.com/dadoonet/status/1725174636860649499"
+  - "https://x.com/ElasticFR/status/1722186194971238506"
+  - "https://x.com/ElasticFR/status/1724421171788071347"
+  - "https://x.com/ElasticFR/status/1724854060501585947"
+  - "https://x.com/dadoonet/status/1725059241818361961"
 aliases:
   - /lJdisl
 ---

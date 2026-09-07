@@ -10,26 +10,24 @@ Blog shortcode `{{< x >}}` is out of scope and stays as-is.
 
 ## Authoring contract
 
-Each talk that has social posts declares:
+Each talk that has social posts declares a list of public post URLs:
 
 ```yaml
 social:
-  - type: x          # required: x | bluesky | linkedin
-    user: "handle"   # required
-    id: "post-id"    # required
+  - "https://x.com/dadoonet/status/2095849248780616171"
+  - "https://bsky.app/profile/klf37.bsky.social/post/3muol6taevk2h"
+  - "https://www.linkedin.com/embed/feed/update/urn:li:activity:7501648269345812481"
 ```
 
-Order in the list is display order. Items from different networks may be interleaved.
+Order in the list is display order. Query strings and fragments are ignored.
 
-| `type` | `user` | `id` | Post URL used internally |
-| --- | --- | --- | --- |
-| `x` | X handle without `@` | Numeric status id | `https://x.com/{user}/status/{id}` |
-| `bluesky` | Handle, including `.bsky.social` when present | Post rkey | `https://bsky.app/profile/{user}/post/{id}` |
-| `linkedin` | Vanity slug from the `/posts/{user}_…` URL | Numeric `activity-` id | Embed uses `urn:li:activity:{id}` only |
+| Network | Accepted URL |
+| --- | --- |
+| X | `https://x.com/{user}/status/{id}` or `https://twitter.com/{user}/status/{id}` |
+| Bluesky | `https://bsky.app/profile/{handle-or-did}/post/{id}` |
+| LinkedIn | embed/feed URL with `urn:li:activity:{id}`, or a `/posts/…-activity-{id}-…` URL |
 
-LinkedIn `user` is kept for symmetry with X and Bluesky. It is not used to build `linkedin.com/in/…` or `linkedin.com/company/…` (the slug can be either). The iframe uses only `id`.
-
-Unknown `type`, or a missing `type` / `user` / `id`, is a build error.
+An unrecognized URL is a build error. Do not keep `type` / `user` / `id` maps.
 
 ## UI
 
@@ -46,9 +44,9 @@ Do not show the block for talks with no `social:` list.
 
 ### Dispatcher: `layouts/partials/social-embed.html`
 
-Input: `type`, `user`, `id`, optional `ctx`.
+Input: `url` (string), optional `ctx`.
 
-Switch on `type` and call the matching embed partial. `errorf` on unknown type or missing fields.
+Parse the URL with `urls.Parse`. Ignore query and fragment. Switch on host (`x.com` / `twitter.com`, `bsky.app`, `linkedin.com`) and extract path ids. `errorf` on an unrecognized URL.
 
 ### `layouts/partials/x-embed.html`
 
@@ -70,7 +68,7 @@ Same pattern as X, without Hugo privacy config (none exists for Bluesky):
 5. Output the remaining HTML as `safeHTML`.
 6. oEmbed failure: `warnidf`, build continues.
 
-Load `https://embed.bsky.app/static/embed.js` once in the talk page `js` block if at least one item has `type: bluesky`. The oEmbed payload uses that URL (`/static/embed.js`), not `/embed.js`.
+Load `https://embed.bsky.app/static/embed.js` once in the talk page `js` block if at least one URL is a Bluesky post. The oEmbed payload uses that URL (`/static/embed.js`), not `/embed.js`.
 
 ### `layouts/partials/linkedin-embed.html`
 
@@ -102,10 +100,10 @@ No LinkedIn script tag.
 
 ### Page scripts (`layouts/talks/single.html` `js` block)
 
-Replace `{{ with .Params.x }} … widgets.js` with scans of `.Params.social`:
+Replace `{{ with .Params.x }} … widgets.js` with scans of `.Params.social` URL strings:
 
-- Any `type: x` → `https://platform.twitter.com/widgets.js` (same as today)
-- Any `type: bluesky` → `https://embed.bsky.app/static/embed.js`
+- Any X/Twitter status URL → `https://platform.twitter.com/widgets.js` (same as today)
+- Any Bluesky profile/post URL → `https://embed.bsky.app/static/embed.js`
 - LinkedIn → nothing
 
 Honor `site.Config.Privacy.X.Disable` for the widgets.js include as well.
@@ -134,18 +132,10 @@ Replace the current `x:` + `bluesky:` with:
 
 ```yaml
 social:
-  - type: x
-    user: "dadoonet"
-    id: "2095849248780616171"
-  - type: bluesky
-    user: "klf37.bsky.social"
-    id: "3muol6taevk2h"
-  - type: linkedin
-    user: "jug-summer-camp"
-    id: "7501648269345812481"
-  - type: linkedin
-    user: "jug-summer-camp"
-    id: "7501560302577025025"
+  - "https://x.com/dadoonet/status/2095849248780616171"
+  - "https://bsky.app/profile/klf37.bsky.social/post/3muol6taevk2h"
+  - "https://www.linkedin.com/embed/feed/update/urn:li:activity:7501648269345812481"
+  - "https://www.linkedin.com/embed/feed/update/urn:li:activity:7501560302577025025"
 ```
 
 LinkedIn sources:
@@ -164,11 +154,10 @@ Update in the same PR:
 
 | Situation | Behavior |
 | --- | --- |
-| Missing `type`, `user`, or `id` | `errorf` — fail the build |
-| `type` not in `x`, `bluesky`, `linkedin` | `errorf` — fail the build |
+| Missing or unrecognized URL | `errorf` — fail the build |
 | X oEmbed network/parse failure | `warnidf` — skip that item |
 | Bluesky oEmbed network/parse failure | `warnidf` — skip that item |
-| `privacy.x.disable` | Skip `type: x` items and do not load `widgets.js` |
+| `privacy.x.disable` | Skip X URLs and do not load `widgets.js` |
 | LinkedIn post not public / iframe empty | No build error; LinkedIn owns the iframe contents |
 
 ## Verification

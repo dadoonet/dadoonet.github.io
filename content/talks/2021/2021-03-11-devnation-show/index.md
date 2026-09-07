@@ -20,21 +20,11 @@ notist: dadoonet/UWydIw
 aliases:
 - /UWydIw
 social:
-  - type: x
-    user: "dadoonet"
-    id: "1370076162802786305"
-  - type: x
-    user: "rhdevelopers"
-    id: "1369931604420857859"
-  - type: x
-    user: "rhdevelopers"
-    id: "1370283170961195008"
-  - type: x
-    user: "sebi2706"
-    id: "1368997439072579589"
-  - type: x
-    user: "sebi2706"
-    id: "1369997650645417988"
+  - "https://x.com/dadoonet/status/1370076162802786305"
+  - "https://x.com/rhdevelopers/status/1369931604420857859"
+  - "https://x.com/rhdevelopers/status/1370283170961195008"
+  - "https://x.com/sebi2706/status/1368997439072579589"
+  - "https://x.com/sebi2706/status/1369997650645417988"
 ---
 Join us as we discuss today’s hottest technologies impacting developers and architects — and have a lot of fun
 

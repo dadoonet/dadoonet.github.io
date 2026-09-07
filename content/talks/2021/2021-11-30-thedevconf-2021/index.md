@@ -25,9 +25,7 @@ links:
 aliases:
 - /XgxLVm
 social:
-  - type: x
-    user: "dadoonet"
-    id: "1461808576696041479"
+  - "https://x.com/dadoonet/status/1461808576696041479"
 ---
 You are a security analyst for your company. The IT Team has deployed Elastic agents on your infrastructure, including endpoints, firewalls… those agents are collecting logs, metrics and security related data for months.
 

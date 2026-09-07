@@ -22,12 +22,8 @@ pdf: "2024/2024-02-20-montreal-jug.pdf"
 notist: "dadoonet/95YNWI"
 
 social:
-  - type: x
-    user: "montrealjug"
-    id: "1757537779922141190"
-  - type: x
-    user: "dadoonet"
-    id: "1759599463780294975"
+  - "https://x.com/montrealjug/status/1757537779922141190"
+  - "https://x.com/dadoonet/status/1759599463780294975"
 links:
   - title: "Demo: Humming search"
     url: "https://github.com/dadoonet/music-search"

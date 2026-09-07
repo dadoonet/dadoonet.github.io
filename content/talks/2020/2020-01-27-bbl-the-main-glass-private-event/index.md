@@ -21,12 +21,8 @@ youtube: "9UOvVwCdnsM"
 notist: "dadoonet/nZFpwF"
 
 social:
-  - type: x
-    user: "dadoonet"
-    id: "1223277567542775809"
-  - type: x
-    user: "dadoonet"
-    id: "1221749745607217153"
+  - "https://x.com/dadoonet/status/1223277567542775809"
+  - "https://x.com/dadoonet/status/1221749745607217153"
 links:
   - title: "Demo: Kibana script for BBL"
     url: "https://gist.github.com/dadoonet/f911291c4dd19b0802031db3064c648f"

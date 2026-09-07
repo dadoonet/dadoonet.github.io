@@ -98,15 +98,9 @@ links:
 
 # Optional - Social posts (X, Bluesky, LinkedIn)
 social:
-  - type: x
-    user: "dadoonet"
-    id: "1234567890"
-  - type: bluesky
-    user: "klf37.bsky.social"
-    id: "3muol6taevk2h"
-  - type: linkedin
-    user: "jug-summer-camp"
-    id: "7501648269345812481"
+  - "https://x.com/dadoonet/status/1234567890"
+  - "https://bsky.app/profile/klf37.bsky.social/post/3muol6taevk2h"
+  - "https://www.linkedin.com/embed/feed/update/urn:li:activity:7501648269345812481"
 
 # Optional - Number of attendees
 attendees: 200
@@ -436,7 +430,7 @@ In `layouts/partials/videoLabel.html`, displays a badge if the talk has a YouTub
 
 ### Social Embed Partials
 
-`layouts/partials/social-embed.html` dispatches a talk `social:` item by `type`.
+`layouts/partials/social-embed.html` recognizes a talk `social:` URL (X, Bluesky, or LinkedIn) and calls the matching embed partial. Query strings are ignored.
 
 - `layouts/partials/x-embed.html` — X/Twitter oEmbed
 - `layouts/partials/bluesky-embed.html` — Bluesky oEmbed

@@ -22,9 +22,7 @@ pdf: "2023/2023-12-06-open-source-experience.pdf"
 notist: "dadoonet/5gomPY"
 
 social:
-  - type: x
-    user: "dadoonet"
-    id: "1730605321364640036"
+  - "https://x.com/dadoonet/status/1730605321364640036"
 links:
   - title: "Blog: La potion magique pour faire progresser ta carrière"
     url: "/blog/2022-06-10-la-potion-magique-pour-faire-avancer-ta-carriere/"

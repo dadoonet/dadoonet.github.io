@@ -22,18 +22,10 @@ pdf: "2024/2024-12-11-finistdevs-esql.pdf"
 notist: dadoonet/yZ71Zw
 
 social:
-  - type: x
-    user: "FinistDevs"
-    id: "1862009997942497506"
-  - type: x
-    user: "FinistDevs"
-    id: "1866821061746057452"
-  - type: x
-    user: "dadoonet"
-    id: "1866958763883630617"
-  - type: x
-    user: "clever_cloudFR"
-    id: "1866152632815145462"
+  - "https://x.com/FinistDevs/status/1862009997942497506"
+  - "https://x.com/FinistDevs/status/1866821061746057452"
+  - "https://x.com/dadoonet/status/1866958763883630617"
+  - "https://x.com/clever_cloudFR/status/1866152632815145462"
 links:
   - title: "Demo code"
     url: "https://github.com/dadoonet/esql-demo"

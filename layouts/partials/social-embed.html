@@ -1,22 +1,30 @@
 {{- /*
-  Dispatch a talk social: item to the matching embed partial.
+  Dispatch a social post URL to the matching embed partial.
   Expected parameters:
-    - type: x | bluesky | linkedin
-    - user: network-specific handle or vanity slug
-    - id: network-specific post id
-    - ctx: (optional) shortcode/page context for error positions
+    - url: public post URL (query string and fragment are ignored)
+    - ctx: (optional) page context for error positions
 */ -}}
-{{- $type := .type -}}
-{{- $user := .user -}}
-{{- $id := .id -}}
-{{- if not (and $type $user $id) -}}
-  {{- errorf "The social-embed partial requires type, user, and id. Got type=%v, user=%v, id=%v" $type $user $id -}}
-{{- else if eq $type "x" -}}
-  {{- partial "x-embed.html" (dict "id" $id "user" $user "ctx" .ctx) -}}
-{{- else if eq $type "bluesky" -}}
-  {{- partial "bluesky-embed.html" (dict "id" $id "user" $user "ctx" .ctx) -}}
-{{- else if eq $type "linkedin" -}}
-  {{- partial "linkedin-embed.html" (dict "id" $id "user" $user "ctx" .ctx) -}}
+{{- $raw := .url -}}
+{{- if not $raw -}}
+  {{- errorf "The social-embed partial requires a url." -}}
 {{- else -}}
-  {{- errorf "The social-embed partial got unknown type %q. Expected x, bluesky, or linkedin." $type -}}
+  {{- $url := $raw | replaceRE `[?#].*$` "" | replaceRE `/+$` "" -}}
+
+  {{- if findRE `(?i)^https?://(?:www\.)?(?:x|twitter)\.com/[^/]+/status/\d+$` $url -}}
+    {{- $user := replaceRE `(?i)^https?://(?:www\.)?(?:x|twitter)\.com/([^/]+)/status/\d+$` `$1` $url -}}
+    {{- $id := replaceRE `(?i)^https?://(?:www\.)?(?:x|twitter)\.com/[^/]+/status/(\d+)$` `$1` $url -}}
+    {{- partial "x-embed.html" (dict "user" $user "id" $id "ctx" .ctx) -}}
+  {{- else if findRE `(?i)^https?://(?:www\.)?bsky\.app/profile/[^/]+/post/[^/]+$` $url -}}
+    {{- $user := replaceRE `(?i)^https?://(?:www\.)?bsky\.app/profile/([^/]+)/post/[^/]+$` `$1` $url -}}
+    {{- $id := replaceRE `(?i)^https?://(?:www\.)?bsky\.app/profile/[^/]+/post/([^/]+)$` `$1` $url -}}
+    {{- partial "bluesky-embed.html" (dict "user" $user "id" $id "ctx" .ctx) -}}
+  {{- else if findRE `(?i)^https?://(?:www\.)?linkedin\.com/.*urn:li:activity:\d+` $url -}}
+    {{- $id := replaceRE `(?i)^.*urn:li:activity:(\d+).*$` `$1` $url -}}
+    {{- partial "linkedin-embed.html" (dict "id" $id "ctx" .ctx) -}}
+  {{- else if findRE `(?i)^https?://(?:www\.)?linkedin\.com/posts/.*-activity-\d+` $url -}}
+    {{- $id := replaceRE `(?i)^.*-activity-(\d+).*$` `$1` $url -}}
+    {{- partial "linkedin-embed.html" (dict "id" $id "ctx" .ctx) -}}
+  {{- else -}}
+    {{- errorf "Unrecognized social URL %q. Expected an X, Bluesky, or LinkedIn post URL." $raw -}}
+  {{- end -}}
 {{- end -}}

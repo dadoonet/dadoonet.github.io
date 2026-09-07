@@ -19,15 +19,9 @@ draft: false
 attendees: 30
 
 social:
-  - type: x
-    user: "jcsirot"
-    id: "327716137607520256"
-  - type: x
-    user: "dadoonet"
-    id: "310516734450868224"
-  - type: x
-    user: "dadoonet"
-    id: "312949901195632642"
+  - "https://x.com/jcsirot/status/327716137607520256"
+  - "https://x.com/dadoonet/status/310516734450868224"
+  - "https://x.com/dadoonet/status/312949901195632642"
 ---
 
 Partant de l’idée un peu folle qu’il faut utiliser un moteur de recherche pour faire de la recherche, nous allons démontrer au cours d’un atelier pratique à quel point il est simple de mettre en oeuvre le moteur de recherche Elastic Search et de l’intégrer avec votre code Java. Ce Hands-On est fait pour vous si :

@@ -22,12 +22,8 @@ pdf: "2023/2023-04-12-devoxx-france-2023.pdf"
 notist: "dadoonet/dnEdLV"
 
 social:
-  - type: x
-    user: "dadoonet"
-    id: "1626194106346094592"
-  - type: x
-    user: "dadoonet"
-    id: "1621486584032907265"
+  - "https://x.com/dadoonet/status/1626194106346094592"
+  - "https://x.com/dadoonet/status/1621486584032907265"
 links:
   - title: "Workshop instructions"
     url: "https://github.com/dadoonet/DevoxxFR-2023"

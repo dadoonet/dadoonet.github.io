@@ -22,9 +22,7 @@ pdf: "2024/2024-11-29-bbl-infrabel-private-event.pdf"
 notist: "dadoonet/eqJ9Aw"
 
 social:
-  - type: x
-    user: "dadoonet"
-    id: "1862514892042915845"
+  - "https://x.com/dadoonet/status/1862514892042915845"
 links:
   - title: "Demo: ES|QL"
     url: "https://github.com/dadoonet/esql-demo"

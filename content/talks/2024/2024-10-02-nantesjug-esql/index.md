@@ -38,24 +38,12 @@ links:
 aliases:
 - /niwYpo
 social:
-  - type: x
-    user: "LucianoVaadin"
-    id: "1841724526943416806"
-  - type: x
-    user: "dadoonet"
-    id: "1841047907161534532"
-  - type: x
-    user: "dadoonet"
-    id: "1841770165219754335"
-  - type: x
-    user: "nantesjug"
-    id: "1835927075959488620"
-  - type: x
-    user: "nantesjug"
-    id: "1841529666823209410"
-  - type: x
-    user: "nantesjug"
-    id: "1841718972464484598"
+  - "https://x.com/LucianoVaadin/status/1841724526943416806"
+  - "https://x.com/dadoonet/status/1841047907161534532"
+  - "https://x.com/dadoonet/status/1841770165219754335"
+  - "https://x.com/nantesjug/status/1835927075959488620"
+  - "https://x.com/nantesjug/status/1841529666823209410"
+  - "https://x.com/nantesjug/status/1841718972464484598"
 ---
 Dans cette session sans slides, nous découvrirons par la pratique ce qu’apporte le nouveau language `ES|QL` pour aller fouiller dans nos données indexées dans Elasticsearch et ce, de façon interactive et visuelle.
 

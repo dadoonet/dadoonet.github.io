@@ -21,12 +21,8 @@ links:
 aliases:
 - /sDFpQX
 social:
-  - type: x
-    user: "dadoonet"
-    id: "1377713638384013315"
-  - type: x
-    user: "ienjreny"
-    id: "1377704809185345539"
+  - "https://x.com/dadoonet/status/1377713638384013315"
+  - "https://x.com/ienjreny/status/1377704809185345539"
 ---
 You have plenty of Open Office, Microsoft Office, PDF, images… documents and you may want to be able to search for their metadata and content. How can you do that?
 

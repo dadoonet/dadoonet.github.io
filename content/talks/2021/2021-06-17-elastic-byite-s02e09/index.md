@@ -22,15 +22,9 @@ links:
     url: "https://github.com/dadoonet/demo-kibana-maps"
 
 social:
-  - type: x
-    user: "dadoonet"
-    id: "1405457907056103424"
-  - type: x
-    user: "dadoonet"
-    id: "1405558354303455238"
-  - type: x
-    user: "dadoonet"
-    id: "1405550804161990665"
+  - "https://x.com/dadoonet/status/1405457907056103424"
+  - "https://x.com/dadoonet/status/1405558354303455238"
+  - "https://x.com/dadoonet/status/1405550804161990665"
 aliases:
   - /ALjjQ5
 ---

@@ -26,15 +26,9 @@ links:
     url: "https://github.com/dadoonet/music-search"
 
 social:
-  - type: x
-    user: "chtijug"
-    id: "1830957835527823468"
-  - type: x
-    user: "dadoonet"
-    id: "1831686218561536048"
-  - type: x
-    user: "jak78"
-    id: "1834130746140672357"
+  - "https://x.com/chtijug/status/1830957835527823468"
+  - "https://x.com/dadoonet/status/1831686218561536048"
+  - "https://x.com/jak78/status/1834130746140672357"
 aliases:
   - /C6PfLA
 ---

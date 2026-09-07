@@ -22,18 +22,10 @@ youtube: "UW2ajjz3u9E"
 notist: "dadoonet/mQrRCI"
 
 social:
-  - type: x
-    user: "dadoonet"
-    id: "1803800821144097219"
-  - type: x
-    user: "dadoonet"
-    id: "1847174036712812915"
-  - type: x
-    user: "dadoonet"
-    id: "1851676231617634419"
-  - type: x
-    user: "dadoonet"
-    id: "1843247405610963165"
+  - "https://x.com/dadoonet/status/1803800821144097219"
+  - "https://x.com/dadoonet/status/1847174036712812915"
+  - "https://x.com/dadoonet/status/1851676231617634419"
+  - "https://x.com/dadoonet/status/1843247405610963165"
 links:
   - title: "Demo: Humming search"
     url: "https://github.com/dadoonet/music-search"

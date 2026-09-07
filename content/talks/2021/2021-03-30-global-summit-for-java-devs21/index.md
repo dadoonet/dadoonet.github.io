@@ -29,15 +29,9 @@ links:
 aliases:
 - /nRD9sE
 social:
-  - type: x
-    user: "dadoonet"
-    id: "1376548944994570243"
-  - type: x
-    user: "dadoonet"
-    id: "1377332391925010433"
-  - type: x
-    user: "dadoonet"
-    id: "1377350685642002432"
+  - "https://x.com/dadoonet/status/1376548944994570243"
+  - "https://x.com/dadoonet/status/1377332391925010433"
+  - "https://x.com/dadoonet/status/1377350685642002432"
 ---
 How do you mix SQL and NoSQL worlds without starting a messy revolution?
 

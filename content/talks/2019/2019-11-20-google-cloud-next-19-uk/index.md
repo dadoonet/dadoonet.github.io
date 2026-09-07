@@ -22,18 +22,10 @@ pdf: "2019/2019-11-20-google-cloud-next-19-uk.pdf"
 notist: "dadoonet/jYxmxg"
 
 social:
-  - type: x
-    user: "glaforge"
-    id: "1197143672556597249"
-  - type: x
-    user: "Julien_iZiWEB"
-    id: "1197141827071217670"
-  - type: x
-    user: "VenziaIT"
-    id: "1197087109607305217"
-  - type: x
-    user: "dadoonet"
-    id: "1197159764800802818"
+  - "https://x.com/glaforge/status/1197143672556597249"
+  - "https://x.com/Julien_iZiWEB/status/1197141827071217670"
+  - "https://x.com/VenziaIT/status/1197087109607305217"
+  - "https://x.com/dadoonet/status/1197159764800802818"
 links:
   - title: "Documentation: Elastic Cloud on Kubernetes (ECK)"
     url: "https://www.elastic.co/guide/en/cloud-on-k8s/current/index.html"

@@ -22,12 +22,8 @@ pdf: "2019/2019-03-15-vitrine-technologique-du-gouvernement-du-quebec-private-ev
 notist: "dadoonet/hbQjsQ"
 
 social:
-  - type: x
-    user: "dadoonet"
-    id: "1106705413809102848"
-  - type: x
-    user: "dadoonet"
-    id: "1106531287328849920"
+  - "https://x.com/dadoonet/status/1106705413809102848"
+  - "https://x.com/dadoonet/status/1106531287328849920"
 links:
   - title: "Une ancienne vidéo (2015) sur le même sujet"
     url: "https://vimeo.com/129781775"

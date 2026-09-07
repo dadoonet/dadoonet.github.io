@@ -22,9 +22,7 @@ youtube: "ugvhva91GIs"
 notist: "dadoonet/XH5KNi"
 
 social:
-  - type: x
-    user: "tourainetech"
-    id: "1745717440724586899"
+  - "https://x.com/tourainetech/status/1745717440724586899"
 links:
   - title: "Demo: Music search"
     url: "https://github.com/dadoonet/music-search"

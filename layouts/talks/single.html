@@ -168,7 +168,7 @@
           <h2>Buzz et feedback</h2>
           <p>Here's what was said about this presentation on social media.</p>
           {{- range . -}}
-            {{- partial "social-embed.html" (dict "type" .type "id" .id "user" .user) -}}
+            {{- partial "social-embed.html" (dict "url" .) -}}
           {{- end -}}
         </div>
         {{- end -}}
@@ -658,12 +658,19 @@
 {{ end }}
 
 {{ with .Params.social }}
-  {{ with where . "type" "x" }}
-    {{ if not site.Config.Privacy.X.Disable }}
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+  {{ $socialFlags := newScratch }}
+  {{ range . }}
+    {{ if findRE `(?i)(?:x|twitter)\.com/.+/status/` . }}
+      {{ $socialFlags.Set "hasX" true }}
+    {{ end }}
+    {{ if findRE `(?i)bsky\.app/profile/.+/post/` . }}
+      {{ $socialFlags.Set "hasBluesky" true }}
     {{ end }}
   {{ end }}
-  {{ with where . "type" "bluesky" }}
+  {{ if and ($socialFlags.Get "hasX") (not site.Config.Privacy.X.Disable) }}
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+  {{ end }}
+  {{ if $socialFlags.Get "hasBluesky" }}
 <script async src="https://embed.bsky.app/static/embed.js" charset="utf-8"></script>
   {{ end }}
 {{ end }}

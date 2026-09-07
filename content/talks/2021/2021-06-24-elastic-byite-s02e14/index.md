@@ -22,9 +22,7 @@ links:
     url: "https://github.com/dadoonet/s02e14-snapshots"
 
 social:
-  - type: x
-    user: "dadoonet"
-    id: "1407974609631186945"
+  - "https://x.com/dadoonet/status/1407974609631186945"
 aliases:
   - /CU8BpK
 ---

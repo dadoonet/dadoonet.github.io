@@ -22,15 +22,9 @@ youtube: "q6CA6NWNZ0o"
 notist: "dadoonet/BLjn5N"
 
 social:
-  - type: x
-    user: "dadoonet"
-    id: "1891448264798478694"
-  - type: x
-    user: "dadoonet"
-    id: "1893288840732737667"
-  - type: x
-    user: "GeekSessionsFAO"
-    id: "1894292854324781545"
+  - "https://x.com/dadoonet/status/1891448264798478694"
+  - "https://x.com/dadoonet/status/1893288840732737667"
+  - "https://x.com/GeekSessionsFAO/status/1894292854324781545"
 links:
   - title: "Demo: Music search"
     url: "https://github.com/dadoonet/music-search/"

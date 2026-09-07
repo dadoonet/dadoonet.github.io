@@ -18,15 +18,9 @@ youtube: "BGVPV8CcLEg"
 notist: "dadoonet/oBt281"
 
 social:
-  - type: x
-    user: "NetwaysEvents"
-    id: "1229687755699040256"
-  - type: x
-    user: "NetwaysEvents"
-    id: "1226084515854024704"
-  - type: x
-    user: "dadoonet"
-    id: "1272806273826856960"
+  - "https://x.com/NetwaysEvents/status/1229687755699040256"
+  - "https://x.com/NetwaysEvents/status/1226084515854024704"
+  - "https://x.com/dadoonet/status/1272806273826856960"
 links:
   - title: "AuditD Rules"
     url: "https://github.com/linux-audit/audit-userspace/tree/master/rules"

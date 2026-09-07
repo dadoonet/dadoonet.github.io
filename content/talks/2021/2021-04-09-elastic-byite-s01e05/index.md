@@ -22,9 +22,7 @@ links:
     url: "https://github.com/dadoonet/demo-index-split-shrink-rollover"
 
 social:
-  - type: x
-    user: "dadoonet"
-    id: "1369569967432208391"
+  - "https://x.com/dadoonet/status/1369569967432208391"
 aliases:
   - /jAQF3k
 ---

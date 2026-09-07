@@ -22,21 +22,11 @@ youtube: "-YhZ4w0hqRA"
 notist: "dadoonet/wlm9Cb"
 
 social:
-  - type: x
-    user: "ElasticFR"
-    id: "1836752110928453788"
-  - type: x
-    user: "ElasticFR"
-    id: "1837129598741402044"
-  - type: x
-    user: "ElasticFR"
-    id: "1840737674988011733"
-  - type: x
-    user: "dadoonet"
-    id: "1841748805303021600"
-  - type: x
-    user: "ElasticFR"
-    id: "1843207134567440484"
+  - "https://x.com/ElasticFR/status/1836752110928453788"
+  - "https://x.com/ElasticFR/status/1837129598741402044"
+  - "https://x.com/ElasticFR/status/1840737674988011733"
+  - "https://x.com/dadoonet/status/1841748805303021600"
+  - "https://x.com/ElasticFR/status/1843207134567440484"
 links:
   - title: "Demo: ES|QL"
     url: "https://github.com/dadoonet/esql-demo"

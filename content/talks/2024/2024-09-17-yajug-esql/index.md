@@ -22,9 +22,7 @@ pdf: "2024/2024-09-17-yajug-esql.pdf"
 notist: "dadoonet/oQ8TDZ"
 
 social:
-  - type: x
-    user: "dadoonet"
-    id: "1833445549715923127"
+  - "https://x.com/dadoonet/status/1833445549715923127"
 links:
   - title: "Demo code"
     url: "https://github.com/dadoonet/esql-demo"

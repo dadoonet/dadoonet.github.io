@@ -22,9 +22,7 @@ links:
 aliases:
 - /dRVohX
 social:
-  - type: x
-    user: "dadoonet"
-    id: "1766067349864546662"
+  - "https://x.com/dadoonet/status/1766067349864546662"
 ---
 Search is not just traditional TF/IDF any more but the current trend of machine learning and models has opened another dimension for search.
 

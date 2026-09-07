@@ -19,15 +19,9 @@ pdf: "2013/2013-09-20-FromSQL2NoSQL-JUGSummerCamp.pdf"
 attendees: 50
 
 social:
-  - type: x
-    user: "Martine__B"
-    id: "381039434851811328"
-  - type: x
-    user: "lhuet35"
-    id: "381038522020659200"
-  - type: x
-    user: "ZenikaIT"
-    id: "381030528553472000"
+  - "https://x.com/Martine__B/status/381039434851811328"
+  - "https://x.com/lhuet35/status/381038522020659200"
+  - "https://x.com/ZenikaIT/status/381030528553472000"
 ---
 
 Au cours de cette session "live coding", David reprendra une application full SQL "à papa" pour la réécrire en NoSQL en 45 minutes.

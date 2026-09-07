@@ -21,42 +21,18 @@ draft: false
 notist: "dadoonet/0MI79Z"
 
 social:
-  - type: x
-    user: "dadoonet"
-    id: "1535292239622070275"
-  - type: x
-    user: "dadideo"
-    id: "1535278383810191361"
-  - type: x
-    user: "dadideo"
-    id: "1535279460546752516"
-  - type: x
-    user: "dadideo"
-    id: "1535273724898836480"
-  - type: x
-    user: "dadideo"
-    id: "1535256169899499521"
-  - type: x
-    user: "dadoonet"
-    id: "1535192114639753216"
-  - type: x
-    user: "mathieupassenau"
-    id: "1535179536052240385"
-  - type: x
-    user: "dadoonet"
-    id: "1535164971172102144"
-  - type: x
-    user: "dadoonet"
-    id: "1534948333411782657"
-  - type: x
-    user: "dadoonet"
-    id: "1534911297447505920"
-  - type: x
-    user: "dadoonet"
-    id: "1534560993879146496"
-  - type: x
-    user: "CampingSpeakers"
-    id: "1531281778593472513"
+  - "https://x.com/dadoonet/status/1535292239622070275"
+  - "https://x.com/dadideo/status/1535278383810191361"
+  - "https://x.com/dadideo/status/1535279460546752516"
+  - "https://x.com/dadideo/status/1535273724898836480"
+  - "https://x.com/dadideo/status/1535256169899499521"
+  - "https://x.com/dadoonet/status/1535192114639753216"
+  - "https://x.com/mathieupassenau/status/1535179536052240385"
+  - "https://x.com/dadoonet/status/1535164971172102144"
+  - "https://x.com/dadoonet/status/1534948333411782657"
+  - "https://x.com/dadoonet/status/1534911297447505920"
+  - "https://x.com/dadoonet/status/1534560993879146496"
+  - "https://x.com/CampingSpeakers/status/1531281778593472513"
 links:
   - title: "Blog: La potion magique pour faire progresser ta carrière"
     url: "/blog/2022-06-10-la-potion-magique-pour-faire-avancer-ta-carriere/"

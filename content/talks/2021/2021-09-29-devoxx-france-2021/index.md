@@ -22,15 +22,9 @@ youtube: "4tQDLAs5HpM"
 notist: "dadoonet/h0HniU"
 
 social:
-  - type: x
-    user: "dadoonet"
-    id: "1434789692684263428"
-  - type: x
-    user: "dadoonet"
-    id: "1440246734047776768"
-  - type: x
-    user: "dadoonet"
-    id: "1443222996131401729"
+  - "https://x.com/dadoonet/status/1434789692684263428"
+  - "https://x.com/dadoonet/status/1440246734047776768"
+  - "https://x.com/dadoonet/status/1443222996131401729"
 links:
   - title: "Elastic Security Solution"
     url: "https://www.elastic.co/fr/security"

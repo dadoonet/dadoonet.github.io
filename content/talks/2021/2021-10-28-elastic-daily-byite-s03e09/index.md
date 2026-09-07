@@ -18,9 +18,7 @@ youtube: "_vEAX28IcDg"
 notist: "dadoonet/EA5cki"
 
 social:
-  - type: x
-    user: "dadoonet"
-    id: "1453649083902709763"
+  - "https://x.com/dadoonet/status/1453649083902709763"
 aliases:
   - /EA5cki
 ---
