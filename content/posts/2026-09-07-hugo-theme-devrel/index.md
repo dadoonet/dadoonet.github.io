@@ -61,27 +61,156 @@ The overlay adds:
 
 {{< figure src="talk-single.avif" caption="A talk page: slides in the middle, “Played N times” and “Gave N talks at this conference” on the side." >}}
 
+## Hugo is a static database too
+
+I already used that phrase in [January]({{< ref "2026-01-10-13-years-migrating-to-hugo-with-cursor" >}}). Here is the version with the SQL I keep in my head next to the templates that actually ship.
+
+A speaker site is a few hundred events, some videos, a map. You do not need a cluster for that. You need **rows**. In this theme, a talk is a page bundle. The Markdown file is the abstract. A `cover.*` next to it is an image column you do not even have to name. The **row** is the front matter. Here is a complete one:
+
+```yaml
+---
+title: "Elasticsearch Query Language: ES|QL"
+conference:
+  name: "JUG Summer Camp"
+  city: "La Rochelle"
+  country: "France"
+  country_code: "fr"
+  url: "https://www.jugsummercamp.org/"
+  latitude: "46.160329"
+  longitude: "-1.151139"
+authors:
+  - author: "David Pilato"
+date: 2024-09-06
+talk-lang: fr
+talk: "ES|QL"
+pdf: "2024/2024-09-06-jug-summer-camp.pdf"
+youtube: "Fa6ICBs1KM0"
+links:
+  - title: "ES|QL documentation"
+    url: "https://www.elastic.co/guide/en/elasticsearch/reference/current/esql.html"
+    description: "The official guide"
+social:
+  - "https://x.com/dadoonet/status/1827998166865637459"
+  - "https://bsky.app/profile/klf37.bsky.social/post/3muol6taevk2h"
+  - "https://www.linkedin.com/embed/feed/update/urn:li:activity:7501648269345812481"
+---
+```
+
+`talk` is the foreign key to the canonical abstract. `youtube` is nullable. `conference.country` / `latitude` / `longitude` are why the map exists. `authors` can list a co-speaker; `avatar:` is optional when the name matches `params.author` or `static/speakers/firstname_lastname.*`.
+
+Hugo does not query this at request time. At **build** time it is a database anyway: `where`, `GroupByDate`, a scratch map for `DISTINCT`. Same ideas as `SELECT` / `GROUP BY`, run once, baked into HTML.
+
+**Every talk, grouped by year** — `GROUP BY year(date)`:
+
+```sql
+SELECT year(date) AS year, count(*) AS talks
+FROM talks
+GROUP BY year
+ORDER BY year DESC;
+```
+
+```go-html-template
+{{ $talks := site.GetPage "/talks" }}
+{{ range $talks.RegularPages.GroupByDate "2006" }}
+  <h2>{{ .Key }} ({{ len .Pages }})</h2>
+  {{ range .Pages }}
+    <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+  {{ end }}
+{{ end }}
+```
+
+`GroupByDate "2006"` is Hugo-speak for `year(date)`. `.Key` is `2024`, `2025`, `2026`. That is `/talks/all`.
+
+**Only talks with a recording** — `WHERE youtube IS NOT NULL`:
+
+```sql
+SELECT *
+FROM talks
+WHERE youtube IS NOT NULL
+ORDER BY date DESC;
+```
+
+```go-html-template
+{{ $talks := site.GetPage "/talks" }}
+{{ range $talks.RegularPages }}
+  {{ if .Params.youtube }}
+    <a href="{{ .RelPermalink }}#video">{{ .Title }}</a>
+  {{ end }}
+{{ end }}
+```
+
+Then `GroupByDate` again if you want the same year jump. That is `/talks/videos`.
+
+**Countries I have stood in** — `SELECT DISTINCT country`:
+
+```sql
+SELECT DISTINCT country
+FROM talks
+WHERE country_code <> 'online';
+```
+
+```go-html-template
+{{ $talks := site.GetPage "/talks" }}
+{{ $scratch := newScratch }}
+{{ range $talks.RegularPages }}
+  {{ with .Params.conference.country }}
+    {{ $scratch.SetInMap "countries" . . }}
+  {{ end }}
+{{ end }}
+{{ range $scratch.Get "countries" }}
+  {{ . }}
+{{ end }}
+```
+
+Add `latitude` / `longitude` and you have pins. That is `/talks/map`.
+
+**The same talk, many rooms** — `GROUP BY talk`:
+
+```sql
+SELECT talk, count(*) AS played
+FROM talks
+GROUP BY talk
+ORDER BY played DESC;
+```
+
+```go-html-template
+{{ $name := "ES|QL" }}
+{{ $played := where (where site.RegularPages "Section" "talks") ".Params.talk" $name }}
+Played {{ len $played }} times
+```
+
+That is the “Played N times” sidebar, and `/talks/templates`.
+
+| Question                        | SQL shape                     | Page that renders it |
+|---------------------------------|-------------------------------|----------------------|
+| Every talk, split by year       | `GROUP BY year(date)`         | `/talks/all`         |
+| Talks that have a recording     | `WHERE youtube IS NOT NULL`   | `/talks/videos`      |
+| Countries I have spoken in      | `SELECT DISTINCT country`     | `/talks/map`         |
+| Every time I gave the same talk | `GROUP BY talk`               | `/talks/templates`   |
+
+No extra JSON, no CMS, no geo file. The “schema” is the YAML. The “queries” are the layouts. Change a talk, rebuild, the aggregations move.
+
 ## The speaker archive is three indexes
 
-`/talks` is the landing page (featured cards, then the rest). The pages I actually live in are the three satellites.
+Those queries are the pages I actually live in. `/talks` is only the landing page (featured cards, then the rest). The satellites are the `SELECT`s above, with CSS.
 
-**`/talks/all`** is the full archive: jump links per year (with counts), then a card grid — cover, language, slides/video badges, conference, date. Scroll a year and you get a **map of that year only**, which is different from the global `/talks/map`.
+**`/talks/all`** is the `GROUP BY year` archive: jump links per year (with counts), then a card grid — cover, language, slides/video badges, conference, date. Scroll a year and you get a **map of that year only** (the same `DISTINCT` city query, filtered by date), which is different from the global `/talks/map`.
 
 {{< figure src="talks-all.avif" caption="`/talks/all` — year navigation and the 2026 card grid. Badges tell you if slides or a recording exist." >}}
 
 {{< figure src="talks-all-year.avif" caption="Same page, a bit lower: the 2026 map. Eight talks, seven cities, two countries, one online." >}}
 
-**`/talks/videos`** keeps only sessions with a `youtube:` id. Same year jump, red accents, 16:9 cards, click through to `#video` on the talk.
+**`/talks/videos`** is the `WHERE youtube IS NOT NULL` list. Same year jump, red accents, 16:9 cards, click through to `#video` on the talk.
 
 {{< figure src="talks-videos.avif" caption="`/talks/videos` — 100 recordings on this site, grouped by year." >}}
 
-**`/talks/templates`** is the catalog of recurring topics, sorted by last played date. Open one template and you get stats, language tabs, **Talk** vs **Raw** (the CFP paste view), and every conference where that talk ran.
+**`/talks/templates`** is the `GROUP BY talk` catalog, sorted by last played date. Open one template and you get stats, language tabs, **Talk** vs **Raw** (the CFP paste view), and every conference where that talk ran.
 
 {{< figure src="talks-templates.avif" caption="`/talks/templates` — 23 topics. “Played 220 times” is not a flex, it is a sorting key." >}}
 
 {{< figure src="talk-template.avif" caption="One template: first/last dates, EN/FR, Talk vs Raw. The conference list is further down the page." >}}
 
-{{< figure src="talks-map.avif" caption="The global talks map at `/talks/map`. Pins come from front matter. The counts are computed at build time." >}}
+{{< figure src="talks-map.avif" caption="The global talks map at `/talks/map`: `SELECT DISTINCT` city and country, with coordinates from the same front matter." >}}
 
 ## Search that does not need Elasticsearch (yes, I know)
 
@@ -191,7 +320,7 @@ Search is shipped by the theme as `content/search/_index.md`. Override that file
 hugo new talks/2026/2026-09-08-my-conference/index.md
 ```
 
-Minimal front matter (a `cover.*` file in the same folder is picked up automatically; `avatar:` is inferred from the author name):
+Minimal front matter — a fuller row is in [Hugo is a static database too](#hugo-is-a-static-database-too). A `cover.*` file in the same folder is picked up automatically; `avatar:` is inferred from the author name:
 
 ```yaml
 ---
