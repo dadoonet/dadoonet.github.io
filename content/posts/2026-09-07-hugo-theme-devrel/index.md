@@ -360,6 +360,8 @@ npx pagefind --site public
 
 For local preview, run `hugo server` after you have indexed once. Put the same two commands in CI (or a `package.json` `build` script) so GitHub Pages stays searchable.
 
+A Github Actions workflow example is in [`.github/workflows/pages.yml`](https://github.com/dadoonet/hugo-theme-devrel/blob/main/.github/workflows/pages.yml).
+
 ### 8. Steal the example, not the biography
 
 If you prefer a known-good tree to a blank `hugo new`, copy [`exampleSite`](https://github.com/dadoonet/hugo-theme-devrel/tree/main/exampleSite) and replace Alex Rivera. The live preview is [devrel.hugo.pilato.fr](https://devrel.hugo.pilato.fr/).
