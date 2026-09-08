@@ -120,10 +120,10 @@ Alex does not exist. Copy the folders, not the bio. Demo: [devrel.hugo.pilato.fr
 
 If I ever submit this to [themes.gohugo.io](https://themes.gohugo.io/), the rules are picky on purpose: an `images/` directory, **no browser chrome**, 3:2 ratio.
 
-| File | Size |
-| ---- | ---- |
+| File                    | Size                                |
+|-------------------------|-------------------------------------|
 | `images/screenshot.png` | 1500×1000 — talks page of this site |
-| `images/tn.png` | 900×600 — same crop, thumbnail |
+| `images/tn.png`         | 900×600 — same crop, thumbnail      |
 
 Extra shots (`talks-all.png`, `talks-videos.png`, `talks-templates.png`, `search.png`, …) live next to them and are linked from the [theme README](https://github.com/dadoonet/hugo-theme-devrel#screenshots). Absolute GitHub URLs, because the Hugo themes site does not resolve relative `images/` paths in a README.
 

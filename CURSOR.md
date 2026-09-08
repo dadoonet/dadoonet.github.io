@@ -29,6 +29,10 @@ This file describes the structure and conventions of David Pilato's personal blo
 
 Layouts, archetypes, and theme CSS live in the [devrel](https://github.com/dadoonet/hugo-theme-devrel) module (not in this repo).
 
+## Writing conventions
+
+Markdown tables must be **column-aligned** in the source (padded cells, separator row the same width). Ragged `| Foo |` / `| something longer |` tables are not acceptable.
+
 ---
 
 ## Talks (`content/talks/`)
