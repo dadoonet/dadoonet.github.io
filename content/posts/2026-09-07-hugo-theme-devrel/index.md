@@ -17,15 +17,13 @@ cover: cover.avif
 draft: false
 ---
 
-I spent the first half of 2026 turning [noti.st](https://noti.st/dadoonet) into this website. Then I spent the last few days doing the obvious next step: **extracting the speaker bits into a theme other Developer Advocates can actually use**.
+I spent [the end of 2025]({{< ref "2026-01-10-13-years-migrating-to-hugo-with-cursor" >}}) turning [noti.st](https://noti.st/dadoonet) into this website. Then I spent the last few days doing the obvious next step: **extracting the speaker bits into a theme other Developer Advocates can actually use**.
 
 It is called [`hugo-theme-devrel`](https://github.com/dadoonet/hugo-theme-devrel), it is MIT, and this page is running on it.
 
 <!--more-->
 
 If you already have a Hugo site, the entire install is one module import. If you do not, there is a fictional `exampleSite` at [devrel.hugo.pilato.fr](https://devrel.hugo.pilato.fr/) so you can see every layout without cloning my biography.
-
-{{< figure src="cover.avif" caption="The talks page on david.pilato.fr — featured cards, then the archive." >}}
 
 ## Why a theme, not a gist of templates?
 
