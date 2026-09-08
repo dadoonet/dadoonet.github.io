@@ -25,7 +25,7 @@ It is called [`hugo-theme-devrel`](https://github.com/dadoonet/hugo-theme-devrel
 
 If you already have a Hugo site, the entire install is one module import. If you do not, there is a fictional `exampleSite` at [devrel.hugo.pilato.fr](https://devrel.hugo.pilato.fr/) so you can see every layout without cloning my biography.
 
-{{< figure src="cover.avif" caption="The talks page on david.pilato.fr — featured cards, then the archive. This is also `images/screenshot.png` in the theme repo." >}}
+{{< figure src="cover.avif" caption="The talks page on david.pilato.fr — featured cards, then the archive." >}}
 
 ## Why a theme, not a gist of templates?
 
@@ -91,12 +91,14 @@ I ship Elasticsearch for a living. This site is still a pile of static HTML on G
 
 Hit **Ctrl+K** or **Cmd+K**. Or click the loupe.
 
-{{< figure src="search.avif" caption="Pagefind modal after typing “elasticsearch”. Filters appear on the same row as the query. This is the screenshot I wanted in the README." >}}
+{{< figure src="search.avif" caption="Pagefind modal after typing “elasticsearch”. Filters appear on the same row as the query." >}}
 
 The build is two steps:
 
 ```sh
+# Generate static HTML pages so they can be indexed
 hugo --minify
+# Generate the Pagefind index
 npx pagefind --site public
 ```
 
@@ -106,37 +108,151 @@ Empty queries (browse / filter only) sort by date. As soon as you type, relevanc
 
 The first version of `exampleSite` had one post and two talks. That is enough to prove the module loads. It is not enough to see the map, the “Played N times” sidebar, co-speakers, or search covers.
 
-It now follows a fictional advocate named **Alex Rivera**:
+It now follows a fictional advocate named **Alex Rivera**: blog posts, talks in several cities and online, bilingual templates, a co-speaker, recordings, and social embeds. Enough to walk `/talks`, `/talks/all`, `/talks/videos`, `/talks/templates`, and search without cloning my biography.
 
-- 4 blog posts with covers
-- 7 talks in Lyon, Antwerp, Brussels, London, Málaga, Oslo, and online
-- 3 templates with English and French abstracts
-- a co-speaker on one session
-- sample YouTube ids so `/talks/videos/` is not an empty room
-
-Alex does not exist. Copy the folders, not the bio. Demo: [devrel.hugo.pilato.fr](https://devrel.hugo.pilato.fr/).
-
-## Screenshots for the Hugo gallery
-
-If I ever submit this to [themes.gohugo.io](https://themes.gohugo.io/), the rules are picky on purpose: an `images/` directory, **no browser chrome**, 3:2 ratio.
-
-| File                    | Size                                |
-|-------------------------|-------------------------------------|
-| `images/screenshot.png` | 1500×1000 — talks page of this site |
-| `images/tn.png`         | 900×600 — same crop, thumbnail      |
-
-Extra shots (`talks-all.png`, `talks-videos.png`, `talks-templates.png`, `search.png`, …) live next to them and are linked from the [theme README](https://github.com/dadoonet/hugo-theme-devrel#screenshots). Absolute GitHub URLs, because the Hugo themes site does not resolve relative `images/` paths in a README.
+Alex does not exist. Copy the folders, not the bio. Source: [`exampleSite`](https://github.com/dadoonet/hugo-theme-devrel/tree/main/exampleSite). Live demo: [devrel.hugo.pilato.fr](https://devrel.hugo.pilato.fr/).
 
 {{< figure src="home.avif" caption="The homepage is still a Dream post grid. The overlay is most visible once you leave `/` for `/talks`." >}}
 
 ## How to try it
 
-1. `hugo mod init github.com/you/your-site` if you are not a module yet.
-2. Import `github.com/dadoonet/hugo-theme-devrel` as above.
-3. Set `params.author`, `params.avatar`, `params.talks.pdf_base_url` if your slides live on a bucket.
-4. Create `content/talks/all/_index.md`, `map`, `videos`, `templates` with the layouts documented in the README — or copy them from `exampleSite/`.
-5. Run Pagefind after Hugo.
+### 1. Download Hugo
 
-This website is the production reference. The example site is the toy. The README is the contract.
+Install the **extended** edition from the [Hugo installation guide](https://gohugo.io/installation/). Dream compiles CSS at build time, so a non-extended binary will fail. Check with `hugo version`; the line should mention `extended`. GitHub Pages builds of this site use the extended Linux binary; locally, pick the extended package for your OS.
+
+### 2. Turn the site into a Hugo module
+
+Skip this if `go.mod` already exists.
+
+```sh
+hugo mod init github.com/you/your-site
+```
+
+### 3. Import the theme
+
+In `hugo.toml` (or `hugo.yaml`), import **only** `devrel`. Dream arrives as a module dependency. Do not set `theme = ["devrel", "dream"]`.
+
+```toml
+[module]
+  [[module.imports]]
+    path = "github.com/dadoonet/hugo-theme-devrel"
+```
+
+Then:
+
+```sh
+hugo mod get github.com/dadoonet/hugo-theme-devrel
+```
+
+### 4. Set your identity
+
+Still in `hugo.toml`:
+
+```toml
+[params]
+  author = "Your Name"
+  avatar = "/about/you.avif"
+  headerTitle = "Your Name"
+  motto = "Developer Advocate"
+  email = "you@example.org"
+  siteStartYear = 2024
+
+[params.talks]
+  # Prefix for talk pdf: paths. Empty = a PDF in the page bundle or a site-relative file.
+  pdf_base_url = ""
+```
+
+Put the avatar file at `static/about/you.avif` (or whatever path you set). `params.author` / `params.avatar` are the defaults for archetypes and for talk bylines when you omit `avatar:` in front matter.
+
+### 5. Add the talk index pages
+
+The overlay expects a few `_index.md` files. Copy them from [`exampleSite/content/talks/`](https://github.com/dadoonet/hugo-theme-devrel/tree/main/exampleSite/content/talks) or create them:
+
+| Path                                | Front matter          |
+|-------------------------------------|-----------------------|
+| `content/talks/_index.md`           | `title: "Talks"`      |
+| `content/talks/all/_index.md`       | `layout: "all"`       |
+| `content/talks/map/_index.md`       | `layout: "map"`       |
+| `content/talks/videos/_index.md`    | `layout: "videos"`    |
+| `content/talks/templates/_index.md` | `layout: "templates"` |
+
+Example — `content/talks/all/_index.md`:
+
+```yaml
+---
+title: "All talks"
+layout: "all"
+---
+```
+
+Search is shipped by the theme as `content/search/_index.md`. Override that file in your site if you need a custom title; disable with `params.search.enabled = false`.
+
+### 6. Create a talk
+
+```sh
+hugo new talks/2026/2026-09-08-my-conference/index.md
+```
+
+Minimal front matter (a `cover.*` file in the same folder is picked up automatically; `avatar:` is inferred from the author name):
+
+```yaml
+---
+title: "Talk Title"
+conference:
+  name: "Conference Name"
+  city: "City"
+  country: "Country"
+  country_code: "fr"       # ISO code, or "online"
+  url: "https://example.org/event"
+  latitude: "48.856614"    # optional — used by the map
+  longitude: "2.352222"
+authors:
+  - author: "Your Name"
+date: 2026-09-08
+talk-lang: en
+talk: "Topic Name"         # groups occurrences + links to the template
+youtube: "VIDEO_ID"        # optional
+pdf: "2026/2026-09-08-my-conference.pdf"
+---
+```
+
+Optional `social:` is a list of public X, Bluesky, or LinkedIn post URLs; the theme embeds them on the talk page.
+
+For a recurring topic, add `content/talks/templates/<slug>/index.md` with `layout: "template"` and the same `talk:` value. The [README](https://github.com/dadoonet/hugo-theme-devrel#content-conventions) has the full YAML, including EN/FR `versions:`.
+
+### 7. Build the HTML, then the search index
+
+Pagefind reads the generated `public/` folder, so Hugo must run first:
+
+```sh
+# Generate static HTML pages so they can be indexed
+hugo --minify
+# Generate the Pagefind index
+npx pagefind --site public
+```
+
+For local preview, `hugo server` is enough after you have indexed once. If you add a Pagefind mount, redeclare the default mounts as well (Hugo replaces them otherwise):
+
+```toml
+[[module.mounts]]
+  source = "content"
+  target = "content"
+[[module.mounts]]
+  source = "static"
+  target = "static"
+[[module.mounts]]
+  source = "data"
+  target = "data"
+[[module.mounts]]
+  source = "public/pagefind"
+  target = "static/pagefind"
+  disableWatch = true
+```
+
+Wire both commands into your CI or a `package.json` `build` script. That is what this site does on GitHub Pages.
+
+### 8. Steal the example, not the biography
+
+If you prefer a known-good tree to a blank `hugo new`, copy [`exampleSite`](https://github.com/dadoonet/hugo-theme-devrel/tree/main/exampleSite) and replace Alex Rivera. The live preview is [devrel.hugo.pilato.fr](https://devrel.hugo.pilato.fr/).
 
 If you are a Developer Advocate who is tired of a speaker page that only exists in a slide appendix: clone it, delete Alex, put your talks in `content/talks/YYYY/`. And if you find a bug, [open an issue](https://github.com/dadoonet/hugo-theme-devrel/issues) — I will probably fix it with the same tool that helped me extract the theme in the first place. 😉
