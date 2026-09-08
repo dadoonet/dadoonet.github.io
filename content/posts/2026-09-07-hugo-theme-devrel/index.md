@@ -57,14 +57,33 @@ The overlay adds:
 - **Talk templates** — one canonical abstract, EN/FR tabs, a “Raw” view for CFPs, and every occurrence of that talk.
 - **A map** built from `conference.latitude` / `longitude`. No extra geo file.
 - **A videos page** grouped by year.
+- **An all-talks archive** grouped by year, with a map for each year.
 - **About** assembled from numbered Markdown files (`10-me.md`, `20-details.md`, …).
 - **Pagefind search** — the loupe in the nav, or Ctrl/Cmd+K.
 
 {{< figure src="talk-single.avif" caption="A talk page: slides in the middle, “Played N times” and “Gave N talks at this conference” on the side." >}}
 
-{{< figure src="talks-map.avif" caption="The talks map. Pins come from front matter. The counts are computed at build time." >}}
+## The speaker archive is three indexes
 
-{{< figure src="talks-videos.avif" caption="Recorded talks, with year filters. If `youtube:` is set on a talk, it shows up here." >}}
+`/talks` is the landing page (featured cards, then the rest). The pages I actually live in are the three satellites.
+
+**`/talks/all`** is the full archive: jump links per year (with counts), then a card grid — cover, language, slides/video badges, conference, date. Scroll a year and you get a **map of that year only**, which is different from the global `/talks/map`.
+
+{{< figure src="talks-all.avif" caption="`/talks/all` — year navigation and the 2026 card grid. Badges tell you if slides or a recording exist." >}}
+
+{{< figure src="talks-all-year.avif" caption="Same page, a bit lower: the 2026 map. Eight talks, seven cities, two countries, one online." >}}
+
+**`/talks/videos`** keeps only sessions with a `youtube:` id. Same year jump, red accents, 16:9 cards, click through to `#video` on the talk.
+
+{{< figure src="talks-videos.avif" caption="`/talks/videos` — 100 recordings on this site, grouped by year." >}}
+
+**`/talks/templates`** is the catalog of recurring topics, sorted by last played date. Open one template and you get stats, language tabs, **Talk** vs **Raw** (the CFP paste view), and every conference where that talk ran.
+
+{{< figure src="talks-templates.avif" caption="`/talks/templates` — 23 topics. “Played 220 times” is not a flex, it is a sorting key." >}}
+
+{{< figure src="talk-template.avif" caption="One template: first/last dates, EN/FR, Talk vs Raw. The conference list is further down the page." >}}
+
+{{< figure src="talks-map.avif" caption="The global talks map at `/talks/map`. Pins come from front matter. The counts are computed at build time." >}}
 
 ## Search that does not need Elasticsearch (yes, I know)
 
@@ -106,7 +125,7 @@ If I ever submit this to [themes.gohugo.io](https://themes.gohugo.io/), the rule
 | `images/screenshot.png` | 1500×1000 — talks page of this site |
 | `images/tn.png` | 900×600 — same crop, thumbnail |
 
-Extra shots (`search.png`, `talks-map.png`, `talk-single.png`, …) live next to them and are linked from the [theme README](https://github.com/dadoonet/hugo-theme-devrel#screenshots). Absolute GitHub URLs, because the Hugo themes site does not resolve relative `images/` paths in a README.
+Extra shots (`talks-all.png`, `talks-videos.png`, `talks-templates.png`, `search.png`, …) live next to them and are linked from the [theme README](https://github.com/dadoonet/hugo-theme-devrel#screenshots). Absolute GitHub URLs, because the Hugo themes site does not resolve relative `images/` paths in a README.
 
 {{< figure src="home.avif" caption="The homepage is still a Dream post grid. The overlay is most visible once you leave `/` for `/talks`." >}}
 
