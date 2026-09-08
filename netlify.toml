@@ -1,5 +1,5 @@
 # PR deploy previews only. Production stays on GitHub Pages (david.pilato.fr).
-# Keep HUGO_VERSION in sync with .github/workflows.
+# Keep HUGO_VERSION in sync with .github/workflows/gh-pages.yml.
 
 [build]
   command = "npm ci && hugo --gc --minify --buildFuture --baseURL \"${DEPLOY_PRIME_URL%/}/\" && npx pagefind --site public"
