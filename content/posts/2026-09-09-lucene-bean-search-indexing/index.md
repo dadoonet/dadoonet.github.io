@@ -12,7 +12,7 @@ categories:
   - tutorial
 series:
   - Lucene Bean Search
-date: '2026-09-09T19:00:00+02:00'
+date: '2026-09-09T10:00:00+02:00'
 nolastmod: true
 cover: cover.avif
 draft: false
