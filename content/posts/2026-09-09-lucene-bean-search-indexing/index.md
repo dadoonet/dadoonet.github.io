@@ -21,7 +21,7 @@ draft: false
 This post is part of a series of 3:
 
 * [Part 1: Indexing]({{< ref "2026-09-09-lucene-bean-search-indexing" >}})
-* Part 2: Index Lifecycle <!-- TODO: link when published -->
+* [Part 2: Index Lifecycle]({{< ref "2026-09-10-lucene-bean-search-lifecycle" >}})
 * Part 3: Search <!-- TODO: link when published -->
 
 This tutorial explains how to embed **Apache Lucene** as an in-process search index
@@ -253,6 +253,5 @@ sugar for “empty / missing” queries — start with id + text + a few filters
 ## Next
 
 You now have Maven deps, field names, an analyzer, and a bean → `Document` mapper.
-<!-- TODO: link Part 2 when published -->
-Part 2 will wrap Lucene’s `IndexWriter` and `Directory`: rebuild, upsert, delete, and
-open a searcher.
+[Part 2]({{< ref "2026-09-10-lucene-bean-search-lifecycle" >}}) wraps Lucene’s
+`IndexWriter` and `Directory`: rebuild, upsert, delete, and open a searcher.
