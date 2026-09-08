@@ -358,25 +358,7 @@ hugo --minify
 npx pagefind --site public
 ```
 
-For local preview, `hugo server` is enough after you have indexed once. If you add a Pagefind mount, redeclare the default mounts as well (Hugo replaces them otherwise):
-
-```toml
-[[module.mounts]]
-  source = "content"
-  target = "content"
-[[module.mounts]]
-  source = "static"
-  target = "static"
-[[module.mounts]]
-  source = "data"
-  target = "data"
-[[module.mounts]]
-  source = "public/pagefind"
-  target = "static/pagefind"
-  disableWatch = true
-```
-
-Wire both commands into your CI or a `package.json` `build` script. That is what this site does on GitHub Pages.
+For local preview, run `hugo server` after you have indexed once. Put the same two commands in CI (or a `package.json` `build` script) so GitHub Pages stays searchable.
 
 ### 8. Steal the example, not the biography
 
