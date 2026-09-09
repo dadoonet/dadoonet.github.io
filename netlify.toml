@@ -1,0 +1,25 @@
+# PR deploy previews only. Production stays on GitHub Pages (david.pilato.fr).
+# Keep HUGO_VERSION in sync with .github/workflows/gh-pages.yml.
+
+[build]
+  command = "npm ci && hugo --gc --minify --buildFuture --baseURL \"${DEPLOY_PRIME_URL%/}/\" && npx pagefind --site public"
+  publish = "public"
+
+[build.environment]
+  HUGO_VERSION = "0.161.1"
+  HUGO_ENVIRONMENT = "production"
+  HUGO_ENV = "production"
+  NODE_VERSION = "22"
+  GO_VERSION = "1.22.2"
+
+# Skip production and branch deploys; only pull-request previews are built.
+[context.production]
+  ignore = "exit 0"
+
+[context.branch-deploy]
+  ignore = "exit 0"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
