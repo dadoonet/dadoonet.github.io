@@ -22,7 +22,7 @@ This post is part of a series of 3:
 
 * [Part 1: Indexing]({{< ref "2026-09-09-lucene-bean-search-indexing" >}})
 * [Part 2: Index Lifecycle]({{< ref "2026-09-10-lucene-bean-search-lifecycle" >}})
-* Part 3: Search <!-- TODO: link when published -->
+* [Part 3: Search]({{< ref "2026-09-11-lucene-bean-search-query-sync" >}})
 
 In [Part 1]({{< ref "2026-09-09-lucene-bean-search-indexing" >}}) we added Lucene to Maven,
 named fields, chose an analyzer, and mapped a `Track` bean to a Lucene `Document`.
@@ -181,6 +181,5 @@ full rebuild so the cache cannot drift silently.
 
 ## Next
 
-The index stays in sync with your store.
-<!-- TODO: link Part 3 when published -->
-Part 3 will build queries, resolve hits back to beans, and optionally add autocomplete.
+The index stays in sync with your store. [Part 3]({{< ref "2026-09-11-lucene-bean-search-query-sync" >}})
+builds queries, resolves hits back to beans, and optionally adds autocomplete.

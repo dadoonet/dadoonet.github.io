@@ -22,7 +22,7 @@ This post is part of a series of 3:
 
 * [Part 1: Indexing]({{< ref "2026-09-09-lucene-bean-search-indexing" >}})
 * [Part 2: Index Lifecycle]({{< ref "2026-09-10-lucene-bean-search-lifecycle" >}})
-* Part 3: Search <!-- TODO: link when published -->
+* [Part 3: Search]({{< ref "2026-09-11-lucene-bean-search-query-sync" >}})
 
 This tutorial explains how to embed **Apache Lucene** as an in-process search index
 over domain beans — specifically `Track` records loaded from a Rekordbox-style library.
