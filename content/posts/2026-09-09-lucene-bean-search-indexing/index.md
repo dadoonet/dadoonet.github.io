@@ -18,11 +18,12 @@ cover: cover.avif
 draft: false
 ---
 
-This post is part of a series of 3:
+This post is part of a series of 4:
 
 * [Part 1: Indexing]({{< ref "2026-09-09-lucene-bean-search-indexing" >}})
 * Part 2: Index Lifecycle <!-- TODO: link when published -->
 * Part 3: Search <!-- TODO: link when published -->
+* Part 4: Facets <!-- TODO: link when published -->
 
 This tutorial explains how to embed **Apache Lucene** as an in-process search index
 over domain beans — specifically `Track` records loaded from a Rekordbox-style library.

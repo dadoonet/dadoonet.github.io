@@ -18,11 +18,12 @@ cover: cover.avif
 draft: false
 ---
 
-This post is part of a series of 3:
+This post is part of a series of 4:
 
 * [Part 1: Indexing]({{< ref "2026-09-09-lucene-bean-search-indexing" >}})
 * [Part 2: Index Lifecycle]({{< ref "2026-09-10-lucene-bean-search-lifecycle" >}})
 * [Part 3: Search]({{< ref "2026-09-11-lucene-bean-search-query-sync" >}})
+* Part 4: Facets <!-- TODO: link when published -->
 
 [Part 1]({{< ref "2026-09-09-lucene-bean-search-indexing" >}}) mapped beans to documents.
 [Part 2]({{< ref "2026-09-10-lucene-bean-search-lifecycle" >}}) owned the writer and kept
@@ -153,8 +154,14 @@ List<Lookup.LookupResult> matches = suggester.lookup(prefix, Set.of(), 10, false
 Payloads can carry metadata (for example the field name: title / artist / genre). Skip
 this entirely if you only need search and filters.
 
+## Next
+
+You can filter and resolve hits. Part 4 will count stored field values under the same
+`q` so a filter panel can show `Club (12)` instead of a blind checkbox list.
+
 ## Series
 
 * [Part 1: Indexing]({{< ref "2026-09-09-lucene-bean-search-indexing" >}}) — Maven, fields, analyzer, document mapper
 * [Part 2: Index Lifecycle]({{< ref "2026-09-10-lucene-bean-search-lifecycle" >}}) — writer, rebuild, upsert, keep warm
 * [Part 3: Search]({{< ref "2026-09-11-lucene-bean-search-query-sync" >}}) — you are here
+* Part 4: Facets <!-- TODO: link when published --> — counts and drill-down under the current query
