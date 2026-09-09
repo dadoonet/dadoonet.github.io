@@ -38,369 +38,367 @@ Lucene remains a **derived cache**. Counts come from the same in-process index a
 the primary store stays the source of truth. Rebuild or upsert after successful writes,
 then recount — never treat a facet bucket as authoritative on its own.
 
-## Same artefacts as Parts 1–3
+Walking every hit and tallying stored fields works for a few thousand documents. It is
+not faceting. Apache Lucene ships `lucene-facet` for this: DocValues ordinals, range
+counts, `DrillDownQuery`, and `DrillSideways` so a selected checkbox does not hide its
+neighbours. That is the recipe below.
 
-Apache Lucene ships a `lucene-facet` module (taxonomy index, `FacetsConfig`,
-`SortedSetDocValuesFacetCounts`, `DrillDownQuery`). You do **not** need it here.
+## Add `lucene-facet`
 
-Parts 1–3 already store the keyword and numeric values a filter panel will count
-(`genre.raw`, `rating`, `bpm`, `year`) with `Field.Store.YES`. For a few thousand beans,
-run the **same** query `SearchService` uses, walk the hits, and tally stored fields.
-No extra Maven artefact, no second directory, no `FacetsConfig`. Stay on Lucene
-**10.5.1** — `lucene-core`, `lucene-analysis-common`, and optional `lucene-suggest` —
-exactly as in Part 1.
+Same version as Parts 1–3 (**10.5.1**). Pin it next to `lucene-core` in the parent
+`dependencyManagement`, then declare it (without a version) in the module that owns
+the index.
 
-`lucene-facet` starts to pay off when the corpus is large enough that visiting every
-matching document is the slow path. Until then, stored-field counting keeps the recipe
-on one `IndexSearcher`.
-
-## Store the values you will count
-
-Part 1 already indexed filter fields. Facet counting reads those **stored** values, so
-the mapper delta is small: add any extra dimension you want on the panel, and keep
-`Store.YES`.
-
-Analyzed `TextField`s (`title`, `artist`) are a bad facet source — tokens are split and
-lowercased. Count a sibling keyword (`genre.raw`), not the full-text field.
-
-```java
-// Already in Part 1 — Store.YES is what counting will read back
-doc.add(new StringField(TrackIndexFields.GENRE_RAW, name(t.genre()), Field.Store.YES));
-doc.add(new DoubleField(TrackIndexFields.BPM, t.bpm(), Field.Store.YES));
-doc.add(new IntField(TrackIndexFields.RATING, t.ratingStars(), Field.Store.YES));
-
-// Extra dimensions the filter panel will count (same Store.YES rule)
-doc.add(new StringField(TrackIndexFields.KEY_RAW, name(t.key()), Field.Store.YES));
-doc.add(new IntField(TrackIndexFields.YEAR, t.year(), Field.Store.YES));
+```xml
+<dependency>
+  <groupId>org.apache.lucene</groupId>
+  <artifactId>lucene-facet</artifactId>
+  <version>10.5.1</version>
+</dependency>
 ```
 
-| Dimension | Indexed as                  | Facet value              |
-|-----------|-----------------------------|--------------------------|
-| genre     | `genre.raw` (`StringField`) | exact name (`Club`)      |
-| key       | `key.raw` (`StringField`)   | key name (`8A`)          |
-| rating    | `rating` (`IntField`)       | `0`–`5`                  |
-| bpm       | `bpm` (`DoubleField`)       | range bucket (`120-130`) |
-| year      | `year` (`IntField`)         | decade (`2020s`) or year |
+Look up the **latest stable** Lucene release at implementation time; keep
+`lucene-core`, `lucene-analysis-common`, `lucene-suggest`, and `lucene-facet` on the
+**same** version.
 
-`artist` stays a `TextField` for search. If you ever need an Artist checkbox list, add
-an `artist.raw` `StringField` the same way as `genre.raw` — do not facet on the analyzed
-field.
+No taxonomy index. Our dimensions are flat labels (`Club`, `8A`, `present`), not
+`Electronics/Phones/Pixel` trees. Sorted-set DocValues are enough — one extra field
+on the same `Directory`, no second writer.
+
+## Index twice: filter vs count
+
+Part 1 already stored `genre.raw` as a `StringField` so `genre:Club` can be a term
+query. Counting is a different access pattern. Stored fields are row-oriented: you
+recover a value *after* you have a hit. Facet counts need **column-stride** data —
+every genre in the matching set, without loading title, artist, or id.
+
+So each keyword you want on a checkbox list is indexed **twice on purpose**:
+
+```java
+String genre = name(t.genre());
+// Filter / bookmarkable q — term query, stored if you still read it on hits
+doc.add(new StringField(TrackIndexFields.GENRE_RAW, genre, Field.Store.YES));
+// Count — SortedSet DocValues ordinals. lucene-facet reads this column, not the StringField
+doc.add(new SortedSetDocValuesFacetField("genre",
+        genre.isBlank() ? TrackFacets.MISSING_VALUE : genre));
+```
+
+Do the same for `artist`, `album`, `key`, `artwork`. Keep the analyzed `TextField`s
+from Part 1 for free-text search — you cannot facet on a token stream (`Ultra` / `naté`
+is not an Artist checkbox). The SSDV copy is the **category label**, not a replacement
+for the analyzer.
+
+Numerics are already in good shape. `DoubleField` / `IntField` / `LongField` write
+DocValues; `DoubleRangeFacetCounts` and `LongValueFacetCounts` read those. You do
+**not** add a second field type for BPM, rating, or year.
+
+| Role                         | Field                                            | Why                                                                 |
+|------------------------------|--------------------------------------------------|---------------------------------------------------------------------|
+| Filter (`genre:Club`)        | `StringField` `genre.raw`                        | Exact term / wildcard in `TrackLuceneQueryBuilder`                  |
+| Count (genre histogram)      | `SortedSetDocValuesFacetField("genre", …)`       | Column of ordinals; no stored-field visit per hit                   |
+| Filter (`bpm:[120 TO 129]`)  | `DoubleField` `bpm`                              | Points + DocValues from Part 1                                      |
+| Count (BPM ranges)           | same `bpm` DocValues                             | `DoubleRangeFacetCounts` bins the existing numeric column           |
+| Free-text                    | `TextField` `artist` / `title`                   | Search only — never a facet source                                  |
+
+### Empty labels cannot be facet values
+
+Lucene’s `FacetLabel` **rejects** an empty path component. The bookmarkable token for
+“no genre” can still be `genre:""`; the **indexed** SSDV value cannot be `""`. Use a
+sentinel (`$missing`) at index time, strip it from the histogram you render, and read
+it back when the panel needs a “No genre” count.
+
+```java
+/** Indexed SSDV label when a keyword is blank. Not a user-facing token. */
+public static final String MISSING_VALUE = "$missing";
+```
+
+## `FacetsConfig.build` is not optional
+
+`SortedSetDocValuesFacetField` is an indexing **helper**. It does not write DocValues
+by itself. `FacetsConfig.build(doc)` copies each dim/path into the `$facets` sorted-set
+column that `SortedSetDocValuesFacetCounts` reads, and into the drill-down terms
+`DrillDownQuery` expects. Index the raw helper and search later: you silently count
+**nothing**.
+
+Share **one** `FacetsConfig` between index and search — the config is not stored in
+the index. Keyword dims here are single-valued (one genre per track), so you do not
+call `setMultiValued`.
+
+```java
+public final class TrackFacets {
+
+    public static final String GENRE = "genre";
+    public static final String ARTIST = "artist";
+    public static final String ALBUM = "album";
+    public static final String KEY = "key";
+    public static final String ARTWORK = "artwork";
+    public static final String MISSING_VALUE = "$missing";
+
+    // Same instance at index time and search time
+    private static final FacetsConfig CONFIG = new FacetsConfig();
+
+    public static FacetsConfig config() {
+        return CONFIG;
+    }
+}
+```
+
+Wrap every add and upsert in Part 2’s writer:
+
+```java
+private static Document indexedDocument(Track track) throws IOException {
+    // build() materializes $facets; skip it and SortedSetDocValuesFacetCounts sees an empty column
+    return TrackFacets.config().build(TrackDocumentMapper.toDocument(track));
+}
+
+public void rebuild(List<Track> tracks) throws IOException {
+    synchronized (writeLock) {
+        writer.deleteAll();
+        for (Track track : tracks) {
+            writer.addDocument(indexedDocument(track));
+        }
+        writer.commit();
+    }
+}
+```
+
+`updateDocument` must use the same helper. After commit, open a **new** NRT reader
+before counting: `DefaultSortedSetDocValuesReaderState` is tied to that reader. Cache
+the state across upserts and the ordinals go stale.
+
+A tiny fixture is enough to prove `build()` ran — two Club, one Techno, then
+`getAllChildren("genre")` must return those labels. If the list is empty, `build()`
+never wrapped the document.
+
+## Count without visiting hits
+
+Lucene 10.5 gathers matching docs with `FacetsCollectorManager` (not a hand-rolled
+loop over `ScoreDoc`). Then `SortedSetDocValuesFacetCounts` turns the collector into
+per-dimension histograms.
+
+```java
+IndexSearcher searcher = index.searcher();
+try (IndexReader reader = searcher.getIndexReader()) {
+    FacetsConfig config = TrackFacets.config();
+    // State is per-reader: rebuild it after every commit / upsert (NRT ordinals change)
+    SortedSetDocValuesReaderState state =
+            new DefaultSortedSetDocValuesReaderState(reader, config);
+
+    // n=1: we want the collector, not a hit list (SearchService already resolved beans)
+    FacetsCollector fc = FacetsCollectorManager.search(
+                    searcher, new MatchAllDocsQuery(), 1, new FacetsCollectorManager())
+            .facetsCollector();
+
+    Facets facets = new SortedSetDocValuesFacetCounts(state, fc);
+    org.apache.lucene.facet.FacetResult genre = facets.getAllChildren("genre");
+    // genre.labelValues → Club=2, Techno=1  (LabelAndValue, still Lucene types)
+}
+```
+
+That is global counts. A filter panel also needs **drill-down** (counts under
+`genre:Club`) and **sideways** counts (the genre panel itself still shows Techno).
+
+## Drill-down is a different query type
+
+If panel tokens stay inside the same `q` string that `TrackLuceneQueryBuilder` parses
+for search, `DrillSideways` cannot drop one dimension for the sideways collector —
+it never saw which clause was “the genre checkbox”.
+
+Split the bookmarkable string:
+
+1. **Remainder** (free text, `artist:` as a search field, …) → base `Query`.
+2. **Panel tokens** (`genre:Club`, `bpm:[120 TO 129]`, `rating:5`) →
+   `DrillDownQuery.add(dimension, query)`.
+
+`QueryFacets.parse` / `toQuery` from a small helper next to the query builder already
+round-trip those tokens. Reuse it:
+
+```java
+QueryFacets parsed = QueryFacets.parse(q);
+// Remainder only — if genre:Club stayed here, DrillSideways could not omit it sideways
+Query base = TrackLuceneQueryBuilder.build(parsed.remainder());
+DrillDownQuery drillDown = new DrillDownQuery(TrackFacets.config(), base);
+
+// Dimension name is how sideways collection is keyed; the Query is what actually filters
+if (!parsed.genres().isEmpty() || parsed.missingGenre()) {
+    drillDown.add("genre", TrackLuceneQueryBuilder.build(genreOnly(parsed).toQuery()));
+}
+if (!parsed.bpmBuckets().isEmpty() || parsed.missingBpm()) {
+    // Ranges are not SSDV labels — pass the same numeric Query search already uses
+    drillDown.add("bpm", TrackLuceneQueryBuilder.build(bpmOnly(parsed).toQuery()));
+}
+```
+
+`SearchService` keeps calling `TrackLuceneQueryBuilder.build(q)` on the **full**
+string. The table and the panel share one bookmarkable `q`; only counting needs the
+split. Dual indexing (keyword `StringField` + SSDV) is what makes that split cheap.
+
+Optional playlist scope stays a `MUST` `TermInSetQuery` on `id`, on the **base** query,
+exactly as in Part 3. Empty scope → `MatchNoDocsQuery`.
+
+## Self-excluding: `DrillSideways`
+
+Selecting `genre:Club` must shrink the **table** and the **key** histogram, but the
+genre panel must still show Techno. Otherwise the user cannot add a second genre
+without clearing `q` by hand.
+
+A second `search` after stripping `genre:` from `q` would re-parse, re-score, and
+drift from the drill-down Lucene already built. `DrillSideways` runs one drill-down
+collector plus one sideways collector **per selected dimension**:
+
+```java
+SortedSetDocValuesReaderState state =
+        new DefaultSortedSetDocValuesReaderState(reader, config);
+DrillSideways sideways = new TrackDrillSideways(searcher, config, state);
+// n=1 again: facets, not hits
+Facets luceneFacets = sideways.search(drillDown, 1).facets;
+```
+
+On a tiny fixture (Club@82, Club@128, Techno@128) with
+`q = "genre:Club bpm:[120 TO 129]"`:
+
+| Panel | Visible buckets (count > 0) |
+|-------|-----------------------------|
+| genre | Club **and** Techno         |
+| bpm   | `80-90` **and** `120-130`   |
+
+The **result list** is still Club ∩ 120–129. Only the **counts** on each panel omit
+that panel’s own drill-down. That is the usual e-commerce “narrow by brand without
+hiding the other brands” behaviour.
+
+## Mix keyword and numeric facets
+
+`DrillSideways` defaults to one facet implementation. We need three on the **same**
+collectors:
+
+| Dimension                          | Lucene counter                  | Why                                                   |
+|------------------------------------|---------------------------------|-------------------------------------------------------|
+| genre, artist, album, key, artwork | `SortedSetDocValuesFacetCounts` | Discrete labels already in `$facets`                  |
+| bpm                                | `DoubleRangeFacetCounts`        | Fixed UI ranges, not one bucket per 128.0 / 128.5     |
+| rating, year                       | `LongValueFacetCounts`          | Distinct ints already on the numeric DocValues column |
+
+Subclass `DrillSideways` and override `buildFacetsResult` so each collector (drill-down
+**and** each sideways array slot) is wrapped the same way:
+
+```java
+private static final class TrackDrillSideways extends DrillSideways {
+
+    TrackDrillSideways(
+            IndexSearcher searcher, FacetsConfig config, SortedSetDocValuesReaderState state) {
+        super(searcher, config, state);
+    }
+
+    @Override
+    protected Facets buildFacetsResult(
+            FacetsCollector drillDowns,
+            FacetsCollector[] drillSideways,
+            String[] drillSidewaysDims) throws IOException {
+        Facets drillDownFacets = mix(drillDowns);
+        if (drillSideways == null || drillSideways.length == 0) {
+            return drillDownFacets;
+        }
+        // One sideways collector per selected dim — MultiFacets picks by dimension name
+        Map<String, Facets> sideways = new HashMap<>();
+        for (int i = 0; i < drillSideways.length; i++) {
+            sideways.put(drillSidewaysDims[i], mix(drillSideways[i]));
+        }
+        return new MultiFacets(sideways, drillDownFacets);
+    }
+
+    private Facets mix(FacetsCollector hits) throws IOException {
+        FacetsCollector collector = hits != null ? hits : new FacetsCollector();
+        Map<String, Facets> byDim = new LinkedHashMap<>();
+        Facets ssdv = new SortedSetDocValuesFacetCounts(state, collector);
+        byDim.put("genre", ssdv);
+        byDim.put("artist", ssdv);
+        byDim.put("album", ssdv);
+        byDim.put("key", ssdv);
+        byDim.put("artwork", ssdv);
+        byDim.put("bpm", new DoubleRangeFacetCounts("bpm", collector, BPM_RANGES));
+        byDim.put("rating", new LongValueFacetCounts("rating", collector));
+        byDim.put("year", new LongValueFacetCounts("year", collector));
+        return new MultiFacets(byDim);
+    }
+}
+```
+
+The same `SortedSetDocValuesFacetCounts` instance serves every keyword dim — it
+already knows all SSDV dimensions from the reader state.
+
+### BPM — declare the bins once
+
+Do not emit one bucket per stored BPM. Map the DocValues double onto closed UI
+ranges, and **always** return every range (count may be 0) so the checkbox list
+does not jump:
+
+| Bucket id | Query token        | `DoubleRange` (min, max)   |
+|-----------|--------------------|----------------------------|
+| `lt80`    | `bpm:[0 TO 79]`    | `(0, 80)` — 0 is “missing” |
+| `80-90`   | `bpm:[80 TO 89]`   | `[80, 90)`                 |
+| `90-100`  | `bpm:[90 TO 99]`   | `[90, 100)`                |
+| `100-110` | `bpm:[100 TO 109]` | `[100, 110)`               |
+| `110-120` | `bpm:[110 TO 119]` | `[110, 120)`               |
+| `120-130` | `bpm:[120 TO 129]` | `[120, 130)`               |
+| `130-140` | `bpm:[130 TO 139]` | `[130, 140)`               |
+| `140-150` | `bpm:[140 TO 149]` | `[140, 150)`               |
+| `150+`    | `bpm:[150 TO 999]` | `[150, 1000)`              |
+
+The label can say `120 – 130` while the range is `[120, 130)`. Put `bpm <= 0` in a
+separate `$missing` range `(-∞, 0]`, not in `lt80`.
+
+```java
+// Half-open [min, max+1) so 129.9 lands in 120-130 and 130.0 in the next bucket
+ranges.add(new DoubleRange(bucket.id(), min, true, max + 1.0, false));
+```
+
+### Rating and year — distinct values, then group in Java if needed
+
+`LongValueFacetCounts` already returns one bucket per distinct int. Always render
+stars `5` down to `0` (fill zeros). For the year **panel**, group those ints into
+decades (`2010s`, `2020s`) in Java; when the current query leaves only one decade
+in scope, show the individual years instead. The query tokens stay
+`year:[2010 TO 2019]` / `year:2022` — Part 3 already knows how to build them.
 
 ## Return `(value, count)`, not Lucene docs
 
-The UI wants labels like `Club (12)`, not `ScoreDoc`s. Two small types are enough:
+The UI wants `Club (12)`, not `LabelAndValue`. Map once at the edge of
+`TrackFacetService`:
 
 ```java
-/** One value in one dimension, plus how many matching tracks carry it. */
 public record FacetBucket(String value, int count) {}
 
-/** Immutable buckets keyed by dimension name (`genre`, `rating`, …). */
-public final class FacetResult {
-
-    private final Map<String, List<FacetBucket>> bucketsByDimension;
-
-    public FacetResult(Map<String, List<FacetBucket>> bucketsByDimension) {
-        this.bucketsByDimension = bucketsByDimension.entrySet().stream()
-                .collect(Collectors.toUnmodifiableMap(
-                        Map.Entry::getKey,
-                        e -> List.copyOf(e.getValue())));
-    }
-
-    public List<FacetBucket> buckets(String dimension) {
-        return bucketsByDimension.getOrDefault(dimension, List.of());
-    }
-}
-```
-
-## Count stored fields under the current query
-
-`TrackFacetService` shares `TrackSearchIndex` with `SearchService`. Blank `q` means the
-whole index (`MatchAllDocsQuery` inside `TrackLuceneQueryBuilder`). Otherwise it is the
-same bookmarkable string as search: `genre:Club`, `bpm:[120 TO 129]`, free text, …
-
-```java
-public final class TrackFacetService {
-
-    private static final Set<String> DIMENSIONS =
-            Set.of("genre", "key", "rating", "bpm", "year");
-
-    private final TrackSearchIndex index;
-
-    public TrackFacetService(TrackSearchIndex index) {
-        this.index = index;
-    }
-
-    /** Aggregations under {@code q}; blank q means the whole index. */
-    public FacetResult facets(String q, Set<String> dimensions) {
-        return facets(q, dimensions, Set.of());
-    }
-
-    /**
-     * {@code excludeDimensions} are stripped from {@code q} before counting
-     * (self-excluding navigation — see below).
-     */
-    public FacetResult facets(String q, Set<String> dimensions, Set<String> excludeDimensions) {
-        Set<String> requested = dimensions == null ? Set.of() : new HashSet<>(dimensions);
-        requested.retainAll(DIMENSIONS);
-        if (requested.isEmpty()) {
-            return new FacetResult(Map.of());
-        }
-
-        try {
-            IndexSearcher searcher = index.searcher();
-            try (IndexReader reader = searcher.getIndexReader()) {
-                Query query = queryExcluding(q, excludeDimensions);
-                // Same ceiling as SearchService: every doc, then we tally stored fields
-                TopDocs hits = searcher.search(query, Math.max(1, reader.numDocs()));
-
-                Map<String, Map<String, Integer>> counts = new LinkedHashMap<>();
-                requested.stream().sorted()
-                        .forEach(dim -> counts.put(dim, new HashMap<>()));
-                Set<String> wanted = storedFieldsFor(counts.keySet());
-                StoredFields storedFields = searcher.storedFields();
-
-                for (var hit : hits.scoreDocs) {
-                    // Load only the facet fields — not title / artist / id
-                    var document = storedFields.document(hit.doc, wanted);
-                    for (String dimension : counts.keySet()) {
-                        accumulate(counts.get(dimension), dimension, document);
-                    }
-                }
-
-                Map<String, List<FacetBucket>> result = new LinkedHashMap<>();
-                for (var entry : counts.entrySet()) {
-                    result.put(entry.getKey(), toBuckets(entry.getKey(), entry.getValue()));
-                }
-                return new FacetResult(result);
-            }
-        } catch (IOException e) {
-            throw new UncheckedIOException("Unable to compute track facets", e);
+private static List<FacetBucket> keywordBuckets(String dimension, Facets facets)
+        throws IOException {
+    Map<String, Integer> counts = new HashMap<>();
+    org.apache.lucene.facet.FacetResult raw = facets.getAllChildren(dimension);
+    if (raw != null) {
+        for (LabelAndValue lv : raw.labelValues) {
+            counts.merge(lv.label, lv.value.intValue(), Integer::sum);
         }
     }
+    counts.remove(TrackFacets.MISSING_VALUE); // sentinel is not a checkbox label
+    return counts.entrySet().stream()
+            .map(e -> new FacetBucket(e.getKey(), e.getValue()))
+            .sorted(Comparator.comparing(FacetBucket::value, String.CASE_INSENSITIVE_ORDER))
+            .toList();
 }
 ```
 
-`storedFields.document(docId, wanted)` is the cheap path: ask Lucene for `genre.raw` and
-`rating`, not the whole stored document.
-
-Numeric fields need `numericValue()`, not `document.get(field)`:
-
-```java
-private static String numericIntValue(Document document, String field) {
-    IndexableField value = document.getField(field);
-    return value != null && value.numericValue() != null
-            ? String.valueOf(value.numericValue().intValue())
-            : null;
-}
-
-private static void accumulate(
-        Map<String, Integer> counts, String dimension, Document document) {
-    switch (dimension) {
-        case "rating" -> {
-            String raw = numericIntValue(document, TrackIndexFields.RATING);
-            if (raw != null) counts.merge(raw, 1, Integer::sum);
-        }
-        case "bpm" -> {
-            String raw = numericDoubleValue(document, TrackIndexFields.BPM);
-            if (raw == null) return;
-            bpmBucketForValue(Double.parseDouble(raw))
-                    .ifPresent(bucket -> counts.merge(bucket.id(), 1, Integer::sum));
-        }
-        case "year" -> {
-            String raw = numericIntValue(document, TrackIndexFields.YEAR);
-            if (raw != null) {
-                int year = Integer.parseInt(raw);
-                counts.merge(decadeLabel(decadeStart(year)), 1, Integer::sum);
-            }
-        }
-        default -> { // genre, key — stored keyword as-is
-            String value = switch (dimension) {
-                case "genre" -> document.get(TrackIndexFields.GENRE_RAW);
-                case "key" -> document.get(TrackIndexFields.KEY_RAW);
-                default -> null;
-            };
-            if (value != null && !value.isBlank()) {
-                counts.merge(value, 1, Integer::sum);
-            }
-        }
-    }
-}
-```
-
-## Drill-down: filter and recount
-
-Pass the **current** `q` into `facets`. Other dimensions shrink to the filtered set:
-
-```java
-try (TrackSearchIndex index = new TrackSearchIndex()) {
-    index.rebuild(tracks);
-    TrackFacetService facets = new TrackFacetService(index);
-
-    FacetResult all = facets.facets("", Set.of("key"));
-    FacetResult club = facets.facets("genre:Club", Set.of("key"));
-
-    // all.buckets("key") covers the whole library
-    // club.buckets("key") only keys that appear on Club tracks
-}
-```
-
-On a tiny fixture (two Club tracks, one Techno), `genre:Club` drops the key histogram
-from 3 documents to 2 — the same query `SearchService.filter(corpus, "genre:Club")` would
-use. There is no separate “facet query” type: drill-down **is** the search `q`.
-
-## Self-excluding navigation
-
-If you count `genre` while `q` already contains `genre:Club`, the genre panel collapses
-to a single bucket. Checkboxes for Techno disappear, so the user cannot add a second
-genre (or switch) without clearing the query by hand.
-
-The fix is to **strip that dimension** from `q` before counting it. Genre counts then
-ignore the selected genre, but still honour BPM, rating, and free text. BPM counts ignore
-the selected BPM bucket, but still honour genre. Each panel stays navigable.
-
-```java
-private static Query queryExcluding(String q, Set<String> excludeDimensions) {
-    QueryFacets parsed = QueryFacets.parse(q);
-    if (excludeDimensions != null && !excludeDimensions.isEmpty()) {
-        parsed = parsed.withoutDimensions(excludeDimensions);
-    }
-    // Rebuild the bookmarkable string, then the same Lucene query as search
-    return TrackLuceneQueryBuilder.build(parsed.toQuery());
-}
-```
-
-`QueryFacets` is a structured view of the panel-owned tokens inside `q` (`genre`, `key`,
-`bpm`, `rating`, `year`). `parse` / `toQuery` round-trip so the search bar stays the
-single source of truth (bookmarkable URLs). `withoutDimensions` clears one field and
-leaves the remainder (free text, `artist:`, …) untouched.
-
-```java
-QueryFacets parsed = QueryFacets.parse("genre:Club bpm:[120 TO 129]");
-QueryFacets withoutGenre = parsed.withoutDimensions(Set.of("genre"));
-// withoutGenre.toQuery() → "bpm:[120 TO 129]"  (genre stripped, BPM kept)
-```
-
-Call it per panel:
-
-```java
-// Genre checkboxes: honour BPM / text, ignore the selected genre
-facets.facets(q, Set.of("genre"), Set.of("genre"));
-
-// BPM checkboxes: honour genre / text, ignore the selected BPM range
-facets.facets(q, Set.of("bpm"), Set.of("bpm"));
-```
-
-With three tracks (Club@82, Club@128, Techno@128) and
-`q = "genre:Club bpm:[120 TO 129]"`:
-
-| Panel counted with self-exclusion | Visible buckets (count > 0) |
-|-----------------------------------|-----------------------------|
-| `genre` (genre stripped)          | Club **and** Techno         |
-| `bpm` (bpm stripped)              | `80-90` **and** `120-130`   |
-
-The **result list** is still Club ∩ 120–129. Only the **counts** on each panel pretend
-that panel’s own filter is off. That is the usual e-commerce “narrow by brand without
-hiding the other brands” behaviour.
-
-## Numeric buckets
-
-Keyword dimensions (`genre`, `key`) emit one bucket per distinct stored value, sorted
-case-insensitively. Numerics need a stable list so a checkbox does not vanish when its
-count is zero. `bpmBucketForValue` and `decadeStart` in `accumulate` are the helpers
-behind the tables below.
-
-### Rating — six fixed stars
-
-Always render `5` down to `0`, even when a star has no tracks:
-
-```java
-List<FacetBucket> buckets = new ArrayList<>();
-for (int stars = 5; stars >= 0; stars--) {
-    buckets.add(new FacetBucket(
-            String.valueOf(stars),
-            counts.getOrDefault(String.valueOf(stars), 0)));
-}
-```
-
-### BPM — fixed ranges
-
-Do not emit one bucket per BPM value (`128.0`, `128.5`, …). Map the stored double onto
-a closed range, and always return every range:
-
-| Bucket id | Query token           | Inclusive range |
-|-----------|-----------------------|-----------------|
-| `lt80`    | `bpm:[0 TO 79]`       | 0–79            |
-| `80-90`   | `bpm:[80 TO 89]`      | 80–89           |
-| `90-100`  | `bpm:[90 TO 99]`      | 90–99           |
-| `100-110` | `bpm:[100 TO 109]`    | 100–109         |
-| `110-120` | `bpm:[110 TO 119]`    | 110–119         |
-| `120-130` | `bpm:[120 TO 129]`    | 120–129         |
-| `130-140` | `bpm:[130 TO 139]`    | 130–139         |
-| `140-150` | `bpm:[140 TO 149]`    | 140–149         |
-| `150+`    | `bpm:[150 TO 999]`    | 150–999         |
-
-The label can say `120 – 130` while the token is `[120 TO 129]` — the next bucket starts
-at 130, so the upper bound is exclusive of that start. Skip BPM `<= 0` (missing) rather
-than stuffing it into `lt80`.
-
-### Year — decades, then years
-
-Count decades (`2010s`, `2020s`) from `year / 10 * 10`. When the current query leaves
-only **one** decade in scope, switch the panel to individual years in that decade
-(`2018`, `2019`). The query tokens stay ranges (`year:[2010 TO 2019]`) or exact years
-(`year:2022`) — the same syntax Part 3 already built.
-
-## Optional: scope to a subset of ids
-
-Search in Part 3 scoped **after** Lucene, by intersecting hit ids with a caller-provided
-corpus (one playlist). Facet counts need the restriction **inside** the query, or the
-panel would show library-wide numbers next to a playlist-sized table.
-
-AND a `TermInSetQuery` on the stored `id` field:
-
-```java
-if (scopeIds != null) {
-    if (scopeIds.isEmpty()) {
-        return new MatchNoDocsQuery("empty facet scope");
-    }
-    List<BytesRef> ids = scopeIds.stream().map(BytesRef::new).toList();
-    return new BooleanQuery.Builder()
-            .add(searchQuery, BooleanClause.Occur.MUST)
-            .add(new TermInSetQuery(TrackIndexFields.ID, ids), BooleanClause.Occur.MUST)
-            .build();
-}
-```
-
-Pass `scopeIds = null` for the whole library. The index does not store playlist
-membership — the handler still owns that list, same as Part 3.
-
-## Wire counts into the UI
-
-The handler asks for buckets, the template prints `value (count)`:
-
-```java
-List<FacetBucket> genres = facetService
-        .facets(q, Set.of("genre"), Set.of("genre"))
-        .buckets("genre");
-// → Club (12), House (4), Techno (7)
-```
-
-Hide zero-count **dynamic** values (a genre that never appears). Keep zero-count **fixed**
-buckets (BPM ranges, star ratings) so the layout does not jump. Clicking a checkbox
-toggles a token in `q` (`genre:Club`, `rating:5`, `bpm:[120 TO 129]`) and the next
-request both filters the table and refreshes every panel.
-
-Missing-value rows are ordinary tokens: `genre:""`, `bpm:0`, `year:0`. Count them with
-the same self-excluding rule — “No genre” stays visible while a genre is selected.
+Hide zero-count **dynamic** values (a genre that never appears). Keep zero-count
+**fixed** buckets (BPM ranges, star ratings). Clicking a checkbox still toggles a
+token in `q`; the next request filters the table via `SearchService` and refreshes
+every panel via `TrackFacetService`.
 
 ## What this model does not do
 
 This is still one JVM, one `ByteBuffersDirectory` (or one `FSDirectory`), rebuilt at
 startup and upserted after writes:
 
-* Counts visit every matching document. Fine at ~4k tracks; not an aggregation engine.
-* There is no replica, no REST API, no cluster. Restart without a rebuild and the cache
-  is empty.
+* Facet ordinals live next to the search index. Restart without a rebuild and both
+  are empty.
+* `DefaultSortedSetDocValuesReaderState` must follow the NRT reader. After `upsert`,
+  open a new searcher before counting.
+* There is no replica, no REST API, no cluster.
 * The primary store remains authoritative. If an upsert fails, fall back to a full
   rebuild so search **and** facets cannot drift silently.
 
