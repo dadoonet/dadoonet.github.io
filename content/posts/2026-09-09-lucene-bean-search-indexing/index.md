@@ -31,8 +31,6 @@ beans — here, `Track` records from a Rekordbox-style library. The same pattern
 applies to any Java bean: map it to a Lucene `Document`, index it, search, then
 join hits back to your objects.
 
-Audience: Java / Maven developers who want a copyable recipe, not a Lucene overview.
-
 ## What you get
 
 ```
@@ -92,6 +90,8 @@ release on Maven Central when you implement; this series uses **10.5.1**.
 Lucene is pure Java: it shades into a fat-jar with no native libraries.
 
 ## Start from your existing bean
+
+{{< figure src="track.avif" caption="A `Track` in the UI: title, artist, genre, BPM, key, rating, year — plus album, comment, and the rest of the bean." >}}
 
 ```java
 public record Track(
