@@ -1,10 +1,11 @@
 # PR deploy previews only. Production stays on GitHub Pages (david.pilato.fr).
 # Keep HUGO_VERSION in sync with .github/workflows/gh-pages.yml.
 #
-# Previews keep --buildFuture so scheduled posts (and talk pages whose
-# Hugo date is still in the future) can be reviewed before they go live.
-# GitHub Pages omits that flag: theme v0.3.0 announces upcoming talks via
-# conference.date without publishing future-dated posts.
+# Previews keep --buildFuture so scheduled posts can be reviewed before
+# they go live. GitHub Pages omits that flag: Hugo leaves future-dated
+# posts unpublished; upcoming talks use conference.date (theme ≥ v0.3.0).
+# Theme v0.4.0 (when released) stops re-filtering those posts from
+# archives, search, and RSS — bump go.mod then.
 
 [build]
   command = "npm ci && hugo --gc --minify --buildFuture --baseURL \"${DEPLOY_PRIME_URL%/}/\" && npx pagefind --site public"
