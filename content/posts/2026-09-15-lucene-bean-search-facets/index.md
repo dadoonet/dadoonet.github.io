@@ -26,9 +26,10 @@ This post is part of a series:
 * [Part 4: Suggest]({{< ref "2026-09-14-lucene-bean-search-suggest" >}})
 * [Part 5: Facets]({{< ref "2026-09-15-lucene-bean-search-facets" >}})
 
-[Part 3]({{< ref "2026-09-11-lucene-bean-search-query-sync" >}}) can already **filter**
-(`genre:Club`). A filter panel still needs something else: **how many** tracks sit
-in Club vs Techno *under the current query*.
+[Part 3]({{< ref "2026-09-11-lucene-bean-search-query-sync" >}}) already **filters**
+(`FILTER genre:club` next to a `MUST` free-text clause). A filter panel still
+needs something else: **how many** tracks sit in Club vs Techno *under that
+boolean query*.
 
 <!--more-->
 
@@ -38,9 +39,9 @@ rebuild or upsert after writes, then recount.
 
 ## Index the category
 
-`genre.raw` is a `StringField` so `genre:Club` can be a term query. Counting is a
-different access pattern: you want a **column** of labels, not a stored field on
-each hit.
+`genre.raw` is a `StringField` so Part 3 can `FILTER` with a `TermQuery`. Counting
+is a different access pattern: you want a **column** of labels, not a stored field
+on each hit.
 
 Add a `SortedSetDocValuesFacetField` next to the keyword (same idea for artist,
 album, key). Do **not** facet on a `TextField` — tokens are not checkbox labels.
@@ -89,31 +90,45 @@ resolved beans).
 
 ## Drill-down and sideways
 
-Under `genre:Club`, the **key** histogram should shrink. The **genre** panel should
-still show Techno — otherwise the user cannot change genre without clearing `q`.
+Under `genre=club`, the **key** histogram should shrink. The **genre** panel should
+still show Techno — otherwise the user cannot change genre without clearing the
+param.
 
-Split the bookmarkable string: remainder (free text) is the base query; panel
-tokens become `DrillDownQuery.add(dimension, query)`. Then `DrillSideways` runs
-one collector for the filtered set and one per selected dimension *without* that
-dimension’s own constraint:
+That is why panel selections must **not** stay in the base `BooleanQuery` from
+[Part 3]({{< ref "2026-09-11-lucene-bean-search-query-sync" >}}). If `FILTER genre:club`
+were already in the base, `DrillSideways` could not drop it for the genre
+collector. Split the structured request:
+
+* **Base** — `MUST` free text, `MUST_NOT` exclusions, `FILTER` for *other*
+  dimensions (bpm, key, …).
+* **Drill-down** — each selected panel dim via `DrillDownQuery.add`.
+
+Then `DrillSideways` runs one collector for the filtered set and one per selected
+dimension *without* that dimension’s own constraint:
 
 ```java
-Query base = TrackLuceneQueryBuilder.build(remainder); // no genre: / bpm: tokens
+Query base = TrackLuceneQueryBuilder.buildStructured(
+        freeText,       // MUST  — "bob sinclar"
+        otherFilters,   // FILTER — bpm, key, … (not genre)
+        mustNots);      // MUST_NOT
+
 DrillDownQuery drillDown = new DrillDownQuery(FACETS, base);
-drillDown.add("genre", TrackLuceneQueryBuilder.build("genre:Club"));
+drillDown.add("genre", new TermQuery(new Term(TrackIndexFields.GENRE_RAW, "club")));
+drillDown.add("bpm", DoublePoint.newRangeQuery(TrackIndexFields.BPM, 110.0, 119.0));
 
 Facets luceneFacets = new DrillSideways(searcher, FACETS, state)
         .search(drillDown, 1)
         .facets;
 ```
 
+The **table** still uses the full Part 3 query (`MUST` + every `FILTER` +
+`MUST_NOT`). Only the **counts** omit that panel’s own filter — the usual
+e-commerce “narrow by brand without hiding the other brands”.
+
 | Panel | Visible buckets (count > 0) |
 |-------|-----------------------------|
 | genre | Club **and** Techno         |
 | bpm   | `80-90` **and** `120-130`   |
-
-The **table** is still Club ∩ 120–129. Only the **counts** omit that panel’s own
-filter — the usual e-commerce “narrow by brand without hiding the other brands”.
 
 Keyword dims use `SortedSetDocValuesFacetCounts`. BPM bins use
 `DoubleRangeFacetCounts` on the existing `bpm` field (half-open ranges, always
@@ -122,6 +137,10 @@ If you need both on the same collectors, override `DrillSideways.buildFacetsResu
 and wrap each collector with a `MultiFacets` — the default sideways class assumes
 one implementation.
 
+When a playlist is selected, `FILTER` a `TermInSetQuery` on `id` into the **base**
+so histograms match the table. Corpus intersection after search (Part 3) cannot
+fix counts.
+
 ## Hand `(value, count)` to the UI
 
 ```java
@@ -129,7 +148,8 @@ public record FacetBucket(String value, int count) {}
 ```
 
 Map `LabelAndValue` once in `TrackFacetService`. The template prints `Club (12)`.
-Clicking a checkbox still toggles a token in `q`; the next request filters the
+Clicking a checkbox writes a structured param (`genre=club`, or `minus-genre=techno`
+for a `MUST_NOT`) — it does **not** rewrite `q`. The next request filters the
 table (Part 3) and refreshes every panel here.
 
 ## What this model does not do
@@ -139,6 +159,6 @@ without a rebuild and search **and** facets are empty. If an upsert fails, fall
 back to a full rebuild so the cache cannot drift.
 
 When the corpus or the ops model outgrows a process-local Lucene cache, the next
-step is a search server in front of the same beans — same `q`, same filter panel,
-a different engine behind `TrackSearchIndex`. That is a switch, not a rewrite of
-Parts 1–5.
+step is a search server in front of the same beans — same free-text `q`, same
+filter params, a different engine behind `TrackSearchIndex`. That is a switch,
+not a rewrite of Parts 1–5.
