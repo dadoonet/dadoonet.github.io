@@ -9,3 +9,13 @@ updates:
     directory: "/.github/workflows" # Location of package manifests
     schedule:
       interval: "weekly"
+
+  # Hugo modules are Go modules. This only works if the theme is a *direct*
+  # require in go.mod (see tools.go) and the tag is on proxy.golang.org.
+  - package-ecosystem: "gomod"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    allow:
+      - dependency-name: "github.com/dadoonet/hugo-theme-devrel"
+
