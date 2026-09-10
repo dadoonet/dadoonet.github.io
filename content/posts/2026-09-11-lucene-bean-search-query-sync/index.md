@@ -1,6 +1,6 @@
 ---
 title: 'Integrating Apache Lucene for Bean Search — Part 3: Search'
-description: "Build a BooleanQuery with MUST, FILTER, and MUST_NOT — then resolve Lucene hits back to your Java beans."
+description: "Type Bob, add a FILTER chip, then two MUST_NOT keys — the BooleanQuery Lucene actually runs, then resolve hits back to beans."
 author: David Pilato
 avatar: /about/david_pilato.avif
 tags:
@@ -23,262 +23,222 @@ This post is part of a series:
 * [Part 1: Indexing]({{< ref "2026-09-09-lucene-bean-search-indexing" >}})
 * [Part 2: Index Lifecycle]({{< ref "2026-09-10-lucene-bean-search-lifecycle" >}})
 * [Part 3: Search]({{< ref "2026-09-11-lucene-bean-search-query-sync" >}})
-* Part 4: Suggest <!-- TODO: link when published -->
-* Part 5: Facets <!-- TODO: link when published -->
+* [Part 4: Suggest]({{< ref "2026-09-14-lucene-bean-search-suggest" >}})
+* [Part 5: Facets]({{< ref "2026-09-15-lucene-bean-search-facets" >}})
 
 [Part 1]({{< ref "2026-09-09-lucene-bean-search-indexing" >}}) mapped beans to documents.
 [Part 2]({{< ref "2026-09-10-lucene-bean-search-lifecycle" >}}) owned the writer.
-Lucene still returns **documents**, not your Java types — so this part is queries
-and hit → bean resolution.
+This part is the query you actually run: type in the box, add a filter, exclude
+two keys — and watch the `BooleanQuery` grow.
 
-## From documents to beans
-
-Run a Lucene query, collect hit ids (and scores when relevant), then join back to
-your beans — either by filtering a caller-provided corpus or by loading from a
-repository.
+The screenshots are from the same Rekordbox-style library as Parts 1 and 2.
+The Java is the Lucene tree behind those three URLs. Same recipe for any bean
+index.
 
 <!--more-->
 
-## Keep free text and filters apart
-
-Do **not** stuff facets into the search box (`genre:House bob`). That string is
-painful to chip, autocomplete, and bookmark once a panel appears. Split the
-request:
+Keep free text and filters **apart**. Do not stuff facets into the search box
+(`genre:Club bob`). That string is painful to chip, autocomplete, and bookmark
+once a panel appears:
 
 ```
-/tracks?q=bob sinclar&genre=club&bpm=110-120&key=1A,1B,2A
+/tracks?q=Bob
+/tracks?q=Bob&genre=Club
+/tracks?q=Bob&genre=Club&minus-key=4A,4B
 ```
 
-`q` is analyzed free text. Everything else is a structured filter. Keep both
-bookmarkable; keep construction in one place (`TrackLuceneQueryBuilder`) so
-parity tests can index known beans and assert hit ids.
-
-## A standard `BooleanQuery`
-
-This is the same boolean tree Elasticsearch users know as `bool` / `must` /
-`filter` / `must_not`. Lucene’s Java API is that tree — no Query DSL, no parser
-required:
-
-```
-MUST      freeText("bob sinclar")                 // analyzer tokenizes; score
-FILTER    genre:club                              // 1 value → 1 clause
-FILTER    bpm:[110 TO 119]
-FILTER    (key:1A SHOULD key:1B SHOULD key:2A)    // multi-select = OR
-MUST_NOT  freeText("bob")                         // unfielded -bob
-MUST_NOT  genre:techno                            // excluded chip
-```
-
-| Occur                           | Role                                    | Scores?   |
-|---------------------------------|-----------------------------------------|-----------|
-| `MUST`                          | analyzed free text                      | yes       |
-| `FILTER`                        | field constraint (genre, bpm, key, …)   | no        |
-| `MUST_NOT`                      | exclusion                               | no        |
-| `SHOULD` + `minShouldMatch = 1` | multi-select OR *inside* one `FILTER`   | no        |
-
-`FILTER` is the important one. A `MUST` on `genre:club` would still constrain,
-but it would also join the scoring. Facets should shrink the set **without**
-changing whether title beats artist. Put them in `FILTER`.
-
-Hand-assembled, that query is ordinary Lucene:
-
-```java
-BooleanQuery.Builder query = new BooleanQuery.Builder();
-
-// MUST — free text, scored (title > artist > …)
-query.add(freeText("bob sinclar"), BooleanClause.Occur.MUST);
-
-// FILTER — constrain, do not score
-query.add(new TermQuery(new Term(TrackIndexFields.GENRE_RAW, "club")),
-        BooleanClause.Occur.FILTER);
-query.add(DoublePoint.newRangeQuery(TrackIndexFields.BPM, 110.0, 119.0),
-        BooleanClause.Occur.FILTER);
-
-// key is another StringField — same recipe as genre.raw
-BooleanQuery.Builder keys = new BooleanQuery.Builder();
-keys.add(new TermQuery(new Term("key", "1a")), BooleanClause.Occur.SHOULD);
-keys.add(new TermQuery(new Term("key", "1b")), BooleanClause.Occur.SHOULD);
-keys.add(new TermQuery(new Term("key", "2a")), BooleanClause.Occur.SHOULD);
-keys.setMinimumNumberShouldMatch(1);
-query.add(keys.build(), BooleanClause.Occur.FILTER);
-
-// MUST_NOT — drop matches
-query.add(freeText("bob"), BooleanClause.Occur.MUST_NOT);
-query.add(new TermQuery(new Term(TrackIndexFields.GENRE_RAW, "techno")),
-        BooleanClause.Occur.MUST_NOT);
-
-Query lucene = query.build();
-TopDocs hits = searcher.search(lucene, 10);
-```
-
-A builder turns the structured request into that same tree:
-
-```java
-public static Query buildStructured(
-        String freeText,
-        Map<String, List<String>> filters,
-        Map<String, List<String>> mustNots) {
-    BooleanQuery.Builder query = new BooleanQuery.Builder();
-
-    Query text = analyzedFreeText(freeText); // whitespace + lowercase, then boosts
-    boolean hasText = !(text instanceof MatchAllDocsQuery);
-    if (hasText) {
-        query.add(text, BooleanClause.Occur.MUST);
-    }
-
-    int filterCount = 0;
-    for (var entry : filters.entrySet()) {
-        query.add(fieldFilter(entry.getKey(), entry.getValue()), BooleanClause.Occur.FILTER);
-        filterCount++;
-    }
-    int notCount = 0;
-    for (var entry : mustNots.entrySet()) {
-        query.add(fieldFilter(entry.getKey(), entry.getValue()), BooleanClause.Occur.MUST_NOT);
-        notCount++;
-    }
-
-    if (!hasText && filterCount == 0 && notCount == 0) {
-        return new MatchAllDocsQuery();
-    }
-    // BooleanQuery with only MUST_NOT matches nothing — add a MUST match-all
-    if (!hasText && filterCount == 0 && notCount > 0) {
-        query.add(new MatchAllDocsQuery(), BooleanClause.Occur.MUST);
-    }
-    return query.build();
-}
-
-private static Query fieldFilter(String field, List<String> values) {
-    if (values.size() == 1) {
-        return leaf(field, values.getFirst()); // TermQuery, range, …
-    }
-    BooleanQuery.Builder sameField = new BooleanQuery.Builder();
-    for (String value : values) {
-        sameField.add(leaf(field, value), BooleanClause.Occur.SHOULD);
-    }
-    sameField.setMinimumNumberShouldMatch(1);
-    return sameField.build();
-}
-```
-
-Call it with maps, not a mixed leftover string:
-
-```java
-Map<String, List<String>> filters = Map.of(
-        "genre", List.of("club"),
-        "bpm", List.of("[110 TO 119]"),
-        "key", List.of("1A", "1B", "2A"));
-Map<String, List<String>> mustNots = Map.of("genre", List.of("techno"));
-
-Query lucene = TrackLuceneQueryBuilder.buildStructured("bob sinclar", filters, mustNots);
-```
-
-| Intent            | Bookmarkable request      | Lucene clause                |
-|-------------------|---------------------------|------------------------------|
-| Free text         | `q=bob sinclar`           | `MUST` free-text             |
-| Include Club      | `genre=club`              | `FILTER` term                |
-| Exclude techno    | `minus-genre=techno`      | `MUST_NOT` term              |
-| Keys 1A **or** 1B | `key=1A,1B`               | `FILTER` (`SHOULD` OR)       |
-| Exclude a token   | unfielded `-bob`          | `MUST_NOT` free-text         |
-
-Polarity is a **separate param**, not a dash on the value — otherwise you cannot
+`q` is analyzed free text. Everything else is a structured filter. Polarity is a
+**separate param** (`minus-key=`), not a dash on the value — otherwise you cannot
 include an artist named `-M-`.
 
-## Leaf queries
+This is the same boolean tree Elasticsearch users know as `bool` / `must` /
+`filter` / `must_not`. Lucene’s Java API *is* that tree — no Query DSL, no parser
+required. Lucene’s `Query.toString()` prints `+` for `MUST`, `#` for `FILTER`
+(no score), `-` for `MUST_NOT`, `(a b)~1` for `SHOULD` with `minShouldMatch = 1`,
+and `^4.0` for a boost.
 
-Inside each clause, the usual Lucene types:
+## Type “Bob”
 
-| Constraint       | Lucene leaf                                      |
-|------------------|--------------------------------------------------|
-| `genre=Club`     | `TermQuery` on a `StringField`                   |
-| `bpm=110-120`    | `DoublePoint.newRangeQuery`                      |
-| `rating=5`       | `IntPoint` exact / range                         |
-| `sinclar~`       | `FuzzyQuery` (opt-in)                            |
-| blank everything | `MatchAllDocsQuery`                              |
+{{< figure src="search.avif" caption="`q=Bob` — 62 tracks. Title, artist, or another analyzed field contains *bob*." >}}
 
-Exact id, when you do not want a parser yet:
-
-```java
-// Exact id match on a StringField — not analyzed
-Query q = new TermQuery(new Term(TrackIndexFields.ID, "42"));
-TopDocs hits = searcher.search(q, 10);
-```
-
-Free-text across fields, with title beating artist — this inner `BooleanQuery` is
-the `MUST` clause above:
+The analyzer from Part 1 (whitespace + lowercase) turns `Bob` into the token
+`bob`. Free text is a contains match (`WildcardQuery`) across analyzed fields,
+with title beating artist:
 
 ```java
 BooleanQuery.Builder fields = new BooleanQuery.Builder();
-fields.add(new BoostQuery(containsQuery("title", term), 4.0f), BooleanClause.Occur.SHOULD);
-fields.add(new BoostQuery(containsQuery("artist", term), 3.0f), BooleanClause.Occur.SHOULD);
+fields.add(new BoostQuery(contains("title", "bob"), 4.0f), BooleanClause.Occur.SHOULD);
+fields.add(new BoostQuery(contains("artist", "bob"), 3.0f), BooleanClause.Occur.SHOULD);
+fields.add(new BoostQuery(contains("genre", "bob"), 2.0f), BooleanClause.Occur.SHOULD);
+fields.add(new BoostQuery(contains("album", "bob"), 1.5f), BooleanClause.Occur.SHOULD);
+fields.add(new BoostQuery(contains("label", "bob"), 1.0f), BooleanClause.Occur.SHOULD);
+fields.add(new BoostQuery(contains("comment", "bob"), 0.5f), BooleanClause.Occur.SHOULD);
 fields.setMinimumNumberShouldMatch(1);
-Query freeText = fields.build();
+Query lucene = fields.build();
 ```
 
-## Resolve hits to beans
-
-1. Run the query against the full index.
-2. Collect hit ids (score order when it matters).
-3. Intersect against a caller-provided **corpus** (`List<Track>`), or load by id
-   from a repository.
-
-Playlist vs whole-library scoping stays **outside** Lucene: the handler picks the
-base list, then `filter` drops ids that are not in it. Genre / bpm / key are
-**inside** Lucene — they are `FILTER` clauses, not a second pass on the list.
-
 ```java
-public List<Track> filter(
-        List<Track> corpus,
-        String freeText,
-        Map<String, List<String>> filters,
-        Map<String, List<String>> mustNots) {
-    if (corpus.isEmpty()) {
-        return List.of();
-    }
-    Query lucene = TrackLuceneQueryBuilder.buildStructured(freeText, filters, mustNots);
-    if (lucene instanceof MatchAllDocsQuery) {
-        return List.copyOf(corpus);
-    }
-    try {
-        IndexSearcher searcher = index.searcher();
-        try (IndexReader reader = searcher.getIndexReader()) {
-            TopDocs hits = searcher.search(lucene, Math.max(1, reader.numDocs()));
-
-            Map<String, Track> byId = new HashMap<>(corpus.size());
-            for (Track track : corpus) {
-                byId.put(track.id(), track);
-            }
-
-            List<Track> ordered = new ArrayList<>(hits.scoreDocs.length);
-            for (var hit : hits.scoreDocs) {
-                // Stored id (Field.Store.YES) — Lucene doc id ≠ Track.id
-                String id = reader.storedFields().document(hit.doc).get(TrackIndexFields.ID);
-                Track track = byId.get(id);
-                if (track != null) {
-                    ordered.add(track);
-                }
-            }
-            return List.copyOf(ordered);
-        }
-    } catch (IOException e) {
-        throw new UncheckedIOException("Unable to search track index", e);
-    }
+private static Query contains(String field, String term) {
+    return new WildcardQuery(new Term(field, "*" + term + "*"));
 }
 ```
 
-When free-text scoring matters, walk `hits.scoreDocs` in order — `FILTER` does
-not disturb that ranking. When the query is pure filters, corpus order is often
-enough.
+That is the whole query — no outer `BooleanQuery` yet. Lucene prints it as:
+
+```
+((title:*bob*)^4.0 (artist:*bob*)^3.0 (genre:*bob*)^2.0
+ (album:*bob*)^1.5 (label:*bob*)^1.0 (comment:*bob*)^0.5)~1
+```
+
+`Crazy (Bob Sinclar vs. Dimitri Vegas & Like Mike remix)` matches on **title**.
+`Bob Sinclar` as artist matches on **artist**. `Bobo au coeur` is still a hit:
+contains, not a prefix. Ranking follows the boosts, so a title hit sorts above a
+comment hit. Run it, then join stored ids back to beans (playlist scoping stays
+**outside** Lucene — the handler picks the corpus, search drops ids that are not
+in it):
+
+```java
+IndexSearcher searcher = index.searcher();
+try (IndexReader reader = searcher.getIndexReader()) {
+    // The full list of Track beans is already in RAM (the corpus).
+    // Build a Map so we can look a bean up by id after search.
+    Map<String, Track> byId = new HashMap<>();
+    for (Track track : corpus) {
+        byId.put(track.id(), track);
+    }
+
+    // We will create our resultset here
+    List<Track> ordered = new ArrayList<>();
+
+    // lucene is the Query we built above (free text, then FILTER / MUST_NOT)
+    TopDocs hits = searcher.search(lucene, Math.max(1, reader.numDocs()));
+    for (var hit : hits.scoreDocs) {
+        // Get the id from the Lucene result
+        String id = reader.storedFields().document(hit.doc).get(TrackIndexFields.ID);
+
+        // Looking up the track from the Map knowing its id and add it to the resultset
+        Track track = byId.get(id);
+        if (track != null) {
+            ordered.add(track);
+        }
+    }
+    return List.copyOf(ordered);
+}
+```
+
+Lucene document ids are not `Track.id`. Store the bean id (`Field.Store.YES` in
+Part 1) and read it back. Walk `hits.scoreDocs` in order while free text scores;
+pure filters can keep corpus order.
+
+## Add a filter (include Club)
+
+{{< figure src="search-filter-on.avif" caption="Same `q=Bob`, plus a green **genre: Club** chip. 62 tracks become 27." >}}
+
+The chip writes `genre=Club` next to `q`. It does **not** rewrite the box to
+`genre:Club Bob`. Wrap the previous free-text query as `MUST` and add a
+`FILTER` — constrain, do not score:
+
+```java
+BooleanQuery.Builder query = new BooleanQuery.Builder();
+query.add(freeText, BooleanClause.Occur.MUST);   // the query from the previous section
+query.add(new WildcardQuery(new Term("genre.raw.normalized", "*club*")),
+        BooleanClause.Occur.FILTER);
+Query lucene = query.build();
+```
+
+```
++(((title:*bob*)^4.0 (artist:*bob*)^3.0 … )~1) #genre.raw.normalized:*club*
+```
+
+`FILTER` is the important one. A `MUST` on `genre:club` would still constrain,
+but it would also join the scoring. The chip should shrink the set **without**
+changing whether title beats artist.
+
+The leaf is the same contains `WildcardQuery` as typing `genre:Club` in a
+power-user string — a checkbox is not a different query type. Index a
+normalized keyword twin (`genre.raw.normalized`) next to Part 1’s `genre.raw`
+`StringField`, so `Club` and `club` hit the same docs.
+
+*Ultra Naté — Free (Bob Sinclar Remix)* stays: title contains `bob`, genre is
+Club. *TRIANGLE DES BERMUDES* (Reggaeton) drops. *Give Me Love* (Dance) drops.
+
+## Exclude two keys (4A and 4B)
+
+{{< figure src="search-filter-on-off.avif" caption="Club stays on (green). **4A** and **4B** are off. 27 tracks become 24." >}}
+
+Exclusions are `minus-key=4A,4B`, not a dash on the chip value. Same `MUST` +
+`FILTER`, plus one `MUST_NOT`. Several keys on the same dimension are **OR**
+(`SHOULD`, `minShouldMatch = 1`): “not (4A or 4B)”.
+
+```java
+BooleanQuery.Builder query = new BooleanQuery.Builder();
+query.add(freeText, BooleanClause.Occur.MUST);
+query.add(new WildcardQuery(new Term("genre.raw.normalized", "*club*")),
+        BooleanClause.Occur.FILTER);
+
+BooleanQuery.Builder keys = new BooleanQuery.Builder();
+keys.add(new TermQuery(new Term("key.code", "4a")), BooleanClause.Occur.SHOULD);
+keys.add(new TermQuery(new Term("key.code", "4b")), BooleanClause.Occur.SHOULD);
+keys.setMinimumNumberShouldMatch(1);
+query.add(keys.build(), BooleanClause.Occur.MUST_NOT);
+
+Query lucene = query.build();
+```
+
+```
++(((title:*bob*)^4.0 … )~1) #genre.raw.normalized:*club* -((key.code:4a key.code:4b)~1)
+```
+
+Keys use a `TermQuery` on the extracted Camelot code (`key.code`), not a
+wildcard. `4A` must not match `12A`. Index that code as a `StringField` next to
+the display name.
+
+*Crazy (Bob Sinclar vs. …)* was 4A Club — gone. *Free (Bob Sinclar Remix)* was
+4B Club — gone. *I Feel For You* (2A Club) stays. The free-text ranking is
+untouched: `FILTER` and `MUST_NOT` do not score.
+
+In production, one builder turns the structured request into that tree so tests
+can index known beans and assert hit ids:
+
+```java
+Query lucene = TrackLuceneQueryBuilder.buildStructured(
+        "Bob",
+        Map.of("genre", List.of("Club")),
+        Map.of("key", List.of("4A", "4B")));
+```
+
+The web layer parses the URL first (`QueryFacets.fromRequest(q, params)`),
+then calls that builder. The three screenshots are:
+
+| UI                         | Bookmarkable request                 | Lucene clause                          |
+|----------------------------|--------------------------------------|----------------------------------------|
+| Type “Bob”                 | `q=Bob`                              | `MUST` free-text (or the query itself) |
+| Include Club               | `genre=Club`                         | `FILTER` `*club*`                      |
+| Exclude 4A **or** 4B       | `minus-key=4A,4B`                    | `MUST_NOT` (`4a` `SHOULD` `4b`)        |
+
+| Occur                           | Role                                  | Scores? |
+|---------------------------------|---------------------------------------|---------|
+| `MUST`                          | analyzed free text                    | yes     |
+| `FILTER`                        | field constraint (genre, bpm, key, …) | no      |
+| `MUST_NOT`                      | exclusion                             | no      |
+| `SHOULD` + `minShouldMatch = 1` | multi-select OR *inside* one clause   | no      |
+
+A `BooleanQuery` with only `MUST_NOT` matches nothing — add a `MUST`
+`MatchAllDocsQuery` if the user excludes without typing or including. Blank
+everything is `MatchAllDocsQuery`.
 
 ## Next
 
 You can score free text, constrain with `FILTER`, exclude with `MUST_NOT`, and
-resolve hits. Part 4 will add autocomplete with `lucene-suggest` — prefix lookup
-whose hits become `FILTER` chips, not leftover tokens in `q`. Part 5 will count
-facet buckets under the same boolean query.
+resolve hits. [Part 4]({{< ref "2026-09-14-lucene-bean-search-suggest" >}}) adds
+autocomplete with `lucene-suggest` — prefix lookup whose hits become `FILTER`
+chips, not leftover tokens in `q`. [Part 5]({{< ref "2026-09-15-lucene-bean-search-facets" >}})
+counts facet buckets under the same boolean query.
 
 ## Series
 
 * [Part 1: Indexing]({{< ref "2026-09-09-lucene-bean-search-indexing" >}}) — Maven, fields, analyzer, document mapper
 * [Part 2: Index Lifecycle]({{< ref "2026-09-10-lucene-bean-search-lifecycle" >}}) — writer, rebuild, upsert, keep warm
 * [Part 3: Search]({{< ref "2026-09-11-lucene-bean-search-query-sync" >}}) — you are here
-* Part 4: Suggest <!-- TODO: link when published --> — autocomplete
-* Part 5: Facets <!-- TODO: link when published --> — counts and drill-down
+* [Part 4: Suggest]({{< ref "2026-09-14-lucene-bean-search-suggest" >}}) — autocomplete
+* [Part 5: Facets]({{< ref "2026-09-15-lucene-bean-search-facets" >}}) — counts and drill-down
