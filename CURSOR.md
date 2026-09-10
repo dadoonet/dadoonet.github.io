@@ -228,7 +228,7 @@ hugo server --buildFuture --buildDrafts -D
 hugo
 ```
 
-GitHub Pages omits `--buildFuture` so scheduled posts stay unpublished until their date. Upcoming talks use `conference.date` (theme ≥ v0.3.0). Netlify PR previews keep `--buildFuture` so scheduled posts get URLs for review. Theme v0.4.0 (when released) also lists those posts in archives, search, and RSS.
+GitHub Pages omits `--buildFuture` so scheduled posts stay unpublished until their date. Upcoming talks use `conference.date`. Netlify PR previews keep `--buildFuture` so those posts are reviewable (URLs, archives, search, RSS).
 
 ---
 

@@ -61,7 +61,7 @@ hugo server --buildFuture --buildDrafts -D
 hugo
 ```
 
-Production (GitHub Pages) does not use `--buildFuture`. Netlify PR previews do, so scheduled posts get reviewable URLs. Theme v0.4.0 (when released) also lists them in archives, search, and RSS.
+Production (GitHub Pages) does not use `--buildFuture`. Netlify PR previews do, so scheduled posts are reviewable in archives, search, and RSS.
 
 ## Theme
 
