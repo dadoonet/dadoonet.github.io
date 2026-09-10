@@ -32,7 +32,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      HUGO_VERSION: 0.161.1
+      HUGO_VERSION: 0.165.0
     steps:
       - name: Install Hugo CLI
         run: |
@@ -68,7 +68,6 @@ jobs:
           hugo \
             --gc \
             --minify \
-            --buildFuture \
             --baseURL "${{ steps.pages.outputs.base_url }}/"
       - name: Build Pagefind index
         run: npx pagefind --site public
