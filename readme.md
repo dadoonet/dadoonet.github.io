@@ -61,6 +61,8 @@ hugo server --buildFuture --buildDrafts -D
 hugo
 ```
 
+Production (GitHub Pages) does not use `--buildFuture`. Netlify PR previews do, so scheduled posts remain reviewable.
+
 ## Theme
 
 Layouts live in [hugo-theme-devrel](https://github.com/dadoonet/hugo-theme-devrel) (Dream overlay). This repo keeps personal content, identity, and integrations (Utterances, GCS PDF base URL). Search uses [Pagefind](https://pagefind.app).
