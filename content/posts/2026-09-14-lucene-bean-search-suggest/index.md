@@ -24,7 +24,7 @@ This post is part of a series:
 * [Part 2: Index Lifecycle]({{< ref "2026-09-10-lucene-bean-search-lifecycle" >}})
 * [Part 3: Search]({{< ref "2026-09-11-lucene-bean-search-query-sync" >}})
 * [Part 4: Suggest]({{< ref "2026-09-14-lucene-bean-search-suggest" >}})
-* Part 5: Facets <!-- TODO: link when published -->
+* [Part 5: Facets]({{< ref "2026-09-15-lucene-bean-search-facets" >}})
 
 [Part 3]({{< ref "2026-09-11-lucene-bean-search-query-sync" >}}) turned a `q` string into
 a list of beans. The search box still feels incomplete until typing `sin` offers
@@ -90,8 +90,8 @@ A process restart rebuilds both from the source of truth anyway.
 
 ## Next
 
-Autocomplete sits beside search, not instead of it. Part 5 will count facet
-buckets under the same `q` so a filter panel can show `Club (12)` instead of a
+Autocomplete sits beside search, not instead of it. [Part 5]({{< ref "2026-09-15-lucene-bean-search-facets" >}})
+will count facet buckets under the same `q` so a filter panel can show `Club (12)` instead of a
 blind checkbox list.
 
 ## Series
@@ -100,4 +100,4 @@ blind checkbox list.
 * [Part 2: Index Lifecycle]({{< ref "2026-09-10-lucene-bean-search-lifecycle" >}}) — writer, rebuild, upsert, keep warm
 * [Part 3: Search]({{< ref "2026-09-11-lucene-bean-search-query-sync" >}}) — queries, hits → beans
 * [Part 4: Suggest]({{< ref "2026-09-14-lucene-bean-search-suggest" >}}) — you are here
-* Part 5: Facets <!-- TODO: link when published --> — counts and drill-down
+* [Part 5: Facets]({{< ref "2026-09-15-lucene-bean-search-facets" >}}) — counts and drill-down

@@ -24,7 +24,7 @@ This post is part of a series:
 * [Part 2: Index Lifecycle]({{< ref "2026-09-10-lucene-bean-search-lifecycle" >}})
 * [Part 3: Search]({{< ref "2026-09-11-lucene-bean-search-query-sync" >}})
 * [Part 4: Suggest]({{< ref "2026-09-14-lucene-bean-search-suggest" >}})
-* Part 5: Facets <!-- TODO: link when published -->
+* [Part 5: Facets]({{< ref "2026-09-15-lucene-bean-search-facets" >}})
 
 In [Part 1]({{< ref "2026-09-09-lucene-bean-search-indexing" >}}) we added Lucene to Maven,
 named fields, chose an analyzer, and mapped a `Track` bean to a Lucene `Document`.

@@ -24,7 +24,7 @@ This post is part of a series:
 * [Part 2: Index Lifecycle]({{< ref "2026-09-10-lucene-bean-search-lifecycle" >}})
 * [Part 3: Search]({{< ref "2026-09-11-lucene-bean-search-query-sync" >}})
 * [Part 4: Suggest]({{< ref "2026-09-14-lucene-bean-search-suggest" >}})
-* Part 5: Facets <!-- TODO: link when published -->
+* [Part 5: Facets]({{< ref "2026-09-15-lucene-bean-search-facets" >}})
 
 This tutorial embeds **Apache Lucene** as an in-process search index over domain
 beans — here, `Track` records from a Rekordbox-style library. The same pattern
