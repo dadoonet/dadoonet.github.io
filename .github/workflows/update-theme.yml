@@ -1,0 +1,89 @@
+# Pin hugo-theme-devrel to the latest GitHub Release (not main, not a
+# floating pseudo-version). Opens a PR when go.mod / go.sum would change.
+#
+# Dependabot gomod is not used: we only want official theme releases, and
+# the pin must go through `hugo mod get` so the module graph stays valid.
+#
+# After a theme release, either wait for 07:00 UTC or run this workflow
+# from the Actions tab.
+
+name: Update hugo-theme-devrel
+
+on:
+  schedule:
+    - cron: "0 7 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: update-theme
+  cancel-in-progress: true
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+    env:
+      HUGO_VERSION: 0.161.1
+      THEME_MODULE: github.com/dadoonet/hugo-theme-devrel
+      THEME_REPO: dadoonet/hugo-theme-devrel
+    steps:
+      - name: Install Hugo CLI
+        run: |
+          wget -O ${{ runner.temp }}/hugo.deb https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb \
+          && sudo dpkg -i ${{ runner.temp }}/hugo.deb
+
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup Go
+        uses: actions/setup-go@v7
+        with:
+          go-version: "1.22.x"
+          cache: false
+
+      - name: Resolve latest theme release
+        id: latest
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          TAG="$(gh api "repos/${THEME_REPO}/releases/latest" --jq '.tag_name')"
+          if [[ ! "$TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "::error::Unexpected latest release tag '$TAG'"
+            exit 1
+          fi
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+          echo "Latest theme release: $TAG"
+
+      - name: Pin theme module
+        env:
+          TAG: ${{ steps.latest.outputs.tag }}
+          GOPROXY: direct
+        run: |
+          set -euo pipefail
+          hugo mod get "${THEME_MODULE}@${TAG}"
+          hugo mod tidy
+          echo "go.mod after pin:"
+          cat go.mod
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v8
+        with:
+          token: ${{ github.token }}
+          commit-message: "chore(theme): pin hugo-theme-devrel ${{ steps.latest.outputs.tag }}"
+          title: "chore(theme): bump hugo-theme-devrel to ${{ steps.latest.outputs.tag }}"
+          body: |
+            Automated pin of [`hugo-theme-devrel`](https://github.com/dadoonet/hugo-theme-devrel) to GitHub Release `${{ steps.latest.outputs.tag }}`.
+
+            Updates `go.mod` / `go.sum` only. Merge to deploy on the next Pages build.
+
+            Release: https://github.com/dadoonet/hugo-theme-devrel/releases/tag/${{ steps.latest.outputs.tag }}
+          branch: chore/bump-hugo-theme-devrel
+          delete-branch: true
