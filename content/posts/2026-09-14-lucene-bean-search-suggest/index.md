@@ -120,7 +120,7 @@ dictionary (tests, unfiltered library).
 Selecting *Sinclar* (field `artist`) writes the same structured param as a cell
 filter in Part 3, and **clears** `q`:
 
-```
+```text
 /tracks?artist=Sinclar
 ```
 
