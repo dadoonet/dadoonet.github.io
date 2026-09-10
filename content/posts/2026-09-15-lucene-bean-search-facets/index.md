@@ -12,7 +12,7 @@ categories:
   - tutorial
 series:
   - Lucene Bean Search
-date: '2026-09-14T07:00:00+02:00'
+date: '2026-09-15T07:00:00+02:00'
 nolastmod: true
 cover: cover.avif
 draft: false
@@ -23,8 +23,8 @@ This post is part of a series:
 * [Part 1: Indexing]({{< ref "2026-09-09-lucene-bean-search-indexing" >}})
 * [Part 2: Index Lifecycle]({{< ref "2026-09-10-lucene-bean-search-lifecycle" >}})
 * [Part 3: Search]({{< ref "2026-09-11-lucene-bean-search-query-sync" >}})
-* [Part 4: Suggest]({{< ref "2026-09-12-lucene-bean-search-suggest" >}})
-* [Part 5: Facets]({{< ref "2026-09-14-lucene-bean-search-facets" >}})
+* [Part 4: Suggest]({{< ref "2026-09-14-lucene-bean-search-suggest" >}})
+* [Part 5: Facets]({{< ref "2026-09-15-lucene-bean-search-facets" >}})
 
 [Part 3]({{< ref "2026-09-11-lucene-bean-search-query-sync" >}}) can already **filter**
 (`genre:Club`). A filter panel still needs something else: **how many** tracks sit
@@ -142,11 +142,3 @@ When the corpus or the ops model outgrows a process-local Lucene cache, the next
 step is a search server in front of the same beans — same `q`, same filter panel,
 a different engine behind `TrackSearchIndex`. That is a switch, not a rewrite of
 Parts 1–5.
-
-## Series
-
-* [Part 1: Indexing]({{< ref "2026-09-09-lucene-bean-search-indexing" >}}) — Maven, fields, analyzer, document mapper
-* [Part 2: Index Lifecycle]({{< ref "2026-09-10-lucene-bean-search-lifecycle" >}}) — writer, rebuild, upsert, keep warm
-* [Part 3: Search]({{< ref "2026-09-11-lucene-bean-search-query-sync" >}}) — queries, hits → beans
-* [Part 4: Suggest]({{< ref "2026-09-12-lucene-bean-search-suggest" >}}) — autocomplete
-* [Part 5: Facets]({{< ref "2026-09-14-lucene-bean-search-facets" >}}) — you are here

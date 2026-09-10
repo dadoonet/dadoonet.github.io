@@ -12,7 +12,7 @@ categories:
   - tutorial
 series:
   - Lucene Bean Search
-date: '2026-09-12T07:00:00+02:00'
+date: '2026-09-14T07:00:00+02:00'
 nolastmod: true
 cover: cover.avif
 draft: false
@@ -23,7 +23,7 @@ This post is part of a series:
 * [Part 1: Indexing]({{< ref "2026-09-09-lucene-bean-search-indexing" >}})
 * [Part 2: Index Lifecycle]({{< ref "2026-09-10-lucene-bean-search-lifecycle" >}})
 * [Part 3: Search]({{< ref "2026-09-11-lucene-bean-search-query-sync" >}})
-* [Part 4: Suggest]({{< ref "2026-09-12-lucene-bean-search-suggest" >}})
+* [Part 4: Suggest]({{< ref "2026-09-14-lucene-bean-search-suggest" >}})
 * Part 5: Facets <!-- TODO: link when published -->
 
 [Part 3]({{< ref "2026-09-11-lucene-bean-search-query-sync" >}}) turned a `q` string into
@@ -99,5 +99,5 @@ blind checkbox list.
 * [Part 1: Indexing]({{< ref "2026-09-09-lucene-bean-search-indexing" >}}) — Maven, fields, analyzer, document mapper
 * [Part 2: Index Lifecycle]({{< ref "2026-09-10-lucene-bean-search-lifecycle" >}}) — writer, rebuild, upsert, keep warm
 * [Part 3: Search]({{< ref "2026-09-11-lucene-bean-search-query-sync" >}}) — queries, hits → beans
-* [Part 4: Suggest]({{< ref "2026-09-12-lucene-bean-search-suggest" >}}) — you are here
+* [Part 4: Suggest]({{< ref "2026-09-14-lucene-bean-search-suggest" >}}) — you are here
 * Part 5: Facets <!-- TODO: link when published --> — counts and drill-down
