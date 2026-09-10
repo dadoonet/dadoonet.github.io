@@ -21,7 +21,7 @@ draft: false
 This post is part of a series:
 
 * [Part 1: Indexing]({{< ref "2026-09-09-lucene-bean-search-indexing" >}})
-* Part 2: Index Lifecycle <!-- TODO: link when published -->
+* [Part 2: Index Lifecycle]({{< ref "2026-09-10-lucene-bean-search-lifecycle" >}})
 * Part 3: Search <!-- TODO: link when published -->
 * Part 4: Suggest <!-- TODO: link when published -->
 * Part 5: Facets <!-- TODO: link when published -->
@@ -200,5 +200,5 @@ Part 5 will add a facet field next to `genre.raw`. You do not need it to search.
 ## Next
 
 You have the artefacts, field names, an analyzer, and a bean → `Document` mapper.
-Part 2 will wrap Lucene’s `IndexWriter` and `Directory`: rebuild, upsert, delete,
-and open a searcher.
+[Part 2]({{< ref "2026-09-10-lucene-bean-search-lifecycle" >}}) will wrap Lucene’s 
+`IndexWriter` and `Directory`: rebuild, upsert, delete, and open a searcher.
