@@ -10,8 +10,7 @@ updates:
     schedule:
       interval: "weekly"
 
-  # Hugo modules are Go modules. This only works if the theme is a *direct*
-  # require in go.mod (see tools.go) and the tag is on proxy.golang.org.
+  # Hugo modules are Go modules. Dependabot reads tags from proxy.golang.org.
   - package-ecosystem: "gomod"
     directory: "/"
     schedule:
