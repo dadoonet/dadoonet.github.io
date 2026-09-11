@@ -71,7 +71,7 @@ public void rebuild(List<Track> tracks) throws IOException {
 ### Real numbers (~4k tracks)
 
 On a local music library of **4 322** tracks (in-memory `ByteBuffersDirectory` + suggest
-dictionary), a full rebuild looks like this:
+dictionary — [Part 4]({{< ref "2026-09-14-lucene-bean-search-suggest" >}})), a full rebuild looks like this:
 
 | Metric                    | Value       |
 |---------------------------|-------------|
