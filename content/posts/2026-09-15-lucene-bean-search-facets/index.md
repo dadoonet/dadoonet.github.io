@@ -18,10 +18,11 @@ cover: cover.avif
 draft: false
 ---
 
-[Part 3]({{< ref "2026-09-11-lucene-bean-search-query-sync" >}}) already **navigates**:
-`FILTER genre:Club`, `MUST_NOT` on keys, bookmarkable params. A faceted filter
-panel still needs to compute the buckets: which genres exist for that query,
-and how many tracks sit in Club vs Dance under it.
+[Part 3]({{< ref "2026-09-11-lucene-bean-search-query-sync" >}}) already constrained
+results from the query bar: `FILTER genre:Club`, `MUST_NOT` on keys, bookmarkable
+params. But what if we would like to provide a **faceted navigation** filter
+experience? A panel still needs to compute the buckets: which genres exist for
+that query, and how many tracks sit in Club vs Dance under it.
 
 In [Part 1]({{< ref "2026-09-09-lucene-bean-search-indexing" >}}) we added
 `lucene-facet` to Maven and never used it. Time has come.
