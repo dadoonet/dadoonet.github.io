@@ -22,15 +22,12 @@ notist: "dadoonet/AhSY43"
 
 social:
   - "https://x.com/unees15/status/1194615963284627456"
-  - "https://x.com/k33g_org/status/1194615797429211142"
   - "https://x.com/blendwebmix/status/1194615246285148160"
   - "https://x.com/blendwebmix/status/1194603461310107648"
-  - "https://x.com/k33g_org/status/1194602451934076928"
   - "https://x.com/blendwebmix/status/1194602333273018368"
   - "https://x.com/dadoonet/status/1194578283242885121"
   - "https://x.com/dadoonet/status/1194675827037917184"
   - "https://x.com/dadoonet/status/1194681222494113797"
-  - "https://x.com/k33g_org/status/1194893501957378048"
 links:
   - title: "AuditD Rules"
     url: "https://github.com/linux-audit/audit-userspace/tree/master/rules"
