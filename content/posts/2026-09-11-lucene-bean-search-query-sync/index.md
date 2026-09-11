@@ -41,7 +41,7 @@ Keep free text and filters **apart**. Do not stuff facets into the search box
 (`genre:Club bob`). That string is painful to chip, autocomplete, and bookmark
 once a panel appears:
 
-```
+```text
 /tracks?q=Bob
 /tracks?q=Bob&genre=Club
 /tracks?q=Bob&genre=Club&minus-key=4A,4B
@@ -93,7 +93,7 @@ private static void addField(
 
 That is the whole query — no outer `BooleanQuery` yet. Lucene prints it as:
 
-```
+```text
 ((title:bob)^4.0 (title:bob*)^1.0 (artist:bob)^3.0 (artist:bob*)^0.75
  (genre:bob)^2.0 (genre:bob*)^0.5 (album:bob)^1.5 (album:bob*)^0.375
  (label:bob)^1.0 (label:bob*)^0.25 (comment:bob)^0.5 (comment:bob*)^0.125)~1
@@ -164,7 +164,7 @@ query.add(new TermQuery(new Term("genre.raw.normalized", "club")),
 Query lucene = query.build();
 ```
 
-```
+```text
 +(((title:bob)^4.0 (title:bob*)^1.0 (artist:bob)^3.0 … )~1) #genre.raw.normalized:club
 ```
 
@@ -204,7 +204,7 @@ query.add(keys.build(), BooleanClause.Occur.MUST_NOT);
 Query lucene = query.build();
 ```
 
-```
+```text
 +(((title:bob)^4.0 (title:bob*)^1.0 … )~1) #genre.raw.normalized:club -((key.code:4a key.code:4b)~1)
 ```
 

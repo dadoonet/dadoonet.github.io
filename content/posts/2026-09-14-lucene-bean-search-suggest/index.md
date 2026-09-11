@@ -117,13 +117,13 @@ TrackSuggestion hit = new TrackSuggestion(text, field, highlight);
 Selecting *Club House* (`field = "genre"`) writes the same structured param as
 Part 3, and **clears** `q`:
 
-```
+```text
 /tracks?genre=Club House
 ```
 
 Selecting *Madonna* (`field = "artist"`):
 
-```
+```text
 /tracks?artist=Madonna
 ```
 
