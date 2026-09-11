@@ -1,0 +1,9 @@
+{{- /*
+  One-line series pointer from front matter (`series:`), so posts do not
+  duplicate the sidebar list. Renders nothing when the page has no series.
+*/ -}}
+{{- with .Page.GetTerms "series" -}}
+{{- range . -}}
+<p>This post is part of a series about <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>.</p>
+{{- end -}}
+{{- end -}}

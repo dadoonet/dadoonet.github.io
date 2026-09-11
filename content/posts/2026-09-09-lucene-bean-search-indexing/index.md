@@ -18,13 +18,7 @@ cover: cover.avif
 draft: false
 ---
 
-This post is part of a series:
-
-* [Part 1: Indexing]({{< ref "2026-09-09-lucene-bean-search-indexing" >}})
-* [Part 2: Index Lifecycle]({{< ref "2026-09-10-lucene-bean-search-lifecycle" >}})
-* [Part 3: Search]({{< ref "2026-09-11-lucene-bean-search-query-sync" >}})
-* Part 4: Suggest <!-- TODO: link when published -->
-* Part 5: Facets <!-- TODO: link when published -->
+{{< series-intro >}}
 
 This tutorial embeds **Apache Lucene** as an in-process search index over domain
 beans — here, `Track` records from a Rekordbox-style library. The same pattern
@@ -203,7 +197,7 @@ public final class TrackDocumentMapper {
 }
 ```
 
-Part 5 will add a facet field next to `genre.raw`. You do not need it to search.
+[Part 5]({{< ref "2026-09-15-lucene-bean-search-facets" >}}) will add a facet field next to `genre.raw`. You do not need it to search.
 
 ## Next
 

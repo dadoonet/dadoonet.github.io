@@ -18,13 +18,7 @@ cover: cover.avif
 draft: false
 ---
 
-This post is part of a series:
-
-* [Part 1: Indexing]({{< ref "2026-09-09-lucene-bean-search-indexing" >}})
-* [Part 2: Index Lifecycle]({{< ref "2026-09-10-lucene-bean-search-lifecycle" >}})
-* [Part 3: Search]({{< ref "2026-09-11-lucene-bean-search-query-sync" >}})
-* [Part 4: Suggest]({{< ref "2026-09-14-lucene-bean-search-suggest" >}})
-* [Part 5: Facets]({{< ref "2026-09-15-lucene-bean-search-facets" >}})
+{{< series-intro >}}
 
 [Part 3]({{< ref "2026-09-11-lucene-bean-search-query-sync" >}}) already **navigates**:
 `FILTER genre:Club`, `MUST_NOT` on keys, bookmarkable params. A filter panel still
@@ -153,11 +147,3 @@ the default sideways class assumes one implementation.
 When a playlist is selected, `FILTER` a `TermInSetQuery` on `id` into the **base**
 so histograms match the table. Corpus intersection after search (Part 3) cannot
 fix counts.
-
-## Series
-
-* [Part 1: Indexing]({{< ref "2026-09-09-lucene-bean-search-indexing" >}}) — Maven, fields, analyzer, document mapper
-* [Part 2: Index Lifecycle]({{< ref "2026-09-10-lucene-bean-search-lifecycle" >}}) — writer, rebuild, upsert, keep warm
-* [Part 3: Search]({{< ref "2026-09-11-lucene-bean-search-query-sync" >}}) — MUST / FILTER / MUST_NOT, hits → beans
-* [Part 4: Suggest]({{< ref "2026-09-14-lucene-bean-search-suggest" >}}) — autocomplete
-* [Part 5: Facets]({{< ref "2026-09-15-lucene-bean-search-facets" >}}) — you are here

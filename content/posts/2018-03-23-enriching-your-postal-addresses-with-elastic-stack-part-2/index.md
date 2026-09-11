@@ -19,11 +19,7 @@ aliases:
   - /blog/2018-03-23-enriching-your-postal-addresses-with-elastic-stack-part-2/
 ---
 
-This blog post is part of a series of 3:
-
-* [Importing Bano dataset with Logstash]({{< ref "2018-03-22-enriching-your-postal-addresses-with-elastic-stack-part-1" >}})
-* [Using Logstash to lookup for addresses in Bano index]({{< ref "2018-03-23-enriching-your-postal-addresses-with-elastic-stack-part-2" >}})
-* [Using Logstash to enrich an existing dataset with Bano]({{< ref "2018-03-24-enriching-your-postal-addresses-with-elastic-stack-part-3" >}})
+{{< series-intro >}}
 
 In the [previous post]({{< ref "2018-03-22-enriching-your-postal-addresses-with-elastic-stack-part-1" >}}), we described how we indexed data coming from the [BANO project](https://www.openstreetmap.fr/bano) so we now have indices containing all the french postal addresses.
 

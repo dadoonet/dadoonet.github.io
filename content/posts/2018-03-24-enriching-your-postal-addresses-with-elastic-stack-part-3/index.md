@@ -20,11 +20,7 @@ aliases:
   - /blog/2018-03-24-enriching-your-postal-addresses-with-elastic-stack-part-3/
 ---
 
-This blog post is part of a series of 3:
-
-* [Importing Bano dataset with Logstash]({{< ref "2018-03-22-enriching-your-postal-addresses-with-elastic-stack-part-1" >}})
-* [Using Logstash to lookup for addresses in Bano index]({{< ref "2018-03-23-enriching-your-postal-addresses-with-elastic-stack-part-2" >}})
-* [Using Logstash to enrich an existing dataset with Bano]({{< ref "2018-03-24-enriching-your-postal-addresses-with-elastic-stack-part-3" >}})
+{{< series-intro >}}
 
 In the [previous post]({{< ref "2018-03-23-enriching-your-postal-addresses-with-elastic-stack-part-2" >}}), we described how we can transform a postal address to a normalized one with also the geo location point or transform a geo location point to a postal address.
 

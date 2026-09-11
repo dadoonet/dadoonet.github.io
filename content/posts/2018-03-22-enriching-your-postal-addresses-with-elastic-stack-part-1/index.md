@@ -19,11 +19,7 @@ aliases:
   - /blog/2018-03-22-enriching-your-postal-addresses-with-elastic-stack-part-1/
 ---
 
-This blog post is part of a series of 3:
-
-* [Importing Bano dataset with Logstash]({{< ref "2018-03-22-enriching-your-postal-addresses-with-elastic-stack-part-1" >}})
-* [Using Logstash to lookup for addresses in Bano index]({{< ref "2018-03-23-enriching-your-postal-addresses-with-elastic-stack-part-2" >}})
-* [Using Logstash to enrich an existing dataset with Bano]({{< ref "2018-03-24-enriching-your-postal-addresses-with-elastic-stack-part-3" >}})
+{{< series-intro >}}
 
 I'm not really sure why, but I love the postal address use case.
 Often in my career I had to deal with that information.
