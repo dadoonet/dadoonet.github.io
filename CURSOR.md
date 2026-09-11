@@ -237,7 +237,7 @@ hugo
 
 GitHub Pages omits `--buildFuture` so scheduled posts stay unpublished until their date. Upcoming talks use `conference.date`. Netlify PR previews keep `--buildFuture` so those posts are reviewable (URLs, archives, search, RSS).
 
-Do **not** `{{</* ref */>}}` a future-dated post from a live one. Hugo treats a missing page as a build error. Link it after it has published, or mention it in prose until then.
+Do **not** use the `ref` shortcode to point at a future-dated post from a live one. Hugo treats a missing page as a build error. Mention it in prose until it has published, then add the link.
 
 ---
 
