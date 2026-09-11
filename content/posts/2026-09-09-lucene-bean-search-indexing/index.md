@@ -31,8 +31,6 @@ beans — here, `Track` records from a Rekordbox-style library. The same pattern
 applies to any Java bean: map it to a Lucene `Document`, index it, search, then
 join hits back to your objects.
 
-Audience: Java / Maven developers who want a copyable recipe, not a Lucene overview.
-
 ## What you get
 
 ```
@@ -93,6 +91,8 @@ Lucene is pure Java: it shades into a fat-jar with no native libraries.
 
 ## Start from your existing bean
 
+{{< figure src="track.avif" caption="A `Track` in the UI: title, artist, genre, BPM, key, rating, year — plus album, comment, and the rest of the bean." >}}
+
 ```java
 public record Track(
         String id,
@@ -145,8 +145,10 @@ Store the id (`Field.Store.YES`) so hits can return it; everything else can be
 ## Choose an analyzer
 
 The analyzer runs at **index time** for `TextField` and should match query-time
-tokens. Whitespace + lowercase works well for music metadata (no stemming, so
-artist names stay intact). NFC / accent normalization can happen in the mapper.
+tokens. Standard tokenization + lowercase + ASCII folding works well for music
+metadata: no stemming (artist names stay intact), no stop words (`Around The
+World` stays searchable), and `nate` finds `Naté`. NFC can still happen in the
+mapper for stored values.
 
 ```java
 public final class TrackAnalyzers {
@@ -156,8 +158,9 @@ public final class TrackAnalyzers {
         return new Analyzer() {
             @Override
             protected TokenStreamComponents createComponents(String fieldName) {
-                Tokenizer source = new WhitespaceTokenizer();
+                Tokenizer source = new StandardTokenizer();
                 TokenStream filter = new LowerCaseFilter(source);
+                filter = new ASCIIFoldingFilter(filter);
                 return new TokenStreamComponents(source, filter);
             }
         };
@@ -165,8 +168,13 @@ public final class TrackAnalyzers {
 }
 ```
 
-Use the **same** analyzer (or an explicitly paired query-time strategy) on the
-way in and on the way out.
+Use that **same** analyzer on the way in and on the way out. Do **not** add
+edge-ngram twin fields (`title.ngram`, …) for type-as-you-go prefixes. Grams
+2–5 leave a dead zone (`sincl` hits, `sincla` misses, `sinclar` hits again),
+need a per-field index analyzer, and double every text field. Prefix matching
+is a **query-time** `PrefixQuery` on the last typed token — [Part 3]({{< ref "2026-09-11-lucene-bean-search-query-sync" >}})
+builds it. On a local in-memory index a trailing prefix is cheap, and there is
+no gap.
 
 ## Map the bean to a Lucene `Document`
 

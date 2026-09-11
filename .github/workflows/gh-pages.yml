@@ -32,7 +32,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      HUGO_VERSION: 0.161.1
+      HUGO_VERSION: 0.165.0
     steps:
       - name: Install Hugo CLI
         run: |
@@ -53,7 +53,7 @@ jobs:
         id: pages
         uses: actions/configure-pages@v6
       - name: Setup Node
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version: "22"
           cache: npm
@@ -68,7 +68,6 @@ jobs:
           hugo \
             --gc \
             --minify \
-            --buildFuture \
             --baseURL "${{ steps.pages.outputs.base_url }}/"
       - name: Build Pagefind index
         run: npx pagefind --site public
