@@ -188,6 +188,13 @@ content/posts/YYYY-MM-DD-title/index.md
 hugo new posts/YYYY-MM-DD-something-awesome/index.md
 ```
 
+Optional `series:` groups related posts. The theme lists the other parts in the post sidebar and at `/series/<term>/`. Do **not** paste that list in the Markdown body. Keep inline “see Part N” links in the prose when they point at a specific step.
+
+```yaml
+series:
+  - Lucene Bean Search
+```
+
 ---
 
 ## Configuration (`hugo.toml`)
@@ -229,6 +236,8 @@ hugo
 ```
 
 GitHub Pages omits `--buildFuture` so scheduled posts stay unpublished until their date. Upcoming talks use `conference.date`. Netlify PR previews keep `--buildFuture` so those posts are reviewable (URLs, archives, search, RSS).
+
+Do **not** use the `ref` shortcode to point at a future-dated post from a live one. Hugo treats a missing page as a build error. Mention it in prose until it has published, then add the link.
 
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: 'Integrating Apache Lucene for Bean Search — Part 4: Suggest'
-description: "Type club or Madonna — AnalyzingInfixSuggester looks up a prefix, highlights the infix, and the hit becomes a Part 3 FILTER chip."
+description: "Type a few letters and pick the artist, the title, or the genre before you hit Enter. Autocomplete is the index helping you write the query."
 author: David Pilato
 avatar: /about/david_pilato.avif
 tags:
@@ -18,19 +18,14 @@ cover: cover.avif
 draft: false
 ---
 
-This post is part of a series:
+In [Part 1]({{< ref "2026-09-09-lucene-bean-search-indexing" >}}) we added
+`lucene-suggest` to Maven and never used it. Time has come.
 
-* [Part 1: Indexing]({{< ref "2026-09-09-lucene-bean-search-indexing" >}})
-* [Part 2: Index Lifecycle]({{< ref "2026-09-10-lucene-bean-search-lifecycle" >}})
-* [Part 3: Search]({{< ref "2026-09-11-lucene-bean-search-query-sync" >}})
-* [Part 4: Suggest]({{< ref "2026-09-14-lucene-bean-search-suggest" >}})
-* [Part 5: Facets]({{< ref "2026-09-15-lucene-bean-search-facets" >}})
+The [previous post]({{< ref "2026-09-11-lucene-bean-search-query-sync" >}}) showed
+how to run a search query on whatever field you mapped. Anyone used to a search
+engine already knows the next step: autocomplete, so the index can help you find
+the right query.
 
-[Part 3]({{< ref "2026-09-11-lucene-bean-search-query-sync" >}}) scored free text
-(`MUST`) and constrained with `FILTER`. The search box still feels incomplete
-until typing `club` offers *Club House* before the user hits Enter.
-
-You already declared `lucene-suggest` in [Part 1]({{< ref "2026-09-09-lucene-bean-search-indexing" >}}).
 Skip this post if you only need search and filters — Parts 1–3 do not depend on it.
 
 <!--more-->
@@ -117,13 +112,13 @@ TrackSuggestion hit = new TrackSuggestion(text, field, highlight);
 Selecting *Club House* (`field = "genre"`) writes the same structured param as
 Part 3, and **clears** `q`:
 
-```
+```text
 /tracks?genre=Club House
 ```
 
 Selecting *Madonna* (`field = "artist"`):
 
-```
+```text
 /tracks?artist=Madonna
 ```
 
@@ -161,14 +156,6 @@ from the source of truth anyway.
 
 ## Next
 
-Autocomplete sits beside search, not instead of it. [Part 5]({{< ref "2026-09-15-lucene-bean-search-facets" >}})
-counts facet buckets under the same boolean query so a filter panel can show
+Autocomplete sits beside search, not instead of it. Part 5 will count
+facet buckets under the same boolean query so a filter panel can show
 `Club (26)` instead of a blind checkbox list.
-
-## Series
-
-* [Part 1: Indexing]({{< ref "2026-09-09-lucene-bean-search-indexing" >}}) — Maven, fields, analyzer, document mapper
-* [Part 2: Index Lifecycle]({{< ref "2026-09-10-lucene-bean-search-lifecycle" >}}) — writer, rebuild, upsert, keep warm
-* [Part 3: Search]({{< ref "2026-09-11-lucene-bean-search-query-sync" >}}) — MUST / FILTER / MUST_NOT, hits → beans
-* [Part 4: Suggest]({{< ref "2026-09-14-lucene-bean-search-suggest" >}}) — you are here
-* [Part 5: Facets]({{< ref "2026-09-15-lucene-bean-search-facets" >}}) — counts under the Part 3 query

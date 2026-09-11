@@ -38,12 +38,6 @@ while injecting it into elasticsearch. Read more in [elastic blog post](https://
 If you know me and my work before I joined elastic, I have always been in love with data crawling and transformation as
 I wrote myself some plugins called [rivers](https://www.elastic.co/blog/deprecating-rivers).
 
-This blog post is part of a series which will teach you:
-
-* How to write a plugin for elasticsearch 5.0 using Maven (what you are reading now).
-* [How to write an ingest plugin for elasticsearch 5.0]({{< ref "2016-07-28-creating-an-ingest-plugin-for-elasticsearch" >}}).
-* How I wrote the `ingest-bano` plugin which will be hopefully released soonish.
-
 <!--more-->
 
 Let's get started!

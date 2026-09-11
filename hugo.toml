@@ -6,6 +6,9 @@ defaultContentLanguage = "en"
 
 enableRobotsTXT = true
 
+[page]
+  nextPrevInSectionSortOrder = "asc"
+
 [module]
   [[module.imports]]
     path = "github.com/dadoonet/hugo-theme-devrel"
@@ -55,7 +58,8 @@ favicon = "favicon.ico"
 
 stickyNav = true
 reorderNavItems = ["search", "posts", "talks", "about_me"]
-collapseNavItems = ["categories", "tags", "rss"]
+# "series" joins the overflow menu when at least one post sets series:
+collapseNavItems = ["categories", "tags", "series", "rss"]
 noDefaultSummaryCover = true
 showTableOfContents = true
 showSummaryCoverInPost = true
