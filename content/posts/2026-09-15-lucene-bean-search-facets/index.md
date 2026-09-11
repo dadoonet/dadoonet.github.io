@@ -1,6 +1,6 @@
 ---
 title: 'Integrating Apache Lucene for Bean Search — Part 5: Facets'
-description: "Count Club (26) and 120–130 (52) under the same BooleanQuery as Part 3 — lucene-facet histograms, not a second navigation model."
+description: "Filter Club in, 4A out, and see how many tracks sit in each genre or BPM range. That is faceted navigation — what every shop you like already does."
 author: David Pilato
 avatar: /about/david_pilato.avif
 tags:

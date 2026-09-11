@@ -1,6 +1,6 @@
 ---
 title: 'Integrating Apache Lucene for Bean Search — Part 2: Index'
-description: "Own Lucene’s IndexWriter for your beans: in-memory Directory, rebuild, upsert, delete by id, and keep the index warm after writes."
+description: "The beans are mapped. Now own the index: rebuild at startup, upsert when a track changes, and never let Lucene drift from the source of truth."
 author: David Pilato
 avatar: /about/david_pilato.avif
 tags:

@@ -1,6 +1,6 @@
 ---
 title: 'Integrating Apache Lucene for Bean Search — Part 4: Suggest'
-description: "Type club or Madonna — AnalyzingInfixSuggester looks up a prefix, highlights the infix, and the hit becomes a Part 3 FILTER chip."
+description: "Type a few letters and pick the artist, the title, or the genre before you hit Enter. Autocomplete is the index helping you write the query."
 author: David Pilato
 avatar: /about/david_pilato.avif
 tags:

@@ -1,6 +1,6 @@
 ---
 title: 'Integrating Apache Lucene for Bean Search — Part 3: Search'
-description: "Type Bob, add a FILTER chip, then two MUST_NOT keys — the BooleanQuery Lucene actually runs, then resolve hits back to beans."
+description: "The tracks are indexed. Type Bob — should a title hit beat an album? Boosts, FILTER chips, MUST_NOT: build the query a real search engine runs."
 author: David Pilato
 avatar: /about/david_pilato.avif
 tags:
