@@ -6,6 +6,9 @@ defaultContentLanguage = "en"
 
 enableRobotsTXT = true
 
+[page]
+  nextPrevInSectionSortOrder = "asc"
+
 [module]
   [[module.imports]]
     path = "github.com/dadoonet/hugo-theme-devrel"
