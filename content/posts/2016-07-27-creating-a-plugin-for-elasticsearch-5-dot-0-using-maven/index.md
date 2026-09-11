@@ -38,8 +38,6 @@ while injecting it into elasticsearch. Read more in [elastic blog post](https://
 If you know me and my work before I joined elastic, I have always been in love with data crawling and transformation as
 I wrote myself some plugins called [rivers](https://www.elastic.co/blog/deprecating-rivers).
 
-{{< series-intro >}}
-
 <!--more-->
 
 Let's get started!

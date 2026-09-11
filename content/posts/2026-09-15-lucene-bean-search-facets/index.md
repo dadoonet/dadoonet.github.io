@@ -18,8 +18,6 @@ cover: cover.avif
 draft: false
 ---
 
-{{< series-intro >}}
-
 [Part 3]({{< ref "2026-09-11-lucene-bean-search-query-sync" >}}) already **navigates**:
 `FILTER genre:Club`, `MUST_NOT` on keys, bookmarkable params. A filter panel still
 needs something else: **how many** tracks sit in Club vs Dance *under that

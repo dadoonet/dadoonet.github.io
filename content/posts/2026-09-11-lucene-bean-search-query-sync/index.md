@@ -18,8 +18,6 @@ cover: cover.avif
 draft: false
 ---
 
-{{< series-intro >}}
-
 [Part 1]({{< ref "2026-09-09-lucene-bean-search-indexing" >}}) mapped beans to documents.
 [Part 2]({{< ref "2026-09-10-lucene-bean-search-lifecycle" >}}) owned the writer.
 This part is the query you actually run: type in the box, add a filter, exclude

@@ -20,8 +20,6 @@ aliases:
   - /blog/2018-03-24-enriching-your-postal-addresses-with-elastic-stack-part-3/
 ---
 
-{{< series-intro >}}
-
 In the [previous post]({{< ref "2018-03-23-enriching-your-postal-addresses-with-elastic-stack-part-2" >}}), we described how we can transform a postal address to a normalized one with also the geo location point or transform a geo location point to a postal address.
 
 Let's say we have an existing dataset we want to enrich.

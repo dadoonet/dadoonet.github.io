@@ -21,8 +21,6 @@ aliases:
   - /blog/2016-07-28-creating-an-ingest-plugin-for-elasticsearch/
 ---
 
-{{< series-intro >}}
-
 Today, we will focus on writing an Ingest plugin for elasticsearch.
 
 > Hey! Wait! You wrote `Ingest`? What is that?

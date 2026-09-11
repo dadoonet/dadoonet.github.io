@@ -19,8 +19,6 @@ aliases:
   - /blog/2018-03-23-enriching-your-postal-addresses-with-elastic-stack-part-2/
 ---
 
-{{< series-intro >}}
-
 In the [previous post]({{< ref "2018-03-22-enriching-your-postal-addresses-with-elastic-stack-part-1" >}}), we described how we indexed data coming from the [BANO project](https://www.openstreetmap.fr/bano) so we now have indices containing all the french postal addresses.
 
 Let's see what we can do now with this dataset.

@@ -20,8 +20,6 @@ aliases:
   - /blog/2016-08-01-creating-elasticsearch-transport-action/
 ---
 
-{{< series-intro >}}
-
 In [the previous article]({{< ref "2016-07-30-adding-a-new-rest-endpoint-to-elasticsearch" >}}), we discovered how to add a REST plugin.
 It was a simple implementation as in `RestHelloAction` class we wrote something like:
 

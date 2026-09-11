@@ -18,8 +18,6 @@ cover: cover.avif
 draft: false
 ---
 
-{{< series-intro >}}
-
 [Part 3]({{< ref "2026-09-11-lucene-bean-search-query-sync" >}}) scored free text
 (`MUST`) and constrained with `FILTER`. The search box still feels incomplete
 until typing `club` offers *Club House* before the user hits Enter.

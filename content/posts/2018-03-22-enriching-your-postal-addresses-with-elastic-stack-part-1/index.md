@@ -19,8 +19,6 @@ aliases:
   - /blog/2018-03-22-enriching-your-postal-addresses-with-elastic-stack-part-1/
 ---
 
-{{< series-intro >}}
-
 I'm not really sure why, but I love the postal address use case.
 Often in my career I had to deal with that information.
 Very often the information is not well formatted so it's hard to find the information you need when you have as an input a not so nice dataset.

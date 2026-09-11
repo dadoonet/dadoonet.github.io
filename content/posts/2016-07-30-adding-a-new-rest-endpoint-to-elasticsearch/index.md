@@ -20,8 +20,6 @@ aliases:
   - /blog/2016-07-30-adding-a-new-rest-endpoint-to-elasticsearch/
 ---
 
-{{< series-intro >}}
-
 Imagine that you wish to add a new REST endpoint so you can send requests like:
 
 ```sh

@@ -18,8 +18,6 @@ cover: cover.avif
 draft: false
 ---
 
-{{< series-intro >}}
-
 This tutorial embeds **Apache Lucene** as an in-process search index over domain
 beans — here, `Track` records from a Rekordbox-style library. The same pattern
 applies to any Java bean: map it to a Lucene `Document`, index it, search, then

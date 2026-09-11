@@ -18,8 +18,6 @@ cover: cover.avif
 draft: false
 ---
 
-{{< series-intro >}}
-
 In [Part 1]({{< ref "2026-09-09-lucene-bean-search-indexing" >}}) we added Lucene to Maven,
 named fields, chose an analyzer, and mapped a `Track` bean to a Lucene `Document`.
 That is only half the story: you still need a small class that **owns** the index.
