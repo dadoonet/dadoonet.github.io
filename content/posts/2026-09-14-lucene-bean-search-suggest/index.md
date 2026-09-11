@@ -18,11 +18,14 @@ cover: cover.avif
 draft: false
 ---
 
-[Part 3]({{< ref "2026-09-11-lucene-bean-search-query-sync" >}}) scored free text
-(`MUST`) and constrained with `FILTER`. The search box still feels incomplete
-until typing `club` offers *Club House* before the user hits Enter.
+In [Part 1]({{< ref "2026-09-09-lucene-bean-search-indexing" >}}) we added
+`lucene-suggest` to Maven and never used it. Time has come.
 
-You already declared `lucene-suggest` in [Part 1]({{< ref "2026-09-09-lucene-bean-search-indexing" >}}).
+The [previous post]({{< ref "2026-09-11-lucene-bean-search-query-sync" >}}) showed
+how to run a search query on whatever field you mapped. Anyone used to a search
+engine already knows the next step: autocomplete, so the index can help you find
+the right query.
+
 Skip this post if you only need search and filters — Parts 1–3 do not depend on it.
 
 <!--more-->
