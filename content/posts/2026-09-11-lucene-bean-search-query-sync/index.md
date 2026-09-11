@@ -59,43 +59,61 @@ and `^4.0` for a boost.
 
 ## Type “Bob”
 
-{{< figure src="search.avif" caption="`q=Bob` — 62 tracks. Title, artist, or another analyzed field contains *bob*." >}}
+{{< figure src="search.avif" caption="`q=Bob` — 62 tracks. Title, artist, or another analyzed field matches the token *bob*, or starts with it." >}}
 
-The analyzer from Part 1 (whitespace + lowercase) turns `Bob` into the token
-`bob`. Free text is a contains match (`WildcardQuery`) across analyzed fields,
-with title beating artist:
+The analyzer from Part 1 (standard tokenizer + lowercase + ASCII folding) turns
+`Bob` into the token `bob`. Free text is an analyzed **match** across those
+fields — `TermQuery`, not a leading/trailing wildcard — with title beating
+artist. The last typed token also gets a trailing `PrefixQuery` at a quarter of
+the field boost, so typing still works:
 
 ```java
 BooleanQuery.Builder fields = new BooleanQuery.Builder();
-fields.add(new BoostQuery(contains("title", "bob"), 4.0f), BooleanClause.Occur.SHOULD);
-fields.add(new BoostQuery(contains("artist", "bob"), 3.0f), BooleanClause.Occur.SHOULD);
-fields.add(new BoostQuery(contains("genre", "bob"), 2.0f), BooleanClause.Occur.SHOULD);
-fields.add(new BoostQuery(contains("album", "bob"), 1.5f), BooleanClause.Occur.SHOULD);
-fields.add(new BoostQuery(contains("label", "bob"), 1.0f), BooleanClause.Occur.SHOULD);
-fields.add(new BoostQuery(contains("comment", "bob"), 0.5f), BooleanClause.Occur.SHOULD);
+addField(fields, "title", "bob", 4.0f, true);
+addField(fields, "artist", "bob", 3.0f, true);
+addField(fields, "genre", "bob", 2.0f, true);
+addField(fields, "album", "bob", 1.5f, true);
+addField(fields, "label", "bob", 1.0f, true);
+addField(fields, "comment", "bob", 0.5f, true);
 fields.setMinimumNumberShouldMatch(1);
 Query lucene = fields.build();
 ```
 
 ```java
-private static Query contains(String field, String term) {
-    return new WildcardQuery(new Term(field, "*" + term + "*"));
+private static void addField(
+        BooleanQuery.Builder fields, String field, String token, float boost, boolean prefix) {
+    fields.add(new BoostQuery(new TermQuery(new Term(field, token)), boost),
+            BooleanClause.Occur.SHOULD);
+    if (prefix) {
+        fields.add(new BoostQuery(new PrefixQuery(new Term(field, token)), boost * 0.25f),
+                BooleanClause.Occur.SHOULD);
+    }
 }
 ```
 
 That is the whole query — no outer `BooleanQuery` yet. Lucene prints it as:
 
 ```
-((title:*bob*)^4.0 (artist:*bob*)^3.0 (genre:*bob*)^2.0
- (album:*bob*)^1.5 (label:*bob*)^1.0 (comment:*bob*)^0.5)~1
+((title:bob)^4.0 (title:bob*)^1.0 (artist:bob)^3.0 (artist:bob*)^0.75
+ (genre:bob)^2.0 (genre:bob*)^0.5 (album:bob)^1.5 (album:bob*)^0.375
+ (label:bob)^1.0 (label:bob*)^0.25 (comment:bob)^0.5 (comment:bob*)^0.125)~1
 ```
 
-`Crazy (Bob Sinclar vs. Dimitri Vegas & Like Mike remix)` matches on **title**.
+`Crazy (Bob Sinclar vs. Dimitri Vegas & Like Mike remix)` matches on **title**
+(`bob` is its own token — `StandardTokenizer` splits on punctuation).
 `Bob Sinclar` as artist matches on **artist**. `Bobo au coeur` is still a hit:
-contains, not a prefix. Ranking follows the boosts, so a title hit sorts above a
-comment hit. Run it, then join stored ids back to beans (playlist scoping stays
-**outside** Lucene — the handler picks the corpus, search drops ids that are not
-in it):
+`bob*` prefixes `bobo`. Ranking follows the boosts, so a title hit sorts above a
+comment hit.
+
+Several tokens are AND-ed. Only the **last** one is a prefix; earlier words stay
+exact. `bob sincla` requires a `bob` token and a `sincla…` prefix (`sincla*`
+finds `Sinclar`). `bo sinclar` misses. This is not an infix: `ouse` does not
+find `House`. One character is enough (`bob sinclar c` finds `Cerrone`). That is
+why Part 1 did not index edge n-grams — grams 2–5 would miss `sincla` and still
+need this query-time prefix for the rest.
+
+Run it, then join stored ids back to beans (playlist scoping stays **outside**
+Lucene — the handler picks the corpus, search drops ids that are not in it):
 
 ```java
 IndexSearcher searcher = index.searcher();
@@ -141,26 +159,27 @@ The chip writes `genre=Club` next to `q`. It does **not** rewrite the box to
 ```java
 BooleanQuery.Builder query = new BooleanQuery.Builder();
 query.add(freeText, BooleanClause.Occur.MUST);   // the query from the previous section
-query.add(new WildcardQuery(new Term("genre.raw.normalized", "*club*")),
+query.add(new TermQuery(new Term("genre.raw.normalized", "club")),
         BooleanClause.Occur.FILTER);
 Query lucene = query.build();
 ```
 
 ```
-+(((title:*bob*)^4.0 (artist:*bob*)^3.0 … )~1) #genre.raw.normalized:*club*
++(((title:bob)^4.0 (title:bob*)^1.0 (artist:bob)^3.0 … )~1) #genre.raw.normalized:club
 ```
 
 `FILTER` is the important one. A `MUST` on `genre:club` would still constrain,
 but it would also join the scoring. The chip should shrink the set **without**
 changing whether title beats artist.
 
-The leaf is the same contains `WildcardQuery` as typing `genre:Club` in a
-power-user string — a checkbox is not a different query type. Index a
+The leaf is an exact `TermQuery` — the same as typing `genre:Club` in a
+power-user string. A checkbox is not a different query type. Index a
 normalized keyword twin (`genre.raw.normalized`) next to Part 1’s `genre.raw`
-`StringField`, so `Club` and `club` hit the same docs.
+`StringField`, so `Club` and `club` hit the same docs. Do not wildcard it:
+`club` must not match a genre named `Club House`.
 
-*Ultra Naté — Free (Bob Sinclar Remix)* stays: title contains `bob`, genre is
-Club. *TRIANGLE DES BERMUDES* (Reggaeton) drops. *Give Me Love* (Dance) drops.
+*Ultra Naté — Free (Bob Sinclar Remix)* stays: title has the token `bob`, genre
+is Club. *TRIANGLE DES BERMUDES* (Reggaeton) drops. *Give Me Love* (Dance) drops.
 
 ## Exclude two keys (4A and 4B)
 
@@ -173,7 +192,7 @@ Exclusions are `minus-key=4A,4B`, not a dash on the chip value. Same `MUST` +
 ```java
 BooleanQuery.Builder query = new BooleanQuery.Builder();
 query.add(freeText, BooleanClause.Occur.MUST);
-query.add(new WildcardQuery(new Term("genre.raw.normalized", "*club*")),
+query.add(new TermQuery(new Term("genre.raw.normalized", "club")),
         BooleanClause.Occur.FILTER);
 
 BooleanQuery.Builder keys = new BooleanQuery.Builder();
@@ -186,7 +205,7 @@ Query lucene = query.build();
 ```
 
 ```
-+(((title:*bob*)^4.0 … )~1) #genre.raw.normalized:*club* -((key.code:4a key.code:4b)~1)
++(((title:bob)^4.0 (title:bob*)^1.0 … )~1) #genre.raw.normalized:club -((key.code:4a key.code:4b)~1)
 ```
 
 Keys use a `TermQuery` on the extracted Camelot code (`key.code`), not a
@@ -212,16 +231,16 @@ then calls that builder. The three screenshots are:
 
 | UI                         | Bookmarkable request                 | Lucene clause                          |
 |----------------------------|--------------------------------------|----------------------------------------|
-| Type “Bob”                 | `q=Bob`                              | `MUST` free-text (or the query itself) |
-| Include Club               | `genre=Club`                         | `FILTER` `*club*`                      |
+| Type “Bob”                 | `q=Bob`                              | `MUST` match + last-token prefix       |
+| Include Club               | `genre=Club`                         | `FILTER` exact `club`                  |
 | Exclude 4A **or** 4B       | `minus-key=4A,4B`                    | `MUST_NOT` (`4a` `SHOULD` `4b`)        |
 
-| Occur                           | Role                                  | Scores? |
-|---------------------------------|---------------------------------------|---------|
-| `MUST`                          | analyzed free text                    | yes     |
-| `FILTER`                        | field constraint (genre, bpm, key, …) | no      |
-| `MUST_NOT`                      | exclusion                             | no      |
-| `SHOULD` + `minShouldMatch = 1` | multi-select OR *inside* one clause   | no      |
+| Occur                           | Role                                   | Scores? |
+|---------------------------------|----------------------------------------|---------|
+| `MUST`                          | analyzed match + last-token prefix     | yes     |
+| `FILTER`                        | field constraint (genre, bpm, key, …)  | no      |
+| `MUST_NOT`                      | exclusion                              | no      |
+| `SHOULD` + `minShouldMatch = 1` | multi-select OR *inside* one clause    | no      |
 
 A `BooleanQuery` with only `MUST_NOT` matches nothing — add a `MUST`
 `MatchAllDocsQuery` if the user excludes without typing or including. Blank
