@@ -1,5 +1,5 @@
 ---
-title: 'Integrating Apache Lucene for Bean Search — Part 2: Index Lifecycle'
+title: 'Integrating Apache Lucene for Bean Search — Part 2: Index'
 description: "Own Lucene’s IndexWriter for your beans: in-memory Directory, rebuild, upsert, delete by id, and keep the index warm after writes."
 author: David Pilato
 avatar: /about/david_pilato.avif

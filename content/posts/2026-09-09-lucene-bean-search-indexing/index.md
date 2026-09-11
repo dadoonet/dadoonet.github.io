@@ -1,5 +1,5 @@
 ---
-title: 'Integrating Apache Lucene for Bean Search — Part 1: Indexing'
+title: 'Integrating Apache Lucene for Bean Search — Part 1: Mapping'
 description: "Embed Apache Lucene as an in-process index over Java beans — Maven deps, field design, analyzer, and Document mapping, using Track records from a Rekordbox-style library."
 author: David Pilato
 avatar: /about/david_pilato.avif
