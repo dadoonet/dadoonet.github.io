@@ -2,7 +2,7 @@
   "name": "dadoonet.github.io",
   "private": true,
   "scripts": {
-    "build": "hugo --minify --buildFuture && npx pagefind --site public",
+    "build": "hugo --minify && npx pagefind --site public",
     "index": "npx pagefind --site public",
     "dev": "hugo server --buildFuture --buildDrafts -D"
   },

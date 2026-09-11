@@ -1,6 +1,6 @@
 ---
 title: 'Integrating Apache Lucene for Bean Search — Part 5: Facets'
-description: "Count and drill down on bean fields with Lucene facets — genre, rating, and friends — on the same in-process index as Parts 1–4."
+description: "Count Club (26) and 120–130 (52) under the same BooleanQuery as Part 3 — lucene-facet histograms, not a second navigation model."
 author: David Pilato
 avatar: /about/david_pilato.avif
 tags:
@@ -26,26 +26,32 @@ This post is part of a series:
 * [Part 4: Suggest]({{< ref "2026-09-14-lucene-bean-search-suggest" >}})
 * [Part 5: Facets]({{< ref "2026-09-15-lucene-bean-search-facets" >}})
 
-[Part 3]({{< ref "2026-09-11-lucene-bean-search-query-sync" >}}) can already **filter**
-(`genre:Club`). A filter panel still needs something else: **how many** tracks sit
-in Club vs Techno *under the current query*.
+[Part 3]({{< ref "2026-09-11-lucene-bean-search-query-sync" >}}) already **navigates**:
+`FILTER genre:Club`, `MUST_NOT` on keys, bookmarkable params. A filter panel still
+needs something else: **how many** tracks sit in Club vs Dance *under that
+boolean query*.
+
+You declared `lucene-facet` in [Part 1]({{< ref "2026-09-09-lucene-bean-search-indexing" >}}).
+Counts live on the same in-process index as search.
 
 <!--more-->
 
-You declared `lucene-facet` in [Part 1]({{< ref "2026-09-09-lucene-bean-search-indexing" >}}).
-Counts live on the same in-process index as search. Lucene remains a **derived cache**:
-rebuild or upsert after writes, then recount.
+{{< figure src="faceted-navigation.avif" caption="`q=Bob` with the filter panel open: BPM, genre, rating, and year buckets counted under the Part 3 query. Clicking a checkbox is still Part 3." >}}
+
+`q=Bob` is the free-text `MUST` from Part 3. The numbers on the right
+(`Club (26)`, `120 – 130 (52)`, `★★★★★ (13)`, `2020s (15)`) are facet counts
+on that same query. Clicking **Club** still writes `genre=Club` — the Java from
+Part 3. This post only adds the histograms.
 
 ## Index the category
 
-`genre.raw` is a `StringField` so `genre:Club` can be a term query. Counting is a
-different access pattern: you want a **column** of labels, not a stored field on
-each hit.
+`genre.raw` is a `StringField` so Part 3 can filter. Counting is a different
+access pattern: you want a **column** of labels, not a stored field on each hit.
 
-Add a `SortedSetDocValuesFacetField` next to the keyword (same idea for artist,
-album, key). Do **not** facet on a `TextField` — tokens are not checkbox labels.
-Numerics (`bpm`, `rating`, `year`) already carry DocValues from Part 1; range and
-value counts read those, no extra field type.
+Add a `SortedSetDocValuesFacetField` next to the keyword. Do **not** facet on a
+`TextField` — tokens are not checkbox labels. Numerics (`bpm`, `rating`, `year`)
+already carry DocValues from Part 1; range and value counts read those, no extra
+field type.
 
 ```java
 String genre = name(t.genre());
@@ -69,76 +75,89 @@ private static Document indexedDocument(Track track) throws IOException {
 Use that same `FacetsConfig` instance at search time. After `commit`, open a new
 NRT reader before counting.
 
-## Count
+## Count under `q=Bob`
 
 Lucene 10.5 fills a collector, then `SortedSetDocValuesFacetCounts` turns it into
-histograms. You do not walk `ScoreDoc`s.
+histograms. You do not walk `ScoreDoc`s. Reuse the Part 3 query:
 
 ```java
+Query lucene = freeText("Bob"); // the MUST query from Part 3
+
 SortedSetDocValuesReaderState state =
         new DefaultSortedSetDocValuesReaderState(reader, FACETS);
 FacetsCollector fc = FacetsCollectorManager.search(
-                searcher, new MatchAllDocsQuery(), 1, new FacetsCollectorManager())
+                searcher, lucene, 1, new FacetsCollectorManager())
         .facetsCollector();
 Facets facets = new SortedSetDocValuesFacetCounts(state, fc);
-// facets.getAllChildren("genre") → Club=2, Techno=1
+// facets.getAllChildren("genre") → Club=26, Dance=2, …
 ```
 
-`n=1` is enough: we want the collector, not a hit list (`SearchService` already
-resolved beans).
+`n=1` is enough: we want the collector, not a hit list. Part 3 already resolved
+the table.
 
-## Drill-down and sideways
-
-Under `genre:Club`, the **key** histogram should shrink. The **genre** panel should
-still show Techno — otherwise the user cannot change genre without clearing `q`.
-
-Split the bookmarkable string: remainder (free text) is the base query; panel
-tokens become `DrillDownQuery.add(dimension, query)`. Then `DrillSideways` runs
-one collector for the filtered set and one per selected dimension *without* that
-dimension’s own constraint:
+BPM bins and star ratings on the screenshot are the same collector, different
+readers:
 
 ```java
-Query base = TrackLuceneQueryBuilder.build(remainder); // no genre: / bpm: tokens
+// 10-BPM buckets, including zeros so empty ranges stay visible
+Facets bpm = new DoubleRangeFacetCounts("bpm", fc, ranges);
+// exact stars 0–5
+Facets rating = new LongValueFacetCounts("rating", fc);
+// year / decade from the same IntField DocValues
+Facets year = new LongValueFacetCounts("year", fc);
+```
+
+Hand `(value, count)` to the template once:
+
+```java
+public record FacetBucket(String value, int count) {}
+// Club (26), 120 – 130 (52), ★★★★★ (13)
+```
+
+## When a Part 3 FILTER is on
+
+Under `genre=Club`, the **BPM** histogram should shrink. The **genre** panel
+should still show Dance — otherwise the user cannot change genre without
+clearing the param. That is counting, not a new navigation model: the table
+still uses the full Part 3 `BooleanQuery`.
+
+If `FILTER genre:Club` were already in the base query, Lucene could not drop it
+for the genre collector. Split the request:
+
+* **Base** — `MUST` free text, `MUST_NOT` exclusions, `FILTER` for *other*
+  dimensions (bpm, key, …).
+* **Drill-down** — each selected panel dim via `DrillDownQuery.add`.
+
+Then `DrillSideways` runs one collector for the filtered set and one per selected
+dimension *without* that dimension’s own constraint:
+
+```java
+Query base = TrackLuceneQueryBuilder.buildStructured(
+        "Bob",          // MUST
+        otherFilters,   // FILTER — bpm, key, … (not genre)
+        mustNots);      // MUST_NOT
+
 DrillDownQuery drillDown = new DrillDownQuery(FACETS, base);
-drillDown.add("genre", TrackLuceneQueryBuilder.build("genre:Club"));
+drillDown.add("genre", new TermQuery(new Term(TrackIndexFields.GENRE_RAW, "Club")));
 
 Facets luceneFacets = new DrillSideways(searcher, FACETS, state)
         .search(drillDown, 1)
         .facets;
 ```
 
-| Panel | Visible buckets (count > 0) |
-|-------|-----------------------------|
-| genre | Club **and** Techno         |
-| bpm   | `80-90` **and** `120-130`   |
+The usual e-commerce trick: narrow the table by brand without hiding the other
+brands. If you need keywords and numeric ranges on the same collectors, override
+`DrillSideways.buildFacetsResult` and wrap each collector with a `MultiFacets` —
+the default sideways class assumes one implementation.
 
-The **table** is still Club ∩ 120–129. Only the **counts** omit that panel’s own
-filter — the usual e-commerce “narrow by brand without hiding the other brands”.
+When a playlist is selected, `FILTER` a `TermInSetQuery` on `id` into the **base**
+so histograms match the table. Corpus intersection after search (Part 3) cannot
+fix counts.
 
-Keyword dims use `SortedSetDocValuesFacetCounts`. BPM bins use
-`DoubleRangeFacetCounts` on the existing `bpm` field (half-open ranges, always
-render every bucket including zeros). Rating / year use `LongValueFacetCounts`.
-If you need both on the same collectors, override `DrillSideways.buildFacetsResult`
-and wrap each collector with a `MultiFacets` — the default sideways class assumes
-one implementation.
+## Series
 
-## Hand `(value, count)` to the UI
-
-```java
-public record FacetBucket(String value, int count) {}
-```
-
-Map `LabelAndValue` once in `TrackFacetService`. The template prints `Club (12)`.
-Clicking a checkbox still toggles a token in `q`; the next request filters the
-table (Part 3) and refreshes every panel here.
-
-## What this model does not do
-
-One JVM, one `Directory`, rebuilt at startup. No replica, no cluster. Restart
-without a rebuild and search **and** facets are empty. If an upsert fails, fall
-back to a full rebuild so the cache cannot drift.
-
-When the corpus or the ops model outgrows a process-local Lucene cache, the next
-step is a search server in front of the same beans — same `q`, same filter panel,
-a different engine behind `TrackSearchIndex`. That is a switch, not a rewrite of
-Parts 1–5.
+* [Part 1: Indexing]({{< ref "2026-09-09-lucene-bean-search-indexing" >}}) — Maven, fields, analyzer, document mapper
+* [Part 2: Index Lifecycle]({{< ref "2026-09-10-lucene-bean-search-lifecycle" >}}) — writer, rebuild, upsert, keep warm
+* [Part 3: Search]({{< ref "2026-09-11-lucene-bean-search-query-sync" >}}) — MUST / FILTER / MUST_NOT, hits → beans
+* [Part 4: Suggest]({{< ref "2026-09-14-lucene-bean-search-suggest" >}}) — autocomplete
+* [Part 5: Facets]({{< ref "2026-09-15-lucene-bean-search-facets" >}}) — you are here

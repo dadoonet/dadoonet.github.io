@@ -209,7 +209,7 @@ hugo mod tidy
 
 ```sh
 npm ci
-hugo --minify --buildFuture
+hugo --minify
 npx pagefind --site public
 ```
 
@@ -227,6 +227,8 @@ hugo server --buildFuture --buildDrafts -D
 ```sh
 hugo
 ```
+
+GitHub Pages omits `--buildFuture` so scheduled posts stay unpublished until their date. Upcoming talks use `conference.date`. Netlify PR previews keep `--buildFuture` so those posts are reviewable (URLs, archives, search, RSS).
 
 ---
 
