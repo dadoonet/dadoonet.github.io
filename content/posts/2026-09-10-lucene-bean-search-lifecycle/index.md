@@ -141,7 +141,7 @@ public void close() throws IOException {
 
 Serialize mutations with a lock if the index is shared across request threads.
 Lucene’s `IndexWriter` is thread-safe for many operations, but if you also keep a
-side structure (for example a suggest dictionary rebuilt after writes — [Part 4]({{< ref "2026-09-14-lucene-bean-search-suggest" >}})), one lock keeps
+side structure (for example a suggest dictionary rebuilt after writes), one lock keeps
 both consistent.
 
 ## Keep the index warm and consistent
