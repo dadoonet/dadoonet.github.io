@@ -72,12 +72,12 @@ release on Maven Central when you implement; this series uses **10.5.1**.
 </dependency>
 ```
 
-| Artefact                 | Role                                           |
-|--------------------------|------------------------------------------------|
-| `lucene-core`            | Index, search, documents, queries              |
-| `lucene-analysis-common` | Tokenizers / filters                           |
-| `lucene-facet`           | Counts / drill-down (Part 5)                   |
-| `lucene-suggest`         | Autocomplete (Part 4) — omit if you skip that  |
+| Artefact                 | Role                                                                                                 |
+|--------------------------|------------------------------------------------------------------------------------------------------|
+| `lucene-core`            | Index, search, documents, queries                                                                    |
+| `lucene-analysis-common` | Tokenizers / filters                                                                                 |
+| `lucene-facet`           | Counts / drill-down (Part 5)                                                                         |
+| `lucene-suggest`         | Autocomplete ([Part 4]({{< ref "2026-09-14-lucene-bean-search-suggest" >}})) — omit if you skip that |
 
 Lucene is pure Java: it shades into a fat-jar with no native libraries.
 
