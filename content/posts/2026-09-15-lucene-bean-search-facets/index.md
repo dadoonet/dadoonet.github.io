@@ -1,6 +1,6 @@
 ---
 title: 'Integrating Apache Lucene for Bean Search — Part 5: Facets'
-description: "Count Club (26) and 120–130 (52) under the same BooleanQuery as Part 3 — lucene-facet histograms, not a second navigation model."
+description: "Filter Club in, 4A out, and see how many tracks sit in each genre or BPM range. That is faceted navigation — what every shop you like already does."
 author: David Pilato
 avatar: /about/david_pilato.avif
 tags:
@@ -18,21 +18,14 @@ cover: cover.avif
 draft: false
 ---
 
-This post is part of a series:
+[Part 3]({{< ref "2026-09-11-lucene-bean-search-query-sync" >}}) already constrained
+results from the query bar: `FILTER genre:Club`, `MUST_NOT` on keys, bookmarkable
+params. But what if we would like to provide a **faceted navigation** filter
+experience? A panel still needs to compute the buckets: which genres exist for
+that query, and how many tracks sit in Club vs Dance under it.
 
-* [Part 1: Indexing]({{< ref "2026-09-09-lucene-bean-search-indexing" >}})
-* [Part 2: Index Lifecycle]({{< ref "2026-09-10-lucene-bean-search-lifecycle" >}})
-* [Part 3: Search]({{< ref "2026-09-11-lucene-bean-search-query-sync" >}})
-* [Part 4: Suggest]({{< ref "2026-09-14-lucene-bean-search-suggest" >}})
-* [Part 5: Facets]({{< ref "2026-09-15-lucene-bean-search-facets" >}})
-
-[Part 3]({{< ref "2026-09-11-lucene-bean-search-query-sync" >}}) already **navigates**:
-`FILTER genre:Club`, `MUST_NOT` on keys, bookmarkable params. A filter panel still
-needs something else: **how many** tracks sit in Club vs Dance *under that
-boolean query*.
-
-You declared `lucene-facet` in [Part 1]({{< ref "2026-09-09-lucene-bean-search-indexing" >}}).
-Counts live on the same in-process index as search.
+In [Part 1]({{< ref "2026-09-09-lucene-bean-search-indexing" >}}) we added
+`lucene-facet` to Maven and never used it. Time has come.
 
 <!--more-->
 
@@ -153,11 +146,3 @@ the default sideways class assumes one implementation.
 When a playlist is selected, `FILTER` a `TermInSetQuery` on `id` into the **base**
 so histograms match the table. Corpus intersection after search (Part 3) cannot
 fix counts.
-
-## Series
-
-* [Part 1: Indexing]({{< ref "2026-09-09-lucene-bean-search-indexing" >}}) — Maven, fields, analyzer, document mapper
-* [Part 2: Index Lifecycle]({{< ref "2026-09-10-lucene-bean-search-lifecycle" >}}) — writer, rebuild, upsert, keep warm
-* [Part 3: Search]({{< ref "2026-09-11-lucene-bean-search-query-sync" >}}) — MUST / FILTER / MUST_NOT, hits → beans
-* [Part 4: Suggest]({{< ref "2026-09-14-lucene-bean-search-suggest" >}}) — autocomplete
-* [Part 5: Facets]({{< ref "2026-09-15-lucene-bean-search-facets" >}}) — you are here

@@ -37,11 +37,7 @@ Before speaking about what happened last year, I'd like to modify [the way I'm i
 
 Instead, I'd really like to have the real city name... How can I do this? Well, I do have the exact geo location points of each event (which is something I'm writing manually for now)... If you are a frequent visitor of this blog, that should ring a bell, right?
 
-In 2018, I wrote some blog posts about transforming geo points to exact address:
-
-* [Importing Bano dataset with Logstash]({{< ref "2018-03-22-enriching-your-postal-addresses-with-elastic-stack-part-1" >}})
-* [Using Logstash to lookup for addresses in Bano index]({{< ref "2018-03-23-enriching-your-postal-addresses-with-elastic-stack-part-2" >}})
-* [Using Logstash to enrich an existing dataset with Bano]({{< ref "2018-03-24-enriching-your-postal-addresses-with-elastic-stack-part-3" >}})
+In 2018, I wrote a [series about transforming geo points to exact addresses]({{< relref "/series/bano" >}}).
 
 Let's use that now!
 

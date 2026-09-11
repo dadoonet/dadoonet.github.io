@@ -188,6 +188,13 @@ content/posts/YYYY-MM-DD-title/index.md
 hugo new posts/YYYY-MM-DD-something-awesome/index.md
 ```
 
+Optional `series:` groups related posts. The theme lists the other parts in the post sidebar and at `/series/<term>/`. Do **not** paste that list in the Markdown body. Keep inline “see Part N” links in the prose when they point at a specific step.
+
+```yaml
+series:
+  - Lucene Bean Search
+```
+
 ---
 
 ## Configuration (`hugo.toml`)

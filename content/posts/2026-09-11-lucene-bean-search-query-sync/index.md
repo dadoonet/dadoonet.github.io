@@ -1,6 +1,6 @@
 ---
 title: 'Integrating Apache Lucene for Bean Search — Part 3: Search'
-description: "Type Bob, add a FILTER chip, then two MUST_NOT keys — the BooleanQuery Lucene actually runs, then resolve hits back to beans."
+description: "The tracks are indexed. Type Bob — should a title hit beat an album? Boosts, FILTER chips, MUST_NOT: build the query a real search engine runs."
 author: David Pilato
 avatar: /about/david_pilato.avif
 tags:
@@ -17,14 +17,6 @@ nolastmod: true
 cover: cover.avif
 draft: false
 ---
-
-This post is part of a series:
-
-* [Part 1: Indexing]({{< ref "2026-09-09-lucene-bean-search-indexing" >}})
-* [Part 2: Index Lifecycle]({{< ref "2026-09-10-lucene-bean-search-lifecycle" >}})
-* [Part 3: Search]({{< ref "2026-09-11-lucene-bean-search-query-sync" >}})
-* Part 4: Suggest <!-- TODO: link when published -->
-* Part 5: Facets <!-- TODO: link when published -->
 
 [Part 1]({{< ref "2026-09-09-lucene-bean-search-indexing" >}}) mapped beans to documents.
 [Part 2]({{< ref "2026-09-10-lucene-bean-search-lifecycle" >}}) owned the writer.
@@ -249,14 +241,6 @@ everything is `MatchAllDocsQuery`.
 ## Next
 
 You can score free text, constrain with `FILTER`, exclude with `MUST_NOT`, and
-resolve hits. Part 4 will add autocomplete with `lucene-suggest` — prefix lookup
-whose hits become `FILTER` chips, not leftover tokens in `q`. Part 5 will count
+resolve hits. [Part 4]({{< ref "2026-09-14-lucene-bean-search-suggest" >}}) will add autocomplete with `lucene-suggest` — prefix lookup
+whose hits become `FILTER` chips, not leftover tokens in `q`. [Part 5]({{< ref "2026-09-15-lucene-bean-search-facets" >}}) will count
 facet buckets under the same boolean query.
-
-## Series
-
-* [Part 1: Indexing]({{< ref "2026-09-09-lucene-bean-search-indexing" >}}) — Maven, fields, analyzer, document mapper
-* [Part 2: Index Lifecycle]({{< ref "2026-09-10-lucene-bean-search-lifecycle" >}}) — writer, rebuild, upsert, keep warm
-* [Part 3: Search]({{< ref "2026-09-11-lucene-bean-search-query-sync" >}}) — you are here
-* Part 4: Suggest — autocomplete <!-- TODO: link when published -->
-* Part 5: Facets — counts and drill-down <!-- TODO: link when published -->

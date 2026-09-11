@@ -20,13 +20,6 @@ aliases:
   - /blog/2016-08-01-creating-elasticsearch-transport-action/
 ---
 
-This blog post is part of a series which will teach you:
-
-* [How to write a plugin for elasticsearch 5.0 using Maven]({{< ref "2016-07-27-creating-a-plugin-for-elasticsearch-5-dot-0-using-maven" >}}).
-* [How to add a new REST endpoint plugin to elasticsearch 5.0]({{< ref "2016-07-30-adding-a-new-rest-endpoint-to-elasticsearch" >}}).
-* How to use Transport Action classes  (what you are reading now).
-* How I wrote the `ingest-bano` plugin which will be hopefully released soonish. In this plugin, new REST endpoints have been added.
-
 In [the previous article]({{< ref "2016-07-30-adding-a-new-rest-endpoint-to-elasticsearch" >}}), we discovered how to add a REST plugin.
 It was a simple implementation as in `RestHelloAction` class we wrote something like:
 

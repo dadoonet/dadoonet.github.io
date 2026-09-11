@@ -1,6 +1,6 @@
 ---
-title: 'Integrating Apache Lucene for Bean Search — Part 2: Index Lifecycle'
-description: "Own Lucene’s IndexWriter for your beans: in-memory Directory, rebuild, upsert, delete by id, and keep the index warm after writes."
+title: 'Integrating Apache Lucene for Bean Search — Part 2: Index'
+description: "The beans are mapped. Now own the index: rebuild at startup, upsert when a track changes, and never let Lucene drift from the source of truth."
 author: David Pilato
 avatar: /about/david_pilato.avif
 tags:
@@ -17,14 +17,6 @@ nolastmod: true
 cover: cover.avif
 draft: false
 ---
-
-This post is part of a series:
-
-* [Part 1: Indexing]({{< ref "2026-09-09-lucene-bean-search-indexing" >}})
-* [Part 2: Index Lifecycle]({{< ref "2026-09-10-lucene-bean-search-lifecycle" >}})
-* Part 3: Search <!-- TODO: link when published -->
-* Part 4: Suggest <!-- TODO: link when published -->
-* Part 5: Facets <!-- TODO: link when published -->
 
 In [Part 1]({{< ref "2026-09-09-lucene-bean-search-indexing" >}}) we added Lucene to Maven,
 named fields, chose an analyzer, and mapped a `Track` bean to a Lucene `Document`.
@@ -183,5 +175,5 @@ full rebuild so the cache cannot drift silently.
 
 ## Next
 
-The index stays in sync with your store. Part 3 will build queries and resolve hits
+The index stays in sync with your store. [Part 3]({{< ref "2026-09-11-lucene-bean-search-query-sync" >}}) will build queries and resolve hits
 back to beans.
