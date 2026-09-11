@@ -156,6 +156,6 @@ from the source of truth anyway.
 
 ## Next
 
-Autocomplete sits beside search, not instead of it. Part 5 will count
+Autocomplete sits beside search, not instead of it. [Part 5]({{< ref "2026-09-15-lucene-bean-search-facets" >}}) will count
 facet buckets under the same boolean query so a filter panel can show
 `Club (26)` instead of a blind checkbox list.
