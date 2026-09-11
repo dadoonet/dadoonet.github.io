@@ -242,5 +242,5 @@ everything is `MatchAllDocsQuery`.
 
 You can score free text, constrain with `FILTER`, exclude with `MUST_NOT`, and
 resolve hits. [Part 4]({{< ref "2026-09-14-lucene-bean-search-suggest" >}}) will add autocomplete with `lucene-suggest` — prefix lookup
-whose hits become `FILTER` chips, not leftover tokens in `q`. Part 5 will count
+whose hits become `FILTER` chips, not leftover tokens in `q`. [Part 5]({{< ref "2026-09-15-lucene-bean-search-facets" >}}) will count
 facet buckets under the same boolean query.

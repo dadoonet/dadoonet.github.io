@@ -195,7 +195,7 @@ public final class TrackDocumentMapper {
 }
 ```
 
-Part 5 will add a facet field next to `genre.raw`. You do not need it to search.
+[Part 5]({{< ref "2026-09-15-lucene-bean-search-facets" >}}) will add a facet field next to `genre.raw`. You do not need it to search.
 
 ## Next
 
