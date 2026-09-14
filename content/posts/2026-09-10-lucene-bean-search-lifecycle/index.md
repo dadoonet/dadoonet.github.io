@@ -1,5 +1,5 @@
 ---
-title: 'Integrating Apache Lucene for Bean Search — Part 2: Index'
+title: 'Search your beans with Lucene — Index'
 description: "The beans are mapped. Now own the index: rebuild at startup, upsert when a track changes, and never let Lucene drift from the source of truth."
 author: David Pilato
 avatar: /about/david_pilato.avif
@@ -18,7 +18,7 @@ cover: cover.avif
 draft: false
 ---
 
-In [Part 1]({{< ref "2026-09-09-lucene-bean-search-indexing" >}}) we added Lucene to Maven,
+In [the previous post]({{< ref "2026-09-09-lucene-bean-search-indexing" >}}) we added Lucene to Maven,
 named fields, chose an analyzer, and mapped a `Track` bean to a Lucene `Document`.
 That is only half the story: you still need a small class that **owns** the index.
 
@@ -175,4 +175,5 @@ full rebuild so the cache cannot drift silently.
 
 ## Next
 
-The index stays in sync with your store. [Part 3]({{< ref "2026-09-11-lucene-bean-search-query-sync" >}}) will build queries and resolve hits back to beans.
+The index stays in sync with your store. The next page will build queries and resolve hits 
+back to beans.

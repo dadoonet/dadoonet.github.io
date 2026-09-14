@@ -1,5 +1,5 @@
 ---
-title: 'Integrating Apache Lucene for Bean Search — Part 5: Facets'
+title: 'Search your beans with Lucene — Facets'
 description: "Filter Club in, 4A out, and see how many tracks sit in each genre or BPM range. That is faceted navigation — what every shop you like already does."
 author: David Pilato
 avatar: /about/david_pilato.avif
@@ -18,7 +18,7 @@ cover: cover.avif
 draft: false
 ---
 
-[Part 3]({{< ref "2026-09-11-lucene-bean-search-query-sync" >}}) already constrained
+[The post about "Search"]({{< ref "2026-09-11-lucene-bean-search-query-sync" >}}) already constrained
 results from the query bar: `FILTER genre:Club`, `MUST_NOT` on keys, bookmarkable
 params. But what if we would like to provide a **faceted navigation** filter
 experience? A panel still needs to compute the buckets: which genres exist for

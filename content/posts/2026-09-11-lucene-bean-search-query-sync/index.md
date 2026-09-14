@@ -1,5 +1,5 @@
 ---
-title: 'Integrating Apache Lucene for Bean Search — Part 3: Search'
+title: 'Search your beans with Lucene — Search'
 description: "The tracks are indexed. Type Bob — should a title hit beat an album? Boosts, FILTER chips, MUST_NOT: build the query a real search engine runs."
 author: David Pilato
 avatar: /about/david_pilato.avif
@@ -224,6 +224,4 @@ everything is `MatchAllDocsQuery`.
 ## Next
 
 You can score free text, constrain with `FILTER`, exclude with `MUST_NOT`, and
-resolve hits. [Part 4]({{< ref "2026-09-14-lucene-bean-search-suggest" >}}) will add autocomplete with `lucene-suggest` — prefix lookup
-whose hits become `FILTER` chips, not leftover tokens in `q`. [Part 5]({{< ref "2026-09-15-lucene-bean-search-facets" >}}) will count
-facet buckets under the same boolean query.
+resolve hits. The next page will add autocomplete on your search bar with `lucene-suggest`.

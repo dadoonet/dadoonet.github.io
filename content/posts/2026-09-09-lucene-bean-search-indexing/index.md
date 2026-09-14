@@ -1,5 +1,5 @@
 ---
-title: 'Integrating Apache Lucene for Bean Search — Part 1: Mapping'
+title: 'Search your beans with Lucene — Mapping'
 description: "You have the tracks. What you lack is search. Add Lucene in-process and map your Java beans to documents the engine can actually find."
 author: David Pilato
 avatar: /about/david_pilato.avif

@@ -1,5 +1,5 @@
 ---
-title: 'Integrating Apache Lucene for Bean Search — Part 4: Suggest'
+title: 'Search your beans with Lucene — Suggest'
 description: "Type a few letters and pick the artist, the title, or the genre before you hit Enter. Autocomplete is the index helping you write the query."
 author: David Pilato
 avatar: /about/david_pilato.avif
@@ -165,6 +165,6 @@ from the source of truth anyway.
 
 ## Next
 
-Autocomplete sits beside search, not instead of it. [Part 5]({{< ref "2026-09-15-lucene-bean-search-facets" >}}) will count
+Autocomplete sits beside search, not instead of it. The next page will count
 facet buckets under the same boolean query so a filter panel can show
 `Club (26)` instead of a blind checkbox list.
