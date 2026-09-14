@@ -163,5 +163,5 @@ public final class TrackDocumentMapper {
 ## Next
 
 You have the artefacts, field names, an analyzer, and a bean → `Document` mapper.
-[Part 2]({{< ref "2026-09-10-lucene-bean-search-lifecycle" >}}) will wrap Lucene’s 
-`IndexWriter` and `Directory`: rebuild, upsert, delete, and open a searcher.
+The next page will wrap Lucene’s `IndexWriter` and `Directory`: rebuild, upsert, 
+delete, and open a searcher.
