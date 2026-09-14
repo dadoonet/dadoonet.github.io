@@ -142,7 +142,7 @@ pure filters can keep corpus order.
 
 ## Add a filter (include Club)
 
-{{< figure src="search-filter-on.avif" caption="Same `q=Bob`, plus a green **genre: Club** chip. 62 tracks become 27." >}}
+{{< figure src="search-filter-on.avif" caption="Same `q=Bob`, plus a green **genre: Club** chip. 62 tracks become 26." >}}
 
 The chip writes `genre=Club` next to `q`. It does **not** rewrite the box to
 `genre:Club Bob`. Wrap the previous free-text query as `MUST` and add a
@@ -171,11 +171,12 @@ normalized keyword twin (`genre.raw.normalized`) next to Part 1’s `genre.raw`
 `club` must not match a genre named `Club House`.
 
 *Ultra Naté — Free (Bob Sinclar Remix)* stays: title has the token `bob`, genre
-is Club. *TRIANGLE DES BERMUDES* (Reggaeton) drops. *Give Me Love* (Dance) drops.
+is Club. *TRIANGLE DES BERMUDES* (Reggaeton) drops. *Give Me Love* (Dance)
+drops. *I Can't Wait* (Club House) also drops — the chip is exact.
 
 ## Exclude two keys (4A and 4B)
 
-{{< figure src="search-filter-on-off.avif" caption="Club stays on (green). **4A** and **4B** are off. 27 tracks become 24." >}}
+{{< figure src="search-filter-on-off.avif" caption="Club stays on (green). **4A** and **4B** are off. 26 tracks become 23." >}}
 
 Exclusions are `minus-key=4A,4B`, not a dash on the chip value. Same `MUST` +
 `FILTER`, plus one `MUST_NOT`. Several keys on the same dimension are **OR**
@@ -205,8 +206,8 @@ wildcard. `4A` must not match `12A`. Index that code as a `StringField` next to
 the display name.
 
 *Crazy (Bob Sinclar vs. …)* was 4A Club — gone. *Free (Bob Sinclar Remix)* was
-4B Club — gone. *I Feel For You* (2A Club) stays. The free-text ranking is
-untouched: `FILTER` and `MUST_NOT` do not score.
+4B Club — gone. *I Feel For You (Ben Delay Club Mix)* (2A Club) stays. The
+free-text ranking is untouched: `FILTER` and `MUST_NOT` do not score.
 
 In production, one builder turns the structured request into that tree so tests
 can index known beans and assert hit ids:
