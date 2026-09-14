@@ -16,6 +16,8 @@ date: '2026-09-14T07:00:00+02:00'
 nolastmod: true
 cover: cover.avif
 draft: false
+aliases:
+  - /posts/2026-09-12-lucene-bean-search-suggest/
 ---
 
 The [previous post]({{< ref "2026-09-11-lucene-bean-search-query-sync" >}}) showed
