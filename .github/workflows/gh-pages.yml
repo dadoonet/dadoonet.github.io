@@ -2,7 +2,8 @@ name: Deploy Hugo site to Pages
 
 on:
   schedule:
-    - cron: "0 8 * * *"
+    - cron: "14 3 * * *"
+      timezone: "Europe/Paris"
   push:
     branches:
       - main
