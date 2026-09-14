@@ -18,9 +18,6 @@ cover: cover.avif
 draft: false
 ---
 
-In [Part 1]({{< ref "2026-09-09-lucene-bean-search-indexing" >}}) we added
-`lucene-suggest` to Maven and never used it. Time has come.
-
 The [previous post]({{< ref "2026-09-11-lucene-bean-search-query-sync" >}}) showed
 how to run a search query on whatever field you mapped. Anyone used to a search
 engine already knows the next step: autocomplete, so the index can help you find
@@ -29,6 +26,18 @@ the right query.
 Skip this post if you only need search and filters — Parts 1–3 do not depend on it.
 
 <!--more-->
+
+## Add `lucene-suggest`
+
+Autocomplete lives in its own artefact:
+
+```xml
+<dependency>
+  <groupId>org.apache.lucene</groupId>
+  <artifactId>lucene-suggest</artifactId>
+  <version>10.5.1</version>
+</dependency>
+```
 
 ## A second Directory
 

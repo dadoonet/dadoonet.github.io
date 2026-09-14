@@ -23,37 +23,15 @@ draft: false
 This part is the query you actually run: type in the box, add a filter, exclude
 two keys — and watch the `BooleanQuery` grow.
 
-The screenshots are from the same Rekordbox-style library as Parts 1 and 2.
-The Java is the Lucene tree behind those three URLs. Same recipe for any bean
-index.
-
 <!--more-->
-
-Keep free text and filters **apart**. Do not stuff facets into the search box
-(`genre:Club bob`). That string is painful to chip, autocomplete, and bookmark
-once a panel appears:
-
-```text
-/tracks?q=Bob
-/tracks?q=Bob&genre=Club
-/tracks?q=Bob&genre=Club&minus-key=4A,4B
-```
-
-`q` is analyzed free text. Everything else is a structured filter. Polarity is a
-**separate param** (`minus-key=`), not a dash on the value — otherwise you cannot
-include an artist named `-M-`.
-
-This is the same boolean tree Elasticsearch users know as `bool` / `must` /
-`filter` / `must_not`. Lucene’s Java API *is* that tree — no Query DSL, no parser
-required. Lucene’s `Query.toString()` prints `+` for `MUST`, `#` for `FILTER`
-(no score), `-` for `MUST_NOT`, `(a b)~1` for `SHOULD` with `minShouldMatch = 1`,
-and `^4.0` for a boost.
 
 ## Type “Bob”
 
 {{< figure src="search.avif" caption="`q=Bob` — 62 tracks. Title, artist, or another analyzed field matches the token *bob*, or starts with it." >}}
 
-The analyzer from Part 1 (standard tokenizer + lowercase + ASCII folding) turns
+This calls the search endpoint with the query parameter `q=Bob`: `/tracks?q=Bob`.
+
+Then the analyzer from Part 1 (standard tokenizer + lowercase + ASCII folding) turns
 `Bob` into the token `bob`. Free text is an analyzed **match** across those
 fields — `TermQuery`, not a leading/trailing wildcard — with title beating
 artist. The last typed token also gets a trailing `PrefixQuery` at a quarter of
@@ -124,7 +102,7 @@ try (IndexReader reader = searcher.getIndexReader()) {
     TopDocs hits = searcher.search(lucene, Math.max(1, reader.numDocs()));
     for (var hit : hits.scoreDocs) {
         // Get the id from the Lucene result
-        String id = reader.storedFields().document(hit.doc).get(TrackIndexFields.ID);
+        String id = reader.storedFields().document(hit.doc).get(TrackDocumentMapper.ID);
 
         // Looking up the track from the Map knowing its id and add it to the resultset
         Track track = byId.get(id);
@@ -144,9 +122,11 @@ pure filters can keep corpus order.
 
 {{< figure src="search-filter-on.avif" caption="Same `q=Bob`, plus a green **genre: Club** chip. 62 tracks become 26." >}}
 
-The chip writes `genre=Club` next to `q`. It does **not** rewrite the box to
-`genre:Club Bob`. Wrap the previous free-text query as `MUST` and add a
-`FILTER` — constrain, do not score:
+This calls the search endpoint with the query parameter `q=Bob` and the filter
+`genre=Club`: `/tracks?q=Bob&genre=Club`.
+
+Wrap the previous free-text query as `MUST` and add a `FILTER` — constrain, do
+not score:
 
 ```java
 BooleanQuery.Builder query = new BooleanQuery.Builder();
@@ -178,9 +158,11 @@ drops. *I Can't Wait* (Club House) also drops — the chip is exact.
 
 {{< figure src="search-filter-on-off.avif" caption="Club stays on (green). **4A** and **4B** are off. 26 tracks become 23." >}}
 
-Exclusions are `minus-key=4A,4B`, not a dash on the chip value. Same `MUST` +
-`FILTER`, plus one `MUST_NOT`. Several keys on the same dimension are **OR**
-(`SHOULD`, `minShouldMatch = 1`): “not (4A or 4B)”.
+This calls the search endpoint with the query parameter `q=Bob`, the filter
+`genre=Club`, and `minus-key=4A,4B`: `/tracks?q=Bob&genre=Club&minus-key=4A,4B`.
+
+Same `MUST` + `FILTER`, plus `MUST_NOT` for `minus-key`. Several keys on the
+same dimension are **OR** (`SHOULD`, `minShouldMatch = 1`): “not (4A or 4B)”.
 
 ```java
 BooleanQuery.Builder query = new BooleanQuery.Builder();

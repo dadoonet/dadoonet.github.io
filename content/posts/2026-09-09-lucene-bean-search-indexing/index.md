@@ -20,64 +20,35 @@ draft: false
 
 This tutorial embeds **Apache Lucene** as an in-process search index over domain
 beans — here, `Track` records from a Rekordbox-style library. The same pattern
-applies to any Java bean: map it to a Lucene `Document`, index it, search, then
-join hits back to your objects.
+applies to any Java bean.
 
-## What you get
-
-```
-Your beans (source of truth)
-        │
-        ▼
-Document mapper  ──►  Lucene Document(s)
-        │
-        ▼
-IndexWriter (in-memory Directory)
-        │
-        ▼
-IndexSearcher + Query  ──►  hit IDs  ──►  filter / order your bean list
-                              ↘ Facets → (value, count)
-```
+Lucene sits **next to** your objects as a **derived cache**, never as the source
+of truth. Keep the database as the system of record: map a bean to a `Document`,
+search, join **hit ids** back to the original list, and rebuild or upsert Lucene
+after successful writes. This post is only the mapping.
 
 <!--more-->
 
-Lucene is a **derived cache**, never the source of truth. Keep your database as
-the system of record, and rebuild or upsert Lucene documents after successful writes.
-
 ## Add Lucene to Maven
 
-One project, four artefacts, **same** version. Look up the latest stable Lucene
+One project, two artefacts, **same** version. Look up the latest stable Lucene
 release on Maven Central when you implement; this series uses **10.5.1**.
+Later parts add one artefact each when you need autocomplete or facet counts.
 
 ```xml
+<!-- Index, search, documents, queries -->
 <dependency>
   <groupId>org.apache.lucene</groupId>
   <artifactId>lucene-core</artifactId>
   <version>10.5.1</version>
 </dependency>
+<!-- Tokenizers / filters -->
 <dependency>
   <groupId>org.apache.lucene</groupId>
   <artifactId>lucene-analysis-common</artifactId>
   <version>10.5.1</version>
 </dependency>
-<dependency>
-  <groupId>org.apache.lucene</groupId>
-  <artifactId>lucene-facet</artifactId>
-  <version>10.5.1</version>
-</dependency>
-<dependency>
-  <groupId>org.apache.lucene</groupId>
-  <artifactId>lucene-suggest</artifactId>
-  <version>10.5.1</version>
-</dependency>
 ```
-
-| Artefact                 | Role                                           |
-|--------------------------|------------------------------------------------|
-| `lucene-core`            | Index, search, documents, queries              |
-| `lucene-analysis-common` | Tokenizers / filters                           |
-| `lucene-facet`           | Counts / drill-down (Part 5)                   |
-| `lucene-suggest`         | Autocomplete (Part 4) — omit if you skip that  |
 
 Lucene is pure Java: it shades into a fat-jar with no native libraries.
 
@@ -102,45 +73,17 @@ public record Track(
 Index what you need to **find** documents; keep the full bean elsewhere and join
 by id after search.
 
-1. **Stable id** — `Track.id`, used to upsert and delete.
-2. **Full-text** — strings users type (title, artist).
-3. **Filters / facets** — exact keywords or numerics (genre, rating, bpm, year).
-
-## Name your Lucene fields
-
-One constants class so mapper and queries stay in sync:
-
-```java
-public final class TrackIndexFields {
-    public static final String ID = "id";
-    public static final String TITLE = "title";
-    public static final String ARTIST = "artist";
-    public static final String GENRE = "genre";
-    public static final String GENRE_RAW = "genre.raw";
-    public static final String BPM = "bpm";
-    public static final String RATING = "rating";
-
-    private TrackIndexFields() {}
-}
-```
-
-| Pattern       | Example           | Lucene type                         |
-|---------------|-------------------|-------------------------------------|
-| Analyzed text | `title`, `artist` | `TextField`                         |
-| Exact keyword | `id`, `genre.raw` | `StringField`                       |
-| Numeric       | `bpm`, `rating`   | `DoubleField` / `IntField`          |
-
-`TextField` is tokenized (search). `StringField` is not (ids, filters, later facets).
-Store the id (`Field.Store.YES`) so hits can return it; everything else can be
-`Store.NO` if you always reload the bean from your primary store.
+* **Stable id** — `Track.id`, used to upsert and delete.
+* **Full-text** — strings users type (title, artist).
+* **Filters / facets** — exact keywords or numerics (genre, rating, bpm, year).
 
 ## Choose an analyzer
 
 The analyzer runs at **index time** for `TextField` and should match query-time
 tokens. Standard tokenization + lowercase + ASCII folding works well for music
-metadata: no stemming (artist names stay intact), no stop words (`Around The
-World` stays searchable), and `nate` finds `Naté`. NFC can still happen in the
-mapper for stored values.
+metadata: no stemming (artist names stay intact), no stop words
+(`Around The World` stays searchable), and `nate` finds `Naté`. NFC can still 
+happen in the mapper for stored values.
 
 ```java
 public final class TrackAnalyzers {
@@ -170,32 +113,52 @@ no gap.
 
 ## Map the bean to a Lucene `Document`
 
+Let's map our fields to the Lucene fields:
+
+| Pattern       | Example                   | Lucene type                         |
+|---------------|---------------------------|-------------------------------------|
+| Analyzed text | `title`, `artist`         | `TextField`                         |
+| Exact keyword | `id`, `genre.raw`         | `StringField`                       |
+| Numeric       | `bpm`, `rating`, `year`   | `DoubleField` / `IntField`          |
+
+`TextField` is tokenized (search). `StringField` is not (ids, filters, later facets).
+This mapper stores every field (`Field.Store.YES`) so a hit can return id, title,
+or genre without a join. Keep the id stored; switch the rest to `Store.NO` if you
+always reload the bean from your primary store.
+
 One static method. This is the heart of the integration:
 
 ```java
 public final class TrackDocumentMapper {
+    public static final String ID = "id";
+    public static final String TITLE = "title";
+    public static final String ARTIST = "artist";
+    public static final String GENRE = "genre";
+    public static final String GENRE_RAW = "genre.raw";
+    public static final String BPM = "bpm";
+    public static final String RATING = "rating";
+    public static final String YEAR = "year";
 
     public static Document toDocument(Track t) {
         Document doc = new Document();
 
         // Identity — not analyzed; stored so search hits can return it
-        doc.add(new StringField(TrackIndexFields.ID, t.id(), Field.Store.YES));
+        doc.add(new StringField(ID, t.id(), Field.Store.YES));
 
         // Full-text — tokenized by TrackAnalyzers
-        doc.add(new TextField(TrackIndexFields.TITLE, nfc(t.title()), Field.Store.YES));
-        doc.add(new TextField(TrackIndexFields.ARTIST, name(t.artist()), Field.Store.YES));
+        doc.add(new TextField(TITLE, t.title(), Field.Store.YES));
+        doc.add(new TextField(ARTIST, t.artist().name(), Field.Store.YES));
 
         // Exact keyword + numerics for filters / ranges (genre:Club, bpm:[120 TO 130])
-        doc.add(new StringField(TrackIndexFields.GENRE_RAW, name(t.genre()), Field.Store.YES));
-        doc.add(new DoubleField(TrackIndexFields.BPM, t.bpm(), Field.Store.YES));
-        doc.add(new IntField(TrackIndexFields.RATING, t.ratingStars(), Field.Store.YES));
+        doc.add(new StringField(GENRE_RAW, t.genre().name(), Field.Store.YES));
+        doc.add(new DoubleField(BPM, t.bpm(), Field.Store.YES));
+        doc.add(new IntField(RATING, t.ratingStars(), Field.Store.YES));
+        doc.add(new IntField(YEAR, t.year(), Field.Store.YES));
 
         return doc;
     }
 }
 ```
-
-[Part 5]({{< ref "2026-09-15-lucene-bean-search-facets" >}}) will add a facet field next to `genre.raw`. You do not need it to search.
 
 ## Next
 

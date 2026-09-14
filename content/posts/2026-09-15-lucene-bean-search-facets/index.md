@@ -24,9 +24,6 @@ params. But what if we would like to provide a **faceted navigation** filter
 experience? A panel still needs to compute the buckets: which genres exist for
 that query, and how many tracks sit in Club vs Dance under it.
 
-In [Part 1]({{< ref "2026-09-09-lucene-bean-search-indexing" >}}) we added
-`lucene-facet` to Maven and never used it. Time has come.
-
 <!--more-->
 
 {{< figure src="faceted-navigation.avif" caption="`q=Bob` with the filter panel open: BPM, genre, rating, and year buckets counted under the Part 3 query. Clicking a checkbox is still Part 3." >}}
@@ -35,6 +32,18 @@ In [Part 1]({{< ref "2026-09-09-lucene-bean-search-indexing" >}}) we added
 (`Club (26)`, `120 – 130 (52)`, `★★★★★ (13)`, `2020s (15)`) are facet counts
 on that same query. Clicking **Club** still writes `genre=Club` — the Java from
 Part 3. This post only adds the histograms.
+
+## Add `lucene-facet`
+
+Counts live in their own artefact:
+
+```xml
+<dependency>
+  <groupId>org.apache.lucene</groupId>
+  <artifactId>lucene-facet</artifactId>
+  <version>10.5.1</version>
+</dependency>
+```
 
 ## Index the category
 
@@ -47,8 +56,8 @@ already carry DocValues from Part 1; range and value counts read those, no extra
 field type.
 
 ```java
-String genre = name(t.genre());
-doc.add(new StringField(TrackIndexFields.GENRE_RAW, genre, Field.Store.YES));
+String genre = t.genre().name();
+doc.add(new StringField(TrackDocumentMapper.GENRE_RAW, genre, Field.Store.YES));
 // Category label for lucene-facet — not a replacement for the StringField above
 doc.add(new SortedSetDocValuesFacetField("genre", genre));
 ```
@@ -131,7 +140,7 @@ Query base = TrackLuceneQueryBuilder.buildStructured(
         mustNots);      // MUST_NOT
 
 DrillDownQuery drillDown = new DrillDownQuery(FACETS, base);
-drillDown.add("genre", new TermQuery(new Term(TrackIndexFields.GENRE_RAW, "Club")));
+drillDown.add("genre", new TermQuery(new Term(TrackDocumentMapper.GENRE_RAW, "Club")));
 
 Facets luceneFacets = new DrillSideways(searcher, FACETS, state)
         .search(drillDown, 1)

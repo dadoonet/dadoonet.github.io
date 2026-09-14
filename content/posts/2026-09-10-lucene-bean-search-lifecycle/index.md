@@ -97,7 +97,7 @@ public void upsert(Track track) throws IOException {
     synchronized (writeLock) {
         // Deletes any existing doc with this id, then adds the new one
         writer.updateDocument(
-                new Term(TrackIndexFields.ID, track.id()),
+                new Term(TrackDocumentMapper.ID, track.id()),
                 TrackDocumentMapper.toDocument(track));
         writer.commit();
     }
@@ -106,7 +106,7 @@ public void upsert(Track track) throws IOException {
 public void deleteById(String trackId) throws IOException {
     synchronized (writeLock) {
         // Term must match how id was indexed (StringField → exact term)
-        writer.deleteDocuments(new Term(TrackIndexFields.ID, trackId));
+        writer.deleteDocuments(new Term(TrackDocumentMapper.ID, trackId));
         writer.commit();
     }
 }
@@ -175,5 +175,4 @@ full rebuild so the cache cannot drift silently.
 
 ## Next
 
-The index stays in sync with your store. [Part 3]({{< ref "2026-09-11-lucene-bean-search-query-sync" >}}) will build queries and resolve hits
-back to beans.
+The index stays in sync with your store. [Part 3]({{< ref "2026-09-11-lucene-bean-search-query-sync" >}}) will build queries and resolve hits back to beans.
