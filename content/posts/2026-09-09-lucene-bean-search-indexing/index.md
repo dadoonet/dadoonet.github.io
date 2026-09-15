@@ -82,7 +82,7 @@ by id after search.
 The analyzer runs at **index time** for `TextField` and should match query-time
 tokens. Standard tokenization + lowercase + ASCII folding works well for music
 metadata: no stemming (artist names stay intact), no stop words
-(`Around The World` stays searchable), and `nate` finds `Naté`. NFC can still 
+(`Around The World` stays searchable), and `nate` finds `Naté`. NFC can still
 happen in the mapper for stored values.
 
 ```java
@@ -163,5 +163,5 @@ public final class TrackDocumentMapper {
 ## Next
 
 You have the artefacts, field names, an analyzer, and a bean → `Document` mapper.
-The next page will wrap Lucene’s `IndexWriter` and `Directory`: rebuild, upsert, 
+The next page will wrap Lucene’s `IndexWriter` and `Directory`: rebuild, upsert,
 delete, and open a searcher.
