@@ -18,16 +18,12 @@ cover: cover.avif
 draft: false
 ---
 
-[Part 3]({{< ref "2026-09-11-lucene-bean-search-query-sync" >}}) already built the
-`BooleanQuery` that scores a track. Anyone used to a search UI expects the next
-step: show *why* the row matched — bold the tokens in the stored title, artist,
-or genre.
+Let say we found some documents matching our query. But how could we know, where in the text,
+it matched? Let's try to **bold** the tokens in the stored title, artist or genre.
 
 <!--more-->
 
-## Suggest bold vs result bold
-
-[Suggest]({{< ref "2026-09-14-lucene-bean-search-suggest" >}}) and highlighting look
+[Suggest]({{< ref "2026-09-15-lucene-bean-search-suggest" >}}) and highlighting look
 similar in the UI — both wrap matched letters in `<b>` — but they are not the
 same call.
 
@@ -38,13 +34,12 @@ same call.
 `UnifiedHighlighter` runs on the **track index**, with the **same** `Query` that
 just scored the hit. It reads stored field text and paints token offsets —
 including the trailing `PrefixQuery` from Part 3 (`sincla` → `<b>Sinclar</b>`).
-Empty query → match-all → stored text comes back unmarked.
 
 One is “help me write the query.” The other is “show me why this row matched.”
 
-## Add `lucene-highlighter`
+## Highlight my results
 
-Highlighting lives in its own artefact (same Lucene version as Part 1):
+Highlighting lives in its own artefact:
 
 ```xml
 <dependency>
@@ -54,74 +49,50 @@ Highlighting lives in its own artefact (same Lucene version as Part 1):
 </dependency>
 ```
 
-## Build the highlighter
-
-Reuse the Part 1 search analyzer so offsets line up with how title / artist were
-tokenized. `WholeBreakIterator` keeps the **full** stored value as one fragment —
-no sentence chopping for short metadata fields:
+`WholeBreakIterator` keeps the **full** stored value as one fragment —
+no sentence chopping for short metadata fields. Same builder as the playground:
 
 ```java
+Query bob = new BooleanQuery.Builder()
+  .add(new BoostQuery(new TermQuery(new Term("title", "bob")), 4.0f), BooleanClause.Occur.SHOULD)
+  .add(new BoostQuery(new PrefixQuery(new Term("title", "bob")), 1.0f), BooleanClause.Occur.SHOULD)
+  .add(new BoostQuery(new TermQuery(new Term("artist", "bob")), 3.0f), BooleanClause.Occur.SHOULD)
+  .add(new BoostQuery(new PrefixQuery(new Term("artist", "bob")), 0.75f), BooleanClause.Occur.SHOULD)
+  // … genre^2 / album^1.5 / label^1 / comment^0.5 (+ prefixes) …
+  .setMinimumNumberShouldMatch(1)
+  .build();
+
+// Search and retrieve the 10 first hits
+TopDocs hits = searcher.search(bob, 10);
+
 UnifiedHighlighter highlighter = UnifiedHighlighter.builder(searcher, analyzer)
-        .withMaxLength(10_000)
-        .withBreakIterator(WholeBreakIterator::new)
-        .build();
-```
-
-Fields must be `Field.Store.YES` (Part 1 already did that for text). Without
-stored text, there is nothing to paint.
-
-## Demo
-
-Search first, then highlight the same `Query` and `TopDocs`:
-
-```java
-Query q = TrackLuceneQueryBuilder.buildStructured("Bob", Map.of(), Map.of());
-TopDocs hits = searcher.search(q, 25);
-
-Map<String, String[]> byField = highlighter.highlightFields(
+    .withMaxLength(10_000)
+    .withBreakIterator(WholeBreakIterator::new)
+    .build();
+Map<String, String[]> hl = highlighter.highlightFields(
         new String[]{"title", "artist", "genre", "album", "label", "comment"},
-        q, hits);
+        bob, hits);
 ```
+
+Fields must be `Field.Store.YES` otherwise Lucene cannot extract the source data
+we can highlight it.
 
 Each field maps to a parallel array — one snippet per hit. Missing or blank
 snippets mean that field did not contribute markup for that doc. Hand the map to
 the template as display-only HTML; keep the clean bean for chips and URLs.
 
-### Type “Bob”
-
-{{< figure src="highlight-bob.avif" caption="`q=Bob` — matching fields show `<b>Bob</b>` in the stored title, artist, or album." >}}
-
 `q=Bob` wraps the token wherever it matched:
 
-```text
+```html
 Outro Lugar - <b>Bob</b> Sinclar Remix
 Crazy (<b>Bob</b> Sinclar vs. Dimitri Vegas & Like Mike remix)
 ```
 
-Same query as Part 3 — the highlighter only adds tags where offsets hit.
+This also works for `PrefixQuery` even though the whole term is highlighted, not just the typed prefix:
 
-### Type “nate”
-
-ASCII folding from Part 1 still applies: typing `nate` marks **Naté** in the
-artist field (`<b>Naté</b>`). The stored surface form stays accented; the match
-ran on the folded token.
-
-### Type “sincla”
-
-The trailing `PrefixQuery` from Part 3 paints the **full** stored term, not just
-the typed prefix:
-
-```text
-… (<b>Sinclar</b> Remix)
+```html
+Outro Lugar - Bob <b>Sinclar</b> Remix
 ```
-
-That is the same “last token is still being typed” behaviour as live search —
-highlighting follows the query, not a separate prefix dictionary.
-
-### Empty query
-
-A blank `q` is match-all. Hits still return stored title / artist text, but
-without `<b>` tags — there was no term to mark.
 
 ## How it works in Lucene
 
@@ -129,63 +100,73 @@ Search answers “which documents contain this term?” Highlighting answers “
 in the stored string?” Both read the same inverted index — they just dig one
 level deeper.
 
-### Posting lists find the hit
-
-A `TextField` from Part 1 is tokenized at index time. For the title
-`Free (Bob Sinclar Remix)`, the analyzer emits four terms. Lucene does **not**
-keep a bag of words on the document. It keeps an **inverted** map: term → list of
-documents (the posting list), with a frequency per doc:
+You remember the posting list we generated in a previous post?
 
 ```text
-title:bob  →  doc#255465792 (freq=1), doc#…, …
-title:free →  doc#255465792 (freq=1), …
+artist:bob       →  1, 2, 3
+artist:claude    →  4, 5
+artist:francois  →  4, 5, 6
+artist:marley    →  2
+artist:sinclar   →  1, 3
+artist:valery    →  6
 ```
 
-`IndexSearcher` walks those lists, scores, and returns `TopDocs`. That is enough
-to fill a result table with ids. It is **not** enough to draw `<b>` tags.
-
-### Positions locate the token
+Actually, it was not only generating posting lists for each term, it also kept track of the positions of those terms within each document.
 
 Each posting also stores **positions**: the ordinal of the term inside that
-field’s token stream (0-based). Same title, token order:
+field’s token stream (0-based).
+
+For example, consider the artist name “Claude François”, which is tokenized into two terms: `claude` and `francois`. The positions of these terms within the document are as follows:
 
 | Position | Term      |
 |----------|-----------|
-| 0        | `free`    |
-| 1        | `bob`     |
-| 2        | `sinclar` |
-| 3        | `remix`   |
+| 0        | `claude`  |
+| 1        | `francois`|
 
-So `bob` on that document is not only “present” — it is **at position 1**. Phrase
-queries and spans use that. Highlighting needs one more step: map the position
-back onto characters of the **stored** surface string
-(`Field.Store.YES` from Part 1).
+For the artist name François “Valéry” (tokenized as `francois` and `valery`), the positions are:
+
+| Position | Term      |
+|----------|-----------|
+| 0        | `francois`|
+| 1        | `valery`  |
+
+For “Earth Wind and Fire”, the positions are:
+
+| Position | Term      |
+|----------|-----------|
+| 0        | `earth`   |
+| 1        | `wind`    |
+| 2        | `and`     |
+| 3        | `fire`    |
+
+If you search for `francois valery`, you will get back the document "François Valéry" because one of the query terms matched the document. If you search for `valery francois`, it will give you the exact same two documents, because the order of terms in a simple conjunction query does not matter.
+
+What if it matters? In that case, you would need to use a phrase query or a span query to enforce the order of terms. This is where **term positions** come into play.
 
 ### Offsets paint the characters
+
+But **highlighting** needs one more step: map the position back onto characters of the **stored** surface
+string (`Field.Store.YES`).
 
 At analysis time, each token also carries character offsets into the original
 string — start inclusive, end exclusive:
 
 ```text
-"Free (Bob Sinclar Remix)"
- free          → [0, 4)
- Bob           → [6, 9)
- Sinclar       → [10, 17)
- Remix         → [18, 23)
+"Earth Wind and Fire"
+ earth         → [0, 5)
+ wind          → [6, 10)
+ and           → [11, 14)
+ fire          → [15, 19)
 ```
 
-`UnifiedHighlighter` re-runs the **same** Part 1 analyzer on the stored value,
-keeps tokens that satisfy the query (`TermQuery` `bob`, or a `PrefixQuery`
-`sincla*` that matches `sinclar`), and wraps those `[start, end)` slices:
+The `UnifiedHighlighter` re-runs the **same** analyzer on the stored value,
+keeps tokens that satisfy the query (`TermQuery` `wind`, or a `PrefixQuery`
+`win*` that matches `wind`), and wraps those `[start, end)` slices with `<b></b>` html tags:
 
-```text
-Free (<b>Bob</b> Sinclar Remix)
+```html
+Earth <b>Wind</b> and Fire
 ```
 
-Folding still lines up: stored `Ultra Naté`, query `nate`, token `nate` with
-offsets covering the four characters of `Naté` → `<b>Naté</b>`. A match-all
-query has no term spans, so the stored text comes back unmarked.
+Now you just need to adapt the CSS to match the way you want it to look like.
 
-Markup stays **display-only**. Do not write `<b>` back into the index, and do not
-treat highlighted strings as chip values — the same split Suggest taught for
-`highlightKey` vs `key`.
+{{< figure src="highlight-wind.avif" caption="`q=wind` — orange `<b>Wind</b>` on *Earth, Wind & Fire* and titles like *Ride Like the Wind*." >}}
