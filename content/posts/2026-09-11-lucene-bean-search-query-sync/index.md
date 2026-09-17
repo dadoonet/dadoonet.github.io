@@ -19,11 +19,9 @@ draft: false
 math: true
 ---
 
-[Part 1]({{< ref "2026-09-09-lucene-bean-search-indexing" >}}) mapped beans to documents.
-[Part 2]({{< ref "2026-09-10-lucene-bean-search-lifecycle" >}}) owned the writer.
-This part is the query you actually run: type in the box, add a filter, exclude
-two keys — and watch the `BooleanQuery` grow. Same shapes as the playground
-Search chapter.
+We already mapped beans to documents and indexed them.
+Let's see what's happening when you type in the box, add a filter, exclude
+two keys.
 
 <!--more-->
 
@@ -84,8 +82,7 @@ Lucene prints it as:
 
 Several tokens are AND-ed (`MUST` each token’s builder). Only the **last** one
 is a prefix; earlier words stay exact. `bob sincla` requires `bob` and a
-`sincla…` prefix. `ouse` does not find `House` — not an infix. That is why
-Part 1 did not index edge n-grams.
+`sincla…` prefix. `ouse` does not find `House` — not an infix.
 
 You remember the posting list we generated in the previous post?
 
@@ -125,7 +122,7 @@ Lucene prints it as:
 +(((title:bob)^4.0 (title:bob*)^1.0 … )~1) #genre.raw.normalized:club
 ```
 
-Index a normalized keyword twin (`genre.raw.normalized`) next to Part 1’s
+Index a normalized keyword twin (`genre.raw.normalized`) next to
 `genre.raw`, so `Club` and `club` hit the same docs. Do not wildcard it.
 
 ## Exclude two keys (4A and 4B)

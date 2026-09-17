@@ -21,11 +21,8 @@ aliases:
   - /posts/2026-09-15-lucene-bean-search-facets/
 ---
 
-[Search]({{< ref "2026-09-11-lucene-bean-search-query-sync" >}}) already
-constrained results from the query bar: `FILTER genre:Club`, `MUST_NOT` on keys.
-Parts 1–3 built a **search-ready** `Document` and indexed it with plain
-`writer.addDocument(doc)`. That is enough to score and filter — not enough to
-draw checkbox histograms.
+We saw how to index and search for documents. That is enough to score and filter.
+Not enough to draw checkbox histograms.
 
 This post is the delta: what you change when you want **faceted navigation**.
 

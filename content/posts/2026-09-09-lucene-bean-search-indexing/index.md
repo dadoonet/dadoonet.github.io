@@ -34,8 +34,6 @@ fields.
 
 One project, two artefacts, **same** version. Look up the latest stable Lucene
 release on Maven Central when you implement; this series uses **10.5.1**.
-Later parts add one artefact each when you need autocomplete, facet counts, or
-highlighting.
 
 ```xml
 <!-- Index, search, documents, queries -->

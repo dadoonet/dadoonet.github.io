@@ -1,6 +1,6 @@
 ---
 title: 'Search your beans with Lucene — Highlighting'
-description: "The query that scores a hit also marks the stored text. Bold tags follow token offsets — including the trailing PrefixQuery from Part 3."
+description: "Let's find out where exactly in a text a query matched. That's called highlighting."
 author: David Pilato
 avatar: /about/david_pilato.avif
 tags:
@@ -33,7 +33,7 @@ same call.
 
 `UnifiedHighlighter` runs on the **track index**, with the **same** `Query` that
 just scored the hit. It reads stored field text and paints token offsets —
-including the trailing `PrefixQuery` from Part 3 (`sincla` → `<b>Sinclar</b>`).
+including the trailing `PrefixQuery` (`sincla` → `<b>Sinclar</b>`).
 
 One is “help me write the query.” The other is “show me why this row matched.”
 
