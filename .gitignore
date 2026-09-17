@@ -16,3 +16,6 @@ upload/
 
 # Agent working notes (specs/plans), not site docs
 docs/
+
+# Local capture / playground helper scripts
+scripts/
