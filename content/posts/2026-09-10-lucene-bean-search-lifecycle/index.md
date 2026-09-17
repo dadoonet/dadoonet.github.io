@@ -18,84 +18,67 @@ cover: cover.avif
 draft: false
 ---
 
-In [the previous post]({{< ref "2026-09-09-lucene-bean-search-indexing" >}}) we added Lucene to Maven,
-named fields, chose an analyzer, and mapped a `Track` bean to a Lucene `Document`.
-That is only half the story: you still need a small class that **owns** the index.
-
-## Own the index lifecycle
-
-Wrap Lucene’s low-level types in a class dedicated to **your** bean.
-`TrackSearchIndex` is the template: create the directory and writer, rebuild or mutate,
-open a searcher, and close everything when the process shuts down.
+In [the previous post]({{< ref "2026-09-09-lucene-bean-search-indexing" >}}) we
+added Lucene to Maven, chose an analyzer, and mapped a `Track` bean to a
+**search-ready** Lucene `Document`. That is only half the story: you still need
+a small class that **owns** the index — and you should see what “inverted” means
+for a token like `bob`.
 
 <!--more-->
 
-### Create (in-memory)
+## Own the index lifecycle
+
+Wrap Lucene’s low-level types in a class dedicated to **your** bean. Create the
+directory and writer, rebuild or mutate, and close everything when the process
+shuts down. The playground does the same with an in-memory
+`ByteBuffersDirectory` — plain `addDocument(doc)`, no facet rewrite yet:
 
 ```java
-public final class TrackSearchIndex implements AutoCloseable {
+// We will use an in-memory index
+Directory dir = new ByteBuffersDirectory();
 
-    private final Directory directory;
-    private final IndexWriter writer;
-    // One lock for mutations (+ suggest rebuild if you add one later)
-    private final Object writeLock = new Object();
+// Create the index writer with the analyzer
+IndexWriter writer = new IndexWriter(dir, new IndexWriterConfig(analyzer));
 
-    public TrackSearchIndex() throws IOException {
-        // Whole index in heap — swap for FSDirectory.open(path) to persist on disk
-        directory = new ByteBuffersDirectory();
-        // Analyzer must match the one used when building TextField queries
-        IndexWriterConfig config = new IndexWriterConfig(TrackAnalyzers.searchAnalyzer());
-        writer = new IndexWriter(directory, config);
-    }
-}
+// Create Lucene doc for track #255465792: Ultra Naté - Free (Bob Sinclar Remix)
+Document doc255465792 = mapper.toDocument(Tracks.trackFrom(255465792));
+writer.addDocument(doc255465792);
+
+// Index track #172523747: Daft Punk - Around The World
+Document doc172523747 = mapper.toDocument(Tracks.trackFrom(172523747));
+writer.addDocument(doc172523747);
+
+// Index track #106352474: Claude François - Cette année-là
+Document doc106352474 = mapper.toDocument(Tracks.trackFrom(106352474));
+writer.addDocument(doc106352474);
+
+// Commit all the documents that have been indexed so far
+writer.commit();
 ```
 
-`ByteBuffersDirectory` keeps the whole index in heap — ideal for a local library that
-fits in memory and is rebuilt at process start. Swap in `FSDirectory.open(path)` if you
-need persistence across restarts.
-
-### Rebuild (full replace)
+For a full library, wipe and reload under one write lock:
 
 ```java
 public void rebuild(List<Track> tracks) throws IOException {
     synchronized (writeLock) {
-        writer.deleteAll(); // wipe previous docs — full replace, not incremental
+        writer.deleteAll();
         for (Track track : tracks) {
             writer.addDocument(TrackDocumentMapper.toDocument(track));
         }
-        writer.commit(); // make changes visible to new DirectoryReaders
+        writer.commit();
     }
 }
 ```
 
-### Real numbers (~4k tracks)
-
-On a local music library of **4 322** tracks (in-memory `ByteBuffersDirectory` + suggest
-dictionary — [Part 4]({{< ref "2026-09-14-lucene-bean-search-suggest" >}})), a full rebuild looks like this:
-
-| Metric                    | Value       |
-|---------------------------|-------------|
-| Documents                 | 4 322       |
-| Wall time                 | **369 ms**  |
-| Heap delta (rough JVM)    | ~**15 MB**  |
-| `ramBytesUsed` (total)    | ~**1.7 MB** |
-| `ramBytesUsed` (index)    | ~1.1 MB     |
-| `ramBytesUsed` (suggest)  | ~0.6 MB     |
-
-So for a few thousand beans, a full rebuild is cheap enough to run at startup — and even
-as a fallback when incremental sync fails. The Lucene footprint is about **1.7 MB**; the
-~15 MB heap delta is a rough JVM measurement (allocations during the rebuild), not the
-steady-state index size.
-
-Worth instrumenting `rebuild` / `upsert` in your own `TrackSearchIndex` if you want
-numbers for *your* corpus before choosing RAM vs disk.
+`ByteBuffersDirectory` keeps the whole index in heap — ideal for a local library
+rebuilt at process start. Swap in `FSDirectory.open(path)` if you need
+persistence across restarts.
 
 ### Upsert / delete by id
 
 ```java
 public void upsert(Track track) throws IOException {
     synchronized (writeLock) {
-        // Deletes any existing doc with this id, then adds the new one
         writer.updateDocument(
                 new Term(TrackDocumentMapper.ID, track.id()),
                 TrackDocumentMapper.toDocument(track));
@@ -105,75 +88,71 @@ public void upsert(Track track) throws IOException {
 
 public void deleteById(String trackId) throws IOException {
     synchronized (writeLock) {
-        // Term must match how id was indexed (StringField → exact term)
         writer.deleteDocuments(new Term(TrackDocumentMapper.ID, trackId));
         writer.commit();
     }
 }
 ```
 
-`updateDocument(Term, Document)` deletes any existing docs matching the term, then adds
-the new one — the usual “upsert by primary key” pattern.
-
-### Open a searcher
-
-```java
-public IndexSearcher searcher() throws IOException {
-    // Opens a near-real-time reader on the writer — caller must close the reader
-    return new IndexSearcher(DirectoryReader.open(writer));
-}
-```
-
-Callers must close the `IndexReader` obtained from `searcher.getIndexReader()`
-(typically in a try-with-resources around the search call).
-
 ### Close
 
 ```java
-@Override
-public void close() throws IOException {
-    synchronized (writeLock) {
-        writer.close();    // flushes and releases the IndexWriter
-        directory.close(); // then the Directory (order matters)
-    }
-}
+writer.close();
+directory.close(); // order matters — writer first
 ```
 
 Serialize mutations with a lock if the index is shared across request threads.
-Lucene’s `IndexWriter` is thread-safe for many operations, but if you also keep a
-side structure (for example a suggest dictionary rebuilt after writes), one lock keeps
-both consistent.
 
-## Keep the index warm and consistent
+### Keep the index warm and consistent
 
-### At startup
+Rebuild once from the source of truth at startup. Prefer **upsert / delete by
+id** for single-row edits; **full rebuild** for bulk operations or when sync
+fails. Never treat Lucene as authoritative.
 
-Rebuild once from the source of truth:
+### Real numbers (~4k tracks)
 
-```java
-TrackSearchIndex index = new TrackSearchIndex();
-index.rebuild(library.tracks()); // full replace from the authoritative store
-SearchService search = new SearchService(index);
+On a local music library of **4 322** tracks (in-memory `ByteBuffersDirectory`),
+a full rebuild looks like this:
+
+| Metric      | Value       |
+|-------------|-------------|
+| Documents   | 4 322       |
+| Wall time   | **~400 ms** |
+| Memory used | ~**1.1 MB** |
+
+So for a few thousand beans, a full rebuild is cheap enough to run at startup —
+and even as a fallback when incremental sync fails. (A suggest dictionary, if
+you add one later, sits in its own `Directory` and adds a little more RAM.)
+
+## The inverted index
+
+{{< figure src="index-bob.avif" caption="Term `bob` on field `title`: posting list of docs that contain that token." >}}
+
+After commit, Lucene does **not** keep a bag of words on each document. It keeps
+an **inverted** map: term → documents (the posting list). Type `bob` on `title`
+and you read every track whose title tokenized to `bob` — including
+*Free (Bob Sinclar Remix)*.
+
+Same idea on `artist`. Six tracks, four distinct names after analysis:
+
+| Docs | Artist (stored) |
+|------|-----------------|
+| 1, 3 | Bob Sinclar     |
+| 2    | Bob Marley      |
+| 4, 5 | Claude François |
+| 6    | François Valery |
+
+Lucene does not store that table. It stores the **sorted** inverted map —
+lowercased, ASCII-folded (`François` → `francois`):
+
+```text
+artist:bob       →  1, 2, 3
+artist:claude    →  4, 5
+artist:francois  →  4, 5, 6
+artist:marley    →  2
+artist:sinclar   →  1, 3
+artist:valery    →  6
 ```
 
-Swap the live reference and close the previous index when you rebuild on a running server.
-
-### After writes
-
-Prefer **upsert / delete by id** for single-row edits; **full rebuild** for bulk
-operations or when sync fails:
-
-```java
-// after a successful DB commit
-trackIndexSync.upsert(changedIds);   // load bean → index.upsert
-// or
-trackIndexSync.rebuild();            // index.rebuild(library.tracks())
-```
-
-Never treat Lucene as authoritative. If an upsert fails mid-batch, fall back to a
-full rebuild so the cache cannot drift silently.
-
-## Next
-
-The index stays in sync with your store. The next page will build queries and resolve hits 
-back to beans.
+That posting list is what you use when searching. We will talk about this in
+the next article.

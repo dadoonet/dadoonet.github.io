@@ -16,52 +16,65 @@ date: '2026-09-11T07:00:00+02:00'
 nolastmod: true
 cover: cover.avif
 draft: false
+math: true
 ---
 
 [Part 1]({{< ref "2026-09-09-lucene-bean-search-indexing" >}}) mapped beans to documents.
 [Part 2]({{< ref "2026-09-10-lucene-bean-search-lifecycle" >}}) owned the writer.
 This part is the query you actually run: type in the box, add a filter, exclude
-two keys — and watch the `BooleanQuery` grow.
+two keys — and watch the `BooleanQuery` grow. Same shapes as the playground
+Search chapter.
 
 <!--more-->
 
-## Type “Bob”
-
-{{< figure src="search.avif" caption="`q=Bob` — 62 tracks. Title, artist, or another analyzed field matches the token *bob*, or starts with it." >}}
-
-This calls the search endpoint with the query parameter `q=Bob`: `/tracks?q=Bob`.
-
-Then the analyzer from Part 1 (standard tokenizer + lowercase + ASCII folding) turns
-`Bob` into the token `bob`. Free text is an analyzed **match** across those
-fields — `TermQuery`, not a leading/trailing wildcard — with title beating
-artist. The last typed token also gets a trailing `PrefixQuery` at a quarter of
-the field boost, so typing still works:
+Start with no criteria at all and enter the MatchAll query:
 
 ```java
-BooleanQuery.Builder fields = new BooleanQuery.Builder();
-addField(fields, "title", "bob", 4.0f, true);
-addField(fields, "artist", "bob", 3.0f, true);
-addField(fields, "genre", "bob", 2.0f, true);
-addField(fields, "album", "bob", 1.5f, true);
-addField(fields, "label", "bob", 1.0f, true);
-addField(fields, "comment", "bob", 0.5f, true);
-fields.setMinimumNumberShouldMatch(1);
-Query lucene = fields.build();
-```
+// Open an index searcher using the same writer
+IndexSearcher searcher = new IndexSearcher(DirectoryReader.open(writer));
 
-```java
-private static void addField(
-        BooleanQuery.Builder fields, String field, String token, float boost, boolean prefix) {
-    fields.add(new BoostQuery(new TermQuery(new Term(field, token)), boost),
-            BooleanClause.Occur.SHOULD);
-    if (prefix) {
-        fields.add(new BoostQuery(new PrefixQuery(new Term(field, token)), boost * 0.25f),
-                BooleanClause.Occur.SHOULD);
+// Search and retrieve the 10 first hits
+TopDocs hits = searcher.search(MatchAllDocsQuery.INSTANCE, 10);
+
+// Join stored ids back to beans:
+for (var hit : hits.scoreDocs) {
+    String id = searcher.storedFields().document(hit.doc).get("id");
+    Track track = trackDatabase.get(id);
+    if (track != null) {
+        // Do something with the track, e.g., print it or add it to a list
     }
 }
 ```
 
-That is the whole query — no outer `BooleanQuery` yet. Lucene prints it as:
+## Type “Bob”
+
+{{< figure src="search-bob.avif" caption="`q=Bob` → 62 hits. Title boost beats artist; last token also gets a PrefixQuery." >}}
+
+Analyze the query string and build the query from the tokens:
+
+```java
+TokenStream ts = analyzer.tokenStream("title", "Bob");
+// → bob
+
+// build query for bob
+Query bob = new BooleanQuery.Builder()
+  .add(new BoostQuery(new TermQuery(new Term("title", "bob")), 4.0f), BooleanClause.Occur.SHOULD)
+  .add(new BoostQuery(new PrefixQuery(new Term("title", "bob")), 1.0f), BooleanClause.Occur.SHOULD)
+  .add(new BoostQuery(new TermQuery(new Term("artist", "bob")), 3.0f), BooleanClause.Occur.SHOULD)
+  .add(new BoostQuery(new PrefixQuery(new Term("artist", "bob")), 0.75f), BooleanClause.Occur.SHOULD)
+  // … genre^2 / album^1.5 / label^1 / comment^0.5 (+ prefixes) …
+  .setMinimumNumberShouldMatch(1)
+  .build();
+
+// Search and retrieve the 10 first hits
+TopDocs hits = searcher.search(bob, 10);
+```
+
+`buildQuery` is the fold the playground expands: each analyzed field is a
+`SHOULD` `TermQuery` with a boost, plus a trailing `PrefixQuery` at a quarter of
+that boost on the **last** typed token:
+
+Lucene prints it as:
 
 ```text
 ((title:bob)^4.0 (title:bob*)^1.0 (artist:bob)^3.0 (artist:bob*)^0.75
@@ -69,159 +82,167 @@ That is the whole query — no outer `BooleanQuery` yet. Lucene prints it as:
  (label:bob)^1.0 (label:bob*)^0.25 (comment:bob)^0.5 (comment:bob*)^0.125)~1
 ```
 
-`Crazy (Bob Sinclar vs. Dimitri Vegas & Like Mike remix)` matches on **title**
-(`bob` is its own token — `StandardTokenizer` splits on punctuation).
-`Bob Sinclar` as artist matches on **artist**. `Bobo au coeur` is still a hit:
-`bob*` prefixes `bobo`. Ranking follows the boosts, so a title hit sorts above a
-comment hit.
+Several tokens are AND-ed (`MUST` each token’s builder). Only the **last** one
+is a prefix; earlier words stay exact. `bob sincla` requires `bob` and a
+`sincla…` prefix. `ouse` does not find `House` — not an infix. That is why
+Part 1 did not index edge n-grams.
 
-Several tokens are AND-ed. Only the **last** one is a prefix; earlier words stay
-exact. `bob sincla` requires a `bob` token and a `sincla…` prefix (`sincla*`
-finds `Sinclar`). `bo sinclar` misses. This is not an infix: `ouse` does not
-find `House`. One character is enough (`bob sinclar c` finds `Cerrone`). That is
-why Part 1 did not index edge n-grams — grams 2–5 would miss `sincla` and still
-need this query-time prefix for the rest.
+You remember the posting list we generated in the previous post?
 
-Run it, then join stored ids back to beans (playlist scoping stays **outside**
-Lucene — the handler picks the corpus, search drops ids that are not in it):
-
-```java
-IndexSearcher searcher = index.searcher();
-try (IndexReader reader = searcher.getIndexReader()) {
-    // The full list of Track beans is already in RAM (the corpus).
-    // Build a Map so we can look a bean up by id after search.
-    Map<String, Track> byId = new HashMap<>();
-    for (Track track : corpus) {
-        byId.put(track.id(), track);
-    }
-
-    // We will create our resultset here
-    List<Track> ordered = new ArrayList<>();
-
-    // lucene is the Query we built above (free text, then FILTER / MUST_NOT)
-    TopDocs hits = searcher.search(lucene, Math.max(1, reader.numDocs()));
-    for (var hit : hits.scoreDocs) {
-        // Get the id from the Lucene result
-        String id = reader.storedFields().document(hit.doc).get(TrackDocumentMapper.ID);
-
-        // Looking up the track from the Map knowing its id and add it to the resultset
-        Track track = byId.get(id);
-        if (track != null) {
-            ordered.add(track);
-        }
-    }
-    return List.copyOf(ordered);
-}
+```text
+artist:bob       →  1, 2, 3
+artist:claude    →  4, 5
+artist:francois  →  4, 5, 6
+artist:marley    →  2
+artist:sinclar   →  1, 3
+artist:valery    →  6
 ```
 
-Lucene document ids are not `Track.id`. Store the bean id (`Field.Store.YES` in
-Part 1) and read it back. Walk `hits.scoreDocs` in order while free text scores;
-pure filters can keep corpus order.
+You see the match with our search `(artist:bob)^3.0`?
 
 ## Add a filter (include Club)
 
-{{< figure src="search-filter-on.avif" caption="Same `q=Bob`, plus a green **genre: Club** chip. 62 tracks become 26." >}}
+{{< figure src="search-club.avif" caption="Same `q=Bob`, plus `FILTER genre=Club` — 62 tracks become 26." >}}
 
-This calls the search endpoint with the query parameter `q=Bob` and the filter
-`genre=Club`: `/tracks?q=Bob&genre=Club`.
-
-Wrap the previous free-text query as `MUST` and add a `FILTER` — constrain, do
-not score:
+Wrap the free-text builder as `MUST` and add a `FILTER` — constrain, do not
+score. Same leaf the playground emits:
 
 ```java
-BooleanQuery.Builder query = new BooleanQuery.Builder();
-query.add(freeText, BooleanClause.Occur.MUST);   // the query from the previous section
-query.add(new TermQuery(new Term("genre.raw.normalized", "club")),
-        BooleanClause.Occur.FILTER);
-Query lucene = query.build();
+// Single filter on genre for club
+Query genre = new TermQuery(new Term("genre.raw.normalized", "club"));
+
+// Combine queries in a bool query
+Query bool = new BooleanQuery.Builder()
+  .add(bob, BooleanClause.Occur.MUST)
+  // Filter in
+  .add(genre, BooleanClause.Occur.FILTER)
+  .build();
 ```
+
+Lucene prints it as:
 
 ```text
-+(((title:bob)^4.0 (title:bob*)^1.0 (artist:bob)^3.0 … )~1) #genre.raw.normalized:club
++(((title:bob)^4.0 (title:bob*)^1.0 … )~1) #genre.raw.normalized:club
 ```
 
-`FILTER` is the important one. A `MUST` on `genre:club` would still constrain,
-but it would also join the scoring. The chip should shrink the set **without**
-changing whether title beats artist.
-
-The leaf is an exact `TermQuery` — the same as typing `genre:Club` in a
-power-user string. A checkbox is not a different query type. Index a
-normalized keyword twin (`genre.raw.normalized`) next to Part 1’s `genre.raw`
-`StringField`, so `Club` and `club` hit the same docs. Do not wildcard it:
-`club` must not match a genre named `Club House`.
-
-*Ultra Naté — Free (Bob Sinclar Remix)* stays: title has the token `bob`, genre
-is Club. *TRIANGLE DES BERMUDES* (Reggaeton) drops. *Give Me Love* (Dance)
-drops. *I Can't Wait* (Club House) also drops — the chip is exact.
+Index a normalized keyword twin (`genre.raw.normalized`) next to Part 1’s
+`genre.raw`, so `Club` and `club` hit the same docs. Do not wildcard it.
 
 ## Exclude two keys (4A and 4B)
 
-{{< figure src="search-filter-on-off.avif" caption="Club stays on (green). **4A** and **4B** are off. 26 tracks become 23." >}}
+{{< figure src="search-keys.avif" caption="Club stays on. `MUST_NOT` 4A or 4B — 26 tracks become 23." >}}
 
-This calls the search endpoint with the query parameter `q=Bob`, the filter
-`genre=Club`, and `minus-key=4A,4B`: `/tracks?q=Bob&genre=Club&minus-key=4A,4B`.
-
-Same `MUST` + `FILTER`, plus `MUST_NOT` for `minus-key`. Several keys on the
-same dimension are **OR** (`SHOULD`, `minShouldMatch = 1`): “not (4A or 4B)”.
+Same `MUST` + `FILTER`, plus `MUST_NOT` for excluded keys. Several keys on the
+same dimension are **OR** (`SHOULD`, `minShouldMatch = 1`):
 
 ```java
-BooleanQuery.Builder query = new BooleanQuery.Builder();
-query.add(freeText, BooleanClause.Occur.MUST);
-query.add(new TermQuery(new Term("genre.raw.normalized", "club")),
-        BooleanClause.Occur.FILTER);
+// Filter on keys 4a or 4b
+Query keys = new BooleanQuery.Builder()
+    .add(new TermQuery(new Term("key.code", "4a")), BooleanClause.Occur.SHOULD)
+    .add(new TermQuery(new Term("key.code", "4b")), BooleanClause.Occur.SHOULD)
+    .setMinimumNumberShouldMatch(1)
+    .build();
 
-BooleanQuery.Builder keys = new BooleanQuery.Builder();
-keys.add(new TermQuery(new Term("key.code", "4a")), BooleanClause.Occur.SHOULD);
-keys.add(new TermQuery(new Term("key.code", "4b")), BooleanClause.Occur.SHOULD);
-keys.setMinimumNumberShouldMatch(1);
-query.add(keys.build(), BooleanClause.Occur.MUST_NOT);
-
-Query lucene = query.build();
+Query bool = new BooleanQuery.Builder()
+    .add(bob, BooleanClause.Occur.MUST)
+    .add(genre, BooleanClause.Occur.FILTER)
+    // Filter out
+    .add(keys, BooleanClause.Occur.MUST_NOT)
+    .build();
 ```
+
+Lucene prints it as:
 
 ```text
-+(((title:bob)^4.0 (title:bob*)^1.0 … )~1) #genre.raw.normalized:club -((key.code:4a key.code:4b)~1)
++(((title:bob)^4.0 … )~1) #genre.raw.normalized:club -((key.code:4a key.code:4b)~1)
 ```
 
-Keys use a `TermQuery` on the extracted Camelot code (`key.code`), not a
-wildcard. `4A` must not match `12A`. Index that code as a `StringField` next to
-the display name.
+This means:
 
-*Crazy (Bob Sinclar vs. …)* was 4A Club — gone. *Free (Bob Sinclar Remix)* was
-4B Club — gone. *I Feel For You (Ben Delay Club Mix)* (2A Club) stays. The
-free-text ranking is untouched: `FILTER` and `MUST_NOT` do not score.
+| UI                   | Playground preset   | Lucene clause                    |
+|----------------------|---------------------|----------------------------------|
+| Type “Bob”           | Bob → 62            | `MUST` match + last-token prefix |
+| Include Club         | + Club → 26         | `FILTER` exact `club`            |
+| Exclude 4A **or** 4B | − 4A,4B → 23        | `MUST_NOT` (`4a` `SHOULD` `4b`)  |
 
-In production, one builder turns the structured request into that tree so tests
-can index known beans and assert hit ids:
+Scoring plays an important role in determining the relevance of search results.
+Some clauses contribute to the score, while others act as filters or exclusions.
 
-```java
-Query lucene = TrackLuceneQueryBuilder.buildStructured(
-        "Bob",
-        Map.of("genre", List.of("Club")),
-        Map.of("key", List.of("4A", "4B")));
-```
-
-The web layer parses the URL first (`QueryFacets.fromRequest(q, params)`),
-then calls that builder. The three screenshots are:
-
-| UI                         | Bookmarkable request                 | Lucene clause                          |
-|----------------------------|--------------------------------------|----------------------------------------|
-| Type “Bob”                 | `q=Bob`                              | `MUST` match + last-token prefix       |
-| Include Club               | `genre=Club`                         | `FILTER` exact `club`                  |
-| Exclude 4A **or** 4B       | `minus-key=4A,4B`                    | `MUST_NOT` (`4a` `SHOULD` `4b`)        |
-
-| Occur                           | Role                                   | Scores? |
-|---------------------------------|----------------------------------------|---------|
-| `MUST`                          | analyzed match + last-token prefix     | yes     |
-| `FILTER`                        | field constraint (genre, bpm, key, …)  | no      |
-| `MUST_NOT`                      | exclusion                              | no      |
-| `SHOULD` + `minShouldMatch = 1` | multi-select OR *inside* one clause    | no      |
+| Occur                           | Role                                | Scores? |
+|---------------------------------|-------------------------------------|---------|
+| `MUST`                          | analyzed match + last-token prefix  | yes     |
+| `FILTER`                        | field constraint (genre, bpm, …)    | no      |
+| `MUST_NOT`                      | exclusion                           | no      |
+| `SHOULD` + `minShouldMatch = 1` | multi-select OR *inside* one clause | no      |
 
 A `BooleanQuery` with only `MUST_NOT` matches nothing — add a `MUST`
-`MatchAllDocsQuery` if the user excludes without typing or including. Blank
-everything is `MatchAllDocsQuery`.
+`MatchAllDocsQuery` if the user excludes without typing. Blank everything is
+`MatchAllDocsQuery`.
 
-## Next
+## Give me the "best" results first (sort by score)
 
-You can score free text, constrain with `FILTER`, exclude with `MUST_NOT`, and
-resolve hits. The next page will add autocomplete on your search bar with `lucene-suggest`.
+If you want to understand how the score is computed, you can use the `explain` method on the `IndexSearcher` for a specific document and query:
+
+```java
+// Explain how the score is computed for the first hit
+searcher.explain(query, hits.scoreDocs[0].doc);
+```
+
+This gives something like:
+
+{{< figure src="search-explain.avif" caption="Score for doc 3473 on `q=Bob`: BM25 weights on `title:bob` and `album:bob` (boost × idf × tf)." >}}
+
+That tree is Lucene’s **BM25** breakdown. For each matching term the score is:
+
+\[
+\begin{aligned}
+\mathrm{idf} &= \log\!\left(1 + \frac{N - n + 0.5}{n + 0.5}\right) \\[0.6em]
+\mathrm{tf} &= \frac{\mathrm{freq}}{\mathrm{freq} + k_1 \bigl(1 - b + b \cdot \tfrac{\mathrm{dl}}{\mathrm{avgdl}}\bigr)} \\[0.6em]
+\mathrm{score} &= \mathrm{boost} \times \mathrm{idf} \times \mathrm{tf}
+\end{aligned}
+\]
+
+`N` is documents that have the field, `n` those that contain the term, `freq`
+occurrences in this document, `dl` / `avgdl` the field length vs the average.
+`k1` and `b` are the usual BM25 knobs (defaults `1.2` and `0.75`).
+
+Take `title:bob` on doc **3473** from the screenshot. Across the index,
+**7** titles contain `bob` (`n = 7`) out of **4 322** docs that have a title
+(`N = 4 322`). In this hit, `bob` appears once in the title (`freq = 1`), the
+title is **5** tokens long (`dl = 5`), and the average title length is about
+**4.24** (`avgdl`). The field boost is **4**:
+
+\[
+\begin{aligned}
+\mathrm{idf}
+  &= \log\!\left(1 + \frac{4322 - 7 + 0.5}{7 + 0.5}\right)
+   \approx 6.357 \\[0.6em]
+\mathrm{tf}
+  &= \frac{1}{1 + 1.2\bigl(1 - 0.75 + 0.75 \cdot \tfrac{5}{4.242}\bigr)}
+   \approx 0.424 \\[0.6em]
+\mathrm{score}(\texttt{title:bob})
+  &= 4 \times 6.357 \times 0.424
+   \approx 10.77
+\end{aligned}
+\]
+
+Same walk for `album:bob`: only **3** albums contain the term
+(`n = 3`) out of **3 088** docs with an album (`N = 3 088`), still
+`freq = 1`, `dl = 5`, `avgdl \approx 3.77`, boost **1.5**:
+
+\[
+\begin{aligned}
+\mathrm{idf}
+  &= \log\!\left(1 + \frac{3088 - 3 + 0.5}{3 + 0.5}\right)
+   \approx 6.783 \\[0.6em]
+\mathrm{tf}
+  &= \frac{1}{1 + 1.2\bigl(1 - 0.75 + 0.75 \cdot \tfrac{5}{3.770}\bigr)}
+   \approx 0.401 \\[0.6em]
+\mathrm{score}(\texttt{album:bob})
+  &= 1.5 \times 6.783 \times 0.401
+   \approx 4.08
+\end{aligned}
+\]
+
+Add the prefix leaves (`title:bob*` → `1`, `album:bob*` → `0.375`) and you get
+the hit score: \(10.77 + 1 + 4.08 + 0.375 \approx 16.23\).
