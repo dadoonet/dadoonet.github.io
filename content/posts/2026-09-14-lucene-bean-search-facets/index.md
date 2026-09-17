@@ -50,7 +50,7 @@ Counts live in their own artefact:
 ```
 
 Genre checkboxes need a **facet-ready** label next to the keyword you already
-use for `FILTER`. Do **not** facet on a `TextField` — as the tokens produced are 
+use for `FILTER`. Do **not** facet on a `TextField` — as the tokens produced are
 not checkbox labels. For example "Club House" would be tokenized into "club" and "house",
 but you want to group on "Club House", not "club" or "house".
 
@@ -90,7 +90,7 @@ you now pass it through the `FacetsConfig.build` method:
 writer.addDocument(facetsConfig.build(doc));
 ```
 
-`FacetsConfig.build` rewrites the `SortedSetDocValuesFacetField` fields into the 
+`FacetsConfig.build` rewrites the `SortedSetDocValuesFacetField` fields into the
 indexed `$facets` fields, using `\u001F` as the delimiter character (DELIM_CHAR):
 
 ```java
