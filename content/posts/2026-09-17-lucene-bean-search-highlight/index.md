@@ -113,6 +113,8 @@ artist:valery    →  6
 
 Actually, it was not only generating posting lists for each term, it also kept track of the positions of those terms within each document.
 
+### Positions for phrase queries
+
 Each posting also stores **positions**: the ordinal of the term inside that
 field’s token stream (0-based).
 
