@@ -388,3 +388,5 @@ heap.
 
 Same beans. Same Bob → Club → facets journey. Less code between you and the
 inverted index.
+
+The full demo lives on GitHub: [lucene-search-tracks](https://github.com/dadoonet/lucene-search-tracks).

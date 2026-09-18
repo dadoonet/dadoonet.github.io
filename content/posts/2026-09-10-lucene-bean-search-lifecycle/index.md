@@ -156,3 +156,5 @@ artist:valery    →  6
 
 That posting list is what you use when searching. We will talk about this in
 the next article.
+
+The full demo lives on GitHub: [lucene-search-tracks](https://github.com/dadoonet/lucene-search-tracks).

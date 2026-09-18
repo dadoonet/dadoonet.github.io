@@ -155,3 +155,5 @@ doc.add(new TextField("label", "", Store.YES));
 // comment: analyzed free text only — no keyword twin
 doc.add(new TextField("comment", "09A - Energy 7", Store.YES));
 ```
+
+The full demo lives on GitHub: [lucene-search-tracks](https://github.com/dadoonet/lucene-search-tracks).

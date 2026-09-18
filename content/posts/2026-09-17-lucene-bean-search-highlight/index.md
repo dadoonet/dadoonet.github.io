@@ -172,3 +172,5 @@ Earth <b>Wind</b> and Fire
 Now you just need to adapt the CSS to match the way you want it to look like.
 
 {{< figure src="highlight-wind.avif" caption="`q=wind` — orange `<b>Wind</b>` on *Earth, Wind & Fire* and titles like *Ride Like the Wind*." >}}
+
+The full demo lives on GitHub: [lucene-search-tracks](https://github.com/dadoonet/lucene-search-tracks).

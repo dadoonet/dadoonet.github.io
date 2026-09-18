@@ -220,3 +220,5 @@ Facets luceneFacets = new DrillSideways(searcher, facetsConfig, state)
 The usual e-commerce trick: narrow the table by brand without hiding the other
 brands. If you need keywords and numeric ranges on the same collectors, override
 `DrillSideways.buildFacetsResult` and wrap each collector with a `MultiFacets`.
+
+The full demo lives on GitHub: [lucene-search-tracks](https://github.com/dadoonet/lucene-search-tracks).

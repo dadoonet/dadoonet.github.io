@@ -243,3 +243,5 @@ Same walk for `album:bob`: only **3** albums contain the term
 
 Add the prefix leaves (`title:bob*` → `1`, `album:bob*` → `0.375`) and you get
 the hit score: \(10.77 + 1 + 4.08 + 0.375 \approx 16.23\).
+
+The full demo lives on GitHub: [lucene-search-tracks](https://github.com/dadoonet/lucene-search-tracks).

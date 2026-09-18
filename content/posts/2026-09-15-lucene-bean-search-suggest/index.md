@@ -90,3 +90,5 @@ List<TrackSuggestion> hits = index.suggest(prefix, scoped);
 `filter(..., "", filters, mustNots)` applies the chips already on, with an empty
 query string. `suggest(prefix, scoped)` then looks up only inside that subset —
 so `club` cannot propose a genre that those chips already excluded.
+
+The full demo lives on GitHub: [lucene-search-tracks](https://github.com/dadoonet/lucene-search-tracks).
