@@ -13,12 +13,10 @@ categories:
   - tutorial
 series:
   - Lucene Bean Search
-date: '2026-09-21T07:00:00+02:00'
+date: '2026-09-24T07:00:00+02:00'
 nolastmod: true
 cover: cover.avif
-draft: false
-aliases:
-  - /posts/2026-09-16-lucene-bean-search-elasticsearch/
+draft: true
 ---
 
 We mapped beans, owned a writer, typed `Bob`, filtered Club, counted facets,
@@ -34,13 +32,13 @@ index lives behind a cluster URL instead of an `IndexWriter`?
 Lucene grew one artefact at a time (`lucene-core`, then `analysis-common`, then
 `suggest`, `facet`, `highlighter`). Elasticsearch is **one** Java client
 coordinate. Look up the current stable release when you implement; this series
-uses **9.5.2**:
+uses **9.5.4**:
 
 ```xml
 <dependency>
   <groupId>co.elastic.clients</groupId>
   <artifactId>elasticsearch-java</artifactId>
-  <version>9.5.2</version>
+  <version>9.5.4</version>
 </dependency>
 ```
 
@@ -56,12 +54,29 @@ ElasticsearchClient client = ElasticsearchClient.of(b -> b
         .apiKey(System.getenv("ES_API_KEY")));  // encoded id:key
 ```
 
-Then wrap it behind the same contract the Lucene side already implements
-(`rebuild` / `search` / `facets` / `suggest`):
+Then wrap it behind the same `TrackSearch` contract as Lucene:
 
 ```java
 TrackSearch search = new TrackSearchElasticsearchImpl(client);
 ```
+
+The interesting path is a **session**: prepare once, print the request, execute
+once, read hits and facets from the same round-trip:
+
+```java
+TrackSearchSession session = search.prepareRequest(
+        "Bob", filters, mustNots, 25);
+session.printQuery();   // pretty JSON body (before execute)
+session.execute();      // one POST /tracks/_search
+session.totalHits();    // 62 even when size is 25
+session.getHits();
+session.getFacets();
+session.printResponse(); // pretty JSON response
+```
+
+Lucene does the same with one collector pass. Convenience wrappers
+(`search` / `facets`) still exist; the Demo uses the session so the LCD can
+show the request that actually produced the table.
 
 ## Declare the mapping once
 
@@ -87,7 +102,9 @@ client.indices().putIndexTemplate(t -> t
                         .properties("artist", textWithRaw())
                         .properties("genre", textWithRaw())
                         // album, label, comment…
-                        .properties("key", p -> p.keyword(k -> k.normalizer("keyword_ci")))
+                        .properties("key", p -> p.keyword(k -> k
+                                .normalizer("keyword_ci")
+                                .fields("raw", f -> f.keyword(kw -> kw))))
                         .properties("bpm", p -> p.double_(d -> d))
                         .properties("rating", p -> p.integer(i -> i))
                         .properties("year", p -> p.integer(i -> i)))));
@@ -103,27 +120,26 @@ client.indices().create(c -> c.index("tracks"));
 ```java
 private static Property textWithRaw() {
     return Property.of(p -> p.text(t -> t
-            // For fulltext search (analyzed)
             .analyzer("track")
-            // For faceting / UI label (not analyzed)
             .fields("raw", f -> f.keyword(k -> k))
-            // For filtering / chip (normalized)
             .fields("normalized", f -> f.keyword(k -> k.normalizer("keyword_ci")))));
 }
 ```
 
-| Role             | Lucene (you wrote)                      | Elasticsearch (you declare)               |
-|------------------|-----------------------------------------|-------------------------------------------|
-| Free-text search | `TextField("genre", …)`                 | `genre` text, analyzer `track`            |
-| Facet / UI label | `SortedSetDocValuesFacetField("genre")` | `genre.raw` keyword (**no** normalizer)   |
-| Filter / chip    | `StringField("genre.raw.normalized")`   | `genre.normalized` + `keyword_ci`         |
+| Role             | Lucene (you wrote)                      | Elasticsearch (you declare)             |
+|------------------|-----------------------------------------|-----------------------------------------|
+| Free-text search | `TextField("genre", …)`                 | `genre` text, analyzer `track`          |
+| Facet / UI label | `SortedSetDocValuesFacetField("genre")` | `genre.raw` keyword (**no** normalizer) |
+| Filter / chip    | `StringField("genre.raw.normalized")`   | `genre.normalized` + `keyword_ci`       |
 
 Same Lucene split as the Facets post: **display** and **filter** are two
-fields. A `terms` aggregation returns the **indexed** term — so facet
-labels need the original casing on `.raw` (`Club`). Filters go through
-`.normalized` with `keyword_ci`, so `Club`, `club`, and `CLUB` hit the same
-docs. Recreate the index after a mapping change — a normalizer lives in the
-mapping, not in the query.
+fields. A `terms` aggregation returns the **indexed** term — so facet labels
+need the original casing on `.raw` (`Club`). Filters go through `.normalized`
+with `keyword_ci`, so `Club`, `club`, and `CLUB` hit the same docs.
+
+`key` follows the same idea for Camelot codes: filter on the normalized
+parent (`4a`), show `10A` from `key.raw` on the wheel. Recreate the index
+after a mapping change — a normalizer lives in the mapping, not in the query.
 
 ## Bulk the beans as-is
 
@@ -195,15 +211,18 @@ Query bool = Query.of(qb -> qb.bool(b -> b
 ```
 
 `Club` and `club` hit the same docs because `keyword_ci` lowercases (and
-folds) at index time on `.normalized`. Do not wildcard it. Do not
-filter on `.raw` unless you want a case-sensitive exact label.
+folds) at index time on `.normalized`. Do not wildcard it. Do not filter
+on `.raw` unless you want a case-sensitive exact label.
+
+When you also want **facet** histograms that keep sibling genres visible,
+that genre chip will move to `post_filter` instead of `query` — next
+section.
 
 ## Exclude two keys (4A and 4B)
 
-Same `must` + `filter`, plus `must_not`. Several keys on one dimension
-are **OR** (`should`, `minimum_should_match = 1`). `key` stays a single
-keyword with `keyword_ci` — Camelot codes have no “pretty vs folded”
-split:
+Same `must` + `filter`, plus `must_not`. Several keys on one dimension are
+**OR** (`should`, `minimum_should_match = 1`). Excludes always stay in the
+query (they shrink every panel):
 
 ```java
 Query bool = Query.of(qb -> qb.bool(b -> b
@@ -223,69 +242,81 @@ Query bool = Query.of(qb -> qb.bool(b -> b
 | UI                   | Result  | Elasticsearch clause               |
 |----------------------|---------|------------------------------------|
 | Type “Bob”           | 62 hits | `must` `multi_match` `bool_prefix` |
-| Include Club         | 26 hits | `filter` term `genre.normalized`   |
+| Include Club         | 26 hits | `filter` / `post_filter` on genre  |
 | Exclude 4A **or** 4B | 23 hits | `must_not` (`4a` `should` `4b`)    |
 
-The score works the same way we saw with the pure Lucene implementation.
-By default, Elasticsearch also sorts the results by relevance score
-(`_score`).
+## Facets: one `_search`, Lucene’s DrillSideways in Query DSL
 
-## Facets: aggregations + `post_filter`
+Lucene needed `FacetsCollector`, range readers, and a `DrillSideways`
+subclass so **genre** and **key** stay visible while BPM / rating / year
+shrink under a selected chip.
 
-Lucene needed `FacetsCollector`, `SortedSetDocValuesFacetCounts`, range
-readers, and a `DrillSideways` subclass so genre stays visible while BPM
-shrinks under a selected chip.
+Elasticsearch keeps the hit table and the histograms in **one**
+`_search`:
 
-The hit table and the histograms stay in **one** request. Genre buckets
-read **`.raw`** (original case). The chip that narrows hits and nested
-metrics uses **`.normalized`**:
+* **query** — free text, non-sideways includes (bpm, rating, year), and
+  **all** excludes;
+* **post_filter** — genre and key *includes* only (narrows **hits**, not
+  the aggregations’ base set);
+* **filter aggregations** — recreate sideways maps: genre filtered by key
+  (not by genre), key filtered by genre (not by key), bpm/rating/year
+  filtered by both.
+
+Genre buckets read **`genre.raw`**. Key buckets read **`key.raw`**. Chips
+that narrow hits use the normalized fields:
 
 ```java
 client.search(s -> {
             s.index("tracks")
-                    .query(bool)   // free text only — no genre chip here
-                    .aggregations("genre", a -> a.terms(t -> t.field("genre.raw")))
+                    .size(25)
+                    .query(query)   // Bob + excludes; no genre/key includes
+                    .aggregations("genre", a -> a
+                            .filter(keyChip)      // omit genre
+                            .aggregations("genre", m -> m.terms(t -> t
+                                    .field("genre.raw").size(50))))
+                    .aggregations("key", a -> a
+                            .filter(genreChip)    // omit key
+                            .aggregations("key", m -> m.terms(t -> t
+                                    .field("key.raw").size(50))))
                     .aggregations("drill", a -> a
-                            .filter(f -> f.term(t -> t
-                                    .field("genre.normalized")
-                                    .value("club")))
-                            .aggregations("bpm", m -> m.range(r -> r
-                                    .field("bpm")
-                                    .ranges(rg -> rg.key("120 – 130").from(120d).to(130d))))
-                            .aggregations("rating", m -> m.terms(t -> t.field("rating")))
-                            .aggregations("year", m -> m.range(r -> r
-                                    .field("year")
-                                    .ranges(rg -> rg.key("2020–2029").from(2020d).to(2030d)))));
-            s.postFilter(f -> f.term(t -> t
-                    .field("genre.normalized")
-                    .value("club")));
+                            .filter(genreAndKey)
+                            .aggregations("bpm", /* ranges */)
+                            .aggregations("rating", /* terms */)
+                            .aggregations("year", /* decade histogram */));
+            s.postFilter(genreAndKey);   // hits only
             return s;
         },
         Track.class);
 ```
 
-Under `q=Bob`: **Club** 26 (not `club`), BPM 120–130 = **52**, rating 5
-= **13**, 2020–2029 = **15** — same numbers **and** the same label as
-the Lucene facet post. Click Club: BPM shrinks; Dance stays on the genre
-panel so the user can change genre without clearing the chip.
+Under `q=Bob`: **Club** 26 (not `club`), BPM 120–130 = **52**, rating 5 =
+**13**, decades as expected — same numbers **and** the same labels as
+Lucene. Click Club: BPM shrinks; Dance stays on the genre panel. Click a
+Camelot slice: the key wheel keeps its siblings for the same reason.
 
-| Role                       | Lucene                                     | Elasticsearch                    |
-|----------------------------|--------------------------------------------|----------------------------------|
-| Checkbox label + count     | `SortedSetDocValuesFacetField` → `$facets` | `terms` agg on `genre.raw`       |
-| Chip / post_filter         | `StringField("genre.raw.normalized")`      | `term` on `genre.normalized`     |
-| Numeric histogram          | `*RangeFacetCounts`                        | `range` agg                      |
-| Narrow hits, keep siblings | `DrillSideways`                            | `post_filter` + filter agg       |
+| Role                       | Lucene                                     | Elasticsearch                      |
+|----------------------------|--------------------------------------------|------------------------------------|
+| Checkbox label + count     | `SortedSetDocValuesFacetField` → `$facets` | `terms` on `genre.raw` / `key.raw` |
+| Chip (sideways include)    | `DrillDownQuery.add`                       | `post_filter` + filter aggs        |
+| Chip (non-sideways / out)  | base `BooleanQuery` FILTER / MUST_NOT      | `query` filter / `must_not`        |
+| Numeric histogram          | `*RangeFacetCounts`                        | `range` / `histogram` aggs         |
+
+`size = 0` is aggregations-only (no hit page, no highlight). The session
+still reports `totalHits`.
 
 ## Suggest: search + highlight, no second Directory
 
 Lucene ran `AnalyzingInfixSuggester` on its **own** `Directory`. Here
 autocomplete reuses the track index: `multi_match` `bool_prefix` on title /
-artist / genre, request highlights, dedupe into suggestions. An empty scope
-still yields nothing.
+artist / genre, request highlights, dedupe into suggestions. An empty
+scope still yields nothing. (Unlike Lucene, a non-empty scope is not used
+to restrict the ES query — the Demo still pins chips from the suggestion
+payload.)
 
 ```java
 SearchResponse<Track> response = client.search(s -> s
                 .index("tracks")
+                .size(200)
                 .query(q -> q.multiMatch(mm -> mm
                         .query("club")
                         .type(TextQueryType.BoolPrefix)
@@ -298,21 +329,22 @@ SearchResponse<Track> response = client.search(s -> s
         Track.class);
 ```
 
-Type `club` → a genre hit comes back with markup you can show as **Club** House.
-Selecting it still means: put a FILTER chip on `genre` and run search — same UI
-contract as before, without rebuilding a second dictionary after every mutation.
+Type `club` → a genre hit comes back with markup you can show as
+**Club** House. Selecting it still means: put a FILTER chip on `genre`
+and run search — same UI contract, without rebuilding a second
+dictionary after every mutation.
 
 ## By the numbers
 
-Same `TrackSearch` contract, same tests, two implementation classes. The Lucene
-side is intentionally **self-contained** (analyzer, mapping, query, facets,
-suggest inlined) so the comparison is fair. We go from 521 lines of Lucene code to 291
-lines of Elasticsearch code. Roughly **1.8×** less implementation code on the Elasticsearch side.
-Most of what remains is response shaping (buckets → maps, highlight → suggestion) —
-not engine plumbing.
+Same `TrackSearch` contract, same tests, two implementation classes. Both
+sides grew past the first draft (session, full facet maps, highlights on
+hits). The contrast is still **what you own**: Lucene inlines analyzer,
+`Document`, collectors, `DrillSideways`, and a second suggest
+`Directory`; Elasticsearch declares a template and a Query DSL body, then
+shapes buckets and highlights.
 
-**Performance** is a different story — and more nuanced than “cluster = slower.”
-On the same **4 322** tracks, measured locally:
+**Performance** is a different story — and more nuanced than
+“cluster = slower.” On the same **4 322** tracks, measured locally:
 
 | Step                         | Lucene (RAM) | Elasticsearch (`localhost:9200`) |
 |------------------------------|--------------|----------------------------------|
@@ -320,29 +352,29 @@ On the same **4 322** tracks, measured locally:
 | `MatchAll` search            | ~**5 ms**    | ~**16 ms**                       |
 | `q=Bob` search               | ~**15–30 ms**| ~**15–30 ms**                    |
 
-The indexing overhead is **small** — a bit over 100 ms for the full library,
-with the network hop and bulk path included. Search is where Lucene-in-RAM
-still wins on a `MatchAll` (~5 ms vs ~16 ms): no serialization, no HTTP.
-Once the query has real work (`q=Bob`), both land in the same **15–30 ms**
-band on this dataset.
+The indexing overhead is **small** — a bit over 100 ms for the full
+library, with the network hop and bulk path included. Search is where
+Lucene-in-RAM still wins on a `MatchAll` (~5 ms vs ~16 ms): no
+serialization, no HTTP. Once the query has real work (`q=Bob`), both land
+in the same **15–30 ms** band on this dataset.
 
-So Elasticsearch does **not** buy you a faster micro-benchmark here. What you
-**do** gain is operational:
+So Elasticsearch does **not** buy you a faster micro-benchmark here. What
+you **do** gain is operational:
 
-* the index survives process restarts (no rebuild-on-boot unless you choose
-  to);
+* the index survives process restarts (no rebuild-on-boot unless you
+  choose to);
 * **replicas** keep serving if a node dies;
 * scaling search and indexing capacity is a cluster concern, not another
   `Directory` in your app;
-* several app instances share one search tier instead of each holding a cache
-  that can drift.
+* several app instances share one search tier instead of each holding a
+  cache that can drift.
 
 **Relevance is not identical either.** Same acceptance counts (`Bob` → 62,
 Club → 26, …) do not mean the same top-N order. Type `joe`: both engines
 return the **same 11 titles**, but Lucene ranks *Joe Smooth* /
 *Joe Killington* higher, while Elasticsearch prefers
-*Miss You (Joe Liggins)* or *Joey Negro*. That is not a filter bug — it is
-the query shape.
+*Miss You (Joe Liggins)* or *Joey Negro*. That is not a filter bug — it
+is the query shape.
 
 The Lucene implementation prints `q=joe` as term **plus** prefix on every
 field (`SHOULD` clauses add up; the term leaf is **BM25**):
@@ -353,9 +385,9 @@ field (`SHOULD` clauses add up; the term leaf is **BM25**):
  (label:joe)^1.0 (label:joe*)^0.25 (comment:joe)^0.5 (comment:joe*)^0.125)~1
 ```
 
-Elasticsearch `multi_match` `bool_prefix` on a **single** token is not that
-query. `_validate/query?rewrite=true` rewrites it to **prefix-only** — still
-shown here in Lucene’s query syntax:
+Elasticsearch `multi_match` `bool_prefix` on a **single** token is not
+that query. `_validate/query?rewrite=true` rewrites it to **prefix-only**
+— still shown here in Lucene’s query syntax:
 
 ```text
 (title:joe*)^4.0 (artist:joe*)^3.0 (genre:joe*)^2.0
@@ -363,30 +395,31 @@ shown here in Lucene’s query syntax:
 ```
 
 `_explain` then shows a **constant score = field boost**, not BM25 — so
-`Joey` / `JOEL` on `title^4` can beat an exact `artist:joe` that Lucene would
-have scored with tf/idf.
+`Joey` / `JOEL` on `title^4` can beat an exact `artist:joe` that Lucene
+would have scored with tf/idf.
 
-You could assemble the Lucene-shaped bool on Elasticsearch (`term` on every
-token + `prefix` only on the last, same boosts, clauses that sum). It would
-never be bit-identical, but the order would get much closer. For this series we
-**keep Elasticsearch’s default** `bool_prefix` behaviour — honest about the
-ranking delta.
+You could assemble the Lucene-shaped bool on Elasticsearch (`term` on
+every token + `prefix` only on the last, same boosts, clauses that sum).
+It would never be bit-identical, but the order would get much closer. For
+this series we **keep Elasticsearch’s default** `bool_prefix` behaviour —
+honest about the ranking delta.
 
-The Demo page of the playground can switch the same `TrackSearch` contract
-between Lucene-in-RAM and Elasticsearch (`localhost:9200` + API key). The ES
-request is shown as a copy-paste `curl`. Indexing logs both engines (`4322`
-tracks: Lucene ~300 ms in RAM, Elasticsearch ~600 ms over HTTP). Search
-timings land in the same band once the query has real work. After a mapping
-change, **Save and index** (or restart) so `.raw` / `.normalized` actually
-exist on the `tracks` index.
+## Try it in the Demo
+
+The playground Demo tab switches the same `TrackSearch` contract between
+Lucene-in-RAM and Elasticsearch. Set the cluster URL (default
+`http://localhost:9200/`) and API key, then **Save and index**. The LCD
+shows `printQuery()` as a copy-paste `curl` (and the JSON response after
+execute). After a mapping change, re-index so `.raw` / `.normalized`
+actually exist on `tracks`.
 
 Stay in-process with Lucene when the library fits in memory and “embedded
-cache next to the JVM” is the product. Reach for Elasticsearch when the same
-bean contract should outlive one process — and when replicas, shared state,
-and “URL + API key” matter more than keeping the inverted index inside your
-heap.
+cache next to the JVM” is the product. Reach for Elasticsearch when the
+same bean contract should outlive one process — and when replicas, shared
+state, and “URL + API key” matter more than keeping the inverted index
+inside your heap.
 
-Same beans. Same Bob → Club → facets journey. Less code between you and the
-inverted index.
+Same beans. Same Bob → Club → facets journey. Less plumbing between you
+and the inverted index — not a bit-identical score.
 
 The full demo lives on GitHub: [lucene-search-tracks](https://github.com/dadoonet/lucene-search-tracks).
