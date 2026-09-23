@@ -51,7 +51,7 @@ Point the client at a URL and authenticate — API key in production:
 ```java
 ElasticsearchClient client = ElasticsearchClient.of(b -> b
         .host(System.getenv("ES_URL"))          // e.g. https://es.example.com:9200
-        .apiKey(System.getenv("ES_API_KEY")));  // encoded id:key
+        .apiKey(System.getenv("ES_API_KEY")));  // the API Key
 ```
 
 Then wrap it behind the same `TrackSearch` contract as Lucene:
@@ -60,23 +60,17 @@ Then wrap it behind the same `TrackSearch` contract as Lucene:
 TrackSearch search = new TrackSearchElasticsearchImpl(client);
 ```
 
-The interesting path is a **session**: prepare once, print the request, execute
-once, read hits and facets from the same round-trip:
+The interesting path is a **session**: prepare once, execute once, read hits and 
+facets from the same round-trip:
 
 ```java
 TrackSearchSession session = search.prepareRequest(
         "Bob", filters, mustNots, 25);
-session.printQuery();   // pretty JSON body (before execute)
 session.execute();      // one POST /tracks/_search
 session.totalHits();    // 62 even when size is 25
 session.getHits();
 session.getFacets();
-session.printResponse(); // pretty JSON response
 ```
-
-Lucene does the same with one collector pass. Convenience wrappers
-(`search` / `facets`) still exist; the Demo uses the session so the LCD can
-show the request that actually produced the table.
 
 ## Declare the mapping once
 
@@ -88,13 +82,17 @@ analyzer, normalizer, properties — then recreate the index:
 
 ```java
 client.indices().putIndexTemplate(t -> t
+        // The index template name
         .name("tracks")
+        // The index patterns this template applies
         .indexPatterns("tracks*")
         .template(te -> te
                 .settings(s -> s.analysis(a -> a
+                        // The custom "track" analyzer
                         .analyzer("track", an -> an.custom(c -> c
                                 .tokenizer("standard")
                                 .filter("lowercase", "asciifolding")))
+                        // The custom "keyword_ci" normalizer
                         .normalizer("keyword_ci", n -> n.custom(c -> c
                                 .filter("lowercase", "asciifolding")))))
                 .mappings(m -> m
@@ -110,8 +108,11 @@ client.indices().putIndexTemplate(t -> t
                         .properties("year", p -> p.integer(i -> i)))));
 
 if (client.indices().exists(e -> e.index("tracks")).value()) {
+    // This is only if you need to start from scratch at every run.
     client.indices().delete(d -> d.index("tracks"));
 }
+// This can be omitted actually as the first sent document 
+// will create the index automatically.
 client.indices().create(c -> c.index("tracks"));
 ```
 
@@ -141,9 +142,109 @@ with `keyword_ci`, so `Club`, `club`, and `CLUB` hit the same docs.
 parent (`4a`), show `10A` from `key.raw` on the wheel. Recreate the index
 after a mapping change — a normalizer lives in the mapping, not in the query.
 
+Note that this Java code could actually be replaced by a pure JSON curl request:
+
+```bash
+curl -X PUT "http://localhost:9200/_index_template/tracks" \
+  -H "Content-Type: application/json" \
+  -d '<JSON MAPPING HERE>'
+```
+
+And the following JSON shows the complete mapping for the `tracks` index (`<JSON MAPPING HERE>`).
+
+```json
+{
+  "index_patterns": [ "tracks*" ],
+  "template": {
+    "settings": {
+      "analysis": {
+        "analyzer": {
+          "track": {
+            "type": "custom",
+            "tokenizer": "standard",
+            "filter": [ "lowercase", "asciifolding" ]
+          }
+        },
+        "normalizer": {
+          "keyword_ci": {
+            "type": "custom",
+            "filter": [ "lowercase", "asciifolding" ]
+          }
+        }
+      }
+    },
+    "mappings": {
+      "properties": {
+        "title": {
+          "type": "text",
+          "analyzer": "track",
+          "fields": {
+            "raw": {
+              "type": "keyword"
+            },
+            "normalized": {
+              "type": "keyword",
+              "normalizer": "keyword_ci"
+            }
+          }
+        },
+        "artist": {
+          "type": "text",
+          "analyzer": "track",
+          "fields": {
+            "raw": {
+              "type": "keyword"
+            },
+            "normalized": {
+              "type": "keyword",
+              "normalizer": "keyword_ci"
+            }
+          }
+        },
+        "genre": {
+          "type": "text",
+          "analyzer": "track",
+          "fields": {
+            "raw": {
+              "type": "keyword"
+            },
+            "normalized": {
+              "type": "keyword",
+              "normalizer": "keyword_ci"
+            }
+          }
+        },
+        "key": {
+          "type": "keyword",
+          "normalizer": "keyword_ci",
+          "fields": {
+            "raw": {
+              "type": "keyword"
+            }
+          }
+        },
+        "bpm": {
+          "type": "double"
+        },
+        "rating": {
+          "type": "integer"
+        },
+        "year": {
+          "type": "integer"
+        }
+      }
+    }
+  }
+}
+```
+
+Let say you have an Elasticsearch admin team (like a DBA), you could hand them
+the JSON and let them manage the index template. Which means that those "Java"
+calls are useless.
+
 ## Bulk the beans as-is
 
-No `TrackDocumentMapper.toDocument`. The bean is the document:
+No `TrackDocumentMapper.toDocument`. The bean **is** the document:
 
 ```java
 try (BulkIngester<Void> ingester = BulkIngester.of(b -> b
@@ -157,8 +258,13 @@ try (BulkIngester<Void> ingester = BulkIngester.of(b -> b
 client.indices().refresh(r -> r.index("tracks"));
 ```
 
-`refresh` makes the bulk visible to search — the same moment Lucene needed a
-`commit` before a new `DirectoryReader`.
+We flush the bulk every 500 operations and rely on the `try-with-resources` block to
+automatically flush any remaining operations and close the ingester. `refresh` makes
+the bulk visible to search — the same moment Lucene needed a `commit` before a new
+`DirectoryReader`.
+
+Small tip: using `.globalSettings(s -> s.index("tracks"))` saves you from repeating the
+index name for every operation within the bulk ingester. It saves your network bandwidth.
 
 ## Type “Bob”
 
