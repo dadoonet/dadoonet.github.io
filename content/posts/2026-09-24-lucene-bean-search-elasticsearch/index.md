@@ -16,7 +16,7 @@ series:
 date: '2026-09-24T07:00:00+02:00'
 nolastmod: true
 cover: cover.avif
-draft: true
+draft: false
 ---
 
 We mapped beans, owned a writer, typed `Bob`, filtered Club, counted facets,
