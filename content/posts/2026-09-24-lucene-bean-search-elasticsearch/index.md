@@ -60,7 +60,7 @@ Then wrap it behind the same `TrackSearch` contract as Lucene:
 TrackSearch search = new TrackSearchElasticsearchImpl(client);
 ```
 
-The interesting path is a **session**: prepare once, execute once, read hits and 
+The interesting path is a **session**: prepare once, execute once, read hits and
 facets from the same round-trip:
 
 ```java
