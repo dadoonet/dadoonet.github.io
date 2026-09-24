@@ -54,24 +54,6 @@ ElasticsearchClient client = ElasticsearchClient.of(b -> b
         .apiKey(System.getenv("ES_API_KEY")));  // the API Key
 ```
 
-Then wrap it behind the same `TrackSearch` contract as Lucene:
-
-```java
-TrackSearch search = new TrackSearchElasticsearchImpl(client);
-```
-
-The interesting path is a **session**: prepare once, execute once, read hits and
-facets from the same round-trip:
-
-```java
-TrackSearchSession session = search.prepareRequest(
-        "Bob", filters, mustNots, 25);
-session.execute();      // one POST /tracks/_search
-session.totalHits();    // 62 even when size is 25
-session.getHits();
-session.getFacets();
-```
-
 ## Declare the mapping once
 
 In Lucene you built a `Document` field by field: `TextField` for search,
