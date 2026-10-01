@@ -18,7 +18,7 @@ draft: false
 pdf: "2026/2026-09-04-jug-summer-camp.pdf"
 
 # Speaker specific fields
-#youtube: "3AqqS9q27tY"      # ID de la vidéo YouTube (ex: dQw4w9WgXcQ)
+youtube: "hYq-YmxWszA"
 links:
   - title: "Demo project"
     url: "https://github.com/dadoonet/randomizedtesting-demo"
