@@ -6,6 +6,7 @@ conference:
   city: "Online"
   country_code: "online"
   url: "https://blog.ovhcloud.com/fr/categories/tech-bites/"
+  date: 2026-11-10
 authors:
   - author: Aurélie Vache
     link: "https://www.linkedin.com/in/aurelievache/"
@@ -13,7 +14,7 @@ authors:
     link: "https://www.linkedin.com/in/philippartstephane/"
   - author: David Pilato
 #talk: FSCrawler
-date: 2026-11-10
+date: 2026-10-22
 talk-lang: fr
 nolastmod: true
 draft: false
