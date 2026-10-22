@@ -1,7 +1,7 @@
 ---
 title: "Give your coding agent an (Elastic) memory"
 conference: 
-  name: "Pulumi workshop"
+  name: "Pulumi x Elastic meetup"
   city: "Online"
   country: "Online"
   country_code: "online"
@@ -11,11 +11,11 @@ authors:
     link: "https://www.linkedin.com/in/engin-diri/"
   - author: David Pilato
 talk: Serverless
-date: 2026-10-20
+date: 2026-10-22
 talk-lang: en
 nolastmod: true
 draft: false
-#pdf: "2026/2026-10-20-pulumi-serverless.pdf"
+pdf: "2026/2026-10-22-pulumi-serverless.pdf"
 
 
 # Speaker specific fields
