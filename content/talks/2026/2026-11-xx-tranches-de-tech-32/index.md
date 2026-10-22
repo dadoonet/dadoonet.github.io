@@ -1,5 +1,5 @@
 ---
-title: "Tranches de Tech #32 - TODO"
+title: "Tranches de Tech #32 - 🐮 🧸 🦖"
 conference: 
   name: "Tranches de Tech (Podcast)"
   country: "Online"
@@ -27,6 +27,9 @@ draft: false
 #    description: "IFTTD Un crawler de fichiers pour Elastic - Episode 193"
 ---
 
-> Tranches de Tech #32 - XYZ
+> Tranches de Tech #32 - 🐮 🧸 🦖
 
-TODO
+* Java Champion : Nomination de David.
+* Sécurité & IA : Découverte accélérée de vulnérabilités et lettre ouverte de la communauté scientifique.
+* Nouveaux modèles : Regroupement des annonces d'Anthropic, OpenAI et autres.
+* Impact sur l'emploi : Restructurations informatiques et transition vers l'IA (ex. General Motors).
