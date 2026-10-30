@@ -44,3 +44,7 @@ What you'll learn:
 * How agent-memory stores and searches agent context in Elasticsearch.
 * How to deploy the memory backend to Elastic Cloud Serverless with Pulumi as reviewable code.
 * How to plug it into your coding agent and recover a killed session.
+
+Screen capture from the session:
+
+![Screen capture from the session](talk.png)
