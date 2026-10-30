@@ -12,7 +12,7 @@ authors:
     link: "https://www.linkedin.com/in/fbaligand/"
   - author: David Pilato
 #talk: Elasticast S02E01
-date: 2027-01-15
+date: 2026-10-30
 talk-lang: fr
 nolastmod: true
 draft: false

@@ -2,6 +2,7 @@
 title: "Les Bronzés cherchent une Vidéo"
 subtitle: "L'IA multimodale au secours de vos souvenirs"
 conference: 
+  date: 2027-01-14
   name: "Snowcamp"
   city: "Grenoble"
   country: "France"
@@ -15,7 +16,7 @@ authors:
     link: "https://www.linkedin.com/in/%F0%9F%94%8E%F0%9F%8F%8Dbenjamin-dauvissat-07037310/"
 avatar: /about/david_pilato.avif
 talk: Video Search
-date: 2027-01-14
+date: 2026-10-30
 talk-lang: fr
 nolastmod: true
 draft: false
