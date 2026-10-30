@@ -1,7 +1,7 @@
 ---
-title: "SnowCamp"
+title: "Snowcamp"
 conference: 
-  name: "SnowCamp"
+  name: "Snowcamp"
   city: "Grenoble"
   country: "France"
   country_code: "fr"

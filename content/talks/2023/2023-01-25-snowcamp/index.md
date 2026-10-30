@@ -1,7 +1,7 @@
 ---
 title: "Indexer ses documents bureautique avec la suite Elastic et FSCrawler"
 conference: 
-  name: "Snowcamp 2023"
+  name: "Snowcamp"
   city: "Grenoble"
   country: "France"
   country_code: "fr"
