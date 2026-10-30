@@ -1,6 +1,6 @@
 ---
-title: "Chercher une frame dans une botte de neige"
-subtitle: "L'IA multimodale au secours de vos vidéos"
+title: "Les Bronzés cherchent une Vidéo"
+subtitle: "L'IA multimodale au secours de vos souvenirs"
 conference: 
   name: "Snowcamp"
   city: "Grenoble"
