@@ -9,7 +9,8 @@ conference:
   country_code: "fr"
   latitude: "45.1546344"
   longitude: "5.7326528"
-  url: "https://snowcamp.io/"
+#  url: "https://snowcamp.io/"
+  url: "https://app.voxxr.in/events/snowcamp27/talks/9OsVFQ3cnIep5plRiZvq/details"
 authors: 
   - author: David Pilato
   - author: Benjamin Dauvissat
