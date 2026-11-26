@@ -6,7 +6,7 @@ conference:
   city: "Tours"
   country: "France"
   country_code: "fr"
-  url: "https://touraine.tech/"
+  url: "https://touraine.tech/talk/cmvkwcxtr007e01t771v9w65d/"
   date: "2027-02-18"
   latitude: "47.3646161"
   longitude: "0.6838372"
@@ -19,7 +19,7 @@ nolastmod: true
 draft: true
 ---
 
-Retrouver un moment précis dans des téraoctets d'archives vidéo, c'est littéralement chercher un morceau de viande précis dans un pot de rillettes. Vous savez pertinemment que ce moment où Jean-Michel fait tomber son sandwich dans les douves du château de Chambord a été filmé... mais allez-vous vraiment visionner 12 heures de visites touristiques en x4 pour le débusquer ? 
+Retrouver un moment précis dans des téraoctets d'archives vidéo, c'est littéralement chercher un morceau de viande précis dans un pot de rillettes. Vous savez pertinemment que ce moment où Jean-Michel fait tomber son sandwich dans les douves du château de Chambord a été filmé... mais allez-vous vraiment visionner 12 heures de visites touristiques en x4 pour le débusquer ?
 
 Oubliez le taggage manuel laborieux et les recherches par noms de fichiers obscurs. Il est temps d'appeler les artisans de la donnée ! Dans cette session, nous allons construire un véritable moteur de recherche vidéo "Omnisearch". L'objectif ? Retrouver la seconde exacte de votre action à partir d'une simple requête en langage naturel (ex : "sandwich qui tombe à l'eau près d'un château").
 
