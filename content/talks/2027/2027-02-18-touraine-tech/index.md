@@ -16,7 +16,7 @@ talk: "Video Search"
 date: "2026-11-12"
 talk-lang: "fr"
 nolastmod: true
-draft: true
+draft: false
 ---
 
 Retrouver un moment précis dans des téraoctets d'archives vidéo, c'est littéralement chercher un morceau de viande précis dans un pot de rillettes. Vous savez pertinemment que ce moment où Jean-Michel fait tomber son sandwich dans les douves du château de Chambord a été filmé... mais allez-vous vraiment visionner 12 heures de visites touristiques en x4 pour le débusquer ?
